@@ -12,17 +12,29 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
-using Microsoft.Azure.Commands.Tags.Model;
-using System.Collections;
-using System.Collections.Generic;
+using System.Text;
 
-namespace Microsoft.Azure.Commands.Compute.Models
+namespace Microsoft.Azure.Commands.Compute.Common
 {
-    public static class HashTableExtension
+    public static class LocationStringExtensions
     {
-        public static Dictionary<string, string> ToDictionary(this Hashtable[] tags)
+        public static string Canonicalize(this string location)
         {
-            return TagsConversionHelper.CreateTagDictionary(tags, true);
+            if (!string.IsNullOrEmpty(location))
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (char ch in location)
+                {
+                    if (!char.IsWhiteSpace(ch))
+                    {
+                        sb.Append(ch);
+                    }
+                }
+
+                location = sb.ToString().ToLower();
+            }
+
+            return location;
         }
     }
 }

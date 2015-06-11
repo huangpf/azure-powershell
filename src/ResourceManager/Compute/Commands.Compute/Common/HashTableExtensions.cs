@@ -12,27 +12,17 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
-using System;
-using System.Management.Automation;
-using Microsoft.WindowsAzure.Commands.ExpressRoute.Properties;
+using Microsoft.Azure.Commands.Tags.Model;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace Microsoft.WindowsAzure.Commands.ExpressRoute
+namespace Microsoft.Azure.Commands.Compute.Common
 {
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
-    public sealed class ValidateGuid : ValidateEnumeratedArgumentsAttribute
+    public static class HashTableExtensions
     {
-        protected override void ValidateElement(object element)
+        public static Dictionary<string, string> ToDictionary(this Hashtable[] tags)
         {
-            string guid = (string)element;
-
-            try
-            {
-                Guid validGuid = Guid.Parse(guid);
-            } 
-            catch
-            {
-                throw new ArgumentException(String.Format(Resources.InvalidGuid, guid));
-            }
+            return TagsConversionHelper.CreateTagDictionary(tags, true);
         }
     }
 }
