@@ -203,11 +203,6 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.Common
         //TODO: Input argument is not used and should probably be removed.
         protected void ExecuteClientActionNewSM<TResult>(object input, string operationDescription, Func<TResult> action, Func<OperationStatusResponse, TResult, object> contextFactory) where TResult : AzureOperationResponse
         {
-            ExecuteClientActionNewSM(input, operationDescription, action, null, contextFactory);
-        }
-
-        protected void ExecuteClientActionNewSM<TResult>(object input, string operationDescription, Func<TResult> action, Func<string, string, OperationStatusResponse> waitOperation, Func<OperationStatusResponse, TResult, object> contextFactory) where TResult : AzureOperationResponse
-        {
             TResult result = null;
             OperationStatusResponse operation = null;
             WriteVerboseWithTimestamp(string.Format(Resources.ServiceManagementExecuteClientActionInOCSBeginOperation, operationDescription));
@@ -215,18 +210,11 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.Common
             {
                 try
                 {
-                    try
-                    {
-                        result = action();
-                    }
-                    catch (CloudException ce)
-                    {
-                        throw new ComputeCloudException(ce);
-                    }
+                    result = action();
                 }
-                catch (Exception ex)
+                catch (CloudException ce)
                 {
-                    WriteExceptionError(ex);
+                    throw new ComputeCloudException(ce);
                 }
 
                 if (result is OperationStatusResponse)
@@ -235,15 +223,19 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.Common
                 }
                 else
                 {
-                    if (waitOperation == null)
+                    operation = result == null ? null : GetOperationNewSM(result.RequestId);
+                }
+
+                if (result != null)
+                {
+                    var context = contextFactory(operation, result);
+                    if (context != null)
                     {
-                        operation = result == null ? null : GetOperationNewSM(result.RequestId);
-                    }
-                    else
-                    {
-                        operation = result == null ? null : waitOperation(result.RequestId, operationDescription);
+                        WriteObject(context, true);
                     }
                 }
+
+                WriteVerboseWithTimestamp(string.Format(Resources.ServiceManagementExecuteClientActionInOCSCompletedOperation, operationDescription));
             }
             catch (AggregateException ex)
             {
@@ -256,16 +248,9 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.Common
                     WriteExceptionDetails(ex);
                 }
             }
-
-            WriteVerboseWithTimestamp(string.Format(Resources.ServiceManagementExecuteClientActionInOCSCompletedOperation, operationDescription));
-
-            if (result != null)
+            catch (Exception ex)
             {
-                var context = contextFactory(operation, result);
-                if (context != null)
-                {
-                    WriteObject(context, true);
-                }
+                WriteExceptionError(ex);
             }
         }
 
