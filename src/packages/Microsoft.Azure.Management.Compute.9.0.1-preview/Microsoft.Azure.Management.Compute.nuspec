@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+  <metadata minClientVersion="2.5">
+    <id>Microsoft.Azure.Management.Compute</id>
+    <version>9.0.1-preview</version>
+    <title>Microsoft Azure Compute Management Library</title>
+    <authors>Microsoft</authors>
+    <owners>azure-sdk, Microsoft</owners>
+    <licenseUrl>http://aka.ms/windowsazureapache2</licenseUrl>
+    <projectUrl>https://github.com/Azure/azure-sdk-for-net</projectUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288890</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides developers with libraries for the updated compute platform under Azure Resource manager to deploy virtual machine, virtual machine extensions and availability set management capabilities. Launch, restart, scale, capture and manage VMs, VM Extensions and more.
+
+Note: This client library is for Virtual Machines under Azure Resource Manager.</description>
+    <summary>Provides developers with libraries for the updated compute platform under Azure Resource manager to deploy virtual machine, virtual machine extensions and availability set management capabilities. Launch, restart, scale, capture and manage VMs, VM Extensions and more.
+
+Note: This client library is for Virtual Machines under Azure Resource Manager.</summary>
+    <copyright>Copyright © Microsoft Corporation</copyright>
+    <tags>Microsoft Azure resource management virtual machine compute REST HTTP client core common azureofficial windowsazureofficial</tags>
+    <dependencies>
+      <dependency id="Microsoft.Azure.Common" version="[2.1.0, 3.0)" />
+    </dependencies>
+    <references>
+      <group targetFramework=".NETPortable0.0-net45+sl50+wp80+win">
+        <reference file="Microsoft.Azure.Management.Compute.dll" />
+      </group>
+      <group targetFramework=".NETFramework4.0">
+        <reference file="Microsoft.Azure.Management.Compute.dll" />
+      </group>
+    </references>
+  </metadata>
+</package>
