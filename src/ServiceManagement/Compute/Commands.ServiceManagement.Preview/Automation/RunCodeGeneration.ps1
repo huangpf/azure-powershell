@@ -49,13 +49,31 @@ param(
     # 1. Invoke (default) that uses Invoke as the verb, and Operation + Method (e.g. VirtualMachine + Get)
     # 2. Verb style that maps the method name to a certain common PS verb (e.g. CreateOrUpdate -> New)
     [Parameter(Mandatory = $false)]
-    [string]$cmdletStyle = 'Invoke'
+    [string]$cmdletStyle = 'Invoke',
+
+    # The filter of operation name for code generation
+    # e.g. "VirtualMachineScaleSet","VirtualMachineScaleSetVM"
+    [Parameter(Mandatory = $false)]
+    [string[]]$operationNameFilter = $null
 )
 
 $new_line_str = "`r`n";
 $verbs_common_new = "VerbsCommon.New";
 $verbs_lifecycle_invoke = "VerbsLifecycle.Invoke";
 $client_model_namespace = $client_library_namespace + '.Models';
+
+$common_verb_mapping =
+@{
+"CreateOrUpdate" = "New";
+"Get" = "Get";
+"List" = "Get";
+"Delete" = "Remove";
+"Deallocate" = "Stop";
+"PowerOff" = "Stop";
+"Start" = "Start";
+"Restart" = "Restart";
+"Capture" = "Save";
+};
 
 Write-Verbose "=============================================";
 Write-Verbose "Input Parameters:";
@@ -66,6 +84,7 @@ Write-Verbose "Model NameSpace       = $client_model_namespace";
 Write-Verbose "Base Cmdlet Full Name = $baseCmdletFullName";
 Write-Verbose "Base Client Name      = $base_class_client_field";
 Write-Verbose "Cmdlet Style          = $cmdletStyle";
+Write-Verbose "Operation Name Filter = $operationNameFilter";
 Write-Verbose "=============================================";
 Write-Verbose "${new_line_str}";
 
@@ -255,6 +274,72 @@ function Get-OperationShortName
     return $opShortName;
 }
 
+function Match-OperationFilter
+{
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$operation_full_name,
+
+        [Parameter(Mandatory = $true)]
+        $operation_name_filter)
+
+    if ($operation_name_filter -eq $null)
+    {
+        return $true;
+    }
+
+    if ($operation_name_filter -eq '*')
+    {
+        return $true;
+    }
+
+    $op_short_name = Get-OperationShortName $operation_full_name;
+    if ($operation_name_filter -ccontains $op_short_name)
+    {
+        return $true;
+    }
+
+    return $false;
+}
+
+# Get Filtered Operation Types from all DLL Types
+function Get-FilteredOperationTypes
+{
+    param(
+        [Parameter(Mandatory = $true)]
+        $all_assembly_types,
+
+        [Parameter(Mandatory = $true)]
+        $dll_name,
+        
+        [Parameter(Mandatory = $false)]
+        $operation_name_filter = $null
+    )
+
+    $op_types = $all_assembly_types | where { $_.Namespace -eq $dll_name -and $_.Name -like 'I*Operations' };
+
+    Write-Verbose 'All Operation Types:';
+    foreach ($op_type in $op_types)
+    {
+        Write-Verbose ($op_type.Namespace + ', ' + $op_type.Name);
+    }
+
+    $op_filtered_types = $op_types;
+    if ($operation_name_filter -ne $null)
+    {
+        $op_filtered_types = $op_filtered_types | where { Match-OperationFilter $_.Name $operation_name_filter };
+    }
+
+    Write-Verbose ('Operation Name Filter : "' + $operation_name_filter + '"');
+    Write-Verbose 'Filtered Operation Types : ';
+    foreach ($op_type in $op_filtered_types)
+    {
+        Write-Verbose ($op_type.Namespace + ', ' + $op_type.Name);
+    }
+
+    return $op_filtered_types;
+}
+
 # Sample: ServiceName, DeploymentName
 function Is-PipingPropertyName
 {
@@ -314,6 +399,40 @@ function Is-PipingPropertyTypeName
     return $false;
 }
 
+function Get-VerbTermNameAndSuffix
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        [string]$MethodName
+    )
+
+    $verb = $MethodName;
+    $suffix = $null;
+
+    foreach ($key in $common_verb_mapping.Keys)
+    {
+        if ($MethodName.StartsWith($key))
+        {
+            $verb = $common_verb_mapping[$key];
+            $suffix = $MethodName.Substring($key.Length);
+
+            if ($MethodName.StartsWith('List'))
+            {
+                $suffix += 'List';
+            }
+            elseif ($MethodName.StartsWith('Deallocate'))
+            {
+                $suffix += "WithDeallocation";
+            }
+
+            break;
+        }
+    }
+
+    Write-Output $verb;
+    Write-Output $suffix;
+}
+
 function Write-PSArgumentFile
 {
     param(
@@ -345,6 +464,8 @@ namespace ${code_model_namespace}
 
 function Write-BaseCmdletFile
 {
+    # e.g.
+    # public abstract class ComputeAutomationBaseCmdlet : Microsoft.WindowsAzure.Commands.Utilities.Common.ServiceManagementBaseCmdlet
     param(
         [Parameter(Mandatory = $True)]
         [string]$file_full_path,
@@ -455,6 +576,9 @@ ${operation_get_code}
 # Write Invoke Compute Client Cmdlet
 function Write-InvokeCmdletFile
 {
+    # e.g.
+    # public partial class InvokeAzureComputeMethodCmdlet : ComputeAutomationBaseCmdlet, IDynamicParameters
+
     param(
         [Parameter(Mandatory = $True)]
         [string]$file_full_path,
@@ -524,7 +648,7 @@ function Write-InvokeCmdletFile
         [Parameter(Mandatory = true, ParameterSetName = `"$dynamic_param_set_name`", Position = 0)]
         [Parameter(Mandatory = true, ParameterSetName = `"$static_param_set_name`", Position = 0)]
 $validate_all_method_names_code
-        public string MethodName $get_set_block
+        public virtual string MethodName $get_set_block
 
 "@;
 
@@ -618,7 +742,7 @@ ${param_set_code}
 ${execute_client_action_code}
 $invoke_cmdlet_method_code_content
 
-        public object GetDynamicParameters()
+        public virtual object GetDynamicParameters()
         {
             switch (MethodName)
             {
@@ -795,7 +919,7 @@ function Write-InvokeParameterCmdletFile
 @"
         [Parameter(ParameterSetName = `"$param_set_of_create_by_method_name`", Mandatory = true, Position = 0)]
 $validate_all_method_names_code
-        public string MethodName $get_set_block
+        public virtual string MethodName $get_set_block
 
 "@;
 
@@ -1125,7 +1249,7 @@ $parameter_cmdlet_method_code_content
     $st = Set-Content -Path $file_full_path -Value $cmdlet_source_code_text -Force;
 }
 
-# Sample: InvokeAzureVirtualMachineGetMethod.cs
+# Sample: VirtualMachineGetMethod.cs
 function Write-OperationCmdletFile
 {
     param(
@@ -1327,6 +1451,17 @@ ${create_local_param_code_content}
         }
 "@;
 
+    # 1. Invoke Cmdlet Partial Code
+    # 2. Param Cmdlet Partial Code
+    # 3. Verb Cmdlet Partial Code
+    $return_vals = Get-VerbTermNameAndSuffix $methodName;
+    $mapped_verb_name = $return_vals[0];
+    $mapped_verb_term_suffix = $return_vals[1];
+
+    $mapped_noun_str = 'Azure' + $opShortName + $mapped_verb_term_suffix;
+    $verb_cmdlet_name = $mapped_verb_name + $mapped_noun_str;
+
+    # Construct the Individual Cmdlet Code Content
     $cmdlet_partial_class_code =
 @"
     public partial class ${invoke_cmdlet_class_name} : ComputeAutomationBaseCmdlet
@@ -1339,6 +1474,29 @@ $invoke_cmdlt_source_template
     public partial class ${parameter_cmdlet_class_name} : ComputeAutomationBaseCmdlet
     {
 $parameter_cmdlt_source_template
+    }
+
+    [Cmdlet(`"${mapped_verb_name}`", `"${mapped_noun_str}`")]
+    public partial class $verb_cmdlet_name : ${invoke_cmdlet_class_name}
+    {
+        public $verb_cmdlet_name()
+        {
+            this.MethodName = `"$invoke_param_set_name`";
+        }
+
+        public override string MethodName { get; set; }
+
+        public override void ExecuteCmdlet()
+        {
+            base.ExecuteCmdlet();
+        }
+
+        public override object GetDynamicParameters()
+        {
+            dynamicParameters = new RuntimeDefinedParameterDictionary();
+$dynamic_param_assignment_code
+            return dynamicParameters;
+        }
     }
 "@;
 
@@ -1360,7 +1518,6 @@ ${cmdlet_generated_code}
 ${cmdlet_partial_class_code}
 }
 "@;
-
 
     $cmdlt_partial_class_source_template =
 @"
@@ -1653,8 +1810,7 @@ else
     
     # All original types
     $types = $assembly.GetTypes();
-    $filtered_types = $types | where { $_.Namespace -eq $dllname -and $_.Name -like 'I*Operations' };
-    Write-Output ($filtered_types | select Namespace, Name);
+    $filtered_types = Get-FilteredOperationTypes $types $dllname $operationNameFilter;
 
     # Write Base Cmdlet File
     $auto_base_cmdlet_name = 'ComputeAutomationBaseCmdlet';

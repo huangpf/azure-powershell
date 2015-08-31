@@ -153,7 +153,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "VirtualMachineVMImageUnreplicate",
             "VirtualMachineVMImageUpdate"
         )]
-        public string MethodName { get; set; }
+        public virtual string MethodName { get; set; }
 
         protected object ParseParameter(object input)
         {

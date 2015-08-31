@@ -137,7 +137,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "VirtualMachineVMImageUnreplicate",
             "VirtualMachineVMImageUpdate"
         )]
-        public string MethodName { get; set; }
+        public virtual string MethodName { get; set; }
 
         public override void ExecuteCmdlet()
         {
