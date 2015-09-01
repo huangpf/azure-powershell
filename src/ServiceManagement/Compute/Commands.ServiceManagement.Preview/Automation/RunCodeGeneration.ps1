@@ -45,11 +45,11 @@ param(
     [Parameter(Mandatory = $true)]
     [string]$base_class_client_field = 'ComputeClient',
     
-    # Cmdlet Code Generation Style
+    # Cmdlet Code Generation Flavor
     # 1. Invoke (default) that uses Invoke as the verb, and Operation + Method (e.g. VirtualMachine + Get)
     # 2. Verb style that maps the method name to a certain common PS verb (e.g. CreateOrUpdate -> New)
     [Parameter(Mandatory = $false)]
-    [string]$cmdletStyle = 'Invoke',
+    [string]$cmdletFlavor = 'Invoke',
 
     # The filter of operation name for code generation
     # e.g. "VirtualMachineScaleSet","VirtualMachineScaleSetVM"
@@ -83,7 +83,7 @@ Write-Verbose "Client NameSpace      = $client_library_namespace";
 Write-Verbose "Model NameSpace       = $client_model_namespace";
 Write-Verbose "Base Cmdlet Full Name = $baseCmdletFullName";
 Write-Verbose "Base Client Name      = $base_class_client_field";
-Write-Verbose "Cmdlet Style          = $cmdletStyle";
+Write-Verbose "Cmdlet Flavor         = $cmdletFlavor";
 Write-Verbose "Operation Name Filter = $operationNameFilter";
 Write-Verbose "=============================================";
 Write-Verbose "${new_line_str}";
@@ -123,19 +123,9 @@ $code_common_header =
 // code is regenerated.
 "@;
 
-function Get-SortedUsings
+function Get-SortedUsingsCode
 {
-    param(
-        # Sample: @('System.Management.Automation', 'Microsoft.Azure', ...)
-        [Parameter(Mandatory = $true)]
-        $common_using_str_list,
-
-        # Sample: 'Microsoft.WindowsAzure.Management.Compute'
-        [Parameter(Mandatory = $true)]
-        $client_library_namespace
-    )
-
-    $list_of_usings = @() + $common_using_str_list + $client_library_namespace + $client_model_namespace + $code_model_namespace;
+    $list_of_usings = @() + $code_common_usings + $client_library_namespace + $client_model_namespace + $code_model_namespace;
     $sorted_usings = $list_of_usings | Sort-Object -Unique | foreach { "using ${_};" };
 
     $text = [string]::Join($new_line_str, $sorted_usings);
@@ -143,7 +133,7 @@ function Get-SortedUsings
     return $text;
 }
 
-$code_using_strs = Get-SortedUsings $code_common_usings $client_library_namespace;
+$code_using_strs = Get-SortedUsingsCode;
 
 function Get-NormalizedName
 {
@@ -1475,6 +1465,14 @@ $invoke_cmdlt_source_template
     {
 $parameter_cmdlt_source_template
     }
+"@;
+
+    if ($cmdletFlavor -eq 'Verb')
+    {
+        # If the Cmdlet Flavor is 'Verb', generate the Verb-based cmdlet code
+        $cmdlet_partial_class_code +=
+@"
+
 
     [Cmdlet(`"${mapped_verb_name}`", `"${mapped_noun_str}`")]
     public partial class $verb_cmdlet_name : ${invoke_cmdlet_class_name}
@@ -1499,6 +1497,7 @@ $dynamic_param_assignment_code
         }
     }
 "@;
+    }
 
     $cmdlt_source_template =
 @"

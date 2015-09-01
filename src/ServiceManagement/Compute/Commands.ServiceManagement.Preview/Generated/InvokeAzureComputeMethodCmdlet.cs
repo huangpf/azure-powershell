@@ -489,7 +489,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         }
 
 
-        public object GetDynamicParameters()
+        public virtual object GetDynamicParameters()
         {
             switch (MethodName)
             {

@@ -356,8 +356,9 @@
       <ClientLibraryNamesSpace>"Microsoft.WindowsAzure.Management.Compute"</ClientLibraryNamesSpace>
       <BaseCmdletFullName>"Microsoft.WindowsAzure.Commands.Utilities.Common.ServiceManagementBaseCmdlet"</BaseCmdletFullName>
       <BaseCmdletClientName>"ComputeClient"</BaseCmdletClientName>
+      <ASMCmdletFlavor>Invoke</ASMCmdletFlavor>
     </PropertyGroup>
-    <Exec Command="$(PowerShellExe) $(PSCodeGenScriptPath) $(PSCodeGenTargetFolder) $(MSBuildProjectDirectory) $(ClientLibraryNamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName)" />
+    <Exec Command="$(PowerShellExe) $(PSCodeGenScriptPath) $(PSCodeGenTargetFolder) $(MSBuildProjectDirectory) $(ClientLibraryNamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName) $(ASMCmdletFlavor)" />
   </Target>
   <Target Name="BuildGenerateARM">
     <PropertyGroup>
@@ -368,8 +369,9 @@
       <BaseCmdletClientName>"ComputeClient.ComputeManagementClient"</BaseCmdletClientName>
       <ARMClientLibraryNamesSpace>"Microsoft.Azure.Management.Compute"</ARMClientLibraryNamesSpace>
       <ARMGeneratedPSCodeFolder>..\..\..\ResourceManager\Compute\Commands.Compute</ARMGeneratedPSCodeFolder>
+      <ARMCmdletFlavor>Verb</ARMCmdletFlavor>
       <OperationNameFilter>"VirtualMachineScaleSet","VirtualMachineScaleSetVM"</OperationNameFilter>
     </PropertyGroup>
-    <Exec Command="$(PowerShellExe) $(PSCodeGenScriptPath) $(PSCodeGenTargetFolder) $(ARMGeneratedPSCodeFolder) $(ARMClientLibraryNamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName) -operationNameFilter $(OperationNameFilter)" />
+    <Exec Command="$(PowerShellExe) $(PSCodeGenScriptPath) $(PSCodeGenTargetFolder) $(ARMGeneratedPSCodeFolder) $(ARMClientLibraryNamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName) $(ARMCmdletFlavor) $(OperationNameFilter)" />
   </Target>
 </Project>
