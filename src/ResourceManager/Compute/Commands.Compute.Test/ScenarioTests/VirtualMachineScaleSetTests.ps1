@@ -30,16 +30,20 @@ Cmdlet          Get-AzureVirtualMachineScaleSetVMInstanceView      AzureResource
 Cmdlet          Get-AzureVirtualMachineScaleSetVMList              AzureResourceManager
 Cmdlet          New-AzureVirtualMachineScaleSet                    AzureResourceManager
 Cmdlet          Remove-AzureVirtualMachineScaleSet                 AzureResourceManager
+Cmdlet          Remove-AzureVirtualMachineScaleSetInstances        AzureResourceManager
 Cmdlet          Remove-AzureVirtualMachineScaleSetVM               AzureResourceManager
 Cmdlet          Restart-AzureVirtualMachineScaleSet                AzureResourceManager
+Cmdlet          Restart-AzureVirtualMachineScaleSetInstances       AzureResourceManager
 Cmdlet          Restart-AzureVirtualMachineScaleSetVM              AzureResourceManager
 Cmdlet          Start-AzureVirtualMachineScaleSet                  AzureResourceManager
+Cmdlet          Start-AzureVirtualMachineScaleSetInstances         AzureResourceManager
 Cmdlet          Start-AzureVirtualMachineScaleSetVM                AzureResourceManager
 Cmdlet          Stop-AzureVirtualMachineScaleSet                   AzureResourceManager
+Cmdlet          Stop-AzureVirtualMachineScaleSetInstances          AzureResourceManager
+Cmdlet          Stop-AzureVirtualMachineScaleSetInstancesWithDe... AzureResourceManager
 Cmdlet          Stop-AzureVirtualMachineScaleSetVM                 AzureResourceManager
 Cmdlet          Stop-AzureVirtualMachineScaleSetVMWithDeallocation AzureResourceManager
 Cmdlet          Stop-AzureVirtualMachineScaleSetWithDeallocation   AzureResourceManager
-
 #>
 function Test-VirtualMachineScaleSet
 {
@@ -120,7 +124,65 @@ function Test-VirtualMachineScaleSet
         Assert-True { $vmss.Name -eq $vmssResult.VirtualMachineScaleSet.Name };
 
         # List All
-        $all_vmss = Get-AzureVirtualMachineScaleSetAllList -VirtualMachineScaleSetListAllParameters $null;
+        $vmssList = Get-AzureVirtualMachineScaleSetAllList -VirtualMachineScaleSetListAllParameters $null;
+        Assert-True { ($vmssList.VirtualMachineScaleSets | select -ExpandProperty Name) -contains $vmss.Name };
+
+        # List from RG
+        $vmssList = Get-AzureVirtualMachineScaleSetList -ResourceGroupName $rgname;
+        Assert-True { ($vmssList.VirtualMachineScaleSets | select -ExpandProperty Name) -contains $vmss.Name };
+
+        # List Skus
+        $skuList = Get-AzureVirtualMachineScaleSetSkusList -ResourceGroupName $rgname  -VMScaleSetName $vmss.Name;
+
+        # List All VMs
+        $vmListParams = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetVMListParameters;
+        $vmListParams.ResourceGroupName = $rgname;
+        $vmListParams.VirtualMachineScaleSetName = $vmss.Name;
+        $vmListResult = Get-AzureVirtualMachineScaleSetVMList -VirtualMachineScaleSetVMListParameters $vmListParams;
+        $vmList = $vmListResult.VirtualMachineScaleSetVMs;
+
+        # List each VM
+        for ($i = 0; $i -lt $vmList.Count; $i++)
+        {
+            $vm = Get-AzureVirtualMachineScaleSetVM -ResourceGroupName $rgname  -VMScaleSetName $vmss.Name -InstanceId $i;
+            Assert-NotNull $vm.VirtualMachineScaleSetVM;
+            $vmInstance = Get-AzureVirtualMachineScaleSetVMInstanceView  -ResourceGroupName $rgname  -VMScaleSetName $vmss.Name -InstanceId $i;
+            Assert-NotNull $vmInstance.VirtualMachineScaleSetVMInstanceView;
+        }
+
+        # List Next (negative test)
+        Assert-ThrowsContains { Get-AzureVirtualMachineScaleSetNextList -NextLink test.com  } "Invalid URI: The format of the URI could not be determined.";
+
+        # Stop/Start/Restart Operation
+        for ($i = 0; $i -lt $vmList.Count; $i++)
+        {
+            $st = Stop-AzureVirtualMachineScaleSetVM -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -InstanceId $i;
+            $st = Stop-AzureVirtualMachineScaleSetVMWithDeallocation -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -InstanceId $i;
+            $st = Start-AzureVirtualMachineScaleSetVM -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -InstanceId $i;
+            $st = Restart-AzureVirtualMachineScaleSetVM -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -InstanceId $i;
+        }
+
+        $st = Stop-AzureVirtualMachineScaleSet -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
+        $st = Stop-AzureVirtualMachineScaleSetWithDeallocation -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
+        $st = Start-AzureVirtualMachineScaleSet -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
+        $st = Restart-AzureVirtualMachineScaleSet -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
+
+        $instanceListParam = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetVMInstanceIDs;
+        for ($i = 0; $i -lt $vmList.Count; $i++)
+        {
+            $instanceListParam.InstanceIDs.Add($i);
+        }
+        $st = Stop-AzureVirtualMachineScaleSetInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
+        $st = Stop-AzureVirtualMachineScaleSetInstancesWithDeallocation -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
+        $st = Start-AzureVirtualMachineScaleSetInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
+        $st = Restart-AzureVirtualMachineScaleSetInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
+
+        # Remove
+        $instanceListParam = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetVMInstanceIDs;
+        $instanceListParam.InstanceIDs.Add(1);
+        $st = Remove-AzureVirtualMachineScaleSetInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
+        Assert-ThrowsContains { $st = Remove-AzureVirtualMachineScaleSetVM -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -InstanceId 0 } "cannot be deleted because it is the last remaining";
+        $st = Remove-AzureVirtualMachineScaleSet -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
     }
     finally
     {
