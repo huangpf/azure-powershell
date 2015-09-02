@@ -58,6 +58,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "VirtualMachineScaleSetVirtualMachineExtension",
             "VirtualMachineScaleSetVirtualMachineExtensionList",
             "VirtualMachineScaleSetVirtualMachineScaleSet",
+            "VirtualMachineScaleSetVMInstanceIDs",
             "VirtualMachineScaleSetVMListParameters",
             "VirtualMachineScaleSetVMProfile",
             "VirtualMachineScaleSetWindowsConfiguration",
@@ -86,6 +87,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSDisk",
             "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSProfile",
             "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetStorageProfile",
+            "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceIDs",
             "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMListParameters",
             "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile",
             "Microsoft.Azure.Management.Compute.Models.WindowsConfiguration",
@@ -131,6 +133,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                         case "VirtualMachineScaleSetVirtualMachineExtension" : WriteObject(new VirtualMachineExtension()); break;
                         case "VirtualMachineScaleSetVirtualMachineExtensionList" : WriteObject(new List<VirtualMachineExtension>()); break;
                         case "VirtualMachineScaleSetVirtualMachineScaleSet" : WriteObject(new VirtualMachineScaleSet()); break;
+                        case "VirtualMachineScaleSetVMInstanceIDs" : WriteObject(new VirtualMachineScaleSetVMInstanceIDs()); break;
                         case "VirtualMachineScaleSetVMListParameters" : WriteObject(new VirtualMachineScaleSetVMListParameters()); break;
                         case "VirtualMachineScaleSetVMProfile" : WriteObject(new VirtualMachineScaleSetVMProfile()); break;
                         case "VirtualMachineScaleSetWindowsConfiguration" : WriteObject(new WindowsConfiguration()); break;
@@ -161,6 +164,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                         case "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSDisk" : WriteObject(new VirtualMachineScaleSetOSDisk()); break;
                         case "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSProfile" : WriteObject(new VirtualMachineScaleSetOSProfile()); break;
                         case "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetStorageProfile" : WriteObject(new VirtualMachineScaleSetStorageProfile()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceIDs" : WriteObject(new VirtualMachineScaleSetVMInstanceIDs()); break;
                         case "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMListParameters" : WriteObject(new VirtualMachineScaleSetVMListParameters()); break;
                         case "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile" : WriteObject(new VirtualMachineScaleSetVMProfile()); break;
                         case "Microsoft.Azure.Management.Compute.Models.WindowsConfiguration" : WriteObject(new WindowsConfiguration()); break;

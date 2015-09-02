@@ -76,8 +76,15 @@ function Test-VirtualMachineScaleSet
         $vmss.Type = 'Microsoft.Compute/virtualMachineScaleSets';
         $vmss.Location = $loc;
 
-        $vmss.NetworkProfile = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetNetworkProfile;
+        $vmss.VirtualMachineProfile = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetVMProfile;
+        $vmss.VirtualMachineProfile.Extensions = $null;
+        $vmss.Sku = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetSku;
+        $vmss.Sku.Capacity = 2;
+        $vmss.Sku.Name = 'Standard_A0';
+        $vmss.UpgradePolicy = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetUpgradePolicy;
+        $vmss.UpgradePolicy.Mode = 'automatic';
 
+        $vmss.VirtualMachineProfile.NetworkProfile = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetNetworkProfile;
         $ipCfg = New-Object Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetIPConfiguration;
         $ipcfg.Name = 'test';
         $ipCfg.LoadBalancerBackendAddressPools = $null;
@@ -87,14 +94,8 @@ function Test-VirtualMachineScaleSet
         $netCfg.Name = 'test';
         $netCfg.Primary = $true;
         $netCfg.IPConfigurations.Add($ipCfg);
-        $vmss.NetworkProfile.NetworkConfigurations.Add($netCfg);
+        $vmss.VirtualMachineProfile.NetworkProfile.NetworkInterfaceConfigurations.Add($netCfg);
 
-        $vmss.Sku = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetSku;
-        $vmss.Sku.Capacity = 2;
-        $vmss.Sku.Name = $vmsize;
-
-        $vmss.VirtualMachineProfile = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetVMProfile;
-        $vmss.VirtualMachineProfile.Extensions = $null;
         $vmss.VirtualMachineProfile.OSProfile = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetOSProfile;
         $vmss.VirtualMachineProfile.OSProfile.ComputerNamePrefix = 'test';
         $vmss.VirtualMachineProfile.OSProfile.AdminUsername = 'Foo12';
@@ -103,7 +104,7 @@ function Test-VirtualMachineScaleSet
         $vmss.VirtualMachineProfile.StorageProfile = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetStorageProfile;
         $imgRef = Get-DefaultCRPImage -loc $loc;
         $vmss.VirtualMachineProfile.StorageProfile.ImageReference = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetImageReference;
-        $vmss.VirtualMachineProfile.StorageProfile.ImageReference.Publisher = $imgRef.Publisher;
+        $vmss.VirtualMachineProfile.StorageProfile.ImageReference.Publisher = $imgRef.PublisherName;
         $vmss.VirtualMachineProfile.StorageProfile.ImageReference.Offer = $imgRef.Offer;
         $vmss.VirtualMachineProfile.StorageProfile.ImageReference.Sku = $imgRef.Skus;
         $vmss.VirtualMachineProfile.StorageProfile.ImageReference.Version = $imgRef.Version;
@@ -111,13 +112,12 @@ function Test-VirtualMachineScaleSet
         $vmss.VirtualMachineProfile.StorageProfile.OSDisk.Caching = 'None';
         $vmss.VirtualMachineProfile.StorageProfile.OSDisk.CreateOption = 'FromImage';
         $vmss.VirtualMachineProfile.StorageProfile.OSDisk.Name = 'test';
-        $vmss.VirtualMachineProfile.StorageProfile.OSDisk.OperatingSystemType = 'Windows';
-        $vhdContainer = "https://" + $stoname + ".blob.core.windows.net/" + $vmssname;
+        $vhdContainer = "https://" + $stoname + ".blob.core.windows.net/" + $vmss.Name;
         $vmss.VirtualMachineProfile.StorageProfile.OSDisk.VirtualHardDiskContainers.Add($vhdContainer);
 
-        # $st = New-AzureVirtualMachineScaleSet -ResourceGroupName $rgname -VirtualMachineScaleSetCreateOrUpdateParameters $vmss;
-        # $vmssResult = Get-AzureVirtualMachineScaleSet -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
-        # Assert-True { $vmss.Name -eq $vmssResult.Name };
+        $st = New-AzureVirtualMachineScaleSet -ResourceGroupName $rgname -VirtualMachineScaleSetCreateOrUpdateParameters $vmss;
+        $vmssResult = Get-AzureVirtualMachineScaleSet -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
+        Assert-True { $vmss.Name -eq $vmssResult.VirtualMachineScaleSet.Name };
 
         # List All
         $all_vmss = Get-AzureVirtualMachineScaleSetAllList -VirtualMachineScaleSetListAllParameters $null;

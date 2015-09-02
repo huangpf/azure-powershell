@@ -78,7 +78,7 @@
       <HintPath>..\..\..\packages\Microsoft.Azure.Management.Authorization.0.19.2-preview\lib\net40\Microsoft.Azure.Management.Authorization.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.Management.Compute, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Azure.Management.Compute.9.0.1-preview\lib\net40\Microsoft.Azure.Management.Compute.dll</HintPath>
+      <HintPath>..\..\..\packages\Microsoft.Azure.Management.Compute.9.0.2-preview\lib\net40\Microsoft.Azure.Management.Compute.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.Management.Network, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -237,15 +237,20 @@
     <Compile Include="Generated\VirtualMachineScaleSetVM\VirtualMachineScaleSetVMRestartMethod.cs" />
     <Compile Include="Generated\VirtualMachineScaleSetVM\VirtualMachineScaleSetVMStartMethod.cs" />
     <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetCreateOrUpdateMethod.cs" />
+    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetDeallocateInstancesMethod.cs" />
     <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetDeallocateMethod.cs" />
+    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetDeleteInstancesMethod.cs" />
     <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetDeleteMethod.cs" />
     <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetGetMethod.cs" />
     <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetListAllMethod.cs" />
     <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetListMethod.cs" />
     <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetListNextMethod.cs" />
     <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetListSkusMethod.cs" />
+    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetPowerOffInstancesMethod.cs" />
     <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetPowerOffMethod.cs" />
+    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetRestartInstancesMethod.cs" />
     <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetRestartMethod.cs" />
+    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetStartInstancesMethod.cs" />
     <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetStartMethod.cs" />
     <Compile Include="Images\GetAzureVMImageCommand.cs" />
     <Compile Include="Common\HashTableExtensions.cs" />
