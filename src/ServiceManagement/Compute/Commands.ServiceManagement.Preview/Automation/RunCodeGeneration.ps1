@@ -162,6 +162,33 @@ function Get-NormalizedName
     return $outputName;
 }
 
+function Get-UnnormalizedName
+{
+    # Sample: 'VMName' to 'vmName', 'VirtualMachine' => 'virtualMachine', 'ResourceGroup' => 'resourceGroup', etc.
+    param(
+        [Parameter(Mandatory = $True)]
+        [string]$inputName
+    )
+
+    if ([string]::IsNullOrEmpty($inputName))
+    {
+        return $inputName;
+    }
+
+    if ($inputName.StartsWith('VM'))
+    {
+        $outputName = 'vm' + $inputName.Substring(2);
+    }
+    else
+    {
+        [char]$firstChar = $inputName[0];
+        $firstChar = [System.Char]::ToLower($firstChar);
+        $outputName = $firstChar + $inputName.Substring(1);
+    }
+
+    return $outputName;
+}
+
 function Get-NormalizedTypeName
 {
     param(
@@ -1289,6 +1316,7 @@ function Write-OperationCmdletFile
     [System.Collections.ArrayList]$invoke_param_names = @();
     [System.Collections.ArrayList]$invoke_local_param_names = @();
     [System.Collections.ArrayList]$create_local_param_names = @();
+    [System.Collections.ArrayList]$cli_command_param_names = @();
     $position_index = 1;
     foreach ($pt in $params)
     {
@@ -1537,6 +1565,49 @@ ${cmdlet_partial_class_code}
     Write-Output $dynamic_param_source_template;
     Write-Output $invoke_cmdlt_source_template;
     Write-Output $parameter_cmdlt_source_template;
+
+    # CLI Code
+    $cli_op_name = Get-UnnormalizedName $opShortName;
+    $cli_method_name = Get-UnnormalizedName $methodName;
+
+    $cli_op_code_content = "//" + $opShortName + "." + $methodName + $new_line_str;
+    $component_name = 'compute';
+    $cli_op_code_content += "var $opShortName = compute.category('$cli_op_name').description(`$('Commands for Azure Compute'));";
+
+    $cli_op_code_content += "${opShortName}.command('${methodName}')" + $new_line_str;
+    $cli_op_code_content += ".description(`$('${opShortName} ${methodName}'))" + $new_line_str;
+    $cli_op_code_content += ".usage('[options]')" + $new_line_str;
+    for ($index = 0; $index -lt $param_names.Count; $index++)
+    {
+        $cli_param_name = $param_names[$index];
+        $cli_op_code_content += ".option('--${cli_param_name} <${cli_param_name}>', `$('${cli_param_name}'))" + $new_line_str;
+    }
+    $cli_op_code_content += ".option('-s, --subscription <subscription>', `$('the subscription identifier'))" + $new_line_str;
+    $cli_op_code_content += ".execute(function ("
+    for ($index = 0; $index -lt $param_names.Count; $index++)
+    {
+        if ($index -gt 0) { $cli_op_code_content += ", "; }
+        $cli_param_name = $param_names[$index];
+        $cli_op_code_content += "$cli_param_name";
+    }
+    $cli_op_code_content += ", options, _) {" + $new_line_str;
+    $cli_op_code_content += "  var subscription = profile.current.getSubscription(options.subscription);" + $new_line_str;
+    $cli_op_code_content += "  var computeManagementClient = utils.createComputeResourceProviderClient(subscription);" + $new_line_str;
+    $cli_op_code_content += "  var result = computeManagementClient.${cli_op_name}s.${cli_method_name}(";
+    for ($index = 0; $index -lt $param_names.Count; $index++)
+    {
+        if ($index -gt 0) { $cli_op_code_content += ", "; }
+        $cli_param_name = $param_names[$index];
+        $cli_op_code_content += "$cli_param_name";
+    }
+    $cli_op_code_content += ", _);" + $new_line_str;
+    $cli_op_code_content += "  cli.output.json(result);" + $new_line_str;
+    $cli_op_code_content += "});" + $new_line_str;
+
+
+
+
+    Write-Output $cli_op_code_content;
 }
 
 # Sample: VirtualMachineCreateParameters
@@ -1784,6 +1855,23 @@ ${cmdlet_generated_code}
     $st = Set-Content -Path $file_full_path -Value $cmdlt_source_template -Force;
 }
 
+
+# Sample: NewAzureVirtualMachineCreateParameters.cs
+function Write-CLICommandFile
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        [string]$fileOutputFolder,
+
+        [Parameter(Mandatory = $True)]
+        $commandCodeLines
+    )
+
+    $fileFullPath = $fileOutputFolder + '/' + 'cli.js';
+
+    $st = Set-Content -Path $fileFullPath -Value $commandCodeLines -Force;
+}
+
 # Code Generation Main Run
 $outFolder += '/Generated';
 
@@ -1839,6 +1927,40 @@ else
     $dynamic_param_method_code = @();
     $invoke_cmdlet_method_code = @();
     $parameter_cmdlet_method_code = @();
+    $cli_command_method_code =
+@"
+/**
+ * Copyright (c) Microsoft.  All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+'use strict';
+
+var __ = require('underscore');
+var util = require('util');
+
+var profile = require('../../../util/profile');
+var utils = require('../../../util/utils');
+
+var $ = utils.getLocaleString;
+
+exports.init = function (cli) {
+
+  var compute = cli.category('compute')
+    .description(`$('Commands for Azure Compute'));
+
+
+"@;
 
     # Write Operation Cmdlet Files
     foreach ($ft in $filtered_types)
@@ -1869,9 +1991,10 @@ else
             $outputs = Write-OperationCmdletFile $opOutFolder $opShortName $mt $invoke_cmdlet_class_name $parameter_cmdlet_class_name;
             if ($outputs.Count -ne $null)
             {
-                $dynamic_param_method_code += $outputs[-3];
-                $invoke_cmdlet_method_code += $outputs[-2];
-                $parameter_cmdlet_method_code += $outputs[-1];
+                $dynamic_param_method_code += $outputs[-4];
+                $invoke_cmdlet_method_code += $outputs[-3];
+                $parameter_cmdlet_method_code += $outputs[-2];
+                $cli_command_method_code += $outputs[-1];
             }
 
             [System.Reflection.ParameterInfo]$parameter_type_info = (Get-MethodComplexParameter $mt $client_library_namespace);
@@ -1907,6 +2030,13 @@ else
         Write-InvokeCmdletFile $invoke_cmdlet_file_name $invoke_cmdlet_class_name $auto_base_cmdlet_name $clientClassType $filtered_types $invoke_cmdlet_method_code $dynamic_param_method_code;
         Write-InvokeParameterCmdletFile $parameter_cmdlet_file_name $parameter_cmdlet_class_name $auto_base_cmdlet_name $clientClassType $filtered_types $parameter_cmdlet_method_code;
         Write-NewParameterObjectCmdletFile $new_object_cmdlet_file_name $new_object_cmdlet_class_name $auto_base_cmdlet_name $clientClassType $filtered_types $parameter_cmdlet_method_code;
+    }
+
+    # CLI
+    $cli_command_method_code += $new_line_str + "};";
+    if ($cmdletFlavor -eq 'CLI')
+    {
+        Write-CLICommandFile $outFolder $cli_command_method_code;
     }
 
     Write-Output "=============================================";
