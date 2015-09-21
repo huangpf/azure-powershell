@@ -1683,6 +1683,118 @@ function Get-SubComplexParameterList
     return Get-SubComplexParameterListFromType $param_info.ParameterType $client_name_space;
 }
 
+# Get proper type name
+function Get-ProperTypeName
+{
+    param([System.Type] $itemType)
+
+    if ($itemType.IsGenericType -and ($itemType.Name.StartsWith('IList') -or $itemType.Name.StartsWith('List')))
+    {
+        $typeStr = 'IList<' + $itemType.GenericTypeArguments[0].Name + '>';
+    }
+    elseif ($itemType.IsGenericType -and ($itemType.Name.StartsWith('IDictionary') -or $itemType.Name.StartsWith('Dictionary')))
+    {
+        $typeStr = 'IDictionary<' + $itemType.GenericTypeArguments[0].Name + ',' + $itemType.GenericTypeArguments[1].Name + '>';
+    }
+    elseif ($itemType.IsGenericType -and $itemType.Name.StartsWith('Nullable'))
+    {
+        $typeStr = $itemType.GenericTypeArguments[0].Name + '?';
+    }
+    else
+    {
+        $typeStr = $itemType.Name;
+    }
+
+    $typeStr = $typeStr.Replace("System.String", "string");
+    $typeStr = $typeStr.Replace("String", "string");
+    $typeStr = $typeStr.Replace("System.Boolean", "bool");
+    $typeStr = $typeStr.Replace("Boolean", "bool");
+    $typeStr = $typeStr.Replace("System.UInt32", "uint");
+    $typeStr = $typeStr.Replace("UInt32", "uint");
+    $typeStr = $typeStr.Replace("System.Int32", "int");
+    $typeStr = $typeStr.Replace("Int32", "int");
+
+    return $typeStr;
+}
+
+# Process the return type
+function Process-ReturnType
+{
+    param([Type] $rt)
+
+    $result = $null;
+
+    if ($rt -eq $null)
+    {
+        return $result;
+    }
+
+
+    if ($rt.Name -like '*LongRunning*' -or $rt.Name -like '*computeoperationresponse*' -or $rt.Name -like '*AzureOperationResponse*')
+    {
+        return $result;
+    }
+
+    $xml = '<Name>' + $rt.FullName + '</Name>';
+    $xml += '<ViewSelectedBy><TypeName>' + $rt.FullName + '</TypeName></ViewSelectedBy>' + [System.Environment]::NewLine;
+    $xml += '<ListControl><ListEntries><ListEntry><ListItems>' + [System.Environment]::NewLine;
+
+    $props = $rt.GetProperties([System.Reflection.BindingFlags]::Public -bor [System.Reflection.BindingFlags]::Instance -bor [System.Reflection.BindingFlags]::Static);
+
+    foreach ($pr1 in $props)
+    {        
+        $typeStr = Get-ProperTypeName $pr1.PropertyType;
+        $itemLabel = $itemName = $pr1.Name;
+
+        if ($typeStr -eq 'string' `
+        -or $typeStr -eq 'string[]' `
+        -or $typeStr -eq 'uint' `
+        -or $typeStr -eq 'uint?' `
+        -or $typeStr -eq 'int' `
+        -or $typeStr -eq 'int?' `
+        -or $typeStr -eq 'bool' `
+        -or $typeStr -eq 'bool?' `
+        -or $typeStr -eq 'DateTime' `
+        -or $typeStr -eq 'DateTime?' `
+        -or $typeStr -eq 'DateTimeOffset' `
+        -or $typeStr -eq 'DateTimeOffset?' `
+        -or $typeStr -eq 'HttpStatusCode' )
+        {
+           $xml += "<ListItem><Label>${itemLabel}</Label><PropertyName>${itemName}</PropertyName></ListItem>" + [System.Environment]::NewLine;
+        }
+        elseif ($typeStr.StartsWith('IList') `
+        -or $typeStr.StartsWith('IDictionary'))
+        {
+           $xml += "<ListItem><Label>${itemLabel}.Count</Label><ScriptBlock> if (" + "$" + "_.${itemName} -eq $" + "null) { 0 } else { $" + "_.${itemName}.Count }</ScriptBlock></ListItem>" + [System.Environment]::NewLine;
+           $xml += "<ListItem><Label>${itemLabel}</Label><ScriptBlock> foreach ($" + "item in $" + "_.${itemName}) { [Newtonsoft.Json.JsonConvert]::SerializeObject(" + "$" + "item,  [Newtonsoft.Json.Formatting]::Indented) } </ScriptBlock></ListItem>" + [System.Environment]::NewLine;
+        }
+        else
+        {
+           $xml += "<ListItem><Label>${itemLabel}</Label><ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject(" + "$" + "_." + ${itemName} + ",  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock></ListItem>" + [System.Environment]::NewLine;
+        }
+    }
+
+    $xml += '</ListItems></ListEntry></ListEntries></ListControl>' + [System.Environment]::NewLine;
+    $xml = '<View>' + [System.Environment]::NewLine + $xml + '</View>' + [System.Environment]::NewLine;
+
+    Write-Verbose ("Xml: " + $xml);
+
+    return $xml;
+}
+
+# Get proper type name
+function Format-XML ([xml]$xml, $indent = 2)
+{
+    $StringWriter = New-Object System.IO.StringWriter;
+    $XmlWriter = New-Object System.XMl.XmlTextWriter $StringWriter;
+    $xmlWriter.Formatting = "indented";
+    $xmlWriter.Indentation = $Indent;
+    $xml.WriteContentTo($XmlWriter);
+    $XmlWriter.Flush();
+    $StringWriter.Flush();
+    Write-Output $StringWriter.ToString();
+}
+
 # Sample: NewAzureVirtualMachineCreateParameters.cs
 function Write-ParameterCmdletFile
 {
@@ -1839,6 +1951,8 @@ else
     $dynamic_param_method_code = @();
     $invoke_cmdlet_method_code = @();
     $parameter_cmdlet_method_code = @();
+    $all_return_type_names = @();
+    $formatXml = "";
 
     # Write Operation Cmdlet Files
     foreach ($ft in $filtered_types)
@@ -1902,6 +2016,18 @@ else
                     }
                 }
             }
+
+            $rt = $mt.ReturnType.GenericTypeArguments[0];
+
+            if ($all_return_type_names.Contains($rt.Name))
+            {
+                Write-Verbose("Already Exists: " + $rt.Name);
+            }
+            else
+            {
+                $all_return_type_names += $rt.Name;
+                $formatXml += Process-ReturnType -rt $mt.ReturnType.GenericTypeArguments[0];
+            }
         }
 
         Write-InvokeCmdletFile $invoke_cmdlet_file_name $invoke_cmdlet_class_name $auto_base_cmdlet_name $clientClassType $filtered_types $invoke_cmdlet_method_code $dynamic_param_method_code;
@@ -1912,4 +2038,24 @@ else
     Write-Output "=============================================";
     Write-Output "Finished.";
     Write-Output "=============================================";
+
+    $outFolder = $outFolder.Replace('/Generated', "");
+    $xmlFilePath = ($outFolder + '\' + $code_common_namespace + '.format.generated.ps1xml');
+
+    Write-Host ('Writing XML Format File: ' + $xmlFilePath);
+
+    $xmlCommentHeader = '<!--' + [System.Environment]::NewLine;
+    foreach ($cLine in $code_common_header)
+    {
+        $xmlCommentHeader += $cLine + [System.Environment]::NewLine;
+    }
+    $xmlCommentHeader += '-->' + [System.Environment]::NewLine;
+
+    $xmlContent = [xml]($xmlCommentHeader + '<Configuration><ViewDefinitions>' + [System.Environment]::NewLine + $formatXml + '</ViewDefinitions></Configuration>' + [System.Environment]::NewLine);
+    $node = $xmlContent.CreateXmlDeclaration('1.0', 'UTF-8', $null);
+    $xmlContent.InsertBefore($node, $xmlContent.ChildNodes[0]);
+
+    $formattedXmlContent = Format-XML $xmlContent.OuterXml;
+    Set-Content -Force -Path $xmlFilePath -Value $formattedXmlContent;
+    Write-Verbose($formattedXmlContent);
 }
