@@ -120,34 +120,64 @@ function Test-VirtualMachineScaleSet
         $vmss.VirtualMachineProfile.StorageProfile.OSDisk.VirtualHardDiskContainers.Add($vhdContainer);
 
         $st = New-AzureVirtualMachineScaleSet -ResourceGroupName $rgname -VirtualMachineScaleSetCreateOrUpdateParameters $vmss;
+
+        Write-Verbose ('Running Command : ' + 'Get-AzureVirtualMachineScaleSet');
         $vmssResult = Get-AzureVirtualMachineScaleSet -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
         Assert-True { $vmss.Name -eq $vmssResult.VirtualMachineScaleSet.Name };
+        $output = $vmssResult | Out-String;
+        Assert-True { $output.Contains("VirtualMachineScaleSet") };
+        Write-Verbose ($output);
 
         # List All
+        Write-Verbose ('Running Command : ' + 'Get-AzureVirtualMachineScaleSetAllList');
         $vmssList = Get-AzureVirtualMachineScaleSetAllList -VirtualMachineScaleSetListAllParameters $null;
         Assert-True { ($vmssList.VirtualMachineScaleSets | select -ExpandProperty Name) -contains $vmss.Name };
+        $output = $vmssList | Out-String;
+        Assert-True { $output.Contains("VirtualMachineScaleSets") };
+        Write-Verbose ($output);
 
         # List from RG
+        Write-Verbose ('Running Command : ' + 'Get-AzureVirtualMachineScaleSetList');
         $vmssList = Get-AzureVirtualMachineScaleSetList -ResourceGroupName $rgname;
         Assert-True { ($vmssList.VirtualMachineScaleSets | select -ExpandProperty Name) -contains $vmss.Name };
+        $output = $vmssList | Out-String;
+        Assert-True { $output.Contains("VirtualMachineScaleSets") };
+        Write-Verbose ($output);
 
         # List Skus
+        Write-Verbose ('Running Command : ' + 'Get-AzureVirtualMachineScaleSetSkusList');
         $skuList = Get-AzureVirtualMachineScaleSetSkusList -ResourceGroupName $rgname  -VMScaleSetName $vmss.Name;
+        $output = $skuList | Out-String;
+        Write-Verbose ($output);
 
         # List All VMs
         $vmListParams = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetVMListParameters;
         $vmListParams.ResourceGroupName = $rgname;
         $vmListParams.VirtualMachineScaleSetName = $vmss.Name;
+
+        Write-Verbose ('Running Command : ' + 'Get-AzureVirtualMachineScaleSetVMList');
         $vmListResult = Get-AzureVirtualMachineScaleSetVMList -VirtualMachineScaleSetVMListParameters $vmListParams;
+        $output = $vmListResult | Out-String;
+        Write-Verbose ($output);
+
         $vmList = $vmListResult.VirtualMachineScaleSetVMs;
 
         # List each VM
         for ($i = 0; $i -lt $vmList.Count; $i++)
         {
+            Write-Verbose ('Running Command : ' + 'Get-AzureVirtualMachineScaleSetVM');
             $vm = Get-AzureVirtualMachineScaleSetVM -ResourceGroupName $rgname  -VMScaleSetName $vmss.Name -InstanceId $i;
             Assert-NotNull $vm.VirtualMachineScaleSetVM;
+            $output = $vm | Out-String;
+            Assert-True { $output.Contains("VirtualMachineScaleSetVM") };
+            Write-Verbose ($output);
+
+            Write-Verbose ('Running Command : ' + 'Get-AzureVirtualMachineScaleSetVMInstanceView');
             $vmInstance = Get-AzureVirtualMachineScaleSetVMInstanceView  -ResourceGroupName $rgname  -VMScaleSetName $vmss.Name -InstanceId $i;
             Assert-NotNull $vmInstance.VirtualMachineScaleSetVMInstanceView;
+            $output = $vmInstance | Out-String;
+            Assert-True { $output.Contains("VirtualMachineScaleSetVMInstanceView") };
+            Write-Verbose($output);
         }
 
         # List Next (negative test)
