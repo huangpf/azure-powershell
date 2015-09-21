@@ -102,9 +102,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         )]
         public string FullName { get; set; }
 
-        public override void ExecuteCmdlet()
+        protected override void ProcessRecord()
         {
-            base.ExecuteCmdlet();
+            base.ProcessRecord();
             ExecuteClientAction(() =>
             {
                 if (ParameterSetName == "CreateParameterObjectByFriendlyName")
