@@ -105,9 +105,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         public override string MethodName { get; set; }
 
-        public override void ExecuteCmdlet()
+        protected override void ProcessRecord()
         {
-            base.ExecuteCmdlet();
+            base.ProcessRecord();
         }
 
         public override object GetDynamicParameters()
