@@ -148,6 +148,7 @@ function Test-VirtualMachineScaleSet
         Write-Verbose ('Running Command : ' + 'Get-AzureVirtualMachineScaleSetSkusList');
         $skuList = Get-AzureVirtualMachineScaleSetSkusList -ResourceGroupName $rgname  -VMScaleSetName $vmss.Name;
         $output = $skuList | Out-String;
+        Assert-True { $output.Contains("VirtualMachineScaleSetSku") };
         Write-Verbose ($output);
 
         # List All VMs
@@ -158,6 +159,7 @@ function Test-VirtualMachineScaleSet
         Write-Verbose ('Running Command : ' + 'Get-AzureVirtualMachineScaleSetVMList');
         $vmListResult = Get-AzureVirtualMachineScaleSetVMList -VirtualMachineScaleSetVMListParameters $vmListParams;
         $output = $vmListResult | Out-String;
+        Assert-True { $output.Contains("VirtualMachineScaleSetVM") };
         Write-Verbose ($output);
 
         $vmList = $vmListResult.VirtualMachineScaleSetVMs;

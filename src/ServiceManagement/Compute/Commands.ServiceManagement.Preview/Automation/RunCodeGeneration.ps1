@@ -1788,6 +1788,33 @@ function Get-ProperTypeName
     return $typeStr;
 }
 
+
+# Process the list return type
+function Process-ListType
+{
+    param([Type] $rt, [System.String] $name)
+
+    $result = $null;
+
+    if ($rt -eq $null)
+    {
+        return $result;
+    }
+
+    $xml = '<Name>' + $rt.FullName + '</Name>';
+    $xml += '<ViewSelectedBy><TypeName>' + $rt.FullName + '</TypeName></ViewSelectedBy>' + [System.Environment]::NewLine;
+    $xml += '<ListControl><ListEntries><ListEntry><ListItems>' + [System.Environment]::NewLine;
+
+    $itemLabel = $itemName = $rt.Name;
+    $xml += "<ListItem><Label>${itemName}</Label><ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject(" + "$" + "_,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock></ListItem>" + [System.Environment]::NewLine;
+    $xml += '</ListItems></ListEntry></ListEntries></ListControl>' + [System.Environment]::NewLine;
+    $xml = '<View>' + [System.Environment]::NewLine + $xml + '</View>' + [System.Environment]::NewLine;
+
+    Write-Verbose ("Xml: " + $xml);
+
+    return $xml;
+}
+
 # Process the return type
 function Process-ReturnType
 {
@@ -1836,6 +1863,13 @@ function Process-ReturnType
         elseif ($typeStr.StartsWith('IList') `
         -or $typeStr.StartsWith('IDictionary'))
         {
+           $elementType = $pr1.PropertyType.GenericTypeArguments[0];
+
+           if (-not $elementType.FullName.Contains("String"))
+           {
+                $addxml = Process-ListType -rt $pr1.PropertyType.GenericTypeArguments[0] -name ${itemName};
+           }
+
            $xml += "<ListItem><Label>${itemLabel}.Count</Label><ScriptBlock> if (" + "$" + "_.${itemName} -eq $" + "null) { 0 } else { $" + "_.${itemName}.Count }</ScriptBlock></ListItem>" + [System.Environment]::NewLine;
            $xml += "<ListItem><Label>${itemLabel}</Label><ScriptBlock> foreach ($" + "item in $" + "_.${itemName}) { [Newtonsoft.Json.JsonConvert]::SerializeObject(" + "$" + "item,  [Newtonsoft.Json.Formatting]::Indented) } </ScriptBlock></ListItem>" + [System.Environment]::NewLine;
         }
@@ -1847,6 +1881,11 @@ function Process-ReturnType
 
     $xml += '</ListItems></ListEntry></ListEntries></ListControl>' + [System.Environment]::NewLine;
     $xml = '<View>' + [System.Environment]::NewLine + $xml + '</View>' + [System.Environment]::NewLine;
+
+    if (-not [System.String]::IsNullOrEmpty($addxml))
+    {
+        $xml += $addxml;
+    }
 
     Write-Verbose ("Xml: " + $xml);
 

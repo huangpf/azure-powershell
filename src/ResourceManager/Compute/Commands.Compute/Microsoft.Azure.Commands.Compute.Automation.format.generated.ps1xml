@@ -130,6 +130,24 @@
       </ListControl>
     </View>
     <View>
+      <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSet</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSet</TypeName>
+      </ViewSelectedBy>
+      <ListControl>
+        <ListEntries>
+          <ListEntry>
+            <ListItems>
+              <ListItem>
+                <Label>VirtualMachineScaleSet</Label>
+                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
+              </ListItem>
+            </ListItems>
+          </ListEntry>
+        </ListEntries>
+      </ListControl>
+    </View>
+    <View>
       <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetListSkusResponse</Name>
       <ViewSelectedBy>
         <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetListSkusResponse</TypeName>
@@ -153,6 +171,24 @@
               <ListItem>
                 <Label>StatusCode</Label>
                 <PropertyName>StatusCode</PropertyName>
+              </ListItem>
+            </ListItems>
+          </ListEntry>
+        </ListEntries>
+      </ListControl>
+    </View>
+    <View>
+      <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetSku</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetSku</TypeName>
+      </ViewSelectedBy>
+      <ListControl>
+        <ListEntries>
+          <ListEntry>
+            <ListItems>
+              <ListItem>
+                <Label>VirtualMachineScaleSetSku</Label>
+                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
               </ListItem>
             </ListItems>
           </ListEntry>
@@ -235,6 +271,24 @@
               <ListItem>
                 <Label>StatusCode</Label>
                 <PropertyName>StatusCode</PropertyName>
+              </ListItem>
+            </ListItems>
+          </ListEntry>
+        </ListEntries>
+      </ListControl>
+    </View>
+    <View>
+      <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVM</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVM</TypeName>
+      </ViewSelectedBy>
+      <ListControl>
+        <ListEntries>
+          <ListEntry>
+            <ListItems>
+              <ListItem>
+                <Label>VirtualMachineScaleSetVM</Label>
+                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
               </ListItem>
             </ListItems>
           </ListEntry>
