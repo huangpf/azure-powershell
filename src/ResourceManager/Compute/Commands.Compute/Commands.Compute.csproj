@@ -293,12 +293,15 @@
     <Compile Include="Models\PSVirtualMachineSize.cs" />
     <Compile Include="Common\LocationStringExtensions.cs" />
     <Compile Include="Models\UploadParameters.cs" />
+    <Compile Include="Models\VhdDownloadContext.cs" />
+    <Compile Include="Models\VhdDownloaderModel.cs" />
     <Compile Include="Models\VhdUploadContext.cs" />
     <Compile Include="Models\VhdUploaderModel.cs" />
     <Compile Include="RemoteDesktop\VirtualMachineRemoteDesktopBaseCmdlet.cs" />
     <Compile Include="RemoteDesktop\GetAzureRemoteDesktopFileCommand.cs" />
     <Compile Include="StorageServices\AddAzureVhdCommand.cs" />
     <Compile Include="StorageServices\CloudPageBlobObjectFactory.cs" />
+    <Compile Include="StorageServices\SaveAzureVhdCommand.cs" />
     <Compile Include="StorageServices\StorageCredentialsFactory.cs" />
     <Compile Include="Usage\GetAzureVMUsageCommand.cs" />
     <Compile Include="Usage\VirtualMachineUsageBaseCmdlet.cs" />
@@ -375,6 +378,9 @@
     <None Include="..\AzureRM.Compute.psd1">
       <Link>AzureRM.Compute.psd1</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Microsoft.Azure.Commands.Compute.Automation.format.generated.ps1xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Microsoft.Azure.Commands.Compute.dll-Help.psd1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
