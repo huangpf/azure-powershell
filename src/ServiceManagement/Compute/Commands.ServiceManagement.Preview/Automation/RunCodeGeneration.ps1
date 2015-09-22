@@ -703,9 +703,9 @@ $validate_all_method_names_code
             }
         }
 
-        public override void ExecuteCmdlet()
+        protected override void ProcessRecord()
         {
-            base.ExecuteCmdlet();
+            base.ProcessRecord();
             ExecuteClientAction(() =>
             {
                 if (ParameterSetName == `"$dynamic_param_set_name`")
@@ -954,9 +954,9 @@ $validate_all_method_names_code
 
     $execute_client_action_code =
 @"
-        public override void ExecuteCmdlet()
+        protected override void ProcessRecord()
         {
-            base.ExecuteCmdlet();
+            base.ProcessRecord();
             ExecuteClientAction(() =>
             {
                 if (ParameterSetName == `"CreateParameterListByMethodName`")
@@ -1219,9 +1219,9 @@ $validate_all_param_full_names_code
 
     $execute_client_action_code =
 @"
-        public override void ExecuteCmdlet()
+        protected override void ProcessRecord()
         {
-            base.ExecuteCmdlet();
+            base.ProcessRecord();
             ExecuteClientAction(() =>
             {
                 if (ParameterSetName == `"$param_set_of_create_by_type_name`")
@@ -1372,9 +1372,9 @@ function Write-OperationCmdletFile
 
     $cmdlet_client_call_template =
 @"
-        public override void ExecuteCmdlet()
+        protected override void ProcessRecord()
         {
-            base.ExecuteCmdlet();
+            base.ProcessRecord();
             ExecuteClientAction(() =>
             {
                 var result = ${opShortName}Client.${methodName}(${params_join_str});
@@ -1512,9 +1512,9 @@ $parameter_cmdlt_source_template
 
         public override string MethodName { get; set; }
 
-        public override void ExecuteCmdlet()
+        protected override void ProcessRecord()
         {
-            base.ExecuteCmdlet();
+            base.ProcessRecord();
         }
 
         public override object GetDynamicParameters()
@@ -1976,9 +1976,9 @@ function Write-ParameterCmdletFile
 
     $cmdlet_client_call_template =
 @"
-        public override void ExecuteCmdlet()
+        protected override void ProcessRecord()
         {
-            base.ExecuteCmdlet();
+            base.ProcessRecord();
             var parameter = new ${param_type_normalized_name}();
             WriteObject(parameter);
         }
