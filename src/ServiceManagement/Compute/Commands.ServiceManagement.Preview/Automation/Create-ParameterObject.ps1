@@ -69,12 +69,11 @@ function Create-ParameterObjectImpl
     {
         return $null;
     }
-    elseif ($typeInfo.Namespace -eq $client_model_namespace)
+    else
     {
         $obj = New-Object $typeInfo.FullName;
 
-        $properties = $typeInfo.GetProperties();
-        foreach ($item in $properties)
+        foreach ($item in $typeInfo.GetProperties())
         {
             $prop = [System.Reflection.PropertyInfo]$item;
 
@@ -95,10 +94,6 @@ function Create-ParameterObjectImpl
                 $prop.SetValue($obj, $propObj);
             }
         }
-    }
-    else
-    {
-        $obj = New-Object $typeInfo.FullName;
     }
 
     return $obj;
