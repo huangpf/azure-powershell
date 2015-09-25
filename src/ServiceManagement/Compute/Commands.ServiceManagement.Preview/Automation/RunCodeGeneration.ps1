@@ -1611,19 +1611,19 @@ ${cmdlet_partial_class_code}
     }
     
     $component_name = 'compute';
-    $cli_op_code_content += "var $category_name = compute.category('${category_name}').description(`$('Commands for Azure Compute $opShortName'));" + $new_line_str;
+    $cli_op_code_content += "  var $category_name = compute.category('${category_name}').description(`$('Commands for Azure Compute $opShortName'));" + $new_line_str;
 
-    $cli_op_code_content += "${category_name}.command('${cli_method_name}')" + $new_line_str;
-    $cli_op_code_content += ".description(`$('${category_name} ${cli_method_name}'))" + $new_line_str;
-    $cli_op_code_content += ".usage('[options]')" + $new_line_str;
+    $cli_op_code_content += "  ${category_name}.command('${cli_method_name}')" + $new_line_str;
+    $cli_op_code_content += "  .description(`$('${category_name} ${cli_method_name}'))" + $new_line_str;
+    $cli_op_code_content += "  .usage('[options]')" + $new_line_str;
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
         $cli_param_name = $param_names[$index];
-        $cli_op_code_content += ".option('--${cli_param_name} <${cli_param_name}>', `$('${cli_param_name}'))" + $new_line_str;
+        $cli_op_code_content += "  .option('--${cli_param_name} <${cli_param_name}>', `$('${cli_param_name}'))" + $new_line_str;
     }
-    $cli_op_code_content += ".option('--parameterFile <parameterFile>', `$('the input parameter file'))" + $new_line_str;
-    $cli_op_code_content += ".option('-s, --subscription <subscription>', `$('the subscription identifier'))" + $new_line_str;
-    $cli_op_code_content += ".execute(function ("
+    $cli_op_code_content += "  .option('--ParameterFile <ParameterFile>', `$('the input parameter file'))" + $new_line_str;
+    $cli_op_code_content += "  .option('-s, --subscription <subscription>', `$('the subscription identifier'))" + $new_line_str;
+    $cli_op_code_content += "  .execute(function ("
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
         if ($index -gt 0) { $cli_op_code_content += ", "; }
@@ -1634,25 +1634,24 @@ ${cmdlet_partial_class_code}
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
         $cli_param_name = $param_names[$index];
-        $cli_op_code_content += "console.log('${cli_param_name} = ' + options.${cli_param_name});" + $new_line_str;
+        $cli_op_code_content += "    console.log('${cli_param_name} = ' + options.${cli_param_name});" + $new_line_str;
         if (${cli_param_name} -eq 'Parameters')
         {
-            $cli_op_code_content += "  if (options.parameterFile) {" + $new_line_str;
-            $cli_op_code_content += "    console.log(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $new_line_str;
-            $cli_op_code_content += "    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $new_line_str;
-            $cli_op_code_content += "    var ${cli_param_name}Obj = JSON.parse(fileContent);" + $new_line_str;
-            $cli_op_code_content += "  }" + $new_line_str;
-            $cli_op_code_content += "  else {" + $new_line_str;
-            $cli_op_code_content += "    var ${cli_param_name}Obj = JSON.parse(options.${cli_param_name});" + $new_line_str;
-            $cli_op_code_content += "  }" + $new_line_str;
-            $cli_op_code_content += "  console.log('${cli_param_name}Obj = ' + JSON.stringify(${cli_param_name}Obj));" + $new_line_str;
+            $cli_op_code_content += "    if (options.ParameterFile) {" + $new_line_str;
+            $cli_op_code_content += "      console.log(`"Reading file content from: \`"`" + options.ParameterFile + `"\`"`");" + $new_line_str;
+            $cli_op_code_content += "      var fileContent = fs.readFileSync(options.ParameterFile, 'utf8');" + $new_line_str;
+            $cli_op_code_content += "      var ${cli_param_name}Obj = JSON.parse(fileContent);" + $new_line_str;
+            $cli_op_code_content += "    }" + $new_line_str;
+            $cli_op_code_content += "    else {" + $new_line_str;
+            $cli_op_code_content += "      var ${cli_param_name}Obj = JSON.parse(options.${cli_param_name});" + $new_line_str;
+            $cli_op_code_content += "    }" + $new_line_str;
+            $cli_op_code_content += "    console.log('${cli_param_name}Obj = ' + JSON.stringify(${cli_param_name}Obj));" + $new_line_str;
         }
     }
-    $cli_op_code_content += "  var subscription = profile.current.getSubscription(options.subscription);" + $new_line_str;
-    $cli_op_code_content += "  var computeManagementClient = utils.createComputeResourceProviderClient(subscription);" + $new_line_str;
-    $cli_op_code_content += "  console.log(computeManagementClient.${cli_op_name}s.${cli_method_name});" + $new_line_str;
-    #$cli_op_code_content += "  console.log(computeManagementClient.${cli_op_name}s.${cli_method_name}.toString());" + $new_line_str;
-    $cli_op_code_content += "  var result = computeManagementClient.${cli_op_name}s.${cli_method_name}(";
+    $cli_op_code_content += "    var subscription = profile.current.getSubscription(options.subscription);" + $new_line_str;
+    $cli_op_code_content += "    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);" + $new_line_str;
+    $cli_op_code_content += "    console.log(computeManagementClient.${cli_op_name}s.${cli_method_name});" + $new_line_str;
+    $cli_op_code_content += "    var result = computeManagementClient.${cli_op_name}s.${cli_method_name}(";
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
         if ($index -gt 0) { $cli_op_code_content += ", "; }
@@ -1668,8 +1667,8 @@ ${cmdlet_partial_class_code}
         }
     }
     $cli_op_code_content += ", _);" + $new_line_str;
-    $cli_op_code_content += "  cli.output.json(result);" + $new_line_str;
-    $cli_op_code_content += "});" + $new_line_str;
+    $cli_op_code_content += "    cli.output.json(result);" + $new_line_str;
+    $cli_op_code_content += "  });" + $new_line_str;
 
     # 3.3 Parameters
     for ($index = 0; $index -lt $param_names.Count; $index++)
@@ -1678,26 +1677,27 @@ ${cmdlet_partial_class_code}
         {
             $params_category_name = 'parameters';
 
-            $cli_op_code_content += "var ${params_category_name} = $category_name.category('${params_category_name}').description(`$('Parameters for Azure Compute $opShortName'));" + $new_line_str;
-
-            $cli_op_code_content += "${params_category_name}.command('${cli_method_name}')" + $new_line_str;
-            $cli_op_code_content += ".description(`$('${params_category_name} generate'))" + $new_line_str;
-            $cli_op_code_content += ".usage('[options]')" + $new_line_str;
-            $cli_op_code_content += ".option('--$cli_method_name) <$cli_method_name>', `$('string | file'))" + $new_line_str;
-            $cli_op_code_content += ".option('--outputType) <outputType>', `$('string | file'))" + $new_line_str;
-            $cli_op_code_content += ".execute(function (";
-            $cli_op_code_content += "$cli_method_name, outputType";
+            $cli_op_code_content += "  var ${params_category_name} = $category_name.category('${params_category_name}').description(`$('Generate Parameters for Azure Compute $opShortName'));" + $new_line_str;
+            $cli_op_code_content += "  ${params_category_name}.command('${cli_method_name}')" + $new_line_str;
+            $cli_op_code_content += "  .description(`$('Generate ${category_name} parameter string or files.'))" + $new_line_str;
+            $cli_op_code_content += "  .usage('[options]')" + $new_line_str;
+            $cli_op_code_content += "  .option('--generate', `$('To generate parameter string/file for method: ${cli_method_name}.'))" + $new_line_str;
+            $cli_op_code_content += "  .option('--output-file <output-file>', `$('The output file path.'))" + $new_line_str;
+            $cli_op_code_content += "  .execute(function (";
+            $cli_op_code_content += "generate, outputFile";
             $cli_op_code_content += ", options, _) {" + $new_line_str;
 
             $output_content = $param_object_comment.Replace("`"", "\`"");
-            $cli_op_code_content += "  console.log(`"" + $output_content + "`");" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"" + $output_content + "`");" + $new_line_str;
 
-            $file_content = $param_object_comment_no_compress.Replace($new_line_str, "\r\n").Replace("`"", "\`"").Replace("`r", "\r").Replace("`n", "\n");
-            $file_name = "${cli_method_name}.json";
-            $cli_op_code_content += "  fs.writeFileSync(`"${file_name}`", `"" + $file_content + "`");" + $new_line_str;
+            $file_content = $param_object_comment_no_compress.Replace($new_line_str, "\r\n").Replace("`r", "\r").Replace("`n", "\n");
+            $file_content = $file_content.Replace("`"", "\`"").Replace(' ', '');
+            $cli_op_code_content += "    var filePath = `"${category_name}_${cli_method_name}.json`";" + $new_line_str;
+            $cli_op_code_content += "    if (options.outputFile) { filePath = options.outputFile; };" + $new_line_str;
+            $cli_op_code_content += "    fs.writeFileSync(filePath, beautify(`"" + $file_content + "`"));" + $new_line_str;
 
-            $cli_op_code_content += "  console.log(`"Parameter file output to: .\\" + $file_name + "`");" + $new_line_str;
-            $cli_op_code_content += "});" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"Parameter file output to: `" + filePath);" + $new_line_str;
+            $cli_op_code_content += "  });" + $new_line_str;
             break;
         }
     }
@@ -2000,107 +2000,6 @@ function Format-XML ([xml]$xml, $indent = 2)
     Write-Output $StringWriter.ToString();
 }
 
-# Sample: NewAzureVirtualMachineCreateParameters.cs
-function Write-ParameterCmdletFile
-{
-    param(
-        [Parameter(Mandatory = $True)]
-        [string]$fileOutputFolder,
-
-        [Parameter(Mandatory = $True)]
-        [string]$operation_short_name,
-
-        [Parameter(Mandatory = $True)]
-        $parameter_type_info,
-
-        [Parameter(Mandatory = $false)]
-        $is_list_type = $false
-    )
-    
-    if (-not $is_list_type)
-    {
-        $param_type_full_name = $parameter_type_info.FullName;
-        $param_type_full_name = $param_type_full_name.Replace('+', '.');
-
-        $param_type_short_name = $parameter_type_info.Name;
-        $param_type_short_name = $param_type_short_name.Replace('+', '.');
-
-        $param_type_normalized_name = Get-NormalizedTypeName $parameter_type_info.FullName;
-    }
-    else
-    {
-        $itemType = $parameter_type_info.GetGenericArguments()[0];
-        $itemTypeShortName = $itemType.Name;
-        $itemTypeFullName = $itemType.FullName;
-        $itemTypeNormalizedShortName = Get-NormalizedTypeName $itemTypeFullName;
-
-        $param_type_full_name = "System.Collections.Generic.List<${itemTypeNormalizedShortName}>";
-        $param_type_full_name = $param_type_full_name.Replace('+', '.');
-
-        $param_type_short_name = "${itemTypeShortName}List";
-        $param_type_short_name = $param_type_short_name.Replace('+', '.');
-
-        $param_type_normalized_name = Get-NormalizedTypeName $param_type_full_name;
-    }
-
-    if (($param_type_short_name -like "${operation_short_name}*") -and ($param_type_short_name.Length -gt $operation_short_name.Length))
-    {
-        # Remove the common part between the parameter type name and operation short name, e.g. 'VirtualMachineDisk'
-        $param_type_short_name = $param_type_short_name.Substring($operation_short_name.Length);
-    }
-
-    $cmdlet_verb = "New";
-    $cmdlet_verb_code = $verbs_common_new;
-    $cmdlet_noun_prefix = 'Azure';
-    $cmdlet_noun_suffix = '';
-
-    $cmdlet_noun = $cmdlet_noun_prefix + $operation_short_name + $param_type_short_name + $cmdlet_noun_suffix;
-    $cmdlet_class_name = $cmdlet_verb + $cmdlet_noun;
-
-    $file_full_path = $fileOutputFolder + '/' + $cmdlet_class_name + '.cs';
-    if (Test-Path $file_full_path)
-    {
-        return;
-    }
-
-    # Construct Code Content
-    $indents = " " * 8;
-    $get_set_block = '{ get; set; }';
-    
-    $cmdlet_generated_code = '';
-
-    $cmdlet_client_call_template =
-@"
-        protected override void ProcessRecord()
-        {
-            base.ProcessRecord();
-            var parameter = new ${param_type_normalized_name}();
-            WriteObject(parameter);
-        }
-"@;
-
-    $cmdlet_generated_code += $cmdlet_client_call_template;
-
-    $cmdlt_source_template =
-@"
-${code_common_header}
-
-$code_using_strs
-
-namespace ${code_common_namespace}
-{
-    [Cmdlet(${cmdlet_verb_code}, `"${cmdlet_noun}`")]
-    [OutputType(typeof(${param_type_normalized_name}))]
-    public class ${cmdlet_class_name} : ComputeAutomationBaseCmdlet
-    {
-${cmdlet_generated_code}
-    }
-}
-"@;
-
-    $st = Set-Content -Path $file_full_path -Value $cmdlt_source_template -Force;
-}
-
 function Write-XmlFormatFile
 {
     param(
@@ -2134,10 +2033,57 @@ function Write-CLICommandFile
         [Parameter(Mandatory = $True)]
         $commandCodeLines
     )
-
+    
     $fileFullPath = $fileOutputFolder + '/' + 'cli.js';
 
-    $st = Set-Content -Path $fileFullPath -Value $commandCodeLines -Force;
+    Write-Output "=============================================";
+    Write-Output("Writing CLI Command File: " + $new_line_str + $fileFullPath);
+    Write-Output "=============================================";
+
+    $cliCommandHeaderAndPrepCode =
+@"
+/**
+ * Copyright (c) Microsoft.  All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+'use strict';
+
+var __ = require('underscore');
+var fs = require('fs');
+var util = require('util');
+
+var profile = require('../../../util/profile');
+var utils = require('../../../util/utils');
+
+var $ = utils.getLocaleString;
+
+function beautify(jsonText) {
+    var obj = JSON.parse(jsonText);
+    return JSON.stringify(obj, null, 2);
+}
+
+exports.init = function (cli) {
+
+  var compute = cli.category('compute')
+    .description(`$('Commands for Azure Compute'));
+
+
+"@;
+
+    $codeContent = $cliCommandHeaderAndPrepCode + $commandCodeLines + $new_line_str + "};";
+
+    $st = Set-Content -Path $fileFullPath -Value $codeContent -Force;
 }
 
 # Code Generation Main Run
@@ -2196,42 +2142,7 @@ else
     $parameter_cmdlet_method_code = @();
     $all_return_type_names = @();
     $formatXml = "";
-
-    $cli_command_method_code =
-@"
-/**
- * Copyright (c) Microsoft.  All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-'use strict';
-
-var __ = require('underscore');
-var fs = require('fs');
-var util = require('util');
-
-var profile = require('../../../util/profile');
-var utils = require('../../../util/utils');
-
-var $ = utils.getLocaleString;
-
-exports.init = function (cli) {
-
-  var compute = cli.category('compute')
-    .description(`$('Commands for Azure Compute'));
-
-
-"@;
+    $cliCommandCodeMainBody = "";
 
     # Write Operation Cmdlet Files
     foreach ($ft in $filtered_types)
@@ -2265,47 +2176,13 @@ exports.init = function (cli) {
                 $dynamic_param_method_code += $outputs[-4];
                 $invoke_cmdlet_method_code += $outputs[-3];
                 $parameter_cmdlet_method_code += $outputs[-2];
-                $cli_command_method_code += $outputs[-1];
+                $cliCommandCodeMainBody += $outputs[-1];
             }
 
-            [System.Reflection.ParameterInfo]$parameter_type_info = (Get-MethodComplexParameter $mt $client_library_namespace);
-
-            if (($parameter_type_info -ne $null) -and (($parameter_type_info_list | where { $_.ParameterType.FullName -eq $parameter_type_info.FullName }).Count -eq 0))
+            $returnType = $mt.ReturnType.GenericTypeArguments[0];
+            if (-not ($all_return_type_names.Contains($returnType.Name)))
             {
-                $parameter_type_info_list += $parameter_type_info;
-                Write-Output ((' ' * 4) + $parameter_type_info.ParameterType.Name);
-
-                # Write-ParameterCmdletFile $opOutFolder $opShortName $parameter_type_info.ParameterType;
-
-                # Run Through the Sub Parameter List
-                $subParamTypeList = Get-SubComplexParameterList $parameter_type_info $client_library_namespace;
-
-                if ($subParamTypeList.Count -gt 0)
-                {
-                    foreach ($sp in $subParamTypeList)
-                    {
-                        Write-Output ((' ' * 8) + $sp);
-                        if (-not $sp.IsGenericType)
-                        {
-                            # Write-ParameterCmdletFile $opOutFolder $opShortName $sp;
-                        }
-                        else
-                        {
-                            # Write-ParameterCmdletFile $opOutFolder $opShortName $sp $true;
-                        }
-                    }
-                }
-            }
-
-            $rt = $mt.ReturnType.GenericTypeArguments[0];
-
-            if ($all_return_type_names.Contains($rt.Name))
-            {
-                # Write-Verbose("Already Exists: " + $rt.Name);
-            }
-            else
-            {
-                $all_return_type_names += $rt.Name;
+                $all_return_type_names += $returnType.Name;
                 $formatXml += Process-ReturnType -rt $mt.ReturnType.GenericTypeArguments[0];
             }
         }
@@ -2318,18 +2195,14 @@ exports.init = function (cli) {
     # XML 
     $xmlFilePath = ($outFolder.Replace('/Generated', "") + '\' + $code_common_namespace + '.format.generated.ps1xml');
     Write-Output "=============================================";
-    Write-Output ('Writing XML Format File: ' + $xmlFilePath);
+    Write-Output ('Writing XML Format File: ' + $new_line_str + $xmlFilePath);
     Write-Output "=============================================";
     Write-XmlFormatFile $xmlFilePath;
 
     # CLI
-    $cli_command_method_code += $new_line_str + "};";
     if ($cliCommandFlavor -eq 'Verb')
     {
-        Write-Output "=============================================";
-        Write-Output("Writing CLI file to: " + $outFolder);
-        Write-Output "=============================================";
-        Write-CLICommandFile $outFolder $cli_command_method_code;
+        Write-CLICommandFile $outFolder $cliCommandCodeMainBody;
     }
 
     Write-Output "=============================================";
