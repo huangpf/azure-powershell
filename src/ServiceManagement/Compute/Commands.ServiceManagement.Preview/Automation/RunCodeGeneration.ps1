@@ -51,6 +51,10 @@ param(
     [Parameter(Mandatory = $false)]
     [string]$cmdletFlavor = 'Invoke',
 
+    # CLI Command Code Generation Flavor
+    [Parameter(Mandatory = $false)]
+    [string[]]$cliCommandFlavor = 'Verb',
+
     # The filter of operation name for code generation
     # e.g. "VirtualMachineScaleSet","VirtualMachineScaleSetVM"
     [Parameter(Mandatory = $false)]
@@ -500,7 +504,7 @@ function Write-BaseCmdletFile
     foreach ($opFullName in $operation_name_list)
     {
         [string]$sOpFullName = $opFullName;
-        Write-Verbose ('$sOpFullName = ' + $sOpFullName);
+        # Write-Verbose ('$sOpFullName = ' + $sOpFullName);
         $prefix = 'I';
         $suffix = 'Operations';
         if ($sOpFullName.StartsWith($prefix) -and $sOpFullName.EndsWith($suffix))
@@ -1566,22 +1570,58 @@ ${cmdlet_partial_class_code}
     Write-Output $invoke_cmdlt_source_template;
     Write-Output $parameter_cmdlt_source_template;
 
-    # CLI Code
+    # 3. CLI Code
+    # 3.1 types
+    $function_comment = "";
+    foreach ($pt in $params)
+    {
+        $param_type_full_name = $pt.ParameterType.FullName;
+        if (-not ($param_type_full_name.EndsWith('CancellationToken')))
+        {
+            if ($pt.Name -like '*parameters')
+            {
+                $param_object = (. $PSScriptRoot\Create-ParameterObject.ps1 -typeInfo $pt.ParameterType);
+                $param_object_comment = (. $PSScriptRoot\ConvertTo-Json.ps1 -inputObject $param_object -compress $true);
+                $param_object_comment_no_compress = (. $PSScriptRoot\ConvertTo-Json.ps1 -inputObject $param_object);
+            }
+        }
+    }
+
+    # 3.2 functions
     $cli_op_name = Get-UnnormalizedName $opShortName;
+    if ($opShortName -eq 'VirtualMachineScaleSet')
+    {
+        $category_name = 'vmss';
+    }
+    elseif ($opShortName -eq 'VirtualMachineScaleSetVM')
+    {
+        $category_name = 'vmssvm';
+    }
+    else
+    {
+        $category_name = $cli_op_name;
+    }
+
     $cli_method_name = Get-UnnormalizedName $methodName;
 
-    $cli_op_code_content = "//" + $opShortName + "." + $methodName + $new_line_str;
+    $cli_op_code_content += "//" + $cli_op_name + " -> " + $methodName + $new_line_str;
+    if ($param_object_comment -ne $null)
+    {
+        $cli_op_code_content += "/*" + $new_line_str + $param_object_comment + $new_line_str + "*/" + $new_line_str;
+    }
+    
     $component_name = 'compute';
-    $cli_op_code_content += "var $opShortName = compute.category('$cli_op_name').description(`$('Commands for Azure Compute'));";
+    $cli_op_code_content += "var $category_name = compute.category('${category_name}').description(`$('Commands for Azure Compute $opShortName'));" + $new_line_str;
 
-    $cli_op_code_content += "${opShortName}.command('${methodName}')" + $new_line_str;
-    $cli_op_code_content += ".description(`$('${opShortName} ${methodName}'))" + $new_line_str;
+    $cli_op_code_content += "${category_name}.command('${cli_method_name}')" + $new_line_str;
+    $cli_op_code_content += ".description(`$('${category_name} ${cli_method_name}'))" + $new_line_str;
     $cli_op_code_content += ".usage('[options]')" + $new_line_str;
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
         $cli_param_name = $param_names[$index];
         $cli_op_code_content += ".option('--${cli_param_name} <${cli_param_name}>', `$('${cli_param_name}'))" + $new_line_str;
     }
+    $cli_op_code_content += ".option('--parameterFile <parameterFile>', `$('the input parameter file'))" + $new_line_str;
     $cli_op_code_content += ".option('-s, --subscription <subscription>', `$('the subscription identifier'))" + $new_line_str;
     $cli_op_code_content += ".execute(function ("
     for ($index = 0; $index -lt $param_names.Count; $index++)
@@ -1591,21 +1631,76 @@ ${cmdlet_partial_class_code}
         $cli_op_code_content += "$cli_param_name";
     }
     $cli_op_code_content += ", options, _) {" + $new_line_str;
+    for ($index = 0; $index -lt $param_names.Count; $index++)
+    {
+        $cli_param_name = $param_names[$index];
+        $cli_op_code_content += "console.log('${cli_param_name} = ' + options.${cli_param_name});" + $new_line_str;
+        if (${cli_param_name} -eq 'Parameters')
+        {
+            $cli_op_code_content += "  if (options.parameterFile) {" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $new_line_str;
+            $cli_op_code_content += "    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $new_line_str;
+            $cli_op_code_content += "    var ${cli_param_name}Obj = JSON.parse(fileContent);" + $new_line_str;
+            $cli_op_code_content += "  }" + $new_line_str;
+            $cli_op_code_content += "  else {" + $new_line_str;
+            $cli_op_code_content += "    var ${cli_param_name}Obj = JSON.parse(options.${cli_param_name});" + $new_line_str;
+            $cli_op_code_content += "  }" + $new_line_str;
+            $cli_op_code_content += "  console.log('${cli_param_name}Obj = ' + JSON.stringify(${cli_param_name}Obj));" + $new_line_str;
+        }
+    }
     $cli_op_code_content += "  var subscription = profile.current.getSubscription(options.subscription);" + $new_line_str;
     $cli_op_code_content += "  var computeManagementClient = utils.createComputeResourceProviderClient(subscription);" + $new_line_str;
+    $cli_op_code_content += "  console.log(computeManagementClient.${cli_op_name}s.${cli_method_name});" + $new_line_str;
+    #$cli_op_code_content += "  console.log(computeManagementClient.${cli_op_name}s.${cli_method_name}.toString());" + $new_line_str;
     $cli_op_code_content += "  var result = computeManagementClient.${cli_op_name}s.${cli_method_name}(";
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
         if ($index -gt 0) { $cli_op_code_content += ", "; }
+        
         $cli_param_name = $param_names[$index];
-        $cli_op_code_content += "$cli_param_name";
+        if (${cli_param_name} -eq 'Parameters')
+        {
+            $cli_op_code_content += "${cli_param_name}Obj";
+        }
+        else
+        {
+            $cli_op_code_content += "options.${cli_param_name}";
+        }
     }
     $cli_op_code_content += ", _);" + $new_line_str;
     $cli_op_code_content += "  cli.output.json(result);" + $new_line_str;
     $cli_op_code_content += "});" + $new_line_str;
 
+    # 3.3 Parameters
+    for ($index = 0; $index -lt $param_names.Count; $index++)
+    {
+        if (${cli_param_name} -eq 'Parameters')
+        {
+            $params_category_name = 'parameters';
 
+            $cli_op_code_content += "var ${params_category_name} = $category_name.category('${params_category_name}').description(`$('Parameters for Azure Compute $opShortName'));" + $new_line_str;
 
+            $cli_op_code_content += "${params_category_name}.command('${cli_method_name}')" + $new_line_str;
+            $cli_op_code_content += ".description(`$('${params_category_name} generate'))" + $new_line_str;
+            $cli_op_code_content += ".usage('[options]')" + $new_line_str;
+            $cli_op_code_content += ".option('--$cli_method_name) <$cli_method_name>', `$('string | file'))" + $new_line_str;
+            $cli_op_code_content += ".option('--outputType) <outputType>', `$('string | file'))" + $new_line_str;
+            $cli_op_code_content += ".execute(function (";
+            $cli_op_code_content += "$cli_method_name, outputType";
+            $cli_op_code_content += ", options, _) {" + $new_line_str;
+
+            $output_content = $param_object_comment.Replace("`"", "\`"");
+            $cli_op_code_content += "  console.log(`"" + $output_content + "`");" + $new_line_str;
+
+            $file_content = $param_object_comment_no_compress.Replace($new_line_str, "\r\n").Replace("`"", "\`"").Replace("`r", "\r").Replace("`n", "\n");
+            $file_name = "${cli_method_name}.json";
+            $cli_op_code_content += "  fs.writeFileSync(`"${file_name}`", `"" + $file_content + "`");" + $new_line_str;
+
+            $cli_op_code_content += "  console.log(`"Parameter file output to: .\\" + $file_name + "`");" + $new_line_str;
+            $cli_op_code_content += "});" + $new_line_str;
+            break;
+        }
+    }
 
     Write-Output $cli_op_code_content;
 }
@@ -1810,7 +1905,7 @@ function Process-ListType
     $xml += '</ListItems></ListEntry></ListEntries></ListControl>' + [System.Environment]::NewLine;
     $xml = '<View>' + [System.Environment]::NewLine + $xml + '</View>' + [System.Environment]::NewLine;
 
-    Write-Verbose ("Xml: " + $xml);
+    # Write-Verbose ("Xml: " + $xml);
 
     return $xml;
 }
@@ -1887,7 +1982,7 @@ function Process-ReturnType
         $xml += $addxml;
     }
 
-    Write-Verbose ("Xml: " + $xml);
+    # Write-Verbose ("Xml: " + $xml);
 
     return $xml;
 }
@@ -1899,9 +1994,9 @@ function Format-XML ([xml]$xml, $indent = 2)
     $XmlWriter = New-Object System.XMl.XmlTextWriter $StringWriter;
     $xmlWriter.Formatting = "indented";
     $xmlWriter.Indentation = $Indent;
-    $xml.WriteContentTo($XmlWriter);
-    $XmlWriter.Flush();
-    $StringWriter.Flush();
+    $st = $xml.WriteContentTo($XmlWriter);
+    $st = $XmlWriter.Flush();
+    $st = $StringWriter.Flush();
     Write-Output $StringWriter.ToString();
 }
 
@@ -2006,6 +2101,28 @@ ${cmdlet_generated_code}
     $st = Set-Content -Path $file_full_path -Value $cmdlt_source_template -Force;
 }
 
+function Write-XmlFormatFile
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        $xmlFilePath
+    )
+
+    $xmlCommentHeader = '<!--' + [System.Environment]::NewLine;
+    foreach ($cLine in $code_common_header)
+    {
+        $xmlCommentHeader += $cLine + [System.Environment]::NewLine;
+    }
+    $xmlCommentHeader += '-->' + [System.Environment]::NewLine;
+
+    $xmlContent = [xml]($xmlCommentHeader + '<Configuration><ViewDefinitions>' + [System.Environment]::NewLine + $formatXml + '</ViewDefinitions></Configuration>' + [System.Environment]::NewLine);
+    $node = $xmlContent.CreateXmlDeclaration('1.0', 'UTF-8', $null);
+    $st = $xmlContent.InsertBefore($node, $xmlContent.ChildNodes[0]);
+
+    $formattedXmlContent = Format-XML $xmlContent.OuterXml;
+    $st = Set-Content -Force -Path $xmlFilePath -Value $formattedXmlContent;
+    # Write-Verbose($formattedXmlContent);
+}
 
 # Sample: NewAzureVirtualMachineCreateParameters.cs
 function Write-CLICommandFile
@@ -2029,9 +2146,8 @@ $outFolder += '/Generated';
 $output = Get-ChildItem -Path $dllFolder | Out-String;
 
 # Set-Content -Path ($outFolder + '/Output.txt');
-Write-Verbose "List items under the folder: $dllFolder"
-Write-Verbose $output;
-
+# Write-Verbose "List items under the folder: $dllFolder"
+# Write-Verbose $output;
 
 $dllname = $client_library_namespace;
 $dllfile = $dllname + '.dll';
@@ -2101,6 +2217,7 @@ else
 'use strict';
 
 var __ = require('underscore');
+var fs = require('fs');
 var util = require('util');
 
 var profile = require('../../../util/profile');
@@ -2184,7 +2301,7 @@ exports.init = function (cli) {
 
             if ($all_return_type_names.Contains($rt.Name))
             {
-                Write-Verbose("Already Exists: " + $rt.Name);
+                # Write-Verbose("Already Exists: " + $rt.Name);
             }
             else
             {
@@ -2198,34 +2315,24 @@ exports.init = function (cli) {
         Write-NewParameterObjectCmdletFile $new_object_cmdlet_file_name $new_object_cmdlet_class_name $auto_base_cmdlet_name $clientClassType $filtered_types $parameter_cmdlet_method_code;
     }
 
+    # XML 
+    $xmlFilePath = ($outFolder.Replace('/Generated', "") + '\' + $code_common_namespace + '.format.generated.ps1xml');
+    Write-Output "=============================================";
+    Write-Output ('Writing XML Format File: ' + $xmlFilePath);
+    Write-Output "=============================================";
+    Write-XmlFormatFile $xmlFilePath;
+
     # CLI
     $cli_command_method_code += $new_line_str + "};";
-    if ($cmdletFlavor -eq 'CLI')
+    if ($cliCommandFlavor -eq 'Verb')
     {
+        Write-Output "=============================================";
+        Write-Output("Writing CLI file to: " + $outFolder);
+        Write-Output "=============================================";
         Write-CLICommandFile $outFolder $cli_command_method_code;
     }
 
     Write-Output "=============================================";
     Write-Output "Finished.";
     Write-Output "=============================================";
-
-    $outFolder = $outFolder.Replace('/Generated', "");
-    $xmlFilePath = ($outFolder + '\' + $code_common_namespace + '.format.generated.ps1xml');
-
-    Write-Host ('Writing XML Format File: ' + $xmlFilePath);
-
-    $xmlCommentHeader = '<!--' + [System.Environment]::NewLine;
-    foreach ($cLine in $code_common_header)
-    {
-        $xmlCommentHeader += $cLine + [System.Environment]::NewLine;
-    }
-    $xmlCommentHeader += '-->' + [System.Environment]::NewLine;
-
-    $xmlContent = [xml]($xmlCommentHeader + '<Configuration><ViewDefinitions>' + [System.Environment]::NewLine + $formatXml + '</ViewDefinitions></Configuration>' + [System.Environment]::NewLine);
-    $node = $xmlContent.CreateXmlDeclaration('1.0', 'UTF-8', $null);
-    $xmlContent.InsertBefore($node, $xmlContent.ChildNodes[0]);
-
-    $formattedXmlContent = Format-XML $xmlContent.OuterXml;
-    Set-Content -Force -Path $xmlFilePath -Value $formattedXmlContent;
-    Write-Verbose($formattedXmlContent);
 }

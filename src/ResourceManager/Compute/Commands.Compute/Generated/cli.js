@@ -16,6 +16,7 @@
 'use strict';
 
 var __ = require('underscore');
+var fs = require('fs');
 var util = require('util');
 
 var profile = require('../../../util/profile');
@@ -28,324 +29,521 @@ exports.init = function (cli) {
   var compute = cli.category('compute')
     .description($('Commands for Azure Compute'));
 
-//VirtualMachineScaleSet.CreateOrUpdate
-var VirtualMachineScaleSet = compute.category('virtualMachineScaleSet').description($('Commands for Azure Compute'));VirtualMachineScaleSet.command('CreateOrUpdate')
-.description($('VirtualMachineScaleSet CreateOrUpdate'))
+//virtualMachineScaleSet -> CreateOrUpdate
+/*
+{"provisioningState":"","sku":{"capacity":null,"name":"","tier":""},"upgradePolicy":{"mode":""},"virtualMachineProfile":{"extensions":[{"autoUpgradeMinorVersion":false,"extensionType":"","instanceView":{"extensionType":"","name":"","subStatuses":[{"code":"","displayStatus":"","level":"","message":"","time":null}],"typeHandlerVersion":"","statuses":[{"code":"","displayStatus":"","level":"","message":"","time":null}]},"protectedSettings":"","provisioningState":"","publisher":"","settings":"","typeHandlerVersion":"","id":"","name":"","type":"","location":"","tags":{}}],"networkProfile":{"networkInterfaceConfigurations":[{"iPConfigurations":[{"loadBalancerBackendAddressPools":[{"referenceUri":""}],"name":"","subnet":{"referenceUri":""}}],"name":"","primary":null}]},"oSProfile":{"computerNamePrefix":"","adminPassword":"","adminUsername":"","customData":"","linuxConfiguration":{"disablePasswordAuthentication":null,"sshConfiguration":{"publicKeys":[{"keyData":"","path":""}]}},"secrets":[{"sourceVault":{"referenceUri":""},"vaultCertificates":[{"certificateStore":"","certificateUrl":""}]}],"windowsConfiguration":{"additionalUnattendContents":[{"componentName":"","content":"","passName":"","settingName":""}],"enableAutomaticUpdates":null,"provisionVMAgent":null,"timeZone":"","winRMConfiguration":{"listeners":[{"certificateUrl":"","protocol":""}]}}},"storageProfile":{"imageReference":{"offer":"","publisher":"","sku":"","version":""},"oSDisk":{"caching":"","createOption":"","name":"","operatingSystemType":"","sourceImage":{"uri":""},"virtualHardDiskContainers":[""]}}},"id":"","name":"","type":"","location":"","tags":{}}
+*/
+var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+vmss.command('createOrUpdate')
+.description($('vmss createOrUpdate'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--Parameters <Parameters>', $('Parameters'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, Parameters, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('Parameters = ' + options.Parameters);
+  if (options.parameterFile) {
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var ParametersObj = JSON.parse(fileContent);
+  }
+  else {
+    var ParametersObj = JSON.parse(options.Parameters);
+  }
+  console.log('ParametersObj = ' + JSON.stringify(ParametersObj));
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSets.createOrUpdate(ResourceGroupName, Parameters, _);
+  console.log(computeManagementClient.virtualMachineScaleSets.createOrUpdate);
+  var result = computeManagementClient.virtualMachineScaleSets.createOrUpdate(options.ResourceGroupName, ParametersObj, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSet.Deallocate
-var VirtualMachineScaleSet = compute.category('virtualMachineScaleSet').description($('Commands for Azure Compute'));VirtualMachineScaleSet.command('Deallocate')
-.description($('VirtualMachineScaleSet Deallocate'))
+var parameters = vmss.category('parameters').description($('Parameters for Azure Compute VirtualMachineScaleSet'));
+parameters.command('createOrUpdate')
+.description($('parameters generate'))
+.usage('[options]')
+.option('--createOrUpdate) <createOrUpdate>', $('string | file'))
+.option('--outputType) <outputType>', $('string | file'))
+.execute(function (createOrUpdate, outputType, options, _) {
+  console.log("{\"provisioningState\":\"\",\"sku\":{\"capacity\":null,\"name\":\"\",\"tier\":\"\"},\"upgradePolicy\":{\"mode\":\"\"},\"virtualMachineProfile\":{\"extensions\":[{\"autoUpgradeMinorVersion\":false,\"extensionType\":\"\",\"instanceView\":{\"extensionType\":\"\",\"name\":\"\",\"subStatuses\":[{\"code\":\"\",\"displayStatus\":\"\",\"level\":\"\",\"message\":\"\",\"time\":null}],\"typeHandlerVersion\":\"\",\"statuses\":[{\"code\":\"\",\"displayStatus\":\"\",\"level\":\"\",\"message\":\"\",\"time\":null}]},\"protectedSettings\":\"\",\"provisioningState\":\"\",\"publisher\":\"\",\"settings\":\"\",\"typeHandlerVersion\":\"\",\"id\":\"\",\"name\":\"\",\"type\":\"\",\"location\":\"\",\"tags\":{}}],\"networkProfile\":{\"networkInterfaceConfigurations\":[{\"iPConfigurations\":[{\"loadBalancerBackendAddressPools\":[{\"referenceUri\":\"\"}],\"name\":\"\",\"subnet\":{\"referenceUri\":\"\"}}],\"name\":\"\",\"primary\":null}]},\"oSProfile\":{\"computerNamePrefix\":\"\",\"adminPassword\":\"\",\"adminUsername\":\"\",\"customData\":\"\",\"linuxConfiguration\":{\"disablePasswordAuthentication\":null,\"sshConfiguration\":{\"publicKeys\":[{\"keyData\":\"\",\"path\":\"\"}]}},\"secrets\":[{\"sourceVault\":{\"referenceUri\":\"\"},\"vaultCertificates\":[{\"certificateStore\":\"\",\"certificateUrl\":\"\"}]}],\"windowsConfiguration\":{\"additionalUnattendContents\":[{\"componentName\":\"\",\"content\":\"\",\"passName\":\"\",\"settingName\":\"\"}],\"enableAutomaticUpdates\":null,\"provisionVMAgent\":null,\"timeZone\":\"\",\"winRMConfiguration\":{\"listeners\":[{\"certificateUrl\":\"\",\"protocol\":\"\"}]}}},\"storageProfile\":{\"imageReference\":{\"offer\":\"\",\"publisher\":\"\",\"sku\":\"\",\"version\":\"\"},\"oSDisk\":{\"caching\":\"\",\"createOption\":\"\",\"name\":\"\",\"operatingSystemType\":\"\",\"sourceImage\":{\"uri\":\"\"},\"virtualHardDiskContainers\":[\"\"]}}},\"id\":\"\",\"name\":\"\",\"type\":\"\",\"location\":\"\",\"tags\":{}}");
+  fs.writeFileSync("createOrUpdate.json", "{\r\n    \"provisioningState\":  \"\",\r\n    \"sku\":  {\r\n                \"capacity\":  null,\r\n                \"name\":  \"\",\r\n                \"tier\":  \"\"\r\n            },\r\n    \"upgradePolicy\":  {\r\n                          \"mode\":  \"\"\r\n                      },\r\n    \"virtualMachineProfile\":  {\r\n                                  \"extensions\":  [\r\n                                                     {\r\n                                                         \"autoUpgradeMinorVersion\":  false,\r\n                                                         \"extensionType\":  \"\",\r\n                                                         \"instanceView\":  {\r\n                                                                              \"extensionType\":  \"\",\r\n                                                                              \"name\":  \"\",\r\n                                                                              \"subStatuses\":  [\r\n                                                                                                  {\r\n                                                                                                      \"code\":  \"\",\r\n                                                                                                      \"displayStatus\":  \"\",\r\n                                                                                                      \"level\":  \"\",\r\n                                                                                                      \"message\":  \"\",\r\n                                                                                                      \"time\":  null\r\n                                                                                                  }\r\n                                                                                              ],\r\n                                                                              \"typeHandlerVersion\":  \"\",\r\n                                                                              \"statuses\":  [\r\n                                                                                               {\r\n                                                                                                   \"code\":  \"\",\r\n                                                                                                   \"displayStatus\":  \"\",\r\n                                                                                                   \"level\":  \"\",\r\n                                                                                                   \"message\":  \"\",\r\n                                                                                                   \"time\":  null\r\n                                                                                               }\r\n                                                                                           ]\r\n                                                                          },\r\n                                                         \"protectedSettings\":  \"\",\r\n                                                         \"provisioningState\":  \"\",\r\n                                                         \"publisher\":  \"\",\r\n                                                         \"settings\":  \"\",\r\n                                                         \"typeHandlerVersion\":  \"\",\r\n                                                         \"id\":  \"\",\r\n                                                         \"name\":  \"\",\r\n                                                         \"type\":  \"\",\r\n                                                         \"location\":  \"\",\r\n                                                         \"tags\":  {\r\n\r\n                                                                  }\r\n                                                     }\r\n                                                 ],\r\n                                  \"networkProfile\":  {\r\n                                                         \"networkInterfaceConfigurations\":  [\r\n                                                                                                {\r\n                                                                                                    \"iPConfigurations\":  [\r\n                                                                                                                             {\r\n                                                                                                                                 \"loadBalancerBackendAddressPools\":  [\r\n                                                                                                                                                                         {\r\n                                                                                                                                                                             \"referenceUri\":  \"\"\r\n                                                                                                                                                                         }\r\n                                                                                                                                                                     ],\r\n                                                                                                                                 \"name\":  \"\",\r\n                                                                                                                                 \"subnet\":  {\r\n                                                                                                                                                \"referenceUri\":  \"\"\r\n                                                                                                                                            }\r\n                                                                                                                             }\r\n                                                                                                                         ],\r\n                                                                                                    \"name\":  \"\",\r\n                                                                                                    \"primary\":  null\r\n                                                                                                }\r\n                                                                                            ]\r\n                                                     },\r\n                                  \"oSProfile\":  {\r\n                                                    \"computerNamePrefix\":  \"\",\r\n                                                    \"adminPassword\":  \"\",\r\n                                                    \"adminUsername\":  \"\",\r\n                                                    \"customData\":  \"\",\r\n                                                    \"linuxConfiguration\":  {\r\n                                                                               \"disablePasswordAuthentication\":  null,\r\n                                                                               \"sshConfiguration\":  {\r\n                                                                                                        \"publicKeys\":  [\r\n                                                                                                                           {\r\n                                                                                                                               \"keyData\":  \"\",\r\n                                                                                                                               \"path\":  \"\"\r\n                                                                                                                           }\r\n                                                                                                                       ]\r\n                                                                                                    }\r\n                                                                           },\r\n                                                    \"secrets\":  [\r\n                                                                    {\r\n                                                                        \"sourceVault\":  {\r\n                                                                                            \"referenceUri\":  \"\"\r\n                                                                                        },\r\n                                                                        \"vaultCertificates\":  [\r\n                                                                                                  {\r\n                                                                                                      \"certificateStore\":  \"\",\r\n                                                                                                      \"certificateUrl\":  \"\"\r\n                                                                                                  }\r\n                                                                                              ]\r\n                                                                    }\r\n                                                                ],\r\n                                                    \"windowsConfiguration\":  {\r\n                                                                                 \"additionalUnattendContents\":  [\r\n                                                                                                                    {\r\n                                                                                                                        \"componentName\":  \"\",\r\n                                                                                                                        \"content\":  \"\",\r\n                                                                                                                        \"passName\":  \"\",\r\n                                                                                                                        \"settingName\":  \"\"\r\n                                                                                                                    }\r\n                                                                                                                ],\r\n                                                                                 \"enableAutomaticUpdates\":  null,\r\n                                                                                 \"provisionVMAgent\":  null,\r\n                                                                                 \"timeZone\":  \"\",\r\n                                                                                 \"winRMConfiguration\":  {\r\n                                                                                                            \"listeners\":  [\r\n                                                                                                                              {\r\n                                                                                                                                  \"certificateUrl\":  \"\",\r\n                                                                                                                                  \"protocol\":  \"\"\r\n                                                                                                                              }\r\n                                                                                                                          ]\r\n                                                                                                        }\r\n                                                                             }\r\n                                                },\r\n                                  \"storageProfile\":  {\r\n                                                         \"imageReference\":  {\r\n                                                                                \"offer\":  \"\",\r\n                                                                                \"publisher\":  \"\",\r\n                                                                                \"sku\":  \"\",\r\n                                                                                \"version\":  \"\"\r\n                                                                            },\r\n                                                         \"oSDisk\":  {\r\n                                                                        \"caching\":  \"\",\r\n                                                                        \"createOption\":  \"\",\r\n                                                                        \"name\":  \"\",\r\n                                                                        \"operatingSystemType\":  \"\",\r\n                                                                        \"sourceImage\":  {\r\n                                                                                            \"uri\":  \"\"\r\n                                                                                        },\r\n                                                                        \"virtualHardDiskContainers\":  [\r\n                                                                                                          \"\"\r\n                                                                                                      ]\r\n                                                                    }\r\n                                                     }\r\n                              },\r\n    \"id\":  \"\",\r\n    \"name\":  \"\",\r\n    \"type\":  \"\",\r\n    \"location\":  \"\",\r\n    \"tags\":  {\r\n\r\n             }\r\n}");
+  console.log("Parameter file output to: .\\createOrUpdate.json");
+});
+//virtualMachineScaleSet -> Deallocate
+var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+vmss.command('deallocate')
+.description($('vmss deallocate'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSets.deallocate(ResourceGroupName, VMScaleSetName, _);
+  console.log(computeManagementClient.virtualMachineScaleSets.deallocate);
+  var result = computeManagementClient.virtualMachineScaleSets.deallocate(options.ResourceGroupName, options.VMScaleSetName, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSet.DeallocateInstances
-var VirtualMachineScaleSet = compute.category('virtualMachineScaleSet').description($('Commands for Azure Compute'));VirtualMachineScaleSet.command('DeallocateInstances')
-.description($('VirtualMachineScaleSet DeallocateInstances'))
+//virtualMachineScaleSet -> DeallocateInstances
+var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+vmss.command('deallocateInstances')
+.description($('vmss deallocateInstances'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
 .option('--VMInstanceIDs <VMInstanceIDs>', $('VMInstanceIDs'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, VMInstanceIDs, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
+console.log('VMInstanceIDs = ' + options.VMInstanceIDs);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSets.deallocateInstances(ResourceGroupName, VMScaleSetName, VMInstanceIDs, _);
+  console.log(computeManagementClient.virtualMachineScaleSets.deallocateInstances);
+  var result = computeManagementClient.virtualMachineScaleSets.deallocateInstances(options.ResourceGroupName, options.VMScaleSetName, options.VMInstanceIDs, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSet.Delete
-var VirtualMachineScaleSet = compute.category('virtualMachineScaleSet').description($('Commands for Azure Compute'));VirtualMachineScaleSet.command('Delete')
-.description($('VirtualMachineScaleSet Delete'))
+//virtualMachineScaleSet -> Delete
+var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+vmss.command('delete')
+.description($('vmss delete'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSets.delete(ResourceGroupName, VMScaleSetName, _);
+  console.log(computeManagementClient.virtualMachineScaleSets.delete);
+  var result = computeManagementClient.virtualMachineScaleSets.delete(options.ResourceGroupName, options.VMScaleSetName, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSet.DeleteInstances
-var VirtualMachineScaleSet = compute.category('virtualMachineScaleSet').description($('Commands for Azure Compute'));VirtualMachineScaleSet.command('DeleteInstances')
-.description($('VirtualMachineScaleSet DeleteInstances'))
+//virtualMachineScaleSet -> DeleteInstances
+var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+vmss.command('deleteInstances')
+.description($('vmss deleteInstances'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
 .option('--VMInstanceIDs <VMInstanceIDs>', $('VMInstanceIDs'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, VMInstanceIDs, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
+console.log('VMInstanceIDs = ' + options.VMInstanceIDs);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSets.deleteInstances(ResourceGroupName, VMScaleSetName, VMInstanceIDs, _);
+  console.log(computeManagementClient.virtualMachineScaleSets.deleteInstances);
+  var result = computeManagementClient.virtualMachineScaleSets.deleteInstances(options.ResourceGroupName, options.VMScaleSetName, options.VMInstanceIDs, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSet.Get
-var VirtualMachineScaleSet = compute.category('virtualMachineScaleSet').description($('Commands for Azure Compute'));VirtualMachineScaleSet.command('Get')
-.description($('VirtualMachineScaleSet Get'))
+//virtualMachineScaleSet -> Get
+var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+vmss.command('get')
+.description($('vmss get'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSets.get(ResourceGroupName, VMScaleSetName, _);
+  console.log(computeManagementClient.virtualMachineScaleSets.get);
+  var result = computeManagementClient.virtualMachineScaleSets.get(options.ResourceGroupName, options.VMScaleSetName, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSet.List
-var VirtualMachineScaleSet = compute.category('virtualMachineScaleSet').description($('Commands for Azure Compute'));VirtualMachineScaleSet.command('List')
-.description($('VirtualMachineScaleSet List'))
+//virtualMachineScaleSet -> List
+var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+vmss.command('list')
+.description($('vmss list'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSets.list(ResourceGroupName, _);
+  console.log(computeManagementClient.virtualMachineScaleSets.list);
+  var result = computeManagementClient.virtualMachineScaleSets.list(options.ResourceGroupName, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSet.ListAll
-var VirtualMachineScaleSet = compute.category('virtualMachineScaleSet').description($('Commands for Azure Compute'));VirtualMachineScaleSet.command('ListAll')
-.description($('VirtualMachineScaleSet ListAll'))
+//virtualMachineScaleSet -> ListAll
+/*
+{}
+*/
+var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+vmss.command('listAll')
+.description($('vmss listAll'))
 .usage('[options]')
 .option('--Parameters <Parameters>', $('Parameters'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (Parameters, options, _) {
+console.log('Parameters = ' + options.Parameters);
+  if (options.parameterFile) {
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var ParametersObj = JSON.parse(fileContent);
+  }
+  else {
+    var ParametersObj = JSON.parse(options.Parameters);
+  }
+  console.log('ParametersObj = ' + JSON.stringify(ParametersObj));
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSets.listAll(Parameters, _);
+  console.log(computeManagementClient.virtualMachineScaleSets.listAll);
+  var result = computeManagementClient.virtualMachineScaleSets.listAll(ParametersObj, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSet.ListNext
-var VirtualMachineScaleSet = compute.category('virtualMachineScaleSet').description($('Commands for Azure Compute'));VirtualMachineScaleSet.command('ListNext')
-.description($('VirtualMachineScaleSet ListNext'))
+var parameters = vmss.category('parameters').description($('Parameters for Azure Compute VirtualMachineScaleSet'));
+parameters.command('listAll')
+.description($('parameters generate'))
+.usage('[options]')
+.option('--listAll) <listAll>', $('string | file'))
+.option('--outputType) <outputType>', $('string | file'))
+.execute(function (listAll, outputType, options, _) {
+  console.log("{}");
+  fs.writeFileSync("listAll.json", "{\r\n\r\n}");
+  console.log("Parameter file output to: .\\listAll.json");
+});
+//virtualMachineScaleSet -> ListNext
+var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+vmss.command('listNext')
+.description($('vmss listNext'))
 .usage('[options]')
 .option('--NextLink <NextLink>', $('NextLink'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (NextLink, options, _) {
+console.log('NextLink = ' + options.NextLink);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSets.listNext(NextLink, _);
+  console.log(computeManagementClient.virtualMachineScaleSets.listNext);
+  var result = computeManagementClient.virtualMachineScaleSets.listNext(options.NextLink, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSet.ListSkus
-var VirtualMachineScaleSet = compute.category('virtualMachineScaleSet').description($('Commands for Azure Compute'));VirtualMachineScaleSet.command('ListSkus')
-.description($('VirtualMachineScaleSet ListSkus'))
+//virtualMachineScaleSet -> ListSkus
+var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+vmss.command('listSkus')
+.description($('vmss listSkus'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSets.listSkus(ResourceGroupName, VMScaleSetName, _);
+  console.log(computeManagementClient.virtualMachineScaleSets.listSkus);
+  var result = computeManagementClient.virtualMachineScaleSets.listSkus(options.ResourceGroupName, options.VMScaleSetName, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSet.PowerOff
-var VirtualMachineScaleSet = compute.category('virtualMachineScaleSet').description($('Commands for Azure Compute'));VirtualMachineScaleSet.command('PowerOff')
-.description($('VirtualMachineScaleSet PowerOff'))
+//virtualMachineScaleSet -> PowerOff
+var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+vmss.command('powerOff')
+.description($('vmss powerOff'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSets.powerOff(ResourceGroupName, VMScaleSetName, _);
+  console.log(computeManagementClient.virtualMachineScaleSets.powerOff);
+  var result = computeManagementClient.virtualMachineScaleSets.powerOff(options.ResourceGroupName, options.VMScaleSetName, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSet.PowerOffInstances
-var VirtualMachineScaleSet = compute.category('virtualMachineScaleSet').description($('Commands for Azure Compute'));VirtualMachineScaleSet.command('PowerOffInstances')
-.description($('VirtualMachineScaleSet PowerOffInstances'))
+//virtualMachineScaleSet -> PowerOffInstances
+var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+vmss.command('powerOffInstances')
+.description($('vmss powerOffInstances'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
 .option('--VMInstanceIDs <VMInstanceIDs>', $('VMInstanceIDs'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, VMInstanceIDs, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
+console.log('VMInstanceIDs = ' + options.VMInstanceIDs);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSets.powerOffInstances(ResourceGroupName, VMScaleSetName, VMInstanceIDs, _);
+  console.log(computeManagementClient.virtualMachineScaleSets.powerOffInstances);
+  var result = computeManagementClient.virtualMachineScaleSets.powerOffInstances(options.ResourceGroupName, options.VMScaleSetName, options.VMInstanceIDs, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSet.Restart
-var VirtualMachineScaleSet = compute.category('virtualMachineScaleSet').description($('Commands for Azure Compute'));VirtualMachineScaleSet.command('Restart')
-.description($('VirtualMachineScaleSet Restart'))
+//virtualMachineScaleSet -> Restart
+var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+vmss.command('restart')
+.description($('vmss restart'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSets.restart(ResourceGroupName, VMScaleSetName, _);
+  console.log(computeManagementClient.virtualMachineScaleSets.restart);
+  var result = computeManagementClient.virtualMachineScaleSets.restart(options.ResourceGroupName, options.VMScaleSetName, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSet.RestartInstances
-var VirtualMachineScaleSet = compute.category('virtualMachineScaleSet').description($('Commands for Azure Compute'));VirtualMachineScaleSet.command('RestartInstances')
-.description($('VirtualMachineScaleSet RestartInstances'))
+//virtualMachineScaleSet -> RestartInstances
+var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+vmss.command('restartInstances')
+.description($('vmss restartInstances'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
 .option('--VMInstanceIDs <VMInstanceIDs>', $('VMInstanceIDs'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, VMInstanceIDs, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
+console.log('VMInstanceIDs = ' + options.VMInstanceIDs);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSets.restartInstances(ResourceGroupName, VMScaleSetName, VMInstanceIDs, _);
+  console.log(computeManagementClient.virtualMachineScaleSets.restartInstances);
+  var result = computeManagementClient.virtualMachineScaleSets.restartInstances(options.ResourceGroupName, options.VMScaleSetName, options.VMInstanceIDs, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSet.Start
-var VirtualMachineScaleSet = compute.category('virtualMachineScaleSet').description($('Commands for Azure Compute'));VirtualMachineScaleSet.command('Start')
-.description($('VirtualMachineScaleSet Start'))
+//virtualMachineScaleSet -> Start
+var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+vmss.command('start')
+.description($('vmss start'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSets.start(ResourceGroupName, VMScaleSetName, _);
+  console.log(computeManagementClient.virtualMachineScaleSets.start);
+  var result = computeManagementClient.virtualMachineScaleSets.start(options.ResourceGroupName, options.VMScaleSetName, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSet.StartInstances
-var VirtualMachineScaleSet = compute.category('virtualMachineScaleSet').description($('Commands for Azure Compute'));VirtualMachineScaleSet.command('StartInstances')
-.description($('VirtualMachineScaleSet StartInstances'))
+//virtualMachineScaleSet -> StartInstances
+var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+vmss.command('startInstances')
+.description($('vmss startInstances'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
 .option('--VMInstanceIDs <VMInstanceIDs>', $('VMInstanceIDs'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, VMInstanceIDs, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
+console.log('VMInstanceIDs = ' + options.VMInstanceIDs);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSets.startInstances(ResourceGroupName, VMScaleSetName, VMInstanceIDs, _);
+  console.log(computeManagementClient.virtualMachineScaleSets.startInstances);
+  var result = computeManagementClient.virtualMachineScaleSets.startInstances(options.ResourceGroupName, options.VMScaleSetName, options.VMInstanceIDs, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSetVM.Deallocate
-var VirtualMachineScaleSetVM = compute.category('virtualMachineScaleSetVM').description($('Commands for Azure Compute'));VirtualMachineScaleSetVM.command('Deallocate')
-.description($('VirtualMachineScaleSetVM Deallocate'))
+//virtualMachineScaleSetVM -> Deallocate
+var vmssvm = compute.category('vmssvm').description($('Commands for Azure Compute VirtualMachineScaleSetVM'));
+vmssvm.command('deallocate')
+.description($('vmssvm deallocate'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
 .option('--InstanceId <InstanceId>', $('InstanceId'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, InstanceId, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
+console.log('InstanceId = ' + options.InstanceId);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSetVMs.deallocate(ResourceGroupName, VMScaleSetName, InstanceId, _);
+  console.log(computeManagementClient.virtualMachineScaleSetVMs.deallocate);
+  var result = computeManagementClient.virtualMachineScaleSetVMs.deallocate(options.ResourceGroupName, options.VMScaleSetName, options.InstanceId, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSetVM.Delete
-var VirtualMachineScaleSetVM = compute.category('virtualMachineScaleSetVM').description($('Commands for Azure Compute'));VirtualMachineScaleSetVM.command('Delete')
-.description($('VirtualMachineScaleSetVM Delete'))
+//virtualMachineScaleSetVM -> Delete
+var vmssvm = compute.category('vmssvm').description($('Commands for Azure Compute VirtualMachineScaleSetVM'));
+vmssvm.command('delete')
+.description($('vmssvm delete'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
 .option('--InstanceId <InstanceId>', $('InstanceId'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, InstanceId, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
+console.log('InstanceId = ' + options.InstanceId);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSetVMs.delete(ResourceGroupName, VMScaleSetName, InstanceId, _);
+  console.log(computeManagementClient.virtualMachineScaleSetVMs.delete);
+  var result = computeManagementClient.virtualMachineScaleSetVMs.delete(options.ResourceGroupName, options.VMScaleSetName, options.InstanceId, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSetVM.Get
-var VirtualMachineScaleSetVM = compute.category('virtualMachineScaleSetVM').description($('Commands for Azure Compute'));VirtualMachineScaleSetVM.command('Get')
-.description($('VirtualMachineScaleSetVM Get'))
+//virtualMachineScaleSetVM -> Get
+var vmssvm = compute.category('vmssvm').description($('Commands for Azure Compute VirtualMachineScaleSetVM'));
+vmssvm.command('get')
+.description($('vmssvm get'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
 .option('--InstanceId <InstanceId>', $('InstanceId'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, InstanceId, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
+console.log('InstanceId = ' + options.InstanceId);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSetVMs.get(ResourceGroupName, VMScaleSetName, InstanceId, _);
+  console.log(computeManagementClient.virtualMachineScaleSetVMs.get);
+  var result = computeManagementClient.virtualMachineScaleSetVMs.get(options.ResourceGroupName, options.VMScaleSetName, options.InstanceId, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSetVM.GetInstanceView
-var VirtualMachineScaleSetVM = compute.category('virtualMachineScaleSetVM').description($('Commands for Azure Compute'));VirtualMachineScaleSetVM.command('GetInstanceView')
-.description($('VirtualMachineScaleSetVM GetInstanceView'))
+//virtualMachineScaleSetVM -> GetInstanceView
+var vmssvm = compute.category('vmssvm').description($('Commands for Azure Compute VirtualMachineScaleSetVM'));
+vmssvm.command('getInstanceView')
+.description($('vmssvm getInstanceView'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
 .option('--InstanceId <InstanceId>', $('InstanceId'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, InstanceId, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
+console.log('InstanceId = ' + options.InstanceId);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSetVMs.getInstanceView(ResourceGroupName, VMScaleSetName, InstanceId, _);
+  console.log(computeManagementClient.virtualMachineScaleSetVMs.getInstanceView);
+  var result = computeManagementClient.virtualMachineScaleSetVMs.getInstanceView(options.ResourceGroupName, options.VMScaleSetName, options.InstanceId, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSetVM.List
-var VirtualMachineScaleSetVM = compute.category('virtualMachineScaleSetVM').description($('Commands for Azure Compute'));VirtualMachineScaleSetVM.command('List')
-.description($('VirtualMachineScaleSetVM List'))
+//virtualMachineScaleSetVM -> List
+/*
+{"expandExpression":"","filterExpression":"","resourceGroupName":"","selectExpression":"","virtualMachineScaleSetName":""}
+*/
+var vmssvm = compute.category('vmssvm').description($('Commands for Azure Compute VirtualMachineScaleSetVM'));
+vmssvm.command('list')
+.description($('vmssvm list'))
 .usage('[options]')
 .option('--Parameters <Parameters>', $('Parameters'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (Parameters, options, _) {
+console.log('Parameters = ' + options.Parameters);
+  if (options.parameterFile) {
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var ParametersObj = JSON.parse(fileContent);
+  }
+  else {
+    var ParametersObj = JSON.parse(options.Parameters);
+  }
+  console.log('ParametersObj = ' + JSON.stringify(ParametersObj));
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSetVMs.list(Parameters, _);
+  console.log(computeManagementClient.virtualMachineScaleSetVMs.list);
+  var result = computeManagementClient.virtualMachineScaleSetVMs.list(ParametersObj, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSetVM.PowerOff
-var VirtualMachineScaleSetVM = compute.category('virtualMachineScaleSetVM').description($('Commands for Azure Compute'));VirtualMachineScaleSetVM.command('PowerOff')
-.description($('VirtualMachineScaleSetVM PowerOff'))
+var parameters = vmssvm.category('parameters').description($('Parameters for Azure Compute VirtualMachineScaleSetVM'));
+parameters.command('list')
+.description($('parameters generate'))
+.usage('[options]')
+.option('--list) <list>', $('string | file'))
+.option('--outputType) <outputType>', $('string | file'))
+.execute(function (list, outputType, options, _) {
+  console.log("{\"expandExpression\":\"\",\"filterExpression\":\"\",\"resourceGroupName\":\"\",\"selectExpression\":\"\",\"virtualMachineScaleSetName\":\"\"}");
+  fs.writeFileSync("list.json", "{\r\n    \"expandExpression\":  \"\",\r\n    \"filterExpression\":  \"\",\r\n    \"resourceGroupName\":  \"\",\r\n    \"selectExpression\":  \"\",\r\n    \"virtualMachineScaleSetName\":  \"\"\r\n}");
+  console.log("Parameter file output to: .\\list.json");
+});
+//virtualMachineScaleSetVM -> PowerOff
+var vmssvm = compute.category('vmssvm').description($('Commands for Azure Compute VirtualMachineScaleSetVM'));
+vmssvm.command('powerOff')
+.description($('vmssvm powerOff'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
 .option('--InstanceId <InstanceId>', $('InstanceId'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, InstanceId, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
+console.log('InstanceId = ' + options.InstanceId);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSetVMs.powerOff(ResourceGroupName, VMScaleSetName, InstanceId, _);
+  console.log(computeManagementClient.virtualMachineScaleSetVMs.powerOff);
+  var result = computeManagementClient.virtualMachineScaleSetVMs.powerOff(options.ResourceGroupName, options.VMScaleSetName, options.InstanceId, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSetVM.Restart
-var VirtualMachineScaleSetVM = compute.category('virtualMachineScaleSetVM').description($('Commands for Azure Compute'));VirtualMachineScaleSetVM.command('Restart')
-.description($('VirtualMachineScaleSetVM Restart'))
+//virtualMachineScaleSetVM -> Restart
+var vmssvm = compute.category('vmssvm').description($('Commands for Azure Compute VirtualMachineScaleSetVM'));
+vmssvm.command('restart')
+.description($('vmssvm restart'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
 .option('--InstanceId <InstanceId>', $('InstanceId'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, InstanceId, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
+console.log('InstanceId = ' + options.InstanceId);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSetVMs.restart(ResourceGroupName, VMScaleSetName, InstanceId, _);
+  console.log(computeManagementClient.virtualMachineScaleSetVMs.restart);
+  var result = computeManagementClient.virtualMachineScaleSetVMs.restart(options.ResourceGroupName, options.VMScaleSetName, options.InstanceId, _);
   cli.output.json(result);
 });
-//VirtualMachineScaleSetVM.Start
-var VirtualMachineScaleSetVM = compute.category('virtualMachineScaleSetVM').description($('Commands for Azure Compute'));VirtualMachineScaleSetVM.command('Start')
-.description($('VirtualMachineScaleSetVM Start'))
+//virtualMachineScaleSetVM -> Start
+var vmssvm = compute.category('vmssvm').description($('Commands for Azure Compute VirtualMachineScaleSetVM'));
+vmssvm.command('start')
+.description($('vmssvm start'))
 .usage('[options]')
 .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
 .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
 .option('--InstanceId <InstanceId>', $('InstanceId'))
+.option('--parameterFile <parameterFile>', $('the input parameter file'))
 .option('-s, --subscription <subscription>', $('the subscription identifier'))
 .execute(function (ResourceGroupName, VMScaleSetName, InstanceId, options, _) {
+console.log('ResourceGroupName = ' + options.ResourceGroupName);
+console.log('VMScaleSetName = ' + options.VMScaleSetName);
+console.log('InstanceId = ' + options.InstanceId);
   var subscription = profile.current.getSubscription(options.subscription);
   var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-  var result = computeManagementClient.virtualMachineScaleSetVMs.start(ResourceGroupName, VMScaleSetName, InstanceId, _);
+  console.log(computeManagementClient.virtualMachineScaleSetVMs.start);
+  var result = computeManagementClient.virtualMachineScaleSetVMs.start(options.ResourceGroupName, options.VMScaleSetName, options.InstanceId, _);
   cli.output.json(result);
 });
 
