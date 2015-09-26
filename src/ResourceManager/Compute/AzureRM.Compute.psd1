@@ -62,7 +62,7 @@ TypesToProcess = @(
 FormatsToProcess = @(
 	'.\Microsoft.Azure.Commands.Compute.format.ps1xml',  
 	'.\Microsoft.Azure.Commands.Compute.format.generated.ps1xml',
-	'.\Microsoft.Azure.Commands.Compute.Automation.format.generated.ps1xml',
+	'.\Microsoft.Azure.Commands.Compute.Automation.format.generated.ps1xml'
 )  
   
 # Modules to import as nested modules of the module specified in ModuleToProcess  
