@@ -1697,7 +1697,7 @@ ${cmdlet_partial_class_code}
     $cli_op_code_content += "  var $category_name = cli.category('${category_name}').description(`$('Commands to manage your $cli_op_description.'));" + $new_line_str;
 
     $cli_op_code_content += "  ${category_name}.command('${cli_method_option_name}')" + $new_line_str;
-    $cli_op_code_content += "  .description(`$('${category_name} ${methodName}'))" + $new_line_str;
+    $cli_op_code_content += "  .description(`$('${cli_method_option_name} method to manage your $cli_op_description.'))" + $new_line_str;
     $cli_op_code_content += "  .usage('[options]')" + $new_line_str;
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
@@ -1761,7 +1761,8 @@ ${cmdlet_partial_class_code}
         {
             $params_category_name = 'parameters';
 
-            $cli_op_code_content += "  var ${params_category_name} = $category_name.category('${params_category_name}').description(`$('Generate parameter string or file for your ${cli_op_description}.'));" + $new_line_str;
+            $cli_op_code_content += "  var ${params_category_name} = $category_name.category('${params_category_name}')" + $new_line_str;
+            $cli_op_code_content += "  .description(`$('Commands to generate parameter for your ${cli_op_description}.'));" + $new_line_str;
             $cli_op_code_content += "  ${params_category_name}.command('${cli_method_option_name}')" + $new_line_str;
             $cli_op_code_content += "  .description(`$('Generate ${category_name} parameter string or files.'))" + $new_line_str;
             $cli_op_code_content += "  .usage('[options]')" + $new_line_str;
@@ -1779,8 +1780,9 @@ ${cmdlet_partial_class_code}
             $cli_op_code_content += "    var filePath = `"${category_name}_${cli_method_name}.json`";" + $new_line_str;
             $cli_op_code_content += "    if (options.outputFile) { filePath = options.outputFile; };" + $new_line_str;
             $cli_op_code_content += "    fs.writeFileSync(filePath, beautify(`"" + $file_content + "`"));" + $new_line_str;
-
+            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
             $cli_op_code_content += "    console.log(`"Parameter file output to: `" + filePath);" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
             $cli_op_code_content += "  });" + $new_line_str;
             break;
         }

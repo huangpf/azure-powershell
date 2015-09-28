@@ -37,7 +37,7 @@ exports.init = function (cli) {
 */
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('create-or-update')
-  .description($('vmss CreateOrUpdate'))
+  .description($('create-or-update method to manage your virtual machine scale set.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--parameters <parameters>', $('parameters'))
@@ -61,7 +61,8 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.createOrUpdate(options.resourceGroupName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = vmss.category('parameters').description($('Generate parameter string or file for your virtual machine scale set.'));
+  var parameters = vmss.category('parameters')
+  .description($('Commands to generate parameter for your virtual machine scale set.'));
   parameters.command('create-or-update')
   .description($('Generate vmss parameter string or files.'))
   .usage('[options]')
@@ -72,12 +73,14 @@ exports.init = function (cli) {
     var filePath = "vmss_createOrUpdate.json";
     if (options.outputFile) { filePath = options.outputFile; };
     fs.writeFileSync(filePath, beautify("{\r\n\"provisioningState\":\"\",\r\n\"sku\":{\r\n\"capacity\":null,\r\n\"name\":\"\",\r\n\"tier\":\"\"\r\n},\r\n\"upgradePolicy\":{\r\n\"mode\":\"\"\r\n},\r\n\"virtualMachineProfile\":{\r\n\"extensions\":[\r\n{\r\n\"autoUpgradeMinorVersion\":false,\r\n\"extensionType\":\"\",\r\n\"instanceView\":{\r\n\"extensionType\":\"\",\r\n\"name\":\"\",\r\n\"subStatuses\":[\r\n{\r\n\"code\":\"\",\r\n\"displayStatus\":\"\",\r\n\"level\":\"\",\r\n\"message\":\"\",\r\n\"time\":null\r\n}\r\n],\r\n\"typeHandlerVersion\":\"\",\r\n\"statuses\":[\r\n{\r\n\"code\":\"\",\r\n\"displayStatus\":\"\",\r\n\"level\":\"\",\r\n\"message\":\"\",\r\n\"time\":null\r\n}\r\n]\r\n},\r\n\"protectedSettings\":\"\",\r\n\"provisioningState\":\"\",\r\n\"publisher\":\"\",\r\n\"settings\":\"\",\r\n\"typeHandlerVersion\":\"\",\r\n\"id\":\"\",\r\n\"name\":\"\",\r\n\"type\":\"\",\r\n\"location\":\"\",\r\n\"tags\":{\r\n\r\n}\r\n}\r\n],\r\n\"networkProfile\":{\r\n\"networkInterfaceConfigurations\":[\r\n{\r\n\"iPConfigurations\":[\r\n{\r\n\"loadBalancerBackendAddressPools\":[\r\n{\r\n\"referenceUri\":\"\"\r\n}\r\n],\r\n\"name\":\"\",\r\n\"subnet\":{\r\n\"referenceUri\":\"\"\r\n}\r\n}\r\n],\r\n\"name\":\"\",\r\n\"primary\":null\r\n}\r\n]\r\n},\r\n\"oSProfile\":{\r\n\"computerNamePrefix\":\"\",\r\n\"adminPassword\":\"\",\r\n\"adminUsername\":\"\",\r\n\"customData\":\"\",\r\n\"linuxConfiguration\":{\r\n\"disablePasswordAuthentication\":null,\r\n\"sshConfiguration\":{\r\n\"publicKeys\":[\r\n{\r\n\"keyData\":\"\",\r\n\"path\":\"\"\r\n}\r\n]\r\n}\r\n},\r\n\"secrets\":[\r\n{\r\n\"sourceVault\":{\r\n\"referenceUri\":\"\"\r\n},\r\n\"vaultCertificates\":[\r\n{\r\n\"certificateStore\":\"\",\r\n\"certificateUrl\":\"\"\r\n}\r\n]\r\n}\r\n],\r\n\"windowsConfiguration\":{\r\n\"additionalUnattendContents\":[\r\n{\r\n\"componentName\":\"\",\r\n\"content\":\"\",\r\n\"passName\":\"\",\r\n\"settingName\":\"\"\r\n}\r\n],\r\n\"enableAutomaticUpdates\":null,\r\n\"provisionVMAgent\":null,\r\n\"timeZone\":\"\",\r\n\"winRMConfiguration\":{\r\n\"listeners\":[\r\n{\r\n\"certificateUrl\":\"\",\r\n\"protocol\":\"\"\r\n}\r\n]\r\n}\r\n}\r\n},\r\n\"storageProfile\":{\r\n\"imageReference\":{\r\n\"offer\":\"\",\r\n\"publisher\":\"\",\r\n\"sku\":\"\",\r\n\"version\":\"\"\r\n},\r\n\"oSDisk\":{\r\n\"caching\":\"\",\r\n\"createOption\":\"\",\r\n\"name\":\"\",\r\n\"operatingSystemType\":\"\",\r\n\"sourceImage\":{\r\n\"uri\":\"\"\r\n},\r\n\"virtualHardDiskContainers\":[\r\n\"\"\r\n]\r\n}\r\n}\r\n},\r\n\"id\":\"\",\r\n\"name\":\"\",\r\n\"type\":\"\",\r\n\"location\":\"\",\r\n\"tags\":{\r\n\r\n}\r\n}"));
+    console.log("=====================================");
     console.log("Parameter file output to: " + filePath);
+    console.log("=====================================");
   });
 //virtualMachineScaleSet -> Deallocate
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('deallocate')
-  .description($('vmss Deallocate'))
+  .description($('deallocate method to manage your virtual machine scale set.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -95,7 +98,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSet -> DeallocateInstances
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('deallocate-instances')
-  .description($('vmss DeallocateInstances'))
+  .description($('deallocate-instances method to manage your virtual machine scale set.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -115,7 +118,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSet -> Delete
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('delete')
-  .description($('vmss Delete'))
+  .description($('delete method to manage your virtual machine scale set.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -133,7 +136,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSet -> DeleteInstances
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('delete-instances')
-  .description($('vmss DeleteInstances'))
+  .description($('delete-instances method to manage your virtual machine scale set.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -153,7 +156,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSet -> Get
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('get')
-  .description($('vmss Get'))
+  .description($('get method to manage your virtual machine scale set.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -171,7 +174,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSet -> List
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('list')
-  .description($('vmss List'))
+  .description($('list method to manage your virtual machine scale set.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
@@ -190,7 +193,7 @@ exports.init = function (cli) {
 */
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('list-all')
-  .description($('vmss ListAll'))
+  .description($('list-all method to manage your virtual machine scale set.'))
   .usage('[options]')
   .option('--parameters <parameters>', $('parameters'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
@@ -212,7 +215,8 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.listAll(parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = vmss.category('parameters').description($('Generate parameter string or file for your virtual machine scale set.'));
+  var parameters = vmss.category('parameters')
+  .description($('Commands to generate parameter for your virtual machine scale set.'));
   parameters.command('list-all')
   .description($('Generate vmss parameter string or files.'))
   .usage('[options]')
@@ -223,12 +227,14 @@ exports.init = function (cli) {
     var filePath = "vmss_listAll.json";
     if (options.outputFile) { filePath = options.outputFile; };
     fs.writeFileSync(filePath, beautify("{\r\n\r\n}"));
+    console.log("=====================================");
     console.log("Parameter file output to: " + filePath);
+    console.log("=====================================");
   });
 //virtualMachineScaleSet -> ListNext
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('list-next')
-  .description($('vmss ListNext'))
+  .description($('list-next method to manage your virtual machine scale set.'))
   .usage('[options]')
   .option('--next-link <next-link>', $('next-link'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
@@ -244,7 +250,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSet -> ListSkus
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('list-skus')
-  .description($('vmss ListSkus'))
+  .description($('list-skus method to manage your virtual machine scale set.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -262,7 +268,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSet -> PowerOff
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('power-off')
-  .description($('vmss PowerOff'))
+  .description($('power-off method to manage your virtual machine scale set.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -280,7 +286,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSet -> PowerOffInstances
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('power-off-instances')
-  .description($('vmss PowerOffInstances'))
+  .description($('power-off-instances method to manage your virtual machine scale set.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -300,7 +306,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSet -> Restart
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('restart')
-  .description($('vmss Restart'))
+  .description($('restart method to manage your virtual machine scale set.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -318,7 +324,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSet -> RestartInstances
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('restart-instances')
-  .description($('vmss RestartInstances'))
+  .description($('restart-instances method to manage your virtual machine scale set.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -338,7 +344,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSet -> Start
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('start')
-  .description($('vmss Start'))
+  .description($('start method to manage your virtual machine scale set.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -356,7 +362,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSet -> StartInstances
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('start-instances')
-  .description($('vmss StartInstances'))
+  .description($('start-instances method to manage your virtual machine scale set.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -376,7 +382,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSetVM -> Deallocate
   var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('deallocate')
-  .description($('vmssvm Deallocate'))
+  .description($('deallocate method to manage your virtual machine scale set vm.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -396,7 +402,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSetVM -> Delete
   var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('delete')
-  .description($('vmssvm Delete'))
+  .description($('delete method to manage your virtual machine scale set vm.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -416,7 +422,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSetVM -> Get
   var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('get')
-  .description($('vmssvm Get'))
+  .description($('get method to manage your virtual machine scale set vm.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -436,7 +442,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSetVM -> GetInstanceView
   var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('get-instance-view')
-  .description($('vmssvm GetInstanceView'))
+  .description($('get-instance-view method to manage your virtual machine scale set vm.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -459,7 +465,7 @@ exports.init = function (cli) {
 */
   var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('list')
-  .description($('vmssvm List'))
+  .description($('list method to manage your virtual machine scale set vm.'))
   .usage('[options]')
   .option('--parameters <parameters>', $('parameters'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
@@ -481,7 +487,8 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSetVMs.list(parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = vmssvm.category('parameters').description($('Generate parameter string or file for your virtual machine scale set vm.'));
+  var parameters = vmssvm.category('parameters')
+  .description($('Commands to generate parameter for your virtual machine scale set vm.'));
   parameters.command('list')
   .description($('Generate vmssvm parameter string or files.'))
   .usage('[options]')
@@ -492,12 +499,14 @@ exports.init = function (cli) {
     var filePath = "vmssvm_list.json";
     if (options.outputFile) { filePath = options.outputFile; };
     fs.writeFileSync(filePath, beautify("{\r\n\"expandExpression\":\"\",\r\n\"filterExpression\":\"\",\r\n\"resourceGroupName\":\"\",\r\n\"selectExpression\":\"\",\r\n\"virtualMachineScaleSetName\":\"\"\r\n}"));
+    console.log("=====================================");
     console.log("Parameter file output to: " + filePath);
+    console.log("=====================================");
   });
 //virtualMachineScaleSetVM -> PowerOff
   var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('power-off')
-  .description($('vmssvm PowerOff'))
+  .description($('power-off method to manage your virtual machine scale set vm.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -517,7 +526,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSetVM -> Restart
   var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('restart')
-  .description($('vmssvm Restart'))
+  .description($('restart method to manage your virtual machine scale set vm.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -537,7 +546,7 @@ exports.init = function (cli) {
 //virtualMachineScaleSetVM -> Start
   var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('start')
-  .description($('vmssvm Start'))
+  .description($('start method to manage your virtual machine scale set vm.'))
   .usage('[options]')
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
