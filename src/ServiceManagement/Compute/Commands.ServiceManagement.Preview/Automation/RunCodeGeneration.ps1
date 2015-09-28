@@ -166,31 +166,106 @@ function Get-NormalizedName
     return $outputName;
 }
 
-function Get-UnnormalizedName
+function Get-CliNormalizedName
 {
     # Sample: 'VMName' to 'vmName', 'VirtualMachine' => 'virtualMachine', 'ResourceGroup' => 'resourceGroup', etc.
     param(
         [Parameter(Mandatory = $True)]
-        [string]$inputName
+        [string]$inName
     )
 
-    if ([string]::IsNullOrEmpty($inputName))
+    if ([string]::IsNullOrEmpty($inName))
     {
-        return $inputName;
+        return $inName;
     }
 
-    if ($inputName.StartsWith('VM'))
+    if ($inName.StartsWith('VM'))
     {
-        $outputName = 'vm' + $inputName.Substring(2);
+        $outName = 'vm' + $inName.Substring(2);
+    }
+    elseif ($inName.StartsWith('IP'))
+    {
+        $outName = 'ip' + $inName.Substring(2);
     }
     else
     {
-        [char]$firstChar = $inputName[0];
+        [char]$firstChar = $inName[0];
         $firstChar = [System.Char]::ToLower($firstChar);
-        $outputName = $firstChar + $inputName.Substring(1);
+        $outName = $firstChar + $inName.Substring(1);
     }
 
-    return $outputName;
+    return $outName;
+}
+
+
+function Get-CliCategoryName
+{
+    # Sample: 'VirtualMachineScaleSetVM' => 'vmssvm', 'VirtualMachineScaleSet' => 'vmss', etc.
+    param(
+        [Parameter(Mandatory = $True)]
+        [string]$inName
+    )
+
+    if ($inName -eq 'VirtualMachineScaleSet')
+    {
+        $outName = 'vmss';
+    }
+    elseif ($inName -eq 'VirtualMachineScaleSetVM')
+    {
+        $outName = 'vmssvm';
+    }
+    else
+    {
+        $outName = Get-CliNormalizedName $inName;
+    }
+
+    return $outName;
+}
+
+
+function Get-CliOptionName
+{
+    # Sample: 'VMName' to 'vmName', 'VirtualMachine' => 'virtualMachine', 'ResourceGroup' => 'resourceGroup', etc.
+    param(
+        [Parameter(Mandatory = $True)]
+        [string]$inName
+    )
+
+    if ([string]::IsNullOrEmpty($inName))
+    {
+        return $inName;
+    }
+
+    [string]$varName = Get-CliNormalizedName $inName;
+    [string]$outName = $null;
+
+    $i = 0;
+    while ($i -lt $varName.Length)
+    {
+        if ($i -eq 0 -or [char]::IsUpper($varName[$i]))
+        {
+            $j = $i + 1;
+            while (($j -lt $varName.Length) -and [char]::IsLower($varName[$j]))
+            {
+                $j++;
+            }
+
+            if ($i -gt 0)
+            {
+                # Sample: "parameter-..."
+                $outName += '-';
+            }
+
+            $outName += $varName.Substring($i, $j - $i).ToLower();
+            $i = $j;
+        }
+        else
+        {
+            $i++;
+        }
+    }
+
+    return $outName;
 }
 
 function Get-NormalizedTypeName
@@ -1588,58 +1663,46 @@ ${cmdlet_partial_class_code}
     }
 
     # 3.2 functions
-    $cli_op_name = Get-UnnormalizedName $opShortName;
-    if ($opShortName -eq 'VirtualMachineScaleSet')
-    {
-        $category_name = 'vmss';
-    }
-    elseif ($opShortName -eq 'VirtualMachineScaleSetVM')
-    {
-        $category_name = 'vmssvm';
-    }
-    else
-    {
-        $category_name = $cli_op_name;
-    }
-
-    $cli_method_name = Get-UnnormalizedName $methodName;
+    $category_name = Get-CliCategoryName $opShortName;
+    $cli_method_name = Get-CliNormalizedName $methodName;
+    $cli_method_option_name = Get-CliOptionName $methodName;
+    $cli_op_name = Get-CliNormalizedName $opShortName;
 
     $cli_op_code_content += "//" + $cli_op_name + " -> " + $methodName + $new_line_str;
     if ($param_object_comment -ne $null)
     {
         $cli_op_code_content += "/*" + $new_line_str + $param_object_comment + $new_line_str + "*/" + $new_line_str;
     }
-    
-    $component_name = 'compute';
-    $cli_op_code_content += "  var $category_name = compute.category('${category_name}').description(`$('Commands for Azure Compute $opShortName'));" + $new_line_str;
 
-    $cli_op_code_content += "  ${category_name}.command('${cli_method_name}')" + $new_line_str;
-    $cli_op_code_content += "  .description(`$('${category_name} ${cli_method_name}'))" + $new_line_str;
+    $cli_op_code_content += "  var $category_name = cli.category('${category_name}').description(`$('Commands for Azure Compute $opShortName'));" + $new_line_str;
+
+    $cli_op_code_content += "  ${category_name}.command('${cli_method_option_name}')" + $new_line_str;
+    $cli_op_code_content += "  .description(`$('${category_name} ${methodName}'))" + $new_line_str;
     $cli_op_code_content += "  .usage('[options]')" + $new_line_str;
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
-        $cli_param_name = $param_names[$index];
-        $cli_op_code_content += "  .option('--${cli_param_name} <${cli_param_name}>', `$('${cli_param_name}'))" + $new_line_str;
+        $cli_option_name = Get-CliOptionName $param_names[$index];
+        $cli_op_code_content += "  .option('--${cli_option_name} <${cli_option_name}>', `$('${cli_option_name}'))" + $new_line_str;
     }
-    $cli_op_code_content += "  .option('--ParameterFile <ParameterFile>', `$('the input parameter file'))" + $new_line_str;
+    $cli_op_code_content += "  .option('--parameter-file <parameter-file>', `$('the input parameter file'))" + $new_line_str;
     $cli_op_code_content += "  .option('-s, --subscription <subscription>', `$('the subscription identifier'))" + $new_line_str;
     $cli_op_code_content += "  .execute(function ("
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
         if ($index -gt 0) { $cli_op_code_content += ", "; }
-        $cli_param_name = $param_names[$index];
+        $cli_param_name = Get-CliNormalizedName $param_names[$index];
         $cli_op_code_content += "$cli_param_name";
     }
     $cli_op_code_content += ", options, _) {" + $new_line_str;
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
-        $cli_param_name = $param_names[$index];
+        $cli_param_name = Get-CliNormalizedName $param_names[$index];
         $cli_op_code_content += "    console.log('${cli_param_name} = ' + options.${cli_param_name});" + $new_line_str;
         if (${cli_param_name} -eq 'Parameters')
         {
-            $cli_op_code_content += "    if (options.ParameterFile) {" + $new_line_str;
-            $cli_op_code_content += "      console.log(`"Reading file content from: \`"`" + options.ParameterFile + `"\`"`");" + $new_line_str;
-            $cli_op_code_content += "      var fileContent = fs.readFileSync(options.ParameterFile, 'utf8');" + $new_line_str;
+            $cli_op_code_content += "    if (options.parameterFile) {" + $new_line_str;
+            $cli_op_code_content += "      console.log(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $new_line_str;
+            $cli_op_code_content += "      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $new_line_str;
             $cli_op_code_content += "      var ${cli_param_name}Obj = JSON.parse(fileContent);" + $new_line_str;
             $cli_op_code_content += "    }" + $new_line_str;
             $cli_op_code_content += "    else {" + $new_line_str;
@@ -1656,7 +1719,7 @@ ${cmdlet_partial_class_code}
     {
         if ($index -gt 0) { $cli_op_code_content += ", "; }
         
-        $cli_param_name = $param_names[$index];
+        $cli_param_name = Get-CliNormalizedName $param_names[$index];
         if (${cli_param_name} -eq 'Parameters')
         {
             $cli_op_code_content += "${cli_param_name}Obj";
@@ -1673,7 +1736,8 @@ ${cmdlet_partial_class_code}
     # 3.3 Parameters
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
-        if (${cli_param_name} -eq 'Parameters')
+        $cli_param_name = Get-CliNormalizedName $param_names[$index];
+        if ($cli_param_name -eq 'Parameters')
         {
             $params_category_name = 'parameters';
 
@@ -2040,7 +2104,7 @@ function Write-CLICommandFile
     Write-Output("Writing CLI Command File: " + $new_line_str + $fileFullPath);
     Write-Output "=============================================";
 
-    $cliCommandHeaderAndPrepCode =
+    $codeContent = 
 @"
 /**
  * Copyright (c) Microsoft.  All rights reserved.
@@ -2075,13 +2139,10 @@ function beautify(jsonText) {
 
 exports.init = function (cli) {
 
-  var compute = cli.category('compute')
-    .description(`$('Commands for Azure Compute'));
+$commandCodeLines
 
-
+};
 "@;
-
-    $codeContent = $cliCommandHeaderAndPrepCode + $commandCodeLines + $new_line_str + "};";
 
     $st = Set-Content -Path $fileFullPath -Value $codeContent -Force;
 }
