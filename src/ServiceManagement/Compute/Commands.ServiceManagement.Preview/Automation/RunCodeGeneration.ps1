@@ -1742,7 +1742,7 @@ ${cmdlet_partial_class_code}
             $params_category_name = 'parameters';
 
             $cli_op_code_content += "  var ${params_category_name} = $category_name.category('${params_category_name}').description(`$('Generate Parameters for Azure Compute $opShortName'));" + $new_line_str;
-            $cli_op_code_content += "  ${params_category_name}.command('${cli_method_name}')" + $new_line_str;
+            $cli_op_code_content += "  ${params_category_name}.command('${cli_method_option_name}')" + $new_line_str;
             $cli_op_code_content += "  .description(`$('Generate ${category_name} parameter string or files.'))" + $new_line_str;
             $cli_op_code_content += "  .usage('[options]')" + $new_line_str;
             $cli_op_code_content += "  .option('--generate', `$('To generate parameter string/file for method: ${cli_method_name}.'))" + $new_line_str;

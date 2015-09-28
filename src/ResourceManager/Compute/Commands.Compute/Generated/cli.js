@@ -62,7 +62,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
   var parameters = vmss.category('parameters').description($('Generate Parameters for Azure Compute VirtualMachineScaleSet'));
-  parameters.command('createOrUpdate')
+  parameters.command('create-or-update')
   .description($('Generate vmss parameter string or files.'))
   .usage('[options]')
   .option('--generate', $('To generate parameter string/file for method: createOrUpdate.'))
@@ -213,7 +213,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
   var parameters = vmss.category('parameters').description($('Generate Parameters for Azure Compute VirtualMachineScaleSet'));
-  parameters.command('listAll')
+  parameters.command('list-all')
   .description($('Generate vmss parameter string or files.'))
   .usage('[options]')
   .option('--generate', $('To generate parameter string/file for method: listAll.'))
