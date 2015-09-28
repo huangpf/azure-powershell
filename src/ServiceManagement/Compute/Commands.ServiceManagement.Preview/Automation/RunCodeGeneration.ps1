@@ -244,20 +244,39 @@ function Get-CliOptionName
     {
         if ($i -eq 0 -or [char]::IsUpper($varName[$i]))
         {
-            $j = $i + 1;
-            while (($j -lt $varName.Length) -and [char]::IsLower($varName[$j]))
-            {
-                $j++;
-            }
-
             if ($i -gt 0)
             {
                 # Sample: "parameter-..."
                 $outName += '-';
             }
 
-            $outName += $varName.Substring($i, $j - $i).ToLower();
-            $i = $j;
+            [string[]]$abbrWords = @('VM', 'IP');
+            $matched = $false;
+            foreach ($matchedAbbr in $abbrWords)
+            {
+                if ($varName.Substring($i) -like ("${matchedAbbr}*"))
+                {
+                    $matched = $true;
+                    break;
+                }
+            }
+
+            if ($matched)
+            {
+                $outName += $matchedAbbr.ToLower();
+                $i = $i + $matchedAbbr.Length;
+            }
+            else
+            {
+                $j = $i + 1;
+                while (($j -lt $varName.Length) -and [char]::IsLower($varName[$j]))
+                {
+                    $j++;
+                }
+
+                $outName += $varName.Substring($i, $j - $i).ToLower();
+                $i = $j;
+            }
         }
         else
         {
@@ -1667,6 +1686,7 @@ ${cmdlet_partial_class_code}
     $cli_method_name = Get-CliNormalizedName $methodName;
     $cli_method_option_name = Get-CliOptionName $methodName;
     $cli_op_name = Get-CliNormalizedName $opShortName;
+    $cli_op_description = (Get-CliOptionName $opShortName).Replace('-', ' ');
 
     $cli_op_code_content += "//" + $cli_op_name + " -> " + $methodName + $new_line_str;
     if ($param_object_comment -ne $null)
@@ -1674,7 +1694,7 @@ ${cmdlet_partial_class_code}
         $cli_op_code_content += "/*" + $new_line_str + $param_object_comment + $new_line_str + "*/" + $new_line_str;
     }
 
-    $cli_op_code_content += "  var $category_name = cli.category('${category_name}').description(`$('Commands for Azure Compute $opShortName'));" + $new_line_str;
+    $cli_op_code_content += "  var $category_name = cli.category('${category_name}').description(`$('Commands to manage your $cli_op_description.'));" + $new_line_str;
 
     $cli_op_code_content += "  ${category_name}.command('${cli_method_option_name}')" + $new_line_str;
     $cli_op_code_content += "  .description(`$('${category_name} ${methodName}'))" + $new_line_str;
@@ -1741,7 +1761,7 @@ ${cmdlet_partial_class_code}
         {
             $params_category_name = 'parameters';
 
-            $cli_op_code_content += "  var ${params_category_name} = $category_name.category('${params_category_name}').description(`$('Generate Parameters for Azure Compute $opShortName'));" + $new_line_str;
+            $cli_op_code_content += "  var ${params_category_name} = $category_name.category('${params_category_name}').description(`$('Generate parameter string or file for your ${cli_op_description}.'));" + $new_line_str;
             $cli_op_code_content += "  ${params_category_name}.command('${cli_method_option_name}')" + $new_line_str;
             $cli_op_code_content += "  .description(`$('Generate ${category_name} parameter string or files.'))" + $new_line_str;
             $cli_op_code_content += "  .usage('[options]')" + $new_line_str;

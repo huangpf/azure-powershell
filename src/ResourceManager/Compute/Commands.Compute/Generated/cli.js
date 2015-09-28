@@ -35,7 +35,7 @@ exports.init = function (cli) {
 /*
 {"provisioningState":"","sku":{"capacity":null,"name":"","tier":""},"upgradePolicy":{"mode":""},"virtualMachineProfile":{"extensions":[{"autoUpgradeMinorVersion":false,"extensionType":"","instanceView":{"extensionType":"","name":"","subStatuses":[{"code":"","displayStatus":"","level":"","message":"","time":null}],"typeHandlerVersion":"","statuses":[{"code":"","displayStatus":"","level":"","message":"","time":null}]},"protectedSettings":"","provisioningState":"","publisher":"","settings":"","typeHandlerVersion":"","id":"","name":"","type":"","location":"","tags":{}}],"networkProfile":{"networkInterfaceConfigurations":[{"iPConfigurations":[{"loadBalancerBackendAddressPools":[{"referenceUri":""}],"name":"","subnet":{"referenceUri":""}}],"name":"","primary":null}]},"oSProfile":{"computerNamePrefix":"","adminPassword":"","adminUsername":"","customData":"","linuxConfiguration":{"disablePasswordAuthentication":null,"sshConfiguration":{"publicKeys":[{"keyData":"","path":""}]}},"secrets":[{"sourceVault":{"referenceUri":""},"vaultCertificates":[{"certificateStore":"","certificateUrl":""}]}],"windowsConfiguration":{"additionalUnattendContents":[{"componentName":"","content":"","passName":"","settingName":""}],"enableAutomaticUpdates":null,"provisionVMAgent":null,"timeZone":"","winRMConfiguration":{"listeners":[{"certificateUrl":"","protocol":""}]}}},"storageProfile":{"imageReference":{"offer":"","publisher":"","sku":"","version":""},"oSDisk":{"caching":"","createOption":"","name":"","operatingSystemType":"","sourceImage":{"uri":""},"virtualHardDiskContainers":[""]}}},"id":"","name":"","type":"","location":"","tags":{}}
 */
-  var vmss = cli.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('create-or-update')
   .description($('vmss CreateOrUpdate'))
   .usage('[options]')
@@ -61,7 +61,7 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.createOrUpdate(options.resourceGroupName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = vmss.category('parameters').description($('Generate Parameters for Azure Compute VirtualMachineScaleSet'));
+  var parameters = vmss.category('parameters').description($('Generate parameter string or file for your virtual machine scale set.'));
   parameters.command('create-or-update')
   .description($('Generate vmss parameter string or files.'))
   .usage('[options]')
@@ -75,7 +75,7 @@ exports.init = function (cli) {
     console.log("Parameter file output to: " + filePath);
   });
 //virtualMachineScaleSet -> Deallocate
-  var vmss = cli.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('deallocate')
   .description($('vmss Deallocate'))
   .usage('[options]')
@@ -93,7 +93,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> DeallocateInstances
-  var vmss = cli.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('deallocate-instances')
   .description($('vmss DeallocateInstances'))
   .usage('[options]')
@@ -113,7 +113,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> Delete
-  var vmss = cli.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('delete')
   .description($('vmss Delete'))
   .usage('[options]')
@@ -131,7 +131,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> DeleteInstances
-  var vmss = cli.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('delete-instances')
   .description($('vmss DeleteInstances'))
   .usage('[options]')
@@ -151,7 +151,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> Get
-  var vmss = cli.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('get')
   .description($('vmss Get'))
   .usage('[options]')
@@ -169,7 +169,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> List
-  var vmss = cli.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('list')
   .description($('vmss List'))
   .usage('[options]')
@@ -188,7 +188,7 @@ exports.init = function (cli) {
 /*
 {}
 */
-  var vmss = cli.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('list-all')
   .description($('vmss ListAll'))
   .usage('[options]')
@@ -212,7 +212,7 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.listAll(parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = vmss.category('parameters').description($('Generate Parameters for Azure Compute VirtualMachineScaleSet'));
+  var parameters = vmss.category('parameters').description($('Generate parameter string or file for your virtual machine scale set.'));
   parameters.command('list-all')
   .description($('Generate vmss parameter string or files.'))
   .usage('[options]')
@@ -226,7 +226,7 @@ exports.init = function (cli) {
     console.log("Parameter file output to: " + filePath);
   });
 //virtualMachineScaleSet -> ListNext
-  var vmss = cli.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('list-next')
   .description($('vmss ListNext'))
   .usage('[options]')
@@ -242,7 +242,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> ListSkus
-  var vmss = cli.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('list-skus')
   .description($('vmss ListSkus'))
   .usage('[options]')
@@ -260,7 +260,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> PowerOff
-  var vmss = cli.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('power-off')
   .description($('vmss PowerOff'))
   .usage('[options]')
@@ -278,7 +278,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> PowerOffInstances
-  var vmss = cli.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('power-off-instances')
   .description($('vmss PowerOffInstances'))
   .usage('[options]')
@@ -298,7 +298,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> Restart
-  var vmss = cli.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('restart')
   .description($('vmss Restart'))
   .usage('[options]')
@@ -316,7 +316,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> RestartInstances
-  var vmss = cli.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('restart-instances')
   .description($('vmss RestartInstances'))
   .usage('[options]')
@@ -336,7 +336,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> Start
-  var vmss = cli.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('start')
   .description($('vmss Start'))
   .usage('[options]')
@@ -354,7 +354,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> StartInstances
-  var vmss = cli.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('start-instances')
   .description($('vmss StartInstances'))
   .usage('[options]')
@@ -374,7 +374,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSetVM -> Deallocate
-  var vmssvm = cli.category('vmssvm').description($('Commands for Azure Compute VirtualMachineScaleSetVM'));
+  var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('deallocate')
   .description($('vmssvm Deallocate'))
   .usage('[options]')
@@ -394,7 +394,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSetVM -> Delete
-  var vmssvm = cli.category('vmssvm').description($('Commands for Azure Compute VirtualMachineScaleSetVM'));
+  var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('delete')
   .description($('vmssvm Delete'))
   .usage('[options]')
@@ -414,7 +414,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSetVM -> Get
-  var vmssvm = cli.category('vmssvm').description($('Commands for Azure Compute VirtualMachineScaleSetVM'));
+  var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('get')
   .description($('vmssvm Get'))
   .usage('[options]')
@@ -434,7 +434,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSetVM -> GetInstanceView
-  var vmssvm = cli.category('vmssvm').description($('Commands for Azure Compute VirtualMachineScaleSetVM'));
+  var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('get-instance-view')
   .description($('vmssvm GetInstanceView'))
   .usage('[options]')
@@ -457,7 +457,7 @@ exports.init = function (cli) {
 /*
 {"expandExpression":"","filterExpression":"","resourceGroupName":"","selectExpression":"","virtualMachineScaleSetName":""}
 */
-  var vmssvm = cli.category('vmssvm').description($('Commands for Azure Compute VirtualMachineScaleSetVM'));
+  var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('list')
   .description($('vmssvm List'))
   .usage('[options]')
@@ -481,7 +481,7 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSetVMs.list(parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = vmssvm.category('parameters').description($('Generate Parameters for Azure Compute VirtualMachineScaleSetVM'));
+  var parameters = vmssvm.category('parameters').description($('Generate parameter string or file for your virtual machine scale set vm.'));
   parameters.command('list')
   .description($('Generate vmssvm parameter string or files.'))
   .usage('[options]')
@@ -495,7 +495,7 @@ exports.init = function (cli) {
     console.log("Parameter file output to: " + filePath);
   });
 //virtualMachineScaleSetVM -> PowerOff
-  var vmssvm = cli.category('vmssvm').description($('Commands for Azure Compute VirtualMachineScaleSetVM'));
+  var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('power-off')
   .description($('vmssvm PowerOff'))
   .usage('[options]')
@@ -515,7 +515,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSetVM -> Restart
-  var vmssvm = cli.category('vmssvm').description($('Commands for Azure Compute VirtualMachineScaleSetVM'));
+  var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('restart')
   .description($('vmssvm Restart'))
   .usage('[options]')
@@ -535,7 +535,7 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSetVM -> Start
-  var vmssvm = cli.category('vmssvm').description($('Commands for Azure Compute VirtualMachineScaleSetVM'));
+  var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('start')
   .description($('vmssvm Start'))
   .usage('[options]')
