@@ -1801,7 +1801,7 @@ ${cmdlet_partial_class_code}
             $cli_op_code_content += "  .usage('[options]')" + $new_line_str;
             $cli_op_code_content += "  .option('--parameter-file <output-file>', `$('The parameter file path.'))" + $new_line_str;
             $cli_op_code_content += "  .execute(function (";
-            $cli_op_code_content += "outputFile";
+            $cli_op_code_content += "parameterFile";
             $cli_op_code_content += ", options, _) {" + $new_line_str;
 
             $output_content = $param_object_comment.Replace("`"", "\`"");
@@ -1810,7 +1810,7 @@ ${cmdlet_partial_class_code}
             $file_content = $param_object_comment_no_compress.Replace($new_line_str, "\r\n").Replace("`r", "\r").Replace("`n", "\n");
             $file_content = $file_content.Replace("`"", "\`"").Replace(' ', '');
             $cli_op_code_content += "    var filePath = `"${category_name}_${cli_method_name}.json`";" + $new_line_str;
-            $cli_op_code_content += "    if (options.outputFile) { filePath = options.outputFile; };" + $new_line_str;
+            $cli_op_code_content += "    if (options.parameterFile) { filePath = options.parameterFile; };" + $new_line_str;
             $cli_op_code_content += "    fs.writeFileSync(filePath, beautify(`"" + $file_content + "`"));" + $new_line_str;
             $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
             $cli_op_code_content += "    console.log(`"Parameter file output to: `" + filePath);" + $new_line_str;
