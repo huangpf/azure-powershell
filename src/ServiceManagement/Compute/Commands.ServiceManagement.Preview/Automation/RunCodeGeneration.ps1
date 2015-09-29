@@ -1789,19 +1789,19 @@ ${cmdlet_partial_class_code}
         if ($cli_param_name -eq 'Parameters')
         {
             $params_category_name = 'parameters';
+            $params_generate_category_name = 'generate';
 
             # 3.3.1 Parameter Generate Command
-            $cli_op_code_content += "  var ${params_category_name} = cli.category('${params_category_name}')" + $new_line_str;
-            $cli_op_code_content += "  .description(`$('Commands to generate and patch parameters.'))" + $new_line_str;
-            $cli_op_code_content += "  .category('${category_name}')" + $new_line_str;
-            $cli_op_code_content += "  .description(`$('Commands to generate parameter for your ${cli_op_description}.'));" + $new_line_str;
-            $cli_op_code_content += "  ${params_category_name}.command('${cli_method_option_name}')" + $new_line_str;
+            $cli_op_code_content += "  var ${params_category_name} = ${category_name}.category('${params_category_name}')" + $new_line_str;
+            $cli_op_code_content += "  .description(`$('Commands to manage parameter for your ${cli_op_description}.'));" + $new_line_str;
+            $cli_op_code_content += "  var ${params_generate_category_name} = ${params_category_name}.category('${params_generate_category_name}')" + $new_line_str;
+            $cli_op_code_content += "  .description(`$('Commands to generate parameter file for your ${cli_op_description}.'));" + $new_line_str;
+            $cli_op_code_content += "  ${params_generate_category_name}.command('${cli_method_option_name}')" + $new_line_str;
             $cli_op_code_content += "  .description(`$('Generate ${category_name} parameter string or files.'))" + $new_line_str;
             $cli_op_code_content += "  .usage('[options]')" + $new_line_str;
-            $cli_op_code_content += "  .option('--generate', `$('To generate parameter string/file for method: ${cli_method_name}.'))" + $new_line_str;
-            $cli_op_code_content += "  .option('--output-file <output-file>', `$('The output file path.'))" + $new_line_str;
+            $cli_op_code_content += "  .option('--parameter-file <output-file>', `$('The parameter file path.'))" + $new_line_str;
             $cli_op_code_content += "  .execute(function (";
-            $cli_op_code_content += "generate, outputFile";
+            $cli_op_code_content += "outputFile";
             $cli_op_code_content += ", options, _) {" + $new_line_str;
 
             $output_content = $param_object_comment.Replace("`"", "\`"");

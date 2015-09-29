@@ -61,16 +61,15 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.createOrUpdate(options.resourceGroupName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = cli.category('parameters')
-  .description($('Commands to generate and patch parameters.'))
-  .category('vmss')
-  .description($('Commands to generate parameter for your virtual machine scale set.'));
-  parameters.command('create-or-update')
+  var parameters = vmss.category('parameters')
+  .description($('Commands to manage parameter for your virtual machine scale set.'));
+  var generate = parameters.category('generate')
+  .description($('Commands to generate parameter file for your virtual machine scale set.'));
+  generate.command('create-or-update')
   .description($('Generate vmss parameter string or files.'))
   .usage('[options]')
-  .option('--generate', $('To generate parameter string/file for method: createOrUpdate.'))
-  .option('--output-file <output-file>', $('The output file path.'))
-  .execute(function (generate, outputFile, options, _) {
+  .option('--parameter-file <output-file>', $('The parameter file path.'))
+  .execute(function (outputFile, options, _) {
     console.log("{\"provisioningState\":\"\",\"sku\":{\"capacity\":null,\"name\":\"\",\"tier\":\"\"},\"upgradePolicy\":{\"mode\":\"\"},\"virtualMachineProfile\":{\"extensionProfile\":{\"extensions\":[{\"autoUpgradeMinorVersion\":false,\"extensionType\":\"\",\"protectedSettings\":\"\",\"provisioningState\":\"\",\"publisher\":\"\",\"settings\":\"\",\"typeHandlerVersion\":\"\",\"id\":\"\",\"name\":\"\",\"type\":\"\",\"location\":\"\",\"tags\":{}}]},\"networkProfile\":{\"networkInterfaceConfigurations\":[{\"iPConfigurations\":[{\"loadBalancerBackendAddressPools\":[{\"referenceUri\":\"\"}],\"loadBalancerInboundNatPools\":[{\"referenceUri\":\"\"}],\"name\":\"\",\"subnet\":{\"referenceUri\":\"\"}}],\"name\":\"\",\"primary\":null}]},\"oSProfile\":{\"computerNamePrefix\":\"\",\"adminPassword\":\"\",\"adminUsername\":\"\",\"customData\":\"\",\"linuxConfiguration\":{\"disablePasswordAuthentication\":null,\"sshConfiguration\":{\"publicKeys\":[{\"keyData\":\"\",\"path\":\"\"}]}},\"secrets\":[{\"sourceVault\":{\"referenceUri\":\"\"},\"vaultCertificates\":[{\"certificateStore\":\"\",\"certificateUrl\":\"\"}]}],\"windowsConfiguration\":{\"additionalUnattendContents\":[{\"componentName\":\"\",\"content\":\"\",\"passName\":\"\",\"settingName\":\"\"}],\"enableAutomaticUpdates\":null,\"provisionVMAgent\":null,\"timeZone\":\"\",\"winRMConfiguration\":{\"listeners\":[{\"certificateUrl\":\"\",\"protocol\":\"\"}]}}},\"storageProfile\":{\"imageReference\":{\"offer\":\"\",\"publisher\":\"\",\"sku\":\"\",\"version\":\"\"},\"oSDisk\":{\"caching\":\"\",\"createOption\":\"\",\"name\":\"\",\"operatingSystemType\":\"\",\"sourceImage\":{\"uri\":\"\"},\"virtualHardDiskContainers\":[\"\"]}}},\"id\":\"\",\"name\":\"\",\"type\":\"\",\"location\":\"\",\"tags\":{}}");
     var filePath = "vmss_createOrUpdate.json";
     if (options.outputFile) { filePath = options.outputFile; };
@@ -267,16 +266,15 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.listAll(parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = cli.category('parameters')
-  .description($('Commands to generate and patch parameters.'))
-  .category('vmss')
-  .description($('Commands to generate parameter for your virtual machine scale set.'));
-  parameters.command('list-all')
+  var parameters = vmss.category('parameters')
+  .description($('Commands to manage parameter for your virtual machine scale set.'));
+  var generate = parameters.category('generate')
+  .description($('Commands to generate parameter file for your virtual machine scale set.'));
+  generate.command('list-all')
   .description($('Generate vmss parameter string or files.'))
   .usage('[options]')
-  .option('--generate', $('To generate parameter string/file for method: listAll.'))
-  .option('--output-file <output-file>', $('The output file path.'))
-  .execute(function (generate, outputFile, options, _) {
+  .option('--parameter-file <output-file>', $('The parameter file path.'))
+  .execute(function (outputFile, options, _) {
     console.log("{}");
     var filePath = "vmss_listAll.json";
     if (options.outputFile) { filePath = options.outputFile; };
@@ -587,16 +585,15 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSetVMs.list(parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = cli.category('parameters')
-  .description($('Commands to generate and patch parameters.'))
-  .category('vmssvm')
-  .description($('Commands to generate parameter for your virtual machine scale set vm.'));
-  parameters.command('list')
+  var parameters = vmssvm.category('parameters')
+  .description($('Commands to manage parameter for your virtual machine scale set vm.'));
+  var generate = parameters.category('generate')
+  .description($('Commands to generate parameter file for your virtual machine scale set vm.'));
+  generate.command('list')
   .description($('Generate vmssvm parameter string or files.'))
   .usage('[options]')
-  .option('--generate', $('To generate parameter string/file for method: list.'))
-  .option('--output-file <output-file>', $('The output file path.'))
-  .execute(function (generate, outputFile, options, _) {
+  .option('--parameter-file <output-file>', $('The parameter file path.'))
+  .execute(function (outputFile, options, _) {
     console.log("{\"expandExpression\":\"\",\"filterExpression\":\"\",\"resourceGroupName\":\"\",\"selectExpression\":\"\",\"virtualMachineScaleSetName\":\"\"}");
     var filePath = "vmssvm_list.json";
     if (options.outputFile) { filePath = options.outputFile; };
