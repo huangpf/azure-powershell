@@ -95,10 +95,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Remove", "AzureVirtualMachineScaleSet")]
-    public partial class RemoveAzureVirtualMachineScaleSet : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Remove", "AzureVMSS")]
+    public partial class RemoveAzureVMSS : InvokeAzureComputeMethodCmdlet
     {
-        public RemoveAzureVirtualMachineScaleSet()
+        public RemoveAzureVMSS()
         {
             this.MethodName = "VirtualMachineScaleSetDelete";
         }

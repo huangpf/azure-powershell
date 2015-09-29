@@ -81,10 +81,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Get", "AzureVirtualMachineScaleSetNextList")]
-    public partial class GetAzureVirtualMachineScaleSetNextList : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Get", "AzureVMSSNextList")]
+    public partial class GetAzureVMSSNextList : InvokeAzureComputeMethodCmdlet
     {
-        public GetAzureVirtualMachineScaleSetNextList()
+        public GetAzureVMSSNextList()
         {
             this.MethodName = "VirtualMachineScaleSetListNext";
         }

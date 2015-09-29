@@ -77,7 +77,16 @@ $common_verb_mapping =
 "Start" = "Start";
 "Restart" = "Restart";
 "Capture" = "Save";
+"Update" = "Update";
 };
+
+$common_noun_mapping =
+@{
+"VirtualMachine" = "VM";
+"ScaleSet" = "SS";
+};
+
+$all_return_type_names = @();
 
 Write-Verbose "=============================================";
 Write-Verbose "Input Parameters:";
@@ -546,6 +555,26 @@ function Get-VerbTermNameAndSuffix
 
     Write-Output $verb;
     Write-Output $suffix;
+}
+
+function Get-ShortNounName
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        [string]$inputNoun
+    )
+
+    $noun = $inputNoun;
+
+    foreach ($key in $common_noun_mapping.Keys)
+    {
+        if ($noun -like ("*${key}*"))
+        {
+            $noun = $noun.Replace($key, $common_noun_mapping[$key]);
+        }
+    }
+
+    Write-Output $noun;
 }
 
 function Write-PSArgumentFile
@@ -1573,8 +1602,9 @@ ${create_local_param_code_content}
     $return_vals = Get-VerbTermNameAndSuffix $methodName;
     $mapped_verb_name = $return_vals[0];
     $mapped_verb_term_suffix = $return_vals[1];
+    $shortNounName = Get-ShortNounName $opShortName;
 
-    $mapped_noun_str = 'Azure' + $opShortName + $mapped_verb_term_suffix;
+    $mapped_noun_str = 'Azure' + $shortNounName + $mapped_verb_term_suffix;
     $verb_cmdlet_name = $mapped_verb_name + $mapped_noun_str;
 
     # Construct the Individual Cmdlet Code Content
@@ -1999,19 +2029,25 @@ function Process-ListType
 # Process the return type
 function Process-ReturnType
 {
-    param([Type] $rt)
+    param([Type] $rt, [System.Array] $allrt)
 
-    $result = $null;
+    $result = "";
 
     if ($rt -eq $null)
     {
-        return $result;
+        return @($result, $allrt);
     }
 
+    if ($allrt.Contains($rt.Name))
+    {
+        return @($result, $allrt);
+    }
+
+    $allrt += $rt.Name;
 
     if ($rt.Name -like '*LongRunning*' -or $rt.Name -like '*computeoperationresponse*' -or $rt.Name -like '*AzureOperationResponse*')
     {
-        return $result;
+        return @($result, $allrt);
     }
 
     $xml = '<Name>' + $rt.FullName + '</Name>';
@@ -2048,7 +2084,11 @@ function Process-ReturnType
 
            if (-not $elementType.FullName.Contains("String"))
            {
-                $addxml = Process-ListType -rt $pr1.PropertyType.GenericTypeArguments[0] -name ${itemName};
+                if (-not $allrt.Contains($elementType.Name))
+                {
+                     $allrt += $elementType.Name;
+                     $addxml = Process-ListType -rt $pr1.PropertyType.GenericTypeArguments[0] -name ${itemName};
+                }
            }
 
            $xml += "<ListItem><Label>${itemLabel}.Count</Label><ScriptBlock> if (" + "$" + "_.${itemName} -eq $" + "null) { 0 } else { $" + "_.${itemName}.Count }</ScriptBlock></ListItem>" + [System.Environment]::NewLine;
@@ -2070,7 +2110,7 @@ function Process-ReturnType
 
     # Write-Verbose ("Xml: " + $xml);
 
-    return $xml;
+    return @($xml, $allrt)
 }
 
 # Get proper type name
@@ -2262,12 +2302,9 @@ else
                 $cliCommandCodeMainBody += $outputs[-1];
             }
 
-            $returnType = $mt.ReturnType.GenericTypeArguments[0];
-            if (-not ($all_return_type_names.Contains($returnType.Name)))
-            {
-                $all_return_type_names += $returnType.Name;
-                $formatXml += Process-ReturnType -rt $mt.ReturnType.GenericTypeArguments[0];
-            }
+            $returnTypeResult = Process-ReturnType -rt $mt.ReturnType.GenericTypeArguments[0] -allrt $all_return_type_names;
+            $formatXml += $returnTypeResult[0];
+            $all_return_type_names = $returnTypeResult[1];
         }
 
         Write-InvokeCmdletFile $invoke_cmdlet_file_name $invoke_cmdlet_class_name $auto_base_cmdlet_name $clientClassType $filtered_types $invoke_cmdlet_method_code $dynamic_param_method_code;
@@ -2276,7 +2313,7 @@ else
     }
 
     # XML 
-    $xmlFilePath = ($outFolder.Replace('/Generated', "") + '\' + $code_common_namespace + '.format.generated.ps1xml');
+    $xmlFilePath = $outFolder + '\' + $code_common_namespace + '.format.generated.ps1xml';
     Write-Output "=============================================";
     Write-Output ('Writing XML Format File: ' + $new_line_str + $xmlFilePath);
     Write-Output "=============================================";

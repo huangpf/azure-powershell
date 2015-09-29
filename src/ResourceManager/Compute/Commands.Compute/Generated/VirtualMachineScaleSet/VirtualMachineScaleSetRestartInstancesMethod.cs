@@ -109,10 +109,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Restart", "AzureVirtualMachineScaleSetInstances")]
-    public partial class RestartAzureVirtualMachineScaleSetInstances : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Restart", "AzureVMSSInstances")]
+    public partial class RestartAzureVMSSInstances : InvokeAzureComputeMethodCmdlet
     {
-        public RestartAzureVirtualMachineScaleSetInstances()
+        public RestartAzureVMSSInstances()
         {
             this.MethodName = "VirtualMachineScaleSetRestartInstances";
         }
