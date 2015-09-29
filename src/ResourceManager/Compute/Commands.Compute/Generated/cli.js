@@ -17,6 +17,7 @@
 
 var __ = require('underscore');
 var fs = require('fs');
+var jsonpatch = require('json-patch');
 var util = require('util');
 
 var profile = require('../../../util/profile');
@@ -57,11 +58,12 @@ exports.init = function (cli) {
     console.log('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.createOrUpdate);
     var result = computeManagementClient.virtualMachineScaleSets.createOrUpdate(options.resourceGroupName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = vmss.category('parameters')
+  var parameters = cli.category('parameters')
+  .description($('Commands to generate and patch parameters.'))
+  .category('vmss')
   .description($('Commands to generate parameter for your virtual machine scale set.'));
   parameters.command('create-or-update')
   .description($('Generate vmss parameter string or files.'))
@@ -77,6 +79,46 @@ exports.init = function (cli) {
     console.log("Parameter file output to: " + filePath);
     console.log("=====================================");
   });
+
+  parameters.command('patch')
+  .description($('Command to patch vmss parameter JSON file.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--operation <operation>', $('The JSON patch operation: add, remove, or replace.'))
+  .option('--path <path>', $('The JSON data path, e.g.: \"foo/1\".'))
+  .option('--value <value>', $('The JSON value.'))
+  .execute(function (parameterFile, operation, path, value, options, _) {
+    console.log(options.parameterFile);
+    console.log(options.operation);
+    console.log(options.path);
+    console.log(options.value);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    if (options.operation == 'add') {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
+    else if (options.operation == 'remove') {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    else if (options.operation == 'replace') {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+
 //virtualMachineScaleSet -> Deallocate
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('deallocate')
@@ -91,7 +133,6 @@ exports.init = function (cli) {
     console.log('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.deallocate);
     var result = computeManagementClient.virtualMachineScaleSets.deallocate(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
@@ -111,7 +152,6 @@ exports.init = function (cli) {
     console.log('vmInstanceIDs = ' + options.vmInstanceIDs);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.deallocateInstances);
     var result = computeManagementClient.virtualMachineScaleSets.deallocateInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIDs, _);
     cli.output.json(result);
   });
@@ -129,7 +169,6 @@ exports.init = function (cli) {
     console.log('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.delete);
     var result = computeManagementClient.virtualMachineScaleSets.delete(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
@@ -149,7 +188,6 @@ exports.init = function (cli) {
     console.log('vmInstanceIDs = ' + options.vmInstanceIDs);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.deleteInstances);
     var result = computeManagementClient.virtualMachineScaleSets.deleteInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIDs, _);
     cli.output.json(result);
   });
@@ -167,7 +205,6 @@ exports.init = function (cli) {
     console.log('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.get);
     var result = computeManagementClient.virtualMachineScaleSets.get(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
@@ -185,7 +222,6 @@ exports.init = function (cli) {
     console.log('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.getInstanceView);
     var result = computeManagementClient.virtualMachineScaleSets.getInstanceView(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
@@ -201,7 +237,6 @@ exports.init = function (cli) {
     console.log('resourceGroupName = ' + options.resourceGroupName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.list);
     var result = computeManagementClient.virtualMachineScaleSets.list(options.resourceGroupName, _);
     cli.output.json(result);
   });
@@ -229,11 +264,12 @@ exports.init = function (cli) {
     console.log('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.listAll);
     var result = computeManagementClient.virtualMachineScaleSets.listAll(parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = vmss.category('parameters')
+  var parameters = cli.category('parameters')
+  .description($('Commands to generate and patch parameters.'))
+  .category('vmss')
   .description($('Commands to generate parameter for your virtual machine scale set.'));
   parameters.command('list-all')
   .description($('Generate vmss parameter string or files.'))
@@ -249,6 +285,46 @@ exports.init = function (cli) {
     console.log("Parameter file output to: " + filePath);
     console.log("=====================================");
   });
+
+  parameters.command('patch')
+  .description($('Command to patch vmss parameter JSON file.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--operation <operation>', $('The JSON patch operation: add, remove, or replace.'))
+  .option('--path <path>', $('The JSON data path, e.g.: \"foo/1\".'))
+  .option('--value <value>', $('The JSON value.'))
+  .execute(function (parameterFile, operation, path, value, options, _) {
+    console.log(options.parameterFile);
+    console.log(options.operation);
+    console.log(options.path);
+    console.log(options.value);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    if (options.operation == 'add') {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
+    else if (options.operation == 'remove') {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    else if (options.operation == 'replace') {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+
 //virtualMachineScaleSet -> ListNext
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmss.command('list-next')
@@ -261,7 +337,6 @@ exports.init = function (cli) {
     console.log('nextLink = ' + options.nextLink);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.listNext);
     var result = computeManagementClient.virtualMachineScaleSets.listNext(options.nextLink, _);
     cli.output.json(result);
   });
@@ -279,7 +354,6 @@ exports.init = function (cli) {
     console.log('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.listSkus);
     var result = computeManagementClient.virtualMachineScaleSets.listSkus(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
@@ -297,7 +371,6 @@ exports.init = function (cli) {
     console.log('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.powerOff);
     var result = computeManagementClient.virtualMachineScaleSets.powerOff(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
@@ -317,7 +390,6 @@ exports.init = function (cli) {
     console.log('vmInstanceIDs = ' + options.vmInstanceIDs);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.powerOffInstances);
     var result = computeManagementClient.virtualMachineScaleSets.powerOffInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIDs, _);
     cli.output.json(result);
   });
@@ -335,7 +407,6 @@ exports.init = function (cli) {
     console.log('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.restart);
     var result = computeManagementClient.virtualMachineScaleSets.restart(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
@@ -355,7 +426,6 @@ exports.init = function (cli) {
     console.log('vmInstanceIDs = ' + options.vmInstanceIDs);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.restartInstances);
     var result = computeManagementClient.virtualMachineScaleSets.restartInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIDs, _);
     cli.output.json(result);
   });
@@ -373,7 +443,6 @@ exports.init = function (cli) {
     console.log('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.start);
     var result = computeManagementClient.virtualMachineScaleSets.start(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
@@ -393,7 +462,6 @@ exports.init = function (cli) {
     console.log('vmInstanceIDs = ' + options.vmInstanceIDs);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.startInstances);
     var result = computeManagementClient.virtualMachineScaleSets.startInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIDs, _);
     cli.output.json(result);
   });
@@ -413,7 +481,6 @@ exports.init = function (cli) {
     console.log('vmInstanceIDs = ' + options.vmInstanceIDs);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSets.updateInstances);
     var result = computeManagementClient.virtualMachineScaleSets.updateInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIDs, _);
     cli.output.json(result);
   });
@@ -433,7 +500,6 @@ exports.init = function (cli) {
     console.log('instanceId = ' + options.instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSetVMs.deallocate);
     var result = computeManagementClient.virtualMachineScaleSetVMs.deallocate(options.resourceGroupName, options.vmScaleSetName, options.instanceId, _);
     cli.output.json(result);
   });
@@ -453,7 +519,6 @@ exports.init = function (cli) {
     console.log('instanceId = ' + options.instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSetVMs.delete);
     var result = computeManagementClient.virtualMachineScaleSetVMs.delete(options.resourceGroupName, options.vmScaleSetName, options.instanceId, _);
     cli.output.json(result);
   });
@@ -473,7 +538,6 @@ exports.init = function (cli) {
     console.log('instanceId = ' + options.instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSetVMs.get);
     var result = computeManagementClient.virtualMachineScaleSetVMs.get(options.resourceGroupName, options.vmScaleSetName, options.instanceId, _);
     cli.output.json(result);
   });
@@ -493,7 +557,6 @@ exports.init = function (cli) {
     console.log('instanceId = ' + options.instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSetVMs.getInstanceView);
     var result = computeManagementClient.virtualMachineScaleSetVMs.getInstanceView(options.resourceGroupName, options.vmScaleSetName, options.instanceId, _);
     cli.output.json(result);
   });
@@ -521,11 +584,12 @@ exports.init = function (cli) {
     console.log('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSetVMs.list);
     var result = computeManagementClient.virtualMachineScaleSetVMs.list(parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = vmssvm.category('parameters')
+  var parameters = cli.category('parameters')
+  .description($('Commands to generate and patch parameters.'))
+  .category('vmssvm')
   .description($('Commands to generate parameter for your virtual machine scale set vm.'));
   parameters.command('list')
   .description($('Generate vmssvm parameter string or files.'))
@@ -541,6 +605,46 @@ exports.init = function (cli) {
     console.log("Parameter file output to: " + filePath);
     console.log("=====================================");
   });
+
+  parameters.command('patch')
+  .description($('Command to patch vmssvm parameter JSON file.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--operation <operation>', $('The JSON patch operation: add, remove, or replace.'))
+  .option('--path <path>', $('The JSON data path, e.g.: \"foo/1\".'))
+  .option('--value <value>', $('The JSON value.'))
+  .execute(function (parameterFile, operation, path, value, options, _) {
+    console.log(options.parameterFile);
+    console.log(options.operation);
+    console.log(options.path);
+    console.log(options.value);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    if (options.operation == 'add') {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
+    else if (options.operation == 'remove') {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    else if (options.operation == 'replace') {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+
 //virtualMachineScaleSetVM -> PowerOff
   var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('power-off')
@@ -557,7 +661,6 @@ exports.init = function (cli) {
     console.log('instanceId = ' + options.instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSetVMs.powerOff);
     var result = computeManagementClient.virtualMachineScaleSetVMs.powerOff(options.resourceGroupName, options.vmScaleSetName, options.instanceId, _);
     cli.output.json(result);
   });
@@ -577,7 +680,6 @@ exports.init = function (cli) {
     console.log('instanceId = ' + options.instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSetVMs.restart);
     var result = computeManagementClient.virtualMachineScaleSetVMs.restart(options.resourceGroupName, options.vmScaleSetName, options.instanceId, _);
     cli.output.json(result);
   });
@@ -597,7 +699,6 @@ exports.init = function (cli) {
     console.log('instanceId = ' + options.instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    console.log(computeManagementClient.virtualMachineScaleSetVMs.start);
     var result = computeManagementClient.virtualMachineScaleSetVMs.start(options.resourceGroupName, options.vmScaleSetName, options.instanceId, _);
     cli.output.json(result);
   });

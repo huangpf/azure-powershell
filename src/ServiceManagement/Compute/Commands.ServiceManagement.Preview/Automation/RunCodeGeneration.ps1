@@ -1763,7 +1763,6 @@ ${cmdlet_partial_class_code}
     }
     $cli_op_code_content += "    var subscription = profile.current.getSubscription(options.subscription);" + $new_line_str;
     $cli_op_code_content += "    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);" + $new_line_str;
-    $cli_op_code_content += "    console.log(computeManagementClient.${cli_op_name}s.${cli_method_name});" + $new_line_str;
     $cli_op_code_content += "    var result = computeManagementClient.${cli_op_name}s.${cli_method_name}(";
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
@@ -1791,7 +1790,10 @@ ${cmdlet_partial_class_code}
         {
             $params_category_name = 'parameters';
 
-            $cli_op_code_content += "  var ${params_category_name} = $category_name.category('${params_category_name}')" + $new_line_str;
+            # 3.3.1 Parameter Generate Command
+            $cli_op_code_content += "  var ${params_category_name} = cli.category('${params_category_name}')" + $new_line_str;
+            $cli_op_code_content += "  .description(`$('Commands to generate and patch parameters.'))" + $new_line_str;
+            $cli_op_code_content += "  .category('${category_name}')" + $new_line_str;
             $cli_op_code_content += "  .description(`$('Commands to generate parameter for your ${cli_op_description}.'));" + $new_line_str;
             $cli_op_code_content += "  ${params_category_name}.command('${cli_method_option_name}')" + $new_line_str;
             $cli_op_code_content += "  .description(`$('Generate ${category_name} parameter string or files.'))" + $new_line_str;
@@ -1814,6 +1816,48 @@ ${cmdlet_partial_class_code}
             $cli_op_code_content += "    console.log(`"Parameter file output to: `" + filePath);" + $new_line_str;
             $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
             $cli_op_code_content += "  });" + $new_line_str;
+            $cli_op_code_content += $new_line_str;
+
+            # 3.3.2 Parameter Patch Command
+            $cli_op_code_content += "  ${params_category_name}.command('patch')" + $new_line_str;
+            $cli_op_code_content += "  .description(`$('Command to patch ${category_name} parameter JSON file.'))" + $new_line_str;
+            $cli_op_code_content += "  .usage('[options]')" + $new_line_str;
+            $cli_op_code_content += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $new_line_str;
+            $cli_op_code_content += "  .option('--operation <operation>', `$('The JSON patch operation: add, remove, or replace.'))" + $new_line_str;
+            $cli_op_code_content += "  .option('--path <path>', `$('The JSON data path, e.g.: \`"foo/1\`".'))" + $new_line_str;
+            $cli_op_code_content += "  .option('--value <value>', `$('The JSON value.'))" + $new_line_str;
+            $cli_op_code_content += "  .execute(function (parameterFile, operation, path, value, options, _) {" + $new_line_str;
+            $cli_op_code_content += "    console.log(options.parameterFile);" + $new_line_str;
+            $cli_op_code_content += "    console.log(options.operation);" + $new_line_str;
+            $cli_op_code_content += "    console.log(options.path);" + $new_line_str;
+            $cli_op_code_content += "    console.log(options.value);" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $new_line_str;
+            $cli_op_code_content += "    var ${cli_param_name}Obj = JSON.parse(fileContent);" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"JSON object:`");" + $new_line_str;
+            $cli_op_code_content += "    console.log(JSON.stringify(${cli_param_name}Obj));" + $new_line_str;
+            $cli_op_code_content += "    if (options.operation == 'add') {" + $new_line_str;
+            $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $new_line_str;
+            $cli_op_code_content += "    }" + $new_line_str;
+            $cli_op_code_content += "    else if (options.operation == 'remove') {" + $new_line_str;
+            $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path}]);" + $new_line_str;
+            $cli_op_code_content += "    }" + $new_line_str;
+            $cli_op_code_content += "    else if (options.operation == 'replace') {" + $new_line_str;
+            $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $new_line_str;
+            $cli_op_code_content += "    }" + $new_line_str;
+            $cli_op_code_content += "    var updatedContent = JSON.stringify(${cli_param_name}Obj);" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"JSON object (updated):`");" + $new_line_str;
+            $cli_op_code_content += "    console.log(JSON.stringify(${cli_param_name}Obj));" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    fs.writeFileSync(options.parameterFile, beautify(updatedContent));" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"Parameter file updated at: `" + options.parameterFile);" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "  });" + $new_line_str;
+            $cli_op_code_content += $new_line_str;
             break;
         }
     }
@@ -2187,6 +2231,7 @@ function Write-CLICommandFile
 
 var __ = require('underscore');
 var fs = require('fs');
+var jsonpatch = require('json-patch');
 var util = require('util');
 
 var profile = require('../../../util/profile');
