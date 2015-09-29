@@ -172,21 +172,21 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> GetInstanceView
-  var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
-  vmss.command('getInstanceView')
-  .description($('vmss getInstanceView'))
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
+  vmss.command('get-instance-view')
+  .description($('get-instance-view method to manage your virtual machine scale set.'))
   .usage('[options]')
-  .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
-  .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
-  .option('--ParameterFile <ParameterFile>', $('the input parameter file'))
+  .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
+  .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
+  .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (ResourceGroupName, VMScaleSetName, options, _) {
-    console.log('ResourceGroupName = ' + options.ResourceGroupName);
-    console.log('VMScaleSetName = ' + options.VMScaleSetName);
+  .execute(function (resourceGroupName, vmScaleSetName, options, _) {
+    console.log('resourceGroupName = ' + options.resourceGroupName);
+    console.log('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
     console.log(computeManagementClient.virtualMachineScaleSets.getInstanceView);
-    var result = computeManagementClient.virtualMachineScaleSets.getInstanceView(options.ResourceGroupName, options.VMScaleSetName, _);
+    var result = computeManagementClient.virtualMachineScaleSets.getInstanceView(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> List
@@ -398,23 +398,23 @@ exports.init = function (cli) {
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> UpdateInstances
-  var vmss = compute.category('vmss').description($('Commands for Azure Compute VirtualMachineScaleSet'));
-  vmss.command('updateInstances')
-  .description($('vmss updateInstances'))
+  var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
+  vmss.command('update-instances')
+  .description($('update-instances method to manage your virtual machine scale set.'))
   .usage('[options]')
-  .option('--ResourceGroupName <ResourceGroupName>', $('ResourceGroupName'))
-  .option('--VMScaleSetName <VMScaleSetName>', $('VMScaleSetName'))
-  .option('--VMInstanceIDs <VMInstanceIDs>', $('VMInstanceIDs'))
-  .option('--ParameterFile <ParameterFile>', $('the input parameter file'))
+  .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
+  .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
+  .option('--vm-instance-i-ds <vm-instance-i-ds>', $('vm-instance-i-ds'))
+  .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (ResourceGroupName, VMScaleSetName, VMInstanceIDs, options, _) {
-    console.log('ResourceGroupName = ' + options.ResourceGroupName);
-    console.log('VMScaleSetName = ' + options.VMScaleSetName);
-    console.log('VMInstanceIDs = ' + options.VMInstanceIDs);
+  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIDs, options, _) {
+    console.log('resourceGroupName = ' + options.resourceGroupName);
+    console.log('vmScaleSetName = ' + options.vmScaleSetName);
+    console.log('vmInstanceIDs = ' + options.vmInstanceIDs);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
     console.log(computeManagementClient.virtualMachineScaleSets.updateInstances);
-    var result = computeManagementClient.virtualMachineScaleSets.updateInstances(options.ResourceGroupName, options.VMScaleSetName, options.VMInstanceIDs, _);
+    var result = computeManagementClient.virtualMachineScaleSets.updateInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIDs, _);
     cli.output.json(result);
   });
 //virtualMachineScaleSetVM -> Deallocate
