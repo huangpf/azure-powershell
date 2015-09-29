@@ -109,10 +109,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Get", "AzureVirtualMachineScaleSetVMInstanceView")]
-    public partial class GetAzureVirtualMachineScaleSetVMInstanceView : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Get", "AzureVMSSVMInstanceView")]
+    public partial class GetAzureVMSSVMInstanceView : InvokeAzureComputeMethodCmdlet
     {
-        public GetAzureVirtualMachineScaleSetVMInstanceView()
+        public GetAzureVMSSVMInstanceView()
         {
             this.MethodName = "VirtualMachineScaleSetVMGetInstanceView";
         }

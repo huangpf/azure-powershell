@@ -1599,6 +1599,27 @@
             The compute long running operation response.
             </returns>
         </member>
+        <member name="M:Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations.BeginUpdatingInstancesAsync(System.String,System.String,Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceIDs,System.Threading.CancellationToken)">
+            <summary>
+            The operation to manually upgrade virtual machines in a virtual
+            machine scale set.
+            </summary>
+            <param name='resourceGroupName'>
+            The name of the resource group.
+            </param>
+            <param name='vmScaleSetName'>
+            The name of the virtual machine scale set.
+            </param>
+            <param name='vmInstanceIDs'>
+            The list of virtual machine scale set instance IDs.
+            </param>
+            <param name='cancellationToken'>
+            Cancellation token.
+            </param>
+            <returns>
+            The compute long running operation response.
+            </returns>
+        </member>
         <member name="M:Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations.CreateOrUpdateAsync(System.String,Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSet,System.Threading.CancellationToken)">
             <summary>
             The operation to create or update a virtual machine scale set.
@@ -1710,6 +1731,23 @@
             The GetVirtualMachineScaleSet operation response.
             </returns>
         </member>
+        <member name="M:Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations.GetInstanceViewAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            The operation to get a virtual machine scale set instance view.
+            </summary>
+            <param name='resourceGroupName'>
+            The name of the resource group.
+            </param>
+            <param name='vmScaleSetName'>
+            The name of the virtual machine scale set.
+            </param>
+            <param name='cancellationToken'>
+            Cancellation token.
+            </param>
+            <returns>
+            The get VirtualMachineScaleSet instance view operation response.
+            </returns>
+        </member>
         <member name="M:Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations.ListAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             The operation to list virtual machine scale sets under a resource
@@ -1793,7 +1831,7 @@
         </member>
         <member name="M:Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations.PowerOffInstancesAsync(System.String,System.String,Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceIDs,System.Threading.CancellationToken)">
             <summary>
-            The operation to power off (stop) virtual machines from a virtual
+            The operation to power off (stop) virtual machines in a virtual
             machine scale set.
             </summary>
             <param name='resourceGroupName'>
@@ -1871,6 +1909,27 @@
             <summary>
             The operation to start virtual machines in a virtual machine scale
             set.
+            </summary>
+            <param name='resourceGroupName'>
+            The name of the resource group.
+            </param>
+            <param name='vmScaleSetName'>
+            The name of the virtual machine scale set.
+            </param>
+            <param name='vmInstanceIDs'>
+            The list of virtual machine scale set instance IDs.
+            </param>
+            <param name='cancellationToken'>
+            Cancellation token.
+            </param>
+            <returns>
+            The Compute service response for long-running operations.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations.UpdateInstancesAsync(System.String,System.String,Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceIDs,System.Threading.CancellationToken)">
+            <summary>
+            The operation to manually upgrade virtual machines in a virtual
+            machine scale set.
             </summary>
             <param name='resourceGroupName'>
             The name of the resource group.
@@ -2819,6 +2878,28 @@
         <member name="P:Microsoft.Azure.Management.Compute.Models.InstanceViewStatus.Time">
             <summary>
             Optional. Gets or sets the time of the status.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.Compute.Models.IPConfigurationLoadBalancerAddressPool">
+            <summary>
+            Describes a load balancer address pool reference.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.IPConfigurationLoadBalancerAddressPool.#ctor">
+            <summary>
+            Initializes a new instance of the
+            IPConfigurationLoadBalancerAddressPool class.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.Compute.Models.IPConfigurationLoadBalancerInboundNATPool">
+            <summary>
+            Describes a load balancer NAT pool reference.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.IPConfigurationLoadBalancerInboundNATPool.#ctor">
+            <summary>
+            Initializes a new instance of the
+            IPConfigurationLoadBalancerInboundNATPool class.
             </summary>
         </member>
         <member name="T:Microsoft.Azure.Management.Compute.Models.LinuxConfiguration">
@@ -4230,6 +4311,96 @@
             Optional. Gets or sets details of the Virtual Machine Scale Set.
             </summary>
         </member>
+        <member name="T:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtension">
+            <summary>
+            Describes a Virtual Machine Scale Set Extension.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtension.#ctor">
+            <summary>
+            Initializes a new instance of the VirtualMachineScaleSetExtension
+            class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtension.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the VirtualMachineScaleSetExtension
+            class with required arguments.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtension.AutoUpgradeMinorVersion">
+            <summary>
+            Optional. Gets or sets whether the extension handler should be
+            automatically upgraded across minor versions.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtension.ExtensionType">
+            <summary>
+            Optional. Gets or sets the type of the extension handler.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtension.ProtectedSettings">
+            <summary>
+            Optional. Gets or sets Json formatted protected settings for the
+            extension.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtension.ProvisioningState">
+            <summary>
+            Optional. Gets or sets the provisioning state, which only appears
+            in the response.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtension.Publisher">
+            <summary>
+            Optional. Gets or sets the name of the extension handler publisher.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtension.Settings">
+            <summary>
+            Optional. Gets or sets Json formatted public settings for the
+            extension.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtension.TypeHandlerVersion">
+            <summary>
+            Optional. Gets or sets the type version of the extension handler.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtensionProfile">
+            <summary>
+            Describes a virtual machine scale set extension profile.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtensionProfile.#ctor">
+            <summary>
+            Initializes a new instance of the
+            VirtualMachineScaleSetExtensionProfile class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtensionProfile.Extensions">
+            <summary>
+            Optional. Gets the virtual machine scale set child extension
+            resources.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetGetInstanceViewResponse">
+            <summary>
+            The get VirtualMachineScaleSet instance view operation response.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetGetInstanceViewResponse.#ctor">
+            <summary>
+            Initializes a new instance of the
+            VirtualMachineScaleSetGetInstanceViewResponse class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetGetInstanceViewResponse.VirtualMachineScaleSetInstanceView">
+            <summary>
+            Optional. Gets the details of the virtual machine scale set virtual
+            machine instance view.
+            </summary>
+        </member>
         <member name="T:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetGetResponse">
             <summary>
             The GetVirtualMachineScaleSet operation response.
@@ -4244,6 +4415,45 @@
         <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetGetResponse.VirtualMachineScaleSet">
             <summary>
             Optional. Gets or sets the details of the Virtual Machine Scale Set.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetInstanceView">
+            <summary>
+            The instance view of a virtual machine scale set.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetInstanceView.#ctor">
+            <summary>
+            Initializes a new instance of the
+            VirtualMachineScaleSetInstanceView class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetInstanceView.Extensions">
+            <summary>
+            Optional. Gets or sets the extensions information.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetInstanceView.VirtualMachine">
+            <summary>
+            Optional. Gets the instance view status summary for the virtual
+            machine scale set.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetInstanceViewStatusesSummary">
+            <summary>
+            Instance view statuses summary for virtual machines of a virtual
+            machine scale set.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetInstanceViewStatusesSummary.#ctor">
+            <summary>
+            Initializes a new instance of the
+            VirtualMachineScaleSetInstanceViewStatusesSummary class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetInstanceViewStatusesSummary.StatusesSummary">
+            <summary>
+            Optional. Gets or sets the extensions information.
             </summary>
         </member>
         <member name="T:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetIPConfiguration">
@@ -4267,17 +4477,22 @@
         </member>
         <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetIPConfiguration.LoadBalancerBackendAddressPools">
             <summary>
-            Optional. Gets or set the load balancer backend address pools.
+            Optional. Gets or sets the load balancer backend address pools.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetIPConfiguration.LoadBalancerInboundNatPools">
+            <summary>
+            Optional. Gets or sets the load balancer inbound NAT pools.
             </summary>
         </member>
         <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetIPConfiguration.Name">
             <summary>
-            Required. Gets or set the IP configuration name.
+            Required. Gets or sets the IP configuration name.
             </summary>
         </member>
         <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetIPConfiguration.Subnet">
             <summary>
-            Required. Gets or set the subnet.
+            Required. Gets or sets the subnet.
             </summary>
         </member>
         <member name="T:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetIPConfigurationLoadBalancerAddressPool">
@@ -4302,11 +4517,14 @@
             VirtualMachineScaleSetListResponse class.
             </summary>
         </member>
-        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetListResponse.NextLink">
+        <member name="M:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetListResponse.GetEnumerator">
             <summary>
-            Optional. Gets or sets the uri to fetch the next page of Virtual
-            Machine Scale Sets. Call ListNext() with this to fetch the next
-            page of Virtual Machine Scale Sets.
+            Gets the sequence of VirtualMachineScaleSets.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetListResponse.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Gets the sequence of VirtualMachineScaleSets.
             </summary>
         </member>
         <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetListResponse.VirtualMachineScaleSets">
@@ -4339,6 +4557,29 @@
             <summary>
             Optional. Gets the list of skus available for the virtual machine
             scale set.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetListWithLinkResponse">
+            <summary>
+            The List Virtual Machine operation response.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetListWithLinkResponse.#ctor">
+            <summary>
+            Initializes a new instance of the
+            VirtualMachineScaleSetListWithLinkResponse class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetListWithLinkResponse.NextLink">
+            <summary>
+            Optional. Gets or sets the uri to fetch the next page of Virtual
+            Machine Scale Sets. Call ListNext() with this to fetch the next
+            page of Virtual Machine Scale Sets.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetListWithLinkResponse.VirtualMachineScaleSets">
+            <summary>
+            Optional. Gets or sets the list of virtual machine scale sets.
             </summary>
         </member>
         <member name="T:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetNetworkConfiguration">
@@ -4584,6 +4825,22 @@
             Optional. Gets the virtual machine sku.
             </summary>
         </member>
+        <member name="T:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMExtensionsSummary">
+            <summary>
+            Extensions summary for virtual machines of a virtual machine scale set.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMExtensionsSummary.#ctor">
+            <summary>
+            Initializes a new instance of the
+            VirtualMachineScaleSetVMExtensionsSummary class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMExtensionsSummary.Name">
+            <summary>
+            Optional. Gets the extension name.
+            </summary>
+        </member>
         <member name="T:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMGetInstanceViewResponse">
             <summary>
             The get VirtualMachineScaleSetVM instance view operation response.
@@ -4733,10 +4990,9 @@
             class.
             </summary>
         </member>
-        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile.Extensions">
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile.ExtensionProfile">
             <summary>
-            Optional. Gets the virtual machine scale set child extension
-            resources.
+            Optional. Gets the virtual machine scale set extension profile.
             </summary>
         </member>
         <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile.NetworkProfile">
@@ -4926,6 +5182,29 @@
         <member name="F:Microsoft.Azure.Management.Compute.Models.VirtualMachineSizeTypes.StandardG5">
             <summary>
             The standard G5 size.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.Compute.Models.VirtualMachineStatusCodeCount">
+            <summary>
+            The status code and count of the virtual machine scale set instance
+            view status summary.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.VirtualMachineStatusCodeCount.#ctor">
+            <summary>
+            Initializes a new instance of the VirtualMachineStatusCodeCount
+            class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineStatusCodeCount.Code">
+            <summary>
+            Optional. Gets the instance view status code.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineStatusCodeCount.Count">
+            <summary>
+            Optional. Gets the number of instances having a particular status
+            code.
             </summary>
         </member>
         <member name="T:Microsoft.Azure.Management.Compute.Models.WindowsConfiguration">
@@ -7289,6 +7568,27 @@
             The compute long running operation response.
             </returns>
         </member>
+        <member name="M:Microsoft.Azure.Management.Compute.VirtualMachineScaleSetOperations.BeginUpdatingInstancesAsync(System.String,System.String,Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceIDs,System.Threading.CancellationToken)">
+            <summary>
+            The operation to manually upgrade virtual machines in a virtual
+            machine scale set.
+            </summary>
+            <param name='resourceGroupName'>
+            Required. The name of the resource group.
+            </param>
+            <param name='vmScaleSetName'>
+            Required. The name of the virtual machine scale set.
+            </param>
+            <param name='vmInstanceIDs'>
+            Required. The list of virtual machine scale set instance IDs.
+            </param>
+            <param name='cancellationToken'>
+            Cancellation token.
+            </param>
+            <returns>
+            The compute long running operation response.
+            </returns>
+        </member>
         <member name="M:Microsoft.Azure.Management.Compute.VirtualMachineScaleSetOperations.CreateOrUpdateAsync(System.String,Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSet,System.Threading.CancellationToken)">
             <summary>
             The operation to create or update a virtual machine scale set.
@@ -7400,6 +7700,23 @@
             The GetVirtualMachineScaleSet operation response.
             </returns>
         </member>
+        <member name="M:Microsoft.Azure.Management.Compute.VirtualMachineScaleSetOperations.GetInstanceViewAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            The operation to get a virtual machine scale set instance view.
+            </summary>
+            <param name='resourceGroupName'>
+            Required. The name of the resource group.
+            </param>
+            <param name='vmScaleSetName'>
+            Required. The name of the virtual machine scale set.
+            </param>
+            <param name='cancellationToken'>
+            Cancellation token.
+            </param>
+            <returns>
+            The get VirtualMachineScaleSet instance view operation response.
+            </returns>
+        </member>
         <member name="M:Microsoft.Azure.Management.Compute.VirtualMachineScaleSetOperations.ListAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             The operation to list virtual machine scale sets under a resource
@@ -7486,7 +7803,7 @@
         </member>
         <member name="M:Microsoft.Azure.Management.Compute.VirtualMachineScaleSetOperations.PowerOffInstancesAsync(System.String,System.String,Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceIDs,System.Threading.CancellationToken)">
             <summary>
-            The operation to power off (stop) virtual machines from a virtual
+            The operation to power off (stop) virtual machines in a virtual
             machine scale set.
             </summary>
             <param name='resourceGroupName'>
@@ -7564,6 +7881,27 @@
             <summary>
             The operation to start virtual machines in a virtual machine scale
             set.
+            </summary>
+            <param name='resourceGroupName'>
+            Required. The name of the resource group.
+            </param>
+            <param name='vmScaleSetName'>
+            Required. The name of the virtual machine scale set.
+            </param>
+            <param name='vmInstanceIDs'>
+            Required. The list of virtual machine scale set instance IDs.
+            </param>
+            <param name='cancellationToken'>
+            Cancellation token.
+            </param>
+            <returns>
+            The Compute service response for long-running operations.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.VirtualMachineScaleSetOperations.UpdateInstancesAsync(System.String,System.String,Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceIDs,System.Threading.CancellationToken)">
+            <summary>
+            The operation to manually upgrade virtual machines in a virtual
+            machine scale set.
             </summary>
             <param name='resourceGroupName'>
             Required. The name of the resource group.
@@ -8030,6 +8368,50 @@
             The compute long running operation response.
             </returns>
         </member>
+        <member name="M:Microsoft.Azure.Management.Compute.VirtualMachineScaleSetOperationsExtensions.BeginUpdatingInstances(Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations,System.String,System.String,Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceIDs)">
+            <summary>
+            The operation to manually upgrade virtual machines in a virtual
+            machine scale set.
+            </summary>
+            <param name='operations'>
+            Reference to the
+            Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations.
+            </param>
+            <param name='resourceGroupName'>
+            Required. The name of the resource group.
+            </param>
+            <param name='vmScaleSetName'>
+            Required. The name of the virtual machine scale set.
+            </param>
+            <param name='vmInstanceIDs'>
+            Required. The list of virtual machine scale set instance IDs.
+            </param>
+            <returns>
+            The compute long running operation response.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.VirtualMachineScaleSetOperationsExtensions.BeginUpdatingInstancesAsync(Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations,System.String,System.String,Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceIDs)">
+            <summary>
+            The operation to manually upgrade virtual machines in a virtual
+            machine scale set.
+            </summary>
+            <param name='operations'>
+            Reference to the
+            Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations.
+            </param>
+            <param name='resourceGroupName'>
+            Required. The name of the resource group.
+            </param>
+            <param name='vmScaleSetName'>
+            Required. The name of the virtual machine scale set.
+            </param>
+            <param name='vmInstanceIDs'>
+            Required. The list of virtual machine scale set instance IDs.
+            </param>
+            <returns>
+            The compute long running operation response.
+            </returns>
+        </member>
         <member name="M:Microsoft.Azure.Management.Compute.VirtualMachineScaleSetOperationsExtensions.CreateOrUpdate(Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations,System.String,Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSet)">
             <summary>
             The operation to create or update a virtual machine scale set.
@@ -8264,6 +8646,42 @@
             The GetVirtualMachineScaleSet operation response.
             </returns>
         </member>
+        <member name="M:Microsoft.Azure.Management.Compute.VirtualMachineScaleSetOperationsExtensions.GetInstanceView(Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations,System.String,System.String)">
+            <summary>
+            The operation to get a virtual machine scale set instance view.
+            </summary>
+            <param name='operations'>
+            Reference to the
+            Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations.
+            </param>
+            <param name='resourceGroupName'>
+            Required. The name of the resource group.
+            </param>
+            <param name='vmScaleSetName'>
+            Required. The name of the virtual machine scale set.
+            </param>
+            <returns>
+            The get VirtualMachineScaleSet instance view operation response.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.VirtualMachineScaleSetOperationsExtensions.GetInstanceViewAsync(Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations,System.String,System.String)">
+            <summary>
+            The operation to get a virtual machine scale set instance view.
+            </summary>
+            <param name='operations'>
+            Reference to the
+            Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations.
+            </param>
+            <param name='resourceGroupName'>
+            Required. The name of the resource group.
+            </param>
+            <param name='vmScaleSetName'>
+            Required. The name of the virtual machine scale set.
+            </param>
+            <returns>
+            The get VirtualMachineScaleSet instance view operation response.
+            </returns>
+        </member>
         <member name="M:Microsoft.Azure.Management.Compute.VirtualMachineScaleSetOperationsExtensions.List(Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations,System.String)">
             <summary>
             The operation to list virtual machine scale sets under a resource
@@ -8444,7 +8862,7 @@
         </member>
         <member name="M:Microsoft.Azure.Management.Compute.VirtualMachineScaleSetOperationsExtensions.PowerOffInstances(Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations,System.String,System.String,Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceIDs)">
             <summary>
-            The operation to power off (stop) virtual machines from a virtual
+            The operation to power off (stop) virtual machines in a virtual
             machine scale set.
             </summary>
             <param name='operations'>
@@ -8466,7 +8884,7 @@
         </member>
         <member name="M:Microsoft.Azure.Management.Compute.VirtualMachineScaleSetOperationsExtensions.PowerOffInstancesAsync(Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations,System.String,System.String,Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceIDs)">
             <summary>
-            The operation to power off (stop) virtual machines from a virtual
+            The operation to power off (stop) virtual machines in a virtual
             machine scale set.
             </summary>
             <param name='operations'>
@@ -8628,6 +9046,50 @@
             <summary>
             The operation to start virtual machines in a virtual machine scale
             set.
+            </summary>
+            <param name='operations'>
+            Reference to the
+            Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations.
+            </param>
+            <param name='resourceGroupName'>
+            Required. The name of the resource group.
+            </param>
+            <param name='vmScaleSetName'>
+            Required. The name of the virtual machine scale set.
+            </param>
+            <param name='vmInstanceIDs'>
+            Required. The list of virtual machine scale set instance IDs.
+            </param>
+            <returns>
+            The Compute service response for long-running operations.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.VirtualMachineScaleSetOperationsExtensions.UpdateInstances(Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations,System.String,System.String,Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceIDs)">
+            <summary>
+            The operation to manually upgrade virtual machines in a virtual
+            machine scale set.
+            </summary>
+            <param name='operations'>
+            Reference to the
+            Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations.
+            </param>
+            <param name='resourceGroupName'>
+            Required. The name of the resource group.
+            </param>
+            <param name='vmScaleSetName'>
+            Required. The name of the virtual machine scale set.
+            </param>
+            <param name='vmInstanceIDs'>
+            Required. The list of virtual machine scale set instance IDs.
+            </param>
+            <returns>
+            The Compute service response for long-running operations.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.VirtualMachineScaleSetOperationsExtensions.UpdateInstancesAsync(Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetOperations,System.String,System.String,Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceIDs)">
+            <summary>
+            The operation to manually upgrade virtual machines in a virtual
+            machine scale set.
             </summary>
             <param name='operations'>
             Reference to the

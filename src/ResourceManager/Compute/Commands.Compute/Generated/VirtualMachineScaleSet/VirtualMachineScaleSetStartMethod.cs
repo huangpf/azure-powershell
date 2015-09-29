@@ -95,10 +95,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Start", "AzureVirtualMachineScaleSet")]
-    public partial class StartAzureVirtualMachineScaleSet : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Start", "AzureVMSS")]
+    public partial class StartAzureVMSS : InvokeAzureComputeMethodCmdlet
     {
-        public StartAzureVirtualMachineScaleSet()
+        public StartAzureVMSS()
         {
             this.MethodName = "VirtualMachineScaleSetStart";
         }

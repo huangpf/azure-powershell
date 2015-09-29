@@ -109,10 +109,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Stop", "AzureVirtualMachineScaleSetInstances")]
-    public partial class StopAzureVirtualMachineScaleSetInstances : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Stop", "AzureVMSSInstances")]
+    public partial class StopAzureVMSSInstances : InvokeAzureComputeMethodCmdlet
     {
-        public StopAzureVirtualMachineScaleSetInstances()
+        public StopAzureVMSSInstances()
         {
             this.MethodName = "VirtualMachineScaleSetPowerOffInstances";
         }

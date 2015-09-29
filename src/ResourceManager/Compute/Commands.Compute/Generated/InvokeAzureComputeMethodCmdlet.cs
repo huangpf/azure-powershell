@@ -58,6 +58,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "VirtualMachineScaleSetDelete",
             "VirtualMachineScaleSetDeleteInstances",
             "VirtualMachineScaleSetGet",
+            "VirtualMachineScaleSetGetInstanceView",
             "VirtualMachineScaleSetList",
             "VirtualMachineScaleSetListAll",
             "VirtualMachineScaleSetListNext",
@@ -68,6 +69,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "VirtualMachineScaleSetRestartInstances",
             "VirtualMachineScaleSetStart",
             "VirtualMachineScaleSetStartInstances",
+            "VirtualMachineScaleSetUpdateInstances",
             "VirtualMachineScaleSetVMDeallocate",
             "VirtualMachineScaleSetVMDelete",
             "VirtualMachineScaleSetVMGet",
@@ -125,6 +127,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     case "VirtualMachineScaleSetGet" :
                         ExecuteVirtualMachineScaleSetGetMethod(argumentList);
                         break;
+                    case "VirtualMachineScaleSetGetInstanceView" :
+                        ExecuteVirtualMachineScaleSetGetInstanceViewMethod(argumentList);
+                        break;
                     case "VirtualMachineScaleSetList" :
                         ExecuteVirtualMachineScaleSetListMethod(argumentList);
                         break;
@@ -154,6 +159,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                         break;
                     case "VirtualMachineScaleSetStartInstances" :
                         ExecuteVirtualMachineScaleSetStartInstancesMethod(argumentList);
+                        break;
+                    case "VirtualMachineScaleSetUpdateInstances" :
+                        ExecuteVirtualMachineScaleSetUpdateInstancesMethod(argumentList);
                         break;
                     case "VirtualMachineScaleSetVMDeallocate" :
                         ExecuteVirtualMachineScaleSetVMDeallocateMethod(argumentList);
@@ -195,6 +203,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     case "VirtualMachineScaleSetDelete" : return CreateVirtualMachineScaleSetDeleteDynamicParameters();
                     case "VirtualMachineScaleSetDeleteInstances" : return CreateVirtualMachineScaleSetDeleteInstancesDynamicParameters();
                     case "VirtualMachineScaleSetGet" : return CreateVirtualMachineScaleSetGetDynamicParameters();
+                    case "VirtualMachineScaleSetGetInstanceView" : return CreateVirtualMachineScaleSetGetInstanceViewDynamicParameters();
                     case "VirtualMachineScaleSetList" : return CreateVirtualMachineScaleSetListDynamicParameters();
                     case "VirtualMachineScaleSetListAll" : return CreateVirtualMachineScaleSetListAllDynamicParameters();
                     case "VirtualMachineScaleSetListNext" : return CreateVirtualMachineScaleSetListNextDynamicParameters();
@@ -205,6 +214,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     case "VirtualMachineScaleSetRestartInstances" : return CreateVirtualMachineScaleSetRestartInstancesDynamicParameters();
                     case "VirtualMachineScaleSetStart" : return CreateVirtualMachineScaleSetStartDynamicParameters();
                     case "VirtualMachineScaleSetStartInstances" : return CreateVirtualMachineScaleSetStartInstancesDynamicParameters();
+                    case "VirtualMachineScaleSetUpdateInstances" : return CreateVirtualMachineScaleSetUpdateInstancesDynamicParameters();
                     case "VirtualMachineScaleSetVMDeallocate" : return CreateVirtualMachineScaleSetVMDeallocateDynamicParameters();
                     case "VirtualMachineScaleSetVMDelete" : return CreateVirtualMachineScaleSetVMDeleteDynamicParameters();
                     case "VirtualMachineScaleSetVMGet" : return CreateVirtualMachineScaleSetVMGetDynamicParameters();

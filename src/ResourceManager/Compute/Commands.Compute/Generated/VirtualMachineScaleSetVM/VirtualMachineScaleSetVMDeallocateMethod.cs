@@ -109,10 +109,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Stop", "AzureVirtualMachineScaleSetVMWithDeallocation")]
-    public partial class StopAzureVirtualMachineScaleSetVMWithDeallocation : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Stop", "AzureVMSSVMWithDeallocation")]
+    public partial class StopAzureVMSSVMWithDeallocation : InvokeAzureComputeMethodCmdlet
     {
-        public StopAzureVirtualMachineScaleSetVMWithDeallocation()
+        public StopAzureVMSSVMWithDeallocation()
         {
             this.MethodName = "VirtualMachineScaleSetVMDeallocate";
         }
