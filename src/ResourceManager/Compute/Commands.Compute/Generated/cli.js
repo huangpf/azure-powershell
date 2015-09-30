@@ -86,10 +86,16 @@ exports.init = function (cli) {
   .option('--operation <operation>', $('The JSON patch operation: add, remove, or replace.'))
   .option('--path <path>', $('The JSON data path, e.g.: \"foo/1\".'))
   .option('--value <value>', $('The JSON value.'))
-  .execute(function (parameterFile, operation, path, value, options, _) {
+  .option('--parse', $('Parse the JSON value to object.'))
+  .execute(function (parameterFile, operation, path, value, parse, options, _) {
     console.log(options.parameterFile);
     console.log(options.operation);
     console.log(options.path);
+    console.log(options.value);
+    console.log(options.parse);
+    if (options.parse) {
+      options.value = JSON.parse(options.value);
+    }
     console.log(options.value);
     console.log("=====================================");
     console.log("Reading file content from: \"" + options.parameterFile + "\"");
@@ -99,13 +105,13 @@ exports.init = function (cli) {
     console.log("JSON object:");
     console.log(JSON.stringify(parametersObj));
     if (options.operation == 'add') {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
     }
     else if (options.operation == 'remove') {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
     else if (options.operation == 'replace') {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     console.log("=====================================");
@@ -291,10 +297,16 @@ exports.init = function (cli) {
   .option('--operation <operation>', $('The JSON patch operation: add, remove, or replace.'))
   .option('--path <path>', $('The JSON data path, e.g.: \"foo/1\".'))
   .option('--value <value>', $('The JSON value.'))
-  .execute(function (parameterFile, operation, path, value, options, _) {
+  .option('--parse', $('Parse the JSON value to object.'))
+  .execute(function (parameterFile, operation, path, value, parse, options, _) {
     console.log(options.parameterFile);
     console.log(options.operation);
     console.log(options.path);
+    console.log(options.value);
+    console.log(options.parse);
+    if (options.parse) {
+      options.value = JSON.parse(options.value);
+    }
     console.log(options.value);
     console.log("=====================================");
     console.log("Reading file content from: \"" + options.parameterFile + "\"");
@@ -304,13 +316,13 @@ exports.init = function (cli) {
     console.log("JSON object:");
     console.log(JSON.stringify(parametersObj));
     if (options.operation == 'add') {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
     }
     else if (options.operation == 'remove') {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
     else if (options.operation == 'replace') {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     console.log("=====================================");
@@ -610,10 +622,16 @@ exports.init = function (cli) {
   .option('--operation <operation>', $('The JSON patch operation: add, remove, or replace.'))
   .option('--path <path>', $('The JSON data path, e.g.: \"foo/1\".'))
   .option('--value <value>', $('The JSON value.'))
-  .execute(function (parameterFile, operation, path, value, options, _) {
+  .option('--parse', $('Parse the JSON value to object.'))
+  .execute(function (parameterFile, operation, path, value, parse, options, _) {
     console.log(options.parameterFile);
     console.log(options.operation);
     console.log(options.path);
+    console.log(options.value);
+    console.log(options.parse);
+    if (options.parse) {
+      options.value = JSON.parse(options.value);
+    }
     console.log(options.value);
     console.log("=====================================");
     console.log("Reading file content from: \"" + options.parameterFile + "\"");
@@ -623,13 +641,13 @@ exports.init = function (cli) {
     console.log("JSON object:");
     console.log(JSON.stringify(parametersObj));
     if (options.operation == 'add') {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
     }
     else if (options.operation == 'remove') {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
     else if (options.operation == 'replace') {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     console.log("=====================================");
