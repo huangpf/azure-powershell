@@ -1799,7 +1799,7 @@ ${cmdlet_partial_class_code}
             $cli_op_code_content += "  ${params_generate_category_name}.command('${cli_method_option_name}')" + $new_line_str;
             $cli_op_code_content += "  .description(`$('Generate ${category_name} parameter string or files.'))" + $new_line_str;
             $cli_op_code_content += "  .usage('[options]')" + $new_line_str;
-            $cli_op_code_content += "  .option('--parameter-file <output-file>', `$('The parameter file path.'))" + $new_line_str;
+            $cli_op_code_content += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $new_line_str;
             $cli_op_code_content += "  .execute(function (";
             $cli_op_code_content += "parameterFile";
             $cli_op_code_content += ", options, _) {" + $new_line_str;
@@ -1839,13 +1839,13 @@ ${cmdlet_partial_class_code}
             $cli_op_code_content += "    console.log(`"JSON object:`");" + $new_line_str;
             $cli_op_code_content += "    console.log(JSON.stringify(${cli_param_name}Obj));" + $new_line_str;
             $cli_op_code_content += "    if (options.operation == 'add') {" + $new_line_str;
-            $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $new_line_str;
+            $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);" + $new_line_str;
             $cli_op_code_content += "    }" + $new_line_str;
-            $cli_op_code_content += "    else if (options.operation == 'remove') {" + $new_line_str;
+            $cli_op_code_content += "    else if (options.operation == 'remove' && jsonpatch.apply(${cli_param_name}Obj, [{op: 'test', path: options.path}])) {" + $new_line_str;
             $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path}]);" + $new_line_str;
             $cli_op_code_content += "    }" + $new_line_str;
             $cli_op_code_content += "    else if (options.operation == 'replace') {" + $new_line_str;
-            $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $new_line_str;
+            $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);" + $new_line_str;
             $cli_op_code_content += "    }" + $new_line_str;
             $cli_op_code_content += "    var updatedContent = JSON.stringify(${cli_param_name}Obj);" + $new_line_str;
             $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;

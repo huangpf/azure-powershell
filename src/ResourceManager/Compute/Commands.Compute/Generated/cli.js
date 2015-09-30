@@ -68,7 +68,7 @@ exports.init = function (cli) {
   generate.command('create-or-update')
   .description($('Generate vmss parameter string or files.'))
   .usage('[options]')
-  .option('--parameter-file <output-file>', $('The parameter file path.'))
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .execute(function (parameterFile, options, _) {
     console.log("{\"provisioningState\":\"\",\"sku\":{\"capacity\":null,\"name\":\"\",\"tier\":\"\"},\"upgradePolicy\":{\"mode\":\"\"},\"virtualMachineProfile\":{\"extensionProfile\":{\"extensions\":[{\"autoUpgradeMinorVersion\":false,\"extensionType\":\"\",\"protectedSettings\":\"\",\"provisioningState\":\"\",\"publisher\":\"\",\"settings\":\"\",\"typeHandlerVersion\":\"\",\"id\":\"\",\"name\":\"\",\"type\":\"\",\"location\":\"\",\"tags\":{}}]},\"networkProfile\":{\"networkInterfaceConfigurations\":[{\"iPConfigurations\":[{\"loadBalancerBackendAddressPools\":[{\"referenceUri\":\"\"}],\"loadBalancerInboundNatPools\":[{\"referenceUri\":\"\"}],\"name\":\"\",\"subnet\":{\"referenceUri\":\"\"}}],\"name\":\"\",\"primary\":null}]},\"oSProfile\":{\"computerNamePrefix\":\"\",\"adminPassword\":\"\",\"adminUsername\":\"\",\"customData\":\"\",\"linuxConfiguration\":{\"disablePasswordAuthentication\":null,\"sshConfiguration\":{\"publicKeys\":[{\"keyData\":\"\",\"path\":\"\"}]}},\"secrets\":[{\"sourceVault\":{\"referenceUri\":\"\"},\"vaultCertificates\":[{\"certificateStore\":\"\",\"certificateUrl\":\"\"}]}],\"windowsConfiguration\":{\"additionalUnattendContents\":[{\"componentName\":\"\",\"content\":\"\",\"passName\":\"\",\"settingName\":\"\"}],\"enableAutomaticUpdates\":null,\"provisionVMAgent\":null,\"timeZone\":\"\",\"winRMConfiguration\":{\"listeners\":[{\"certificateUrl\":\"\",\"protocol\":\"\"}]}}},\"storageProfile\":{\"imageReference\":{\"offer\":\"\",\"publisher\":\"\",\"sku\":\"\",\"version\":\"\"},\"oSDisk\":{\"caching\":\"\",\"createOption\":\"\",\"name\":\"\",\"operatingSystemType\":\"\",\"sourceImage\":{\"uri\":\"\"},\"virtualHardDiskContainers\":[\"\"]}}},\"id\":\"\",\"name\":\"\",\"type\":\"\",\"location\":\"\",\"tags\":{}}");
     var filePath = "vmss_createOrUpdate.json";
@@ -99,13 +99,13 @@ exports.init = function (cli) {
     console.log("JSON object:");
     console.log(JSON.stringify(parametersObj));
     if (options.operation == 'add') {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);
     }
-    else if (options.operation == 'remove') {
+    else if (options.operation == 'remove' && jsonpatch.apply(parametersObj, [{op: 'test', path: options.path}])) {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
     else if (options.operation == 'replace') {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     console.log("=====================================");
@@ -273,7 +273,7 @@ exports.init = function (cli) {
   generate.command('list-all')
   .description($('Generate vmss parameter string or files.'))
   .usage('[options]')
-  .option('--parameter-file <output-file>', $('The parameter file path.'))
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .execute(function (parameterFile, options, _) {
     console.log("{}");
     var filePath = "vmss_listAll.json";
@@ -304,13 +304,13 @@ exports.init = function (cli) {
     console.log("JSON object:");
     console.log(JSON.stringify(parametersObj));
     if (options.operation == 'add') {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);
     }
-    else if (options.operation == 'remove') {
+    else if (options.operation == 'remove' && jsonpatch.apply(parametersObj, [{op: 'test', path: options.path}])) {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
     else if (options.operation == 'replace') {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     console.log("=====================================");
@@ -592,7 +592,7 @@ exports.init = function (cli) {
   generate.command('list')
   .description($('Generate vmssvm parameter string or files.'))
   .usage('[options]')
-  .option('--parameter-file <output-file>', $('The parameter file path.'))
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .execute(function (parameterFile, options, _) {
     console.log("{\"expandExpression\":\"\",\"filterExpression\":\"\",\"resourceGroupName\":\"\",\"selectExpression\":\"\",\"virtualMachineScaleSetName\":\"\"}");
     var filePath = "vmssvm_list.json";
@@ -623,13 +623,13 @@ exports.init = function (cli) {
     console.log("JSON object:");
     console.log(JSON.stringify(parametersObj));
     if (options.operation == 'add') {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);
     }
-    else if (options.operation == 'remove') {
+    else if (options.operation == 'remove' && jsonpatch.apply(parametersObj, [{op: 'test', path: options.path}])) {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
     else if (options.operation == 'replace') {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     console.log("=====================================");
