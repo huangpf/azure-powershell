@@ -101,7 +101,7 @@ exports.init = function (cli) {
     if (options.operation == 'add') {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);
     }
-    else if (options.operation == 'remove' && jsonpatch.apply(parametersObj, [{op: 'test', path: options.path}])) {
+    else if (options.operation == 'remove') {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
     else if (options.operation == 'replace') {
@@ -306,7 +306,7 @@ exports.init = function (cli) {
     if (options.operation == 'add') {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);
     }
-    else if (options.operation == 'remove' && jsonpatch.apply(parametersObj, [{op: 'test', path: options.path}])) {
+    else if (options.operation == 'remove') {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
     else if (options.operation == 'replace') {
@@ -625,7 +625,7 @@ exports.init = function (cli) {
     if (options.operation == 'add') {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);
     }
-    else if (options.operation == 'remove' && jsonpatch.apply(parametersObj, [{op: 'test', path: options.path}])) {
+    else if (options.operation == 'remove') {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
     else if (options.operation == 'replace') {

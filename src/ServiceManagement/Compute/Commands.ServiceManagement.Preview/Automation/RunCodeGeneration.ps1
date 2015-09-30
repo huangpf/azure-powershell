@@ -1841,7 +1841,7 @@ ${cmdlet_partial_class_code}
             $cli_op_code_content += "    if (options.operation == 'add') {" + $new_line_str;
             $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: JSON.parse(options.value)}]);" + $new_line_str;
             $cli_op_code_content += "    }" + $new_line_str;
-            $cli_op_code_content += "    else if (options.operation == 'remove' && jsonpatch.apply(${cli_param_name}Obj, [{op: 'test', path: options.path}])) {" + $new_line_str;
+            $cli_op_code_content += "    else if (options.operation == 'remove') {" + $new_line_str;
             $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path}]);" + $new_line_str;
             $cli_op_code_content += "    }" + $new_line_str;
             $cli_op_code_content += "    else if (options.operation == 'replace') {" + $new_line_str;
