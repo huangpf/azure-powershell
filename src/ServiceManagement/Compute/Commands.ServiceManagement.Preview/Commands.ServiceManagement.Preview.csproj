@@ -290,6 +290,9 @@
     <Compile Include="ServiceManagementPreviewProfile.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Automation\StringProcessingHelper.ps1" />
+    <None Include="Automation\Generate-ParameterCommand.ps1" />
+    <None Include="Automation\Create-ParameterCmdletTree.ps1" />
     <None Include="Automation\Create-ParameterObject.ps1" />
     <None Include="Automation\RunCodeGeneration.ps1" />
     <None Include="Automation\ConvertTo-Json.ps1" />

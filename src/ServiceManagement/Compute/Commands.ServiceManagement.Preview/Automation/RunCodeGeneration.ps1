@@ -148,153 +148,7 @@ function Get-SortedUsingsCode
 
 $code_using_strs = Get-SortedUsingsCode;
 
-function Get-NormalizedName
-{
-    param(
-        # Sample: 'vmName' => 'VMName', 'resourceGroup' => 'ResourceGroup', etc.
-        [Parameter(Mandatory = $True)]
-        [string]$inputName
-    )
-
-    if ([string]::IsNullOrEmpty($inputName))
-    {
-        return $inputName;
-    }
-
-    if ($inputName.StartsWith('vm'))
-    {
-        $outputName = 'VM' + $inputName.Substring(2);
-    }
-    else
-    {
-        [char]$firstChar = $inputName[0];
-        $firstChar = [System.Char]::ToUpper($firstChar);
-        $outputName = $firstChar + $inputName.Substring(1);
-    }
-
-    return $outputName;
-}
-
-function Get-CliNormalizedName
-{
-    # Sample: 'VMName' to 'vmName', 'VirtualMachine' => 'virtualMachine', 'ResourceGroup' => 'resourceGroup', etc.
-    param(
-        [Parameter(Mandatory = $True)]
-        [string]$inName
-    )
-
-    if ([string]::IsNullOrEmpty($inName))
-    {
-        return $inName;
-    }
-
-    if ($inName.StartsWith('VM'))
-    {
-        $outName = 'vm' + $inName.Substring(2);
-    }
-    elseif ($inName.StartsWith('IP'))
-    {
-        $outName = 'ip' + $inName.Substring(2);
-    }
-    else
-    {
-        [char]$firstChar = $inName[0];
-        $firstChar = [System.Char]::ToLower($firstChar);
-        $outName = $firstChar + $inName.Substring(1);
-    }
-
-    return $outName;
-}
-
-
-function Get-CliCategoryName
-{
-    # Sample: 'VirtualMachineScaleSetVM' => 'vmssvm', 'VirtualMachineScaleSet' => 'vmss', etc.
-    param(
-        [Parameter(Mandatory = $True)]
-        [string]$inName
-    )
-
-    if ($inName -eq 'VirtualMachineScaleSet')
-    {
-        $outName = 'vmss';
-    }
-    elseif ($inName -eq 'VirtualMachineScaleSetVM')
-    {
-        $outName = 'vmssvm';
-    }
-    else
-    {
-        $outName = Get-CliNormalizedName $inName;
-    }
-
-    return $outName;
-}
-
-
-function Get-CliOptionName
-{
-    # Sample: 'VMName' to 'vmName', 'VirtualMachine' => 'virtualMachine', 'ResourceGroup' => 'resourceGroup', etc.
-    param(
-        [Parameter(Mandatory = $True)]
-        [string]$inName
-    )
-
-    if ([string]::IsNullOrEmpty($inName))
-    {
-        return $inName;
-    }
-
-    [string]$varName = Get-CliNormalizedName $inName;
-    [string]$outName = $null;
-
-    $i = 0;
-    while ($i -lt $varName.Length)
-    {
-        if ($i -eq 0 -or [char]::IsUpper($varName[$i]))
-        {
-            if ($i -gt 0)
-            {
-                # Sample: "parameter-..."
-                $outName += '-';
-            }
-
-            [string[]]$abbrWords = @('VM', 'IP');
-            $matched = $false;
-            foreach ($matchedAbbr in $abbrWords)
-            {
-                if ($varName.Substring($i) -like ("${matchedAbbr}*"))
-                {
-                    $matched = $true;
-                    break;
-                }
-            }
-
-            if ($matched)
-            {
-                $outName += $matchedAbbr.ToLower();
-                $i = $i + $matchedAbbr.Length;
-            }
-            else
-            {
-                $j = $i + 1;
-                while (($j -lt $varName.Length) -and [char]::IsLower($varName[$j]))
-                {
-                    $j++;
-                }
-
-                $outName += $varName.Substring($i, $j - $i).ToLower();
-                $i = $j;
-            }
-        }
-        else
-        {
-            $i++;
-        }
-    }
-
-    return $outName;
-}
+. "$PSScriptRoot\StringProcessingHelper.ps1";
 
 function Get-NormalizedTypeName
 {
@@ -1707,6 +1561,9 @@ ${cmdlet_partial_class_code}
                 $param_object = (. $PSScriptRoot\Create-ParameterObject.ps1 -typeInfo $pt.ParameterType);
                 $param_object_comment = (. $PSScriptRoot\ConvertTo-Json.ps1 -inputObject $param_object -compress $true);
                 $param_object_comment_no_compress = (. $PSScriptRoot\ConvertTo-Json.ps1 -inputObject $param_object);
+
+                $cmdlet_tree = (. $PSScriptRoot\Create-ParameterCmdletTree.ps1 -TypeInfo $pt.ParameterType -NameSpace $client_model_namespace -ParameterName $pt.ParameterType.Name);
+                $cmdlet_tree_code = (. $PSScriptRoot\Generate-ParameterCommand.ps1 -CmdletTreeNode $cmdlet_tree -Operation $opShortName);
             }
         }
     }
@@ -1864,6 +1721,9 @@ ${cmdlet_partial_class_code}
             $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
             $cli_op_code_content += "  });" + $new_line_str;
             $cli_op_code_content += $new_line_str;
+
+            # 3.3.3 Parameter Commands
+            $cli_op_code_content += $cmdlet_tree_code + $new_line_str;
             break;
         }
     }
