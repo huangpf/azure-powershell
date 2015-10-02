@@ -33,6 +33,7 @@ function New-ParameterCmdletTreeNode()
     $node = New-Object PSObject;
     $node | Add-Member -Type NoteProperty -Name Name -Value $Name;
     $node | Add-Member -Type NoteProperty -Name Parent -Value $Parent;
+    $node | Add-Member -Type NoteProperty -Name IsListItem -Value $false;
     $node | Add-Member -Type NoteProperty -Name Properties -Value @();
     $node | Add-Member -Type NoteProperty -Name SubNodes -Value @();
     
@@ -67,9 +68,9 @@ function Create-ParameterCmdletTreeImpl
     $treeNode = New-ParameterCmdletTreeNode $ParameterName $TypeInfo $Parent;
     
     $padding = ($Depth.ToString() + (' ' * (4 * ($Depth + 1))));
-    Write-Verbose ($padding + $treeNode.Name);
-    Write-Verbose ($padding + "T: " + $treeNode);
-    Write-Verbose ($padding + "P: " + $Parent);
+    Write-Verbose ($padding + "-----------------------------------------------------------");
+    Write-Verbose ($padding + "[ Node ] "  + $treeNode.Name);
+    Write-Verbose ($padding + "[Parent] " + $Parent.Name);
 
     foreach ($item in $TypeInfo.GetProperties())
     {
@@ -87,11 +88,12 @@ function Create-ParameterCmdletTreeImpl
         {
             $listItemType = $itemProp.PropertyType.GenericTypeArguments[0];
             
-            Write-Verbose ($padding + '-' + $listItemType.Name + "List");
+            Write-Verbose ($padding + '-' + $listItemType.Name + " [List]");
 
             $subTreeNode = Create-ParameterCmdletTreeImpl $listItemType $treeNode $itemProp.Name ($Depth + 1)
             if ($subTreeNode -ne $null)
             {
+                $subTreeNode.IsListItem = $true;
                 $treeNode.SubNodes += $subTreeNode;
             }
         }
