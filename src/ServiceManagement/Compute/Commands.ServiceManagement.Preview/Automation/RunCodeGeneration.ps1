@@ -148,59 +148,7 @@ function Get-SortedUsingsCode
 
 $code_using_strs = Get-SortedUsingsCode;
 
-function Get-NormalizedName
-{
-    param(
-        # Sample: 'vmName' => 'VMName', 'resourceGroup' => 'ResourceGroup', etc.
-        [Parameter(Mandatory = $True)]
-        [string]$inputName
-    )
-
-    if ([string]::IsNullOrEmpty($inputName))
-    {
-        return $inputName;
-    }
-
-    if ($inputName.StartsWith('vm'))
-    {
-        $outputName = 'VM' + $inputName.Substring(2);
-    }
-    else
-    {
-        [char]$firstChar = $inputName[0];
-        $firstChar = [System.Char]::ToUpper($firstChar);
-        $outputName = $firstChar + $inputName.Substring(1);
-    }
-
-    return $outputName;
-}
-
-function Get-UnnormalizedName
-{
-    # Sample: 'VMName' to 'vmName', 'VirtualMachine' => 'virtualMachine', 'ResourceGroup' => 'resourceGroup', etc.
-    param(
-        [Parameter(Mandatory = $True)]
-        [string]$inputName
-    )
-
-    if ([string]::IsNullOrEmpty($inputName))
-    {
-        return $inputName;
-    }
-
-    if ($inputName.StartsWith('VM'))
-    {
-        $outputName = 'vm' + $inputName.Substring(2);
-    }
-    else
-    {
-        [char]$firstChar = $inputName[0];
-        $firstChar = [System.Char]::ToLower($firstChar);
-        $outputName = $firstChar + $inputName.Substring(1);
-    }
-
-    return $outputName;
-}
+. "$PSScriptRoot\StringProcessingHelper.ps1";
 
 function Get-NormalizedTypeName
 {
@@ -1613,63 +1561,55 @@ ${cmdlet_partial_class_code}
                 $param_object = (. $PSScriptRoot\Create-ParameterObject.ps1 -typeInfo $pt.ParameterType);
                 $param_object_comment = (. $PSScriptRoot\ConvertTo-Json.ps1 -inputObject $param_object -compress $true);
                 $param_object_comment_no_compress = (. $PSScriptRoot\ConvertTo-Json.ps1 -inputObject $param_object);
+
+                $cmdlet_tree = (. $PSScriptRoot\Create-ParameterCmdletTree.ps1 -TypeInfo $pt.ParameterType -NameSpace $client_model_namespace -ParameterName $pt.ParameterType.Name);
+                $cmdlet_tree_code = (. $PSScriptRoot\Generate-ParameterCommand.ps1 -CmdletTreeNode $cmdlet_tree -Operation $opShortName);
             }
         }
     }
 
     # 3.2 functions
-    $cli_op_name = Get-UnnormalizedName $opShortName;
-    if ($opShortName -eq 'VirtualMachineScaleSet')
-    {
-        $category_name = 'vmss';
-    }
-    elseif ($opShortName -eq 'VirtualMachineScaleSetVM')
-    {
-        $category_name = 'vmssvm';
-    }
-    else
-    {
-        $category_name = $cli_op_name;
-    }
-
-    $cli_method_name = Get-UnnormalizedName $methodName;
+    $category_name = Get-CliCategoryName $opShortName;
+    $cli_method_name = Get-CliNormalizedName $methodName;
+    $cli_method_option_name = Get-CliOptionName $methodName;
+    $cli_op_name = Get-CliNormalizedName $opShortName;
+    $cli_op_description = (Get-CliOptionName $opShortName).Replace('-', ' ');
 
     $cli_op_code_content += "//" + $cli_op_name + " -> " + $methodName + $new_line_str;
     if ($param_object_comment -ne $null)
     {
         $cli_op_code_content += "/*" + $new_line_str + $param_object_comment + $new_line_str + "*/" + $new_line_str;
     }
-    
-    $component_name = 'compute';
-    $cli_op_code_content += "  var $category_name = compute.category('${category_name}').description(`$('Commands for Azure Compute $opShortName'));" + $new_line_str;
 
-    $cli_op_code_content += "  ${category_name}.command('${cli_method_name}')" + $new_line_str;
-    $cli_op_code_content += "  .description(`$('${category_name} ${cli_method_name}'))" + $new_line_str;
+    $cli_op_code_content += "  var $category_name = cli.category('${category_name}').description(`$('Commands to manage your $cli_op_description.'));" + $new_line_str;
+
+    $cli_op_code_content += "  ${category_name}.command('${cli_method_option_name}')" + $new_line_str;
+    $cli_op_code_content += "  .description(`$('${cli_method_option_name} method to manage your $cli_op_description.'))" + $new_line_str;
     $cli_op_code_content += "  .usage('[options]')" + $new_line_str;
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
-        $cli_param_name = $param_names[$index];
-        $cli_op_code_content += "  .option('--${cli_param_name} <${cli_param_name}>', `$('${cli_param_name}'))" + $new_line_str;
+        $cli_option_name = Get-CliOptionName $param_names[$index];
+        $cli_op_code_content += "  .option('--${cli_option_name} <${cli_option_name}>', `$('${cli_option_name}'))" + $new_line_str;
     }
-    $cli_op_code_content += "  .option('--ParameterFile <ParameterFile>', `$('the input parameter file'))" + $new_line_str;
+    $cli_op_code_content += "  .option('--parameter-file <parameter-file>', `$('the input parameter file'))" + $new_line_str;
     $cli_op_code_content += "  .option('-s, --subscription <subscription>', `$('the subscription identifier'))" + $new_line_str;
     $cli_op_code_content += "  .execute(function ("
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
         if ($index -gt 0) { $cli_op_code_content += ", "; }
-        $cli_param_name = $param_names[$index];
+        $cli_param_name = Get-CliNormalizedName $param_names[$index];
         $cli_op_code_content += "$cli_param_name";
     }
     $cli_op_code_content += ", options, _) {" + $new_line_str;
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
-        $cli_param_name = $param_names[$index];
+        $cli_param_name = Get-CliNormalizedName $param_names[$index];
         $cli_op_code_content += "    console.log('${cli_param_name} = ' + options.${cli_param_name});" + $new_line_str;
         if (${cli_param_name} -eq 'Parameters')
         {
-            $cli_op_code_content += "    if (options.ParameterFile) {" + $new_line_str;
-            $cli_op_code_content += "      console.log(`"Reading file content from: \`"`" + options.ParameterFile + `"\`"`");" + $new_line_str;
-            $cli_op_code_content += "      var fileContent = fs.readFileSync(options.ParameterFile, 'utf8');" + $new_line_str;
+            $cli_op_code_content += "    if (options.parameterFile) {" + $new_line_str;
+            $cli_op_code_content += "      console.log(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $new_line_str;
+            $cli_op_code_content += "      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $new_line_str;
             $cli_op_code_content += "      var ${cli_param_name}Obj = JSON.parse(fileContent);" + $new_line_str;
             $cli_op_code_content += "    }" + $new_line_str;
             $cli_op_code_content += "    else {" + $new_line_str;
@@ -1680,13 +1620,12 @@ ${cmdlet_partial_class_code}
     }
     $cli_op_code_content += "    var subscription = profile.current.getSubscription(options.subscription);" + $new_line_str;
     $cli_op_code_content += "    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);" + $new_line_str;
-    $cli_op_code_content += "    console.log(computeManagementClient.${cli_op_name}s.${cli_method_name});" + $new_line_str;
     $cli_op_code_content += "    var result = computeManagementClient.${cli_op_name}s.${cli_method_name}(";
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
         if ($index -gt 0) { $cli_op_code_content += ", "; }
         
-        $cli_param_name = $param_names[$index];
+        $cli_param_name = Get-CliNormalizedName $param_names[$index];
         if (${cli_param_name} -eq 'Parameters')
         {
             $cli_op_code_content += "${cli_param_name}Obj";
@@ -1703,18 +1642,23 @@ ${cmdlet_partial_class_code}
     # 3.3 Parameters
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
-        if (${cli_param_name} -eq 'Parameters')
+        $cli_param_name = Get-CliNormalizedName $param_names[$index];
+        if ($cli_param_name -eq 'Parameters')
         {
             $params_category_name = 'parameters';
+            $params_generate_category_name = 'generate';
 
-            $cli_op_code_content += "  var ${params_category_name} = $category_name.category('${params_category_name}').description(`$('Generate Parameters for Azure Compute $opShortName'));" + $new_line_str;
-            $cli_op_code_content += "  ${params_category_name}.command('${cli_method_name}')" + $new_line_str;
+            # 3.3.1 Parameter Generate Command
+            $cli_op_code_content += "  var ${params_category_name} = ${category_name}.category('${params_category_name}')" + $new_line_str;
+            $cli_op_code_content += "  .description(`$('Commands to manage parameter for your ${cli_op_description}.'));" + $new_line_str;
+            $cli_op_code_content += "  var ${params_generate_category_name} = ${params_category_name}.category('${params_generate_category_name}')" + $new_line_str;
+            $cli_op_code_content += "  .description(`$('Commands to generate parameter file for your ${cli_op_description}.'));" + $new_line_str;
+            $cli_op_code_content += "  ${params_generate_category_name}.command('${cli_method_option_name}')" + $new_line_str;
             $cli_op_code_content += "  .description(`$('Generate ${category_name} parameter string or files.'))" + $new_line_str;
             $cli_op_code_content += "  .usage('[options]')" + $new_line_str;
-            $cli_op_code_content += "  .option('--generate', `$('To generate parameter string/file for method: ${cli_method_name}.'))" + $new_line_str;
-            $cli_op_code_content += "  .option('--output-file <output-file>', `$('The output file path.'))" + $new_line_str;
+            $cli_op_code_content += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $new_line_str;
             $cli_op_code_content += "  .execute(function (";
-            $cli_op_code_content += "generate, outputFile";
+            $cli_op_code_content += "parameterFile";
             $cli_op_code_content += ", options, _) {" + $new_line_str;
 
             $output_content = $param_object_comment.Replace("`"", "\`"");
@@ -1723,11 +1667,63 @@ ${cmdlet_partial_class_code}
             $file_content = $param_object_comment_no_compress.Replace($new_line_str, "\r\n").Replace("`r", "\r").Replace("`n", "\n");
             $file_content = $file_content.Replace("`"", "\`"").Replace(' ', '');
             $cli_op_code_content += "    var filePath = `"${category_name}_${cli_method_name}.json`";" + $new_line_str;
-            $cli_op_code_content += "    if (options.outputFile) { filePath = options.outputFile; };" + $new_line_str;
+            $cli_op_code_content += "    if (options.parameterFile) { filePath = options.parameterFile; };" + $new_line_str;
             $cli_op_code_content += "    fs.writeFileSync(filePath, beautify(`"" + $file_content + "`"));" + $new_line_str;
-
+            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
             $cli_op_code_content += "    console.log(`"Parameter file output to: `" + filePath);" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
             $cli_op_code_content += "  });" + $new_line_str;
+            $cli_op_code_content += $new_line_str;
+
+            # 3.3.2 Parameter Patch Command
+            $cli_op_code_content += "  ${params_category_name}.command('patch')" + $new_line_str;
+            $cli_op_code_content += "  .description(`$('Command to patch ${category_name} parameter JSON file.'))" + $new_line_str;
+            $cli_op_code_content += "  .usage('[options]')" + $new_line_str;
+            $cli_op_code_content += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $new_line_str;
+            $cli_op_code_content += "  .option('--operation <operation>', `$('The JSON patch operation: add, remove, or replace.'))" + $new_line_str;
+            $cli_op_code_content += "  .option('--path <path>', `$('The JSON data path, e.g.: \`"foo/1\`".'))" + $new_line_str;
+            $cli_op_code_content += "  .option('--value <value>', `$('The JSON value.'))" + $new_line_str;
+            $cli_op_code_content += "  .option('--parse', `$('Parse the JSON value to object.'))" + $new_line_str;
+            $cli_op_code_content += "  .execute(function (parameterFile, operation, path, value, parse, options, _) {" + $new_line_str;
+            $cli_op_code_content += "    console.log(options.parameterFile);" + $new_line_str;
+            $cli_op_code_content += "    console.log(options.operation);" + $new_line_str;
+            $cli_op_code_content += "    console.log(options.path);" + $new_line_str;
+            $cli_op_code_content += "    console.log(options.value);" + $new_line_str;
+            $cli_op_code_content += "    console.log(options.parse);" + $new_line_str;
+            $cli_op_code_content += "    if (options.parse) {" + $new_line_str;
+            $cli_op_code_content += "      options.value = JSON.parse(options.value);" + $new_line_str;
+            $cli_op_code_content += "    }" + $new_line_str;
+            $cli_op_code_content += "    console.log(options.value);" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $new_line_str;
+            $cli_op_code_content += "    var ${cli_param_name}Obj = JSON.parse(fileContent);" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"JSON object:`");" + $new_line_str;
+            $cli_op_code_content += "    console.log(JSON.stringify(${cli_param_name}Obj));" + $new_line_str;
+            $cli_op_code_content += "    if (options.operation == 'add') {" + $new_line_str;
+            $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $new_line_str;
+            $cli_op_code_content += "    }" + $new_line_str;
+            $cli_op_code_content += "    else if (options.operation == 'remove') {" + $new_line_str;
+            $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path}]);" + $new_line_str;
+            $cli_op_code_content += "    }" + $new_line_str;
+            $cli_op_code_content += "    else if (options.operation == 'replace') {" + $new_line_str;
+            $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $new_line_str;
+            $cli_op_code_content += "    }" + $new_line_str;
+            $cli_op_code_content += "    var updatedContent = JSON.stringify(${cli_param_name}Obj);" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"JSON object (updated):`");" + $new_line_str;
+            $cli_op_code_content += "    console.log(JSON.stringify(${cli_param_name}Obj));" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    fs.writeFileSync(options.parameterFile, beautify(updatedContent));" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"Parameter file updated at: `" + options.parameterFile);" + $new_line_str;
+            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "  });" + $new_line_str;
+            $cli_op_code_content += $new_line_str;
+
+            # 3.3.3 Parameter Commands
+            $cli_op_code_content += $cmdlet_tree_code + $new_line_str;
             break;
         }
     }
@@ -2080,7 +2076,7 @@ function Write-CLICommandFile
     Write-Output("Writing CLI Command File: " + $new_line_str + $fileFullPath);
     Write-Output "=============================================";
 
-    $cliCommandHeaderAndPrepCode =
+    $codeContent = 
 @"
 /**
  * Copyright (c) Microsoft.  All rights reserved.
@@ -2101,6 +2097,7 @@ function Write-CLICommandFile
 
 var __ = require('underscore');
 var fs = require('fs');
+var jsonpatch = require('json-patch');
 var util = require('util');
 
 var profile = require('../../../util/profile');
@@ -2115,13 +2112,10 @@ function beautify(jsonText) {
 
 exports.init = function (cli) {
 
-  var compute = cli.category('compute')
-    .description(`$('Commands for Azure Compute'));
+$commandCodeLines
 
-
+};
 "@;
-
-    $codeContent = $cliCommandHeaderAndPrepCode + $commandCodeLines + $new_line_str + "};";
 
     $st = Set-Content -Path $fileFullPath -Value $codeContent -Force;
 }
