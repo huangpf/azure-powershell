@@ -124,7 +124,7 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set virtual-machine-scale-set
+  //parameters set virtual-machine-scale-set
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -212,7 +212,39 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set sku
+  //parameters remove virtual-machine-scale-set
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('virtual-machine-scale-set')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set sku
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -276,7 +308,39 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set upgrade-policy
+  //parameters remove sku
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('sku')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/sku";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set upgrade-policy
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -324,7 +388,103 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set extensions
+  //parameters remove upgrade-policy
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('upgrade-policy')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/upgradePolicy";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters remove virtual-machine-profile
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('virtual-machine-profile')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters remove extension-profile
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('extension-profile')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/extensionProfile";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set extensions
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -365,7 +525,7 @@ exports.init = function (cli) {
     console.log("JSON object:");
     console.log(JSON.stringify(parametersObj));
     options.operation = 'replace';
-    options.path = "/virtualMachineProfile/extensionProfile/extensions/" + options.index;
+    options.path = "/virtualMachineProfile/extensionProfile/extensions" + (options.index ? ('/' + options.index) : '');
     var paramPath = options.path + "/" + "autoUpgradeMinorVersion";
     console.log("================================================");
     console.log("JSON Parameters Path:" + paramPath);
@@ -461,7 +621,72 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set network-interface-configurations
+  //parameters remove extensions
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('extensions')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/extensionProfile/extensions" + (options.index ? ('/' + options.index) : '');
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters remove network-profile
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('network-profile')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/networkProfile";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set network-interface-configurations
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -492,7 +717,7 @@ exports.init = function (cli) {
     console.log("JSON object:");
     console.log(JSON.stringify(parametersObj));
     options.operation = 'replace';
-    options.path = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/" + options.index;
+    options.path = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations" + (options.index ? ('/' + options.index) : '');
     var paramPath = options.path + "/" + "name";
     console.log("================================================");
     console.log("JSON Parameters Path:" + paramPath);
@@ -518,7 +743,40 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set ip-configurations
+  //parameters remove network-interface-configurations
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('network-interface-configurations')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations" + (options.index ? ('/' + options.index) : '');
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set ip-configurations
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -549,7 +807,7 @@ exports.init = function (cli) {
     console.log("JSON object:");
     console.log(JSON.stringify(parametersObj));
     options.operation = 'replace';
-    options.path = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/" + options.networkInterfaceConfigurationsIndex + "/iPConfigurations/" + options.index;
+    options.path = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/" + options.networkInterfaceConfigurationsIndex + "/iPConfigurations" + (options.index ? ('/' + options.index) : '');
     var paramPath = options.path + "/" + "name";
     console.log("================================================");
     console.log("JSON Parameters Path:" + paramPath);
@@ -568,7 +826,41 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set load-balancer-backend-address-pools
+  //parameters remove ip-configurations
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('ip-configurations')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/" + options.networkInterfaceConfigurationsIndex + "/iPConfigurations" + (options.index ? ('/' + options.index) : '');
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set load-balancer-backend-address-pools
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -600,7 +892,7 @@ exports.init = function (cli) {
     console.log("JSON object:");
     console.log(JSON.stringify(parametersObj));
     options.operation = 'replace';
-    options.path = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/" + options.networkInterfaceConfigurationsIndex + "/iPConfigurations/" + options.ipConfigurationsIndex + "/loadBalancerBackendAddressPools/" + options.index;
+    options.path = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/" + options.networkInterfaceConfigurationsIndex + "/iPConfigurations/" + options.ipConfigurationsIndex + "/loadBalancerBackendAddressPools" + (options.index ? ('/' + options.index) : '');
     var paramPath = options.path + "/" + "referenceUri";
     console.log("================================================");
     console.log("JSON Parameters Path:" + paramPath);
@@ -619,7 +911,42 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set load-balancer-inbound-nat-pools
+  //parameters remove load-balancer-backend-address-pools
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('load-balancer-backend-address-pools')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
+  .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/" + options.networkInterfaceConfigurationsIndex + "/iPConfigurations/" + options.ipConfigurationsIndex + "/loadBalancerBackendAddressPools" + (options.index ? ('/' + options.index) : '');
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set load-balancer-inbound-nat-pools
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -651,7 +978,7 @@ exports.init = function (cli) {
     console.log("JSON object:");
     console.log(JSON.stringify(parametersObj));
     options.operation = 'replace';
-    options.path = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/" + options.networkInterfaceConfigurationsIndex + "/iPConfigurations/" + options.ipConfigurationsIndex + "/loadBalancerInboundNatPools/" + options.index;
+    options.path = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/" + options.networkInterfaceConfigurationsIndex + "/iPConfigurations/" + options.ipConfigurationsIndex + "/loadBalancerInboundNatPools" + (options.index ? ('/' + options.index) : '');
     var paramPath = options.path + "/" + "referenceUri";
     console.log("================================================");
     console.log("JSON Parameters Path:" + paramPath);
@@ -670,7 +997,42 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set subnet
+  //parameters remove load-balancer-inbound-nat-pools
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('load-balancer-inbound-nat-pools')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
+  .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/" + options.networkInterfaceConfigurationsIndex + "/iPConfigurations/" + options.ipConfigurationsIndex + "/loadBalancerInboundNatPools" + (options.index ? ('/' + options.index) : '');
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set subnet
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -720,7 +1082,41 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set os-profile
+  //parameters remove subnet
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('subnet')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
+  .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/" + options.networkInterfaceConfigurationsIndex + "/iPConfigurations/" + options.ipConfigurationsIndex + "/subnet";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set os-profile
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -792,7 +1188,39 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set linux-configuration
+  //parameters remove os-profile
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('os-profile')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/oSProfile";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set linux-configuration
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -840,7 +1268,71 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set public-keys
+  //parameters remove linux-configuration
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('linux-configuration')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/oSProfile/linuxConfiguration";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters remove ssh-configuration
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('ssh-configuration')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set public-keys
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -871,7 +1363,7 @@ exports.init = function (cli) {
     console.log("JSON object:");
     console.log(JSON.stringify(parametersObj));
     options.operation = 'replace';
-    options.path = "/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys/" + options.index;
+    options.path = "/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys" + (options.index ? ('/' + options.index) : '');
     var paramPath = options.path + "/" + "keyData";
     console.log("================================================");
     console.log("JSON Parameters Path:" + paramPath);
@@ -897,7 +1389,73 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set source-vault
+  //parameters remove public-keys
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('public-keys')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys" + (options.index ? ('/' + options.index) : '');
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters remove secrets
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('secrets')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/oSProfile/secrets" + (options.index ? ('/' + options.index) : '');
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set source-vault
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -946,7 +1504,40 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set vault-certificates
+  //parameters remove source-vault
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('source-vault')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/oSProfile/secrets/" + options.secretsIndex + "/sourceVault";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set vault-certificates
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -978,7 +1569,7 @@ exports.init = function (cli) {
     console.log("JSON object:");
     console.log(JSON.stringify(parametersObj));
     options.operation = 'replace';
-    options.path = "/virtualMachineProfile/oSProfile/secrets/" + options.secretsIndex + "/vaultCertificates/" + options.index;
+    options.path = "/virtualMachineProfile/oSProfile/secrets/" + options.secretsIndex + "/vaultCertificates" + (options.index ? ('/' + options.index) : '');
     var paramPath = options.path + "/" + "certificateStore";
     console.log("================================================");
     console.log("JSON Parameters Path:" + paramPath);
@@ -1004,7 +1595,41 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set windows-configuration
+  //parameters remove vault-certificates
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('vault-certificates')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/oSProfile/secrets/" + options.secretsIndex + "/vaultCertificates" + (options.index ? ('/' + options.index) : '');
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set windows-configuration
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -1068,7 +1693,39 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set additional-unattend-contents
+  //parameters remove windows-configuration
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('windows-configuration')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/oSProfile/windowsConfiguration";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set additional-unattend-contents
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -1101,7 +1758,7 @@ exports.init = function (cli) {
     console.log("JSON object:");
     console.log(JSON.stringify(parametersObj));
     options.operation = 'replace';
-    options.path = "/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents/" + options.index;
+    options.path = "/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents" + (options.index ? ('/' + options.index) : '');
     var paramPath = options.path + "/" + "componentName";
     console.log("================================================");
     console.log("JSON Parameters Path:" + paramPath);
@@ -1141,7 +1798,72 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set listeners
+  //parameters remove additional-unattend-contents
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('additional-unattend-contents')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents" + (options.index ? ('/' + options.index) : '');
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters remove win-rm-configuration
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('win-rm-configuration')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set listeners
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -1172,7 +1894,7 @@ exports.init = function (cli) {
     console.log("JSON object:");
     console.log(JSON.stringify(parametersObj));
     options.operation = 'replace';
-    options.path = "/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners/" + options.index;
+    options.path = "/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners" + (options.index ? ('/' + options.index) : '');
     var paramPath = options.path + "/" + "certificateUrl";
     console.log("================================================");
     console.log("JSON Parameters Path:" + paramPath);
@@ -1198,7 +1920,72 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set image-reference
+  //parameters remove listeners
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('listeners')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners" + (options.index ? ('/' + options.index) : '');
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters remove storage-profile
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('storage-profile')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/storageProfile";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set image-reference
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -1270,7 +2057,39 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set os-disk
+  //parameters remove image-reference
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('image-reference')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/storageProfile/imageReference";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set os-disk
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -1342,7 +2161,39 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set source-image
+  //parameters remove os-disk
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('os-disk')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/storageProfile/oSDisk";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
+  //parameters set source-image
   var parameters = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var set = parameters.category('set')
@@ -1390,6 +2241,38 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
+  //parameters remove source-image
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('source-image')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "/virtualMachineProfile/storageProfile/oSDisk/sourceImage";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
 
 //virtualMachineScaleSet -> Deallocate
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
@@ -1602,6 +2485,38 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
+  //parameters remove list-parameters
+  var parameters = vmss.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
+  remove.command('list-parameters')
+  .description($('Remove vmss parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
 
 //virtualMachineScaleSet -> ListNext
   var vmss = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
@@ -1928,7 +2843,7 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
-  //parameters parameters set virtual-machine-scale-set-vm-list-parameters
+  //parameters set virtual-machine-scale-set-vm-list-parameters
   var parameters = vmssvm.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set-vm.'));
   var set = parameters.category('set')
@@ -2008,6 +2923,38 @@ exports.init = function (cli) {
     console.log("=====================================");
   });
 
+  //parameters remove virtual-machine-scale-set-vm-list-parameters
+  var parameters = vmssvm.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set-vm.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set-vm.'));
+  remove.command('virtual-machine-scale-set-vm-list-parameters')
+  .description($('Remove vmssvm parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    console.log(options);
+    console.log(options.parameterFile);
+    console.log("=====================================");
+    console.log("Reading file content from: \"" + options.parameterFile + "\"");
+    console.log("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    console.log("JSON object:");
+    console.log(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    console.log("=====================================");
+    console.log("JSON object (updated):");
+    console.log(JSON.stringify(parametersObj));
+    console.log("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    console.log("=====================================");
+    console.log("Parameter file updated at: " + options.parameterFile);
+    console.log("=====================================");
+  });
 
 //virtualMachineScaleSetVM -> PowerOff
   var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
