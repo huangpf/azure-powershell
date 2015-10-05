@@ -146,7 +146,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -164,6 +164,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.provisioningState) {
+      if (options.parse && options.provisioningState) {
+        options.provisioningState = JSON.parse(options.provisioningState);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisioningState}]);
     }
     var paramPath = options.path + "/" + "id";
@@ -171,6 +174,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.id) {
+      if (options.parse && options.id) {
+        options.id = JSON.parse(options.id);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
     }
     var paramPath = options.path + "/" + "name";
@@ -178,6 +184,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.name) {
+      if (options.parse && options.name) {
+        options.name = JSON.parse(options.name);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
     var paramPath = options.path + "/" + "type";
@@ -185,6 +194,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.type) {
+      if (options.parse && options.type) {
+        options.type = JSON.parse(options.type);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.type}]);
     }
     var paramPath = options.path + "/" + "location";
@@ -192,6 +204,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.location) {
+      if (options.parse && options.location) {
+        options.location = JSON.parse(options.location);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.location}]);
     }
     var paramPath = options.path + "/" + "tags";
@@ -199,6 +214,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.tags) {
+      if (options.parse && options.tags) {
+        options.tags = JSON.parse(options.tags);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.tags}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -268,7 +286,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -288,6 +306,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.provisioningState) {
+      if (options.parse && options.provisioningState) {
+        options.provisioningState = JSON.parse(options.provisioningState);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisioningState}]);
     }
     var paramPath = "" + "/" + "id";
@@ -295,6 +316,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.id) {
+      if (options.parse && options.id) {
+        options.id = JSON.parse(options.id);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
     }
     var paramPath = "" + "/" + "name";
@@ -302,6 +326,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.name) {
+      if (options.parse && options.name) {
+        options.name = JSON.parse(options.name);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
     var paramPath = "" + "/" + "type";
@@ -309,6 +336,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.type) {
+      if (options.parse && options.type) {
+        options.type = JSON.parse(options.type);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.type}]);
     }
     var paramPath = "" + "/" + "location";
@@ -316,6 +346,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.location) {
+      if (options.parse && options.location) {
+        options.location = JSON.parse(options.location);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.location}]);
     }
     var paramPath = "" + "/" + "tags";
@@ -323,6 +356,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.tags) {
+      if (options.parse && options.tags) {
+        options.tags = JSON.parse(options.tags);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.tags}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -355,7 +391,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -373,6 +409,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.capacity) {
+      if (options.parse && options.capacity) {
+        options.capacity = JSON.parse(options.capacity);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.capacity}]);
     }
     var paramPath = options.path + "/" + "name";
@@ -380,6 +419,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.name) {
+      if (options.parse && options.name) {
+        options.name = JSON.parse(options.name);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
     var paramPath = options.path + "/" + "tier";
@@ -387,6 +429,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.tier) {
+      if (options.parse && options.tier) {
+        options.tier = JSON.parse(options.tier);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.tier}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -453,7 +498,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -473,6 +518,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.capacity) {
+      if (options.parse && options.capacity) {
+        options.capacity = JSON.parse(options.capacity);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.capacity}]);
     }
     var paramPath = "/sku" + "/" + "name";
@@ -480,6 +528,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.name) {
+      if (options.parse && options.name) {
+        options.name = JSON.parse(options.name);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
     var paramPath = "/sku" + "/" + "tier";
@@ -487,6 +538,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.tier) {
+      if (options.parse && options.tier) {
+        options.tier = JSON.parse(options.tier);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.tier}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -517,7 +571,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -535,6 +589,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.mode) {
+      if (options.parse && options.mode) {
+        options.mode = JSON.parse(options.mode);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.mode}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -599,7 +656,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -619,6 +676,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.mode) {
+      if (options.parse && options.mode) {
+        options.mode = JSON.parse(options.mode);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.mode}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -682,7 +742,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -758,7 +818,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -813,7 +873,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -831,6 +891,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.autoUpgradeMinorVersion) {
+      if (options.parse && options.autoUpgradeMinorVersion) {
+        options.autoUpgradeMinorVersion = JSON.parse(options.autoUpgradeMinorVersion);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.autoUpgradeMinorVersion}]);
     }
     var paramPath = options.path + "/" + "extensionType";
@@ -838,6 +901,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.extensionType) {
+      if (options.parse && options.extensionType) {
+        options.extensionType = JSON.parse(options.extensionType);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.extensionType}]);
     }
     var paramPath = options.path + "/" + "protectedSettings";
@@ -845,6 +911,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.protectedSettings) {
+      if (options.parse && options.protectedSettings) {
+        options.protectedSettings = JSON.parse(options.protectedSettings);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protectedSettings}]);
     }
     var paramPath = options.path + "/" + "provisioningState";
@@ -852,6 +921,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.provisioningState) {
+      if (options.parse && options.provisioningState) {
+        options.provisioningState = JSON.parse(options.provisioningState);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisioningState}]);
     }
     var paramPath = options.path + "/" + "publisher";
@@ -859,6 +931,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.publisher) {
+      if (options.parse && options.publisher) {
+        options.publisher = JSON.parse(options.publisher);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.publisher}]);
     }
     var paramPath = options.path + "/" + "settings";
@@ -866,6 +941,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.settings) {
+      if (options.parse && options.settings) {
+        options.settings = JSON.parse(options.settings);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.settings}]);
     }
     var paramPath = options.path + "/" + "typeHandlerVersion";
@@ -873,6 +951,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.typeHandlerVersion) {
+      if (options.parse && options.typeHandlerVersion) {
+        options.typeHandlerVersion = JSON.parse(options.typeHandlerVersion);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.typeHandlerVersion}]);
     }
     var paramPath = options.path + "/" + "id";
@@ -880,6 +961,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.id) {
+      if (options.parse && options.id) {
+        options.id = JSON.parse(options.id);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
     }
     var paramPath = options.path + "/" + "name";
@@ -887,6 +971,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.name) {
+      if (options.parse && options.name) {
+        options.name = JSON.parse(options.name);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
     var paramPath = options.path + "/" + "type";
@@ -894,6 +981,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.type) {
+      if (options.parse && options.type) {
+        options.type = JSON.parse(options.type);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.type}]);
     }
     var paramPath = options.path + "/" + "location";
@@ -901,6 +991,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.location) {
+      if (options.parse && options.location) {
+        options.location = JSON.parse(options.location);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.location}]);
     }
     var paramPath = options.path + "/" + "tags";
@@ -908,6 +1001,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.tags) {
+      if (options.parse && options.tags) {
+        options.tags = JSON.parse(options.tags);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.tags}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -984,7 +1080,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -1004,6 +1100,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.autoUpgradeMinorVersion) {
+      if (options.parse && options.autoUpgradeMinorVersion) {
+        options.autoUpgradeMinorVersion = JSON.parse(options.autoUpgradeMinorVersion);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.autoUpgradeMinorVersion}]);
     }
     var paramPath = "/virtualMachineProfile/extensionProfile/extensions" + (options.index ? ('/' + options.index) : '') + "/" + "extensionType";
@@ -1011,6 +1110,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.extensionType) {
+      if (options.parse && options.extensionType) {
+        options.extensionType = JSON.parse(options.extensionType);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.extensionType}]);
     }
     var paramPath = "/virtualMachineProfile/extensionProfile/extensions" + (options.index ? ('/' + options.index) : '') + "/" + "protectedSettings";
@@ -1018,6 +1120,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.protectedSettings) {
+      if (options.parse && options.protectedSettings) {
+        options.protectedSettings = JSON.parse(options.protectedSettings);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protectedSettings}]);
     }
     var paramPath = "/virtualMachineProfile/extensionProfile/extensions" + (options.index ? ('/' + options.index) : '') + "/" + "provisioningState";
@@ -1025,6 +1130,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.provisioningState) {
+      if (options.parse && options.provisioningState) {
+        options.provisioningState = JSON.parse(options.provisioningState);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisioningState}]);
     }
     var paramPath = "/virtualMachineProfile/extensionProfile/extensions" + (options.index ? ('/' + options.index) : '') + "/" + "publisher";
@@ -1032,6 +1140,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.publisher) {
+      if (options.parse && options.publisher) {
+        options.publisher = JSON.parse(options.publisher);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.publisher}]);
     }
     var paramPath = "/virtualMachineProfile/extensionProfile/extensions" + (options.index ? ('/' + options.index) : '') + "/" + "settings";
@@ -1039,6 +1150,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.settings) {
+      if (options.parse && options.settings) {
+        options.settings = JSON.parse(options.settings);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.settings}]);
     }
     var paramPath = "/virtualMachineProfile/extensionProfile/extensions" + (options.index ? ('/' + options.index) : '') + "/" + "typeHandlerVersion";
@@ -1046,6 +1160,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.typeHandlerVersion) {
+      if (options.parse && options.typeHandlerVersion) {
+        options.typeHandlerVersion = JSON.parse(options.typeHandlerVersion);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.typeHandlerVersion}]);
     }
     var paramPath = "/virtualMachineProfile/extensionProfile/extensions" + (options.index ? ('/' + options.index) : '') + "/" + "id";
@@ -1053,6 +1170,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.id) {
+      if (options.parse && options.id) {
+        options.id = JSON.parse(options.id);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
     }
     var paramPath = "/virtualMachineProfile/extensionProfile/extensions" + (options.index ? ('/' + options.index) : '') + "/" + "name";
@@ -1060,6 +1180,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.name) {
+      if (options.parse && options.name) {
+        options.name = JSON.parse(options.name);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
     var paramPath = "/virtualMachineProfile/extensionProfile/extensions" + (options.index ? ('/' + options.index) : '') + "/" + "type";
@@ -1067,6 +1190,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.type) {
+      if (options.parse && options.type) {
+        options.type = JSON.parse(options.type);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.type}]);
     }
     var paramPath = "/virtualMachineProfile/extensionProfile/extensions" + (options.index ? ('/' + options.index) : '') + "/" + "location";
@@ -1074,6 +1200,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.location) {
+      if (options.parse && options.location) {
+        options.location = JSON.parse(options.location);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.location}]);
     }
     var paramPath = "/virtualMachineProfile/extensionProfile/extensions" + (options.index ? ('/' + options.index) : '') + "/" + "tags";
@@ -1081,6 +1210,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.tags) {
+      if (options.parse && options.tags) {
+        options.tags = JSON.parse(options.tags);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.tags}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -1144,7 +1276,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -1189,7 +1321,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -1207,6 +1339,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.name) {
+      if (options.parse && options.name) {
+        options.name = JSON.parse(options.name);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
     var paramPath = options.path + "/" + "primary";
@@ -1214,6 +1349,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.primary) {
+      if (options.parse && options.primary) {
+        options.primary = JSON.parse(options.primary);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.primary}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -1280,7 +1418,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -1300,6 +1438,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.name) {
+      if (options.parse && options.name) {
+        options.name = JSON.parse(options.name);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
     var paramPath = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations" + (options.index ? ('/' + options.index) : '') + "/" + "primary";
@@ -1307,6 +1448,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.primary) {
+      if (options.parse && options.primary) {
+        options.primary = JSON.parse(options.primary);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.primary}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -1339,7 +1483,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -1357,6 +1501,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.name) {
+      if (options.parse && options.name) {
+        options.name = JSON.parse(options.name);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -1423,7 +1570,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -1443,6 +1590,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.name) {
+      if (options.parse && options.name) {
+        options.name = JSON.parse(options.name);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -1476,7 +1626,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -1494,6 +1644,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.referenceUri) {
+      if (options.parse && options.referenceUri) {
+        options.referenceUri = JSON.parse(options.referenceUri);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.referenceUri}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -1561,7 +1714,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -1581,6 +1734,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.referenceUri) {
+      if (options.parse && options.referenceUri) {
+        options.referenceUri = JSON.parse(options.referenceUri);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.referenceUri}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -1614,7 +1770,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -1632,6 +1788,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.referenceUri) {
+      if (options.parse && options.referenceUri) {
+        options.referenceUri = JSON.parse(options.referenceUri);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.referenceUri}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -1699,7 +1858,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -1719,6 +1878,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.referenceUri) {
+      if (options.parse && options.referenceUri) {
+        options.referenceUri = JSON.parse(options.referenceUri);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.referenceUri}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -1751,7 +1913,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -1769,6 +1931,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.referenceUri) {
+      if (options.parse && options.referenceUri) {
+        options.referenceUri = JSON.parse(options.referenceUri);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.referenceUri}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -1835,7 +2000,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -1855,6 +2020,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.referenceUri) {
+      if (options.parse && options.referenceUri) {
+        options.referenceUri = JSON.parse(options.referenceUri);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.referenceUri}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -1888,7 +2056,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -1906,6 +2074,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.computerNamePrefix) {
+      if (options.parse && options.computerNamePrefix) {
+        options.computerNamePrefix = JSON.parse(options.computerNamePrefix);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.computerNamePrefix}]);
     }
     var paramPath = options.path + "/" + "adminPassword";
@@ -1913,6 +2084,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.adminPassword) {
+      if (options.parse && options.adminPassword) {
+        options.adminPassword = JSON.parse(options.adminPassword);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.adminPassword}]);
     }
     var paramPath = options.path + "/" + "adminUsername";
@@ -1920,6 +2094,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.adminUsername) {
+      if (options.parse && options.adminUsername) {
+        options.adminUsername = JSON.parse(options.adminUsername);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.adminUsername}]);
     }
     var paramPath = options.path + "/" + "customData";
@@ -1927,6 +2104,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.customData) {
+      if (options.parse && options.customData) {
+        options.customData = JSON.parse(options.customData);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.customData}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -1994,7 +2174,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -2014,6 +2194,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.computerNamePrefix) {
+      if (options.parse && options.computerNamePrefix) {
+        options.computerNamePrefix = JSON.parse(options.computerNamePrefix);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.computerNamePrefix}]);
     }
     var paramPath = "/virtualMachineProfile/oSProfile" + "/" + "adminPassword";
@@ -2021,6 +2204,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.adminPassword) {
+      if (options.parse && options.adminPassword) {
+        options.adminPassword = JSON.parse(options.adminPassword);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.adminPassword}]);
     }
     var paramPath = "/virtualMachineProfile/oSProfile" + "/" + "adminUsername";
@@ -2028,6 +2214,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.adminUsername) {
+      if (options.parse && options.adminUsername) {
+        options.adminUsername = JSON.parse(options.adminUsername);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.adminUsername}]);
     }
     var paramPath = "/virtualMachineProfile/oSProfile" + "/" + "customData";
@@ -2035,6 +2224,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.customData) {
+      if (options.parse && options.customData) {
+        options.customData = JSON.parse(options.customData);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.customData}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -2065,7 +2257,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -2083,6 +2275,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.disablePasswordAuthentication) {
+      if (options.parse && options.disablePasswordAuthentication) {
+        options.disablePasswordAuthentication = JSON.parse(options.disablePasswordAuthentication);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.disablePasswordAuthentication}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -2147,7 +2342,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -2167,6 +2362,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.disablePasswordAuthentication) {
+      if (options.parse && options.disablePasswordAuthentication) {
+        options.disablePasswordAuthentication = JSON.parse(options.disablePasswordAuthentication);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.disablePasswordAuthentication}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -2230,7 +2428,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -2275,7 +2473,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -2293,6 +2491,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.keyData) {
+      if (options.parse && options.keyData) {
+        options.keyData = JSON.parse(options.keyData);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.keyData}]);
     }
     var paramPath = options.path + "/" + "path";
@@ -2300,6 +2501,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.path) {
+      if (options.parse && options.path) {
+        options.path = JSON.parse(options.path);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.path}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -2366,7 +2570,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -2386,6 +2590,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.keyData) {
+      if (options.parse && options.keyData) {
+        options.keyData = JSON.parse(options.keyData);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.keyData}]);
     }
     var paramPath = "/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys" + (options.index ? ('/' + options.index) : '') + "/" + "path";
@@ -2393,6 +2600,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.path) {
+      if (options.parse && options.path) {
+        options.path = JSON.parse(options.path);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.path}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -2457,7 +2667,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -2501,7 +2711,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -2519,6 +2729,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.referenceUri) {
+      if (options.parse && options.referenceUri) {
+        options.referenceUri = JSON.parse(options.referenceUri);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.referenceUri}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -2584,7 +2797,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -2604,6 +2817,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.referenceUri) {
+      if (options.parse && options.referenceUri) {
+        options.referenceUri = JSON.parse(options.referenceUri);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.referenceUri}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -2637,7 +2853,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -2655,6 +2871,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.certificateStore) {
+      if (options.parse && options.certificateStore) {
+        options.certificateStore = JSON.parse(options.certificateStore);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateStore}]);
     }
     var paramPath = options.path + "/" + "certificateUrl";
@@ -2662,6 +2881,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.certificateUrl) {
+      if (options.parse && options.certificateUrl) {
+        options.certificateUrl = JSON.parse(options.certificateUrl);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateUrl}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -2729,7 +2951,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -2749,6 +2971,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.certificateStore) {
+      if (options.parse && options.certificateStore) {
+        options.certificateStore = JSON.parse(options.certificateStore);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateStore}]);
     }
     var paramPath = "/virtualMachineProfile/oSProfile/secrets/" + options.secretsIndex + "/vaultCertificates" + (options.index ? ('/' + options.index) : '') + "/" + "certificateUrl";
@@ -2756,6 +2981,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.certificateUrl) {
+      if (options.parse && options.certificateUrl) {
+        options.certificateUrl = JSON.parse(options.certificateUrl);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateUrl}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -2788,7 +3016,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -2806,6 +3034,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.enableAutomaticUpdates) {
+      if (options.parse && options.enableAutomaticUpdates) {
+        options.enableAutomaticUpdates = JSON.parse(options.enableAutomaticUpdates);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.enableAutomaticUpdates}]);
     }
     var paramPath = options.path + "/" + "provisionVMAgent";
@@ -2813,6 +3044,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.provisionVMAgent) {
+      if (options.parse && options.provisionVMAgent) {
+        options.provisionVMAgent = JSON.parse(options.provisionVMAgent);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisionVMAgent}]);
     }
     var paramPath = options.path + "/" + "timeZone";
@@ -2820,6 +3054,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.timeZone) {
+      if (options.parse && options.timeZone) {
+        options.timeZone = JSON.parse(options.timeZone);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.timeZone}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -2886,7 +3123,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -2906,6 +3143,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.enableAutomaticUpdates) {
+      if (options.parse && options.enableAutomaticUpdates) {
+        options.enableAutomaticUpdates = JSON.parse(options.enableAutomaticUpdates);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.enableAutomaticUpdates}]);
     }
     var paramPath = "/virtualMachineProfile/oSProfile/windowsConfiguration" + "/" + "provisionVMAgent";
@@ -2913,6 +3153,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.provisionVMAgent) {
+      if (options.parse && options.provisionVMAgent) {
+        options.provisionVMAgent = JSON.parse(options.provisionVMAgent);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisionVMAgent}]);
     }
     var paramPath = "/virtualMachineProfile/oSProfile/windowsConfiguration" + "/" + "timeZone";
@@ -2920,6 +3163,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.timeZone) {
+      if (options.parse && options.timeZone) {
+        options.timeZone = JSON.parse(options.timeZone);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.timeZone}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -2954,7 +3200,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -2972,6 +3218,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.componentName) {
+      if (options.parse && options.componentName) {
+        options.componentName = JSON.parse(options.componentName);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.componentName}]);
     }
     var paramPath = options.path + "/" + "content";
@@ -2979,6 +3228,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.content) {
+      if (options.parse && options.content) {
+        options.content = JSON.parse(options.content);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.content}]);
     }
     var paramPath = options.path + "/" + "passName";
@@ -2986,6 +3238,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.passName) {
+      if (options.parse && options.passName) {
+        options.passName = JSON.parse(options.passName);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.passName}]);
     }
     var paramPath = options.path + "/" + "settingName";
@@ -2993,6 +3248,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.settingName) {
+      if (options.parse && options.settingName) {
+        options.settingName = JSON.parse(options.settingName);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.settingName}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -3061,7 +3319,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -3081,6 +3339,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.componentName) {
+      if (options.parse && options.componentName) {
+        options.componentName = JSON.parse(options.componentName);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.componentName}]);
     }
     var paramPath = "/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents" + (options.index ? ('/' + options.index) : '') + "/" + "content";
@@ -3088,6 +3349,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.content) {
+      if (options.parse && options.content) {
+        options.content = JSON.parse(options.content);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.content}]);
     }
     var paramPath = "/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents" + (options.index ? ('/' + options.index) : '') + "/" + "passName";
@@ -3095,6 +3359,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.passName) {
+      if (options.parse && options.passName) {
+        options.passName = JSON.parse(options.passName);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.passName}]);
     }
     var paramPath = "/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents" + (options.index ? ('/' + options.index) : '') + "/" + "settingName";
@@ -3102,6 +3369,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.settingName) {
+      if (options.parse && options.settingName) {
+        options.settingName = JSON.parse(options.settingName);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.settingName}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -3165,7 +3435,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -3210,7 +3480,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -3228,6 +3498,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.certificateUrl) {
+      if (options.parse && options.certificateUrl) {
+        options.certificateUrl = JSON.parse(options.certificateUrl);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateUrl}]);
     }
     var paramPath = options.path + "/" + "protocol";
@@ -3235,6 +3508,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.protocol) {
+      if (options.parse && options.protocol) {
+        options.protocol = JSON.parse(options.protocol);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protocol}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -3301,7 +3577,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -3321,6 +3597,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.certificateUrl) {
+      if (options.parse && options.certificateUrl) {
+        options.certificateUrl = JSON.parse(options.certificateUrl);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateUrl}]);
     }
     var paramPath = "/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners" + (options.index ? ('/' + options.index) : '') + "/" + "protocol";
@@ -3328,6 +3607,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.protocol) {
+      if (options.parse && options.protocol) {
+        options.protocol = JSON.parse(options.protocol);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protocol}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -3391,7 +3673,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -3437,7 +3719,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -3455,6 +3737,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.offer) {
+      if (options.parse && options.offer) {
+        options.offer = JSON.parse(options.offer);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.offer}]);
     }
     var paramPath = options.path + "/" + "publisher";
@@ -3462,6 +3747,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.publisher) {
+      if (options.parse && options.publisher) {
+        options.publisher = JSON.parse(options.publisher);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.publisher}]);
     }
     var paramPath = options.path + "/" + "sku";
@@ -3469,6 +3757,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.sku) {
+      if (options.parse && options.sku) {
+        options.sku = JSON.parse(options.sku);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sku}]);
     }
     var paramPath = options.path + "/" + "version";
@@ -3476,6 +3767,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.version) {
+      if (options.parse && options.version) {
+        options.version = JSON.parse(options.version);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.version}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -3543,7 +3837,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -3563,6 +3857,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.offer) {
+      if (options.parse && options.offer) {
+        options.offer = JSON.parse(options.offer);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.offer}]);
     }
     var paramPath = "/virtualMachineProfile/storageProfile/imageReference" + "/" + "publisher";
@@ -3570,6 +3867,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.publisher) {
+      if (options.parse && options.publisher) {
+        options.publisher = JSON.parse(options.publisher);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.publisher}]);
     }
     var paramPath = "/virtualMachineProfile/storageProfile/imageReference" + "/" + "sku";
@@ -3577,6 +3877,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.sku) {
+      if (options.parse && options.sku) {
+        options.sku = JSON.parse(options.sku);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sku}]);
     }
     var paramPath = "/virtualMachineProfile/storageProfile/imageReference" + "/" + "version";
@@ -3584,6 +3887,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.version) {
+      if (options.parse && options.version) {
+        options.version = JSON.parse(options.version);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.version}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -3617,7 +3923,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -3635,6 +3941,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.caching) {
+      if (options.parse && options.caching) {
+        options.caching = JSON.parse(options.caching);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.caching}]);
     }
     var paramPath = options.path + "/" + "createOption";
@@ -3642,6 +3951,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.createOption) {
+      if (options.parse && options.createOption) {
+        options.createOption = JSON.parse(options.createOption);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.createOption}]);
     }
     var paramPath = options.path + "/" + "name";
@@ -3649,6 +3961,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.name) {
+      if (options.parse && options.name) {
+        options.name = JSON.parse(options.name);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
     var paramPath = options.path + "/" + "operatingSystemType";
@@ -3656,6 +3971,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.operatingSystemType) {
+      if (options.parse && options.operatingSystemType) {
+        options.operatingSystemType = JSON.parse(options.operatingSystemType);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.operatingSystemType}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -3723,7 +4041,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -3743,6 +4061,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.caching) {
+      if (options.parse && options.caching) {
+        options.caching = JSON.parse(options.caching);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.caching}]);
     }
     var paramPath = "/virtualMachineProfile/storageProfile/oSDisk" + "/" + "createOption";
@@ -3750,6 +4071,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.createOption) {
+      if (options.parse && options.createOption) {
+        options.createOption = JSON.parse(options.createOption);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.createOption}]);
     }
     var paramPath = "/virtualMachineProfile/storageProfile/oSDisk" + "/" + "name";
@@ -3757,6 +4081,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.name) {
+      if (options.parse && options.name) {
+        options.name = JSON.parse(options.name);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
     var paramPath = "/virtualMachineProfile/storageProfile/oSDisk" + "/" + "operatingSystemType";
@@ -3764,6 +4091,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.operatingSystemType) {
+      if (options.parse && options.operatingSystemType) {
+        options.operatingSystemType = JSON.parse(options.operatingSystemType);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.operatingSystemType}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -3794,7 +4124,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -3812,6 +4142,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.uri) {
+      if (options.parse && options.uri) {
+        options.uri = JSON.parse(options.uri);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.uri}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -3876,7 +4209,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -3896,6 +4229,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.uri) {
+      if (options.parse && options.uri) {
+        options.uri = JSON.parse(options.uri);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.uri}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -4171,7 +4507,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -4544,7 +4880,7 @@ exports.init = function (cli) {
     console.log(options.parameterFile);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -4562,6 +4898,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.expandExpression) {
+      if (options.parse && options.expandExpression) {
+        options.expandExpression = JSON.parse(options.expandExpression);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.expandExpression}]);
     }
     var paramPath = options.path + "/" + "filterExpression";
@@ -4569,6 +4908,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.filterExpression) {
+      if (options.parse && options.filterExpression) {
+        options.filterExpression = JSON.parse(options.filterExpression);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.filterExpression}]);
     }
     var paramPath = options.path + "/" + "resourceGroupName";
@@ -4576,6 +4918,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.resourceGroupName) {
+      if (options.parse && options.resourceGroupName) {
+        options.resourceGroupName = JSON.parse(options.resourceGroupName);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.resourceGroupName}]);
     }
     var paramPath = options.path + "/" + "selectExpression";
@@ -4583,6 +4928,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.selectExpression) {
+      if (options.parse && options.selectExpression) {
+        options.selectExpression = JSON.parse(options.selectExpression);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.selectExpression}]);
     }
     var paramPath = options.path + "/" + "virtualMachineScaleSetName";
@@ -4590,6 +4938,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.virtualMachineScaleSetName) {
+      if (options.parse && options.virtualMachineScaleSetName) {
+        options.virtualMachineScaleSetName = JSON.parse(options.virtualMachineScaleSetName);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.virtualMachineScaleSetName}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -4658,7 +5009,7 @@ exports.init = function (cli) {
     console.log(options.key);
     console.log(options.value);
     console.log(options.parse);
-    if (options.parse) {
+    if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
     console.log(options.value);
@@ -4678,6 +5029,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.expandExpression) {
+      if (options.parse && options.expandExpression) {
+        options.expandExpression = JSON.parse(options.expandExpression);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.expandExpression}]);
     }
     var paramPath = "" + "/" + "filterExpression";
@@ -4685,6 +5039,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.filterExpression) {
+      if (options.parse && options.filterExpression) {
+        options.filterExpression = JSON.parse(options.filterExpression);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.filterExpression}]);
     }
     var paramPath = "" + "/" + "resourceGroupName";
@@ -4692,6 +5049,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.resourceGroupName) {
+      if (options.parse && options.resourceGroupName) {
+        options.resourceGroupName = JSON.parse(options.resourceGroupName);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.resourceGroupName}]);
     }
     var paramPath = "" + "/" + "selectExpression";
@@ -4699,6 +5059,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.selectExpression) {
+      if (options.parse && options.selectExpression) {
+        options.selectExpression = JSON.parse(options.selectExpression);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.selectExpression}]);
     }
     var paramPath = "" + "/" + "virtualMachineScaleSetName";
@@ -4706,6 +5069,9 @@ exports.init = function (cli) {
     console.log("JSON Parameters Path:" + paramPath);
     console.log("================================================");
     if (options.virtualMachineScaleSetName) {
+      if (options.parse && options.virtualMachineScaleSetName) {
+        options.virtualMachineScaleSetName = JSON.parse(options.virtualMachineScaleSetName);
+      }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.virtualMachineScaleSetName}]);
     }
     var updatedContent = JSON.stringify(parametersObj);

@@ -139,7 +139,7 @@ function Generate-ParameterCommandImpl
         $code += "    console.log(options.parameterFile);" + $NEW_LINE;
         $code += "    console.log(options.value);" + $NEW_LINE;
         $code += "    console.log(options.parse);" + $NEW_LINE;
-        $code += "    if (options.parse) {" + $NEW_LINE;
+        $code += "    if (options.parse && options.value) {" + $NEW_LINE;
         $code += "      options.value = JSON.parse(options.value);" + $NEW_LINE;
         $code += "    }" + $NEW_LINE;
         $code += "    console.log(options.value);" + $NEW_LINE;
@@ -164,6 +164,9 @@ function Generate-ParameterCommandImpl
             $code += "    console.log(`"JSON Parameters Path:`" + paramPath);" + $NEW_LINE;
             $code += "    console.log(`"================================================`");" + $NEW_LINE;
             $code += "    if (options.${paramName}) {" + $NEW_LINE;
+            $code += "      if (options.parse && options.${paramName}) {" + $NEW_LINE;
+            $code += "        options.${paramName} = JSON.parse(options.${paramName});" + $NEW_LINE;
+            $code += "      }" + $NEW_LINE;
             $code += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: paramPath, value: options.${paramName}}]);" + $NEW_LINE;
             $code += "    }" + $NEW_LINE;
         }
@@ -263,7 +266,7 @@ function Generate-ParameterCommandImpl
     $code += "    console.log(options.key);" + $NEW_LINE;
     $code += "    console.log(options.value);" + $NEW_LINE;
     $code += "    console.log(options.parse);" + $NEW_LINE;
-    $code += "    if (options.parse) {" + $NEW_LINE;
+    $code += "    if (options.parse && options.value) {" + $NEW_LINE;
     $code += "      options.value = JSON.parse(options.value);" + $NEW_LINE;
     $code += "    }" + $NEW_LINE;
     $code += "    console.log(options.value);" + $NEW_LINE;
@@ -289,6 +292,9 @@ function Generate-ParameterCommandImpl
         $code += "    console.log(`"JSON Parameters Path:`" + paramPath);" + $NEW_LINE;
         $code += "    console.log(`"================================================`");" + $NEW_LINE;
         $code += "    if (options.${paramName}) {" + $NEW_LINE;
+        $code += "      if (options.parse && options.${paramName}) {" + $NEW_LINE;
+        $code += "        options.${paramName} = JSON.parse(options.${paramName});" + $NEW_LINE;
+        $code += "      }" + $NEW_LINE;
         $code += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: paramPath, value: options.${paramName}}]);" + $NEW_LINE;
         $code += "    }" + $NEW_LINE;
     }
