@@ -49,7 +49,7 @@ function Generate-ParameterCommandImpl
     $params_category_name = 'parameters';
     $cli_param_name = $params_category_name;
 
-    # Path to Node
+    # 0. Construct Path to Node
     $pathToTreeNode = "";
     $parentNode = $TreeNode;
     $indexerParamList = @();
@@ -113,7 +113,7 @@ function Generate-ParameterCommandImpl
         $code += "  .option('--value <value>', `$('The JSON value.'))" + $NEW_LINE;
         $code += "  .option('--parse', `$('Parse the JSON value to object.'))" + $NEW_LINE;
 
-        # For List Item
+        # 1.1 For List Item
         if ($indexerParamList.Count -gt 0)
         {
             foreach ($indexerParamName in $indexerParamList)
@@ -123,7 +123,7 @@ function Generate-ParameterCommandImpl
             }
         }
 
-        # For Each Property, Set the Option
+        # 1.2 For Each Property, Set the Option
         foreach ($propertyItem in $TreeNode.Properties)
         {
             $code += "  .option('--" + (Get-CliOptionName $propertyItem["Name"]);
@@ -155,7 +155,7 @@ function Generate-ParameterCommandImpl
         $code += "    options.path = ${pathToTreeNode};" + $NEW_LINE;
         # $code += "    jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $NEW_LINE;
         
-        # For Each Property, Apply the Change if Any
+        # 1.3 For Each Property, Apply the Change if Any
         foreach ($propertyItem in $TreeNode.Properties)
         {
             $paramName = (Get-CliNormalizedName $propertyItem["Name"]);
@@ -188,13 +188,13 @@ function Generate-ParameterCommandImpl
     $code += "  var ${params_category_name} = ${category_name}.category('${params_category_name}')" + $NEW_LINE;
     $code += "  .description(`$('Commands to remove parameter for your ${cli_op_description}.'));" + $NEW_LINE;
     $code += "  var ${params_generate_category_name} = ${params_category_name}.category('${params_generate_category_name}')" + $NEW_LINE;
-    $code += "  .description(`$('Commands to set parameter file for your ${cli_op_description}.'));" + $NEW_LINE;
+    $code += "  .description(`$('Commands to remove values in the parameter file for your ${cli_op_description}.'));" + $NEW_LINE;
     $code += "  ${params_generate_category_name}.command('${cli_method_option_name}')" + $NEW_LINE;
     $code += "  .description(`$('Remove ${category_name} parameter string or files.'))" + $NEW_LINE;
     $code += "  .usage('[options]')" + $NEW_LINE;
     $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
 
-    # For List Item
+    # 2.1 For List Item
     if ($indexerParamList.Count -gt 0)
     {
         foreach ($indexerParamName in $indexerParamList)
@@ -204,7 +204,7 @@ function Generate-ParameterCommandImpl
         }
     }
 
-    # Function Definition
+    # 2.2 Function Definition
     $code += "  .execute(function (";
     $code += "  parameterFile";
     $code += "  , options, _) {" + $NEW_LINE;
@@ -230,7 +230,83 @@ function Generate-ParameterCommandImpl
     $code += "    console.log(`"Parameter file updated at: `" + options.parameterFile);" + $NEW_LINE;
     $code += "    console.log(`"=====================================`");" + $NEW_LINE;
     $code += "  });" + $NEW_LINE;
+    
+    # 3. Parameter Add Command
+    $params_generate_category_name = 'add';
+    $code += "  //$params_category_name ${params_generate_category_name} ${cli_method_option_name}" + $NEW_LINE;
+    $code += "  var ${params_category_name} = ${category_name}.category('${params_category_name}')" + $NEW_LINE;
+    $code += "  .description(`$('Commands to add parameter for your ${cli_op_description}.'));" + $NEW_LINE;
+    $code += "  var ${params_generate_category_name} = ${params_category_name}.category('${params_generate_category_name}')" + $NEW_LINE;
+    $code += "  .description(`$('Commands to add values in the parameter file for your ${cli_op_description}.'));" + $NEW_LINE;
+    $code += "  ${params_generate_category_name}.command('${cli_method_option_name}')" + $NEW_LINE;
+    $code += "  .description(`$('Remove ${category_name} parameter string or files.'))" + $NEW_LINE;
+    $code += "  .usage('[options]')" + $NEW_LINE;
+    $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
+    $code += "  .option('--key <key>', `$('The JSON key.'))" + $NEW_LINE;
+    $code += "  .option('--value <value>', `$('The JSON value.'))" + $NEW_LINE;
+    $code += "  .option('--parse', `$('Parse the JSON value to object.'))" + $NEW_LINE;
 
+    # For Each Property, Add the Option
+    foreach ($propertyItem in $TreeNode.Properties)
+    {
+        $code += "  .option('--" + (Get-CliOptionName $propertyItem["Name"]);
+        $code += " <" + (Get-CliNormalizedName $propertyItem["Name"]);
+        $code += ">', `$('Add the " + (Get-CliOptionName $propertyItem["Name"]);
+        $code += " value.'))" + $NEW_LINE;
+    }
+
+    $code += "  .execute(function (";
+    $code += "  parameterFile";
+    $code += "  , options, _) {" + $NEW_LINE;
+    $code += "    console.log(options);" + $NEW_LINE;
+    $code += "    console.log(options.parameterFile);" + $NEW_LINE;
+    $code += "    console.log(options.key);" + $NEW_LINE;
+    $code += "    console.log(options.value);" + $NEW_LINE;
+    $code += "    console.log(options.parse);" + $NEW_LINE;
+    $code += "    if (options.parse) {" + $NEW_LINE;
+    $code += "      options.value = JSON.parse(options.value);" + $NEW_LINE;
+    $code += "    }" + $NEW_LINE;
+    $code += "    console.log(options.value);" + $NEW_LINE;
+    $code += "    console.log(`"=====================================`");" + $NEW_LINE;
+    $code += "    console.log(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $NEW_LINE;
+    $code += "    console.log(`"=====================================`");" + $NEW_LINE;
+    $code += "    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $NEW_LINE;
+    $code += "    var ${cli_param_name}Obj = JSON.parse(fileContent);" + $NEW_LINE;
+    $code += "    console.log(`"JSON object:`");" + $NEW_LINE;
+    $code += "    console.log(JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
+    
+    $code += "    options.operation = 'add';" + $NEW_LINE;
+    $code += "    options.path = ${pathToTreeNode} + `"/`" + options.key;" + $NEW_LINE;
+    $code += "    console.log(`"options.path = `" + options.path);" + $NEW_LINE;
+    $code += "    jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $NEW_LINE;
+
+    # For Each Property, Apply the Change if Any
+    foreach ($propertyItem in $TreeNode.Properties)
+    {
+        $paramName = (Get-CliNormalizedName $propertyItem["Name"]);
+        $code += "    var paramPath = ${pathToTreeNode} + `"/`" + `"${paramName}`";" + $NEW_LINE;
+        $code += "    console.log(`"================================================`");" + $NEW_LINE;
+        $code += "    console.log(`"JSON Parameters Path:`" + paramPath);" + $NEW_LINE;
+        $code += "    console.log(`"================================================`");" + $NEW_LINE;
+        $code += "    if (options.${paramName}) {" + $NEW_LINE;
+        $code += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: paramPath, value: options.${paramName}}]);" + $NEW_LINE;
+        $code += "    }" + $NEW_LINE;
+    }
+
+    $code += "    var updatedContent = JSON.stringify(${cli_param_name}Obj);" + $NEW_LINE;
+    $code += "    console.log(`"=====================================`");" + $NEW_LINE;
+    $code += "    console.log(`"JSON object (updated):`");" + $NEW_LINE;
+    $code += "    console.log(JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
+    $code += "    console.log(`"=====================================`");" + $NEW_LINE;
+    $code += "    fs.writeFileSync(options.parameterFile, beautify(updatedContent));" + $NEW_LINE;
+    $code += "    console.log(`"=====================================`");" + $NEW_LINE;
+    $code += "    console.log(`"Parameter file updated at: `" + options.parameterFile);" + $NEW_LINE;
+    $code += "    console.log(`"=====================================`");" + $NEW_LINE;
+
+    $code += "  });" + $NEW_LINE;
+    $code += "" + $NEW_LINE;
+
+    # 4. Recursive Calls for All Sub-Nodes
     foreach ($subNode in $TreeNode.SubNodes)
     {
         if ($null -ne $subNode)
