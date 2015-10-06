@@ -124,7 +124,7 @@ function Get-CliOptionName
                 $outName += '-';
             }
 
-            [string[]]$abbrWords = @('VM', 'IP', 'RM', 'OS', 'NAT');
+            [string[]]$abbrWords = @('VM', 'IP', 'RM', 'OS', 'NAT', 'IDs');
             $matched = $false;
             foreach ($matchedAbbr in $abbrWords)
             {

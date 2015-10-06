@@ -55,57 +55,77 @@ function Create-ParameterCmdletTreeImpl
         [Parameter(Mandatory = $false)]
         [int]$Depth = 0
     )
-    
-    if ([string]::IsNullOrEmpty($typeInfo.FullName))
+
+    if ([string]::IsNullOrEmpty($TypeInfo.FullName))
     {
         return $null;
     }
-    elseif (-not $typeInfo.FullName.StartsWith($NameSpace + "."))
+    elseif (-not $TypeInfo.FullName.StartsWith($NameSpace + "."))
     {
-        return $null;
-    }
-
-    $treeNode = New-ParameterCmdletTreeNode $ParameterName $TypeInfo $Parent;
-    
-    $padding = ($Depth.ToString() + (' ' * (4 * ($Depth + 1))));
-    Write-Verbose ($padding + "-----------------------------------------------------------");
-    Write-Verbose ($padding + "[ Node ] "  + $treeNode.Name);
-    Write-Verbose ($padding + "[Parent] " + $Parent.Name);
-
-    foreach ($item in $TypeInfo.GetProperties())
-    {
-        $itemProp = [System.Reflection.PropertyInfo]$item;
-
-        if ($itemProp.PropertyType.FullName.StartsWith($NameSpace + "."))
+        if ($TypeInfo.FullName -eq 'System.String' -or
+            $TypeInfo.FullName -eq 'System.Uri')
         {
-            $subTreeNode = Create-ParameterCmdletTreeImpl $itemProp.PropertyType $treeNode $itemProp.Name ($Depth + 1);
-            if ($subTreeNode -ne $null)
-            {
-                $treeNode.SubNodes += $subTreeNode;
-            }
-        }
-        elseif ($itemProp.PropertyType.FullName.StartsWith("System.Collections.Generic.IList"))
-        {
-            $listItemType = $itemProp.PropertyType.GenericTypeArguments[0];
-            
-            Write-Verbose ($padding + '-' + $listItemType.Name + " [List]");
+            $treeNode = New-ParameterCmdletTreeNode $ParameterName $TypeInfo $Parent;
+            $treeNode.IsListItem = $true;
 
-            $subTreeNode = Create-ParameterCmdletTreeImpl $listItemType $treeNode $itemProp.Name ($Depth + 1)
-            if ($subTreeNode -ne $null)
-            {
-                $subTreeNode.IsListItem = $true;
-                $treeNode.SubNodes += $subTreeNode;
-            }
+            return $treeNode;
         }
         else
         {
-            $nodeProp = @{ Name = $itemProp.Name; Type = $itemProp.PropertyType };
-            $treeNode.Properties += $nodeProp;
-            Write-Verbose ($padding + '-' + $nodeProp["Name"] + " : " + $nodeProp["Type"]);
+            return $null;
         }
     }
+    else
+    {
+        $treeNode = New-ParameterCmdletTreeNode $ParameterName $TypeInfo $Parent;
 
-    return $treeNode;
+        $padding = ($Depth.ToString() + (' ' * (4 * ($Depth + 1))));
+        Write-Verbose ($padding + "-----------------------------------------------------------");
+        Write-Verbose ($padding + "[ Node ] "  + $treeNode.Name);
+        Write-Verbose ($padding + "[Parent] " + $Parent.Name);
+
+        foreach ($item in $TypeInfo.GetProperties())
+        {
+            $itemProp = [System.Reflection.PropertyInfo]$item;
+
+            if ($itemProp.PropertyType.FullName.StartsWith($NameSpace + "."))
+            {
+                $subTreeNode = Create-ParameterCmdletTreeImpl $itemProp.PropertyType $treeNode $itemProp.Name ($Depth + 1);
+                if ($subTreeNode -ne $null)
+                {
+                    $treeNode.SubNodes += $subTreeNode;
+                }
+            }
+            elseif ($itemProp.PropertyType.FullName.StartsWith("System.Collections.Generic.IList"))
+            {
+                $listItemType = $itemProp.PropertyType.GenericTypeArguments[0];
+            
+                Write-Verbose ($padding + '-' + $itemProp.Name + ' : [List] ' + $listItemType.Name + "");
+
+                $subTreeNode = Create-ParameterCmdletTreeImpl $listItemType $treeNode $itemProp.Name ($Depth + 1)
+                if ($subTreeNode -ne $null)
+                {
+                    $subTreeNode.IsListItem = $true;
+                    $treeNode.SubNodes += $subTreeNode;
+                }
+
+                if ($listItemType.FullName -eq 'System.String' -or
+                    $listItemType.FullName -eq 'System.Uri')
+                {
+                    $nodeProp = @{ Name = $itemProp.Name; Type = $itemProp.PropertyType };
+                    $treeNode.Properties += $nodeProp;
+                }
+            }
+            else
+            {
+                $nodeProp = @{ Name = $itemProp.Name; Type = $itemProp.PropertyType };
+                $treeNode.Properties += $nodeProp;
+                Write-Verbose ($padding + '-' + $nodeProp["Name"] + " : " + $nodeProp["Type"]);
+            }
+        }
+
+        return $treeNode;
+    }
 }
 
 Write-Output (Create-ParameterCmdletTreeImpl $TypeInfo $null $ParameterName 0);

@@ -1556,7 +1556,7 @@ ${cmdlet_partial_class_code}
         $param_type_full_name = $pt.ParameterType.FullName;
         if (-not ($param_type_full_name.EndsWith('CancellationToken')))
         {
-            if ($pt.Name -like '*parameters')
+            if ($pt.ParameterType.Namespace -like $client_model_namespace)
             {
                 $param_object = (. $PSScriptRoot\Create-ParameterObject.ps1 -typeInfo $pt.ParameterType);
                 $param_object_comment = (. $PSScriptRoot\ConvertTo-Json.ps1 -inputObject $param_object -compress $true);
@@ -1604,18 +1604,18 @@ ${cmdlet_partial_class_code}
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
         $cli_param_name = Get-CliNormalizedName $param_names[$index];
-        $cli_op_code_content += "    console.log('${cli_param_name} = ' + options.${cli_param_name});" + $new_line_str;
+        $cli_op_code_content += "    cli.output.info('${cli_param_name} = ' + options.${cli_param_name});" + $new_line_str;
         if (${cli_param_name} -eq 'Parameters')
         {
             $cli_op_code_content += "    if (options.parameterFile) {" + $new_line_str;
-            $cli_op_code_content += "      console.log(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $new_line_str;
+            $cli_op_code_content += "      cli.output.info(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $new_line_str;
             $cli_op_code_content += "      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $new_line_str;
             $cli_op_code_content += "      var ${cli_param_name}Obj = JSON.parse(fileContent);" + $new_line_str;
             $cli_op_code_content += "    }" + $new_line_str;
             $cli_op_code_content += "    else {" + $new_line_str;
             $cli_op_code_content += "      var ${cli_param_name}Obj = JSON.parse(options.${cli_param_name});" + $new_line_str;
             $cli_op_code_content += "    }" + $new_line_str;
-            $cli_op_code_content += "    console.log('${cli_param_name}Obj = ' + JSON.stringify(${cli_param_name}Obj));" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info('${cli_param_name}Obj = ' + JSON.stringify(${cli_param_name}Obj));" + $new_line_str;
         }
     }
     $cli_op_code_content += "    var subscription = profile.current.getSubscription(options.subscription);" + $new_line_str;
@@ -1662,16 +1662,16 @@ ${cmdlet_partial_class_code}
             $cli_op_code_content += ", options, _) {" + $new_line_str;
 
             $output_content = $param_object_comment.Replace("`"", "\`"");
-            $cli_op_code_content += "    console.log(`"" + $output_content + "`");" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(`"" + $output_content + "`");" + $new_line_str;
 
             $file_content = $param_object_comment_no_compress.Replace($new_line_str, "\r\n").Replace("`r", "\r").Replace("`n", "\n");
             $file_content = $file_content.Replace("`"", "\`"").Replace(' ', '');
             $cli_op_code_content += "    var filePath = `"${category_name}_${cli_method_name}.json`";" + $new_line_str;
             $cli_op_code_content += "    if (options.parameterFile) { filePath = options.parameterFile; };" + $new_line_str;
             $cli_op_code_content += "    fs.writeFileSync(filePath, beautify(`"" + $file_content + "`"));" + $new_line_str;
-            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
-            $cli_op_code_content += "    console.log(`"Parameter file output to: `" + filePath);" + $new_line_str;
-            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(`"Parameter file output to: `" + filePath);" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $new_line_str;
             $cli_op_code_content += "  });" + $new_line_str;
             $cli_op_code_content += $new_line_str;
 
@@ -1685,22 +1685,22 @@ ${cmdlet_partial_class_code}
             $cli_op_code_content += "  .option('--value <value>', `$('The JSON value.'))" + $new_line_str;
             $cli_op_code_content += "  .option('--parse', `$('Parse the JSON value to object.'))" + $new_line_str;
             $cli_op_code_content += "  .execute(function (parameterFile, operation, path, value, parse, options, _) {" + $new_line_str;
-            $cli_op_code_content += "    console.log(options.parameterFile);" + $new_line_str;
-            $cli_op_code_content += "    console.log(options.operation);" + $new_line_str;
-            $cli_op_code_content += "    console.log(options.path);" + $new_line_str;
-            $cli_op_code_content += "    console.log(options.value);" + $new_line_str;
-            $cli_op_code_content += "    console.log(options.parse);" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(options.parameterFile);" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(options.operation);" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(options.path);" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(options.value);" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(options.parse);" + $new_line_str;
             $cli_op_code_content += "    if (options.parse) {" + $new_line_str;
             $cli_op_code_content += "      options.value = JSON.parse(options.value);" + $new_line_str;
             $cli_op_code_content += "    }" + $new_line_str;
-            $cli_op_code_content += "    console.log(options.value);" + $new_line_str;
-            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
-            $cli_op_code_content += "    console.log(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $new_line_str;
-            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(options.value);" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $new_line_str;
             $cli_op_code_content += "    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $new_line_str;
             $cli_op_code_content += "    var ${cli_param_name}Obj = JSON.parse(fileContent);" + $new_line_str;
-            $cli_op_code_content += "    console.log(`"JSON object:`");" + $new_line_str;
-            $cli_op_code_content += "    console.log(JSON.stringify(${cli_param_name}Obj));" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(`"JSON object:`");" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(JSON.stringify(${cli_param_name}Obj));" + $new_line_str;
             $cli_op_code_content += "    if (options.operation == 'add') {" + $new_line_str;
             $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $new_line_str;
             $cli_op_code_content += "    }" + $new_line_str;
@@ -1711,14 +1711,14 @@ ${cmdlet_partial_class_code}
             $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $new_line_str;
             $cli_op_code_content += "    }" + $new_line_str;
             $cli_op_code_content += "    var updatedContent = JSON.stringify(${cli_param_name}Obj);" + $new_line_str;
-            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
-            $cli_op_code_content += "    console.log(`"JSON object (updated):`");" + $new_line_str;
-            $cli_op_code_content += "    console.log(JSON.stringify(${cli_param_name}Obj));" + $new_line_str;
-            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(`"JSON object (updated):`");" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(JSON.stringify(${cli_param_name}Obj));" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $new_line_str;
             $cli_op_code_content += "    fs.writeFileSync(options.parameterFile, beautify(updatedContent));" + $new_line_str;
-            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
-            $cli_op_code_content += "    console.log(`"Parameter file updated at: `" + options.parameterFile);" + $new_line_str;
-            $cli_op_code_content += "    console.log(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(`"Parameter file updated at: `" + options.parameterFile);" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $new_line_str;
             $cli_op_code_content += "  });" + $new_line_str;
             $cli_op_code_content += $new_line_str;
 
