@@ -1605,7 +1605,7 @@ ${cmdlet_partial_class_code}
     {
         $cli_param_name = Get-CliNormalizedName $param_names[$index];
         $cli_op_code_content += "    cli.output.info('${cli_param_name} = ' + options.${cli_param_name});" + $new_line_str;
-        if (${cli_param_name} -eq 'Parameters')
+        if ((${cli_param_name} -eq 'Parameters') -or (${cli_param_name} -like '*InstanceIds'))
         {
             $cli_op_code_content += "    if (options.parameterFile) {" + $new_line_str;
             $cli_op_code_content += "      cli.output.info(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $new_line_str;
@@ -1626,7 +1626,7 @@ ${cmdlet_partial_class_code}
         if ($index -gt 0) { $cli_op_code_content += ", "; }
         
         $cli_param_name = Get-CliNormalizedName $param_names[$index];
-        if (${cli_param_name} -eq 'Parameters')
+        if ((${cli_param_name} -eq 'Parameters') -or (${cli_param_name} -like '*InstanceIds'))
         {
             $cli_op_code_content += "${cli_param_name}Obj";
         }

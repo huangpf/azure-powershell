@@ -4494,9 +4494,18 @@ exports.init = function (cli) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
+    if (options.parameterFile) {
+      cli.output.info("Reading file content from: \"" + options.parameterFile + "\"");
+      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      var vmInstanceIdsObj = JSON.parse(fileContent);
+    }
+    else {
+      var vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+    }
+    cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.deallocateInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIds, _);
+    var result = computeManagementClient.virtualMachineScaleSets.deallocateInstances(options.resourceGroupName, options.vmScaleSetName, vmInstanceIdsObj, _);
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> Delete
@@ -4533,9 +4542,18 @@ exports.init = function (cli) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
+    if (options.parameterFile) {
+      cli.output.info("Reading file content from: \"" + options.parameterFile + "\"");
+      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      var vmInstanceIdsObj = JSON.parse(fileContent);
+    }
+    else {
+      var vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+    }
+    cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.deleteInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIds, _);
+    var result = computeManagementClient.virtualMachineScaleSets.deleteInstances(options.resourceGroupName, options.vmScaleSetName, vmInstanceIdsObj, _);
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> Get
@@ -4820,9 +4838,18 @@ exports.init = function (cli) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
+    if (options.parameterFile) {
+      cli.output.info("Reading file content from: \"" + options.parameterFile + "\"");
+      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      var vmInstanceIdsObj = JSON.parse(fileContent);
+    }
+    else {
+      var vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+    }
+    cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.powerOffInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIds, _);
+    var result = computeManagementClient.virtualMachineScaleSets.powerOffInstances(options.resourceGroupName, options.vmScaleSetName, vmInstanceIdsObj, _);
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> Restart
@@ -4859,9 +4886,18 @@ exports.init = function (cli) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
+    if (options.parameterFile) {
+      cli.output.info("Reading file content from: \"" + options.parameterFile + "\"");
+      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      var vmInstanceIdsObj = JSON.parse(fileContent);
+    }
+    else {
+      var vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+    }
+    cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.restartInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIds, _);
+    var result = computeManagementClient.virtualMachineScaleSets.restartInstances(options.resourceGroupName, options.vmScaleSetName, vmInstanceIdsObj, _);
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> Start
@@ -4898,9 +4934,18 @@ exports.init = function (cli) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
+    if (options.parameterFile) {
+      cli.output.info("Reading file content from: \"" + options.parameterFile + "\"");
+      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      var vmInstanceIdsObj = JSON.parse(fileContent);
+    }
+    else {
+      var vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+    }
+    cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.startInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIds, _);
+    var result = computeManagementClient.virtualMachineScaleSets.startInstances(options.resourceGroupName, options.vmScaleSetName, vmInstanceIdsObj, _);
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> UpdateInstances
@@ -4920,9 +4965,18 @@ exports.init = function (cli) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
+    if (options.parameterFile) {
+      cli.output.info("Reading file content from: \"" + options.parameterFile + "\"");
+      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      var vmInstanceIdsObj = JSON.parse(fileContent);
+    }
+    else {
+      var vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+    }
+    cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.updateInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIds, _);
+    var result = computeManagementClient.virtualMachineScaleSets.updateInstances(options.resourceGroupName, options.vmScaleSetName, vmInstanceIdsObj, _);
     cli.output.json(result);
   });
 //virtualMachineScaleSetVM -> Deallocate
