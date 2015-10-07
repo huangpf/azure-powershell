@@ -886,7 +886,9 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = "/virtualMachineProfile/extensionProfile/extensions" + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
     var paramPath = options.path + "/" + "autoUpgradeMinorVersion";
     cli.output.info("================================================");
     cli.output.info("JSON Parameters Path:" + paramPath);
@@ -1335,7 +1337,9 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations" + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
     var paramPath = options.path + "/" + "name";
     cli.output.info("================================================");
     cli.output.info("JSON Parameters Path:" + paramPath);
@@ -1498,7 +1502,9 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/" + options.networkInterfaceConfigurationsIndex + "/iPConfigurations" + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
     var paramPath = options.path + "/" + "name";
     cli.output.info("================================================");
     cli.output.info("JSON Parameters Path:" + paramPath);
@@ -1642,7 +1648,9 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/" + options.networkInterfaceConfigurationsIndex + "/iPConfigurations/" + options.ipConfigurationsIndex + "/loadBalancerBackendAddressPools" + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
     var paramPath = options.path + "/" + "referenceUri";
     cli.output.info("================================================");
     cli.output.info("JSON Parameters Path:" + paramPath);
@@ -1787,7 +1795,9 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = "/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/" + options.networkInterfaceConfigurationsIndex + "/iPConfigurations/" + options.ipConfigurationsIndex + "/loadBalancerInboundNatPools" + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
     var paramPath = options.path + "/" + "referenceUri";
     cli.output.info("================================================");
     cli.output.info("JSON Parameters Path:" + paramPath);
@@ -2491,7 +2501,9 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = "/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys" + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
     var paramPath = options.path + "/" + "keyData";
     cli.output.info("================================================");
     cli.output.info("JSON Parameters Path:" + paramPath);
@@ -2652,7 +2664,9 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = "/virtualMachineProfile/oSProfile/secrets" + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info("=====================================");
     cli.output.info("JSON object (updated):");
@@ -2914,7 +2928,9 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = "/virtualMachineProfile/oSProfile/secrets/" + options.secretsIndex + "/vaultCertificates" + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
     var paramPath = options.path + "/" + "certificateStore";
     cli.output.info("================================================");
     cli.output.info("JSON Parameters Path:" + paramPath);
@@ -3262,7 +3278,9 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = "/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents" + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
     var paramPath = options.path + "/" + "componentName";
     cli.output.info("================================================");
     cli.output.info("JSON Parameters Path:" + paramPath);
@@ -3543,7 +3561,9 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = "/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners" + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
     var paramPath = options.path + "/" + "certificateUrl";
     cli.output.info("================================================");
     cli.output.info("JSON Parameters Path:" + paramPath);
@@ -4348,7 +4368,9 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = "/virtualMachineProfile/storageProfile/oSDisk/virtualHardDiskContainers" + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info("=====================================");
     cli.output.info("JSON object (updated):");
@@ -4468,13 +4490,13 @@ exports.init = function (cli) {
   .option('--vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIDs, options, _) {
+  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
-    cli.output.info('vmInstanceIDs = ' + options.vmInstanceIDs);
+    cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.deallocateInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIDs, _);
+    var result = computeManagementClient.virtualMachineScaleSets.deallocateInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIds, _);
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> Delete
@@ -4507,13 +4529,13 @@ exports.init = function (cli) {
   .option('--vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIDs, options, _) {
+  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
-    cli.output.info('vmInstanceIDs = ' + options.vmInstanceIDs);
+    cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.deleteInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIDs, _);
+    var result = computeManagementClient.virtualMachineScaleSets.deleteInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIds, _);
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> Get
@@ -4794,13 +4816,13 @@ exports.init = function (cli) {
   .option('--vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIDs, options, _) {
+  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
-    cli.output.info('vmInstanceIDs = ' + options.vmInstanceIDs);
+    cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.powerOffInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIDs, _);
+    var result = computeManagementClient.virtualMachineScaleSets.powerOffInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIds, _);
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> Restart
@@ -4833,13 +4855,13 @@ exports.init = function (cli) {
   .option('--vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIDs, options, _) {
+  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
-    cli.output.info('vmInstanceIDs = ' + options.vmInstanceIDs);
+    cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.restartInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIDs, _);
+    var result = computeManagementClient.virtualMachineScaleSets.restartInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIds, _);
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> Start
@@ -4872,13 +4894,13 @@ exports.init = function (cli) {
   .option('--vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIDs, options, _) {
+  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
-    cli.output.info('vmInstanceIDs = ' + options.vmInstanceIDs);
+    cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.startInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIDs, _);
+    var result = computeManagementClient.virtualMachineScaleSets.startInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIds, _);
     cli.output.json(result);
   });
 //virtualMachineScaleSet -> UpdateInstances
@@ -4894,13 +4916,13 @@ exports.init = function (cli) {
   .option('--vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIDs, options, _) {
+  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
-    cli.output.info('vmInstanceIDs = ' + options.vmInstanceIDs);
+    cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.updateInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIDs, _);
+    var result = computeManagementClient.virtualMachineScaleSets.updateInstances(options.resourceGroupName, options.vmScaleSetName, options.vmInstanceIds, _);
     cli.output.json(result);
   });
 //virtualMachineScaleSetVM -> Deallocate

@@ -68,6 +68,11 @@ function Get-CliNormalizedName
         $outName = $firstChar + $inName.Substring(1);
     }
 
+    if ($outName.EndsWith('IDs'))
+    {
+        $outName = $outName.Substring(0, $outName.Length - 3) + 'Ids';
+    }
+
     return $outName;
 }
 

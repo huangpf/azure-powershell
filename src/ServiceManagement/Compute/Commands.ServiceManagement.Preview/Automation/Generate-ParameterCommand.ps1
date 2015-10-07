@@ -160,7 +160,9 @@ function Generate-ParameterCommandImpl
         # 1.3 For List Item
         if ($TreeNode.IsListItem)
         {
-            $code += "    jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $NEW_LINE;
+            $code += "    if (options.value) {" + $NEW_LINE;
+            $code += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $NEW_LINE;
+            $code += "    }" + $NEW_LINE;
         }
         
         # 1.4 For Each Property, Apply the Change if Any
