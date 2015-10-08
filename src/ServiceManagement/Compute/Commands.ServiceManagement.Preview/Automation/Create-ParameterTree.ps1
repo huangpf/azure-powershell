@@ -67,7 +67,11 @@ function Create-ParameterTreeImpl
         $treeNode = New-ParameterTreeNode $ParameterName $TypeInfo $Parent;
 
         $padding = ($Depth.ToString() + (' ' * (4 * ($Depth + 1))));
-        Write-Verbose ($padding + "-----------------------------------------------------------");
+        if ($Depth -gt 0)
+        {
+            Write-Verbose ($padding + "-----------------------------------------------------------");
+        }
+
         Write-Verbose ($padding + "[ Node ] "  + $treeNode.Name);
         Write-Verbose ($padding + "[Parent] " + $Parent.Name);
 

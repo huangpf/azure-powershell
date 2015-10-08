@@ -63,6 +63,7 @@ param(
 
 $NEW_LINE = "`r`n";
 $BAR_LINE = "=============================================";
+$SEC_LINE = "---------------------------------------------";
 $verbs_common_new = "VerbsCommon.New";
 $verbs_lifecycle_invoke = "VerbsLifecycle.Invoke";
 $client_model_namespace = $client_library_namespace + '.Models';
@@ -2078,7 +2079,8 @@ function Write-CLICommandFile
     $fileFullPath = $fileOutputFolder + '/' + 'cli.js';
 
     Write-Verbose "=============================================";
-    Write-Verbose ("Writing CLI Command File: " + $NEW_LINE + $fileFullPath);
+    Write-Verbose "Writing CLI Command File: ";
+    Write-Verbose $fileFullPath;
     Write-Verbose "=============================================";
 
     $codeContent = 
@@ -2200,15 +2202,29 @@ else
         $st = mkdir -Force $opOutFolder;
 
         $methods = $ft.GetMethods();
-        foreach ($mt in $methods)
+        foreach ($mtItem in $methods)
         {
+            [System.Reflection.MethodInfo]$mt = $mtItem;
             if ($mt.Name.StartsWith('Begin') -and $mt.Name.Contains('ing'))
             {
-                # Skip 'BeginXXX' Calls for Now...
+                # Skip 'Begin*ing*' Calls for Now...
                 continue;
             }
-
+            
+            # Output Info for Method Signature
+            Write-Verbose "";
+            Write-Verbose $SEC_LINE;
             Write-Verbose $mt.Name.Replace('Async', '');
+            foreach ($paramInfoItem in $mt.GetParameters())
+            {
+                [System.Reflection.ParameterInfo]$paramInfo = $paramInfoItem;
+                if ($paramInfo.ParameterType.Name -ne 'CancellationToken')
+                {
+                    Write-Verbose ("-" + $paramInfo.Name + " : " + $paramInfo.ParameterType);
+                }
+            }
+            Write-Verbose $SEC_LINE;
+
             $outputs = Write-OperationCmdletFile $opOutFolder $opShortName $mt $invoke_cmdlet_class_name $parameter_cmdlet_class_name;
             if ($outputs.Count -ne $null)
             {
