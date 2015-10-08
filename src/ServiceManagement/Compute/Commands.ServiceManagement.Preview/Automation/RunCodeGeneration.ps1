@@ -1870,7 +1870,9 @@ ${cmdlet_partial_class_code}
             $file_content = $param_object_comment_no_compress.Replace($NEW_LINE, "\r\n").Replace("`r", "\r").Replace("`n", "\n");
             $file_content = $file_content.Replace("`"", "\`"").Replace(' ', '');
             $cli_op_code_content += "    var filePath = `"${category_name}_${cli_method_name}.json`";" + $NEW_LINE;
-            $cli_op_code_content += "    if (options.parameterFile) { filePath = options.parameterFile; };" + $NEW_LINE;
+            $cli_op_code_content += "    if (options.parameterFile) {" + $NEW_LINE;
+            $cli_op_code_content += "      filePath = options.parameterFile;" + $NEW_LINE;
+            $cli_op_code_content += "    }" + $NEW_LINE;
             $cli_op_code_content += "    fs.writeFileSync(filePath, beautify(`"" + $file_content + "`"));" + $NEW_LINE;
             $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
             $cli_op_code_content += "    cli.output.info(`"Parameter file output to: `" + filePath);" + $NEW_LINE;
