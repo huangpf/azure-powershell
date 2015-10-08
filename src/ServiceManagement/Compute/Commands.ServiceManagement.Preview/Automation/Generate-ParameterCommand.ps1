@@ -49,8 +49,6 @@ function Generate-ParameterCommandImpl
     $params_category_name = 'parameters';
     $cli_param_name = $params_category_name;
 
-    Write-Verbose ("Generating Commands for " + $TreeNode.Name);
-
     # 0. Construct Path to Node
     $pathToTreeNode = "";
     $parentNode = $TreeNode;
@@ -101,7 +99,6 @@ function Generate-ParameterCommandImpl
     
     if ($TreeNode.Properties.Count -gt 0 -or ($TreeNode.IsListItem))
     {
-        Write-Verbose ("Generating Set Parameters...");
         # 1. Parameter Set Command
         $params_generate_category_name = 'set';
         $code = "  //$params_category_name set ${cli_method_option_name}" + $NEW_LINE;
@@ -196,7 +193,6 @@ function Generate-ParameterCommandImpl
     }
 
     # 2. Parameter Remove Command
-    Write-Verbose ("Generating Remove Parameters...");
     $params_generate_category_name = 'remove';
     $code += "  //$params_category_name ${params_generate_category_name} ${cli_method_option_name}" + $NEW_LINE;
     $code += "  var ${params_category_name} = ${category_name}.category('${params_category_name}')" + $NEW_LINE;
@@ -246,7 +242,6 @@ function Generate-ParameterCommandImpl
     $code += "  });" + $NEW_LINE;
     
     # 3. Parameter Add Command
-    Write-Verbose ("Generating Add Parameters...");
     $params_generate_category_name = 'add';
     $code += "  //$params_category_name ${params_generate_category_name} ${cli_method_option_name}" + $NEW_LINE;
     $code += "  var ${params_category_name} = ${category_name}.category('${params_category_name}')" + $NEW_LINE;

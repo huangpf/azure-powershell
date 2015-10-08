@@ -1562,7 +1562,7 @@ ${cmdlet_partial_class_code}
                 $param_object_comment = (. $PSScriptRoot\ConvertTo-Json.ps1 -inputObject $param_object -compress $true);
                 $param_object_comment_no_compress = (. $PSScriptRoot\ConvertTo-Json.ps1 -inputObject $param_object);
 
-                $cmdlet_tree = (. $PSScriptRoot\Create-ParameterCmdletTree.ps1 -TypeInfo $pt.ParameterType -NameSpace $client_model_namespace -ParameterName $pt.ParameterType.Name);
+                $cmdlet_tree = (. $PSScriptRoot\Create-ParameterTree.ps1 -TypeInfo $pt.ParameterType -NameSpace $client_model_namespace -ParameterName $pt.ParameterType.Name);
                 $cmdlet_tree_code = (. $PSScriptRoot\Generate-ParameterCommand.ps1 -CmdletTreeNode $cmdlet_tree -Operation $opShortName);
             }
         }

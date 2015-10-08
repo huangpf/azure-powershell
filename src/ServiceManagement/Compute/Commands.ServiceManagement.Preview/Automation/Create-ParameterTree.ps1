@@ -23,7 +23,7 @@ param(
     [string]$ParameterName = $null
 )
 
-function New-ParameterCmdletTreeNode
+function New-ParameterTreeNode
 {
     param ([string]$Name, [System.Type]$TypeInfo, $Parent)
     
@@ -38,7 +38,7 @@ function New-ParameterCmdletTreeNode
     return $node;
 }
 
-function Create-ParameterCmdletTreeImpl
+function Create-ParameterTreeImpl
 {
     param(
         [Parameter(Mandatory = $false)]
@@ -60,11 +60,11 @@ function Create-ParameterCmdletTreeImpl
     }
     elseif (-not $TypeInfo.FullName.StartsWith($NameSpace + "."))
     {
-        return New-ParameterCmdletTreeNode $ParameterName $TypeInfo $Parent;
+        return New-ParameterTreeNode $ParameterName $TypeInfo $Parent;
     }
     else
     {
-        $treeNode = New-ParameterCmdletTreeNode $ParameterName $TypeInfo $Parent;
+        $treeNode = New-ParameterTreeNode $ParameterName $TypeInfo $Parent;
 
         $padding = ($Depth.ToString() + (' ' * (4 * ($Depth + 1))));
         Write-Verbose ($padding + "-----------------------------------------------------------");
@@ -80,7 +80,7 @@ function Create-ParameterCmdletTreeImpl
             if ($itemProp.PropertyType.FullName.StartsWith($NameSpace + "."))
             {
                 # Model Class Type - Recursive Call
-                $subTreeNode = Create-ParameterCmdletTreeImpl $itemProp.Name $itemProp.PropertyType $treeNode ($Depth + 1);
+                $subTreeNode = Create-ParameterTreeImpl $itemProp.Name $itemProp.PropertyType $treeNode ($Depth + 1);
                 if ($subTreeNode -ne $null)
                 {
                     $treeNode.SubNodes += $subTreeNode;
@@ -94,7 +94,7 @@ function Create-ParameterCmdletTreeImpl
                 Write-Verbose ($padding + '-' + $itemProp.Name + ' : [List] ' + $listItemType.Name + "");
 
                 # ListItem is Model Class Type - Recursive Call
-                $subTreeNode = Create-ParameterCmdletTreeImpl $itemProp.Name $listItemType $treeNode ($Depth + 1)
+                $subTreeNode = Create-ParameterTreeImpl $itemProp.Name $listItemType $treeNode ($Depth + 1)
                 $subTreeNode.IsListItem = $true;
                 $treeNode.SubNodes += $subTreeNode;
             }
@@ -109,4 +109,4 @@ function Create-ParameterCmdletTreeImpl
     }
 }
 
-Write-Output (Create-ParameterCmdletTreeImpl $ParameterName $TypeInfo);
+Write-Output (Create-ParameterTreeImpl $ParameterName $TypeInfo);
