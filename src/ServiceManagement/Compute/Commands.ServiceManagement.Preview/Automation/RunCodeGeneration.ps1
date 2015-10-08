@@ -1614,7 +1614,7 @@ ${cmdlet_partial_class_code}
         if ((${cli_param_name} -eq 'Parameters') -or (${cli_param_name} -like '*InstanceIds'))
         {
             $cli_op_code_content += "    if (options.parameterFile) {" + $NEW_LINE;
-            $cli_op_code_content += "      cli.output.info(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $NEW_LINE;
+            $cli_op_code_content += "      cli.output.info(`'Reading file content from: \`"`' + options.parameterFile + `'\`"`');" + $NEW_LINE;
             $cli_op_code_content += "      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $NEW_LINE;
             $cli_op_code_content += "      var ${cli_param_name}Obj = JSON.parse(fileContent);" + $NEW_LINE;
             $cli_op_code_content += "    }" + $NEW_LINE;
@@ -1668,18 +1668,18 @@ ${cmdlet_partial_class_code}
             $cli_op_code_content += ", options, _) {" + $NEW_LINE;
 
             $output_content = $param_object_comment.Replace("`"", "\`"");
-            $cli_op_code_content += "    cli.output.info(`"" + $output_content + "`");" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`'" + $output_content + "`');" + $NEW_LINE;
 
             $file_content = $param_object_comment_no_compress.Replace($NEW_LINE, "\r\n").Replace("`r", "\r").Replace("`n", "\n");
             $file_content = $file_content.Replace("`"", "\`"").Replace(' ', '');
-            $cli_op_code_content += "    var filePath = `"${category_name}_${cli_method_name}.json`";" + $NEW_LINE;
+            $cli_op_code_content += "    var filePath = `'${category_name}_${cli_method_name}.json`';" + $NEW_LINE;
             $cli_op_code_content += "    if (options.parameterFile) {" + $NEW_LINE;
             $cli_op_code_content += "      filePath = options.parameterFile;" + $NEW_LINE;
             $cli_op_code_content += "    }" + $NEW_LINE;
-            $cli_op_code_content += "    fs.writeFileSync(filePath, beautify(`"" + $file_content + "`"));" + $NEW_LINE;
-            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
-            $cli_op_code_content += "    cli.output.info(`"Parameter file output to: `" + filePath);" + $NEW_LINE;
-            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+            $cli_op_code_content += "    fs.writeFileSync(filePath, beautify(`'" + $file_content + "`'));" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`'Parameter file output to: `' + filePath);" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
             $cli_op_code_content += "  });" + $NEW_LINE;
             $cli_op_code_content += $NEW_LINE;
 
@@ -1702,12 +1702,12 @@ ${cmdlet_partial_class_code}
             $cli_op_code_content += "      options.value = JSON.parse(options.value);" + $NEW_LINE;
             $cli_op_code_content += "    }" + $NEW_LINE;
             $cli_op_code_content += "    cli.output.info(options.value);" + $NEW_LINE;
-            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
-            $cli_op_code_content += "    cli.output.info(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $NEW_LINE;
-            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`'Reading file content from: \`"`' + options.parameterFile + `'\`"`');" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
             $cli_op_code_content += "    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $NEW_LINE;
             $cli_op_code_content += "    var ${cli_param_name}Obj = JSON.parse(fileContent);" + $NEW_LINE;
-            $cli_op_code_content += "    cli.output.info(`"JSON object:`");" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`'JSON object:`');" + $NEW_LINE;
             $cli_op_code_content += "    cli.output.info(JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
             $cli_op_code_content += "    if (options.operation == 'add') {" + $NEW_LINE;
             $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $NEW_LINE;
@@ -1719,14 +1719,14 @@ ${cmdlet_partial_class_code}
             $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $NEW_LINE;
             $cli_op_code_content += "    }" + $NEW_LINE;
             $cli_op_code_content += "    var updatedContent = JSON.stringify(${cli_param_name}Obj);" + $NEW_LINE;
-            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
-            $cli_op_code_content += "    cli.output.info(`"JSON object (updated):`");" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`'JSON object (updated):`');" + $NEW_LINE;
             $cli_op_code_content += "    cli.output.info(JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
-            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
             $cli_op_code_content += "    fs.writeFileSync(options.parameterFile, beautify(updatedContent));" + $NEW_LINE;
-            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
-            $cli_op_code_content += "    cli.output.info(`"Parameter file updated at: `" + options.parameterFile);" + $NEW_LINE;
-            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`'Parameter file updated at: `' + options.parameterFile);" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
             $cli_op_code_content += "  });" + $NEW_LINE;
             $cli_op_code_content += $NEW_LINE;
 
