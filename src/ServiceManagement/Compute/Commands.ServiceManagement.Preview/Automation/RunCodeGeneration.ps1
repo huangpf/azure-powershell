@@ -61,7 +61,8 @@ param(
     [string[]]$operationNameFilter = $null
 )
 
-$new_line_str = "`r`n";
+$NEW_LINE = "`r`n";
+$BAR_LINE = "=============================================";
 $verbs_common_new = "VerbsCommon.New";
 $verbs_lifecycle_invoke = "VerbsLifecycle.Invoke";
 $client_model_namespace = $client_library_namespace + '.Models';
@@ -88,7 +89,7 @@ $common_noun_mapping =
 
 $all_return_type_names = @();
 
-Write-Verbose "=============================================";
+Write-Verbose $BAR_LINE;
 Write-Verbose "Input Parameters:";
 Write-Verbose "DLL Folder            = $dllFolder";
 Write-Verbose "Out Folder            = $outFolder";
@@ -98,7 +99,7 @@ Write-Verbose "Base Cmdlet Full Name = $baseCmdletFullName";
 Write-Verbose "Base Client Name      = $base_class_client_field";
 Write-Verbose "Cmdlet Flavor         = $cmdletFlavor";
 Write-Verbose "Operation Name Filter = $operationNameFilter";
-Write-Verbose "=============================================";
+Write-Verbose $BAR_LINE;
 Write-Verbose "${new_line_str}";
 
 $code_common_namespace = ($client_library_namespace.Replace('.Management.', '.Commands.')) + '.Automation';
@@ -141,7 +142,7 @@ function Get-SortedUsingsCode
     $list_of_usings = @() + $code_common_usings + $client_library_namespace + $client_model_namespace + $code_model_namespace;
     $sorted_usings = $list_of_usings | Sort-Object -Unique | foreach { "using ${_};" };
 
-    $text = [string]::Join($new_line_str, $sorted_usings);
+    $text = [string]::Join($NEW_LINE, $sorted_usings);
 
     return $text;
 }
@@ -295,11 +296,12 @@ function Get-FilteredOperationTypes
     )
 
     $op_types = $all_assembly_types | where { $_.Namespace -eq $dll_name -and $_.Name -like 'I*Operations' };
-
+    
+    Write-Verbose $BAR_LINE;
     Write-Verbose 'All Operation Types:';
     foreach ($op_type in $op_types)
     {
-        Write-Verbose ($op_type.Namespace + ', ' + $op_type.Name);
+        Write-Verbose ('[' + $op_type.Namespace + '] ' + $op_type.Name);
     }
 
     $op_filtered_types = $op_types;
@@ -308,12 +310,15 @@ function Get-FilteredOperationTypes
         $op_filtered_types = $op_filtered_types | where { Match-OperationFilter $_.Name $operation_name_filter };
     }
 
+    Write-Verbose $BAR_LINE;
     Write-Verbose ('Operation Name Filter : "' + $operation_name_filter + '"');
     Write-Verbose 'Filtered Operation Types : ';
     foreach ($op_type in $op_filtered_types)
     {
-        Write-Verbose ($op_type.Namespace + ', ' + $op_type.Name);
+        Write-Verbose ('[' + $op_type.Namespace + '] ' + $op_type.Name);
     }
+
+    Write-Verbose $BAR_LINE;
 
     return $op_filtered_types;
 }
@@ -510,7 +515,7 @@ function Write-BaseCmdletFile
 
             if (-not ($operation_get_code -eq ""))
             {
-                $operation_get_code += ($new_line_str * 2);
+                $operation_get_code += ($NEW_LINE * 2);
             }
 
             $operation_get_code += $operation_get_template;
@@ -631,7 +636,7 @@ function Write-InvokeCmdletFile
     }
 
     $all_method_names_with_quotes = $all_method_names | foreach { "`"" + $_ + "`"" };
-    $all_method_names_str = [string]::Join(',' + $new_line_str + (' ' * 12), $all_method_names_with_quotes);
+    $all_method_names_str = [string]::Join(',' + $NEW_LINE + (' ' * 12), $all_method_names_with_quotes);
     $validate_all_method_names_code =
 @"
         [ValidateSet(
@@ -660,14 +665,14 @@ $validate_all_method_names_code
                         Execute${method_name}Method(argumentList);
                         break;
 "@;
-        $operations_code += $operation_code_template + $new_line_str;
+        $operations_code += $operation_code_template + $NEW_LINE;
 
         
         $dynamic_param_code_template =
 @"
                     case `"${method_name}`" : return Create${method_name}DynamicParameters();
 "@;
-        $dynamic_parameters_code += $dynamic_param_code_template + $new_line_str;
+        $dynamic_parameters_code += $dynamic_param_code_template + $NEW_LINE;
     }
 
     $execute_client_action_code =
@@ -706,8 +711,8 @@ ${operations_code}                    default : WriteWarning(`"Cannot find the m
         }
 "@;
 
-    # $invoke_cmdlet_method_code_content = ([string]::Join($new_line_str, $invoke_cmdlet_method_code));
-    # $dynamic_param_method_code_content = ([string]::Join($new_line_str, $dynamic_param_method_code));
+    # $invoke_cmdlet_method_code_content = ([string]::Join($NEW_LINE, $invoke_cmdlet_method_code));
+    # $dynamic_param_method_code_content = ([string]::Join($NEW_LINE, $dynamic_param_method_code));
 
     $cmdlet_source_code_text =
 @"
@@ -903,7 +908,7 @@ function Write-InvokeParameterCmdletFile
     }
 
     $all_method_names_with_quotes = $all_method_names | foreach { "`"" + $_ + "`"" };
-    $all_method_names_str = [string]::Join(',' + $new_line_str + (' ' * 12), $all_method_names_with_quotes);
+    $all_method_names_str = [string]::Join(',' + $NEW_LINE + (' ' * 12), $all_method_names_with_quotes);
     $validate_all_method_names_code =
 @"
         [ValidateSet(
@@ -930,7 +935,7 @@ $validate_all_method_names_code
 @"
                         case `"${method_name}`" : WriteObject(Create${method_name}Parameters(), true); break;
 "@;
-        $operations_code += $operation_code_template + $new_line_str;
+        $operations_code += $operation_code_template + $NEW_LINE;
     }
 
     $execute_client_action_code =
@@ -951,7 +956,7 @@ ${operations_code}                        default : WriteWarning(`"Cannot find t
         }
 "@;
 
-    # $parameter_cmdlet_method_code_content = ([string]::Join($new_line_str, $parameter_cmdlet_method_code));
+    # $parameter_cmdlet_method_code_content = ([string]::Join($NEW_LINE, $parameter_cmdlet_method_code));
 
     $cmdlet_source_code_text =
 @"
@@ -1131,7 +1136,7 @@ function Write-NewParameterObjectCmdletFile
 
     $all_param_type_names = $all_param_type_names | Sort;
     $all_param_type_names_with_quotes = $all_param_type_names | foreach { "`"" + $_ + "`"" };
-    $all_param_names_str = [string]::Join(',' + $new_line_str + (' ' * 12), $all_param_type_names_with_quotes);
+    $all_param_names_str = [string]::Join(',' + $NEW_LINE + (' ' * 12), $all_param_type_names_with_quotes);
     $validate_all_param_names_code =
 @"
         [ValidateSet(
@@ -1141,7 +1146,7 @@ function Write-NewParameterObjectCmdletFile
 
     $all_param_full_type_names = $all_param_full_type_names | Sort;
     $all_param_full_type_names_with_quotes = $all_param_full_type_names | foreach { "`"" + $_ + "`"" };
-    $all_param_full_names_str = [string]::Join(',' + $new_line_str + (' ' * 12), $all_param_full_type_names_with_quotes);
+    $all_param_full_names_str = [string]::Join(',' + $NEW_LINE + (' ' * 12), $all_param_full_type_names_with_quotes);
     $validate_all_param_full_names_code =
 @"
         [ValidateSet(
@@ -1173,7 +1178,7 @@ $validate_all_param_full_names_code
 @"
                         case `"${method_name}`" : WriteObject(Create${method_name}Parameters()); break;
 "@;
-        $operations_code += $operation_code_template + $new_line_str;
+        $operations_code += $operation_code_template + $NEW_LINE;
     }
 
     $type_operations_code = "";
@@ -1184,7 +1189,7 @@ $validate_all_param_full_names_code
 @"
                         case `"${type_name}`" : WriteObject(${constructor_code}); break;
 "@;
-        $type_operations_code += $type_code_template + $new_line_str;
+        $type_operations_code += $type_code_template + $NEW_LINE;
     }
 
     $full_type_operations_code = "";
@@ -1195,7 +1200,7 @@ $validate_all_param_full_names_code
 @"
                         case `"${type_name}`" : WriteObject(${constructor_code}); break;
 "@;
-        $full_type_operations_code += $full_type_code_template + $new_line_str;
+        $full_type_operations_code += $full_type_code_template + $NEW_LINE;
     }
 
     $execute_client_action_code =
@@ -1223,7 +1228,7 @@ ${full_type_operations_code}                        default : WriteWarning(`"Can
         }
 "@;
 
-    # $parameter_cmdlet_method_code_content = ([string]::Join($new_line_str, $parameter_cmdlet_method_code));
+    # $parameter_cmdlet_method_code_content = ([string]::Join($NEW_LINE, $parameter_cmdlet_method_code));
 
     $cmdlet_source_code_text =
 @"
@@ -1290,7 +1295,7 @@ function Write-OperationCmdletFile
     $invoke_input_params_name = 'invokeMethodInputParameters';
     
     $cmdlet_generated_code = '';
-    # $cmdlet_generated_code += $indents + '// ' + $operation_method_info + $new_line_str;
+    # $cmdlet_generated_code += $indents + '// ' + $operation_method_info + $NEW_LINE;
 
     $params = $operation_method_info.GetParameters();
     [System.Collections.ArrayList]$param_names = @();
@@ -1320,22 +1325,22 @@ function Write-OperationCmdletFile
 
                 $invoke_param_attributes += $piping_from_property_name_code;
             }
-            $param_attributes += ")]" + $new_line_str;
-            $invoke_param_attributes += ")]" + $new_line_str;
-            $param_definition = $indents + "public ${paramTypeNormalizedName} ${normalized_param_name} " + $get_set_block + $new_line_str;
-            $invoke_param_definition = $indents + "public ${paramTypeNormalizedName} ${invoke_param_set_name}${normalized_param_name} " + $get_set_block + $new_line_str;
+            $param_attributes += ")]" + $NEW_LINE;
+            $invoke_param_attributes += ")]" + $NEW_LINE;
+            $param_definition = $indents + "public ${paramTypeNormalizedName} ${normalized_param_name} " + $get_set_block + $NEW_LINE;
+            $invoke_param_definition = $indents + "public ${paramTypeNormalizedName} ${invoke_param_set_name}${normalized_param_name} " + $get_set_block + $NEW_LINE;
             $param_index = $position_index - 1;
             $invoke_local_param_definition = $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = (${paramTypeNormalizedName})ParseParameter(${invoke_input_params_name}[${param_index}]);";
             $create_local_param_definition = $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = ${param_constructor_code};";
             $param_code_content = $param_attributes + $param_definition;
 
             # For Invoke Method
-            $invoke_param_definition = $indents + "public ${paramTypeNormalizedName} ${invoke_param_set_name}${normalized_param_name} " + $get_set_block + $new_line_str;
-            $invoke_param_code_content += $invoke_param_attributes + $invoke_param_definition + $new_line_str;
-            $invoke_local_param_code_content += $invoke_local_param_definition + $new_line_str;
-            $create_local_param_code_content += $create_local_param_definition + $new_line_str;
+            $invoke_param_definition = $indents + "public ${paramTypeNormalizedName} ${invoke_param_set_name}${normalized_param_name} " + $get_set_block + $NEW_LINE;
+            $invoke_param_code_content += $invoke_param_attributes + $invoke_param_definition + $NEW_LINE;
+            $invoke_local_param_code_content += $invoke_local_param_definition + $NEW_LINE;
+            $create_local_param_code_content += $create_local_param_definition + $NEW_LINE;
 
-            $cmdlet_generated_code += $param_code_content + $new_line_str;
+            $cmdlet_generated_code += $param_code_content + $NEW_LINE;
 
             $st = $param_names.Add($normalized_param_name);
             $st = $invoke_param_names.Add((${invoke_param_set_name} + $normalized_param_name));
@@ -1419,7 +1424,7 @@ function Write-OperationCmdletFile
 
 "@;
 
-    $dynamic_param_assignment_code = [string]::Join($new_line_str, $dynamic_param_assignment_code_lines);
+    $dynamic_param_assignment_code = [string]::Join($NEW_LINE, $dynamic_param_assignment_code_lines);
 
     $dynamic_param_source_template =
 @"
@@ -1575,24 +1580,24 @@ ${cmdlet_partial_class_code}
     $cli_op_name = Get-CliNormalizedName $opShortName;
     $cli_op_description = (Get-CliOptionName $opShortName).Replace('-', ' ');
 
-    $cli_op_code_content += "//" + $cli_op_name + " -> " + $methodName + $new_line_str;
+    $cli_op_code_content += "//" + $cli_op_name + " -> " + $methodName + $NEW_LINE;
     if ($param_object_comment -ne $null)
     {
-        $cli_op_code_content += "/*" + $new_line_str + $param_object_comment + $new_line_str + "*/" + $new_line_str;
+        $cli_op_code_content += "/*" + $NEW_LINE + $param_object_comment + $NEW_LINE + "*/" + $NEW_LINE;
     }
 
-    $cli_op_code_content += "  var $category_name = cli.category('${category_name}').description(`$('Commands to manage your $cli_op_description.'));" + $new_line_str;
+    $cli_op_code_content += "  var $category_name = cli.category('${category_name}').description(`$('Commands to manage your $cli_op_description.'));" + $NEW_LINE;
 
-    $cli_op_code_content += "  ${category_name}.command('${cli_method_option_name}')" + $new_line_str;
-    $cli_op_code_content += "  .description(`$('${cli_method_option_name} method to manage your $cli_op_description.'))" + $new_line_str;
-    $cli_op_code_content += "  .usage('[options]')" + $new_line_str;
+    $cli_op_code_content += "  ${category_name}.command('${cli_method_option_name}')" + $NEW_LINE;
+    $cli_op_code_content += "  .description(`$('${cli_method_option_name} method to manage your $cli_op_description.'))" + $NEW_LINE;
+    $cli_op_code_content += "  .usage('[options]')" + $NEW_LINE;
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
         $cli_option_name = Get-CliOptionName $param_names[$index];
-        $cli_op_code_content += "  .option('--${cli_option_name} <${cli_option_name}>', `$('${cli_option_name}'))" + $new_line_str;
+        $cli_op_code_content += "  .option('--${cli_option_name} <${cli_option_name}>', `$('${cli_option_name}'))" + $NEW_LINE;
     }
-    $cli_op_code_content += "  .option('--parameter-file <parameter-file>', `$('the input parameter file'))" + $new_line_str;
-    $cli_op_code_content += "  .option('-s, --subscription <subscription>', `$('the subscription identifier'))" + $new_line_str;
+    $cli_op_code_content += "  .option('--parameter-file <parameter-file>', `$('the input parameter file'))" + $NEW_LINE;
+    $cli_op_code_content += "  .option('-s, --subscription <subscription>', `$('the subscription identifier'))" + $NEW_LINE;
     $cli_op_code_content += "  .execute(function ("
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
@@ -1600,26 +1605,26 @@ ${cmdlet_partial_class_code}
         $cli_param_name = Get-CliNormalizedName $param_names[$index];
         $cli_op_code_content += "$cli_param_name";
     }
-    $cli_op_code_content += ", options, _) {" + $new_line_str;
+    $cli_op_code_content += ", options, _) {" + $NEW_LINE;
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
         $cli_param_name = Get-CliNormalizedName $param_names[$index];
-        $cli_op_code_content += "    cli.output.info('${cli_param_name} = ' + options.${cli_param_name});" + $new_line_str;
+        $cli_op_code_content += "    cli.output.info('${cli_param_name} = ' + options.${cli_param_name});" + $NEW_LINE;
         if ((${cli_param_name} -eq 'Parameters') -or (${cli_param_name} -like '*InstanceIds'))
         {
-            $cli_op_code_content += "    if (options.parameterFile) {" + $new_line_str;
-            $cli_op_code_content += "      cli.output.info(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $new_line_str;
-            $cli_op_code_content += "      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $new_line_str;
-            $cli_op_code_content += "      var ${cli_param_name}Obj = JSON.parse(fileContent);" + $new_line_str;
-            $cli_op_code_content += "    }" + $new_line_str;
-            $cli_op_code_content += "    else {" + $new_line_str;
-            $cli_op_code_content += "      var ${cli_param_name}Obj = JSON.parse(options.${cli_param_name});" + $new_line_str;
-            $cli_op_code_content += "    }" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info('${cli_param_name}Obj = ' + JSON.stringify(${cli_param_name}Obj));" + $new_line_str;
+            $cli_op_code_content += "    if (options.parameterFile) {" + $NEW_LINE;
+            $cli_op_code_content += "      cli.output.info(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $NEW_LINE;
+            $cli_op_code_content += "      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $NEW_LINE;
+            $cli_op_code_content += "      var ${cli_param_name}Obj = JSON.parse(fileContent);" + $NEW_LINE;
+            $cli_op_code_content += "    }" + $NEW_LINE;
+            $cli_op_code_content += "    else {" + $NEW_LINE;
+            $cli_op_code_content += "      var ${cli_param_name}Obj = JSON.parse(options.${cli_param_name});" + $NEW_LINE;
+            $cli_op_code_content += "    }" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info('${cli_param_name}Obj = ' + JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
         }
     }
-    $cli_op_code_content += "    var subscription = profile.current.getSubscription(options.subscription);" + $new_line_str;
-    $cli_op_code_content += "    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);" + $new_line_str;
+    $cli_op_code_content += "    var subscription = profile.current.getSubscription(options.subscription);" + $NEW_LINE;
+    $cli_op_code_content += "    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);" + $NEW_LINE;
     $cli_op_code_content += "    var result = computeManagementClient.${cli_op_name}s.${cli_method_name}(";
     for ($index = 0; $index -lt $param_names.Count; $index++)
     {
@@ -1635,9 +1640,9 @@ ${cmdlet_partial_class_code}
             $cli_op_code_content += "options.${cli_param_name}";
         }
     }
-    $cli_op_code_content += ", _);" + $new_line_str;
-    $cli_op_code_content += "    cli.output.json(result);" + $new_line_str;
-    $cli_op_code_content += "  });" + $new_line_str;
+    $cli_op_code_content += ", _);" + $NEW_LINE;
+    $cli_op_code_content += "    cli.output.json(result);" + $NEW_LINE;
+    $cli_op_code_content += "  });" + $NEW_LINE;
 
     # 3.3 Parameters
     for ($index = 0; $index -lt $param_names.Count; $index++)
@@ -1649,81 +1654,81 @@ ${cmdlet_partial_class_code}
             $params_generate_category_name = 'generate';
 
             # 3.3.1 Parameter Generate Command
-            $cli_op_code_content += "  var ${params_category_name} = ${category_name}.category('${params_category_name}')" + $new_line_str;
-            $cli_op_code_content += "  .description(`$('Commands to manage parameter for your ${cli_op_description}.'));" + $new_line_str;
-            $cli_op_code_content += "  var ${params_generate_category_name} = ${params_category_name}.category('${params_generate_category_name}')" + $new_line_str;
-            $cli_op_code_content += "  .description(`$('Commands to generate parameter file for your ${cli_op_description}.'));" + $new_line_str;
-            $cli_op_code_content += "  ${params_generate_category_name}.command('${cli_method_option_name}')" + $new_line_str;
-            $cli_op_code_content += "  .description(`$('Generate ${category_name} parameter string or files.'))" + $new_line_str;
-            $cli_op_code_content += "  .usage('[options]')" + $new_line_str;
-            $cli_op_code_content += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $new_line_str;
+            $cli_op_code_content += "  var ${params_category_name} = ${category_name}.category('${params_category_name}')" + $NEW_LINE;
+            $cli_op_code_content += "  .description(`$('Commands to manage parameter for your ${cli_op_description}.'));" + $NEW_LINE;
+            $cli_op_code_content += "  var ${params_generate_category_name} = ${params_category_name}.category('${params_generate_category_name}')" + $NEW_LINE;
+            $cli_op_code_content += "  .description(`$('Commands to generate parameter file for your ${cli_op_description}.'));" + $NEW_LINE;
+            $cli_op_code_content += "  ${params_generate_category_name}.command('${cli_method_option_name}')" + $NEW_LINE;
+            $cli_op_code_content += "  .description(`$('Generate ${category_name} parameter string or files.'))" + $NEW_LINE;
+            $cli_op_code_content += "  .usage('[options]')" + $NEW_LINE;
+            $cli_op_code_content += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
             $cli_op_code_content += "  .execute(function (";
             $cli_op_code_content += "parameterFile";
-            $cli_op_code_content += ", options, _) {" + $new_line_str;
+            $cli_op_code_content += ", options, _) {" + $NEW_LINE;
 
             $output_content = $param_object_comment.Replace("`"", "\`"");
-            $cli_op_code_content += "    cli.output.info(`"" + $output_content + "`");" + $new_line_str;
+            $cli_op_code_content += "    cli.output.info(`"" + $output_content + "`");" + $NEW_LINE;
 
-            $file_content = $param_object_comment_no_compress.Replace($new_line_str, "\r\n").Replace("`r", "\r").Replace("`n", "\n");
+            $file_content = $param_object_comment_no_compress.Replace($NEW_LINE, "\r\n").Replace("`r", "\r").Replace("`n", "\n");
             $file_content = $file_content.Replace("`"", "\`"").Replace(' ', '');
-            $cli_op_code_content += "    var filePath = `"${category_name}_${cli_method_name}.json`";" + $new_line_str;
-            $cli_op_code_content += "    if (options.parameterFile) { filePath = options.parameterFile; };" + $new_line_str;
-            $cli_op_code_content += "    fs.writeFileSync(filePath, beautify(`"" + $file_content + "`"));" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(`"Parameter file output to: `" + filePath);" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $new_line_str;
-            $cli_op_code_content += "  });" + $new_line_str;
-            $cli_op_code_content += $new_line_str;
+            $cli_op_code_content += "    var filePath = `"${category_name}_${cli_method_name}.json`";" + $NEW_LINE;
+            $cli_op_code_content += "    if (options.parameterFile) { filePath = options.parameterFile; };" + $NEW_LINE;
+            $cli_op_code_content += "    fs.writeFileSync(filePath, beautify(`"" + $file_content + "`"));" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`"Parameter file output to: `" + filePath);" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+            $cli_op_code_content += "  });" + $NEW_LINE;
+            $cli_op_code_content += $NEW_LINE;
 
             # 3.3.2 Parameter Patch Command
-            $cli_op_code_content += "  ${params_category_name}.command('patch')" + $new_line_str;
-            $cli_op_code_content += "  .description(`$('Command to patch ${category_name} parameter JSON file.'))" + $new_line_str;
-            $cli_op_code_content += "  .usage('[options]')" + $new_line_str;
-            $cli_op_code_content += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $new_line_str;
-            $cli_op_code_content += "  .option('--operation <operation>', `$('The JSON patch operation: add, remove, or replace.'))" + $new_line_str;
-            $cli_op_code_content += "  .option('--path <path>', `$('The JSON data path, e.g.: \`"foo/1\`".'))" + $new_line_str;
-            $cli_op_code_content += "  .option('--value <value>', `$('The JSON value.'))" + $new_line_str;
-            $cli_op_code_content += "  .option('--parse', `$('Parse the JSON value to object.'))" + $new_line_str;
-            $cli_op_code_content += "  .execute(function (parameterFile, operation, path, value, parse, options, _) {" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(options.parameterFile);" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(options.operation);" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(options.path);" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(options.value);" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(options.parse);" + $new_line_str;
-            $cli_op_code_content += "    if (options.parse) {" + $new_line_str;
-            $cli_op_code_content += "      options.value = JSON.parse(options.value);" + $new_line_str;
-            $cli_op_code_content += "    }" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(options.value);" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $new_line_str;
-            $cli_op_code_content += "    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $new_line_str;
-            $cli_op_code_content += "    var ${cli_param_name}Obj = JSON.parse(fileContent);" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(`"JSON object:`");" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(JSON.stringify(${cli_param_name}Obj));" + $new_line_str;
-            $cli_op_code_content += "    if (options.operation == 'add') {" + $new_line_str;
-            $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $new_line_str;
-            $cli_op_code_content += "    }" + $new_line_str;
-            $cli_op_code_content += "    else if (options.operation == 'remove') {" + $new_line_str;
-            $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path}]);" + $new_line_str;
-            $cli_op_code_content += "    }" + $new_line_str;
-            $cli_op_code_content += "    else if (options.operation == 'replace') {" + $new_line_str;
-            $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $new_line_str;
-            $cli_op_code_content += "    }" + $new_line_str;
-            $cli_op_code_content += "    var updatedContent = JSON.stringify(${cli_param_name}Obj);" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(`"JSON object (updated):`");" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(JSON.stringify(${cli_param_name}Obj));" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $new_line_str;
-            $cli_op_code_content += "    fs.writeFileSync(options.parameterFile, beautify(updatedContent));" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(`"Parameter file updated at: `" + options.parameterFile);" + $new_line_str;
-            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $new_line_str;
-            $cli_op_code_content += "  });" + $new_line_str;
-            $cli_op_code_content += $new_line_str;
+            $cli_op_code_content += "  ${params_category_name}.command('patch')" + $NEW_LINE;
+            $cli_op_code_content += "  .description(`$('Command to patch ${category_name} parameter JSON file.'))" + $NEW_LINE;
+            $cli_op_code_content += "  .usage('[options]')" + $NEW_LINE;
+            $cli_op_code_content += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
+            $cli_op_code_content += "  .option('--operation <operation>', `$('The JSON patch operation: add, remove, or replace.'))" + $NEW_LINE;
+            $cli_op_code_content += "  .option('--path <path>', `$('The JSON data path, e.g.: \`"foo/1\`".'))" + $NEW_LINE;
+            $cli_op_code_content += "  .option('--value <value>', `$('The JSON value.'))" + $NEW_LINE;
+            $cli_op_code_content += "  .option('--parse', `$('Parse the JSON value to object.'))" + $NEW_LINE;
+            $cli_op_code_content += "  .execute(function (parameterFile, operation, path, value, parse, options, _) {" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(options.parameterFile);" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(options.operation);" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(options.path);" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(options.value);" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(options.parse);" + $NEW_LINE;
+            $cli_op_code_content += "    if (options.parse) {" + $NEW_LINE;
+            $cli_op_code_content += "      options.value = JSON.parse(options.value);" + $NEW_LINE;
+            $cli_op_code_content += "    }" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(options.value);" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+            $cli_op_code_content += "    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $NEW_LINE;
+            $cli_op_code_content += "    var ${cli_param_name}Obj = JSON.parse(fileContent);" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`"JSON object:`");" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
+            $cli_op_code_content += "    if (options.operation == 'add') {" + $NEW_LINE;
+            $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $NEW_LINE;
+            $cli_op_code_content += "    }" + $NEW_LINE;
+            $cli_op_code_content += "    else if (options.operation == 'remove') {" + $NEW_LINE;
+            $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path}]);" + $NEW_LINE;
+            $cli_op_code_content += "    }" + $NEW_LINE;
+            $cli_op_code_content += "    else if (options.operation == 'replace') {" + $NEW_LINE;
+            $cli_op_code_content += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $NEW_LINE;
+            $cli_op_code_content += "    }" + $NEW_LINE;
+            $cli_op_code_content += "    var updatedContent = JSON.stringify(${cli_param_name}Obj);" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`"JSON object (updated):`");" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+            $cli_op_code_content += "    fs.writeFileSync(options.parameterFile, beautify(updatedContent));" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`"Parameter file updated at: `" + options.parameterFile);" + $NEW_LINE;
+            $cli_op_code_content += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+            $cli_op_code_content += "  });" + $NEW_LINE;
+            $cli_op_code_content += $NEW_LINE;
 
             # 3.3.3 Parameter Commands
-            $cli_op_code_content += $cmdlet_tree_code + $new_line_str;
+            $cli_op_code_content += $cmdlet_tree_code + $NEW_LINE;
             break;
         }
     }
@@ -2072,9 +2077,9 @@ function Write-CLICommandFile
     
     $fileFullPath = $fileOutputFolder + '/' + 'cli.js';
 
-    Write-Output "=============================================";
-    Write-Output("Writing CLI Command File: " + $new_line_str + $fileFullPath);
-    Write-Output "=============================================";
+    Write-Verbose "=============================================";
+    Write-Verbose ("Writing CLI Command File: " + $NEW_LINE + $fileFullPath);
+    Write-Verbose "=============================================";
 
     $codeContent = 
 @"
@@ -2181,10 +2186,10 @@ else
     # Write Operation Cmdlet Files
     foreach ($ft in $filtered_types)
     {
-        Write-Output '';
-        Write-Output '=============================================';
-        Write-Output $ft.Name;
-        Write-Output '=============================================';
+        Write-Verbose '';
+        Write-Verbose $BAR_LINE;
+        Write-Verbose $ft.Name;
+        Write-Verbose $BAR_LINE;
     
         $opShortName = Get-OperationShortName $ft.Name;
         $opOutFolder = $outFolder + '/' + $opShortName;
@@ -2203,7 +2208,7 @@ else
                 continue;
             }
 
-            Write-Output ($new_line_str + $mt.Name.Replace('Async', ''));
+            Write-Verbose $mt.Name.Replace('Async', '');
             $outputs = Write-OperationCmdletFile $opOutFolder $opShortName $mt $invoke_cmdlet_class_name $parameter_cmdlet_class_name;
             if ($outputs.Count -ne $null)
             {
@@ -2225,9 +2230,10 @@ else
 
     # XML 
     $xmlFilePath = $outFolder + '\' + $code_common_namespace + '.format.generated.ps1xml';
-    Write-Output "=============================================";
-    Write-Output ('Writing XML Format File: ' + $new_line_str + $xmlFilePath);
-    Write-Output "=============================================";
+    Write-Verbose $BAR_LINE;
+    Write-Verbose 'Writing XML Format File: ';
+    Write-Verbose $xmlFilePath;
+    Write-Verbose $BAR_LINE;
     Write-XmlFormatFile $xmlFilePath;
 
     # CLI
@@ -2236,7 +2242,7 @@ else
         Write-CLICommandFile $outFolder $cliCommandCodeMainBody;
     }
 
-    Write-Output "=============================================";
-    Write-Output "Finished.";
-    Write-Output "=============================================";
+    Write-Verbose $BAR_LINE;
+    Write-Verbose "Finished.";
+    Write-Verbose $BAR_LINE;
 }
