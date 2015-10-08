@@ -167,9 +167,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             }
         }
 
-        public override void ExecuteCmdlet()
+        protected override void ProcessRecord()
         {
-            base.ExecuteCmdlet();
+            base.ProcessRecord();
             ExecuteClientAction(() =>
             {
                 if (ParameterSetName == "InvokeByDynamicParameters")
