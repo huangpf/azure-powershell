@@ -31,7 +31,7 @@ param(
 $NEW_LINE = "`r`n";
 . "$PSScriptRoot\StringProcessingHelper.ps1";
 
-function Generate-ParameterCommandImpl
+function Generate-CliParameterCommandImpl
 {
     param(
         [Parameter(Mandatory = $true)]
@@ -324,11 +324,14 @@ function Generate-ParameterCommandImpl
     {
         if ($null -ne $subNode)
         {
-            $code += Generate-ParameterCommandImpl $subNode;
+            $code += Generate-CliParameterCommandImpl $subNode;
         }
     }
 
     return $code;
 }
 
-Write-Output (Generate-ParameterCommandImpl $CmdletTreeNode);
+if ($ToolType -eq 'CLI')
+{
+    Write-Output (Generate-CliParameterCommandImpl $CmdletTreeNode);
+}
