@@ -49,6 +49,10 @@ function Create-ParameterObjectImpl
     {
         return 0;
     }
+    elseif ($typeInfo.FullName -eq 'System.Byte[]')
+    {
+        return New-Object -TypeName System.Byte[] -ArgumentList 0;
+    }
     elseif ($typeInfo.FullName -like 'System.Collections.Generic.IList*' -or $typeInfo.FullName -like 'System.Collections.Generic.List*')
     {
         [System.Type]$itemType = $typeInfo.GetGenericArguments()[0];

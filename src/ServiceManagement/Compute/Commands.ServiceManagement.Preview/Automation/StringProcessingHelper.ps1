@@ -68,6 +68,11 @@ function Get-CliNormalizedName
         $outName = $firstChar + $inName.Substring(1);
     }
 
+    if ($outName.EndsWith('IDs'))
+    {
+        $outName = $outName.Substring(0, $outName.Length - 3) + 'Ids';
+    }
+
     return $outName;
 }
 
@@ -124,7 +129,7 @@ function Get-CliOptionName
                 $outName += '-';
             }
 
-            [string[]]$abbrWords = @('VM', 'IP', 'RM', 'OS', 'NAT');
+            [string[]]$abbrWords = @('VM', 'IP', 'RM', 'OS', 'NAT', 'IDs');
             $matched = $false;
             foreach ($matchedAbbr in $abbrWords)
             {

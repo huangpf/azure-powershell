@@ -34,7 +34,7 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.Common
     /// </summary>
     public abstract class AzurePSCmdlet : PSCmdlet, IDisposable
     {
-        private readonly ConcurrentQueue<string> _debugMessages;
+        protected readonly ConcurrentQueue<string> _debugMessages;
 
         private RecordingTracingInterceptor _httpTracingInterceptor;
 
@@ -219,7 +219,6 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.Common
                 ModuleName, string.Format("v{0}", ModuleVersion));
             AzureSession.ClientFactory.UserAgents.Add(userAgentValue);
             AzureSession.ClientFactory.AddHandler(new CmdletInfoHandler(this.CommandRuntime.ToString(), this.ParameterSetName));
-
             base.BeginProcessing();
         }
 
@@ -237,7 +236,7 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.Common
             FlushDebugMessages();
 
             AzureSession.ClientFactory.UserAgents.RemoveAll(u => u.Product.Name == ModuleName);
-
+            AzureSession.ClientFactory.RemoveHandler(typeof(CmdletInfoHandler));
             base.EndProcessing();
         }
 
