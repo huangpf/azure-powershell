@@ -138,9 +138,7 @@ function Generate-CliParameterCommandImpl
             $code += " value.'))" + $NEW_LINE;
         }
 
-        $code += "  .execute(function (";
-        $code += "  parameterFile";
-        $code += "  , options, _) {" + $NEW_LINE;
+        $code += "  .execute(function(options) {" + $NEW_LINE;
         $code += "    cli.output.info(options);" + $NEW_LINE;
         $code += "    cli.output.info(options.parameterFile);" + $NEW_LINE;
         $code += "    cli.output.info(options.value);" + $NEW_LINE;
@@ -236,9 +234,7 @@ function Generate-CliParameterCommandImpl
     }
 
     # 2.2 Function Definition
-    $code += "  .execute(function (";
-    $code += "  parameterFile";
-    $code += "  , options, _) {" + $NEW_LINE;
+    $code += "  .execute(function(options) {" + $NEW_LINE;
     $code += "    cli.output.info(options);" + $NEW_LINE;
     $code += "    cli.output.info(options.parameterFile);" + $NEW_LINE;
     $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
@@ -290,9 +286,7 @@ function Generate-CliParameterCommandImpl
         $code += " value.'))" + $NEW_LINE;
     }
 
-    $code += "  .execute(function (";
-    $code += "  parameterFile";
-    $code += "  , options, _) {" + $NEW_LINE;
+    $code += "  .execute(function(options) {" + $NEW_LINE;
     $code += "    cli.output.info(options);" + $NEW_LINE;
     $code += "    cli.output.info(options.parameterFile);" + $NEW_LINE;
     $code += "    cli.output.info(options.key);" + $NEW_LINE;
@@ -316,6 +310,7 @@ function Generate-CliParameterCommandImpl
     $code += "    jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $NEW_LINE;
 
     # For Each Property, Apply the Change if Any
+    $isFirstDefinition = $true;
     foreach ($propertyItem in $TreeNode.Properties)
     {
         if ($isFirstDefinition)

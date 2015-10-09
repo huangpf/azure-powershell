@@ -15,10 +15,8 @@
 
 'use strict';
 
-var __ = require('underscore');
 var fs = require('fs');
 var jsonpatch = require('json-patch');
-var util = require('util');
 
 var profile = require('../../../util/profile');
 var utils = require('../../../util/utils');
@@ -70,7 +68,7 @@ exports.init = function (cli) {
   .description($('Generate vmssCreateOrUpdate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (parameterFile, options, _) {
+  .execute(function (options) {
     cli.output.info('{\"provisioningState\":\"\",\"sku\":{\"capacity\":null,\"name\":\"\",\"tier\":\"\"},\"upgradePolicy\":{\"mode\":\"\"},\"virtualMachineProfile\":{\"extensionProfile\":{\"extensions\":[{\"autoUpgradeMinorVersion\":false,\"extensionType\":\"\",\"protectedSettings\":\"\",\"provisioningState\":\"\",\"publisher\":\"\",\"settings\":\"\",\"typeHandlerVersion\":\"\",\"id\":\"\",\"name\":\"\",\"type\":\"\",\"location\":\"\",\"tags\":{}}]},\"networkProfile\":{\"networkInterfaceConfigurations\":[{\"iPConfigurations\":[{\"loadBalancerBackendAddressPools\":[{\"referenceUri\":\"\"}],\"loadBalancerInboundNatPools\":[{\"referenceUri\":\"\"}],\"name\":\"\",\"subnet\":{\"referenceUri\":\"\"}}],\"name\":\"\",\"primary\":null}]},\"oSProfile\":{\"computerNamePrefix\":\"\",\"adminPassword\":\"\",\"adminUsername\":\"\",\"customData\":\"\",\"linuxConfiguration\":{\"disablePasswordAuthentication\":null,\"sshConfiguration\":{\"publicKeys\":[{\"keyData\":\"\",\"path\":\"\"}]}},\"secrets\":[{\"sourceVault\":{\"referenceUri\":\"\"},\"vaultCertificates\":[{\"certificateStore\":\"\",\"certificateUrl\":\"\"}]}],\"windowsConfiguration\":{\"additionalUnattendContents\":[{\"componentName\":\"\",\"content\":\"\",\"passName\":\"\",\"settingName\":\"\"}],\"enableAutomaticUpdates\":null,\"provisionVMAgent\":null,\"timeZone\":\"\",\"winRMConfiguration\":{\"listeners\":[{\"certificateUrl\":\"\",\"protocol\":\"\"}]}}},\"storageProfile\":{\"imageReference\":{\"offer\":\"\",\"publisher\":\"\",\"sku\":\"\",\"version\":\"\"},\"oSDisk\":{\"caching\":\"\",\"createOption\":\"\",\"name\":\"\",\"operatingSystemType\":\"\",\"sourceImage\":{\"uri\":\"\"},\"virtualHardDiskContainers\":[\"\"]}}},\"id\":\"\",\"name\":\"\",\"type\":\"\",\"location\":\"\",\"tags\":{}}');
     var filePath = 'vmssCreateOrUpdate_createOrUpdate.json';
     if (options.parameterFile) {
@@ -90,7 +88,7 @@ exports.init = function (cli) {
   .option('--path <path>', $('The JSON data path, e.g.: \"foo/1\".'))
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
-  .execute(function (parameterFile, operation, path, value, parse, options, _) {
+  .execute(function(options) {
     cli.output.info(options.parameterFile);
     cli.output.info(options.operation);
     cli.output.info(options.path);
@@ -148,7 +146,7 @@ exports.init = function (cli) {
   .option('--type <type>', $('Set the type value.'))
   .option('--location <location>', $('Set the location value.'))
   .option('--tags <tags>', $('Set the tags value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -277,7 +275,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersVirtualMachineScaleSetVirtualMachineScaleSet1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -322,7 +320,7 @@ exports.init = function (cli) {
   .option('--type <type>', $('Add the type value.'))
   .option('--location <location>', $('Add the location value.'))
   .option('--tags <tags>', $('Add the tags value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -343,7 +341,7 @@ exports.init = function (cli) {
     options.path = '' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '' + '/' + 'provisioningState';
+    var paramPath = '' + '/' + 'provisioningState';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -459,7 +457,7 @@ exports.init = function (cli) {
   .option('--capacity <capacity>', $('Set the capacity value.'))
   .option('--name <name>', $('Set the name value.'))
   .option('--tier <tier>', $('Set the tier value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -528,7 +526,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersVirtualMachineScaleSetSku1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -567,7 +565,7 @@ exports.init = function (cli) {
   .option('--capacity <capacity>', $('Add the capacity value.'))
   .option('--name <name>', $('Add the name value.'))
   .option('--tier <tier>', $('Add the tier value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -588,7 +586,7 @@ exports.init = function (cli) {
     options.path = '/sku' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/sku' + '/' + 'capacity';
+    var paramPath = '/sku' + '/' + 'capacity';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -642,7 +640,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--mode <mode>', $('Set the mode value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -691,7 +689,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersVirtualMachineScaleSetUpgradePolicy1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -728,7 +726,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--mode <mode>', $('Add the mode value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -749,7 +747,7 @@ exports.init = function (cli) {
     options.path = '/upgradePolicy' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/upgradePolicy' + '/' + 'mode';
+    var paramPath = '/upgradePolicy' + '/' + 'mode';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -786,7 +784,7 @@ exports.init = function (cli) {
   .option('--network-profile <networkProfile>', $('Set the network-profile value.'))
   .option('--os-profile <oSProfile>', $('Set the os-profile value.'))
   .option('--storage-profile <storageProfile>', $('Set the storage-profile value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -865,7 +863,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersVirtualMachineScaleSetVirtualMachineProfile1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -905,7 +903,7 @@ exports.init = function (cli) {
   .option('--network-profile <networkProfile>', $('Add the network-profile value.'))
   .option('--os-profile <oSProfile>', $('Add the os-profile value.'))
   .option('--storage-profile <storageProfile>', $('Add the storage-profile value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -926,7 +924,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile' + '/' + 'extensionProfile';
+    var paramPath = '/virtualMachineProfile' + '/' + 'extensionProfile';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -990,7 +988,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--extensions <extensions>', $('Set the extensions value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -1039,7 +1037,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersVirtualMachineScaleSetExtensionProfile1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -1076,7 +1074,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--extensions <extensions>', $('Add the extensions value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -1097,7 +1095,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/extensionProfile' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/extensionProfile' + '/' + 'extensions';
+    var paramPath = '/virtualMachineProfile/extensionProfile' + '/' + 'extensions';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1143,7 +1141,7 @@ exports.init = function (cli) {
   .option('--type <type>', $('Set the type value.'))
   .option('--location <location>', $('Set the location value.'))
   .option('--tags <tags>', $('Set the tags value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -1306,7 +1304,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -1354,7 +1352,7 @@ exports.init = function (cli) {
   .option('--type <type>', $('Add the type value.'))
   .option('--location <location>', $('Add the location value.'))
   .option('--tags <tags>', $('Add the tags value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -1375,7 +1373,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'autoUpgradeMinorVersion';
+    var paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'autoUpgradeMinorVersion';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1519,7 +1517,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--network-interface-configurations <networkInterfaceConfigurations>', $('Set the network-interface-configurations value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -1568,7 +1566,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersVirtualMachineScaleSetNetworkProfile1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -1605,7 +1603,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--network-interface-configurations <networkInterfaceConfigurations>', $('Add the network-interface-configurations value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -1626,7 +1624,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/networkProfile' + '/' + 'networkInterfaceConfigurations';
+    var paramPath = '/virtualMachineProfile/networkProfile' + '/' + 'networkInterfaceConfigurations';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1663,7 +1661,7 @@ exports.init = function (cli) {
   .option('--ip-configurations <ipConfigurations>', $('Set the ip-configurations value.'))
   .option('--name <name>', $('Set the name value.'))
   .option('--primary <primary>', $('Set the primary value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -1736,7 +1734,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -1775,7 +1773,7 @@ exports.init = function (cli) {
   .option('--ip-configurations <ipConfigurations>', $('Add the ip-configurations value.'))
   .option('--name <name>', $('Add the name value.'))
   .option('--primary <primary>', $('Add the primary value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -1796,7 +1794,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'ipConfigurations';
+    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'ipConfigurations';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1855,7 +1853,7 @@ exports.init = function (cli) {
   .option('--load-balancer-inbound-nat-pools <loadBalancerInboundNatPools>', $('Set the load-balancer-inbound-nat-pools value.'))
   .option('--name <name>', $('Set the name value.'))
   .option('--subnet <subnet>', $('Set the subnet value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -1939,7 +1937,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -1979,7 +1977,7 @@ exports.init = function (cli) {
   .option('--load-balancer-inbound-nat-pools <loadBalancerInboundNatPools>', $('Add the load-balancer-inbound-nat-pools value.'))
   .option('--name <name>', $('Add the name value.'))
   .option('--subnet <subnet>', $('Add the subnet value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -2000,7 +1998,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'loadBalancerBackendAddressPools';
+    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'loadBalancerBackendAddressPools';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2067,7 +2065,7 @@ exports.init = function (cli) {
   .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
   .option('--reference-uri <referenceUri>', $('Set the reference-uri value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -2122,7 +2120,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -2159,7 +2157,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--reference-uri <referenceUri>', $('Add the reference-uri value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -2180,7 +2178,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '') + '/' + 'referenceUri';
+    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '') + '/' + 'referenceUri';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2217,7 +2215,7 @@ exports.init = function (cli) {
   .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
   .option('--reference-uri <referenceUri>', $('Set the reference-uri value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -2272,7 +2270,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -2309,7 +2307,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--reference-uri <referenceUri>', $('Add the reference-uri value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -2330,7 +2328,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerInboundNatPools' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerInboundNatPools' + (options.index ? ('/' + options.index) : '') + '/' + 'referenceUri';
+    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerInboundNatPools' + (options.index ? ('/' + options.index) : '') + '/' + 'referenceUri';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2366,7 +2364,7 @@ exports.init = function (cli) {
   .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
   .option('--reference-uri <referenceUri>', $('Set the reference-uri value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -2417,7 +2415,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -2454,7 +2452,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--reference-uri <referenceUri>', $('Add the reference-uri value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -2475,7 +2473,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/subnet' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/subnet' + '/' + 'referenceUri';
+    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/subnet' + '/' + 'referenceUri';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2515,7 +2513,7 @@ exports.init = function (cli) {
   .option('--linux-configuration <linuxConfiguration>', $('Set the linux-configuration value.'))
   .option('--secrets <secrets>', $('Set the secrets value.'))
   .option('--windows-configuration <windowsConfiguration>', $('Set the windows-configuration value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -2624,7 +2622,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersVirtualMachineScaleSetOSProfile1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -2667,7 +2665,7 @@ exports.init = function (cli) {
   .option('--linux-configuration <linuxConfiguration>', $('Add the linux-configuration value.'))
   .option('--secrets <secrets>', $('Add the secrets value.'))
   .option('--windows-configuration <windowsConfiguration>', $('Add the windows-configuration value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -2688,7 +2686,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'computerNamePrefix';
+    var paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'computerNamePrefix';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2783,7 +2781,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--disable-password-authentication <disablePasswordAuthentication>', $('Set the disable-password-authentication value.'))
   .option('--ssh-configuration <sshConfiguration>', $('Set the ssh-configuration value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -2842,7 +2840,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersVirtualMachineScaleSetLinuxConfiguration1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -2880,7 +2878,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--disable-password-authentication <disablePasswordAuthentication>', $('Add the disable-password-authentication value.'))
   .option('--ssh-configuration <sshConfiguration>', $('Add the ssh-configuration value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -2901,7 +2899,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration' + '/' + 'disablePasswordAuthentication';
+    var paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration' + '/' + 'disablePasswordAuthentication';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2945,7 +2943,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--public-keys <publicKeys>', $('Set the public-keys value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -2994,7 +2992,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersVirtualMachineScaleSetSshConfiguration1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -3031,7 +3029,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--public-keys <publicKeys>', $('Add the public-keys value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -3052,7 +3050,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration' + '/' + 'publicKeys';
+    var paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration' + '/' + 'publicKeys';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3088,7 +3086,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--key-data <keyData>', $('Set the key-data value.'))
   .option('--path <path>', $('Set the path value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -3151,7 +3149,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -3189,7 +3187,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--key-data <keyData>', $('Add the key-data value.'))
   .option('--path <path>', $('Add the path value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -3210,7 +3208,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys' + (options.index ? ('/' + options.index) : '') + '/' + 'keyData';
+    var paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys' + (options.index ? ('/' + options.index) : '') + '/' + 'keyData';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3256,7 +3254,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--source-vault <sourceVault>', $('Set the source-vault value.'))
   .option('--vault-certificates <vaultCertificates>', $('Set the vault-certificates value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -3319,7 +3317,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -3357,7 +3355,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--source-vault <sourceVault>', $('Add the source-vault value.'))
   .option('--vault-certificates <vaultCertificates>', $('Add the vault-certificates value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -3378,7 +3376,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/secrets' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/oSProfile/secrets' + (options.index ? ('/' + options.index) : '') + '/' + 'sourceVault';
+    var paramPath = '/virtualMachineProfile/oSProfile/secrets' + (options.index ? ('/' + options.index) : '') + '/' + 'sourceVault';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3423,7 +3421,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
   .option('--reference-uri <referenceUri>', $('Set the reference-uri value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -3473,7 +3471,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -3510,7 +3508,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--reference-uri <referenceUri>', $('Add the reference-uri value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -3531,7 +3529,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/sourceVault' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/sourceVault' + '/' + 'referenceUri';
+    var paramPath = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/sourceVault' + '/' + 'referenceUri';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3568,7 +3566,7 @@ exports.init = function (cli) {
   .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
   .option('--certificate-store <certificateStore>', $('Set the certificate-store value.'))
   .option('--certificate-url <certificateUrl>', $('Set the certificate-url value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -3632,7 +3630,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -3670,7 +3668,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--certificate-store <certificateStore>', $('Add the certificate-store value.'))
   .option('--certificate-url <certificateUrl>', $('Add the certificate-url value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -3691,7 +3689,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '') + '/' + 'certificateStore';
+    var paramPath = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '') + '/' + 'certificateStore';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3739,7 +3737,7 @@ exports.init = function (cli) {
   .option('--provision-vm-agent <provisionVMAgent>', $('Set the provision-vm-agent value.'))
   .option('--time-zone <timeZone>', $('Set the time-zone value.'))
   .option('--win-rm-configuration <winRMConfiguration>', $('Set the win-rm-configuration value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -3828,7 +3826,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersVirtualMachineScaleSetWindowsConfiguration1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -3869,7 +3867,7 @@ exports.init = function (cli) {
   .option('--provision-vm-agent <provisionVMAgent>', $('Add the provision-vm-agent value.'))
   .option('--time-zone <timeZone>', $('Add the time-zone value.'))
   .option('--win-rm-configuration <winRMConfiguration>', $('Add the win-rm-configuration value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -3890,7 +3888,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + 'additionalUnattendContents';
+    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + 'additionalUnattendContents';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3968,7 +3966,7 @@ exports.init = function (cli) {
   .option('--content <content>', $('Set the content value.'))
   .option('--pass-name <passName>', $('Set the pass-name value.'))
   .option('--setting-name <settingName>', $('Set the setting-name value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -4051,7 +4049,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -4091,7 +4089,7 @@ exports.init = function (cli) {
   .option('--content <content>', $('Add the content value.'))
   .option('--pass-name <passName>', $('Add the pass-name value.'))
   .option('--setting-name <settingName>', $('Add the setting-name value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -4112,7 +4110,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '') + '/' + 'componentName';
+    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '') + '/' + 'componentName';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4176,7 +4174,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--listeners <listeners>', $('Set the listeners value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -4225,7 +4223,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersVirtualMachineScaleSetWinRMConfiguration1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -4262,7 +4260,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--listeners <listeners>', $('Add the listeners value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -4283,7 +4281,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration' + '/' + 'listeners';
+    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration' + '/' + 'listeners';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4319,7 +4317,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--certificate-url <certificateUrl>', $('Set the certificate-url value.'))
   .option('--protocol <protocol>', $('Set the protocol value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -4382,7 +4380,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -4420,7 +4418,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--certificate-url <certificateUrl>', $('Add the certificate-url value.'))
   .option('--protocol <protocol>', $('Add the protocol value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -4441,7 +4439,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners' + (options.index ? ('/' + options.index) : '') + '/' + 'certificateUrl';
+    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners' + (options.index ? ('/' + options.index) : '') + '/' + 'certificateUrl';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4486,7 +4484,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--image-reference <imageReference>', $('Set the image-reference value.'))
   .option('--os-disk <oSDisk>', $('Set the os-disk value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -4545,7 +4543,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersVirtualMachineScaleSetStorageProfile1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -4583,7 +4581,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--image-reference <imageReference>', $('Add the image-reference value.'))
   .option('--os-disk <oSDisk>', $('Add the os-disk value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -4604,7 +4602,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/storageProfile' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/storageProfile' + '/' + 'imageReference';
+    var paramPath = '/virtualMachineProfile/storageProfile' + '/' + 'imageReference';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4651,7 +4649,7 @@ exports.init = function (cli) {
   .option('--publisher <publisher>', $('Set the publisher value.'))
   .option('--sku <sku>', $('Set the sku value.'))
   .option('--version <version>', $('Set the version value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -4730,7 +4728,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersVirtualMachineScaleSetImageReference1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -4770,7 +4768,7 @@ exports.init = function (cli) {
   .option('--publisher <publisher>', $('Add the publisher value.'))
   .option('--sku <sku>', $('Add the sku value.'))
   .option('--version <version>', $('Add the version value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -4791,7 +4789,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/storageProfile/imageReference' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'offer';
+    var paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'offer';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4860,7 +4858,7 @@ exports.init = function (cli) {
   .option('--operating-system-type <operatingSystemType>', $('Set the operating-system-type value.'))
   .option('--source-image <sourceImage>', $('Set the source-image value.'))
   .option('--virtual-hard-disk-containers <virtualHardDiskContainers>', $('Set the virtual-hard-disk-containers value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -4959,7 +4957,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersVirtualMachineScaleSetOSDisk1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -5001,7 +4999,7 @@ exports.init = function (cli) {
   .option('--operating-system-type <operatingSystemType>', $('Add the operating-system-type value.'))
   .option('--source-image <sourceImage>', $('Add the source-image value.'))
   .option('--virtual-hard-disk-containers <virtualHardDiskContainers>', $('Add the virtual-hard-disk-containers value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -5022,7 +5020,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'caching';
+    var paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'caching';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -5106,7 +5104,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--uri <uri>', $('Set the uri value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -5155,7 +5153,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersVirtualMachineScaleSetSourceImage1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -5192,7 +5190,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--uri <uri>', $('Add the uri value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -5213,7 +5211,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/storageProfile/oSDisk/sourceImage' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '/virtualMachineProfile/storageProfile/oSDisk/sourceImage' + '/' + 'uri';
+    var paramPath = '/virtualMachineProfile/storageProfile/oSDisk/sourceImage' + '/' + 'uri';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -5247,7 +5245,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--index <index>', $('Indexer: index.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -5290,7 +5288,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -5326,7 +5324,7 @@ exports.init = function (cli) {
   .option('--key <key>', $('The JSON key.'))
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -5542,7 +5540,7 @@ exports.init = function (cli) {
   .description($('Generate vmssListAll parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (parameterFile, options, _) {
+  .execute(function (options) {
     cli.output.info('{}');
     var filePath = 'vmssListAll_listAll.json';
     if (options.parameterFile) {
@@ -5562,7 +5560,7 @@ exports.init = function (cli) {
   .option('--path <path>', $('The JSON data path, e.g.: \"foo/1\".'))
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
-  .execute(function (parameterFile, operation, path, value, parse, options, _) {
+  .execute(function(options) {
     cli.output.info(options.parameterFile);
     cli.output.info(options.operation);
     cli.output.info(options.path);
@@ -5609,7 +5607,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersVirtualMachineScaleSetListParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -5645,7 +5643,7 @@ exports.init = function (cli) {
   .option('--key <key>', $('The JSON key.'))
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -6001,7 +5999,7 @@ exports.init = function (cli) {
   .description($('Generate vmssvmList parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (parameterFile, options, _) {
+  .execute(function (options) {
     cli.output.info('{\"expandExpression\":\"\",\"filterExpression\":\"\",\"resourceGroupName\":\"\",\"selectExpression\":\"\",\"virtualMachineScaleSetName\":\"\"}');
     var filePath = 'vmssvmList_list.json';
     if (options.parameterFile) {
@@ -6021,7 +6019,7 @@ exports.init = function (cli) {
   .option('--path <path>', $('The JSON data path, e.g.: \"foo/1\".'))
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
-  .execute(function (parameterFile, operation, path, value, parse, options, _) {
+  .execute(function(options) {
     cli.output.info(options.parameterFile);
     cli.output.info(options.operation);
     cli.output.info(options.path);
@@ -6075,7 +6073,7 @@ exports.init = function (cli) {
   .option('--resource-group-name <resourceGroupName>', $('Set the resource-group-name value.'))
   .option('--select-expression <selectExpression>', $('Set the select-expression value.'))
   .option('--virtual-machine-scale-set-name <virtualMachineScaleSetName>', $('Set the virtual-machine-scale-set-name value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.value);
@@ -6164,7 +6162,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info('=====================================');
@@ -6205,7 +6203,7 @@ exports.init = function (cli) {
   .option('--resource-group-name <resourceGroupName>', $('Add the resource-group-name value.'))
   .option('--select-expression <selectExpression>', $('Add the select-expression value.'))
   .option('--virtual-machine-scale-set-name <virtualMachineScaleSetName>', $('Add the virtual-machine-scale-set-name value.'))
-  .execute(function (  parameterFile  , options, _) {
+  .execute(function(options) {
     cli.output.info(options);
     cli.output.info(options.parameterFile);
     cli.output.info(options.key);
@@ -6226,7 +6224,7 @@ exports.init = function (cli) {
     options.path = '' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    paramPath = '' + '/' + 'expandExpression';
+    var paramPath = '' + '/' + 'expandExpression';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
