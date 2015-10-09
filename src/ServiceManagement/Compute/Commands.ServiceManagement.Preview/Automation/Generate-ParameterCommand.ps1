@@ -102,7 +102,7 @@ function Generate-CliParameterCommandImpl
     if ($TreeNode.Properties.Count -gt 0 -or ($TreeNode.IsListItem))
     {
         # 1. Parameter Set Command
-        $params_category_var_name = $params_category_var_name_prefix + $paramSuffix;
+        $params_category_var_name = $params_category_var_name_prefix + $paramSuffix + "0";
         $params_generate_category_name = 'set';
         $params_generate_category_var_name = $params_generate_category_name + $params_category_var_name;
         $code = "  //$params_category_name set ${cli_method_option_name}" + $NEW_LINE;
@@ -208,7 +208,7 @@ function Generate-CliParameterCommandImpl
     }
 
     # 2. Parameter Remove Command
-    $params_category_var_name = $params_category_var_name_prefix + $paramSuffix;
+    $params_category_var_name = $params_category_var_name_prefix + $paramSuffix + "1";
     $params_generate_category_name = 'remove';
     $params_generate_category_var_name = $params_generate_category_name + $params_category_var_name;
     $code += "  //$params_category_name ${params_generate_category_name} ${cli_method_option_name}" + $NEW_LINE;
@@ -259,7 +259,7 @@ function Generate-CliParameterCommandImpl
     $code += "  });" + $NEW_LINE;
     
     # 3. Parameter Add Command
-    $params_category_var_name = $params_category_var_name_prefix + $paramSuffix;
+    $params_category_var_name = $params_category_var_name_prefix + $paramSuffix + "2";
     $params_generate_category_name = 'add';
     $params_generate_category_var_name = $params_generate_category_name + $params_category_var_name;
     $code += "  //$params_category_name ${params_generate_category_name} ${cli_method_option_name}" + $NEW_LINE;
@@ -312,8 +312,18 @@ function Generate-CliParameterCommandImpl
     # For Each Property, Apply the Change if Any
     foreach ($propertyItem in $TreeNode.Properties)
     {
+        if ($isFirstDefinition)
+        {
+            $isFirstDefinition = $false;
+            $defTypePrefix = "var ";
+        }
+        else
+        {
+            $defTypePrefix = "";
+        }
+
         $paramName = (Get-CliNormalizedName $propertyItem["Name"]);
-        $code += "    var paramPath = ${pathToTreeNode} + `'/`' + `'${paramName}`';" + $NEW_LINE;
+        $code += "    ${defTypePrefix}paramPath = ${pathToTreeNode} + `'/`' + `'${paramName}`';" + $NEW_LINE;
         $code += "    cli.output.info(`'================================================`');" + $NEW_LINE;
         $code += "    cli.output.info(`'JSON Parameters Path:`' + paramPath);" + $NEW_LINE;
         $code += "    cli.output.info(`'================================================`');" + $NEW_LINE;
