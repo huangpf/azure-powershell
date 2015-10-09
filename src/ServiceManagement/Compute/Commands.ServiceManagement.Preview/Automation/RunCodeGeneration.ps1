@@ -199,18 +199,9 @@ function Get-NormalizedTypeName
     return $outputName;
 }
 
-function Is-SpecialType
+function Is-ListStringType
 {
-    param(
-        [Parameter(Mandatory = $True)]
-        [string]$inputName
-    )
-
-    return ($inputName.StartsWith($client_model_namespace_prefix));
-}
-
-function Is-ListType
-{
+    # This function returns $true if the given property info contains only a list of strings.
     param(
         [Parameter(Mandatory = $True)]
         [System.Reflection.PropertyInfo[]]$property_info_array
@@ -218,16 +209,16 @@ function Is-ListType
 
     if ($property_info_array.Count -eq 1)
     {
-         if ($property_info_array[0].PropertyType.FullName -like '*List*System.String*')
-         {
-             return $property_info_array[0].Name;
-         }
+         return ($property_info_array[0].PropertyType.FullName -like '*List*System.String*')
     }
-    return $null;
+
+    return $false;
 }
 
-function Does-ContainOnlyStringTypes
+function Get-StringTypes
 {
+    # This function returns an array of string types, if a given property info array contains only string types.
+    # It returns $null, otherwise.
     param(
         [Parameter(Mandatory = $True)]
         [System.Reflection.PropertyInfo[]]$property_info_array
@@ -1374,7 +1365,7 @@ function Write-OperationCmdletFile
             $paramTypeNormalizedName = Get-NormalizedTypeName -inputName $paramTypeFullName;
             $param_constructor_code = Get-ConstructorCodeByNormalizedTypeName -inputName $paramTypeNormalizedName;
 
-            $is_special_type = Is-SpecialType -inputName $paramTypeFullName;
+            $is_special_type = $paramTypeFullName.StartsWith($client_model_namespace_prefix);
             $has_properties = $true;
             if ($is_special_type)
             {
@@ -1385,12 +1376,12 @@ function Write-OperationCmdletFile
                 }
             }
 
-            $is_string_list = $null;
+            $is_string_list = $false;
             $does_contain_only_strings = $null;
             if ($has_properties)
             {
-                $is_string_list = Is-ListType -property_info_array $pt.ParameterType.GetProperties();
-                $does_contain_only_strings = Does-ContainOnlyStringTypes -property_info_array $pt.ParameterType.GetProperties();
+                $is_string_list = Is-ListStringType -property_info_array $pt.ParameterType.GetProperties();
+                $does_contain_only_strings = Get-StringTypes -property_info_array $pt.ParameterType.GetProperties();
             }
 
             $only_strings = $true;
@@ -1416,6 +1407,7 @@ function Write-OperationCmdletFile
 
             if ($only_strings)
             {
+                 # Case 1: the parameter type contains only string types.
                  $invoke_local_param_definition = $indents + (' ' * 4) + "var " + $pt.Name + " = new ${paramTypeNormalizedName}();" + $NEW_LINE;
 
                  foreach ($param in $does_contain_only_strings)
@@ -1426,24 +1418,29 @@ function Write-OperationCmdletFile
                       $position_index += 1;
                  }
             }
-            elseif ($has_properties -and ($is_string_list -eq $null))
+            elseif ($has_properties -and $is_string_list)
             {
-                 $invoke_local_param_definition = $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = (${paramTypeNormalizedName})ParseParameter(${invoke_input_params_name}[${param_index}]);" + $NEW_LINE;
+                 # Case 2: the parameter type contains only a list of strings.
+                 $list_of_strings_property = ($pt.ParameterType.GetProperties())[0].Name;
+                 $invoke_local_param_definition = $indents + (' ' * 4) + "var inputArray${param_index} = Array.ConvertAll((object[]) ParseParameter(${invoke_input_params_name}[${param_index}]), e => e.ToString());" + $NEW_LINE;
+                 $invoke_local_param_definition += $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + "  = new ${paramTypeNormalizedName}();" + $NEW_LINE;
+                 $invoke_local_param_definition += $indents + (' ' * 4) + $pt.Name + ".${list_of_strings_property} = inputArray${param_index}.ToList();" + $NEW_LINE;
             }
             elseif ($has_properties)
             {
-                 $invoke_local_param_definition = $indents + (' ' * 4) + "var inputArray${param_index} = Array.ConvertAll((object []) ParseParameter(${invoke_input_params_name}[${param_index}]), e => e.ToString());" + $NEW_LINE;
-                 $invoke_local_param_definition += $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + "  = new ${paramTypeNormalizedName}();" + $NEW_LINE;
-                 $invoke_local_param_definition += $indents + (' ' * 4) + $pt.Name + ".${is_string_list} = inputArray${param_index}.ToList();" + $NEW_LINE;
+                 # Case 3: this is the most general case.
+                 $invoke_local_param_definition = $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = (${paramTypeNormalizedName})ParseParameter(${invoke_input_params_name}[${param_index}]);" + $NEW_LINE;
             }
             else
             {
+                 # Case 4: the parameter does not contain anything.
                  $invoke_local_param_definition = $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = new ${paramTypeNormalizedName}();" + $NEW_LINE;
             }
 
 
             if ($only_strings)
             {
+                 # Case 1: the parameter type contains only string types.
                  foreach ($param in $does_contain_only_strings)
                  {
                       $create_local_param_definition += $indents + (' ' * 4) + "var p${param} = string.Empty;" + $NEW_LINE;
@@ -1453,12 +1450,14 @@ function Write-OperationCmdletFile
                       $invoke_local_param_names += "p${param}";
                  }
             }
-            elseif ($is_string_list -ne $null)
+            elseif ($is_string_list)
             {
-                 $create_local_param_definition = $indents + (' ' * 4) + "var " + $pt.Name + " = new string [] {};" + $NEW_LINE;
+                 # Case 2: the parameter type contains only a list of strings.
+                 $create_local_param_definition = $indents + (' ' * 4) + "var " + $pt.Name + " = new string[0];" + $NEW_LINE;
             }
             else
             {
+                 # Case 3: this is the most general case.
                  $create_local_param_definition = $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = ${param_constructor_code};" + $NEW_LINE;
             }
 
@@ -1519,8 +1518,8 @@ function Write-OperationCmdletFile
             continue;
         }
 
-        $is_string_list = Is-ListType -property_info_array $pt.ParameterType.GetProperties();
-        $does_contain_only_strings = Does-ContainOnlyStringTypes -property_info_array $pt.ParameterType.GetProperties();
+        $is_string_list = Is-ListStringType -property_info_array $pt.ParameterType.GetProperties();
+        $does_contain_only_strings = Get-StringTypes -property_info_array $pt.ParameterType.GetProperties();
 
         $param_name = Get-NormalizedName $pt.Name;
         $expose_param_name = $param_name;
@@ -1543,13 +1542,13 @@ function Write-OperationCmdletFile
             p${param_name}.Name = `"${expose_param_name}`";
 "@;
 
-             if ($is_string_list -eq $null)
+             if ($is_string_list)
              {
-                  $dynamic_param_assignment_code_lines += "            p${param_name}.ParameterType = typeof($param_type_full_name);";
+                  $dynamic_param_assignment_code_lines += "            p${param_name}.ParameterType = typeof(string[]);";
              }
              else
              {
-                  $dynamic_param_assignment_code_lines += "            p${param_name}.ParameterType = typeof(string []);";
+                  $dynamic_param_assignment_code_lines += "            p${param_name}.ParameterType = typeof($param_type_full_name);";
              }
 
              $dynamic_param_assignment_code_lines +=

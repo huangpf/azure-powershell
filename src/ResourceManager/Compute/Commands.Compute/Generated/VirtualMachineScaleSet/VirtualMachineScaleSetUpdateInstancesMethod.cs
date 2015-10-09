@@ -61,7 +61,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
             var pVMInstanceIDs = new RuntimeDefinedParameter();
             pVMInstanceIDs.Name = "VMInstanceIDs";
-            pVMInstanceIDs.ParameterType = typeof(string []);
+            pVMInstanceIDs.ParameterType = typeof(string[]);
             pVMInstanceIDs.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -90,7 +90,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         {
             string resourceGroupName = (string)ParseParameter(invokeMethodInputParameters[0]);
             string vmScaleSetName = (string)ParseParameter(invokeMethodInputParameters[1]);
-            var inputArray2 = Array.ConvertAll((object []) ParseParameter(invokeMethodInputParameters[2]), e => e.ToString());
+            var inputArray2 = Array.ConvertAll((object[]) ParseParameter(invokeMethodInputParameters[2]), e => e.ToString());
             VirtualMachineScaleSetVMInstanceIDs vmInstanceIDs  = new VirtualMachineScaleSetVMInstanceIDs();
             vmInstanceIDs.InstanceIDs = inputArray2.ToList();
 
@@ -105,7 +105,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         {
             string resourceGroupName = string.Empty;
             string vmScaleSetName = string.Empty;
-            var vmInstanceIDs = new string [] {};
+            var vmInstanceIDs = new string[0];
 
             return ConvertFromObjectsToArguments(
                  new string[] { "ResourceGroupName", "VMScaleSetName", "VMInstanceIDs" },
@@ -157,7 +157,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
             var pVMInstanceIDs = new RuntimeDefinedParameter();
             pVMInstanceIDs.Name = "VMInstanceIDs";
-            pVMInstanceIDs.ParameterType = typeof(string []);
+            pVMInstanceIDs.ParameterType = typeof(string[]);
             pVMInstanceIDs.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
