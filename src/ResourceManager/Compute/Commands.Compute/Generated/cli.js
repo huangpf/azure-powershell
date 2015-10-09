@@ -47,13 +47,14 @@ exports.init = function (cli) {
   .execute(function (resourceGroupName, parameters, options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5308,13 +5309,14 @@ exports.init = function (cli) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
+    var vmInstanceIdsObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var vmInstanceIdsObj = JSON.parse(fileContent);
+      vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+      vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
     }
     cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5356,13 +5358,14 @@ exports.init = function (cli) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
+    var vmInstanceIdsObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var vmInstanceIdsObj = JSON.parse(fileContent);
+      vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+      vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
     }
     cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5432,13 +5435,14 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function (parameters, options, _) {
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5654,13 +5658,14 @@ exports.init = function (cli) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
+    var vmInstanceIdsObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var vmInstanceIdsObj = JSON.parse(fileContent);
+      vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+      vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
     }
     cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5702,13 +5707,14 @@ exports.init = function (cli) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
+    var vmInstanceIdsObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var vmInstanceIdsObj = JSON.parse(fileContent);
+      vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+      vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
     }
     cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5750,13 +5756,14 @@ exports.init = function (cli) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
+    var vmInstanceIdsObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var vmInstanceIdsObj = JSON.parse(fileContent);
+      vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+      vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
     }
     cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5781,13 +5788,14 @@ exports.init = function (cli) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
+    var vmInstanceIdsObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var vmInstanceIdsObj = JSON.parse(fileContent);
+      vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+      vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
     }
     cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5884,13 +5892,14 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function (parameters, options, _) {
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
