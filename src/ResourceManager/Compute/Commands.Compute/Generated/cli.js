@@ -128,11 +128,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-scale-set
-  var parametersVirtualMachineScaleSetVirtualMachineScaleSet = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetVirtualMachineScaleSet0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetVirtualMachineScaleSet = parametersVirtualMachineScaleSetVirtualMachineScaleSet.category('set')
+  var setparametersVirtualMachineScaleSetVirtualMachineScaleSet0 = parametersVirtualMachineScaleSetVirtualMachineScaleSet0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetVirtualMachineScaleSet.command('virtual-machine-scale-set')
+  setparametersVirtualMachineScaleSetVirtualMachineScaleSet0.command('virtual-machine-scale-set')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -267,11 +267,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-scale-set
-  var parametersVirtualMachineScaleSetVirtualMachineScaleSet = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetVirtualMachineScaleSet1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetVirtualMachineScaleSet = parametersVirtualMachineScaleSetVirtualMachineScaleSet.category('remove')
+  var removeparametersVirtualMachineScaleSetVirtualMachineScaleSet1 = parametersVirtualMachineScaleSetVirtualMachineScaleSet1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetVirtualMachineScaleSet.command('virtual-machine-scale-set')
+  removeparametersVirtualMachineScaleSetVirtualMachineScaleSet1.command('virtual-machine-scale-set')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -299,11 +299,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-scale-set
-  var parametersVirtualMachineScaleSetVirtualMachineScaleSet = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetVirtualMachineScaleSet2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetVirtualMachineScaleSet = parametersVirtualMachineScaleSetVirtualMachineScaleSet.category('add')
+  var addparametersVirtualMachineScaleSetVirtualMachineScaleSet2 = parametersVirtualMachineScaleSetVirtualMachineScaleSet2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetVirtualMachineScaleSet.command('virtual-machine-scale-set')
+  addparametersVirtualMachineScaleSetVirtualMachineScaleSet2.command('virtual-machine-scale-set')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -340,7 +340,7 @@ exports.init = function (cli) {
     options.path = '' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '' + '/' + 'provisioningState';
+    paramPath = '' + '/' + 'provisioningState';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -350,7 +350,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisioningState}]);
     }
-    var paramPath = '' + '/' + 'sku';
+    paramPath = '' + '/' + 'sku';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -360,7 +360,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sku}]);
     }
-    var paramPath = '' + '/' + 'upgradePolicy';
+    paramPath = '' + '/' + 'upgradePolicy';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -370,7 +370,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.upgradePolicy}]);
     }
-    var paramPath = '' + '/' + 'virtualMachineProfile';
+    paramPath = '' + '/' + 'virtualMachineProfile';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -380,7 +380,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.virtualMachineProfile}]);
     }
-    var paramPath = '' + '/' + 'id';
+    paramPath = '' + '/' + 'id';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -390,7 +390,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
     }
-    var paramPath = '' + '/' + 'name';
+    paramPath = '' + '/' + 'name';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -400,7 +400,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
-    var paramPath = '' + '/' + 'type';
+    paramPath = '' + '/' + 'type';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -410,7 +410,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.type}]);
     }
-    var paramPath = '' + '/' + 'location';
+    paramPath = '' + '/' + 'location';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -420,7 +420,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.location}]);
     }
-    var paramPath = '' + '/' + 'tags';
+    paramPath = '' + '/' + 'tags';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -442,11 +442,11 @@ exports.init = function (cli) {
   });
 
   //parameters set sku
-  var parametersVirtualMachineScaleSetSku = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSku0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetSku = parametersVirtualMachineScaleSetSku.category('set')
+  var setparametersVirtualMachineScaleSetSku0 = parametersVirtualMachineScaleSetSku0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetSku.command('sku')
+  setparametersVirtualMachineScaleSetSku0.command('sku')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -515,11 +515,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove sku
-  var parametersVirtualMachineScaleSetSku = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSku1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetSku = parametersVirtualMachineScaleSetSku.category('remove')
+  var removeparametersVirtualMachineScaleSetSku1 = parametersVirtualMachineScaleSetSku1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetSku.command('sku')
+  removeparametersVirtualMachineScaleSetSku1.command('sku')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -547,11 +547,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add sku
-  var parametersVirtualMachineScaleSetSku = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSku2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetSku = parametersVirtualMachineScaleSetSku.category('add')
+  var addparametersVirtualMachineScaleSetSku2 = parametersVirtualMachineScaleSetSku2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetSku.command('sku')
+  addparametersVirtualMachineScaleSetSku2.command('sku')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -582,7 +582,7 @@ exports.init = function (cli) {
     options.path = '/sku' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/sku' + '/' + 'capacity';
+    paramPath = '/sku' + '/' + 'capacity';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -592,7 +592,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.capacity}]);
     }
-    var paramPath = '/sku' + '/' + 'name';
+    paramPath = '/sku' + '/' + 'name';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -602,7 +602,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
-    var paramPath = '/sku' + '/' + 'tier';
+    paramPath = '/sku' + '/' + 'tier';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -624,11 +624,11 @@ exports.init = function (cli) {
   });
 
   //parameters set upgrade-policy
-  var parametersVirtualMachineScaleSetUpgradePolicy = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetUpgradePolicy0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetUpgradePolicy = parametersVirtualMachineScaleSetUpgradePolicy.category('set')
+  var setparametersVirtualMachineScaleSetUpgradePolicy0 = parametersVirtualMachineScaleSetUpgradePolicy0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetUpgradePolicy.command('upgrade-policy')
+  setparametersVirtualMachineScaleSetUpgradePolicy0.command('upgrade-policy')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -675,11 +675,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove upgrade-policy
-  var parametersVirtualMachineScaleSetUpgradePolicy = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetUpgradePolicy1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetUpgradePolicy = parametersVirtualMachineScaleSetUpgradePolicy.category('remove')
+  var removeparametersVirtualMachineScaleSetUpgradePolicy1 = parametersVirtualMachineScaleSetUpgradePolicy1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetUpgradePolicy.command('upgrade-policy')
+  removeparametersVirtualMachineScaleSetUpgradePolicy1.command('upgrade-policy')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -707,11 +707,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add upgrade-policy
-  var parametersVirtualMachineScaleSetUpgradePolicy = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetUpgradePolicy2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetUpgradePolicy = parametersVirtualMachineScaleSetUpgradePolicy.category('add')
+  var addparametersVirtualMachineScaleSetUpgradePolicy2 = parametersVirtualMachineScaleSetUpgradePolicy2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetUpgradePolicy.command('upgrade-policy')
+  addparametersVirtualMachineScaleSetUpgradePolicy2.command('upgrade-policy')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -740,7 +740,7 @@ exports.init = function (cli) {
     options.path = '/upgradePolicy' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/upgradePolicy' + '/' + 'mode';
+    paramPath = '/upgradePolicy' + '/' + 'mode';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -762,11 +762,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-profile
-  var parametersVirtualMachineScaleSetVirtualMachineProfile = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetVirtualMachineProfile0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetVirtualMachineProfile = parametersVirtualMachineScaleSetVirtualMachineProfile.category('set')
+  var setparametersVirtualMachineScaleSetVirtualMachineProfile0 = parametersVirtualMachineScaleSetVirtualMachineProfile0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetVirtualMachineProfile.command('virtual-machine-profile')
+  setparametersVirtualMachineScaleSetVirtualMachineProfile0.command('virtual-machine-profile')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -846,11 +846,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-profile
-  var parametersVirtualMachineScaleSetVirtualMachineProfile = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetVirtualMachineProfile1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetVirtualMachineProfile = parametersVirtualMachineScaleSetVirtualMachineProfile.category('remove')
+  var removeparametersVirtualMachineScaleSetVirtualMachineProfile1 = parametersVirtualMachineScaleSetVirtualMachineProfile1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetVirtualMachineProfile.command('virtual-machine-profile')
+  removeparametersVirtualMachineScaleSetVirtualMachineProfile1.command('virtual-machine-profile')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -878,11 +878,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-profile
-  var parametersVirtualMachineScaleSetVirtualMachineProfile = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetVirtualMachineProfile2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetVirtualMachineProfile = parametersVirtualMachineScaleSetVirtualMachineProfile.category('add')
+  var addparametersVirtualMachineScaleSetVirtualMachineProfile2 = parametersVirtualMachineScaleSetVirtualMachineProfile2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetVirtualMachineProfile.command('virtual-machine-profile')
+  addparametersVirtualMachineScaleSetVirtualMachineProfile2.command('virtual-machine-profile')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -914,7 +914,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile' + '/' + 'extensionProfile';
+    paramPath = '/virtualMachineProfile' + '/' + 'extensionProfile';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -924,7 +924,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.extensionProfile}]);
     }
-    var paramPath = '/virtualMachineProfile' + '/' + 'networkProfile';
+    paramPath = '/virtualMachineProfile' + '/' + 'networkProfile';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -934,7 +934,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.networkProfile}]);
     }
-    var paramPath = '/virtualMachineProfile' + '/' + 'oSProfile';
+    paramPath = '/virtualMachineProfile' + '/' + 'oSProfile';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -944,7 +944,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.oSProfile}]);
     }
-    var paramPath = '/virtualMachineProfile' + '/' + 'storageProfile';
+    paramPath = '/virtualMachineProfile' + '/' + 'storageProfile';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -966,11 +966,11 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-profile
-  var parametersVirtualMachineScaleSetExtensionProfile = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetExtensionProfile0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetExtensionProfile = parametersVirtualMachineScaleSetExtensionProfile.category('set')
+  var setparametersVirtualMachineScaleSetExtensionProfile0 = parametersVirtualMachineScaleSetExtensionProfile0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetExtensionProfile.command('extension-profile')
+  setparametersVirtualMachineScaleSetExtensionProfile0.command('extension-profile')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1017,11 +1017,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-profile
-  var parametersVirtualMachineScaleSetExtensionProfile = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetExtensionProfile1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetExtensionProfile = parametersVirtualMachineScaleSetExtensionProfile.category('remove')
+  var removeparametersVirtualMachineScaleSetExtensionProfile1 = parametersVirtualMachineScaleSetExtensionProfile1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetExtensionProfile.command('extension-profile')
+  removeparametersVirtualMachineScaleSetExtensionProfile1.command('extension-profile')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1049,11 +1049,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-profile
-  var parametersVirtualMachineScaleSetExtensionProfile = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetExtensionProfile2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetExtensionProfile = parametersVirtualMachineScaleSetExtensionProfile.category('add')
+  var addparametersVirtualMachineScaleSetExtensionProfile2 = parametersVirtualMachineScaleSetExtensionProfile2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetExtensionProfile.command('extension-profile')
+  addparametersVirtualMachineScaleSetExtensionProfile2.command('extension-profile')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1082,7 +1082,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/extensionProfile' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/extensionProfile' + '/' + 'extensions';
+    paramPath = '/virtualMachineProfile/extensionProfile' + '/' + 'extensions';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1104,11 +1104,11 @@ exports.init = function (cli) {
   });
 
   //parameters set extensions
-  var parametersVirtualMachineScaleSetExtensions = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetExtensions0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetExtensions = parametersVirtualMachineScaleSetExtensions.category('set')
+  var setparametersVirtualMachineScaleSetExtensions0 = parametersVirtualMachineScaleSetExtensions0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetExtensions.command('extensions')
+  setparametersVirtualMachineScaleSetExtensions0.command('extensions')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1280,11 +1280,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove extensions
-  var parametersVirtualMachineScaleSetExtensions = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetExtensions1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetExtensions = parametersVirtualMachineScaleSetExtensions.category('remove')
+  var removeparametersVirtualMachineScaleSetExtensions1 = parametersVirtualMachineScaleSetExtensions1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetExtensions.command('extensions')
+  removeparametersVirtualMachineScaleSetExtensions1.command('extensions')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1313,11 +1313,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extensions
-  var parametersVirtualMachineScaleSetExtensions = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetExtensions2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetExtensions = parametersVirtualMachineScaleSetExtensions.category('add')
+  var addparametersVirtualMachineScaleSetExtensions2 = parametersVirtualMachineScaleSetExtensions2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetExtensions.command('extensions')
+  addparametersVirtualMachineScaleSetExtensions2.command('extensions')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1357,7 +1357,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'autoUpgradeMinorVersion';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'autoUpgradeMinorVersion';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1367,7 +1367,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.autoUpgradeMinorVersion}]);
     }
-    var paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'extensionType';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'extensionType';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1377,7 +1377,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.extensionType}]);
     }
-    var paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'protectedSettings';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'protectedSettings';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1387,7 +1387,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protectedSettings}]);
     }
-    var paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'provisioningState';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'provisioningState';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1397,7 +1397,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisioningState}]);
     }
-    var paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'publisher';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'publisher';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1407,7 +1407,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.publisher}]);
     }
-    var paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'settings';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'settings';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1417,7 +1417,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.settings}]);
     }
-    var paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'typeHandlerVersion';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'typeHandlerVersion';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1427,7 +1427,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.typeHandlerVersion}]);
     }
-    var paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'id';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'id';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1437,7 +1437,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
     }
-    var paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'name';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'name';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1447,7 +1447,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
-    var paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'type';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'type';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1457,7 +1457,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.type}]);
     }
-    var paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'location';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'location';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1467,7 +1467,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.location}]);
     }
-    var paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'tags';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'tags';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1489,11 +1489,11 @@ exports.init = function (cli) {
   });
 
   //parameters set network-profile
-  var parametersVirtualMachineScaleSetNetworkProfile = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetNetworkProfile0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetNetworkProfile = parametersVirtualMachineScaleSetNetworkProfile.category('set')
+  var setparametersVirtualMachineScaleSetNetworkProfile0 = parametersVirtualMachineScaleSetNetworkProfile0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetNetworkProfile.command('network-profile')
+  setparametersVirtualMachineScaleSetNetworkProfile0.command('network-profile')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1540,11 +1540,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove network-profile
-  var parametersVirtualMachineScaleSetNetworkProfile = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetNetworkProfile1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetNetworkProfile = parametersVirtualMachineScaleSetNetworkProfile.category('remove')
+  var removeparametersVirtualMachineScaleSetNetworkProfile1 = parametersVirtualMachineScaleSetNetworkProfile1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetNetworkProfile.command('network-profile')
+  removeparametersVirtualMachineScaleSetNetworkProfile1.command('network-profile')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1572,11 +1572,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add network-profile
-  var parametersVirtualMachineScaleSetNetworkProfile = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetNetworkProfile2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetNetworkProfile = parametersVirtualMachineScaleSetNetworkProfile.category('add')
+  var addparametersVirtualMachineScaleSetNetworkProfile2 = parametersVirtualMachineScaleSetNetworkProfile2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetNetworkProfile.command('network-profile')
+  addparametersVirtualMachineScaleSetNetworkProfile2.command('network-profile')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1605,7 +1605,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/networkProfile' + '/' + 'networkInterfaceConfigurations';
+    paramPath = '/virtualMachineProfile/networkProfile' + '/' + 'networkInterfaceConfigurations';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1627,11 +1627,11 @@ exports.init = function (cli) {
   });
 
   //parameters set network-interface-configurations
-  var parametersVirtualMachineScaleSetNetworkInterfaceConfigurations = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetNetworkInterfaceConfigurations0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetNetworkInterfaceConfigurations = parametersVirtualMachineScaleSetNetworkInterfaceConfigurations.category('set')
+  var setparametersVirtualMachineScaleSetNetworkInterfaceConfigurations0 = parametersVirtualMachineScaleSetNetworkInterfaceConfigurations0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetNetworkInterfaceConfigurations.command('network-interface-configurations')
+  setparametersVirtualMachineScaleSetNetworkInterfaceConfigurations0.command('network-interface-configurations')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1704,11 +1704,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove network-interface-configurations
-  var parametersVirtualMachineScaleSetNetworkInterfaceConfigurations = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetNetworkInterfaceConfigurations1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetNetworkInterfaceConfigurations = parametersVirtualMachineScaleSetNetworkInterfaceConfigurations.category('remove')
+  var removeparametersVirtualMachineScaleSetNetworkInterfaceConfigurations1 = parametersVirtualMachineScaleSetNetworkInterfaceConfigurations1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetNetworkInterfaceConfigurations.command('network-interface-configurations')
+  removeparametersVirtualMachineScaleSetNetworkInterfaceConfigurations1.command('network-interface-configurations')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1737,11 +1737,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add network-interface-configurations
-  var parametersVirtualMachineScaleSetNetworkInterfaceConfigurations = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetNetworkInterfaceConfigurations2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetNetworkInterfaceConfigurations = parametersVirtualMachineScaleSetNetworkInterfaceConfigurations.category('add')
+  var addparametersVirtualMachineScaleSetNetworkInterfaceConfigurations2 = parametersVirtualMachineScaleSetNetworkInterfaceConfigurations2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetNetworkInterfaceConfigurations.command('network-interface-configurations')
+  addparametersVirtualMachineScaleSetNetworkInterfaceConfigurations2.command('network-interface-configurations')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1772,7 +1772,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'ipConfigurations';
+    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'ipConfigurations';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1782,7 +1782,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.ipConfigurations}]);
     }
-    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'name';
+    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'name';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1792,7 +1792,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
-    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'primary';
+    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'primary';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1814,11 +1814,11 @@ exports.init = function (cli) {
   });
 
   //parameters set ip-configurations
-  var parametersVirtualMachineScaleSetIPConfigurations = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetIPConfigurations0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetIPConfigurations = parametersVirtualMachineScaleSetIPConfigurations.category('set')
+  var setparametersVirtualMachineScaleSetIPConfigurations0 = parametersVirtualMachineScaleSetIPConfigurations0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetIPConfigurations.command('ip-configurations')
+  setparametersVirtualMachineScaleSetIPConfigurations0.command('ip-configurations')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1903,11 +1903,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove ip-configurations
-  var parametersVirtualMachineScaleSetIPConfigurations = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetIPConfigurations1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetIPConfigurations = parametersVirtualMachineScaleSetIPConfigurations.category('remove')
+  var removeparametersVirtualMachineScaleSetIPConfigurations1 = parametersVirtualMachineScaleSetIPConfigurations1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetIPConfigurations.command('ip-configurations')
+  removeparametersVirtualMachineScaleSetIPConfigurations1.command('ip-configurations')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1937,11 +1937,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ip-configurations
-  var parametersVirtualMachineScaleSetIPConfigurations = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetIPConfigurations2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetIPConfigurations = parametersVirtualMachineScaleSetIPConfigurations.category('add')
+  var addparametersVirtualMachineScaleSetIPConfigurations2 = parametersVirtualMachineScaleSetIPConfigurations2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetIPConfigurations.command('ip-configurations')
+  addparametersVirtualMachineScaleSetIPConfigurations2.command('ip-configurations')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1973,7 +1973,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'loadBalancerBackendAddressPools';
+    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'loadBalancerBackendAddressPools';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1983,7 +1983,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.loadBalancerBackendAddressPools}]);
     }
-    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'loadBalancerInboundNatPools';
+    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'loadBalancerInboundNatPools';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -1993,7 +1993,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.loadBalancerInboundNatPools}]);
     }
-    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'name';
+    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'name';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2003,7 +2003,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
-    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'subnet';
+    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'subnet';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2025,11 +2025,11 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancer-backend-address-pools
-  var parametersVirtualMachineScaleSetLoadBalancerBackendAddressPools = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetLoadBalancerBackendAddressPools0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetLoadBalancerBackendAddressPools = parametersVirtualMachineScaleSetLoadBalancerBackendAddressPools.category('set')
+  var setparametersVirtualMachineScaleSetLoadBalancerBackendAddressPools0 = parametersVirtualMachineScaleSetLoadBalancerBackendAddressPools0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetLoadBalancerBackendAddressPools.command('load-balancer-backend-address-pools')
+  setparametersVirtualMachineScaleSetLoadBalancerBackendAddressPools0.command('load-balancer-backend-address-pools')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2082,11 +2082,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancer-backend-address-pools
-  var parametersVirtualMachineScaleSetLoadBalancerBackendAddressPools = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetLoadBalancerBackendAddressPools1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetLoadBalancerBackendAddressPools = parametersVirtualMachineScaleSetLoadBalancerBackendAddressPools.category('remove')
+  var removeparametersVirtualMachineScaleSetLoadBalancerBackendAddressPools1 = parametersVirtualMachineScaleSetLoadBalancerBackendAddressPools1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetLoadBalancerBackendAddressPools.command('load-balancer-backend-address-pools')
+  removeparametersVirtualMachineScaleSetLoadBalancerBackendAddressPools1.command('load-balancer-backend-address-pools')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2117,11 +2117,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancer-backend-address-pools
-  var parametersVirtualMachineScaleSetLoadBalancerBackendAddressPools = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetLoadBalancerBackendAddressPools2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetLoadBalancerBackendAddressPools = parametersVirtualMachineScaleSetLoadBalancerBackendAddressPools.category('add')
+  var addparametersVirtualMachineScaleSetLoadBalancerBackendAddressPools2 = parametersVirtualMachineScaleSetLoadBalancerBackendAddressPools2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetLoadBalancerBackendAddressPools.command('load-balancer-backend-address-pools')
+  addparametersVirtualMachineScaleSetLoadBalancerBackendAddressPools2.command('load-balancer-backend-address-pools')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2150,7 +2150,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '') + '/' + 'referenceUri';
+    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '') + '/' + 'referenceUri';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2172,11 +2172,11 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancer-inbound-nat-pools
-  var parametersVirtualMachineScaleSetLoadBalancerInboundNatPools = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetLoadBalancerInboundNatPools0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetLoadBalancerInboundNatPools = parametersVirtualMachineScaleSetLoadBalancerInboundNatPools.category('set')
+  var setparametersVirtualMachineScaleSetLoadBalancerInboundNatPools0 = parametersVirtualMachineScaleSetLoadBalancerInboundNatPools0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetLoadBalancerInboundNatPools.command('load-balancer-inbound-nat-pools')
+  setparametersVirtualMachineScaleSetLoadBalancerInboundNatPools0.command('load-balancer-inbound-nat-pools')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2229,11 +2229,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancer-inbound-nat-pools
-  var parametersVirtualMachineScaleSetLoadBalancerInboundNatPools = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetLoadBalancerInboundNatPools1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetLoadBalancerInboundNatPools = parametersVirtualMachineScaleSetLoadBalancerInboundNatPools.category('remove')
+  var removeparametersVirtualMachineScaleSetLoadBalancerInboundNatPools1 = parametersVirtualMachineScaleSetLoadBalancerInboundNatPools1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetLoadBalancerInboundNatPools.command('load-balancer-inbound-nat-pools')
+  removeparametersVirtualMachineScaleSetLoadBalancerInboundNatPools1.command('load-balancer-inbound-nat-pools')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2264,11 +2264,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancer-inbound-nat-pools
-  var parametersVirtualMachineScaleSetLoadBalancerInboundNatPools = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetLoadBalancerInboundNatPools2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetLoadBalancerInboundNatPools = parametersVirtualMachineScaleSetLoadBalancerInboundNatPools.category('add')
+  var addparametersVirtualMachineScaleSetLoadBalancerInboundNatPools2 = parametersVirtualMachineScaleSetLoadBalancerInboundNatPools2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetLoadBalancerInboundNatPools.command('load-balancer-inbound-nat-pools')
+  addparametersVirtualMachineScaleSetLoadBalancerInboundNatPools2.command('load-balancer-inbound-nat-pools')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2297,7 +2297,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerInboundNatPools' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerInboundNatPools' + (options.index ? ('/' + options.index) : '') + '/' + 'referenceUri';
+    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerInboundNatPools' + (options.index ? ('/' + options.index) : '') + '/' + 'referenceUri';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2319,11 +2319,11 @@ exports.init = function (cli) {
   });
 
   //parameters set subnet
-  var parametersVirtualMachineScaleSetSubnet = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSubnet0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetSubnet = parametersVirtualMachineScaleSetSubnet.category('set')
+  var setparametersVirtualMachineScaleSetSubnet0 = parametersVirtualMachineScaleSetSubnet0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetSubnet.command('subnet')
+  setparametersVirtualMachineScaleSetSubnet0.command('subnet')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2372,11 +2372,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove subnet
-  var parametersVirtualMachineScaleSetSubnet = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSubnet1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetSubnet = parametersVirtualMachineScaleSetSubnet.category('remove')
+  var removeparametersVirtualMachineScaleSetSubnet1 = parametersVirtualMachineScaleSetSubnet1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetSubnet.command('subnet')
+  removeparametersVirtualMachineScaleSetSubnet1.command('subnet')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2406,11 +2406,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add subnet
-  var parametersVirtualMachineScaleSetSubnet = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSubnet2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetSubnet = parametersVirtualMachineScaleSetSubnet.category('add')
+  var addparametersVirtualMachineScaleSetSubnet2 = parametersVirtualMachineScaleSetSubnet2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetSubnet.command('subnet')
+  addparametersVirtualMachineScaleSetSubnet2.command('subnet')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2439,7 +2439,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/subnet' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/subnet' + '/' + 'referenceUri';
+    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/subnet' + '/' + 'referenceUri';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2461,11 +2461,11 @@ exports.init = function (cli) {
   });
 
   //parameters set os-profile
-  var parametersVirtualMachineScaleSetOSProfile = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetOSProfile0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetOSProfile = parametersVirtualMachineScaleSetOSProfile.category('set')
+  var setparametersVirtualMachineScaleSetOSProfile0 = parametersVirtualMachineScaleSetOSProfile0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetOSProfile.command('os-profile')
+  setparametersVirtualMachineScaleSetOSProfile0.command('os-profile')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2578,11 +2578,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove os-profile
-  var parametersVirtualMachineScaleSetOSProfile = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetOSProfile1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetOSProfile = parametersVirtualMachineScaleSetOSProfile.category('remove')
+  var removeparametersVirtualMachineScaleSetOSProfile1 = parametersVirtualMachineScaleSetOSProfile1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetOSProfile.command('os-profile')
+  removeparametersVirtualMachineScaleSetOSProfile1.command('os-profile')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2610,11 +2610,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add os-profile
-  var parametersVirtualMachineScaleSetOSProfile = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetOSProfile2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetOSProfile = parametersVirtualMachineScaleSetOSProfile.category('add')
+  var addparametersVirtualMachineScaleSetOSProfile2 = parametersVirtualMachineScaleSetOSProfile2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetOSProfile.command('os-profile')
+  addparametersVirtualMachineScaleSetOSProfile2.command('os-profile')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2649,7 +2649,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'computerNamePrefix';
+    paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'computerNamePrefix';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2659,7 +2659,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.computerNamePrefix}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'adminPassword';
+    paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'adminPassword';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2669,7 +2669,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.adminPassword}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'adminUsername';
+    paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'adminUsername';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2679,7 +2679,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.adminUsername}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'customData';
+    paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'customData';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2689,7 +2689,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.customData}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'linuxConfiguration';
+    paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'linuxConfiguration';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2699,7 +2699,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.linuxConfiguration}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'secrets';
+    paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'secrets';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2709,7 +2709,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.secrets}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'windowsConfiguration';
+    paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'windowsConfiguration';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2731,11 +2731,11 @@ exports.init = function (cli) {
   });
 
   //parameters set linux-configuration
-  var parametersVirtualMachineScaleSetLinuxConfiguration = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetLinuxConfiguration0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetLinuxConfiguration = parametersVirtualMachineScaleSetLinuxConfiguration.category('set')
+  var setparametersVirtualMachineScaleSetLinuxConfiguration0 = parametersVirtualMachineScaleSetLinuxConfiguration0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetLinuxConfiguration.command('linux-configuration')
+  setparametersVirtualMachineScaleSetLinuxConfiguration0.command('linux-configuration')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2793,11 +2793,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove linux-configuration
-  var parametersVirtualMachineScaleSetLinuxConfiguration = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetLinuxConfiguration1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetLinuxConfiguration = parametersVirtualMachineScaleSetLinuxConfiguration.category('remove')
+  var removeparametersVirtualMachineScaleSetLinuxConfiguration1 = parametersVirtualMachineScaleSetLinuxConfiguration1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetLinuxConfiguration.command('linux-configuration')
+  removeparametersVirtualMachineScaleSetLinuxConfiguration1.command('linux-configuration')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2825,11 +2825,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add linux-configuration
-  var parametersVirtualMachineScaleSetLinuxConfiguration = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetLinuxConfiguration2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetLinuxConfiguration = parametersVirtualMachineScaleSetLinuxConfiguration.category('add')
+  var addparametersVirtualMachineScaleSetLinuxConfiguration2 = parametersVirtualMachineScaleSetLinuxConfiguration2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetLinuxConfiguration.command('linux-configuration')
+  addparametersVirtualMachineScaleSetLinuxConfiguration2.command('linux-configuration')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2859,7 +2859,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration' + '/' + 'disablePasswordAuthentication';
+    paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration' + '/' + 'disablePasswordAuthentication';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2869,7 +2869,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.disablePasswordAuthentication}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration' + '/' + 'sshConfiguration';
+    paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration' + '/' + 'sshConfiguration';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -2891,11 +2891,11 @@ exports.init = function (cli) {
   });
 
   //parameters set ssh-configuration
-  var parametersVirtualMachineScaleSetSshConfiguration = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSshConfiguration0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetSshConfiguration = parametersVirtualMachineScaleSetSshConfiguration.category('set')
+  var setparametersVirtualMachineScaleSetSshConfiguration0 = parametersVirtualMachineScaleSetSshConfiguration0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetSshConfiguration.command('ssh-configuration')
+  setparametersVirtualMachineScaleSetSshConfiguration0.command('ssh-configuration')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2942,11 +2942,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove ssh-configuration
-  var parametersVirtualMachineScaleSetSshConfiguration = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSshConfiguration1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetSshConfiguration = parametersVirtualMachineScaleSetSshConfiguration.category('remove')
+  var removeparametersVirtualMachineScaleSetSshConfiguration1 = parametersVirtualMachineScaleSetSshConfiguration1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetSshConfiguration.command('ssh-configuration')
+  removeparametersVirtualMachineScaleSetSshConfiguration1.command('ssh-configuration')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2974,11 +2974,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ssh-configuration
-  var parametersVirtualMachineScaleSetSshConfiguration = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSshConfiguration2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetSshConfiguration = parametersVirtualMachineScaleSetSshConfiguration.category('add')
+  var addparametersVirtualMachineScaleSetSshConfiguration2 = parametersVirtualMachineScaleSetSshConfiguration2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetSshConfiguration.command('ssh-configuration')
+  addparametersVirtualMachineScaleSetSshConfiguration2.command('ssh-configuration')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3007,7 +3007,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration' + '/' + 'publicKeys';
+    paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration' + '/' + 'publicKeys';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3029,11 +3029,11 @@ exports.init = function (cli) {
   });
 
   //parameters set public-keys
-  var parametersVirtualMachineScaleSetPublicKeys = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetPublicKeys0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetPublicKeys = parametersVirtualMachineScaleSetPublicKeys.category('set')
+  var setparametersVirtualMachineScaleSetPublicKeys0 = parametersVirtualMachineScaleSetPublicKeys0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetPublicKeys.command('public-keys')
+  setparametersVirtualMachineScaleSetPublicKeys0.command('public-keys')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3095,11 +3095,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove public-keys
-  var parametersVirtualMachineScaleSetPublicKeys = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetPublicKeys1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetPublicKeys = parametersVirtualMachineScaleSetPublicKeys.category('remove')
+  var removeparametersVirtualMachineScaleSetPublicKeys1 = parametersVirtualMachineScaleSetPublicKeys1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetPublicKeys.command('public-keys')
+  removeparametersVirtualMachineScaleSetPublicKeys1.command('public-keys')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3128,11 +3128,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add public-keys
-  var parametersVirtualMachineScaleSetPublicKeys = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetPublicKeys2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetPublicKeys = parametersVirtualMachineScaleSetPublicKeys.category('add')
+  var addparametersVirtualMachineScaleSetPublicKeys2 = parametersVirtualMachineScaleSetPublicKeys2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetPublicKeys.command('public-keys')
+  addparametersVirtualMachineScaleSetPublicKeys2.command('public-keys')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3162,7 +3162,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys' + (options.index ? ('/' + options.index) : '') + '/' + 'keyData';
+    paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys' + (options.index ? ('/' + options.index) : '') + '/' + 'keyData';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3172,7 +3172,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.keyData}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys' + (options.index ? ('/' + options.index) : '') + '/' + 'path';
+    paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys' + (options.index ? ('/' + options.index) : '') + '/' + 'path';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3194,11 +3194,11 @@ exports.init = function (cli) {
   });
 
   //parameters set secrets
-  var parametersVirtualMachineScaleSetSecrets = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSecrets0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetSecrets = parametersVirtualMachineScaleSetSecrets.category('set')
+  var setparametersVirtualMachineScaleSetSecrets0 = parametersVirtualMachineScaleSetSecrets0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetSecrets.command('secrets')
+  setparametersVirtualMachineScaleSetSecrets0.command('secrets')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3260,11 +3260,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove secrets
-  var parametersVirtualMachineScaleSetSecrets = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSecrets1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetSecrets = parametersVirtualMachineScaleSetSecrets.category('remove')
+  var removeparametersVirtualMachineScaleSetSecrets1 = parametersVirtualMachineScaleSetSecrets1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetSecrets.command('secrets')
+  removeparametersVirtualMachineScaleSetSecrets1.command('secrets')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3293,11 +3293,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add secrets
-  var parametersVirtualMachineScaleSetSecrets = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSecrets2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetSecrets = parametersVirtualMachineScaleSetSecrets.category('add')
+  var addparametersVirtualMachineScaleSetSecrets2 = parametersVirtualMachineScaleSetSecrets2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetSecrets.command('secrets')
+  addparametersVirtualMachineScaleSetSecrets2.command('secrets')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3327,7 +3327,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/secrets' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/secrets' + (options.index ? ('/' + options.index) : '') + '/' + 'sourceVault';
+    paramPath = '/virtualMachineProfile/oSProfile/secrets' + (options.index ? ('/' + options.index) : '') + '/' + 'sourceVault';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3337,7 +3337,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sourceVault}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile/secrets' + (options.index ? ('/' + options.index) : '') + '/' + 'vaultCertificates';
+    paramPath = '/virtualMachineProfile/oSProfile/secrets' + (options.index ? ('/' + options.index) : '') + '/' + 'vaultCertificates';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3359,11 +3359,11 @@ exports.init = function (cli) {
   });
 
   //parameters set source-vault
-  var parametersVirtualMachineScaleSetSourceVault = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSourceVault0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetSourceVault = parametersVirtualMachineScaleSetSourceVault.category('set')
+  var setparametersVirtualMachineScaleSetSourceVault0 = parametersVirtualMachineScaleSetSourceVault0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetSourceVault.command('source-vault')
+  setparametersVirtualMachineScaleSetSourceVault0.command('source-vault')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3411,11 +3411,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove source-vault
-  var parametersVirtualMachineScaleSetSourceVault = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSourceVault1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetSourceVault = parametersVirtualMachineScaleSetSourceVault.category('remove')
+  var removeparametersVirtualMachineScaleSetSourceVault1 = parametersVirtualMachineScaleSetSourceVault1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetSourceVault.command('source-vault')
+  removeparametersVirtualMachineScaleSetSourceVault1.command('source-vault')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3444,11 +3444,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add source-vault
-  var parametersVirtualMachineScaleSetSourceVault = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSourceVault2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetSourceVault = parametersVirtualMachineScaleSetSourceVault.category('add')
+  var addparametersVirtualMachineScaleSetSourceVault2 = parametersVirtualMachineScaleSetSourceVault2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetSourceVault.command('source-vault')
+  addparametersVirtualMachineScaleSetSourceVault2.command('source-vault')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3477,7 +3477,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/sourceVault' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/sourceVault' + '/' + 'referenceUri';
+    paramPath = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/sourceVault' + '/' + 'referenceUri';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3499,11 +3499,11 @@ exports.init = function (cli) {
   });
 
   //parameters set vault-certificates
-  var parametersVirtualMachineScaleSetVaultCertificates = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetVaultCertificates0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetVaultCertificates = parametersVirtualMachineScaleSetVaultCertificates.category('set')
+  var setparametersVirtualMachineScaleSetVaultCertificates0 = parametersVirtualMachineScaleSetVaultCertificates0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetVaultCertificates.command('vault-certificates')
+  setparametersVirtualMachineScaleSetVaultCertificates0.command('vault-certificates')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3566,11 +3566,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove vault-certificates
-  var parametersVirtualMachineScaleSetVaultCertificates = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetVaultCertificates1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetVaultCertificates = parametersVirtualMachineScaleSetVaultCertificates.category('remove')
+  var removeparametersVirtualMachineScaleSetVaultCertificates1 = parametersVirtualMachineScaleSetVaultCertificates1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetVaultCertificates.command('vault-certificates')
+  removeparametersVirtualMachineScaleSetVaultCertificates1.command('vault-certificates')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3600,11 +3600,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add vault-certificates
-  var parametersVirtualMachineScaleSetVaultCertificates = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetVaultCertificates2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetVaultCertificates = parametersVirtualMachineScaleSetVaultCertificates.category('add')
+  var addparametersVirtualMachineScaleSetVaultCertificates2 = parametersVirtualMachineScaleSetVaultCertificates2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetVaultCertificates.command('vault-certificates')
+  addparametersVirtualMachineScaleSetVaultCertificates2.command('vault-certificates')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3634,7 +3634,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '') + '/' + 'certificateStore';
+    paramPath = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '') + '/' + 'certificateStore';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3644,7 +3644,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateStore}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '') + '/' + 'certificateUrl';
+    paramPath = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '') + '/' + 'certificateUrl';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3666,11 +3666,11 @@ exports.init = function (cli) {
   });
 
   //parameters set windows-configuration
-  var parametersVirtualMachineScaleSetWindowsConfiguration = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetWindowsConfiguration0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetWindowsConfiguration = parametersVirtualMachineScaleSetWindowsConfiguration.category('set')
+  var setparametersVirtualMachineScaleSetWindowsConfiguration0 = parametersVirtualMachineScaleSetWindowsConfiguration0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetWindowsConfiguration.command('windows-configuration')
+  setparametersVirtualMachineScaleSetWindowsConfiguration0.command('windows-configuration')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3761,11 +3761,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove windows-configuration
-  var parametersVirtualMachineScaleSetWindowsConfiguration = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetWindowsConfiguration1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetWindowsConfiguration = parametersVirtualMachineScaleSetWindowsConfiguration.category('remove')
+  var removeparametersVirtualMachineScaleSetWindowsConfiguration1 = parametersVirtualMachineScaleSetWindowsConfiguration1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetWindowsConfiguration.command('windows-configuration')
+  removeparametersVirtualMachineScaleSetWindowsConfiguration1.command('windows-configuration')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3793,11 +3793,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add windows-configuration
-  var parametersVirtualMachineScaleSetWindowsConfiguration = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetWindowsConfiguration2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetWindowsConfiguration = parametersVirtualMachineScaleSetWindowsConfiguration.category('add')
+  var addparametersVirtualMachineScaleSetWindowsConfiguration2 = parametersVirtualMachineScaleSetWindowsConfiguration2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetWindowsConfiguration.command('windows-configuration')
+  addparametersVirtualMachineScaleSetWindowsConfiguration2.command('windows-configuration')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3830,7 +3830,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + 'additionalUnattendContents';
+    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + 'additionalUnattendContents';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3840,7 +3840,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.additionalUnattendContents}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + 'enableAutomaticUpdates';
+    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + 'enableAutomaticUpdates';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3850,7 +3850,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.enableAutomaticUpdates}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + 'provisionVMAgent';
+    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + 'provisionVMAgent';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3860,7 +3860,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisionVMAgent}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + 'timeZone';
+    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + 'timeZone';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3870,7 +3870,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.timeZone}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + 'winRMConfiguration';
+    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + 'winRMConfiguration';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -3892,11 +3892,11 @@ exports.init = function (cli) {
   });
 
   //parameters set additional-unattend-contents
-  var parametersVirtualMachineScaleSetAdditionalUnattendContents = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetAdditionalUnattendContents0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetAdditionalUnattendContents = parametersVirtualMachineScaleSetAdditionalUnattendContents.category('set')
+  var setparametersVirtualMachineScaleSetAdditionalUnattendContents0 = parametersVirtualMachineScaleSetAdditionalUnattendContents0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetAdditionalUnattendContents.command('additional-unattend-contents')
+  setparametersVirtualMachineScaleSetAdditionalUnattendContents0.command('additional-unattend-contents')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3980,11 +3980,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove additional-unattend-contents
-  var parametersVirtualMachineScaleSetAdditionalUnattendContents = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetAdditionalUnattendContents1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetAdditionalUnattendContents = parametersVirtualMachineScaleSetAdditionalUnattendContents.category('remove')
+  var removeparametersVirtualMachineScaleSetAdditionalUnattendContents1 = parametersVirtualMachineScaleSetAdditionalUnattendContents1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetAdditionalUnattendContents.command('additional-unattend-contents')
+  removeparametersVirtualMachineScaleSetAdditionalUnattendContents1.command('additional-unattend-contents')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4013,11 +4013,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add additional-unattend-contents
-  var parametersVirtualMachineScaleSetAdditionalUnattendContents = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetAdditionalUnattendContents2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetAdditionalUnattendContents = parametersVirtualMachineScaleSetAdditionalUnattendContents.category('add')
+  var addparametersVirtualMachineScaleSetAdditionalUnattendContents2 = parametersVirtualMachineScaleSetAdditionalUnattendContents2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetAdditionalUnattendContents.command('additional-unattend-contents')
+  addparametersVirtualMachineScaleSetAdditionalUnattendContents2.command('additional-unattend-contents')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4049,7 +4049,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '') + '/' + 'componentName';
+    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '') + '/' + 'componentName';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4059,7 +4059,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.componentName}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '') + '/' + 'content';
+    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '') + '/' + 'content';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4069,7 +4069,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.content}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '') + '/' + 'passName';
+    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '') + '/' + 'passName';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4079,7 +4079,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.passName}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '') + '/' + 'settingName';
+    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '') + '/' + 'settingName';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4101,11 +4101,11 @@ exports.init = function (cli) {
   });
 
   //parameters set win-rm-configuration
-  var parametersVirtualMachineScaleSetWinRMConfiguration = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetWinRMConfiguration0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetWinRMConfiguration = parametersVirtualMachineScaleSetWinRMConfiguration.category('set')
+  var setparametersVirtualMachineScaleSetWinRMConfiguration0 = parametersVirtualMachineScaleSetWinRMConfiguration0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetWinRMConfiguration.command('win-rm-configuration')
+  setparametersVirtualMachineScaleSetWinRMConfiguration0.command('win-rm-configuration')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4152,11 +4152,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove win-rm-configuration
-  var parametersVirtualMachineScaleSetWinRMConfiguration = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetWinRMConfiguration1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetWinRMConfiguration = parametersVirtualMachineScaleSetWinRMConfiguration.category('remove')
+  var removeparametersVirtualMachineScaleSetWinRMConfiguration1 = parametersVirtualMachineScaleSetWinRMConfiguration1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetWinRMConfiguration.command('win-rm-configuration')
+  removeparametersVirtualMachineScaleSetWinRMConfiguration1.command('win-rm-configuration')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4184,11 +4184,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add win-rm-configuration
-  var parametersVirtualMachineScaleSetWinRMConfiguration = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetWinRMConfiguration2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetWinRMConfiguration = parametersVirtualMachineScaleSetWinRMConfiguration.category('add')
+  var addparametersVirtualMachineScaleSetWinRMConfiguration2 = parametersVirtualMachineScaleSetWinRMConfiguration2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetWinRMConfiguration.command('win-rm-configuration')
+  addparametersVirtualMachineScaleSetWinRMConfiguration2.command('win-rm-configuration')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4217,7 +4217,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration' + '/' + 'listeners';
+    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration' + '/' + 'listeners';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4239,11 +4239,11 @@ exports.init = function (cli) {
   });
 
   //parameters set listeners
-  var parametersVirtualMachineScaleSetListeners = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetListeners0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetListeners = parametersVirtualMachineScaleSetListeners.category('set')
+  var setparametersVirtualMachineScaleSetListeners0 = parametersVirtualMachineScaleSetListeners0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetListeners.command('listeners')
+  setparametersVirtualMachineScaleSetListeners0.command('listeners')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4305,11 +4305,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove listeners
-  var parametersVirtualMachineScaleSetListeners = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetListeners1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetListeners = parametersVirtualMachineScaleSetListeners.category('remove')
+  var removeparametersVirtualMachineScaleSetListeners1 = parametersVirtualMachineScaleSetListeners1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetListeners.command('listeners')
+  removeparametersVirtualMachineScaleSetListeners1.command('listeners')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4338,11 +4338,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add listeners
-  var parametersVirtualMachineScaleSetListeners = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetListeners2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetListeners = parametersVirtualMachineScaleSetListeners.category('add')
+  var addparametersVirtualMachineScaleSetListeners2 = parametersVirtualMachineScaleSetListeners2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetListeners.command('listeners')
+  addparametersVirtualMachineScaleSetListeners2.command('listeners')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4372,7 +4372,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners' + (options.index ? ('/' + options.index) : '') + '/' + 'certificateUrl';
+    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners' + (options.index ? ('/' + options.index) : '') + '/' + 'certificateUrl';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4382,7 +4382,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateUrl}]);
     }
-    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners' + (options.index ? ('/' + options.index) : '') + '/' + 'protocol';
+    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners' + (options.index ? ('/' + options.index) : '') + '/' + 'protocol';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4404,11 +4404,11 @@ exports.init = function (cli) {
   });
 
   //parameters set storage-profile
-  var parametersVirtualMachineScaleSetStorageProfile = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetStorageProfile0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetStorageProfile = parametersVirtualMachineScaleSetStorageProfile.category('set')
+  var setparametersVirtualMachineScaleSetStorageProfile0 = parametersVirtualMachineScaleSetStorageProfile0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetStorageProfile.command('storage-profile')
+  setparametersVirtualMachineScaleSetStorageProfile0.command('storage-profile')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4466,11 +4466,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove storage-profile
-  var parametersVirtualMachineScaleSetStorageProfile = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetStorageProfile1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetStorageProfile = parametersVirtualMachineScaleSetStorageProfile.category('remove')
+  var removeparametersVirtualMachineScaleSetStorageProfile1 = parametersVirtualMachineScaleSetStorageProfile1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetStorageProfile.command('storage-profile')
+  removeparametersVirtualMachineScaleSetStorageProfile1.command('storage-profile')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4498,11 +4498,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add storage-profile
-  var parametersVirtualMachineScaleSetStorageProfile = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetStorageProfile2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetStorageProfile = parametersVirtualMachineScaleSetStorageProfile.category('add')
+  var addparametersVirtualMachineScaleSetStorageProfile2 = parametersVirtualMachineScaleSetStorageProfile2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetStorageProfile.command('storage-profile')
+  addparametersVirtualMachineScaleSetStorageProfile2.command('storage-profile')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4532,7 +4532,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/storageProfile' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/storageProfile' + '/' + 'imageReference';
+    paramPath = '/virtualMachineProfile/storageProfile' + '/' + 'imageReference';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4542,7 +4542,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.imageReference}]);
     }
-    var paramPath = '/virtualMachineProfile/storageProfile' + '/' + 'oSDisk';
+    paramPath = '/virtualMachineProfile/storageProfile' + '/' + 'oSDisk';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4564,11 +4564,11 @@ exports.init = function (cli) {
   });
 
   //parameters set image-reference
-  var parametersVirtualMachineScaleSetImageReference = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetImageReference0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetImageReference = parametersVirtualMachineScaleSetImageReference.category('set')
+  var setparametersVirtualMachineScaleSetImageReference0 = parametersVirtualMachineScaleSetImageReference0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetImageReference.command('image-reference')
+  setparametersVirtualMachineScaleSetImageReference0.command('image-reference')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4648,11 +4648,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove image-reference
-  var parametersVirtualMachineScaleSetImageReference = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetImageReference1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetImageReference = parametersVirtualMachineScaleSetImageReference.category('remove')
+  var removeparametersVirtualMachineScaleSetImageReference1 = parametersVirtualMachineScaleSetImageReference1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetImageReference.command('image-reference')
+  removeparametersVirtualMachineScaleSetImageReference1.command('image-reference')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4680,11 +4680,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add image-reference
-  var parametersVirtualMachineScaleSetImageReference = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetImageReference2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetImageReference = parametersVirtualMachineScaleSetImageReference.category('add')
+  var addparametersVirtualMachineScaleSetImageReference2 = parametersVirtualMachineScaleSetImageReference2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetImageReference.command('image-reference')
+  addparametersVirtualMachineScaleSetImageReference2.command('image-reference')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4716,7 +4716,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/storageProfile/imageReference' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'offer';
+    paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'offer';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4726,7 +4726,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.offer}]);
     }
-    var paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'publisher';
+    paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'publisher';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4736,7 +4736,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.publisher}]);
     }
-    var paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'sku';
+    paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'sku';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4746,7 +4746,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sku}]);
     }
-    var paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'version';
+    paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'version';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4768,11 +4768,11 @@ exports.init = function (cli) {
   });
 
   //parameters set os-disk
-  var parametersVirtualMachineScaleSetOSDisk = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetOSDisk0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetOSDisk = parametersVirtualMachineScaleSetOSDisk.category('set')
+  var setparametersVirtualMachineScaleSetOSDisk0 = parametersVirtualMachineScaleSetOSDisk0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetOSDisk.command('os-disk')
+  setparametersVirtualMachineScaleSetOSDisk0.command('os-disk')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4874,11 +4874,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove os-disk
-  var parametersVirtualMachineScaleSetOSDisk = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetOSDisk1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetOSDisk = parametersVirtualMachineScaleSetOSDisk.category('remove')
+  var removeparametersVirtualMachineScaleSetOSDisk1 = parametersVirtualMachineScaleSetOSDisk1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetOSDisk.command('os-disk')
+  removeparametersVirtualMachineScaleSetOSDisk1.command('os-disk')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4906,11 +4906,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add os-disk
-  var parametersVirtualMachineScaleSetOSDisk = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetOSDisk2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetOSDisk = parametersVirtualMachineScaleSetOSDisk.category('add')
+  var addparametersVirtualMachineScaleSetOSDisk2 = parametersVirtualMachineScaleSetOSDisk2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetOSDisk.command('os-disk')
+  addparametersVirtualMachineScaleSetOSDisk2.command('os-disk')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4944,7 +4944,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'caching';
+    paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'caching';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4954,7 +4954,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.caching}]);
     }
-    var paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'createOption';
+    paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'createOption';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4964,7 +4964,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.createOption}]);
     }
-    var paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'name';
+    paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'name';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4974,7 +4974,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
-    var paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'operatingSystemType';
+    paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'operatingSystemType';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4984,7 +4984,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.operatingSystemType}]);
     }
-    var paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'sourceImage';
+    paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'sourceImage';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -4994,7 +4994,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sourceImage}]);
     }
-    var paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'virtualHardDiskContainers';
+    paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'virtualHardDiskContainers';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -5016,11 +5016,11 @@ exports.init = function (cli) {
   });
 
   //parameters set source-image
-  var parametersVirtualMachineScaleSetSourceImage = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSourceImage0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetSourceImage = parametersVirtualMachineScaleSetSourceImage.category('set')
+  var setparametersVirtualMachineScaleSetSourceImage0 = parametersVirtualMachineScaleSetSourceImage0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetSourceImage.command('source-image')
+  setparametersVirtualMachineScaleSetSourceImage0.command('source-image')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5067,11 +5067,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove source-image
-  var parametersVirtualMachineScaleSetSourceImage = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSourceImage1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetSourceImage = parametersVirtualMachineScaleSetSourceImage.category('remove')
+  var removeparametersVirtualMachineScaleSetSourceImage1 = parametersVirtualMachineScaleSetSourceImage1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetSourceImage.command('source-image')
+  removeparametersVirtualMachineScaleSetSourceImage1.command('source-image')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5099,11 +5099,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add source-image
-  var parametersVirtualMachineScaleSetSourceImage = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetSourceImage2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetSourceImage = parametersVirtualMachineScaleSetSourceImage.category('add')
+  var addparametersVirtualMachineScaleSetSourceImage2 = parametersVirtualMachineScaleSetSourceImage2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetSourceImage.command('source-image')
+  addparametersVirtualMachineScaleSetSourceImage2.command('source-image')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5132,7 +5132,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/storageProfile/oSDisk/sourceImage' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/storageProfile/oSDisk/sourceImage' + '/' + 'uri';
+    paramPath = '/virtualMachineProfile/storageProfile/oSDisk/sourceImage' + '/' + 'uri';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -5154,11 +5154,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-hard-disk-containers
-  var parametersVirtualMachineScaleSetVirtualHardDiskContainers = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetVirtualHardDiskContainers0 = vmss.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersVirtualMachineScaleSetVirtualHardDiskContainers = parametersVirtualMachineScaleSetVirtualHardDiskContainers.category('set')
+  var setparametersVirtualMachineScaleSetVirtualHardDiskContainers0 = parametersVirtualMachineScaleSetVirtualHardDiskContainers0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
-  setparametersVirtualMachineScaleSetVirtualHardDiskContainers.command('virtual-hard-disk-containers')
+  setparametersVirtualMachineScaleSetVirtualHardDiskContainers0.command('virtual-hard-disk-containers')
   .description($('Set vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5198,11 +5198,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-hard-disk-containers
-  var parametersVirtualMachineScaleSetVirtualHardDiskContainers = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetVirtualHardDiskContainers1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetVirtualHardDiskContainers = parametersVirtualMachineScaleSetVirtualHardDiskContainers.category('remove')
+  var removeparametersVirtualMachineScaleSetVirtualHardDiskContainers1 = parametersVirtualMachineScaleSetVirtualHardDiskContainers1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetVirtualHardDiskContainers.command('virtual-hard-disk-containers')
+  removeparametersVirtualMachineScaleSetVirtualHardDiskContainers1.command('virtual-hard-disk-containers')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5231,11 +5231,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-hard-disk-containers
-  var parametersVirtualMachineScaleSetVirtualHardDiskContainers = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetVirtualHardDiskContainers2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetVirtualHardDiskContainers = parametersVirtualMachineScaleSetVirtualHardDiskContainers.category('add')
+  var addparametersVirtualMachineScaleSetVirtualHardDiskContainers2 = parametersVirtualMachineScaleSetVirtualHardDiskContainers2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetVirtualHardDiskContainers.command('virtual-hard-disk-containers')
+  addparametersVirtualMachineScaleSetVirtualHardDiskContainers2.command('virtual-hard-disk-containers')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5516,11 +5516,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove list-parameters
-  var parametersVirtualMachineScaleSetListParameters = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetListParameters1 = vmss.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
-  var removeparametersVirtualMachineScaleSetListParameters = parametersVirtualMachineScaleSetListParameters.category('remove')
+  var removeparametersVirtualMachineScaleSetListParameters1 = parametersVirtualMachineScaleSetListParameters1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
-  removeparametersVirtualMachineScaleSetListParameters.command('list-parameters')
+  removeparametersVirtualMachineScaleSetListParameters1.command('list-parameters')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5548,11 +5548,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add list-parameters
-  var parametersVirtualMachineScaleSetListParameters = vmss.category('parameters')
+  var parametersVirtualMachineScaleSetListParameters2 = vmss.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
-  var addparametersVirtualMachineScaleSetListParameters = parametersVirtualMachineScaleSetListParameters.category('add')
+  var addparametersVirtualMachineScaleSetListParameters2 = parametersVirtualMachineScaleSetListParameters2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
-  addparametersVirtualMachineScaleSetListParameters.command('list-parameters')
+  addparametersVirtualMachineScaleSetListParameters2.command('list-parameters')
   .description($('Remove vmss parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5973,11 +5973,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-scale-set-vm-list-parameters
-  var parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters = vmssvm.category('parameters')
+  var parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters0 = vmssvm.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set-vm.'));
-  var setparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters = parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters.category('set')
+  var setparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters0 = parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set-vm.'));
-  setparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters.command('virtual-machine-scale-set-vm-list-parameters')
+  setparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters0.command('virtual-machine-scale-set-vm-list-parameters')
   .description($('Set vmssvm parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6068,11 +6068,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-scale-set-vm-list-parameters
-  var parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters = vmssvm.category('parameters')
+  var parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters1 = vmssvm.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set-vm.'));
-  var removeparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters = parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters.category('remove')
+  var removeparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters1 = parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set-vm.'));
-  removeparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters.command('virtual-machine-scale-set-vm-list-parameters')
+  removeparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters1.command('virtual-machine-scale-set-vm-list-parameters')
   .description($('Remove vmssvm parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6100,11 +6100,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-scale-set-vm-list-parameters
-  var parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters = vmssvm.category('parameters')
+  var parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters2 = vmssvm.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set-vm.'));
-  var addparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters = parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters.category('add')
+  var addparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters2 = parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set-vm.'));
-  addparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters.command('virtual-machine-scale-set-vm-list-parameters')
+  addparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters2.command('virtual-machine-scale-set-vm-list-parameters')
   .description($('Remove vmssvm parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6137,7 +6137,7 @@ exports.init = function (cli) {
     options.path = '' + '/' + options.key;
     cli.output.info('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '' + '/' + 'expandExpression';
+    paramPath = '' + '/' + 'expandExpression';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -6147,7 +6147,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.expandExpression}]);
     }
-    var paramPath = '' + '/' + 'filterExpression';
+    paramPath = '' + '/' + 'filterExpression';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -6157,7 +6157,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.filterExpression}]);
     }
-    var paramPath = '' + '/' + 'resourceGroupName';
+    paramPath = '' + '/' + 'resourceGroupName';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -6167,7 +6167,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.resourceGroupName}]);
     }
-    var paramPath = '' + '/' + 'selectExpression';
+    paramPath = '' + '/' + 'selectExpression';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
@@ -6177,7 +6177,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.selectExpression}]);
     }
-    var paramPath = '' + '/' + 'virtualMachineScaleSetName';
+    paramPath = '' + '/' + 'virtualMachineScaleSetName';
     cli.output.info('================================================');
     cli.output.info('JSON Parameters Path:' + paramPath);
     cli.output.info('================================================');
