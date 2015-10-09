@@ -51,6 +51,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         protected static object[] ConvertFromArgumentsToObjects(object[] arguments)
         {
+            if (arguments == null)
+            {
+                return null;
+            }
+
             var objects = new object[arguments.Length];
             
             for (int index = 0; index < arguments.Length; index++)

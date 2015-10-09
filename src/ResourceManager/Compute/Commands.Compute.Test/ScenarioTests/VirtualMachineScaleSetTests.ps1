@@ -133,7 +133,11 @@ function Test-VirtualMachineScaleSet
 
         # List All
         Write-Verbose ('Running Command : ' + 'Get-AzureVMSSAllList');
-        $vmssList = Get-AzureVMSSAllList -VirtualMachineScaleSetListAllParameters $null;
+
+        $argList = New-AzureComputeArgumentList -MethodName VirtualMachineScaleSetListAll;
+        $args = ($argList | select -ExpandProperty Value);
+        #$vmssList = Invoke-AzureComputeMethod -MethodName VirtualMachineScaleSetListAll -ArgumentList $args;
+        $vmssList = Get-AzureVMSSAllList;
         Assert-True { ($vmssList.VirtualMachineScaleSets | select -ExpandProperty Name) -contains $vmss.Name };
         $output = $vmssList | Out-String;
         Write-Verbose ($output);
@@ -155,12 +159,14 @@ function Test-VirtualMachineScaleSet
         Assert-True { $output.Contains("VirtualMachineScaleSetSku") };
 
         # List All VMs
-        $vmListParams = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetVMListParameters;
-        $vmListParams.ResourceGroupName = $rgname;
-        $vmListParams.VirtualMachineScaleSetName = $vmss.Name;
-
         Write-Verbose ('Running Command : ' + 'Get-AzureVMSSVMList');
-        $vmListResult = Get-AzureVMSSVMList -VirtualMachineScaleSetVMListParameters $vmListParams;
+
+        $argList = New-AzureComputeArgumentList -MethodName VirtualMachineScaleSetVMList;
+        $argList[2].Value = $rgname;
+        $argList[4].Value = $vmss.Name;
+        $args = ($argList | select -ExpandProperty Value);
+        #$vmListResult = Invoke-AzureComputeMethod -MethodName VirtualMachineScaleSetVMList -ArgumentList $args;
+        $vmListResult = Get-AzureVMSSVMList -ResourceGroupName $rgname -VirtualMachineScaleSetName $vmss.Name;
         $output = $vmListResult | Out-String;
         Write-Verbose ($output);
         Assert-True { $output.Contains("VirtualMachineScaleSetVM") };
@@ -202,11 +208,23 @@ function Test-VirtualMachineScaleSet
         $st = Start-AzureVMSS -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
         $st = Restart-AzureVMSS -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
 
-        $instanceListParam = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetVMInstanceIDs;
+        $instanceListParam = @();
         for ($i = 0; $i -lt $vmList.Count; $i++)
         {
-            $instanceListParam.InstanceIDs.Add($i);
+            $instanceListParam += $i.ToString();
         }
+
+        $argList = New-AzureComputeArgumentList -MethodName VirtualMachineScaleSetPowerOffInstances;
+        $argList[0].Value = $rgname;
+        $argList[1].Value = $vmss.Name;
+        $argList[2].Value = $instanceListParam;
+        $args = @()
+        for ($i = 0; $i -lt $argList.Length; $i++)
+        {
+            $args += , $argList[$i].Value;
+        }
+
+        #$vmssResult = Invoke-AzureComputeMethod -MethodName VirtualMachineScaleSetPowerOffInstances -ArgumentList $args;
         $st = Stop-AzureVMSSInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
         $st = Stop-AzureVMSSInstancesWithDeallocation -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
         $st = Start-AzureVMSSInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
