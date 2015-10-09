@@ -64,11 +64,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.changeConfigurationByName(options.serviceName, options.deploymentName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = deployment.category('parameters')
+  var deploymentchangeConfigurationByNameParameters2 = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var generate = parameters.category('generate')
+  var deploymentchangeConfigurationByNameGenerate2 = deploymentchangeConfigurationByNameParameters2.category('generate')
   .description($('Commands to generate parameter file for your deployment.'));
-  generate.command('change-configuration-by-name')
+  deploymentchangeConfigurationByNameGenerate2.command('change-configuration-by-name')
   .description($('Generate deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -84,7 +84,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  deploymentchangeConfigurationByNameParameters2.command('patch')
   .description($('Command to patch deployment parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -130,11 +130,11 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-change-configuration-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentChangeConfigurationParameters = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentDeploymentChangeConfigurationParameters = parametersDeploymentDeploymentChangeConfigurationParameters.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('deployment-change-configuration-parameters')
+  setparametersDeploymentDeploymentChangeConfigurationParameters.command('deployment-change-configuration-parameters')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -225,11 +225,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-change-configuration-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentChangeConfigurationParameters = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentDeploymentChangeConfigurationParameters = parametersDeploymentDeploymentChangeConfigurationParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('deployment-change-configuration-parameters')
+  removeparametersDeploymentDeploymentChangeConfigurationParameters.command('deployment-change-configuration-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -257,11 +257,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-change-configuration-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentChangeConfigurationParameters = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentDeploymentChangeConfigurationParameters = parametersDeploymentDeploymentChangeConfigurationParameters.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('deployment-change-configuration-parameters')
+  addparametersDeploymentDeploymentChangeConfigurationParameters.command('deployment-change-configuration-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -356,11 +356,11 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-configuration
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensionConfiguration = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentExtensionConfiguration = parametersDeploymentExtensionConfiguration.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('extension-configuration')
+  setparametersDeploymentExtensionConfiguration.command('extension-configuration')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -418,11 +418,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-configuration
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensionConfiguration = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentExtensionConfiguration = parametersDeploymentExtensionConfiguration.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('extension-configuration')
+  removeparametersDeploymentExtensionConfiguration.command('extension-configuration')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -450,11 +450,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-configuration
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensionConfiguration = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentExtensionConfiguration = parametersDeploymentExtensionConfiguration.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('extension-configuration')
+  addparametersDeploymentExtensionConfiguration.command('extension-configuration')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -516,11 +516,11 @@ exports.init = function (cli) {
   });
 
   //parameters set all-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentAllRoles = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentAllRoles = parametersDeploymentAllRoles.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('all-roles')
+  setparametersDeploymentAllRoles.command('all-roles')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -571,11 +571,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove all-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentAllRoles = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentAllRoles = parametersDeploymentAllRoles.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('all-roles')
+  removeparametersDeploymentAllRoles.command('all-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -604,11 +604,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add all-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentAllRoles = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentAllRoles = parametersDeploymentAllRoles.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('all-roles')
+  addparametersDeploymentAllRoles.command('all-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -659,11 +659,11 @@ exports.init = function (cli) {
   });
 
   //parameters set named-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentNamedRoles = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentNamedRoles = parametersDeploymentNamedRoles.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('named-roles')
+  setparametersDeploymentNamedRoles.command('named-roles')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -725,11 +725,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove named-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentNamedRoles = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentNamedRoles = parametersDeploymentNamedRoles.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('named-roles')
+  removeparametersDeploymentNamedRoles.command('named-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -758,11 +758,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add named-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentNamedRoles = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentNamedRoles = parametersDeploymentNamedRoles.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('named-roles')
+  addparametersDeploymentNamedRoles.command('named-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -824,11 +824,11 @@ exports.init = function (cli) {
   });
 
   //parameters set extensions
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensions = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentExtensions = parametersDeploymentExtensions.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('extensions')
+  setparametersDeploymentExtensions.command('extensions')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -880,11 +880,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove extensions
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensions = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentExtensions = parametersDeploymentExtensions.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('extensions')
+  removeparametersDeploymentExtensions.command('extensions')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -914,11 +914,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extensions
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensions = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentExtensions = parametersDeploymentExtensions.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('extensions')
+  addparametersDeploymentExtensions.command('extensions')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1001,11 +1001,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.changeConfigurationBySlot(options.serviceName, options.deploymentSlot, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = deployment.category('parameters')
+  var deploymentchangeConfigurationBySlotParameters2 = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var generate = parameters.category('generate')
+  var deploymentchangeConfigurationBySlotGenerate2 = deploymentchangeConfigurationBySlotParameters2.category('generate')
   .description($('Commands to generate parameter file for your deployment.'));
-  generate.command('change-configuration-by-slot')
+  deploymentchangeConfigurationBySlotGenerate2.command('change-configuration-by-slot')
   .description($('Generate deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1021,7 +1021,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  deploymentchangeConfigurationBySlotParameters2.command('patch')
   .description($('Command to patch deployment parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1067,11 +1067,11 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-change-configuration-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentChangeConfigurationParameters = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentDeploymentChangeConfigurationParameters = parametersDeploymentDeploymentChangeConfigurationParameters.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('deployment-change-configuration-parameters')
+  setparametersDeploymentDeploymentChangeConfigurationParameters.command('deployment-change-configuration-parameters')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1162,11 +1162,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-change-configuration-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentChangeConfigurationParameters = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentDeploymentChangeConfigurationParameters = parametersDeploymentDeploymentChangeConfigurationParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('deployment-change-configuration-parameters')
+  removeparametersDeploymentDeploymentChangeConfigurationParameters.command('deployment-change-configuration-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1194,11 +1194,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-change-configuration-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentChangeConfigurationParameters = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentDeploymentChangeConfigurationParameters = parametersDeploymentDeploymentChangeConfigurationParameters.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('deployment-change-configuration-parameters')
+  addparametersDeploymentDeploymentChangeConfigurationParameters.command('deployment-change-configuration-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1293,11 +1293,11 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-configuration
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensionConfiguration = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentExtensionConfiguration = parametersDeploymentExtensionConfiguration.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('extension-configuration')
+  setparametersDeploymentExtensionConfiguration.command('extension-configuration')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1355,11 +1355,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-configuration
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensionConfiguration = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentExtensionConfiguration = parametersDeploymentExtensionConfiguration.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('extension-configuration')
+  removeparametersDeploymentExtensionConfiguration.command('extension-configuration')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1387,11 +1387,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-configuration
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensionConfiguration = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentExtensionConfiguration = parametersDeploymentExtensionConfiguration.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('extension-configuration')
+  addparametersDeploymentExtensionConfiguration.command('extension-configuration')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1453,11 +1453,11 @@ exports.init = function (cli) {
   });
 
   //parameters set all-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentAllRoles = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentAllRoles = parametersDeploymentAllRoles.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('all-roles')
+  setparametersDeploymentAllRoles.command('all-roles')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1508,11 +1508,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove all-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentAllRoles = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentAllRoles = parametersDeploymentAllRoles.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('all-roles')
+  removeparametersDeploymentAllRoles.command('all-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1541,11 +1541,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add all-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentAllRoles = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentAllRoles = parametersDeploymentAllRoles.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('all-roles')
+  addparametersDeploymentAllRoles.command('all-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1596,11 +1596,11 @@ exports.init = function (cli) {
   });
 
   //parameters set named-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentNamedRoles = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentNamedRoles = parametersDeploymentNamedRoles.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('named-roles')
+  setparametersDeploymentNamedRoles.command('named-roles')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1662,11 +1662,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove named-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentNamedRoles = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentNamedRoles = parametersDeploymentNamedRoles.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('named-roles')
+  removeparametersDeploymentNamedRoles.command('named-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1695,11 +1695,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add named-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentNamedRoles = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentNamedRoles = parametersDeploymentNamedRoles.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('named-roles')
+  addparametersDeploymentNamedRoles.command('named-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1761,11 +1761,11 @@ exports.init = function (cli) {
   });
 
   //parameters set extensions
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensions = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentExtensions = parametersDeploymentExtensions.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('extensions')
+  setparametersDeploymentExtensions.command('extensions')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1817,11 +1817,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove extensions
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensions = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentExtensions = parametersDeploymentExtensions.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('extensions')
+  removeparametersDeploymentExtensions.command('extensions')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1851,11 +1851,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extensions
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensions = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentExtensions = parametersDeploymentExtensions.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('extensions')
+  addparametersDeploymentExtensions.command('extensions')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1938,11 +1938,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.create(options.serviceName, options.deploymentSlot, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = deployment.category('parameters')
+  var deploymentcreateParameters2 = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var generate = parameters.category('generate')
+  var deploymentcreateGenerate2 = deploymentcreateParameters2.category('generate')
   .description($('Commands to generate parameter file for your deployment.'));
-  generate.command('create')
+  deploymentcreateGenerate2.command('create')
   .description($('Generate deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1958,7 +1958,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  deploymentcreateParameters2.command('patch')
   .description($('Command to patch deployment parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2004,11 +2004,11 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-create-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentCreateParameters = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentDeploymentCreateParameters = parametersDeploymentDeploymentCreateParameters.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('deployment-create-parameters')
+  setparametersDeploymentDeploymentCreateParameters.command('deployment-create-parameters')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2132,11 +2132,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-create-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentCreateParameters = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentDeploymentCreateParameters = parametersDeploymentDeploymentCreateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('deployment-create-parameters')
+  removeparametersDeploymentDeploymentCreateParameters.command('deployment-create-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2164,11 +2164,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-create-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentCreateParameters = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentDeploymentCreateParameters = parametersDeploymentDeploymentCreateParameters.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('deployment-create-parameters')
+  addparametersDeploymentDeploymentCreateParameters.command('deployment-create-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2296,11 +2296,11 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-configuration
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensionConfiguration = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentExtensionConfiguration = parametersDeploymentExtensionConfiguration.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('extension-configuration')
+  setparametersDeploymentExtensionConfiguration.command('extension-configuration')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2358,11 +2358,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-configuration
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensionConfiguration = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentExtensionConfiguration = parametersDeploymentExtensionConfiguration.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('extension-configuration')
+  removeparametersDeploymentExtensionConfiguration.command('extension-configuration')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2390,11 +2390,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-configuration
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensionConfiguration = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentExtensionConfiguration = parametersDeploymentExtensionConfiguration.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('extension-configuration')
+  addparametersDeploymentExtensionConfiguration.command('extension-configuration')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2456,11 +2456,11 @@ exports.init = function (cli) {
   });
 
   //parameters set all-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentAllRoles = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentAllRoles = parametersDeploymentAllRoles.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('all-roles')
+  setparametersDeploymentAllRoles.command('all-roles')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2511,11 +2511,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove all-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentAllRoles = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentAllRoles = parametersDeploymentAllRoles.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('all-roles')
+  removeparametersDeploymentAllRoles.command('all-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2544,11 +2544,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add all-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentAllRoles = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentAllRoles = parametersDeploymentAllRoles.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('all-roles')
+  addparametersDeploymentAllRoles.command('all-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2599,11 +2599,11 @@ exports.init = function (cli) {
   });
 
   //parameters set named-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentNamedRoles = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentNamedRoles = parametersDeploymentNamedRoles.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('named-roles')
+  setparametersDeploymentNamedRoles.command('named-roles')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2665,11 +2665,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove named-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentNamedRoles = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentNamedRoles = parametersDeploymentNamedRoles.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('named-roles')
+  removeparametersDeploymentNamedRoles.command('named-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2698,11 +2698,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add named-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentNamedRoles = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentNamedRoles = parametersDeploymentNamedRoles.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('named-roles')
+  addparametersDeploymentNamedRoles.command('named-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2764,11 +2764,11 @@ exports.init = function (cli) {
   });
 
   //parameters set extensions
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensions = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentExtensions = parametersDeploymentExtensions.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('extensions')
+  setparametersDeploymentExtensions.command('extensions')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2820,11 +2820,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove extensions
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensions = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentExtensions = parametersDeploymentExtensions.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('extensions')
+  removeparametersDeploymentExtensions.command('extensions')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2854,11 +2854,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extensions
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensions = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentExtensions = parametersDeploymentExtensions.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('extensions')
+  addparametersDeploymentExtensions.command('extensions')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3002,11 +3002,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.deleteRoleInstanceByDeploymentSlot(options.serviceName, options.deploymentSlot, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = deployment.category('parameters')
+  var deploymentdeleteRoleInstanceByDeploymentSlotParameters2 = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var generate = parameters.category('generate')
+  var deploymentdeleteRoleInstanceByDeploymentSlotGenerate2 = deploymentdeleteRoleInstanceByDeploymentSlotParameters2.category('generate')
   .description($('Commands to generate parameter file for your deployment.'));
-  generate.command('delete-role-instance-by-deployment-slot')
+  deploymentdeleteRoleInstanceByDeploymentSlotGenerate2.command('delete-role-instance-by-deployment-slot')
   .description($('Generate deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3022,7 +3022,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  deploymentdeleteRoleInstanceByDeploymentSlotParameters2.command('patch')
   .description($('Command to patch deployment parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3068,11 +3068,11 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-delete-role-instance-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentDeleteRoleInstanceParameters = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentDeploymentDeleteRoleInstanceParameters = parametersDeploymentDeploymentDeleteRoleInstanceParameters.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('deployment-delete-role-instance-parameters')
+  setparametersDeploymentDeploymentDeleteRoleInstanceParameters.command('deployment-delete-role-instance-parameters')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3119,11 +3119,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-delete-role-instance-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentDeleteRoleInstanceParameters = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentDeploymentDeleteRoleInstanceParameters = parametersDeploymentDeploymentDeleteRoleInstanceParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('deployment-delete-role-instance-parameters')
+  removeparametersDeploymentDeploymentDeleteRoleInstanceParameters.command('deployment-delete-role-instance-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3151,11 +3151,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-delete-role-instance-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentDeleteRoleInstanceParameters = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentDeploymentDeleteRoleInstanceParameters = parametersDeploymentDeploymentDeleteRoleInstanceParameters.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('deployment-delete-role-instance-parameters')
+  addparametersDeploymentDeploymentDeleteRoleInstanceParameters.command('deployment-delete-role-instance-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3206,11 +3206,11 @@ exports.init = function (cli) {
   });
 
   //parameters set name
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentName = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentName = parametersDeploymentName.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('name')
+  setparametersDeploymentName.command('name')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3250,11 +3250,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove name
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentName = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentName = parametersDeploymentName.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('name')
+  removeparametersDeploymentName.command('name')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3283,11 +3283,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add name
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentName = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentName = parametersDeploymentName.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('name')
+  addparametersDeploymentName.command('name')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3396,11 +3396,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.getPackageByName(options.serviceName, options.deploymentName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = deployment.category('parameters')
+  var deploymentgetPackageByNameParameters2 = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var generate = parameters.category('generate')
+  var deploymentgetPackageByNameGenerate2 = deploymentgetPackageByNameParameters2.category('generate')
   .description($('Commands to generate parameter file for your deployment.'));
-  generate.command('get-package-by-name')
+  deploymentgetPackageByNameGenerate2.command('get-package-by-name')
   .description($('Generate deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3416,7 +3416,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  deploymentgetPackageByNameParameters2.command('patch')
   .description($('Command to patch deployment parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3462,11 +3462,11 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-get-package-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentGetPackageParameters = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentDeploymentGetPackageParameters = parametersDeploymentDeploymentGetPackageParameters.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('deployment-get-package-parameters')
+  setparametersDeploymentDeploymentGetPackageParameters.command('deployment-get-package-parameters')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3524,11 +3524,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-get-package-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentGetPackageParameters = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentDeploymentGetPackageParameters = parametersDeploymentDeploymentGetPackageParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('deployment-get-package-parameters')
+  removeparametersDeploymentDeploymentGetPackageParameters.command('deployment-get-package-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3556,11 +3556,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-get-package-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentGetPackageParameters = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentDeploymentGetPackageParameters = parametersDeploymentDeploymentGetPackageParameters.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('deployment-get-package-parameters')
+  addparametersDeploymentDeploymentGetPackageParameters.command('deployment-get-package-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3654,11 +3654,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.getPackageBySlot(options.serviceName, options.deploymentSlot, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = deployment.category('parameters')
+  var deploymentgetPackageBySlotParameters2 = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var generate = parameters.category('generate')
+  var deploymentgetPackageBySlotGenerate2 = deploymentgetPackageBySlotParameters2.category('generate')
   .description($('Commands to generate parameter file for your deployment.'));
-  generate.command('get-package-by-slot')
+  deploymentgetPackageBySlotGenerate2.command('get-package-by-slot')
   .description($('Generate deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3674,7 +3674,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  deploymentgetPackageBySlotParameters2.command('patch')
   .description($('Command to patch deployment parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3720,11 +3720,11 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-get-package-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentGetPackageParameters = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentDeploymentGetPackageParameters = parametersDeploymentDeploymentGetPackageParameters.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('deployment-get-package-parameters')
+  setparametersDeploymentDeploymentGetPackageParameters.command('deployment-get-package-parameters')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3782,11 +3782,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-get-package-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentGetPackageParameters = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentDeploymentGetPackageParameters = parametersDeploymentDeploymentGetPackageParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('deployment-get-package-parameters')
+  removeparametersDeploymentDeploymentGetPackageParameters.command('deployment-get-package-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3814,11 +3814,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-get-package-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentGetPackageParameters = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentDeploymentGetPackageParameters = parametersDeploymentDeploymentGetPackageParameters.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('deployment-get-package-parameters')
+  addparametersDeploymentDeploymentGetPackageParameters.command('deployment-get-package-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4081,11 +4081,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.rollbackUpdateOrUpgradeByDeploymentName(options.serviceName, options.deploymentName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = deployment.category('parameters')
+  var deploymentrollbackUpdateOrUpgradeByDeploymentNameParameters2 = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var generate = parameters.category('generate')
+  var deploymentrollbackUpdateOrUpgradeByDeploymentNameGenerate2 = deploymentrollbackUpdateOrUpgradeByDeploymentNameParameters2.category('generate')
   .description($('Commands to generate parameter file for your deployment.'));
-  generate.command('rollback-update-or-upgrade-by-deployment-name')
+  deploymentrollbackUpdateOrUpgradeByDeploymentNameGenerate2.command('rollback-update-or-upgrade-by-deployment-name')
   .description($('Generate deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4101,7 +4101,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  deploymentrollbackUpdateOrUpgradeByDeploymentNameParameters2.command('patch')
   .description($('Command to patch deployment parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4147,11 +4147,11 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-rollback-update-or-upgrade-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters = parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('deployment-rollback-update-or-upgrade-parameters')
+  setparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters.command('deployment-rollback-update-or-upgrade-parameters')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4209,11 +4209,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-rollback-update-or-upgrade-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters = parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('deployment-rollback-update-or-upgrade-parameters')
+  removeparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters.command('deployment-rollback-update-or-upgrade-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4241,11 +4241,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-rollback-update-or-upgrade-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters = parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('deployment-rollback-update-or-upgrade-parameters')
+  addparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters.command('deployment-rollback-update-or-upgrade-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4307,11 +4307,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove mode
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentMode = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentMode = parametersDeploymentMode.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('mode')
+  removeparametersDeploymentMode.command('mode')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4339,11 +4339,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add mode
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentMode = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentMode = parametersDeploymentMode.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('mode')
+  addparametersDeploymentMode.command('mode')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4415,11 +4415,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.rollbackUpdateOrUpgradeByDeploymentSlot(options.serviceName, options.deploymentSlot, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = deployment.category('parameters')
+  var deploymentrollbackUpdateOrUpgradeByDeploymentSlotParameters2 = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var generate = parameters.category('generate')
+  var deploymentrollbackUpdateOrUpgradeByDeploymentSlotGenerate2 = deploymentrollbackUpdateOrUpgradeByDeploymentSlotParameters2.category('generate')
   .description($('Commands to generate parameter file for your deployment.'));
-  generate.command('rollback-update-or-upgrade-by-deployment-slot')
+  deploymentrollbackUpdateOrUpgradeByDeploymentSlotGenerate2.command('rollback-update-or-upgrade-by-deployment-slot')
   .description($('Generate deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4435,7 +4435,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  deploymentrollbackUpdateOrUpgradeByDeploymentSlotParameters2.command('patch')
   .description($('Command to patch deployment parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4481,11 +4481,11 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-rollback-update-or-upgrade-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters = parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('deployment-rollback-update-or-upgrade-parameters')
+  setparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters.command('deployment-rollback-update-or-upgrade-parameters')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4543,11 +4543,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-rollback-update-or-upgrade-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters = parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('deployment-rollback-update-or-upgrade-parameters')
+  removeparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters.command('deployment-rollback-update-or-upgrade-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4575,11 +4575,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-rollback-update-or-upgrade-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters = parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('deployment-rollback-update-or-upgrade-parameters')
+  addparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters.command('deployment-rollback-update-or-upgrade-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4641,11 +4641,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove mode
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentMode = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentMode = parametersDeploymentMode.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('mode')
+  removeparametersDeploymentMode.command('mode')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4673,11 +4673,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add mode
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentMode = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentMode = parametersDeploymentMode.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('mode')
+  addparametersDeploymentMode.command('mode')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4747,11 +4747,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.swap(options.serviceName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = deployment.category('parameters')
+  var deploymentswapParameters1 = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var generate = parameters.category('generate')
+  var deploymentswapGenerate1 = deploymentswapParameters1.category('generate')
   .description($('Commands to generate parameter file for your deployment.'));
-  generate.command('swap')
+  deploymentswapGenerate1.command('swap')
   .description($('Generate deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4767,7 +4767,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  deploymentswapParameters1.command('patch')
   .description($('Command to patch deployment parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4813,11 +4813,11 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-swap-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentSwapParameters = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentDeploymentSwapParameters = parametersDeploymentDeploymentSwapParameters.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('deployment-swap-parameters')
+  setparametersDeploymentDeploymentSwapParameters.command('deployment-swap-parameters')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4875,11 +4875,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-swap-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentSwapParameters = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentDeploymentSwapParameters = parametersDeploymentDeploymentSwapParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('deployment-swap-parameters')
+  removeparametersDeploymentDeploymentSwapParameters.command('deployment-swap-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4907,11 +4907,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-swap-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentSwapParameters = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentDeploymentSwapParameters = parametersDeploymentDeploymentSwapParameters.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('deployment-swap-parameters')
+  addparametersDeploymentDeploymentSwapParameters.command('deployment-swap-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5005,11 +5005,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.updateStatusByDeploymentName(options.serviceName, options.deploymentName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = deployment.category('parameters')
+  var deploymentupdateStatusByDeploymentNameParameters2 = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var generate = parameters.category('generate')
+  var deploymentupdateStatusByDeploymentNameGenerate2 = deploymentupdateStatusByDeploymentNameParameters2.category('generate')
   .description($('Commands to generate parameter file for your deployment.'));
-  generate.command('update-status-by-deployment-name')
+  deploymentupdateStatusByDeploymentNameGenerate2.command('update-status-by-deployment-name')
   .description($('Generate deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5025,7 +5025,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  deploymentupdateStatusByDeploymentNameParameters2.command('patch')
   .description($('Command to patch deployment parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5071,11 +5071,11 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-update-status-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentUpdateStatusParameters = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentDeploymentUpdateStatusParameters = parametersDeploymentDeploymentUpdateStatusParameters.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('deployment-update-status-parameters')
+  setparametersDeploymentDeploymentUpdateStatusParameters.command('deployment-update-status-parameters')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5122,11 +5122,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-update-status-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentUpdateStatusParameters = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentDeploymentUpdateStatusParameters = parametersDeploymentDeploymentUpdateStatusParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('deployment-update-status-parameters')
+  removeparametersDeploymentDeploymentUpdateStatusParameters.command('deployment-update-status-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5154,11 +5154,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-update-status-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentUpdateStatusParameters = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentDeploymentUpdateStatusParameters = parametersDeploymentDeploymentUpdateStatusParameters.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('deployment-update-status-parameters')
+  addparametersDeploymentDeploymentUpdateStatusParameters.command('deployment-update-status-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5209,11 +5209,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove status
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentStatus = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentStatus = parametersDeploymentStatus.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('status')
+  removeparametersDeploymentStatus.command('status')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5241,11 +5241,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add status
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentStatus = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentStatus = parametersDeploymentStatus.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('status')
+  addparametersDeploymentStatus.command('status')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5317,11 +5317,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.updateStatusByDeploymentSlot(options.serviceName, options.deploymentSlot, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = deployment.category('parameters')
+  var deploymentupdateStatusByDeploymentSlotParameters2 = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var generate = parameters.category('generate')
+  var deploymentupdateStatusByDeploymentSlotGenerate2 = deploymentupdateStatusByDeploymentSlotParameters2.category('generate')
   .description($('Commands to generate parameter file for your deployment.'));
-  generate.command('update-status-by-deployment-slot')
+  deploymentupdateStatusByDeploymentSlotGenerate2.command('update-status-by-deployment-slot')
   .description($('Generate deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5337,7 +5337,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  deploymentupdateStatusByDeploymentSlotParameters2.command('patch')
   .description($('Command to patch deployment parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5383,11 +5383,11 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-update-status-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentUpdateStatusParameters = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentDeploymentUpdateStatusParameters = parametersDeploymentDeploymentUpdateStatusParameters.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('deployment-update-status-parameters')
+  setparametersDeploymentDeploymentUpdateStatusParameters.command('deployment-update-status-parameters')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5434,11 +5434,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-update-status-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentUpdateStatusParameters = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentDeploymentUpdateStatusParameters = parametersDeploymentDeploymentUpdateStatusParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('deployment-update-status-parameters')
+  removeparametersDeploymentDeploymentUpdateStatusParameters.command('deployment-update-status-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5466,11 +5466,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-update-status-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentUpdateStatusParameters = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentDeploymentUpdateStatusParameters = parametersDeploymentDeploymentUpdateStatusParameters.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('deployment-update-status-parameters')
+  addparametersDeploymentDeploymentUpdateStatusParameters.command('deployment-update-status-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5521,11 +5521,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove status
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentStatus = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentStatus = parametersDeploymentStatus.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('status')
+  removeparametersDeploymentStatus.command('status')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5553,11 +5553,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add status
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentStatus = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentStatus = parametersDeploymentStatus.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('status')
+  addparametersDeploymentStatus.command('status')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5629,11 +5629,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.upgradeByName(options.serviceName, options.deploymentName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = deployment.category('parameters')
+  var deploymentupgradeByNameParameters2 = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var generate = parameters.category('generate')
+  var deploymentupgradeByNameGenerate2 = deploymentupgradeByNameParameters2.category('generate')
   .description($('Commands to generate parameter file for your deployment.'));
-  generate.command('upgrade-by-name')
+  deploymentupgradeByNameGenerate2.command('upgrade-by-name')
   .description($('Generate deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5649,7 +5649,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  deploymentupgradeByNameParameters2.command('patch')
   .description($('Command to patch deployment parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5695,11 +5695,11 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-upgrade-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentUpgradeParameters = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentDeploymentUpgradeParameters = parametersDeploymentDeploymentUpgradeParameters.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('deployment-upgrade-parameters')
+  setparametersDeploymentDeploymentUpgradeParameters.command('deployment-upgrade-parameters')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5823,11 +5823,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-upgrade-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentUpgradeParameters = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentDeploymentUpgradeParameters = parametersDeploymentDeploymentUpgradeParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('deployment-upgrade-parameters')
+  removeparametersDeploymentDeploymentUpgradeParameters.command('deployment-upgrade-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5855,11 +5855,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-upgrade-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentUpgradeParameters = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentDeploymentUpgradeParameters = parametersDeploymentDeploymentUpgradeParameters.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('deployment-upgrade-parameters')
+  addparametersDeploymentDeploymentUpgradeParameters.command('deployment-upgrade-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5987,11 +5987,11 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-configuration
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensionConfiguration = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentExtensionConfiguration = parametersDeploymentExtensionConfiguration.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('extension-configuration')
+  setparametersDeploymentExtensionConfiguration.command('extension-configuration')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6049,11 +6049,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-configuration
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensionConfiguration = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentExtensionConfiguration = parametersDeploymentExtensionConfiguration.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('extension-configuration')
+  removeparametersDeploymentExtensionConfiguration.command('extension-configuration')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6081,11 +6081,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-configuration
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensionConfiguration = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentExtensionConfiguration = parametersDeploymentExtensionConfiguration.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('extension-configuration')
+  addparametersDeploymentExtensionConfiguration.command('extension-configuration')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6147,11 +6147,11 @@ exports.init = function (cli) {
   });
 
   //parameters set all-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentAllRoles = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentAllRoles = parametersDeploymentAllRoles.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('all-roles')
+  setparametersDeploymentAllRoles.command('all-roles')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6202,11 +6202,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove all-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentAllRoles = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentAllRoles = parametersDeploymentAllRoles.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('all-roles')
+  removeparametersDeploymentAllRoles.command('all-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6235,11 +6235,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add all-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentAllRoles = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentAllRoles = parametersDeploymentAllRoles.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('all-roles')
+  addparametersDeploymentAllRoles.command('all-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6290,11 +6290,11 @@ exports.init = function (cli) {
   });
 
   //parameters set named-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentNamedRoles = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentNamedRoles = parametersDeploymentNamedRoles.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('named-roles')
+  setparametersDeploymentNamedRoles.command('named-roles')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6356,11 +6356,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove named-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentNamedRoles = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentNamedRoles = parametersDeploymentNamedRoles.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('named-roles')
+  removeparametersDeploymentNamedRoles.command('named-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6389,11 +6389,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add named-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentNamedRoles = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentNamedRoles = parametersDeploymentNamedRoles.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('named-roles')
+  addparametersDeploymentNamedRoles.command('named-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6455,11 +6455,11 @@ exports.init = function (cli) {
   });
 
   //parameters set extensions
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensions = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentExtensions = parametersDeploymentExtensions.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('extensions')
+  setparametersDeploymentExtensions.command('extensions')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6511,11 +6511,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove extensions
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensions = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentExtensions = parametersDeploymentExtensions.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('extensions')
+  removeparametersDeploymentExtensions.command('extensions')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6545,11 +6545,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extensions
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensions = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentExtensions = parametersDeploymentExtensions.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('extensions')
+  addparametersDeploymentExtensions.command('extensions')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6600,11 +6600,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove mode
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentMode = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentMode = parametersDeploymentMode.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('mode')
+  removeparametersDeploymentMode.command('mode')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6632,11 +6632,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add mode
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentMode = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentMode = parametersDeploymentMode.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('mode')
+  addparametersDeploymentMode.command('mode')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6708,11 +6708,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.upgradeBySlot(options.serviceName, options.deploymentSlot, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = deployment.category('parameters')
+  var deploymentupgradeBySlotParameters2 = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var generate = parameters.category('generate')
+  var deploymentupgradeBySlotGenerate2 = deploymentupgradeBySlotParameters2.category('generate')
   .description($('Commands to generate parameter file for your deployment.'));
-  generate.command('upgrade-by-slot')
+  deploymentupgradeBySlotGenerate2.command('upgrade-by-slot')
   .description($('Generate deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6728,7 +6728,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  deploymentupgradeBySlotParameters2.command('patch')
   .description($('Command to patch deployment parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6774,11 +6774,11 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-upgrade-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentUpgradeParameters = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentDeploymentUpgradeParameters = parametersDeploymentDeploymentUpgradeParameters.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('deployment-upgrade-parameters')
+  setparametersDeploymentDeploymentUpgradeParameters.command('deployment-upgrade-parameters')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6902,11 +6902,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-upgrade-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentUpgradeParameters = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentDeploymentUpgradeParameters = parametersDeploymentDeploymentUpgradeParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('deployment-upgrade-parameters')
+  removeparametersDeploymentDeploymentUpgradeParameters.command('deployment-upgrade-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -6934,11 +6934,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-upgrade-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentUpgradeParameters = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentDeploymentUpgradeParameters = parametersDeploymentDeploymentUpgradeParameters.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('deployment-upgrade-parameters')
+  addparametersDeploymentDeploymentUpgradeParameters.command('deployment-upgrade-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7066,11 +7066,11 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-configuration
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensionConfiguration = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentExtensionConfiguration = parametersDeploymentExtensionConfiguration.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('extension-configuration')
+  setparametersDeploymentExtensionConfiguration.command('extension-configuration')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7128,11 +7128,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-configuration
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensionConfiguration = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentExtensionConfiguration = parametersDeploymentExtensionConfiguration.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('extension-configuration')
+  removeparametersDeploymentExtensionConfiguration.command('extension-configuration')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7160,11 +7160,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-configuration
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensionConfiguration = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentExtensionConfiguration = parametersDeploymentExtensionConfiguration.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('extension-configuration')
+  addparametersDeploymentExtensionConfiguration.command('extension-configuration')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7226,11 +7226,11 @@ exports.init = function (cli) {
   });
 
   //parameters set all-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentAllRoles = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentAllRoles = parametersDeploymentAllRoles.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('all-roles')
+  setparametersDeploymentAllRoles.command('all-roles')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7281,11 +7281,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove all-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentAllRoles = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentAllRoles = parametersDeploymentAllRoles.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('all-roles')
+  removeparametersDeploymentAllRoles.command('all-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7314,11 +7314,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add all-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentAllRoles = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentAllRoles = parametersDeploymentAllRoles.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('all-roles')
+  addparametersDeploymentAllRoles.command('all-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7369,11 +7369,11 @@ exports.init = function (cli) {
   });
 
   //parameters set named-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentNamedRoles = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentNamedRoles = parametersDeploymentNamedRoles.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('named-roles')
+  setparametersDeploymentNamedRoles.command('named-roles')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7435,11 +7435,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove named-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentNamedRoles = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentNamedRoles = parametersDeploymentNamedRoles.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('named-roles')
+  removeparametersDeploymentNamedRoles.command('named-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7468,11 +7468,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add named-roles
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentNamedRoles = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentNamedRoles = parametersDeploymentNamedRoles.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('named-roles')
+  addparametersDeploymentNamedRoles.command('named-roles')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7534,11 +7534,11 @@ exports.init = function (cli) {
   });
 
   //parameters set extensions
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensions = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentExtensions = parametersDeploymentExtensions.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('extensions')
+  setparametersDeploymentExtensions.command('extensions')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7590,11 +7590,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove extensions
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensions = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentExtensions = parametersDeploymentExtensions.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('extensions')
+  removeparametersDeploymentExtensions.command('extensions')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7624,11 +7624,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extensions
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentExtensions = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentExtensions = parametersDeploymentExtensions.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('extensions')
+  addparametersDeploymentExtensions.command('extensions')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7679,11 +7679,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove mode
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentMode = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentMode = parametersDeploymentMode.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('mode')
+  removeparametersDeploymentMode.command('mode')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7711,11 +7711,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add mode
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentMode = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentMode = parametersDeploymentMode.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('mode')
+  addparametersDeploymentMode.command('mode')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7787,11 +7787,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.walkUpgradeDomainByDeploymentName(options.serviceName, options.deploymentName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = deployment.category('parameters')
+  var deploymentwalkUpgradeDomainByDeploymentNameParameters2 = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var generate = parameters.category('generate')
+  var deploymentwalkUpgradeDomainByDeploymentNameGenerate2 = deploymentwalkUpgradeDomainByDeploymentNameParameters2.category('generate')
   .description($('Commands to generate parameter file for your deployment.'));
-  generate.command('walk-upgrade-domain-by-deployment-name')
+  deploymentwalkUpgradeDomainByDeploymentNameGenerate2.command('walk-upgrade-domain-by-deployment-name')
   .description($('Generate deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7807,7 +7807,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  deploymentwalkUpgradeDomainByDeploymentNameParameters2.command('patch')
   .description($('Command to patch deployment parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7853,11 +7853,11 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-walk-upgrade-domain-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentWalkUpgradeDomainParameters = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentDeploymentWalkUpgradeDomainParameters = parametersDeploymentDeploymentWalkUpgradeDomainParameters.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('deployment-walk-upgrade-domain-parameters')
+  setparametersDeploymentDeploymentWalkUpgradeDomainParameters.command('deployment-walk-upgrade-domain-parameters')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7904,11 +7904,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-walk-upgrade-domain-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentWalkUpgradeDomainParameters = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentDeploymentWalkUpgradeDomainParameters = parametersDeploymentDeploymentWalkUpgradeDomainParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('deployment-walk-upgrade-domain-parameters')
+  removeparametersDeploymentDeploymentWalkUpgradeDomainParameters.command('deployment-walk-upgrade-domain-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -7936,11 +7936,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-walk-upgrade-domain-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentWalkUpgradeDomainParameters = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentDeploymentWalkUpgradeDomainParameters = parametersDeploymentDeploymentWalkUpgradeDomainParameters.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('deployment-walk-upgrade-domain-parameters')
+  addparametersDeploymentDeploymentWalkUpgradeDomainParameters.command('deployment-walk-upgrade-domain-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8023,11 +8023,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.walkUpgradeDomainByDeploymentSlot(options.serviceName, options.deploymentSlot, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = deployment.category('parameters')
+  var deploymentwalkUpgradeDomainByDeploymentSlotParameters2 = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var generate = parameters.category('generate')
+  var deploymentwalkUpgradeDomainByDeploymentSlotGenerate2 = deploymentwalkUpgradeDomainByDeploymentSlotParameters2.category('generate')
   .description($('Commands to generate parameter file for your deployment.'));
-  generate.command('walk-upgrade-domain-by-deployment-slot')
+  deploymentwalkUpgradeDomainByDeploymentSlotGenerate2.command('walk-upgrade-domain-by-deployment-slot')
   .description($('Generate deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8043,7 +8043,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  deploymentwalkUpgradeDomainByDeploymentSlotParameters2.command('patch')
   .description($('Command to patch deployment parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8089,11 +8089,11 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-walk-upgrade-domain-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentWalkUpgradeDomainParameters = deployment.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
-  var set = parameters.category('set')
+  var setparametersDeploymentDeploymentWalkUpgradeDomainParameters = parametersDeploymentDeploymentWalkUpgradeDomainParameters.category('set')
   .description($('Commands to set parameter file for your deployment.'));
-  set.command('deployment-walk-upgrade-domain-parameters')
+  setparametersDeploymentDeploymentWalkUpgradeDomainParameters.command('deployment-walk-upgrade-domain-parameters')
   .description($('Set deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8140,11 +8140,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-walk-upgrade-domain-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentWalkUpgradeDomainParameters = deployment.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
-  var remove = parameters.category('remove')
+  var removeparametersDeploymentDeploymentWalkUpgradeDomainParameters = parametersDeploymentDeploymentWalkUpgradeDomainParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your deployment.'));
-  remove.command('deployment-walk-upgrade-domain-parameters')
+  removeparametersDeploymentDeploymentWalkUpgradeDomainParameters.command('deployment-walk-upgrade-domain-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8172,11 +8172,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-walk-upgrade-domain-parameters
-  var parameters = deployment.category('parameters')
+  var parametersDeploymentDeploymentWalkUpgradeDomainParameters = deployment.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
-  var add = parameters.category('add')
+  var addparametersDeploymentDeploymentWalkUpgradeDomainParameters = parametersDeploymentDeploymentWalkUpgradeDomainParameters.category('add')
   .description($('Commands to add values in the parameter file for your deployment.'));
-  add.command('deployment-walk-upgrade-domain-parameters')
+  addparametersDeploymentDeploymentWalkUpgradeDomainParameters.command('deployment-walk-upgrade-domain-parameters')
   .description($('Remove deployment parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8259,11 +8259,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.dNSServers.addDNSServer(options.serviceName, options.deploymentName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = dNSServer.category('parameters')
+  var dNSServeraddDNSServerParameters2 = dNSServer.category('parameters')
   .description($('Commands to manage parameter for your d n s server.'));
-  var generate = parameters.category('generate')
+  var dNSServeraddDNSServerGenerate2 = dNSServeraddDNSServerParameters2.category('generate')
   .description($('Commands to generate parameter file for your d n s server.'));
-  generate.command('add-d-n-s-server')
+  dNSServeraddDNSServerGenerate2.command('add-d-n-s-server')
   .description($('Generate dNSServer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8279,7 +8279,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  dNSServeraddDNSServerParameters2.command('patch')
   .description($('Command to patch dNSServer parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8325,11 +8325,11 @@ exports.init = function (cli) {
   });
 
   //parameters set d-n-s-add-parameters
-  var parameters = dNSServer.category('parameters')
+  var parametersDNSServerDNSAddParameters = dNSServer.category('parameters')
   .description($('Commands to manage parameter for your d-n-s-server.'));
-  var set = parameters.category('set')
+  var setparametersDNSServerDNSAddParameters = parametersDNSServerDNSAddParameters.category('set')
   .description($('Commands to set parameter file for your d-n-s-server.'));
-  set.command('d-n-s-add-parameters')
+  setparametersDNSServerDNSAddParameters.command('d-n-s-add-parameters')
   .description($('Set dNSServer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8387,11 +8387,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove d-n-s-add-parameters
-  var parameters = dNSServer.category('parameters')
+  var parametersDNSServerDNSAddParameters = dNSServer.category('parameters')
   .description($('Commands to remove parameter for your d-n-s-server.'));
-  var remove = parameters.category('remove')
+  var removeparametersDNSServerDNSAddParameters = parametersDNSServerDNSAddParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your d-n-s-server.'));
-  remove.command('d-n-s-add-parameters')
+  removeparametersDNSServerDNSAddParameters.command('d-n-s-add-parameters')
   .description($('Remove dNSServer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8419,11 +8419,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add d-n-s-add-parameters
-  var parameters = dNSServer.category('parameters')
+  var parametersDNSServerDNSAddParameters = dNSServer.category('parameters')
   .description($('Commands to add parameter for your d-n-s-server.'));
-  var add = parameters.category('add')
+  var addparametersDNSServerDNSAddParameters = parametersDNSServerDNSAddParameters.category('add')
   .description($('Commands to add values in the parameter file for your d-n-s-server.'));
-  add.command('d-n-s-add-parameters')
+  addparametersDNSServerDNSAddParameters.command('d-n-s-add-parameters')
   .description($('Remove dNSServer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8538,11 +8538,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.dNSServers.updateDNSServer(options.serviceName, options.deploymentName, options.dnsServerName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = dNSServer.category('parameters')
+  var dNSServerupdateDNSServerParameters3 = dNSServer.category('parameters')
   .description($('Commands to manage parameter for your d n s server.'));
-  var generate = parameters.category('generate')
+  var dNSServerupdateDNSServerGenerate3 = dNSServerupdateDNSServerParameters3.category('generate')
   .description($('Commands to generate parameter file for your d n s server.'));
-  generate.command('update-d-n-s-server')
+  dNSServerupdateDNSServerGenerate3.command('update-d-n-s-server')
   .description($('Generate dNSServer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8558,7 +8558,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  dNSServerupdateDNSServerParameters3.command('patch')
   .description($('Command to patch dNSServer parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8604,11 +8604,11 @@ exports.init = function (cli) {
   });
 
   //parameters set d-n-s-update-parameters
-  var parameters = dNSServer.category('parameters')
+  var parametersDNSServerDNSUpdateParameters = dNSServer.category('parameters')
   .description($('Commands to manage parameter for your d-n-s-server.'));
-  var set = parameters.category('set')
+  var setparametersDNSServerDNSUpdateParameters = parametersDNSServerDNSUpdateParameters.category('set')
   .description($('Commands to set parameter file for your d-n-s-server.'));
-  set.command('d-n-s-update-parameters')
+  setparametersDNSServerDNSUpdateParameters.command('d-n-s-update-parameters')
   .description($('Set dNSServer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8666,11 +8666,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove d-n-s-update-parameters
-  var parameters = dNSServer.category('parameters')
+  var parametersDNSServerDNSUpdateParameters = dNSServer.category('parameters')
   .description($('Commands to remove parameter for your d-n-s-server.'));
-  var remove = parameters.category('remove')
+  var removeparametersDNSServerDNSUpdateParameters = parametersDNSServerDNSUpdateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your d-n-s-server.'));
-  remove.command('d-n-s-update-parameters')
+  removeparametersDNSServerDNSUpdateParameters.command('d-n-s-update-parameters')
   .description($('Remove dNSServer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8698,11 +8698,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add d-n-s-update-parameters
-  var parameters = dNSServer.category('parameters')
+  var parametersDNSServerDNSUpdateParameters = dNSServer.category('parameters')
   .description($('Commands to add parameter for your d-n-s-server.'));
-  var add = parameters.category('add')
+  var addparametersDNSServerDNSUpdateParameters = parametersDNSServerDNSUpdateParameters.category('add')
   .description($('Commands to add values in the parameter file for your d-n-s-server.'));
-  add.command('d-n-s-update-parameters')
+  addparametersDNSServerDNSUpdateParameters.command('d-n-s-update-parameters')
   .description($('Remove dNSServer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8792,11 +8792,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.extensionImages.register(parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = extensionImage.category('parameters')
+  var extensionImageregisterParameters0 = extensionImage.category('parameters')
   .description($('Commands to manage parameter for your extension image.'));
-  var generate = parameters.category('generate')
+  var extensionImageregisterGenerate0 = extensionImageregisterParameters0.category('generate')
   .description($('Commands to generate parameter file for your extension image.'));
-  generate.command('register')
+  extensionImageregisterGenerate0.command('register')
   .description($('Generate extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8812,7 +8812,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  extensionImageregisterParameters0.command('patch')
   .description($('Command to patch extensionImage parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8858,11 +8858,11 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-image-register-parameters
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageExtensionImageRegisterParameters = extensionImage.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
-  var set = parameters.category('set')
+  var setparametersExtensionImageExtensionImageRegisterParameters = parametersExtensionImageExtensionImageRegisterParameters.category('set')
   .description($('Commands to set parameter file for your extension-image.'));
-  set.command('extension-image-register-parameters')
+  setparametersExtensionImageExtensionImageRegisterParameters.command('extension-image-register-parameters')
   .description($('Set extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -9184,11 +9184,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-image-register-parameters
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageExtensionImageRegisterParameters = extensionImage.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersExtensionImageExtensionImageRegisterParameters = parametersExtensionImageExtensionImageRegisterParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your extension-image.'));
-  remove.command('extension-image-register-parameters')
+  removeparametersExtensionImageExtensionImageRegisterParameters.command('extension-image-register-parameters')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -9216,11 +9216,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-image-register-parameters
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageExtensionImageRegisterParameters = extensionImage.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
-  var add = parameters.category('add')
+  var addparametersExtensionImageExtensionImageRegisterParameters = parametersExtensionImageExtensionImageRegisterParameters.category('add')
   .description($('Commands to add values in the parameter file for your extension-image.'));
-  add.command('extension-image-register-parameters')
+  addparametersExtensionImageExtensionImageRegisterParameters.command('extension-image-register-parameters')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -9546,11 +9546,11 @@ exports.init = function (cli) {
   });
 
   //parameters set certificate
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageCertificate = extensionImage.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
-  var set = parameters.category('set')
+  var setparametersExtensionImageCertificate = parametersExtensionImageCertificate.category('set')
   .description($('Commands to set parameter file for your extension-image.'));
-  set.command('certificate')
+  setparametersExtensionImageCertificate.command('certificate')
   .description($('Set extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -9630,11 +9630,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove certificate
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageCertificate = extensionImage.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersExtensionImageCertificate = parametersExtensionImageCertificate.category('remove')
   .description($('Commands to remove values in the parameter file for your extension-image.'));
-  remove.command('certificate')
+  removeparametersExtensionImageCertificate.command('certificate')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -9662,11 +9662,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add certificate
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageCertificate = extensionImage.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
-  var add = parameters.category('add')
+  var addparametersExtensionImageCertificate = parametersExtensionImageCertificate.category('add')
   .description($('Commands to add values in the parameter file for your extension-image.'));
-  add.command('certificate')
+  addparametersExtensionImageCertificate.command('certificate')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -9750,11 +9750,11 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageExtensionEndpoints = extensionImage.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
-  var set = parameters.category('set')
+  var setparametersExtensionImageExtensionEndpoints = parametersExtensionImageExtensionEndpoints.category('set')
   .description($('Commands to set parameter file for your extension-image.'));
-  set.command('extension-endpoints')
+  setparametersExtensionImageExtensionEndpoints.command('extension-endpoints')
   .description($('Set extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -9823,11 +9823,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageExtensionEndpoints = extensionImage.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersExtensionImageExtensionEndpoints = parametersExtensionImageExtensionEndpoints.category('remove')
   .description($('Commands to remove values in the parameter file for your extension-image.'));
-  remove.command('extension-endpoints')
+  removeparametersExtensionImageExtensionEndpoints.command('extension-endpoints')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -9855,11 +9855,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageExtensionEndpoints = extensionImage.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
-  var add = parameters.category('add')
+  var addparametersExtensionImageExtensionEndpoints = parametersExtensionImageExtensionEndpoints.category('add')
   .description($('Commands to add values in the parameter file for your extension-image.'));
-  add.command('extension-endpoints')
+  addparametersExtensionImageExtensionEndpoints.command('extension-endpoints')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -9932,11 +9932,11 @@ exports.init = function (cli) {
   });
 
   //parameters set input-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInputEndpoints = extensionImage.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
-  var set = parameters.category('set')
+  var setparametersExtensionImageInputEndpoints = parametersExtensionImageInputEndpoints.category('set')
   .description($('Commands to set parameter file for your extension-image.'));
-  set.command('input-endpoints')
+  setparametersExtensionImageInputEndpoints.command('input-endpoints')
   .description($('Set extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -10020,11 +10020,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove input-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInputEndpoints = extensionImage.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersExtensionImageInputEndpoints = parametersExtensionImageInputEndpoints.category('remove')
   .description($('Commands to remove values in the parameter file for your extension-image.'));
-  remove.command('input-endpoints')
+  removeparametersExtensionImageInputEndpoints.command('input-endpoints')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -10053,11 +10053,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add input-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInputEndpoints = extensionImage.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
-  var add = parameters.category('add')
+  var addparametersExtensionImageInputEndpoints = parametersExtensionImageInputEndpoints.category('add')
   .description($('Commands to add values in the parameter file for your extension-image.'));
-  add.command('input-endpoints')
+  addparametersExtensionImageInputEndpoints.command('input-endpoints')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -10141,11 +10141,11 @@ exports.init = function (cli) {
   });
 
   //parameters set instance-input-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInstanceInputEndpoints = extensionImage.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
-  var set = parameters.category('set')
+  var setparametersExtensionImageInstanceInputEndpoints = parametersExtensionImageInstanceInputEndpoints.category('set')
   .description($('Commands to set parameter file for your extension-image.'));
-  set.command('instance-input-endpoints')
+  setparametersExtensionImageInstanceInputEndpoints.command('instance-input-endpoints')
   .description($('Set extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -10240,11 +10240,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove instance-input-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInstanceInputEndpoints = extensionImage.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersExtensionImageInstanceInputEndpoints = parametersExtensionImageInstanceInputEndpoints.category('remove')
   .description($('Commands to remove values in the parameter file for your extension-image.'));
-  remove.command('instance-input-endpoints')
+  removeparametersExtensionImageInstanceInputEndpoints.command('instance-input-endpoints')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -10273,11 +10273,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add instance-input-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInstanceInputEndpoints = extensionImage.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
-  var add = parameters.category('add')
+  var addparametersExtensionImageInstanceInputEndpoints = parametersExtensionImageInstanceInputEndpoints.category('add')
   .description($('Commands to add values in the parameter file for your extension-image.'));
-  add.command('instance-input-endpoints')
+  addparametersExtensionImageInstanceInputEndpoints.command('instance-input-endpoints')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -10372,11 +10372,11 @@ exports.init = function (cli) {
   });
 
   //parameters set internal-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInternalEndpoints = extensionImage.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
-  var set = parameters.category('set')
+  var setparametersExtensionImageInternalEndpoints = parametersExtensionImageInternalEndpoints.category('set')
   .description($('Commands to set parameter file for your extension-image.'));
-  set.command('internal-endpoints')
+  setparametersExtensionImageInternalEndpoints.command('internal-endpoints')
   .description($('Set extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -10449,11 +10449,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove internal-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInternalEndpoints = extensionImage.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersExtensionImageInternalEndpoints = parametersExtensionImageInternalEndpoints.category('remove')
   .description($('Commands to remove values in the parameter file for your extension-image.'));
-  remove.command('internal-endpoints')
+  removeparametersExtensionImageInternalEndpoints.command('internal-endpoints')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -10482,11 +10482,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add internal-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInternalEndpoints = extensionImage.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
-  var add = parameters.category('add')
+  var addparametersExtensionImageInternalEndpoints = parametersExtensionImageInternalEndpoints.category('add')
   .description($('Commands to add values in the parameter file for your extension-image.'));
-  add.command('internal-endpoints')
+  addparametersExtensionImageInternalEndpoints.command('internal-endpoints')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -10559,11 +10559,11 @@ exports.init = function (cli) {
   });
 
   //parameters set local-resources
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageLocalResources = extensionImage.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
-  var set = parameters.category('set')
+  var setparametersExtensionImageLocalResources = parametersExtensionImageLocalResources.category('set')
   .description($('Commands to set parameter file for your extension-image.'));
-  set.command('local-resources')
+  setparametersExtensionImageLocalResources.command('local-resources')
   .description($('Set extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -10625,11 +10625,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove local-resources
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageLocalResources = extensionImage.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersExtensionImageLocalResources = parametersExtensionImageLocalResources.category('remove')
   .description($('Commands to remove values in the parameter file for your extension-image.'));
-  remove.command('local-resources')
+  removeparametersExtensionImageLocalResources.command('local-resources')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -10658,11 +10658,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add local-resources
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageLocalResources = extensionImage.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
-  var add = parameters.category('add')
+  var addparametersExtensionImageLocalResources = parametersExtensionImageLocalResources.category('add')
   .description($('Commands to add values in the parameter file for your extension-image.'));
-  add.command('local-resources')
+  addparametersExtensionImageLocalResources.command('local-resources')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -10771,11 +10771,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.extensionImages.update(parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = extensionImage.category('parameters')
+  var extensionImageupdateParameters0 = extensionImage.category('parameters')
   .description($('Commands to manage parameter for your extension image.'));
-  var generate = parameters.category('generate')
+  var extensionImageupdateGenerate0 = extensionImageupdateParameters0.category('generate')
   .description($('Commands to generate parameter file for your extension image.'));
-  generate.command('update')
+  extensionImageupdateGenerate0.command('update')
   .description($('Generate extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -10791,7 +10791,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  extensionImageupdateParameters0.command('patch')
   .description($('Command to patch extensionImage parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -10837,11 +10837,11 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-image-update-parameters
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageExtensionImageUpdateParameters = extensionImage.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
-  var set = parameters.category('set')
+  var setparametersExtensionImageExtensionImageUpdateParameters = parametersExtensionImageExtensionImageUpdateParameters.category('set')
   .description($('Commands to set parameter file for your extension-image.'));
-  set.command('extension-image-update-parameters')
+  setparametersExtensionImageExtensionImageUpdateParameters.command('extension-image-update-parameters')
   .description($('Set extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -11163,11 +11163,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-image-update-parameters
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageExtensionImageUpdateParameters = extensionImage.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersExtensionImageExtensionImageUpdateParameters = parametersExtensionImageExtensionImageUpdateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your extension-image.'));
-  remove.command('extension-image-update-parameters')
+  removeparametersExtensionImageExtensionImageUpdateParameters.command('extension-image-update-parameters')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -11195,11 +11195,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-image-update-parameters
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageExtensionImageUpdateParameters = extensionImage.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
-  var add = parameters.category('add')
+  var addparametersExtensionImageExtensionImageUpdateParameters = parametersExtensionImageExtensionImageUpdateParameters.category('add')
   .description($('Commands to add values in the parameter file for your extension-image.'));
-  add.command('extension-image-update-parameters')
+  addparametersExtensionImageExtensionImageUpdateParameters.command('extension-image-update-parameters')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -11525,11 +11525,11 @@ exports.init = function (cli) {
   });
 
   //parameters set certificate
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageCertificate = extensionImage.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
-  var set = parameters.category('set')
+  var setparametersExtensionImageCertificate = parametersExtensionImageCertificate.category('set')
   .description($('Commands to set parameter file for your extension-image.'));
-  set.command('certificate')
+  setparametersExtensionImageCertificate.command('certificate')
   .description($('Set extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -11609,11 +11609,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove certificate
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageCertificate = extensionImage.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersExtensionImageCertificate = parametersExtensionImageCertificate.category('remove')
   .description($('Commands to remove values in the parameter file for your extension-image.'));
-  remove.command('certificate')
+  removeparametersExtensionImageCertificate.command('certificate')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -11641,11 +11641,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add certificate
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageCertificate = extensionImage.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
-  var add = parameters.category('add')
+  var addparametersExtensionImageCertificate = parametersExtensionImageCertificate.category('add')
   .description($('Commands to add values in the parameter file for your extension-image.'));
-  add.command('certificate')
+  addparametersExtensionImageCertificate.command('certificate')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -11729,11 +11729,11 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageExtensionEndpoints = extensionImage.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
-  var set = parameters.category('set')
+  var setparametersExtensionImageExtensionEndpoints = parametersExtensionImageExtensionEndpoints.category('set')
   .description($('Commands to set parameter file for your extension-image.'));
-  set.command('extension-endpoints')
+  setparametersExtensionImageExtensionEndpoints.command('extension-endpoints')
   .description($('Set extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -11802,11 +11802,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageExtensionEndpoints = extensionImage.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersExtensionImageExtensionEndpoints = parametersExtensionImageExtensionEndpoints.category('remove')
   .description($('Commands to remove values in the parameter file for your extension-image.'));
-  remove.command('extension-endpoints')
+  removeparametersExtensionImageExtensionEndpoints.command('extension-endpoints')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -11834,11 +11834,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageExtensionEndpoints = extensionImage.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
-  var add = parameters.category('add')
+  var addparametersExtensionImageExtensionEndpoints = parametersExtensionImageExtensionEndpoints.category('add')
   .description($('Commands to add values in the parameter file for your extension-image.'));
-  add.command('extension-endpoints')
+  addparametersExtensionImageExtensionEndpoints.command('extension-endpoints')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -11911,11 +11911,11 @@ exports.init = function (cli) {
   });
 
   //parameters set input-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInputEndpoints = extensionImage.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
-  var set = parameters.category('set')
+  var setparametersExtensionImageInputEndpoints = parametersExtensionImageInputEndpoints.category('set')
   .description($('Commands to set parameter file for your extension-image.'));
-  set.command('input-endpoints')
+  setparametersExtensionImageInputEndpoints.command('input-endpoints')
   .description($('Set extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -11999,11 +11999,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove input-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInputEndpoints = extensionImage.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersExtensionImageInputEndpoints = parametersExtensionImageInputEndpoints.category('remove')
   .description($('Commands to remove values in the parameter file for your extension-image.'));
-  remove.command('input-endpoints')
+  removeparametersExtensionImageInputEndpoints.command('input-endpoints')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -12032,11 +12032,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add input-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInputEndpoints = extensionImage.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
-  var add = parameters.category('add')
+  var addparametersExtensionImageInputEndpoints = parametersExtensionImageInputEndpoints.category('add')
   .description($('Commands to add values in the parameter file for your extension-image.'));
-  add.command('input-endpoints')
+  addparametersExtensionImageInputEndpoints.command('input-endpoints')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -12120,11 +12120,11 @@ exports.init = function (cli) {
   });
 
   //parameters set instance-input-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInstanceInputEndpoints = extensionImage.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
-  var set = parameters.category('set')
+  var setparametersExtensionImageInstanceInputEndpoints = parametersExtensionImageInstanceInputEndpoints.category('set')
   .description($('Commands to set parameter file for your extension-image.'));
-  set.command('instance-input-endpoints')
+  setparametersExtensionImageInstanceInputEndpoints.command('instance-input-endpoints')
   .description($('Set extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -12219,11 +12219,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove instance-input-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInstanceInputEndpoints = extensionImage.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersExtensionImageInstanceInputEndpoints = parametersExtensionImageInstanceInputEndpoints.category('remove')
   .description($('Commands to remove values in the parameter file for your extension-image.'));
-  remove.command('instance-input-endpoints')
+  removeparametersExtensionImageInstanceInputEndpoints.command('instance-input-endpoints')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -12252,11 +12252,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add instance-input-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInstanceInputEndpoints = extensionImage.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
-  var add = parameters.category('add')
+  var addparametersExtensionImageInstanceInputEndpoints = parametersExtensionImageInstanceInputEndpoints.category('add')
   .description($('Commands to add values in the parameter file for your extension-image.'));
-  add.command('instance-input-endpoints')
+  addparametersExtensionImageInstanceInputEndpoints.command('instance-input-endpoints')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -12351,11 +12351,11 @@ exports.init = function (cli) {
   });
 
   //parameters set internal-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInternalEndpoints = extensionImage.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
-  var set = parameters.category('set')
+  var setparametersExtensionImageInternalEndpoints = parametersExtensionImageInternalEndpoints.category('set')
   .description($('Commands to set parameter file for your extension-image.'));
-  set.command('internal-endpoints')
+  setparametersExtensionImageInternalEndpoints.command('internal-endpoints')
   .description($('Set extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -12428,11 +12428,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove internal-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInternalEndpoints = extensionImage.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersExtensionImageInternalEndpoints = parametersExtensionImageInternalEndpoints.category('remove')
   .description($('Commands to remove values in the parameter file for your extension-image.'));
-  remove.command('internal-endpoints')
+  removeparametersExtensionImageInternalEndpoints.command('internal-endpoints')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -12461,11 +12461,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add internal-endpoints
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageInternalEndpoints = extensionImage.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
-  var add = parameters.category('add')
+  var addparametersExtensionImageInternalEndpoints = parametersExtensionImageInternalEndpoints.category('add')
   .description($('Commands to add values in the parameter file for your extension-image.'));
-  add.command('internal-endpoints')
+  addparametersExtensionImageInternalEndpoints.command('internal-endpoints')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -12538,11 +12538,11 @@ exports.init = function (cli) {
   });
 
   //parameters set local-resources
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageLocalResources = extensionImage.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
-  var set = parameters.category('set')
+  var setparametersExtensionImageLocalResources = parametersExtensionImageLocalResources.category('set')
   .description($('Commands to set parameter file for your extension-image.'));
-  set.command('local-resources')
+  setparametersExtensionImageLocalResources.command('local-resources')
   .description($('Set extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -12604,11 +12604,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove local-resources
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageLocalResources = extensionImage.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersExtensionImageLocalResources = parametersExtensionImageLocalResources.category('remove')
   .description($('Commands to remove values in the parameter file for your extension-image.'));
-  remove.command('local-resources')
+  removeparametersExtensionImageLocalResources.command('local-resources')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -12637,11 +12637,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add local-resources
-  var parameters = extensionImage.category('parameters')
+  var parametersExtensionImageLocalResources = extensionImage.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
-  var add = parameters.category('add')
+  var addparametersExtensionImageLocalResources = parametersExtensionImageLocalResources.category('add')
   .description($('Commands to add values in the parameter file for your extension-image.'));
-  add.command('local-resources')
+  addparametersExtensionImageLocalResources.command('local-resources')
   .description($('Remove extensionImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -12733,11 +12733,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.hostedServices.addExtension(options.serviceName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = hostedService.category('parameters')
+  var hostedServiceaddExtensionParameters1 = hostedService.category('parameters')
   .description($('Commands to manage parameter for your hosted service.'));
-  var generate = parameters.category('generate')
+  var hostedServiceaddExtensionGenerate1 = hostedServiceaddExtensionParameters1.category('generate')
   .description($('Commands to generate parameter file for your hosted service.'));
-  generate.command('add-extension')
+  hostedServiceaddExtensionGenerate1.command('add-extension')
   .description($('Generate hostedService parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -12753,7 +12753,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  hostedServiceaddExtensionParameters1.command('patch')
   .description($('Command to patch hostedService parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -12799,11 +12799,11 @@ exports.init = function (cli) {
   });
 
   //parameters set hosted-service-add-extension-parameters
-  var parameters = hostedService.category('parameters')
+  var parametersHostedServiceHostedServiceAddExtensionParameters = hostedService.category('parameters')
   .description($('Commands to manage parameter for your hosted-service.'));
-  var set = parameters.category('set')
+  var setparametersHostedServiceHostedServiceAddExtensionParameters = parametersHostedServiceHostedServiceAddExtensionParameters.category('set')
   .description($('Commands to set parameter file for your hosted-service.'));
-  set.command('hosted-service-add-extension-parameters')
+  setparametersHostedServiceHostedServiceAddExtensionParameters.command('hosted-service-add-extension-parameters')
   .description($('Set hostedService parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -12927,11 +12927,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove hosted-service-add-extension-parameters
-  var parameters = hostedService.category('parameters')
+  var parametersHostedServiceHostedServiceAddExtensionParameters = hostedService.category('parameters')
   .description($('Commands to remove parameter for your hosted-service.'));
-  var remove = parameters.category('remove')
+  var removeparametersHostedServiceHostedServiceAddExtensionParameters = parametersHostedServiceHostedServiceAddExtensionParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your hosted-service.'));
-  remove.command('hosted-service-add-extension-parameters')
+  removeparametersHostedServiceHostedServiceAddExtensionParameters.command('hosted-service-add-extension-parameters')
   .description($('Remove hostedService parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -12959,11 +12959,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add hosted-service-add-extension-parameters
-  var parameters = hostedService.category('parameters')
+  var parametersHostedServiceHostedServiceAddExtensionParameters = hostedService.category('parameters')
   .description($('Commands to add parameter for your hosted-service.'));
-  var add = parameters.category('add')
+  var addparametersHostedServiceHostedServiceAddExtensionParameters = parametersHostedServiceHostedServiceAddExtensionParameters.category('add')
   .description($('Commands to add values in the parameter file for your hosted-service.'));
-  add.command('hosted-service-add-extension-parameters')
+  addparametersHostedServiceHostedServiceAddExtensionParameters.command('hosted-service-add-extension-parameters')
   .description($('Remove hostedService parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -13134,11 +13134,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.hostedServices.create(parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = hostedService.category('parameters')
+  var hostedServicecreateParameters0 = hostedService.category('parameters')
   .description($('Commands to manage parameter for your hosted service.'));
-  var generate = parameters.category('generate')
+  var hostedServicecreateGenerate0 = hostedServicecreateParameters0.category('generate')
   .description($('Commands to generate parameter file for your hosted service.'));
-  generate.command('create')
+  hostedServicecreateGenerate0.command('create')
   .description($('Generate hostedService parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -13154,7 +13154,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  hostedServicecreateParameters0.command('patch')
   .description($('Command to patch hostedService parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -13200,11 +13200,11 @@ exports.init = function (cli) {
   });
 
   //parameters set hosted-service-create-parameters
-  var parameters = hostedService.category('parameters')
+  var parametersHostedServiceHostedServiceCreateParameters = hostedService.category('parameters')
   .description($('Commands to manage parameter for your hosted-service.'));
-  var set = parameters.category('set')
+  var setparametersHostedServiceHostedServiceCreateParameters = parametersHostedServiceHostedServiceCreateParameters.category('set')
   .description($('Commands to set parameter file for your hosted-service.'));
-  set.command('hosted-service-create-parameters')
+  setparametersHostedServiceHostedServiceCreateParameters.command('hosted-service-create-parameters')
   .description($('Set hostedService parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -13317,11 +13317,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove hosted-service-create-parameters
-  var parameters = hostedService.category('parameters')
+  var parametersHostedServiceHostedServiceCreateParameters = hostedService.category('parameters')
   .description($('Commands to remove parameter for your hosted-service.'));
-  var remove = parameters.category('remove')
+  var removeparametersHostedServiceHostedServiceCreateParameters = parametersHostedServiceHostedServiceCreateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your hosted-service.'));
-  remove.command('hosted-service-create-parameters')
+  removeparametersHostedServiceHostedServiceCreateParameters.command('hosted-service-create-parameters')
   .description($('Remove hostedService parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -13349,11 +13349,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add hosted-service-create-parameters
-  var parameters = hostedService.category('parameters')
+  var parametersHostedServiceHostedServiceCreateParameters = hostedService.category('parameters')
   .description($('Commands to add parameter for your hosted-service.'));
-  var add = parameters.category('add')
+  var addparametersHostedServiceHostedServiceCreateParameters = parametersHostedServiceHostedServiceCreateParameters.category('add')
   .description($('Commands to add values in the parameter file for your hosted-service.'));
-  add.command('hosted-service-create-parameters')
+  addparametersHostedServiceHostedServiceCreateParameters.command('hosted-service-create-parameters')
   .description($('Remove hostedService parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -13652,11 +13652,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.hostedServices.update(options.serviceName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = hostedService.category('parameters')
+  var hostedServiceupdateParameters1 = hostedService.category('parameters')
   .description($('Commands to manage parameter for your hosted service.'));
-  var generate = parameters.category('generate')
+  var hostedServiceupdateGenerate1 = hostedServiceupdateParameters1.category('generate')
   .description($('Commands to generate parameter file for your hosted service.'));
-  generate.command('update')
+  hostedServiceupdateGenerate1.command('update')
   .description($('Generate hostedService parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -13672,7 +13672,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  hostedServiceupdateParameters1.command('patch')
   .description($('Command to patch hostedService parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -13718,11 +13718,11 @@ exports.init = function (cli) {
   });
 
   //parameters set hosted-service-update-parameters
-  var parameters = hostedService.category('parameters')
+  var parametersHostedServiceHostedServiceUpdateParameters = hostedService.category('parameters')
   .description($('Commands to manage parameter for your hosted-service.'));
-  var set = parameters.category('set')
+  var setparametersHostedServiceHostedServiceUpdateParameters = parametersHostedServiceHostedServiceUpdateParameters.category('set')
   .description($('Commands to set parameter file for your hosted-service.'));
-  set.command('hosted-service-update-parameters')
+  setparametersHostedServiceHostedServiceUpdateParameters.command('hosted-service-update-parameters')
   .description($('Set hostedService parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -13802,11 +13802,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove hosted-service-update-parameters
-  var parameters = hostedService.category('parameters')
+  var parametersHostedServiceHostedServiceUpdateParameters = hostedService.category('parameters')
   .description($('Commands to remove parameter for your hosted-service.'));
-  var remove = parameters.category('remove')
+  var removeparametersHostedServiceHostedServiceUpdateParameters = parametersHostedServiceHostedServiceUpdateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your hosted-service.'));
-  remove.command('hosted-service-update-parameters')
+  removeparametersHostedServiceHostedServiceUpdateParameters.command('hosted-service-update-parameters')
   .description($('Remove hostedService parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -13834,11 +13834,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add hosted-service-update-parameters
-  var parameters = hostedService.category('parameters')
+  var parametersHostedServiceHostedServiceUpdateParameters = hostedService.category('parameters')
   .description($('Commands to add parameter for your hosted-service.'));
-  var add = parameters.category('add')
+  var addparametersHostedServiceHostedServiceUpdateParameters = parametersHostedServiceHostedServiceUpdateParameters.category('add')
   .description($('Commands to add values in the parameter file for your hosted-service.'));
-  add.command('hosted-service-update-parameters')
+  addparametersHostedServiceHostedServiceUpdateParameters.command('hosted-service-update-parameters')
   .description($('Remove hostedService parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -13954,11 +13954,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.loadBalancers.create(options.serviceName, options.deploymentName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = loadBalancer.category('parameters')
+  var loadBalancercreateParameters2 = loadBalancer.category('parameters')
   .description($('Commands to manage parameter for your load balancer.'));
-  var generate = parameters.category('generate')
+  var loadBalancercreateGenerate2 = loadBalancercreateParameters2.category('generate')
   .description($('Commands to generate parameter file for your load balancer.'));
-  generate.command('create')
+  loadBalancercreateGenerate2.command('create')
   .description($('Generate loadBalancer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -13974,7 +13974,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  loadBalancercreateParameters2.command('patch')
   .description($('Command to patch loadBalancer parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -14020,11 +14020,11 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancer-create-parameters
-  var parameters = loadBalancer.category('parameters')
+  var parametersLoadBalancerLoadBalancerCreateParameters = loadBalancer.category('parameters')
   .description($('Commands to manage parameter for your load-balancer.'));
-  var set = parameters.category('set')
+  var setparametersLoadBalancerLoadBalancerCreateParameters = parametersLoadBalancerLoadBalancerCreateParameters.category('set')
   .description($('Commands to set parameter file for your load-balancer.'));
-  set.command('load-balancer-create-parameters')
+  setparametersLoadBalancerLoadBalancerCreateParameters.command('load-balancer-create-parameters')
   .description($('Set loadBalancer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -14082,11 +14082,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancer-create-parameters
-  var parameters = loadBalancer.category('parameters')
+  var parametersLoadBalancerLoadBalancerCreateParameters = loadBalancer.category('parameters')
   .description($('Commands to remove parameter for your load-balancer.'));
-  var remove = parameters.category('remove')
+  var removeparametersLoadBalancerLoadBalancerCreateParameters = parametersLoadBalancerLoadBalancerCreateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your load-balancer.'));
-  remove.command('load-balancer-create-parameters')
+  removeparametersLoadBalancerLoadBalancerCreateParameters.command('load-balancer-create-parameters')
   .description($('Remove loadBalancer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -14114,11 +14114,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancer-create-parameters
-  var parameters = loadBalancer.category('parameters')
+  var parametersLoadBalancerLoadBalancerCreateParameters = loadBalancer.category('parameters')
   .description($('Commands to add parameter for your load-balancer.'));
-  var add = parameters.category('add')
+  var addparametersLoadBalancerLoadBalancerCreateParameters = parametersLoadBalancerLoadBalancerCreateParameters.category('add')
   .description($('Commands to add values in the parameter file for your load-balancer.'));
-  add.command('load-balancer-create-parameters')
+  addparametersLoadBalancerLoadBalancerCreateParameters.command('load-balancer-create-parameters')
   .description($('Remove loadBalancer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -14180,11 +14180,11 @@ exports.init = function (cli) {
   });
 
   //parameters set frontend-ip-configuration
-  var parameters = loadBalancer.category('parameters')
+  var parametersLoadBalancerFrontendIPConfiguration = loadBalancer.category('parameters')
   .description($('Commands to manage parameter for your load-balancer.'));
-  var set = parameters.category('set')
+  var setparametersLoadBalancerFrontendIPConfiguration = parametersLoadBalancerFrontendIPConfiguration.category('set')
   .description($('Commands to set parameter file for your load-balancer.'));
-  set.command('frontend-ip-configuration')
+  setparametersLoadBalancerFrontendIPConfiguration.command('frontend-ip-configuration')
   .description($('Set loadBalancer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -14253,11 +14253,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove frontend-ip-configuration
-  var parameters = loadBalancer.category('parameters')
+  var parametersLoadBalancerFrontendIPConfiguration = loadBalancer.category('parameters')
   .description($('Commands to remove parameter for your load-balancer.'));
-  var remove = parameters.category('remove')
+  var removeparametersLoadBalancerFrontendIPConfiguration = parametersLoadBalancerFrontendIPConfiguration.category('remove')
   .description($('Commands to remove values in the parameter file for your load-balancer.'));
-  remove.command('frontend-ip-configuration')
+  removeparametersLoadBalancerFrontendIPConfiguration.command('frontend-ip-configuration')
   .description($('Remove loadBalancer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -14285,11 +14285,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add frontend-ip-configuration
-  var parameters = loadBalancer.category('parameters')
+  var parametersLoadBalancerFrontendIPConfiguration = loadBalancer.category('parameters')
   .description($('Commands to add parameter for your load-balancer.'));
-  var add = parameters.category('add')
+  var addparametersLoadBalancerFrontendIPConfiguration = parametersLoadBalancerFrontendIPConfiguration.category('add')
   .description($('Commands to add values in the parameter file for your load-balancer.'));
-  add.command('frontend-ip-configuration')
+  addparametersLoadBalancerFrontendIPConfiguration.command('frontend-ip-configuration')
   .description($('Remove loadBalancer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -14415,11 +14415,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.loadBalancers.update(options.serviceName, options.deploymentName, options.loadBalancerName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = loadBalancer.category('parameters')
+  var loadBalancerupdateParameters3 = loadBalancer.category('parameters')
   .description($('Commands to manage parameter for your load balancer.'));
-  var generate = parameters.category('generate')
+  var loadBalancerupdateGenerate3 = loadBalancerupdateParameters3.category('generate')
   .description($('Commands to generate parameter file for your load balancer.'));
-  generate.command('update')
+  loadBalancerupdateGenerate3.command('update')
   .description($('Generate loadBalancer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -14435,7 +14435,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  loadBalancerupdateParameters3.command('patch')
   .description($('Command to patch loadBalancer parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -14481,11 +14481,11 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancer-update-parameters
-  var parameters = loadBalancer.category('parameters')
+  var parametersLoadBalancerLoadBalancerUpdateParameters = loadBalancer.category('parameters')
   .description($('Commands to manage parameter for your load-balancer.'));
-  var set = parameters.category('set')
+  var setparametersLoadBalancerLoadBalancerUpdateParameters = parametersLoadBalancerLoadBalancerUpdateParameters.category('set')
   .description($('Commands to set parameter file for your load-balancer.'));
-  set.command('load-balancer-update-parameters')
+  setparametersLoadBalancerLoadBalancerUpdateParameters.command('load-balancer-update-parameters')
   .description($('Set loadBalancer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -14543,11 +14543,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancer-update-parameters
-  var parameters = loadBalancer.category('parameters')
+  var parametersLoadBalancerLoadBalancerUpdateParameters = loadBalancer.category('parameters')
   .description($('Commands to remove parameter for your load-balancer.'));
-  var remove = parameters.category('remove')
+  var removeparametersLoadBalancerLoadBalancerUpdateParameters = parametersLoadBalancerLoadBalancerUpdateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your load-balancer.'));
-  remove.command('load-balancer-update-parameters')
+  removeparametersLoadBalancerLoadBalancerUpdateParameters.command('load-balancer-update-parameters')
   .description($('Remove loadBalancer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -14575,11 +14575,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancer-update-parameters
-  var parameters = loadBalancer.category('parameters')
+  var parametersLoadBalancerLoadBalancerUpdateParameters = loadBalancer.category('parameters')
   .description($('Commands to add parameter for your load-balancer.'));
-  var add = parameters.category('add')
+  var addparametersLoadBalancerLoadBalancerUpdateParameters = parametersLoadBalancerLoadBalancerUpdateParameters.category('add')
   .description($('Commands to add values in the parameter file for your load-balancer.'));
-  add.command('load-balancer-update-parameters')
+  addparametersLoadBalancerLoadBalancerUpdateParameters.command('load-balancer-update-parameters')
   .description($('Remove loadBalancer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -14641,11 +14641,11 @@ exports.init = function (cli) {
   });
 
   //parameters set frontend-ip-configuration
-  var parameters = loadBalancer.category('parameters')
+  var parametersLoadBalancerFrontendIPConfiguration = loadBalancer.category('parameters')
   .description($('Commands to manage parameter for your load-balancer.'));
-  var set = parameters.category('set')
+  var setparametersLoadBalancerFrontendIPConfiguration = parametersLoadBalancerFrontendIPConfiguration.category('set')
   .description($('Commands to set parameter file for your load-balancer.'));
-  set.command('frontend-ip-configuration')
+  setparametersLoadBalancerFrontendIPConfiguration.command('frontend-ip-configuration')
   .description($('Set loadBalancer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -14714,11 +14714,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove frontend-ip-configuration
-  var parameters = loadBalancer.category('parameters')
+  var parametersLoadBalancerFrontendIPConfiguration = loadBalancer.category('parameters')
   .description($('Commands to remove parameter for your load-balancer.'));
-  var remove = parameters.category('remove')
+  var removeparametersLoadBalancerFrontendIPConfiguration = parametersLoadBalancerFrontendIPConfiguration.category('remove')
   .description($('Commands to remove values in the parameter file for your load-balancer.'));
-  remove.command('frontend-ip-configuration')
+  removeparametersLoadBalancerFrontendIPConfiguration.command('frontend-ip-configuration')
   .description($('Remove loadBalancer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -14746,11 +14746,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add frontend-ip-configuration
-  var parameters = loadBalancer.category('parameters')
+  var parametersLoadBalancerFrontendIPConfiguration = loadBalancer.category('parameters')
   .description($('Commands to add parameter for your load-balancer.'));
-  var add = parameters.category('add')
+  var addparametersLoadBalancerFrontendIPConfiguration = parametersLoadBalancerFrontendIPConfiguration.category('add')
   .description($('Commands to add values in the parameter file for your load-balancer.'));
-  add.command('frontend-ip-configuration')
+  addparametersLoadBalancerFrontendIPConfiguration.command('frontend-ip-configuration')
   .description($('Remove loadBalancer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -14879,11 +14879,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.serviceCertificates.create(options.serviceName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = serviceCertificate.category('parameters')
+  var serviceCertificatecreateParameters1 = serviceCertificate.category('parameters')
   .description($('Commands to manage parameter for your service certificate.'));
-  var generate = parameters.category('generate')
+  var serviceCertificatecreateGenerate1 = serviceCertificatecreateParameters1.category('generate')
   .description($('Commands to generate parameter file for your service certificate.'));
-  generate.command('create')
+  serviceCertificatecreateGenerate1.command('create')
   .description($('Generate serviceCertificate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -14899,7 +14899,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  serviceCertificatecreateParameters1.command('patch')
   .description($('Command to patch serviceCertificate parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -14945,11 +14945,11 @@ exports.init = function (cli) {
   });
 
   //parameters set service-certificate-create-parameters
-  var parameters = serviceCertificate.category('parameters')
+  var parametersServiceCertificateServiceCertificateCreateParameters = serviceCertificate.category('parameters')
   .description($('Commands to manage parameter for your service-certificate.'));
-  var set = parameters.category('set')
+  var setparametersServiceCertificateServiceCertificateCreateParameters = parametersServiceCertificateServiceCertificateCreateParameters.category('set')
   .description($('Commands to set parameter file for your service-certificate.'));
-  set.command('service-certificate-create-parameters')
+  setparametersServiceCertificateServiceCertificateCreateParameters.command('service-certificate-create-parameters')
   .description($('Set serviceCertificate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15018,11 +15018,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove service-certificate-create-parameters
-  var parameters = serviceCertificate.category('parameters')
+  var parametersServiceCertificateServiceCertificateCreateParameters = serviceCertificate.category('parameters')
   .description($('Commands to remove parameter for your service-certificate.'));
-  var remove = parameters.category('remove')
+  var removeparametersServiceCertificateServiceCertificateCreateParameters = parametersServiceCertificateServiceCertificateCreateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your service-certificate.'));
-  remove.command('service-certificate-create-parameters')
+  removeparametersServiceCertificateServiceCertificateCreateParameters.command('service-certificate-create-parameters')
   .description($('Remove serviceCertificate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15050,11 +15050,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add service-certificate-create-parameters
-  var parameters = serviceCertificate.category('parameters')
+  var parametersServiceCertificateServiceCertificateCreateParameters = serviceCertificate.category('parameters')
   .description($('Commands to add parameter for your service-certificate.'));
-  var add = parameters.category('add')
+  var addparametersServiceCertificateServiceCertificateCreateParameters = parametersServiceCertificateServiceCertificateCreateParameters.category('add')
   .description($('Commands to add values in the parameter file for your service-certificate.'));
-  add.command('service-certificate-create-parameters')
+  addparametersServiceCertificateServiceCertificateCreateParameters.command('service-certificate-create-parameters')
   .description($('Remove serviceCertificate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15127,11 +15127,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove certificate-format
-  var parameters = serviceCertificate.category('parameters')
+  var parametersServiceCertificateCertificateFormat = serviceCertificate.category('parameters')
   .description($('Commands to remove parameter for your service-certificate.'));
-  var remove = parameters.category('remove')
+  var removeparametersServiceCertificateCertificateFormat = parametersServiceCertificateCertificateFormat.category('remove')
   .description($('Commands to remove values in the parameter file for your service-certificate.'));
-  remove.command('certificate-format')
+  removeparametersServiceCertificateCertificateFormat.command('certificate-format')
   .description($('Remove serviceCertificate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15159,11 +15159,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add certificate-format
-  var parameters = serviceCertificate.category('parameters')
+  var parametersServiceCertificateCertificateFormat = serviceCertificate.category('parameters')
   .description($('Commands to add parameter for your service-certificate.'));
-  var add = parameters.category('add')
+  var addparametersServiceCertificateCertificateFormat = parametersServiceCertificateCertificateFormat.category('add')
   .description($('Commands to add values in the parameter file for your service-certificate.'));
-  add.command('certificate-format')
+  addparametersServiceCertificateCertificateFormat.command('certificate-format')
   .description($('Remove serviceCertificate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15231,11 +15231,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.serviceCertificates.delete(parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = serviceCertificate.category('parameters')
+  var serviceCertificatedeleteParameters0 = serviceCertificate.category('parameters')
   .description($('Commands to manage parameter for your service certificate.'));
-  var generate = parameters.category('generate')
+  var serviceCertificatedeleteGenerate0 = serviceCertificatedeleteParameters0.category('generate')
   .description($('Commands to generate parameter file for your service certificate.'));
-  generate.command('delete')
+  serviceCertificatedeleteGenerate0.command('delete')
   .description($('Generate serviceCertificate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15251,7 +15251,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  serviceCertificatedeleteParameters0.command('patch')
   .description($('Command to patch serviceCertificate parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15297,11 +15297,11 @@ exports.init = function (cli) {
   });
 
   //parameters set service-certificate-delete-parameters
-  var parameters = serviceCertificate.category('parameters')
+  var parametersServiceCertificateServiceCertificateDeleteParameters = serviceCertificate.category('parameters')
   .description($('Commands to manage parameter for your service-certificate.'));
-  var set = parameters.category('set')
+  var setparametersServiceCertificateServiceCertificateDeleteParameters = parametersServiceCertificateServiceCertificateDeleteParameters.category('set')
   .description($('Commands to set parameter file for your service-certificate.'));
-  set.command('service-certificate-delete-parameters')
+  setparametersServiceCertificateServiceCertificateDeleteParameters.command('service-certificate-delete-parameters')
   .description($('Set serviceCertificate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15370,11 +15370,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove service-certificate-delete-parameters
-  var parameters = serviceCertificate.category('parameters')
+  var parametersServiceCertificateServiceCertificateDeleteParameters = serviceCertificate.category('parameters')
   .description($('Commands to remove parameter for your service-certificate.'));
-  var remove = parameters.category('remove')
+  var removeparametersServiceCertificateServiceCertificateDeleteParameters = parametersServiceCertificateServiceCertificateDeleteParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your service-certificate.'));
-  remove.command('service-certificate-delete-parameters')
+  removeparametersServiceCertificateServiceCertificateDeleteParameters.command('service-certificate-delete-parameters')
   .description($('Remove serviceCertificate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15402,11 +15402,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add service-certificate-delete-parameters
-  var parameters = serviceCertificate.category('parameters')
+  var parametersServiceCertificateServiceCertificateDeleteParameters = serviceCertificate.category('parameters')
   .description($('Commands to add parameter for your service-certificate.'));
-  var add = parameters.category('add')
+  var addparametersServiceCertificateServiceCertificateDeleteParameters = parametersServiceCertificateServiceCertificateDeleteParameters.category('add')
   .description($('Commands to add values in the parameter file for your service-certificate.'));
-  add.command('service-certificate-delete-parameters')
+  addparametersServiceCertificateServiceCertificateDeleteParameters.command('service-certificate-delete-parameters')
   .description($('Remove serviceCertificate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15507,11 +15507,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.serviceCertificates.get(parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = serviceCertificate.category('parameters')
+  var serviceCertificategetParameters0 = serviceCertificate.category('parameters')
   .description($('Commands to manage parameter for your service certificate.'));
-  var generate = parameters.category('generate')
+  var serviceCertificategetGenerate0 = serviceCertificategetParameters0.category('generate')
   .description($('Commands to generate parameter file for your service certificate.'));
-  generate.command('get')
+  serviceCertificategetGenerate0.command('get')
   .description($('Generate serviceCertificate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15527,7 +15527,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  serviceCertificategetParameters0.command('patch')
   .description($('Command to patch serviceCertificate parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15573,11 +15573,11 @@ exports.init = function (cli) {
   });
 
   //parameters set service-certificate-get-parameters
-  var parameters = serviceCertificate.category('parameters')
+  var parametersServiceCertificateServiceCertificateGetParameters = serviceCertificate.category('parameters')
   .description($('Commands to manage parameter for your service-certificate.'));
-  var set = parameters.category('set')
+  var setparametersServiceCertificateServiceCertificateGetParameters = parametersServiceCertificateServiceCertificateGetParameters.category('set')
   .description($('Commands to set parameter file for your service-certificate.'));
-  set.command('service-certificate-get-parameters')
+  setparametersServiceCertificateServiceCertificateGetParameters.command('service-certificate-get-parameters')
   .description($('Set serviceCertificate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15646,11 +15646,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove service-certificate-get-parameters
-  var parameters = serviceCertificate.category('parameters')
+  var parametersServiceCertificateServiceCertificateGetParameters = serviceCertificate.category('parameters')
   .description($('Commands to remove parameter for your service-certificate.'));
-  var remove = parameters.category('remove')
+  var removeparametersServiceCertificateServiceCertificateGetParameters = parametersServiceCertificateServiceCertificateGetParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your service-certificate.'));
-  remove.command('service-certificate-get-parameters')
+  removeparametersServiceCertificateServiceCertificateGetParameters.command('service-certificate-get-parameters')
   .description($('Remove serviceCertificate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15678,11 +15678,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add service-certificate-get-parameters
-  var parameters = serviceCertificate.category('parameters')
+  var parametersServiceCertificateServiceCertificateGetParameters = serviceCertificate.category('parameters')
   .description($('Commands to add parameter for your service-certificate.'));
-  var add = parameters.category('add')
+  var addparametersServiceCertificateServiceCertificateGetParameters = parametersServiceCertificateServiceCertificateGetParameters.category('add')
   .description($('Commands to add values in the parameter file for your service-certificate.'));
-  add.command('service-certificate-get-parameters')
+  addparametersServiceCertificateServiceCertificateGetParameters.command('service-certificate-get-parameters')
   .description($('Remove serviceCertificate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15804,11 +15804,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineDisks.createDataDisk(options.serviceName, options.deploymentName, options.roleName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachineDisk.category('parameters')
+  var virtualMachineDiskcreateDataDiskParameters3 = virtualMachineDisk.category('parameters')
   .description($('Commands to manage parameter for your virtual machine disk.'));
-  var generate = parameters.category('generate')
+  var virtualMachineDiskcreateDataDiskGenerate3 = virtualMachineDiskcreateDataDiskParameters3.category('generate')
   .description($('Commands to generate parameter file for your virtual machine disk.'));
-  generate.command('create-data-disk')
+  virtualMachineDiskcreateDataDiskGenerate3.command('create-data-disk')
   .description($('Generate virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15824,7 +15824,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachineDiskcreateDataDiskParameters3.command('patch')
   .description($('Command to patch virtualMachineDisk parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15870,11 +15870,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-data-disk-create-parameters
-  var parameters = virtualMachineDisk.category('parameters')
+  var parametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters = virtualMachineDisk.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-disk.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters = parametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine-disk.'));
-  set.command('virtual-machine-data-disk-create-parameters')
+  setparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters.command('virtual-machine-data-disk-create-parameters')
   .description($('Set virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -15987,11 +15987,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-data-disk-create-parameters
-  var parameters = virtualMachineDisk.category('parameters')
+  var parametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters = virtualMachineDisk.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-disk.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters = parametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-disk.'));
-  remove.command('virtual-machine-data-disk-create-parameters')
+  removeparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters.command('virtual-machine-data-disk-create-parameters')
   .description($('Remove virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -16019,11 +16019,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-data-disk-create-parameters
-  var parameters = virtualMachineDisk.category('parameters')
+  var parametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters = virtualMachineDisk.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-disk.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters = parametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-disk.'));
-  add.command('virtual-machine-data-disk-create-parameters')
+  addparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters.command('virtual-machine-data-disk-create-parameters')
   .description($('Remove virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -16168,11 +16168,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineDisks.createDisk(parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachineDisk.category('parameters')
+  var virtualMachineDiskcreateDiskParameters0 = virtualMachineDisk.category('parameters')
   .description($('Commands to manage parameter for your virtual machine disk.'));
-  var generate = parameters.category('generate')
+  var virtualMachineDiskcreateDiskGenerate0 = virtualMachineDiskcreateDiskParameters0.category('generate')
   .description($('Commands to generate parameter file for your virtual machine disk.'));
-  generate.command('create-disk')
+  virtualMachineDiskcreateDiskGenerate0.command('create-disk')
   .description($('Generate virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -16188,7 +16188,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachineDiskcreateDiskParameters0.command('patch')
   .description($('Command to patch virtualMachineDisk parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -16234,11 +16234,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-disk-create-parameters
-  var parameters = virtualMachineDisk.category('parameters')
+  var parametersVirtualMachineDiskVirtualMachineDiskCreateParameters = virtualMachineDisk.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-disk.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineDiskVirtualMachineDiskCreateParameters = parametersVirtualMachineDiskVirtualMachineDiskCreateParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine-disk.'));
-  set.command('virtual-machine-disk-create-parameters')
+  setparametersVirtualMachineDiskVirtualMachineDiskCreateParameters.command('virtual-machine-disk-create-parameters')
   .description($('Set virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -16318,11 +16318,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-disk-create-parameters
-  var parameters = virtualMachineDisk.category('parameters')
+  var parametersVirtualMachineDiskVirtualMachineDiskCreateParameters = virtualMachineDisk.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-disk.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineDiskVirtualMachineDiskCreateParameters = parametersVirtualMachineDiskVirtualMachineDiskCreateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-disk.'));
-  remove.command('virtual-machine-disk-create-parameters')
+  removeparametersVirtualMachineDiskVirtualMachineDiskCreateParameters.command('virtual-machine-disk-create-parameters')
   .description($('Remove virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -16350,11 +16350,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-disk-create-parameters
-  var parameters = virtualMachineDisk.category('parameters')
+  var parametersVirtualMachineDiskVirtualMachineDiskCreateParameters = virtualMachineDisk.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-disk.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineDiskVirtualMachineDiskCreateParameters = parametersVirtualMachineDiskVirtualMachineDiskCreateParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-disk.'));
-  add.command('virtual-machine-disk-create-parameters')
+  addparametersVirtualMachineDiskVirtualMachineDiskCreateParameters.command('virtual-machine-disk-create-parameters')
   .description($('Remove virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -16563,11 +16563,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineDisks.updateDataDisk(options.serviceName, options.deploymentName, options.roleName, options.logicalUnitNumber, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachineDisk.category('parameters')
+  var virtualMachineDiskupdateDataDiskParameters4 = virtualMachineDisk.category('parameters')
   .description($('Commands to manage parameter for your virtual machine disk.'));
-  var generate = parameters.category('generate')
+  var virtualMachineDiskupdateDataDiskGenerate4 = virtualMachineDiskupdateDataDiskParameters4.category('generate')
   .description($('Commands to generate parameter file for your virtual machine disk.'));
-  generate.command('update-data-disk')
+  virtualMachineDiskupdateDataDiskGenerate4.command('update-data-disk')
   .description($('Generate virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -16583,7 +16583,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachineDiskupdateDataDiskParameters4.command('patch')
   .description($('Command to patch virtualMachineDisk parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -16629,11 +16629,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-data-disk-update-parameters
-  var parameters = virtualMachineDisk.category('parameters')
+  var parametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters = virtualMachineDisk.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-disk.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters = parametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine-disk.'));
-  set.command('virtual-machine-data-disk-update-parameters')
+  setparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters.command('virtual-machine-data-disk-update-parameters')
   .description($('Set virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -16735,11 +16735,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-data-disk-update-parameters
-  var parameters = virtualMachineDisk.category('parameters')
+  var parametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters = virtualMachineDisk.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-disk.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters = parametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-disk.'));
-  remove.command('virtual-machine-data-disk-update-parameters')
+  removeparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters.command('virtual-machine-data-disk-update-parameters')
   .description($('Remove virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -16767,11 +16767,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-data-disk-update-parameters
-  var parameters = virtualMachineDisk.category('parameters')
+  var parametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters = virtualMachineDisk.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-disk.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters = parametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-disk.'));
-  add.command('virtual-machine-data-disk-update-parameters')
+  addparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters.command('virtual-machine-data-disk-update-parameters')
   .description($('Remove virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -16907,11 +16907,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineDisks.updateDisk(options.name, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachineDisk.category('parameters')
+  var virtualMachineDiskupdateDiskParameters1 = virtualMachineDisk.category('parameters')
   .description($('Commands to manage parameter for your virtual machine disk.'));
-  var generate = parameters.category('generate')
+  var virtualMachineDiskupdateDiskGenerate1 = virtualMachineDiskupdateDiskParameters1.category('generate')
   .description($('Commands to generate parameter file for your virtual machine disk.'));
-  generate.command('update-disk')
+  virtualMachineDiskupdateDiskGenerate1.command('update-disk')
   .description($('Generate virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -16927,7 +16927,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachineDiskupdateDiskParameters1.command('patch')
   .description($('Command to patch virtualMachineDisk parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -16973,11 +16973,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-disk-update-parameters
-  var parameters = virtualMachineDisk.category('parameters')
+  var parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters = virtualMachineDisk.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-disk.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters = parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine-disk.'));
-  set.command('virtual-machine-disk-update-parameters')
+  setparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters.command('virtual-machine-disk-update-parameters')
   .description($('Set virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -17079,11 +17079,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-disk-update-parameters
-  var parameters = virtualMachineDisk.category('parameters')
+  var parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters = virtualMachineDisk.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-disk.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters = parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-disk.'));
-  remove.command('virtual-machine-disk-update-parameters')
+  removeparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters.command('virtual-machine-disk-update-parameters')
   .description($('Remove virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -17111,11 +17111,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-disk-update-parameters
-  var parameters = virtualMachineDisk.category('parameters')
+  var parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters = virtualMachineDisk.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-disk.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters = parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-disk.'));
-  add.command('virtual-machine-disk-update-parameters')
+  addparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters.command('virtual-machine-disk-update-parameters')
   .description($('Remove virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -17251,11 +17251,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineDisks.updateDiskSize(options.name, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachineDisk.category('parameters')
+  var virtualMachineDiskupdateDiskSizeParameters1 = virtualMachineDisk.category('parameters')
   .description($('Commands to manage parameter for your virtual machine disk.'));
-  var generate = parameters.category('generate')
+  var virtualMachineDiskupdateDiskSizeGenerate1 = virtualMachineDiskupdateDiskSizeParameters1.category('generate')
   .description($('Commands to generate parameter file for your virtual machine disk.'));
-  generate.command('update-disk-size')
+  virtualMachineDiskupdateDiskSizeGenerate1.command('update-disk-size')
   .description($('Generate virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -17271,7 +17271,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachineDiskupdateDiskSizeParameters1.command('patch')
   .description($('Command to patch virtualMachineDisk parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -17317,11 +17317,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-disk-update-parameters
-  var parameters = virtualMachineDisk.category('parameters')
+  var parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters = virtualMachineDisk.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-disk.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters = parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine-disk.'));
-  set.command('virtual-machine-disk-update-parameters')
+  setparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters.command('virtual-machine-disk-update-parameters')
   .description($('Set virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -17423,11 +17423,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-disk-update-parameters
-  var parameters = virtualMachineDisk.category('parameters')
+  var parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters = virtualMachineDisk.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-disk.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters = parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-disk.'));
-  remove.command('virtual-machine-disk-update-parameters')
+  removeparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters.command('virtual-machine-disk-update-parameters')
   .description($('Remove virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -17455,11 +17455,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-disk-update-parameters
-  var parameters = virtualMachineDisk.category('parameters')
+  var parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters = virtualMachineDisk.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-disk.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters = parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-disk.'));
-  add.command('virtual-machine-disk-update-parameters')
+  addparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters.command('virtual-machine-disk-update-parameters')
   .description($('Remove virtualMachineDisk parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -17629,11 +17629,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachines.beginShutdown(options.serviceName, options.deploymentName, options.virtualMachineName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachine.category('parameters')
+  var virtualMachinebeginShutdownParameters3 = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual machine.'));
-  var generate = parameters.category('generate')
+  var virtualMachinebeginShutdownGenerate3 = virtualMachinebeginShutdownParameters3.category('generate')
   .description($('Commands to generate parameter file for your virtual machine.'));
-  generate.command('begin-shutdown')
+  virtualMachinebeginShutdownGenerate3.command('begin-shutdown')
   .description($('Generate virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -17649,7 +17649,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachinebeginShutdownParameters3.command('patch')
   .description($('Command to patch virtualMachine parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -17695,11 +17695,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-shutdown-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineShutdownParameters = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVirtualMachineShutdownParameters = parametersVirtualMachineVirtualMachineShutdownParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('virtual-machine-shutdown-parameters')
+  setparametersVirtualMachineVirtualMachineShutdownParameters.command('virtual-machine-shutdown-parameters')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -17746,11 +17746,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-shutdown-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineShutdownParameters = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVirtualMachineShutdownParameters = parametersVirtualMachineVirtualMachineShutdownParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('virtual-machine-shutdown-parameters')
+  removeparametersVirtualMachineVirtualMachineShutdownParameters.command('virtual-machine-shutdown-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -17778,11 +17778,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-shutdown-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineShutdownParameters = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVirtualMachineShutdownParameters = parametersVirtualMachineVirtualMachineShutdownParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('virtual-machine-shutdown-parameters')
+  addparametersVirtualMachineVirtualMachineShutdownParameters.command('virtual-machine-shutdown-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -17833,11 +17833,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove post-shutdown-action
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePostShutdownAction = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachinePostShutdownAction = parametersVirtualMachinePostShutdownAction.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('post-shutdown-action')
+  removeparametersVirtualMachinePostShutdownAction.command('post-shutdown-action')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -17865,11 +17865,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add post-shutdown-action
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePostShutdownAction = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachinePostShutdownAction = parametersVirtualMachinePostShutdownAction.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('post-shutdown-action')
+  addparametersVirtualMachinePostShutdownAction.command('post-shutdown-action')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -17943,11 +17943,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachines.captureOSImage(options.serviceName, options.deploymentName, options.virtualMachineName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachine.category('parameters')
+  var virtualMachinecaptureOSImageParameters3 = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual machine.'));
-  var generate = parameters.category('generate')
+  var virtualMachinecaptureOSImageGenerate3 = virtualMachinecaptureOSImageParameters3.category('generate')
   .description($('Commands to generate parameter file for your virtual machine.'));
-  generate.command('capture-os-image')
+  virtualMachinecaptureOSImageGenerate3.command('capture-os-image')
   .description($('Generate virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -17963,7 +17963,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachinecaptureOSImageParameters3.command('patch')
   .description($('Command to patch virtualMachine parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -18009,11 +18009,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-capture-os-image-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineCaptureOSImageParameters = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVirtualMachineCaptureOSImageParameters = parametersVirtualMachineVirtualMachineCaptureOSImageParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('virtual-machine-capture-os-image-parameters')
+  setparametersVirtualMachineVirtualMachineCaptureOSImageParameters.command('virtual-machine-capture-os-image-parameters')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -18093,11 +18093,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-capture-os-image-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineCaptureOSImageParameters = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVirtualMachineCaptureOSImageParameters = parametersVirtualMachineVirtualMachineCaptureOSImageParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('virtual-machine-capture-os-image-parameters')
+  removeparametersVirtualMachineVirtualMachineCaptureOSImageParameters.command('virtual-machine-capture-os-image-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -18125,11 +18125,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-capture-os-image-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineCaptureOSImageParameters = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVirtualMachineCaptureOSImageParameters = parametersVirtualMachineVirtualMachineCaptureOSImageParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('virtual-machine-capture-os-image-parameters')
+  addparametersVirtualMachineVirtualMachineCaptureOSImageParameters.command('virtual-machine-capture-os-image-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -18213,11 +18213,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove post-capture-action
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePostCaptureAction = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachinePostCaptureAction = parametersVirtualMachinePostCaptureAction.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('post-capture-action')
+  removeparametersVirtualMachinePostCaptureAction.command('post-capture-action')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -18245,11 +18245,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add post-capture-action
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePostCaptureAction = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachinePostCaptureAction = parametersVirtualMachinePostCaptureAction.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('post-capture-action')
+  addparametersVirtualMachinePostCaptureAction.command('post-capture-action')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -18289,11 +18289,11 @@ exports.init = function (cli) {
   });
 
   //parameters set provisioning-configuration
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProvisioningConfiguration = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineProvisioningConfiguration = parametersVirtualMachineProvisioningConfiguration.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('provisioning-configuration')
+  setparametersVirtualMachineProvisioningConfiguration.command('provisioning-configuration')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -18582,11 +18582,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove provisioning-configuration
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProvisioningConfiguration = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineProvisioningConfiguration = parametersVirtualMachineProvisioningConfiguration.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('provisioning-configuration')
+  removeparametersVirtualMachineProvisioningConfiguration.command('provisioning-configuration')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -18614,11 +18614,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add provisioning-configuration
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProvisioningConfiguration = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineProvisioningConfiguration = parametersVirtualMachineProvisioningConfiguration.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('provisioning-configuration')
+  addparametersVirtualMachineProvisioningConfiguration.command('provisioning-configuration')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -18911,11 +18911,11 @@ exports.init = function (cli) {
   });
 
   //parameters set domain-join
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDomainJoin = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineDomainJoin = parametersVirtualMachineDomainJoin.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('domain-join')
+  setparametersVirtualMachineDomainJoin.command('domain-join')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -18995,11 +18995,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove domain-join
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDomainJoin = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineDomainJoin = parametersVirtualMachineDomainJoin.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('domain-join')
+  removeparametersVirtualMachineDomainJoin.command('domain-join')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -19027,11 +19027,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add domain-join
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDomainJoin = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineDomainJoin = parametersVirtualMachineDomainJoin.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('domain-join')
+  addparametersVirtualMachineDomainJoin.command('domain-join')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -19115,11 +19115,11 @@ exports.init = function (cli) {
   });
 
   //parameters set credentials
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineCredentials = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineCredentials = parametersVirtualMachineCredentials.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('credentials')
+  setparametersVirtualMachineCredentials.command('credentials')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -19188,11 +19188,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove credentials
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineCredentials = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineCredentials = parametersVirtualMachineCredentials.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('credentials')
+  removeparametersVirtualMachineCredentials.command('credentials')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -19220,11 +19220,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add credentials
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineCredentials = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineCredentials = parametersVirtualMachineCredentials.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('credentials')
+  addparametersVirtualMachineCredentials.command('credentials')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -19297,11 +19297,11 @@ exports.init = function (cli) {
   });
 
   //parameters set provisioning
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProvisioning = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineProvisioning = parametersVirtualMachineProvisioning.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('provisioning')
+  setparametersVirtualMachineProvisioning.command('provisioning')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -19348,11 +19348,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove provisioning
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProvisioning = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineProvisioning = parametersVirtualMachineProvisioning.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('provisioning')
+  removeparametersVirtualMachineProvisioning.command('provisioning')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -19380,11 +19380,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add provisioning
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProvisioning = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineProvisioning = parametersVirtualMachineProvisioning.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('provisioning')
+  addparametersVirtualMachineProvisioning.command('provisioning')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -19435,11 +19435,11 @@ exports.init = function (cli) {
   });
 
   //parameters set input-endpoints
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineInputEndpoints = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineInputEndpoints = parametersVirtualMachineInputEndpoints.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('input-endpoints')
+  setparametersVirtualMachineInputEndpoints.command('input-endpoints')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -19622,11 +19622,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove input-endpoints
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineInputEndpoints = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineInputEndpoints = parametersVirtualMachineInputEndpoints.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('input-endpoints')
+  removeparametersVirtualMachineInputEndpoints.command('input-endpoints')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -19655,11 +19655,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add input-endpoints
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineInputEndpoints = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineInputEndpoints = parametersVirtualMachineInputEndpoints.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('input-endpoints')
+  addparametersVirtualMachineInputEndpoints.command('input-endpoints')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -19842,11 +19842,11 @@ exports.init = function (cli) {
   });
 
   //parameters set endpoint-acl
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineEndpointAcl = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineEndpointAcl = parametersVirtualMachineEndpointAcl.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('endpoint-acl')
+  setparametersVirtualMachineEndpointAcl.command('endpoint-acl')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -19894,11 +19894,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove endpoint-acl
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineEndpointAcl = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineEndpointAcl = parametersVirtualMachineEndpointAcl.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('endpoint-acl')
+  removeparametersVirtualMachineEndpointAcl.command('endpoint-acl')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -19927,11 +19927,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add endpoint-acl
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineEndpointAcl = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineEndpointAcl = parametersVirtualMachineEndpointAcl.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('endpoint-acl')
+  addparametersVirtualMachineEndpointAcl.command('endpoint-acl')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -19982,11 +19982,11 @@ exports.init = function (cli) {
   });
 
   //parameters set rules
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRules = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineRules = parametersVirtualMachineRules.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('rules')
+  setparametersVirtualMachineRules.command('rules')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -20071,11 +20071,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove rules
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRules = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineRules = parametersVirtualMachineRules.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('rules')
+  removeparametersVirtualMachineRules.command('rules')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -20105,11 +20105,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add rules
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRules = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineRules = parametersVirtualMachineRules.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('rules')
+  addparametersVirtualMachineRules.command('rules')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -20193,11 +20193,11 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancer-probe
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancerProbe = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineLoadBalancerProbe = parametersVirtualMachineLoadBalancerProbe.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('load-balancer-probe')
+  setparametersVirtualMachineLoadBalancerProbe.command('load-balancer-probe')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -20289,11 +20289,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancer-probe
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancerProbe = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineLoadBalancerProbe = parametersVirtualMachineLoadBalancerProbe.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('load-balancer-probe')
+  removeparametersVirtualMachineLoadBalancerProbe.command('load-balancer-probe')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -20322,11 +20322,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancer-probe
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancerProbe = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineLoadBalancerProbe = parametersVirtualMachineLoadBalancerProbe.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('load-balancer-probe')
+  addparametersVirtualMachineLoadBalancerProbe.command('load-balancer-probe')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -20421,11 +20421,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove protocol
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProtocol = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineProtocol = parametersVirtualMachineProtocol.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('protocol')
+  removeparametersVirtualMachineProtocol.command('protocol')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -20454,11 +20454,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add protocol
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProtocol = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineProtocol = parametersVirtualMachineProtocol.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('protocol')
+  addparametersVirtualMachineProtocol.command('protocol')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -20498,11 +20498,11 @@ exports.init = function (cli) {
   });
 
   //parameters set network-interfaces
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineNetworkInterfaces = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineNetworkInterfaces = parametersVirtualMachineNetworkInterfaces.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('network-interfaces')
+  setparametersVirtualMachineNetworkInterfaces.command('network-interfaces')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -20586,11 +20586,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove network-interfaces
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineNetworkInterfaces = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineNetworkInterfaces = parametersVirtualMachineNetworkInterfaces.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('network-interfaces')
+  removeparametersVirtualMachineNetworkInterfaces.command('network-interfaces')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -20619,11 +20619,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add network-interfaces
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineNetworkInterfaces = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineNetworkInterfaces = parametersVirtualMachineNetworkInterfaces.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('network-interfaces')
+  addparametersVirtualMachineNetworkInterfaces.command('network-interfaces')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -20707,11 +20707,11 @@ exports.init = function (cli) {
   });
 
   //parameters set ip-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineIPConfigurations = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineIPConfigurations = parametersVirtualMachineIPConfigurations.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('ip-configurations')
+  setparametersVirtualMachineIPConfigurations.command('ip-configurations')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -20774,11 +20774,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove ip-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineIPConfigurations = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineIPConfigurations = parametersVirtualMachineIPConfigurations.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('ip-configurations')
+  removeparametersVirtualMachineIPConfigurations.command('ip-configurations')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -20808,11 +20808,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ip-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineIPConfigurations = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineIPConfigurations = parametersVirtualMachineIPConfigurations.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('ip-configurations')
+  addparametersVirtualMachineIPConfigurations.command('ip-configurations')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -20874,11 +20874,11 @@ exports.init = function (cli) {
   });
 
   //parameters set public-ip
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicIPs = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachinePublicIPs = parametersVirtualMachinePublicIPs.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('public-ip')
+  setparametersVirtualMachinePublicIPs.command('public-ip')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -20951,11 +20951,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove public-ip
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicIPs = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachinePublicIPs = parametersVirtualMachinePublicIPs.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('public-ip')
+  removeparametersVirtualMachinePublicIPs.command('public-ip')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -20984,11 +20984,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add public-ip
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicIPs = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachinePublicIPs = parametersVirtualMachinePublicIPs.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('public-ip')
+  addparametersVirtualMachinePublicIPs.command('public-ip')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21061,11 +21061,11 @@ exports.init = function (cli) {
   });
 
   //parameters set ssh-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSshSettings = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineSshSettings = parametersVirtualMachineSshSettings.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('ssh-settings')
+  setparametersVirtualMachineSshSettings.command('ssh-settings')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21123,11 +21123,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove ssh-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSshSettings = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineSshSettings = parametersVirtualMachineSshSettings.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('ssh-settings')
+  removeparametersVirtualMachineSshSettings.command('ssh-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21155,11 +21155,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ssh-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSshSettings = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineSshSettings = parametersVirtualMachineSshSettings.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('ssh-settings')
+  addparametersVirtualMachineSshSettings.command('ssh-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21221,11 +21221,11 @@ exports.init = function (cli) {
   });
 
   //parameters set key-pairs
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineKeyPairs = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineKeyPairs = parametersVirtualMachineKeyPairs.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('key-pairs')
+  setparametersVirtualMachineKeyPairs.command('key-pairs')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21287,11 +21287,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove key-pairs
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineKeyPairs = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineKeyPairs = parametersVirtualMachineKeyPairs.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('key-pairs')
+  removeparametersVirtualMachineKeyPairs.command('key-pairs')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21320,11 +21320,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add key-pairs
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineKeyPairs = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineKeyPairs = parametersVirtualMachineKeyPairs.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('key-pairs')
+  addparametersVirtualMachineKeyPairs.command('key-pairs')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21386,11 +21386,11 @@ exports.init = function (cli) {
   });
 
   //parameters set public-keys
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicKeys = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachinePublicKeys = parametersVirtualMachinePublicKeys.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('public-keys')
+  setparametersVirtualMachinePublicKeys.command('public-keys')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21452,11 +21452,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove public-keys
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicKeys = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachinePublicKeys = parametersVirtualMachinePublicKeys.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('public-keys')
+  removeparametersVirtualMachinePublicKeys.command('public-keys')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21485,11 +21485,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add public-keys
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicKeys = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachinePublicKeys = parametersVirtualMachinePublicKeys.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('public-keys')
+  addparametersVirtualMachinePublicKeys.command('public-keys')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21551,11 +21551,11 @@ exports.init = function (cli) {
   });
 
   //parameters set stored-certificate-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineStoredCertificateSettings = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineStoredCertificateSettings = parametersVirtualMachineStoredCertificateSettings.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('stored-certificate-settings')
+  setparametersVirtualMachineStoredCertificateSettings.command('stored-certificate-settings')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21617,11 +21617,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove stored-certificate-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineStoredCertificateSettings = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineStoredCertificateSettings = parametersVirtualMachineStoredCertificateSettings.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('stored-certificate-settings')
+  removeparametersVirtualMachineStoredCertificateSettings.command('stored-certificate-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21650,11 +21650,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add stored-certificate-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineStoredCertificateSettings = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineStoredCertificateSettings = parametersVirtualMachineStoredCertificateSettings.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('stored-certificate-settings')
+  addparametersVirtualMachineStoredCertificateSettings.command('stored-certificate-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21716,11 +21716,11 @@ exports.init = function (cli) {
   });
 
   //parameters set subnet-names
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSubnetNames = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineSubnetNames = parametersVirtualMachineSubnetNames.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('subnet-names')
+  setparametersVirtualMachineSubnetNames.command('subnet-names')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21760,11 +21760,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove subnet-names
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSubnetNames = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineSubnetNames = parametersVirtualMachineSubnetNames.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('subnet-names')
+  removeparametersVirtualMachineSubnetNames.command('subnet-names')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21793,11 +21793,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add subnet-names
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSubnetNames = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineSubnetNames = parametersVirtualMachineSubnetNames.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('subnet-names')
+  addparametersVirtualMachineSubnetNames.command('subnet-names')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21837,11 +21837,11 @@ exports.init = function (cli) {
   });
 
   //parameters set windows-remote-management
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineWindowsRemoteManagement = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineWindowsRemoteManagement = parametersVirtualMachineWindowsRemoteManagement.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('windows-remote-management')
+  setparametersVirtualMachineWindowsRemoteManagement.command('windows-remote-management')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21888,11 +21888,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove windows-remote-management
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineWindowsRemoteManagement = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineWindowsRemoteManagement = parametersVirtualMachineWindowsRemoteManagement.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('windows-remote-management')
+  removeparametersVirtualMachineWindowsRemoteManagement.command('windows-remote-management')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21920,11 +21920,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add windows-remote-management
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineWindowsRemoteManagement = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineWindowsRemoteManagement = parametersVirtualMachineWindowsRemoteManagement.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('windows-remote-management')
+  addparametersVirtualMachineWindowsRemoteManagement.command('windows-remote-management')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -21975,11 +21975,11 @@ exports.init = function (cli) {
   });
 
   //parameters set listeners
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListeners = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineListeners = parametersVirtualMachineListeners.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('listeners')
+  setparametersVirtualMachineListeners.command('listeners')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -22041,11 +22041,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove listeners
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListeners = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineListeners = parametersVirtualMachineListeners.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('listeners')
+  removeparametersVirtualMachineListeners.command('listeners')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -22074,11 +22074,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add listeners
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListeners = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineListeners = parametersVirtualMachineListeners.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('listeners')
+  addparametersVirtualMachineListeners.command('listeners')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -22140,11 +22140,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove listener-type
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListenerType = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineListenerType = parametersVirtualMachineListenerType.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('listener-type')
+  removeparametersVirtualMachineListenerType.command('listener-type')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -22173,11 +22173,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add listener-type
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListenerType = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineListenerType = parametersVirtualMachineListenerType.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('listener-type')
+  addparametersVirtualMachineListenerType.command('listener-type')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -22251,11 +22251,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachines.captureVMImage(options.serviceName, options.deploymentName, options.virtualMachineName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachine.category('parameters')
+  var virtualMachinecaptureVMImageParameters3 = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual machine.'));
-  var generate = parameters.category('generate')
+  var virtualMachinecaptureVMImageGenerate3 = virtualMachinecaptureVMImageParameters3.category('generate')
   .description($('Commands to generate parameter file for your virtual machine.'));
-  generate.command('capture-vm-image')
+  virtualMachinecaptureVMImageGenerate3.command('capture-vm-image')
   .description($('Generate virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -22271,7 +22271,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachinecaptureVMImageParameters3.command('patch')
   .description($('Command to patch virtualMachine parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -22317,11 +22317,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-capture-vm-image-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineCaptureVMImageParameters = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVirtualMachineCaptureVMImageParameters = parametersVirtualMachineVirtualMachineCaptureVMImageParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('virtual-machine-capture-vm-image-parameters')
+  setparametersVirtualMachineVirtualMachineCaptureVMImageParameters.command('virtual-machine-capture-vm-image-parameters')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -22423,11 +22423,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-capture-vm-image-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineCaptureVMImageParameters = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVirtualMachineCaptureVMImageParameters = parametersVirtualMachineVirtualMachineCaptureVMImageParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('virtual-machine-capture-vm-image-parameters')
+  removeparametersVirtualMachineVirtualMachineCaptureVMImageParameters.command('virtual-machine-capture-vm-image-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -22455,11 +22455,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-capture-vm-image-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineCaptureVMImageParameters = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVirtualMachineCaptureVMImageParameters = parametersVirtualMachineVirtualMachineCaptureVMImageParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('virtual-machine-capture-vm-image-parameters')
+  addparametersVirtualMachineVirtualMachineCaptureVMImageParameters.command('virtual-machine-capture-vm-image-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -22597,11 +22597,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachines.create(options.serviceName, options.deploymentName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachine.category('parameters')
+  var virtualMachinecreateParameters2 = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual machine.'));
-  var generate = parameters.category('generate')
+  var virtualMachinecreateGenerate2 = virtualMachinecreateParameters2.category('generate')
   .description($('Commands to generate parameter file for your virtual machine.'));
-  generate.command('create')
+  virtualMachinecreateGenerate2.command('create')
   .description($('Generate virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -22617,7 +22617,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachinecreateParameters2.command('patch')
   .description($('Command to patch virtualMachine parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -22663,11 +22663,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-create-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineCreateParameters = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVirtualMachineCreateParameters = parametersVirtualMachineVirtualMachineCreateParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('virtual-machine-create-parameters')
+  setparametersVirtualMachineVirtualMachineCreateParameters.command('virtual-machine-create-parameters')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -22824,11 +22824,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-create-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineCreateParameters = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVirtualMachineCreateParameters = parametersVirtualMachineVirtualMachineCreateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('virtual-machine-create-parameters')
+  removeparametersVirtualMachineVirtualMachineCreateParameters.command('virtual-machine-create-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -22856,11 +22856,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-create-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineCreateParameters = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVirtualMachineCreateParameters = parametersVirtualMachineVirtualMachineCreateParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('virtual-machine-create-parameters')
+  addparametersVirtualMachineVirtualMachineCreateParameters.command('virtual-machine-create-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -23021,11 +23021,11 @@ exports.init = function (cli) {
   });
 
   //parameters set configuration-sets
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineConfigurationSets = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineConfigurationSets = parametersVirtualMachineConfigurationSets.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('configuration-sets')
+  setparametersVirtualMachineConfigurationSets.command('configuration-sets')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -23318,11 +23318,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove configuration-sets
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineConfigurationSets = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineConfigurationSets = parametersVirtualMachineConfigurationSets.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('configuration-sets')
+  removeparametersVirtualMachineConfigurationSets.command('configuration-sets')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -23351,11 +23351,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add configuration-sets
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineConfigurationSets = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineConfigurationSets = parametersVirtualMachineConfigurationSets.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('configuration-sets')
+  addparametersVirtualMachineConfigurationSets.command('configuration-sets')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -23648,11 +23648,11 @@ exports.init = function (cli) {
   });
 
   //parameters set domain-join
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDomainJoin = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineDomainJoin = parametersVirtualMachineDomainJoin.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('domain-join')
+  setparametersVirtualMachineDomainJoin.command('domain-join')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -23733,11 +23733,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove domain-join
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDomainJoin = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineDomainJoin = parametersVirtualMachineDomainJoin.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('domain-join')
+  removeparametersVirtualMachineDomainJoin.command('domain-join')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -23766,11 +23766,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add domain-join
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDomainJoin = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineDomainJoin = parametersVirtualMachineDomainJoin.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('domain-join')
+  addparametersVirtualMachineDomainJoin.command('domain-join')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -23854,11 +23854,11 @@ exports.init = function (cli) {
   });
 
   //parameters set credentials
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineCredentials = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineCredentials = parametersVirtualMachineCredentials.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('credentials')
+  setparametersVirtualMachineCredentials.command('credentials')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -23928,11 +23928,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove credentials
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineCredentials = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineCredentials = parametersVirtualMachineCredentials.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('credentials')
+  removeparametersVirtualMachineCredentials.command('credentials')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -23961,11 +23961,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add credentials
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineCredentials = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineCredentials = parametersVirtualMachineCredentials.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('credentials')
+  addparametersVirtualMachineCredentials.command('credentials')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -24038,11 +24038,11 @@ exports.init = function (cli) {
   });
 
   //parameters set provisioning
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProvisioning = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineProvisioning = parametersVirtualMachineProvisioning.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('provisioning')
+  setparametersVirtualMachineProvisioning.command('provisioning')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -24090,11 +24090,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove provisioning
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProvisioning = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineProvisioning = parametersVirtualMachineProvisioning.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('provisioning')
+  removeparametersVirtualMachineProvisioning.command('provisioning')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -24123,11 +24123,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add provisioning
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProvisioning = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineProvisioning = parametersVirtualMachineProvisioning.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('provisioning')
+  addparametersVirtualMachineProvisioning.command('provisioning')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -24178,11 +24178,11 @@ exports.init = function (cli) {
   });
 
   //parameters set input-endpoints
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineInputEndpoints = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineInputEndpoints = parametersVirtualMachineInputEndpoints.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('input-endpoints')
+  setparametersVirtualMachineInputEndpoints.command('input-endpoints')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -24366,11 +24366,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove input-endpoints
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineInputEndpoints = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineInputEndpoints = parametersVirtualMachineInputEndpoints.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('input-endpoints')
+  removeparametersVirtualMachineInputEndpoints.command('input-endpoints')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -24400,11 +24400,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add input-endpoints
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineInputEndpoints = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineInputEndpoints = parametersVirtualMachineInputEndpoints.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('input-endpoints')
+  addparametersVirtualMachineInputEndpoints.command('input-endpoints')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -24587,11 +24587,11 @@ exports.init = function (cli) {
   });
 
   //parameters set endpoint-acl
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineEndpointAcl = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineEndpointAcl = parametersVirtualMachineEndpointAcl.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('endpoint-acl')
+  setparametersVirtualMachineEndpointAcl.command('endpoint-acl')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -24640,11 +24640,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove endpoint-acl
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineEndpointAcl = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineEndpointAcl = parametersVirtualMachineEndpointAcl.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('endpoint-acl')
+  removeparametersVirtualMachineEndpointAcl.command('endpoint-acl')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -24674,11 +24674,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add endpoint-acl
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineEndpointAcl = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineEndpointAcl = parametersVirtualMachineEndpointAcl.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('endpoint-acl')
+  addparametersVirtualMachineEndpointAcl.command('endpoint-acl')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -24729,11 +24729,11 @@ exports.init = function (cli) {
   });
 
   //parameters set rules
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRules = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineRules = parametersVirtualMachineRules.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('rules')
+  setparametersVirtualMachineRules.command('rules')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -24819,11 +24819,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove rules
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRules = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineRules = parametersVirtualMachineRules.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('rules')
+  removeparametersVirtualMachineRules.command('rules')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -24854,11 +24854,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add rules
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRules = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineRules = parametersVirtualMachineRules.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('rules')
+  addparametersVirtualMachineRules.command('rules')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -24942,11 +24942,11 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancer-probe
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancerProbe = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineLoadBalancerProbe = parametersVirtualMachineLoadBalancerProbe.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('load-balancer-probe')
+  setparametersVirtualMachineLoadBalancerProbe.command('load-balancer-probe')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -25039,11 +25039,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancer-probe
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancerProbe = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineLoadBalancerProbe = parametersVirtualMachineLoadBalancerProbe.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('load-balancer-probe')
+  removeparametersVirtualMachineLoadBalancerProbe.command('load-balancer-probe')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -25073,11 +25073,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancer-probe
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancerProbe = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineLoadBalancerProbe = parametersVirtualMachineLoadBalancerProbe.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('load-balancer-probe')
+  addparametersVirtualMachineLoadBalancerProbe.command('load-balancer-probe')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -25172,11 +25172,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove protocol
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProtocol = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineProtocol = parametersVirtualMachineProtocol.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('protocol')
+  removeparametersVirtualMachineProtocol.command('protocol')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -25206,11 +25206,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add protocol
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProtocol = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineProtocol = parametersVirtualMachineProtocol.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('protocol')
+  addparametersVirtualMachineProtocol.command('protocol')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -25250,11 +25250,11 @@ exports.init = function (cli) {
   });
 
   //parameters set network-interfaces
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineNetworkInterfaces = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineNetworkInterfaces = parametersVirtualMachineNetworkInterfaces.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('network-interfaces')
+  setparametersVirtualMachineNetworkInterfaces.command('network-interfaces')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -25339,11 +25339,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove network-interfaces
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineNetworkInterfaces = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineNetworkInterfaces = parametersVirtualMachineNetworkInterfaces.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('network-interfaces')
+  removeparametersVirtualMachineNetworkInterfaces.command('network-interfaces')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -25373,11 +25373,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add network-interfaces
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineNetworkInterfaces = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineNetworkInterfaces = parametersVirtualMachineNetworkInterfaces.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('network-interfaces')
+  addparametersVirtualMachineNetworkInterfaces.command('network-interfaces')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -25461,11 +25461,11 @@ exports.init = function (cli) {
   });
 
   //parameters set ip-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineIPConfigurations = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineIPConfigurations = parametersVirtualMachineIPConfigurations.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('ip-configurations')
+  setparametersVirtualMachineIPConfigurations.command('ip-configurations')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -25529,11 +25529,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove ip-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineIPConfigurations = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineIPConfigurations = parametersVirtualMachineIPConfigurations.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('ip-configurations')
+  removeparametersVirtualMachineIPConfigurations.command('ip-configurations')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -25564,11 +25564,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ip-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineIPConfigurations = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineIPConfigurations = parametersVirtualMachineIPConfigurations.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('ip-configurations')
+  addparametersVirtualMachineIPConfigurations.command('ip-configurations')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -25630,11 +25630,11 @@ exports.init = function (cli) {
   });
 
   //parameters set public-ip
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicIPs = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachinePublicIPs = parametersVirtualMachinePublicIPs.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('public-ip')
+  setparametersVirtualMachinePublicIPs.command('public-ip')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -25708,11 +25708,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove public-ip
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicIPs = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachinePublicIPs = parametersVirtualMachinePublicIPs.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('public-ip')
+  removeparametersVirtualMachinePublicIPs.command('public-ip')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -25742,11 +25742,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add public-ip
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicIPs = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachinePublicIPs = parametersVirtualMachinePublicIPs.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('public-ip')
+  addparametersVirtualMachinePublicIPs.command('public-ip')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -25819,11 +25819,11 @@ exports.init = function (cli) {
   });
 
   //parameters set ssh-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSshSettings = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineSshSettings = parametersVirtualMachineSshSettings.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('ssh-settings')
+  setparametersVirtualMachineSshSettings.command('ssh-settings')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -25882,11 +25882,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove ssh-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSshSettings = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineSshSettings = parametersVirtualMachineSshSettings.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('ssh-settings')
+  removeparametersVirtualMachineSshSettings.command('ssh-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -25915,11 +25915,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ssh-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSshSettings = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineSshSettings = parametersVirtualMachineSshSettings.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('ssh-settings')
+  addparametersVirtualMachineSshSettings.command('ssh-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -25981,11 +25981,11 @@ exports.init = function (cli) {
   });
 
   //parameters set key-pairs
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineKeyPairs = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineKeyPairs = parametersVirtualMachineKeyPairs.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('key-pairs')
+  setparametersVirtualMachineKeyPairs.command('key-pairs')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26048,11 +26048,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove key-pairs
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineKeyPairs = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineKeyPairs = parametersVirtualMachineKeyPairs.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('key-pairs')
+  removeparametersVirtualMachineKeyPairs.command('key-pairs')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26082,11 +26082,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add key-pairs
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineKeyPairs = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineKeyPairs = parametersVirtualMachineKeyPairs.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('key-pairs')
+  addparametersVirtualMachineKeyPairs.command('key-pairs')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26148,11 +26148,11 @@ exports.init = function (cli) {
   });
 
   //parameters set public-keys
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicKeys = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachinePublicKeys = parametersVirtualMachinePublicKeys.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('public-keys')
+  setparametersVirtualMachinePublicKeys.command('public-keys')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26215,11 +26215,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove public-keys
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicKeys = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachinePublicKeys = parametersVirtualMachinePublicKeys.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('public-keys')
+  removeparametersVirtualMachinePublicKeys.command('public-keys')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26249,11 +26249,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add public-keys
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicKeys = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachinePublicKeys = parametersVirtualMachinePublicKeys.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('public-keys')
+  addparametersVirtualMachinePublicKeys.command('public-keys')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26315,11 +26315,11 @@ exports.init = function (cli) {
   });
 
   //parameters set stored-certificate-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineStoredCertificateSettings = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineStoredCertificateSettings = parametersVirtualMachineStoredCertificateSettings.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('stored-certificate-settings')
+  setparametersVirtualMachineStoredCertificateSettings.command('stored-certificate-settings')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26382,11 +26382,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove stored-certificate-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineStoredCertificateSettings = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineStoredCertificateSettings = parametersVirtualMachineStoredCertificateSettings.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('stored-certificate-settings')
+  removeparametersVirtualMachineStoredCertificateSettings.command('stored-certificate-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26416,11 +26416,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add stored-certificate-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineStoredCertificateSettings = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineStoredCertificateSettings = parametersVirtualMachineStoredCertificateSettings.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('stored-certificate-settings')
+  addparametersVirtualMachineStoredCertificateSettings.command('stored-certificate-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26482,11 +26482,11 @@ exports.init = function (cli) {
   });
 
   //parameters set subnet-names
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSubnetNames = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineSubnetNames = parametersVirtualMachineSubnetNames.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('subnet-names')
+  setparametersVirtualMachineSubnetNames.command('subnet-names')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26527,11 +26527,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove subnet-names
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSubnetNames = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineSubnetNames = parametersVirtualMachineSubnetNames.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('subnet-names')
+  removeparametersVirtualMachineSubnetNames.command('subnet-names')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26561,11 +26561,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add subnet-names
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSubnetNames = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineSubnetNames = parametersVirtualMachineSubnetNames.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('subnet-names')
+  addparametersVirtualMachineSubnetNames.command('subnet-names')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26605,11 +26605,11 @@ exports.init = function (cli) {
   });
 
   //parameters set windows-remote-management
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineWindowsRemoteManagement = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineWindowsRemoteManagement = parametersVirtualMachineWindowsRemoteManagement.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('windows-remote-management')
+  setparametersVirtualMachineWindowsRemoteManagement.command('windows-remote-management')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26657,11 +26657,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove windows-remote-management
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineWindowsRemoteManagement = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineWindowsRemoteManagement = parametersVirtualMachineWindowsRemoteManagement.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('windows-remote-management')
+  removeparametersVirtualMachineWindowsRemoteManagement.command('windows-remote-management')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26690,11 +26690,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add windows-remote-management
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineWindowsRemoteManagement = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineWindowsRemoteManagement = parametersVirtualMachineWindowsRemoteManagement.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('windows-remote-management')
+  addparametersVirtualMachineWindowsRemoteManagement.command('windows-remote-management')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26745,11 +26745,11 @@ exports.init = function (cli) {
   });
 
   //parameters set listeners
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListeners = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineListeners = parametersVirtualMachineListeners.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('listeners')
+  setparametersVirtualMachineListeners.command('listeners')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26812,11 +26812,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove listeners
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListeners = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineListeners = parametersVirtualMachineListeners.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('listeners')
+  removeparametersVirtualMachineListeners.command('listeners')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26846,11 +26846,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add listeners
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListeners = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineListeners = parametersVirtualMachineListeners.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('listeners')
+  addparametersVirtualMachineListeners.command('listeners')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26912,11 +26912,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove listener-type
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListenerType = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineListenerType = parametersVirtualMachineListenerType.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('listener-type')
+  removeparametersVirtualMachineListenerType.command('listener-type')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26946,11 +26946,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add listener-type
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListenerType = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineListenerType = parametersVirtualMachineListenerType.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('listener-type')
+  addparametersVirtualMachineListenerType.command('listener-type')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -26990,11 +26990,11 @@ exports.init = function (cli) {
   });
 
   //parameters set data-virtual-hard-disks
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDataVirtualHardDisks = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineDataVirtualHardDisks = parametersVirtualMachineDataVirtualHardDisks.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('data-virtual-hard-disks')
+  setparametersVirtualMachineDataVirtualHardDisks.command('data-virtual-hard-disks')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -27122,11 +27122,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove data-virtual-hard-disks
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDataVirtualHardDisks = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineDataVirtualHardDisks = parametersVirtualMachineDataVirtualHardDisks.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('data-virtual-hard-disks')
+  removeparametersVirtualMachineDataVirtualHardDisks.command('data-virtual-hard-disks')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -27155,11 +27155,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add data-virtual-hard-disks
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDataVirtualHardDisks = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineDataVirtualHardDisks = parametersVirtualMachineDataVirtualHardDisks.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('data-virtual-hard-disks')
+  addparametersVirtualMachineDataVirtualHardDisks.command('data-virtual-hard-disks')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -27287,11 +27287,11 @@ exports.init = function (cli) {
   });
 
   //parameters set os-virtual-hard-disk
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineOSVirtualHardDisk = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineOSVirtualHardDisk = parametersVirtualMachineOSVirtualHardDisk.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('os-virtual-hard-disk')
+  setparametersVirtualMachineOSVirtualHardDisk.command('os-virtual-hard-disk')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -27426,11 +27426,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove os-virtual-hard-disk
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineOSVirtualHardDisk = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineOSVirtualHardDisk = parametersVirtualMachineOSVirtualHardDisk.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('os-virtual-hard-disk')
+  removeparametersVirtualMachineOSVirtualHardDisk.command('os-virtual-hard-disk')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -27458,11 +27458,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add os-virtual-hard-disk
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineOSVirtualHardDisk = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineOSVirtualHardDisk = parametersVirtualMachineOSVirtualHardDisk.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('os-virtual-hard-disk')
+  addparametersVirtualMachineOSVirtualHardDisk.command('os-virtual-hard-disk')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -27601,11 +27601,11 @@ exports.init = function (cli) {
   });
 
   //parameters set resource-extension-references
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionReferences = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineResourceExtensionReferences = parametersVirtualMachineResourceExtensionReferences.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('resource-extension-references')
+  setparametersVirtualMachineResourceExtensionReferences.command('resource-extension-references')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -27722,11 +27722,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove resource-extension-references
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionReferences = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineResourceExtensionReferences = parametersVirtualMachineResourceExtensionReferences.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('resource-extension-references')
+  removeparametersVirtualMachineResourceExtensionReferences.command('resource-extension-references')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -27755,11 +27755,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add resource-extension-references
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionReferences = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineResourceExtensionReferences = parametersVirtualMachineResourceExtensionReferences.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('resource-extension-references')
+  addparametersVirtualMachineResourceExtensionReferences.command('resource-extension-references')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -27876,11 +27876,11 @@ exports.init = function (cli) {
   });
 
   //parameters set resource-extension-parameter-values
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionParameterValues = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineResourceExtensionParameterValues = parametersVirtualMachineResourceExtensionParameterValues.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('resource-extension-parameter-values')
+  setparametersVirtualMachineResourceExtensionParameterValues.command('resource-extension-parameter-values')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -27954,11 +27954,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove resource-extension-parameter-values
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionParameterValues = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineResourceExtensionParameterValues = parametersVirtualMachineResourceExtensionParameterValues.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('resource-extension-parameter-values')
+  removeparametersVirtualMachineResourceExtensionParameterValues.command('resource-extension-parameter-values')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -27988,11 +27988,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add resource-extension-parameter-values
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionParameterValues = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineResourceExtensionParameterValues = parametersVirtualMachineResourceExtensionParameterValues.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('resource-extension-parameter-values')
+  addparametersVirtualMachineResourceExtensionParameterValues.command('resource-extension-parameter-values')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -28065,11 +28065,11 @@ exports.init = function (cli) {
   });
 
   //parameters set vm-image-input
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVMImageInput = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVMImageInput = parametersVirtualMachineVMImageInput.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('vm-image-input')
+  setparametersVirtualMachineVMImageInput.command('vm-image-input')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -28127,11 +28127,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove vm-image-input
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVMImageInput = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVMImageInput = parametersVirtualMachineVMImageInput.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('vm-image-input')
+  removeparametersVirtualMachineVMImageInput.command('vm-image-input')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -28159,11 +28159,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add vm-image-input
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVMImageInput = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVMImageInput = parametersVirtualMachineVMImageInput.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('vm-image-input')
+  addparametersVirtualMachineVMImageInput.command('vm-image-input')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -28225,11 +28225,11 @@ exports.init = function (cli) {
   });
 
   //parameters set data-disk-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDataDiskConfigurations = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineDataDiskConfigurations = parametersVirtualMachineDataDiskConfigurations.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('data-disk-configurations')
+  setparametersVirtualMachineDataDiskConfigurations.command('data-disk-configurations')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -28291,11 +28291,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove data-disk-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDataDiskConfigurations = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineDataDiskConfigurations = parametersVirtualMachineDataDiskConfigurations.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('data-disk-configurations')
+  removeparametersVirtualMachineDataDiskConfigurations.command('data-disk-configurations')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -28324,11 +28324,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add data-disk-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDataDiskConfigurations = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineDataDiskConfigurations = parametersVirtualMachineDataDiskConfigurations.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('data-disk-configurations')
+  addparametersVirtualMachineDataDiskConfigurations.command('data-disk-configurations')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -28390,11 +28390,11 @@ exports.init = function (cli) {
   });
 
   //parameters set os-disk-configuration
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineOSDiskConfiguration = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineOSDiskConfiguration = parametersVirtualMachineOSDiskConfiguration.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('os-disk-configuration')
+  setparametersVirtualMachineOSDiskConfiguration.command('os-disk-configuration')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -28441,11 +28441,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove os-disk-configuration
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineOSDiskConfiguration = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineOSDiskConfiguration = parametersVirtualMachineOSDiskConfiguration.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('os-disk-configuration')
+  removeparametersVirtualMachineOSDiskConfiguration.command('os-disk-configuration')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -28473,11 +28473,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add os-disk-configuration
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineOSDiskConfiguration = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineOSDiskConfiguration = parametersVirtualMachineOSDiskConfiguration.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('os-disk-configuration')
+  addparametersVirtualMachineOSDiskConfiguration.command('os-disk-configuration')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -28558,11 +28558,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachines.createDeployment(options.serviceName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachine.category('parameters')
+  var virtualMachinecreateDeploymentParameters1 = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual machine.'));
-  var generate = parameters.category('generate')
+  var virtualMachinecreateDeploymentGenerate1 = virtualMachinecreateDeploymentParameters1.category('generate')
   .description($('Commands to generate parameter file for your virtual machine.'));
-  generate.command('create-deployment')
+  virtualMachinecreateDeploymentGenerate1.command('create-deployment')
   .description($('Generate virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -28578,7 +28578,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachinecreateDeploymentParameters1.command('patch')
   .description($('Command to patch virtualMachine parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -28624,11 +28624,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-create-deployment-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineCreateDeploymentParameters = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVirtualMachineCreateDeploymentParameters = parametersVirtualMachineVirtualMachineCreateDeploymentParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('virtual-machine-create-deployment-parameters')
+  setparametersVirtualMachineVirtualMachineCreateDeploymentParameters.command('virtual-machine-create-deployment-parameters')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -28752,11 +28752,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-create-deployment-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineCreateDeploymentParameters = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVirtualMachineCreateDeploymentParameters = parametersVirtualMachineVirtualMachineCreateDeploymentParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('virtual-machine-create-deployment-parameters')
+  removeparametersVirtualMachineVirtualMachineCreateDeploymentParameters.command('virtual-machine-create-deployment-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -28784,11 +28784,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-create-deployment-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineCreateDeploymentParameters = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVirtualMachineCreateDeploymentParameters = parametersVirtualMachineVirtualMachineCreateDeploymentParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('virtual-machine-create-deployment-parameters')
+  addparametersVirtualMachineVirtualMachineCreateDeploymentParameters.command('virtual-machine-create-deployment-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -28916,11 +28916,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-slot
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDeploymentSlot = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineDeploymentSlot = parametersVirtualMachineDeploymentSlot.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('deployment-slot')
+  removeparametersVirtualMachineDeploymentSlot.command('deployment-slot')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -28948,11 +28948,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-slot
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDeploymentSlot = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineDeploymentSlot = parametersVirtualMachineDeploymentSlot.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('deployment-slot')
+  addparametersVirtualMachineDeploymentSlot.command('deployment-slot')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -28992,11 +28992,11 @@ exports.init = function (cli) {
   });
 
   //parameters set dns-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDnsSettings = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineDnsSettings = parametersVirtualMachineDnsSettings.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('dns-settings')
+  setparametersVirtualMachineDnsSettings.command('dns-settings')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -29043,11 +29043,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove dns-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDnsSettings = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineDnsSettings = parametersVirtualMachineDnsSettings.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('dns-settings')
+  removeparametersVirtualMachineDnsSettings.command('dns-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -29075,11 +29075,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add dns-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDnsSettings = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineDnsSettings = parametersVirtualMachineDnsSettings.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('dns-settings')
+  addparametersVirtualMachineDnsSettings.command('dns-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -29130,11 +29130,11 @@ exports.init = function (cli) {
   });
 
   //parameters set dns-servers
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDnsServers = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineDnsServers = parametersVirtualMachineDnsServers.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('dns-servers')
+  setparametersVirtualMachineDnsServers.command('dns-servers')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -29196,11 +29196,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove dns-servers
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDnsServers = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineDnsServers = parametersVirtualMachineDnsServers.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('dns-servers')
+  removeparametersVirtualMachineDnsServers.command('dns-servers')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -29229,11 +29229,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add dns-servers
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDnsServers = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineDnsServers = parametersVirtualMachineDnsServers.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('dns-servers')
+  addparametersVirtualMachineDnsServers.command('dns-servers')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -29295,11 +29295,11 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancers
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancers = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineLoadBalancers = parametersVirtualMachineLoadBalancers.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('load-balancers')
+  setparametersVirtualMachineLoadBalancers.command('load-balancers')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -29361,11 +29361,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancers
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancers = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineLoadBalancers = parametersVirtualMachineLoadBalancers.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('load-balancers')
+  removeparametersVirtualMachineLoadBalancers.command('load-balancers')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -29394,11 +29394,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancers
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancers = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineLoadBalancers = parametersVirtualMachineLoadBalancers.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('load-balancers')
+  addparametersVirtualMachineLoadBalancers.command('load-balancers')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -29460,11 +29460,11 @@ exports.init = function (cli) {
   });
 
   //parameters set frontend-ip-configuration
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineFrontendIPConfiguration = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineFrontendIPConfiguration = parametersVirtualMachineFrontendIPConfiguration.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('frontend-ip-configuration')
+  setparametersVirtualMachineFrontendIPConfiguration.command('frontend-ip-configuration')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -29534,11 +29534,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove frontend-ip-configuration
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineFrontendIPConfiguration = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineFrontendIPConfiguration = parametersVirtualMachineFrontendIPConfiguration.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('frontend-ip-configuration')
+  removeparametersVirtualMachineFrontendIPConfiguration.command('frontend-ip-configuration')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -29567,11 +29567,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add frontend-ip-configuration
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineFrontendIPConfiguration = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineFrontendIPConfiguration = parametersVirtualMachineFrontendIPConfiguration.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('frontend-ip-configuration')
+  addparametersVirtualMachineFrontendIPConfiguration.command('frontend-ip-configuration')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -29644,11 +29644,11 @@ exports.init = function (cli) {
   });
 
   //parameters set roles
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRoles = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineRoles = parametersVirtualMachineRoles.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('roles')
+  setparametersVirtualMachineRoles.command('roles')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -29853,11 +29853,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove roles
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRoles = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineRoles = parametersVirtualMachineRoles.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('roles')
+  removeparametersVirtualMachineRoles.command('roles')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -29886,11 +29886,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add roles
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRoles = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineRoles = parametersVirtualMachineRoles.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('roles')
+  addparametersVirtualMachineRoles.command('roles')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -30095,11 +30095,11 @@ exports.init = function (cli) {
   });
 
   //parameters set configuration-sets
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineConfigurationSets = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineConfigurationSets = parametersVirtualMachineConfigurationSets.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('configuration-sets')
+  setparametersVirtualMachineConfigurationSets.command('configuration-sets')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -30393,11 +30393,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove configuration-sets
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineConfigurationSets = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineConfigurationSets = parametersVirtualMachineConfigurationSets.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('configuration-sets')
+  removeparametersVirtualMachineConfigurationSets.command('configuration-sets')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -30427,11 +30427,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add configuration-sets
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineConfigurationSets = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineConfigurationSets = parametersVirtualMachineConfigurationSets.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('configuration-sets')
+  addparametersVirtualMachineConfigurationSets.command('configuration-sets')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -30724,11 +30724,11 @@ exports.init = function (cli) {
   });
 
   //parameters set domain-join
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDomainJoin = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineDomainJoin = parametersVirtualMachineDomainJoin.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('domain-join')
+  setparametersVirtualMachineDomainJoin.command('domain-join')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -30810,11 +30810,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove domain-join
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDomainJoin = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineDomainJoin = parametersVirtualMachineDomainJoin.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('domain-join')
+  removeparametersVirtualMachineDomainJoin.command('domain-join')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -30844,11 +30844,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add domain-join
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDomainJoin = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineDomainJoin = parametersVirtualMachineDomainJoin.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('domain-join')
+  addparametersVirtualMachineDomainJoin.command('domain-join')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -30932,11 +30932,11 @@ exports.init = function (cli) {
   });
 
   //parameters set credentials
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineCredentials = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineCredentials = parametersVirtualMachineCredentials.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('credentials')
+  setparametersVirtualMachineCredentials.command('credentials')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -31007,11 +31007,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove credentials
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineCredentials = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineCredentials = parametersVirtualMachineCredentials.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('credentials')
+  removeparametersVirtualMachineCredentials.command('credentials')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -31041,11 +31041,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add credentials
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineCredentials = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineCredentials = parametersVirtualMachineCredentials.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('credentials')
+  addparametersVirtualMachineCredentials.command('credentials')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -31118,11 +31118,11 @@ exports.init = function (cli) {
   });
 
   //parameters set provisioning
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProvisioning = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineProvisioning = parametersVirtualMachineProvisioning.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('provisioning')
+  setparametersVirtualMachineProvisioning.command('provisioning')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -31171,11 +31171,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove provisioning
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProvisioning = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineProvisioning = parametersVirtualMachineProvisioning.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('provisioning')
+  removeparametersVirtualMachineProvisioning.command('provisioning')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -31205,11 +31205,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add provisioning
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProvisioning = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineProvisioning = parametersVirtualMachineProvisioning.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('provisioning')
+  addparametersVirtualMachineProvisioning.command('provisioning')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -31260,11 +31260,11 @@ exports.init = function (cli) {
   });
 
   //parameters set input-endpoints
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineInputEndpoints = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineInputEndpoints = parametersVirtualMachineInputEndpoints.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('input-endpoints')
+  setparametersVirtualMachineInputEndpoints.command('input-endpoints')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -31449,11 +31449,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove input-endpoints
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineInputEndpoints = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineInputEndpoints = parametersVirtualMachineInputEndpoints.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('input-endpoints')
+  removeparametersVirtualMachineInputEndpoints.command('input-endpoints')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -31484,11 +31484,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add input-endpoints
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineInputEndpoints = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineInputEndpoints = parametersVirtualMachineInputEndpoints.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('input-endpoints')
+  addparametersVirtualMachineInputEndpoints.command('input-endpoints')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -31671,11 +31671,11 @@ exports.init = function (cli) {
   });
 
   //parameters set endpoint-acl
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineEndpointAcl = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineEndpointAcl = parametersVirtualMachineEndpointAcl.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('endpoint-acl')
+  setparametersVirtualMachineEndpointAcl.command('endpoint-acl')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -31725,11 +31725,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove endpoint-acl
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineEndpointAcl = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineEndpointAcl = parametersVirtualMachineEndpointAcl.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('endpoint-acl')
+  removeparametersVirtualMachineEndpointAcl.command('endpoint-acl')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -31760,11 +31760,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add endpoint-acl
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineEndpointAcl = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineEndpointAcl = parametersVirtualMachineEndpointAcl.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('endpoint-acl')
+  addparametersVirtualMachineEndpointAcl.command('endpoint-acl')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -31815,11 +31815,11 @@ exports.init = function (cli) {
   });
 
   //parameters set rules
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRules = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineRules = parametersVirtualMachineRules.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('rules')
+  setparametersVirtualMachineRules.command('rules')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -31906,11 +31906,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove rules
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRules = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineRules = parametersVirtualMachineRules.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('rules')
+  removeparametersVirtualMachineRules.command('rules')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -31942,11 +31942,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add rules
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRules = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineRules = parametersVirtualMachineRules.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('rules')
+  addparametersVirtualMachineRules.command('rules')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -32030,11 +32030,11 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancer-probe
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancerProbe = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineLoadBalancerProbe = parametersVirtualMachineLoadBalancerProbe.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('load-balancer-probe')
+  setparametersVirtualMachineLoadBalancerProbe.command('load-balancer-probe')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -32128,11 +32128,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancer-probe
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancerProbe = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineLoadBalancerProbe = parametersVirtualMachineLoadBalancerProbe.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('load-balancer-probe')
+  removeparametersVirtualMachineLoadBalancerProbe.command('load-balancer-probe')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -32163,11 +32163,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancer-probe
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancerProbe = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineLoadBalancerProbe = parametersVirtualMachineLoadBalancerProbe.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('load-balancer-probe')
+  addparametersVirtualMachineLoadBalancerProbe.command('load-balancer-probe')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -32262,11 +32262,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove protocol
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProtocol = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineProtocol = parametersVirtualMachineProtocol.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('protocol')
+  removeparametersVirtualMachineProtocol.command('protocol')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -32297,11 +32297,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add protocol
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProtocol = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineProtocol = parametersVirtualMachineProtocol.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('protocol')
+  addparametersVirtualMachineProtocol.command('protocol')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -32341,11 +32341,11 @@ exports.init = function (cli) {
   });
 
   //parameters set network-interfaces
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineNetworkInterfaces = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineNetworkInterfaces = parametersVirtualMachineNetworkInterfaces.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('network-interfaces')
+  setparametersVirtualMachineNetworkInterfaces.command('network-interfaces')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -32431,11 +32431,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove network-interfaces
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineNetworkInterfaces = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineNetworkInterfaces = parametersVirtualMachineNetworkInterfaces.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('network-interfaces')
+  removeparametersVirtualMachineNetworkInterfaces.command('network-interfaces')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -32466,11 +32466,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add network-interfaces
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineNetworkInterfaces = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineNetworkInterfaces = parametersVirtualMachineNetworkInterfaces.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('network-interfaces')
+  addparametersVirtualMachineNetworkInterfaces.command('network-interfaces')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -32554,11 +32554,11 @@ exports.init = function (cli) {
   });
 
   //parameters set ip-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineIPConfigurations = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineIPConfigurations = parametersVirtualMachineIPConfigurations.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('ip-configurations')
+  setparametersVirtualMachineIPConfigurations.command('ip-configurations')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -32623,11 +32623,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove ip-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineIPConfigurations = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineIPConfigurations = parametersVirtualMachineIPConfigurations.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('ip-configurations')
+  removeparametersVirtualMachineIPConfigurations.command('ip-configurations')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -32659,11 +32659,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ip-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineIPConfigurations = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineIPConfigurations = parametersVirtualMachineIPConfigurations.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('ip-configurations')
+  addparametersVirtualMachineIPConfigurations.command('ip-configurations')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -32725,11 +32725,11 @@ exports.init = function (cli) {
   });
 
   //parameters set public-ip
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicIPs = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachinePublicIPs = parametersVirtualMachinePublicIPs.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('public-ip')
+  setparametersVirtualMachinePublicIPs.command('public-ip')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -32804,11 +32804,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove public-ip
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicIPs = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachinePublicIPs = parametersVirtualMachinePublicIPs.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('public-ip')
+  removeparametersVirtualMachinePublicIPs.command('public-ip')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -32839,11 +32839,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add public-ip
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicIPs = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachinePublicIPs = parametersVirtualMachinePublicIPs.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('public-ip')
+  addparametersVirtualMachinePublicIPs.command('public-ip')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -32916,11 +32916,11 @@ exports.init = function (cli) {
   });
 
   //parameters set ssh-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSshSettings = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineSshSettings = parametersVirtualMachineSshSettings.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('ssh-settings')
+  setparametersVirtualMachineSshSettings.command('ssh-settings')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -32980,11 +32980,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove ssh-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSshSettings = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineSshSettings = parametersVirtualMachineSshSettings.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('ssh-settings')
+  removeparametersVirtualMachineSshSettings.command('ssh-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33014,11 +33014,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ssh-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSshSettings = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineSshSettings = parametersVirtualMachineSshSettings.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('ssh-settings')
+  addparametersVirtualMachineSshSettings.command('ssh-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33080,11 +33080,11 @@ exports.init = function (cli) {
   });
 
   //parameters set key-pairs
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineKeyPairs = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineKeyPairs = parametersVirtualMachineKeyPairs.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('key-pairs')
+  setparametersVirtualMachineKeyPairs.command('key-pairs')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33148,11 +33148,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove key-pairs
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineKeyPairs = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineKeyPairs = parametersVirtualMachineKeyPairs.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('key-pairs')
+  removeparametersVirtualMachineKeyPairs.command('key-pairs')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33183,11 +33183,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add key-pairs
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineKeyPairs = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineKeyPairs = parametersVirtualMachineKeyPairs.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('key-pairs')
+  addparametersVirtualMachineKeyPairs.command('key-pairs')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33249,11 +33249,11 @@ exports.init = function (cli) {
   });
 
   //parameters set public-keys
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicKeys = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachinePublicKeys = parametersVirtualMachinePublicKeys.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('public-keys')
+  setparametersVirtualMachinePublicKeys.command('public-keys')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33317,11 +33317,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove public-keys
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicKeys = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachinePublicKeys = parametersVirtualMachinePublicKeys.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('public-keys')
+  removeparametersVirtualMachinePublicKeys.command('public-keys')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33352,11 +33352,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add public-keys
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicKeys = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachinePublicKeys = parametersVirtualMachinePublicKeys.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('public-keys')
+  addparametersVirtualMachinePublicKeys.command('public-keys')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33418,11 +33418,11 @@ exports.init = function (cli) {
   });
 
   //parameters set stored-certificate-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineStoredCertificateSettings = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineStoredCertificateSettings = parametersVirtualMachineStoredCertificateSettings.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('stored-certificate-settings')
+  setparametersVirtualMachineStoredCertificateSettings.command('stored-certificate-settings')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33486,11 +33486,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove stored-certificate-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineStoredCertificateSettings = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineStoredCertificateSettings = parametersVirtualMachineStoredCertificateSettings.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('stored-certificate-settings')
+  removeparametersVirtualMachineStoredCertificateSettings.command('stored-certificate-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33521,11 +33521,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add stored-certificate-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineStoredCertificateSettings = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineStoredCertificateSettings = parametersVirtualMachineStoredCertificateSettings.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('stored-certificate-settings')
+  addparametersVirtualMachineStoredCertificateSettings.command('stored-certificate-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33587,11 +33587,11 @@ exports.init = function (cli) {
   });
 
   //parameters set subnet-names
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSubnetNames = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineSubnetNames = parametersVirtualMachineSubnetNames.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('subnet-names')
+  setparametersVirtualMachineSubnetNames.command('subnet-names')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33633,11 +33633,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove subnet-names
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSubnetNames = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineSubnetNames = parametersVirtualMachineSubnetNames.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('subnet-names')
+  removeparametersVirtualMachineSubnetNames.command('subnet-names')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33668,11 +33668,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add subnet-names
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSubnetNames = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineSubnetNames = parametersVirtualMachineSubnetNames.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('subnet-names')
+  addparametersVirtualMachineSubnetNames.command('subnet-names')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33712,11 +33712,11 @@ exports.init = function (cli) {
   });
 
   //parameters set windows-remote-management
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineWindowsRemoteManagement = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineWindowsRemoteManagement = parametersVirtualMachineWindowsRemoteManagement.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('windows-remote-management')
+  setparametersVirtualMachineWindowsRemoteManagement.command('windows-remote-management')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33765,11 +33765,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove windows-remote-management
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineWindowsRemoteManagement = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineWindowsRemoteManagement = parametersVirtualMachineWindowsRemoteManagement.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('windows-remote-management')
+  removeparametersVirtualMachineWindowsRemoteManagement.command('windows-remote-management')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33799,11 +33799,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add windows-remote-management
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineWindowsRemoteManagement = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineWindowsRemoteManagement = parametersVirtualMachineWindowsRemoteManagement.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('windows-remote-management')
+  addparametersVirtualMachineWindowsRemoteManagement.command('windows-remote-management')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33854,11 +33854,11 @@ exports.init = function (cli) {
   });
 
   //parameters set listeners
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListeners = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineListeners = parametersVirtualMachineListeners.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('listeners')
+  setparametersVirtualMachineListeners.command('listeners')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33922,11 +33922,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove listeners
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListeners = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineListeners = parametersVirtualMachineListeners.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('listeners')
+  removeparametersVirtualMachineListeners.command('listeners')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -33957,11 +33957,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add listeners
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListeners = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineListeners = parametersVirtualMachineListeners.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('listeners')
+  addparametersVirtualMachineListeners.command('listeners')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -34023,11 +34023,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove listener-type
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListenerType = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineListenerType = parametersVirtualMachineListenerType.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('listener-type')
+  removeparametersVirtualMachineListenerType.command('listener-type')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -34058,11 +34058,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add listener-type
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListenerType = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineListenerType = parametersVirtualMachineListenerType.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('listener-type')
+  addparametersVirtualMachineListenerType.command('listener-type')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -34102,11 +34102,11 @@ exports.init = function (cli) {
   });
 
   //parameters set data-virtual-hard-disks
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDataVirtualHardDisks = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineDataVirtualHardDisks = parametersVirtualMachineDataVirtualHardDisks.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('data-virtual-hard-disks')
+  setparametersVirtualMachineDataVirtualHardDisks.command('data-virtual-hard-disks')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -34235,11 +34235,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove data-virtual-hard-disks
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDataVirtualHardDisks = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineDataVirtualHardDisks = parametersVirtualMachineDataVirtualHardDisks.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('data-virtual-hard-disks')
+  removeparametersVirtualMachineDataVirtualHardDisks.command('data-virtual-hard-disks')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -34269,11 +34269,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add data-virtual-hard-disks
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDataVirtualHardDisks = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineDataVirtualHardDisks = parametersVirtualMachineDataVirtualHardDisks.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('data-virtual-hard-disks')
+  addparametersVirtualMachineDataVirtualHardDisks.command('data-virtual-hard-disks')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -34401,11 +34401,11 @@ exports.init = function (cli) {
   });
 
   //parameters set os-virtual-hard-disk
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineOSVirtualHardDisk = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineOSVirtualHardDisk = parametersVirtualMachineOSVirtualHardDisk.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('os-virtual-hard-disk')
+  setparametersVirtualMachineOSVirtualHardDisk.command('os-virtual-hard-disk')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -34541,11 +34541,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove os-virtual-hard-disk
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineOSVirtualHardDisk = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineOSVirtualHardDisk = parametersVirtualMachineOSVirtualHardDisk.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('os-virtual-hard-disk')
+  removeparametersVirtualMachineOSVirtualHardDisk.command('os-virtual-hard-disk')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -34574,11 +34574,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add os-virtual-hard-disk
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineOSVirtualHardDisk = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineOSVirtualHardDisk = parametersVirtualMachineOSVirtualHardDisk.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('os-virtual-hard-disk')
+  addparametersVirtualMachineOSVirtualHardDisk.command('os-virtual-hard-disk')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -34717,11 +34717,11 @@ exports.init = function (cli) {
   });
 
   //parameters set resource-extension-references
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionReferences = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineResourceExtensionReferences = parametersVirtualMachineResourceExtensionReferences.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('resource-extension-references')
+  setparametersVirtualMachineResourceExtensionReferences.command('resource-extension-references')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -34839,11 +34839,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove resource-extension-references
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionReferences = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineResourceExtensionReferences = parametersVirtualMachineResourceExtensionReferences.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('resource-extension-references')
+  removeparametersVirtualMachineResourceExtensionReferences.command('resource-extension-references')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -34873,11 +34873,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add resource-extension-references
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionReferences = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineResourceExtensionReferences = parametersVirtualMachineResourceExtensionReferences.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('resource-extension-references')
+  addparametersVirtualMachineResourceExtensionReferences.command('resource-extension-references')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -34994,11 +34994,11 @@ exports.init = function (cli) {
   });
 
   //parameters set resource-extension-parameter-values
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionParameterValues = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineResourceExtensionParameterValues = parametersVirtualMachineResourceExtensionParameterValues.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('resource-extension-parameter-values')
+  setparametersVirtualMachineResourceExtensionParameterValues.command('resource-extension-parameter-values')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -35073,11 +35073,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove resource-extension-parameter-values
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionParameterValues = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineResourceExtensionParameterValues = parametersVirtualMachineResourceExtensionParameterValues.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('resource-extension-parameter-values')
+  removeparametersVirtualMachineResourceExtensionParameterValues.command('resource-extension-parameter-values')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -35108,11 +35108,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add resource-extension-parameter-values
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionParameterValues = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineResourceExtensionParameterValues = parametersVirtualMachineResourceExtensionParameterValues.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('resource-extension-parameter-values')
+  addparametersVirtualMachineResourceExtensionParameterValues.command('resource-extension-parameter-values')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -35185,11 +35185,11 @@ exports.init = function (cli) {
   });
 
   //parameters set vm-image-input
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVMImageInput = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVMImageInput = parametersVirtualMachineVMImageInput.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('vm-image-input')
+  setparametersVirtualMachineVMImageInput.command('vm-image-input')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -35248,11 +35248,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove vm-image-input
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVMImageInput = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVMImageInput = parametersVirtualMachineVMImageInput.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('vm-image-input')
+  removeparametersVirtualMachineVMImageInput.command('vm-image-input')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -35281,11 +35281,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add vm-image-input
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVMImageInput = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVMImageInput = parametersVirtualMachineVMImageInput.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('vm-image-input')
+  addparametersVirtualMachineVMImageInput.command('vm-image-input')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -35347,11 +35347,11 @@ exports.init = function (cli) {
   });
 
   //parameters set data-disk-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDataDiskConfigurations = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineDataDiskConfigurations = parametersVirtualMachineDataDiskConfigurations.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('data-disk-configurations')
+  setparametersVirtualMachineDataDiskConfigurations.command('data-disk-configurations')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -35414,11 +35414,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove data-disk-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDataDiskConfigurations = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineDataDiskConfigurations = parametersVirtualMachineDataDiskConfigurations.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('data-disk-configurations')
+  removeparametersVirtualMachineDataDiskConfigurations.command('data-disk-configurations')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -35448,11 +35448,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add data-disk-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDataDiskConfigurations = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineDataDiskConfigurations = parametersVirtualMachineDataDiskConfigurations.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('data-disk-configurations')
+  addparametersVirtualMachineDataDiskConfigurations.command('data-disk-configurations')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -35514,11 +35514,11 @@ exports.init = function (cli) {
   });
 
   //parameters set os-disk-configuration
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineOSDiskConfiguration = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineOSDiskConfiguration = parametersVirtualMachineOSDiskConfiguration.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('os-disk-configuration')
+  setparametersVirtualMachineOSDiskConfiguration.command('os-disk-configuration')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -35566,11 +35566,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove os-disk-configuration
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineOSDiskConfiguration = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineOSDiskConfiguration = parametersVirtualMachineOSDiskConfiguration.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('os-disk-configuration')
+  removeparametersVirtualMachineOSDiskConfiguration.command('os-disk-configuration')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -35599,11 +35599,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add os-disk-configuration
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineOSDiskConfiguration = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineOSDiskConfiguration = parametersVirtualMachineOSDiskConfiguration.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('os-disk-configuration')
+  addparametersVirtualMachineOSDiskConfiguration.command('os-disk-configuration')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -35766,11 +35766,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachines.shutdown(options.serviceName, options.deploymentName, options.virtualMachineName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachine.category('parameters')
+  var virtualMachineshutdownParameters3 = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual machine.'));
-  var generate = parameters.category('generate')
+  var virtualMachineshutdownGenerate3 = virtualMachineshutdownParameters3.category('generate')
   .description($('Commands to generate parameter file for your virtual machine.'));
-  generate.command('shutdown')
+  virtualMachineshutdownGenerate3.command('shutdown')
   .description($('Generate virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -35786,7 +35786,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachineshutdownParameters3.command('patch')
   .description($('Command to patch virtualMachine parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -35832,11 +35832,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-shutdown-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineShutdownParameters = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVirtualMachineShutdownParameters = parametersVirtualMachineVirtualMachineShutdownParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('virtual-machine-shutdown-parameters')
+  setparametersVirtualMachineVirtualMachineShutdownParameters.command('virtual-machine-shutdown-parameters')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -35883,11 +35883,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-shutdown-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineShutdownParameters = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVirtualMachineShutdownParameters = parametersVirtualMachineVirtualMachineShutdownParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('virtual-machine-shutdown-parameters')
+  removeparametersVirtualMachineVirtualMachineShutdownParameters.command('virtual-machine-shutdown-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -35915,11 +35915,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-shutdown-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineShutdownParameters = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVirtualMachineShutdownParameters = parametersVirtualMachineVirtualMachineShutdownParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('virtual-machine-shutdown-parameters')
+  addparametersVirtualMachineVirtualMachineShutdownParameters.command('virtual-machine-shutdown-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -35970,11 +35970,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove post-shutdown-action
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePostShutdownAction = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachinePostShutdownAction = parametersVirtualMachinePostShutdownAction.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('post-shutdown-action')
+  removeparametersVirtualMachinePostShutdownAction.command('post-shutdown-action')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36002,11 +36002,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add post-shutdown-action
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePostShutdownAction = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachinePostShutdownAction = parametersVirtualMachinePostShutdownAction.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('post-shutdown-action')
+  addparametersVirtualMachinePostShutdownAction.command('post-shutdown-action')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36078,11 +36078,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachines.shutdownRoles(options.serviceName, options.deploymentName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachine.category('parameters')
+  var virtualMachineshutdownRolesParameters2 = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual machine.'));
-  var generate = parameters.category('generate')
+  var virtualMachineshutdownRolesGenerate2 = virtualMachineshutdownRolesParameters2.category('generate')
   .description($('Commands to generate parameter file for your virtual machine.'));
-  generate.command('shutdown-roles')
+  virtualMachineshutdownRolesGenerate2.command('shutdown-roles')
   .description($('Generate virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36098,7 +36098,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachineshutdownRolesParameters2.command('patch')
   .description($('Command to patch virtualMachine parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36144,11 +36144,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-shutdown-roles-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineShutdownRolesParameters = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVirtualMachineShutdownRolesParameters = parametersVirtualMachineVirtualMachineShutdownRolesParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('virtual-machine-shutdown-roles-parameters')
+  setparametersVirtualMachineVirtualMachineShutdownRolesParameters.command('virtual-machine-shutdown-roles-parameters')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36206,11 +36206,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-shutdown-roles-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineShutdownRolesParameters = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVirtualMachineShutdownRolesParameters = parametersVirtualMachineVirtualMachineShutdownRolesParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('virtual-machine-shutdown-roles-parameters')
+  removeparametersVirtualMachineVirtualMachineShutdownRolesParameters.command('virtual-machine-shutdown-roles-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36238,11 +36238,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-shutdown-roles-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineShutdownRolesParameters = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVirtualMachineShutdownRolesParameters = parametersVirtualMachineVirtualMachineShutdownRolesParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('virtual-machine-shutdown-roles-parameters')
+  addparametersVirtualMachineVirtualMachineShutdownRolesParameters.command('virtual-machine-shutdown-roles-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36304,11 +36304,11 @@ exports.init = function (cli) {
   });
 
   //parameters set roles
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRoles = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineRoles = parametersVirtualMachineRoles.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('roles')
+  setparametersVirtualMachineRoles.command('roles')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36348,11 +36348,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove roles
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRoles = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineRoles = parametersVirtualMachineRoles.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('roles')
+  removeparametersVirtualMachineRoles.command('roles')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36381,11 +36381,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add roles
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRoles = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineRoles = parametersVirtualMachineRoles.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('roles')
+  addparametersVirtualMachineRoles.command('roles')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36476,11 +36476,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachines.startRoles(options.serviceName, options.deploymentName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachine.category('parameters')
+  var virtualMachinestartRolesParameters2 = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual machine.'));
-  var generate = parameters.category('generate')
+  var virtualMachinestartRolesGenerate2 = virtualMachinestartRolesParameters2.category('generate')
   .description($('Commands to generate parameter file for your virtual machine.'));
-  generate.command('start-roles')
+  virtualMachinestartRolesGenerate2.command('start-roles')
   .description($('Generate virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36496,7 +36496,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachinestartRolesParameters2.command('patch')
   .description($('Command to patch virtualMachine parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36542,11 +36542,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-start-roles-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineStartRolesParameters = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVirtualMachineStartRolesParameters = parametersVirtualMachineVirtualMachineStartRolesParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('virtual-machine-start-roles-parameters')
+  setparametersVirtualMachineVirtualMachineStartRolesParameters.command('virtual-machine-start-roles-parameters')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36593,11 +36593,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-start-roles-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineStartRolesParameters = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVirtualMachineStartRolesParameters = parametersVirtualMachineVirtualMachineStartRolesParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('virtual-machine-start-roles-parameters')
+  removeparametersVirtualMachineVirtualMachineStartRolesParameters.command('virtual-machine-start-roles-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36625,11 +36625,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-start-roles-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineStartRolesParameters = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVirtualMachineStartRolesParameters = parametersVirtualMachineVirtualMachineStartRolesParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('virtual-machine-start-roles-parameters')
+  addparametersVirtualMachineVirtualMachineStartRolesParameters.command('virtual-machine-start-roles-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36680,11 +36680,11 @@ exports.init = function (cli) {
   });
 
   //parameters set roles
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRoles = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineRoles = parametersVirtualMachineRoles.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('roles')
+  setparametersVirtualMachineRoles.command('roles')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36724,11 +36724,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove roles
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRoles = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineRoles = parametersVirtualMachineRoles.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('roles')
+  removeparametersVirtualMachineRoles.command('roles')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36757,11 +36757,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add roles
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRoles = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineRoles = parametersVirtualMachineRoles.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('roles')
+  addparametersVirtualMachineRoles.command('roles')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36835,11 +36835,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachines.update(options.serviceName, options.deploymentName, options.virtualMachineName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachine.category('parameters')
+  var virtualMachineupdateParameters3 = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual machine.'));
-  var generate = parameters.category('generate')
+  var virtualMachineupdateGenerate3 = virtualMachineupdateParameters3.category('generate')
   .description($('Commands to generate parameter file for your virtual machine.'));
-  generate.command('update')
+  virtualMachineupdateGenerate3.command('update')
   .description($('Generate virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36855,7 +36855,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachineupdateParameters3.command('patch')
   .description($('Command to patch virtualMachine parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -36901,11 +36901,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-update-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineUpdateParameters = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVirtualMachineUpdateParameters = parametersVirtualMachineVirtualMachineUpdateParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('virtual-machine-update-parameters')
+  setparametersVirtualMachineVirtualMachineUpdateParameters.command('virtual-machine-update-parameters')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -37040,11 +37040,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-update-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineUpdateParameters = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVirtualMachineUpdateParameters = parametersVirtualMachineVirtualMachineUpdateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('virtual-machine-update-parameters')
+  removeparametersVirtualMachineVirtualMachineUpdateParameters.command('virtual-machine-update-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -37072,11 +37072,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-update-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineUpdateParameters = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVirtualMachineUpdateParameters = parametersVirtualMachineVirtualMachineUpdateParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('virtual-machine-update-parameters')
+  addparametersVirtualMachineVirtualMachineUpdateParameters.command('virtual-machine-update-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -37215,11 +37215,11 @@ exports.init = function (cli) {
   });
 
   //parameters set configuration-sets
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineConfigurationSets = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineConfigurationSets = parametersVirtualMachineConfigurationSets.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('configuration-sets')
+  setparametersVirtualMachineConfigurationSets.command('configuration-sets')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -37512,11 +37512,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove configuration-sets
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineConfigurationSets = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineConfigurationSets = parametersVirtualMachineConfigurationSets.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('configuration-sets')
+  removeparametersVirtualMachineConfigurationSets.command('configuration-sets')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -37545,11 +37545,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add configuration-sets
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineConfigurationSets = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineConfigurationSets = parametersVirtualMachineConfigurationSets.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('configuration-sets')
+  addparametersVirtualMachineConfigurationSets.command('configuration-sets')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -37842,11 +37842,11 @@ exports.init = function (cli) {
   });
 
   //parameters set domain-join
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDomainJoin = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineDomainJoin = parametersVirtualMachineDomainJoin.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('domain-join')
+  setparametersVirtualMachineDomainJoin.command('domain-join')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -37927,11 +37927,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove domain-join
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDomainJoin = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineDomainJoin = parametersVirtualMachineDomainJoin.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('domain-join')
+  removeparametersVirtualMachineDomainJoin.command('domain-join')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -37960,11 +37960,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add domain-join
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDomainJoin = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineDomainJoin = parametersVirtualMachineDomainJoin.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('domain-join')
+  addparametersVirtualMachineDomainJoin.command('domain-join')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -38048,11 +38048,11 @@ exports.init = function (cli) {
   });
 
   //parameters set credentials
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineCredentials = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineCredentials = parametersVirtualMachineCredentials.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('credentials')
+  setparametersVirtualMachineCredentials.command('credentials')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -38122,11 +38122,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove credentials
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineCredentials = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineCredentials = parametersVirtualMachineCredentials.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('credentials')
+  removeparametersVirtualMachineCredentials.command('credentials')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -38155,11 +38155,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add credentials
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineCredentials = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineCredentials = parametersVirtualMachineCredentials.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('credentials')
+  addparametersVirtualMachineCredentials.command('credentials')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -38232,11 +38232,11 @@ exports.init = function (cli) {
   });
 
   //parameters set provisioning
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProvisioning = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineProvisioning = parametersVirtualMachineProvisioning.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('provisioning')
+  setparametersVirtualMachineProvisioning.command('provisioning')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -38284,11 +38284,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove provisioning
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProvisioning = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineProvisioning = parametersVirtualMachineProvisioning.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('provisioning')
+  removeparametersVirtualMachineProvisioning.command('provisioning')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -38317,11 +38317,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add provisioning
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProvisioning = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineProvisioning = parametersVirtualMachineProvisioning.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('provisioning')
+  addparametersVirtualMachineProvisioning.command('provisioning')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -38372,11 +38372,11 @@ exports.init = function (cli) {
   });
 
   //parameters set input-endpoints
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineInputEndpoints = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineInputEndpoints = parametersVirtualMachineInputEndpoints.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('input-endpoints')
+  setparametersVirtualMachineInputEndpoints.command('input-endpoints')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -38560,11 +38560,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove input-endpoints
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineInputEndpoints = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineInputEndpoints = parametersVirtualMachineInputEndpoints.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('input-endpoints')
+  removeparametersVirtualMachineInputEndpoints.command('input-endpoints')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -38594,11 +38594,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add input-endpoints
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineInputEndpoints = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineInputEndpoints = parametersVirtualMachineInputEndpoints.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('input-endpoints')
+  addparametersVirtualMachineInputEndpoints.command('input-endpoints')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -38781,11 +38781,11 @@ exports.init = function (cli) {
   });
 
   //parameters set endpoint-acl
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineEndpointAcl = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineEndpointAcl = parametersVirtualMachineEndpointAcl.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('endpoint-acl')
+  setparametersVirtualMachineEndpointAcl.command('endpoint-acl')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -38834,11 +38834,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove endpoint-acl
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineEndpointAcl = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineEndpointAcl = parametersVirtualMachineEndpointAcl.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('endpoint-acl')
+  removeparametersVirtualMachineEndpointAcl.command('endpoint-acl')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -38868,11 +38868,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add endpoint-acl
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineEndpointAcl = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineEndpointAcl = parametersVirtualMachineEndpointAcl.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('endpoint-acl')
+  addparametersVirtualMachineEndpointAcl.command('endpoint-acl')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -38923,11 +38923,11 @@ exports.init = function (cli) {
   });
 
   //parameters set rules
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRules = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineRules = parametersVirtualMachineRules.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('rules')
+  setparametersVirtualMachineRules.command('rules')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -39013,11 +39013,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove rules
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRules = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineRules = parametersVirtualMachineRules.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('rules')
+  removeparametersVirtualMachineRules.command('rules')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -39048,11 +39048,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add rules
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRules = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineRules = parametersVirtualMachineRules.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('rules')
+  addparametersVirtualMachineRules.command('rules')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -39136,11 +39136,11 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancer-probe
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancerProbe = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineLoadBalancerProbe = parametersVirtualMachineLoadBalancerProbe.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('load-balancer-probe')
+  setparametersVirtualMachineLoadBalancerProbe.command('load-balancer-probe')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -39233,11 +39233,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancer-probe
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancerProbe = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineLoadBalancerProbe = parametersVirtualMachineLoadBalancerProbe.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('load-balancer-probe')
+  removeparametersVirtualMachineLoadBalancerProbe.command('load-balancer-probe')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -39267,11 +39267,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancer-probe
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancerProbe = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineLoadBalancerProbe = parametersVirtualMachineLoadBalancerProbe.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('load-balancer-probe')
+  addparametersVirtualMachineLoadBalancerProbe.command('load-balancer-probe')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -39366,11 +39366,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove protocol
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProtocol = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineProtocol = parametersVirtualMachineProtocol.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('protocol')
+  removeparametersVirtualMachineProtocol.command('protocol')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -39400,11 +39400,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add protocol
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProtocol = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineProtocol = parametersVirtualMachineProtocol.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('protocol')
+  addparametersVirtualMachineProtocol.command('protocol')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -39444,11 +39444,11 @@ exports.init = function (cli) {
   });
 
   //parameters set network-interfaces
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineNetworkInterfaces = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineNetworkInterfaces = parametersVirtualMachineNetworkInterfaces.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('network-interfaces')
+  setparametersVirtualMachineNetworkInterfaces.command('network-interfaces')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -39533,11 +39533,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove network-interfaces
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineNetworkInterfaces = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineNetworkInterfaces = parametersVirtualMachineNetworkInterfaces.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('network-interfaces')
+  removeparametersVirtualMachineNetworkInterfaces.command('network-interfaces')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -39567,11 +39567,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add network-interfaces
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineNetworkInterfaces = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineNetworkInterfaces = parametersVirtualMachineNetworkInterfaces.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('network-interfaces')
+  addparametersVirtualMachineNetworkInterfaces.command('network-interfaces')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -39655,11 +39655,11 @@ exports.init = function (cli) {
   });
 
   //parameters set ip-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineIPConfigurations = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineIPConfigurations = parametersVirtualMachineIPConfigurations.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('ip-configurations')
+  setparametersVirtualMachineIPConfigurations.command('ip-configurations')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -39723,11 +39723,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove ip-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineIPConfigurations = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineIPConfigurations = parametersVirtualMachineIPConfigurations.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('ip-configurations')
+  removeparametersVirtualMachineIPConfigurations.command('ip-configurations')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -39758,11 +39758,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ip-configurations
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineIPConfigurations = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineIPConfigurations = parametersVirtualMachineIPConfigurations.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('ip-configurations')
+  addparametersVirtualMachineIPConfigurations.command('ip-configurations')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -39824,11 +39824,11 @@ exports.init = function (cli) {
   });
 
   //parameters set public-ip
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicIPs = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachinePublicIPs = parametersVirtualMachinePublicIPs.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('public-ip')
+  setparametersVirtualMachinePublicIPs.command('public-ip')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -39902,11 +39902,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove public-ip
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicIPs = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachinePublicIPs = parametersVirtualMachinePublicIPs.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('public-ip')
+  removeparametersVirtualMachinePublicIPs.command('public-ip')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -39936,11 +39936,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add public-ip
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicIPs = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachinePublicIPs = parametersVirtualMachinePublicIPs.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('public-ip')
+  addparametersVirtualMachinePublicIPs.command('public-ip')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40013,11 +40013,11 @@ exports.init = function (cli) {
   });
 
   //parameters set ssh-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSshSettings = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineSshSettings = parametersVirtualMachineSshSettings.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('ssh-settings')
+  setparametersVirtualMachineSshSettings.command('ssh-settings')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40076,11 +40076,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove ssh-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSshSettings = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineSshSettings = parametersVirtualMachineSshSettings.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('ssh-settings')
+  removeparametersVirtualMachineSshSettings.command('ssh-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40109,11 +40109,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ssh-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSshSettings = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineSshSettings = parametersVirtualMachineSshSettings.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('ssh-settings')
+  addparametersVirtualMachineSshSettings.command('ssh-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40175,11 +40175,11 @@ exports.init = function (cli) {
   });
 
   //parameters set key-pairs
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineKeyPairs = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineKeyPairs = parametersVirtualMachineKeyPairs.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('key-pairs')
+  setparametersVirtualMachineKeyPairs.command('key-pairs')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40242,11 +40242,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove key-pairs
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineKeyPairs = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineKeyPairs = parametersVirtualMachineKeyPairs.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('key-pairs')
+  removeparametersVirtualMachineKeyPairs.command('key-pairs')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40276,11 +40276,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add key-pairs
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineKeyPairs = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineKeyPairs = parametersVirtualMachineKeyPairs.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('key-pairs')
+  addparametersVirtualMachineKeyPairs.command('key-pairs')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40342,11 +40342,11 @@ exports.init = function (cli) {
   });
 
   //parameters set public-keys
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicKeys = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachinePublicKeys = parametersVirtualMachinePublicKeys.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('public-keys')
+  setparametersVirtualMachinePublicKeys.command('public-keys')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40409,11 +40409,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove public-keys
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicKeys = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachinePublicKeys = parametersVirtualMachinePublicKeys.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('public-keys')
+  removeparametersVirtualMachinePublicKeys.command('public-keys')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40443,11 +40443,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add public-keys
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachinePublicKeys = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachinePublicKeys = parametersVirtualMachinePublicKeys.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('public-keys')
+  addparametersVirtualMachinePublicKeys.command('public-keys')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40509,11 +40509,11 @@ exports.init = function (cli) {
   });
 
   //parameters set stored-certificate-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineStoredCertificateSettings = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineStoredCertificateSettings = parametersVirtualMachineStoredCertificateSettings.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('stored-certificate-settings')
+  setparametersVirtualMachineStoredCertificateSettings.command('stored-certificate-settings')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40576,11 +40576,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove stored-certificate-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineStoredCertificateSettings = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineStoredCertificateSettings = parametersVirtualMachineStoredCertificateSettings.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('stored-certificate-settings')
+  removeparametersVirtualMachineStoredCertificateSettings.command('stored-certificate-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40610,11 +40610,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add stored-certificate-settings
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineStoredCertificateSettings = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineStoredCertificateSettings = parametersVirtualMachineStoredCertificateSettings.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('stored-certificate-settings')
+  addparametersVirtualMachineStoredCertificateSettings.command('stored-certificate-settings')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40676,11 +40676,11 @@ exports.init = function (cli) {
   });
 
   //parameters set subnet-names
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSubnetNames = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineSubnetNames = parametersVirtualMachineSubnetNames.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('subnet-names')
+  setparametersVirtualMachineSubnetNames.command('subnet-names')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40721,11 +40721,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove subnet-names
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSubnetNames = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineSubnetNames = parametersVirtualMachineSubnetNames.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('subnet-names')
+  removeparametersVirtualMachineSubnetNames.command('subnet-names')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40755,11 +40755,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add subnet-names
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineSubnetNames = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineSubnetNames = parametersVirtualMachineSubnetNames.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('subnet-names')
+  addparametersVirtualMachineSubnetNames.command('subnet-names')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40799,11 +40799,11 @@ exports.init = function (cli) {
   });
 
   //parameters set windows-remote-management
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineWindowsRemoteManagement = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineWindowsRemoteManagement = parametersVirtualMachineWindowsRemoteManagement.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('windows-remote-management')
+  setparametersVirtualMachineWindowsRemoteManagement.command('windows-remote-management')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40851,11 +40851,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove windows-remote-management
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineWindowsRemoteManagement = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineWindowsRemoteManagement = parametersVirtualMachineWindowsRemoteManagement.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('windows-remote-management')
+  removeparametersVirtualMachineWindowsRemoteManagement.command('windows-remote-management')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40884,11 +40884,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add windows-remote-management
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineWindowsRemoteManagement = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineWindowsRemoteManagement = parametersVirtualMachineWindowsRemoteManagement.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('windows-remote-management')
+  addparametersVirtualMachineWindowsRemoteManagement.command('windows-remote-management')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -40939,11 +40939,11 @@ exports.init = function (cli) {
   });
 
   //parameters set listeners
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListeners = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineListeners = parametersVirtualMachineListeners.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('listeners')
+  setparametersVirtualMachineListeners.command('listeners')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -41006,11 +41006,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove listeners
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListeners = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineListeners = parametersVirtualMachineListeners.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('listeners')
+  removeparametersVirtualMachineListeners.command('listeners')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -41040,11 +41040,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add listeners
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListeners = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineListeners = parametersVirtualMachineListeners.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('listeners')
+  addparametersVirtualMachineListeners.command('listeners')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -41106,11 +41106,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove listener-type
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListenerType = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineListenerType = parametersVirtualMachineListenerType.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('listener-type')
+  removeparametersVirtualMachineListenerType.command('listener-type')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -41140,11 +41140,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add listener-type
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineListenerType = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineListenerType = parametersVirtualMachineListenerType.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('listener-type')
+  addparametersVirtualMachineListenerType.command('listener-type')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -41184,11 +41184,11 @@ exports.init = function (cli) {
   });
 
   //parameters set data-virtual-hard-disks
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDataVirtualHardDisks = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineDataVirtualHardDisks = parametersVirtualMachineDataVirtualHardDisks.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('data-virtual-hard-disks')
+  setparametersVirtualMachineDataVirtualHardDisks.command('data-virtual-hard-disks')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -41316,11 +41316,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove data-virtual-hard-disks
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDataVirtualHardDisks = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineDataVirtualHardDisks = parametersVirtualMachineDataVirtualHardDisks.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('data-virtual-hard-disks')
+  removeparametersVirtualMachineDataVirtualHardDisks.command('data-virtual-hard-disks')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -41349,11 +41349,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add data-virtual-hard-disks
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineDataVirtualHardDisks = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineDataVirtualHardDisks = parametersVirtualMachineDataVirtualHardDisks.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('data-virtual-hard-disks')
+  addparametersVirtualMachineDataVirtualHardDisks.command('data-virtual-hard-disks')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -41481,11 +41481,11 @@ exports.init = function (cli) {
   });
 
   //parameters set os-virtual-hard-disk
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineOSVirtualHardDisk = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineOSVirtualHardDisk = parametersVirtualMachineOSVirtualHardDisk.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('os-virtual-hard-disk')
+  setparametersVirtualMachineOSVirtualHardDisk.command('os-virtual-hard-disk')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -41620,11 +41620,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove os-virtual-hard-disk
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineOSVirtualHardDisk = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineOSVirtualHardDisk = parametersVirtualMachineOSVirtualHardDisk.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('os-virtual-hard-disk')
+  removeparametersVirtualMachineOSVirtualHardDisk.command('os-virtual-hard-disk')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -41652,11 +41652,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add os-virtual-hard-disk
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineOSVirtualHardDisk = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineOSVirtualHardDisk = parametersVirtualMachineOSVirtualHardDisk.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('os-virtual-hard-disk')
+  addparametersVirtualMachineOSVirtualHardDisk.command('os-virtual-hard-disk')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -41795,11 +41795,11 @@ exports.init = function (cli) {
   });
 
   //parameters set resource-extension-references
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionReferences = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineResourceExtensionReferences = parametersVirtualMachineResourceExtensionReferences.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('resource-extension-references')
+  setparametersVirtualMachineResourceExtensionReferences.command('resource-extension-references')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -41916,11 +41916,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove resource-extension-references
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionReferences = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineResourceExtensionReferences = parametersVirtualMachineResourceExtensionReferences.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('resource-extension-references')
+  removeparametersVirtualMachineResourceExtensionReferences.command('resource-extension-references')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -41949,11 +41949,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add resource-extension-references
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionReferences = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineResourceExtensionReferences = parametersVirtualMachineResourceExtensionReferences.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('resource-extension-references')
+  addparametersVirtualMachineResourceExtensionReferences.command('resource-extension-references')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -42070,11 +42070,11 @@ exports.init = function (cli) {
   });
 
   //parameters set resource-extension-parameter-values
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionParameterValues = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineResourceExtensionParameterValues = parametersVirtualMachineResourceExtensionParameterValues.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('resource-extension-parameter-values')
+  setparametersVirtualMachineResourceExtensionParameterValues.command('resource-extension-parameter-values')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -42148,11 +42148,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove resource-extension-parameter-values
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionParameterValues = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineResourceExtensionParameterValues = parametersVirtualMachineResourceExtensionParameterValues.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('resource-extension-parameter-values')
+  removeparametersVirtualMachineResourceExtensionParameterValues.command('resource-extension-parameter-values')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -42182,11 +42182,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add resource-extension-parameter-values
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineResourceExtensionParameterValues = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineResourceExtensionParameterValues = parametersVirtualMachineResourceExtensionParameterValues.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('resource-extension-parameter-values')
+  addparametersVirtualMachineResourceExtensionParameterValues.command('resource-extension-parameter-values')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -42291,11 +42291,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachines.updateLoadBalancedEndpointSet(options.serviceName, options.deploymentName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachine.category('parameters')
+  var virtualMachineupdateLoadBalancedEndpointSetParameters2 = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual machine.'));
-  var generate = parameters.category('generate')
+  var virtualMachineupdateLoadBalancedEndpointSetGenerate2 = virtualMachineupdateLoadBalancedEndpointSetParameters2.category('generate')
   .description($('Commands to generate parameter file for your virtual machine.'));
-  generate.command('update-load-balanced-endpoint-set')
+  virtualMachineupdateLoadBalancedEndpointSetGenerate2.command('update-load-balanced-endpoint-set')
   .description($('Generate virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -42311,7 +42311,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachineupdateLoadBalancedEndpointSetParameters2.command('patch')
   .description($('Command to patch virtualMachine parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -42357,11 +42357,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-update-load-balanced-set-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters = parametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('virtual-machine-update-load-balanced-set-parameters')
+  setparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters.command('virtual-machine-update-load-balanced-set-parameters')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -42408,11 +42408,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-update-load-balanced-set-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters = parametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('virtual-machine-update-load-balanced-set-parameters')
+  removeparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters.command('virtual-machine-update-load-balanced-set-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -42440,11 +42440,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-update-load-balanced-set-parameters
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters = parametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('virtual-machine-update-load-balanced-set-parameters')
+  addparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters.command('virtual-machine-update-load-balanced-set-parameters')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -42495,11 +42495,11 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balanced-endpoints
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancedEndpoints = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineLoadBalancedEndpoints = parametersVirtualMachineLoadBalancedEndpoints.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('load-balanced-endpoints')
+  setparametersVirtualMachineLoadBalancedEndpoints.command('load-balanced-endpoints')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -42682,11 +42682,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balanced-endpoints
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancedEndpoints = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineLoadBalancedEndpoints = parametersVirtualMachineLoadBalancedEndpoints.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('load-balanced-endpoints')
+  removeparametersVirtualMachineLoadBalancedEndpoints.command('load-balanced-endpoints')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -42715,11 +42715,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balanced-endpoints
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancedEndpoints = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineLoadBalancedEndpoints = parametersVirtualMachineLoadBalancedEndpoints.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('load-balanced-endpoints')
+  addparametersVirtualMachineLoadBalancedEndpoints.command('load-balanced-endpoints')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -42902,11 +42902,11 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancer-probe
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancerProbe = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineLoadBalancerProbe = parametersVirtualMachineLoadBalancerProbe.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('load-balancer-probe')
+  setparametersVirtualMachineLoadBalancerProbe.command('load-balancer-probe')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -42998,11 +42998,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancer-probe
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancerProbe = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineLoadBalancerProbe = parametersVirtualMachineLoadBalancerProbe.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('load-balancer-probe')
+  removeparametersVirtualMachineLoadBalancerProbe.command('load-balancer-probe')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -43031,11 +43031,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancer-probe
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineLoadBalancerProbe = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineLoadBalancerProbe = parametersVirtualMachineLoadBalancerProbe.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('load-balancer-probe')
+  addparametersVirtualMachineLoadBalancerProbe.command('load-balancer-probe')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -43130,11 +43130,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove protocol
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProtocol = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineProtocol = parametersVirtualMachineProtocol.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('protocol')
+  removeparametersVirtualMachineProtocol.command('protocol')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -43163,11 +43163,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add protocol
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineProtocol = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineProtocol = parametersVirtualMachineProtocol.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('protocol')
+  addparametersVirtualMachineProtocol.command('protocol')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -43207,11 +43207,11 @@ exports.init = function (cli) {
   });
 
   //parameters set rules
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRules = virtualMachine.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineRules = parametersVirtualMachineRules.category('set')
   .description($('Commands to set parameter file for your virtual-machine.'));
-  set.command('rules')
+  setparametersVirtualMachineRules.command('rules')
   .description($('Set virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -43296,11 +43296,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove rules
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRules = virtualMachine.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineRules = parametersVirtualMachineRules.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine.'));
-  remove.command('rules')
+  removeparametersVirtualMachineRules.command('rules')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -43330,11 +43330,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add rules
-  var parameters = virtualMachine.category('parameters')
+  var parametersVirtualMachineRules = virtualMachine.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineRules = parametersVirtualMachineRules.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine.'));
-  add.command('rules')
+  addparametersVirtualMachineRules.command('rules')
   .description($('Remove virtualMachine parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -43446,11 +43446,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineOSImages.create(parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachineOSImage.category('parameters')
+  var virtualMachineOSImagecreateParameters0 = virtualMachineOSImage.category('parameters')
   .description($('Commands to manage parameter for your virtual machine os image.'));
-  var generate = parameters.category('generate')
+  var virtualMachineOSImagecreateGenerate0 = virtualMachineOSImagecreateParameters0.category('generate')
   .description($('Commands to generate parameter file for your virtual machine os image.'));
-  generate.command('create')
+  virtualMachineOSImagecreateGenerate0.command('create')
   .description($('Generate virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -43466,7 +43466,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachineOSImagecreateParameters0.command('patch')
   .description($('Command to patch virtualMachineOSImage parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -43512,11 +43512,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-os-image-create-parameters
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters = virtualMachineOSImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-os-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters = parametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine-os-image.'));
-  set.command('virtual-machine-os-image-create-parameters')
+  setparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters.command('virtual-machine-os-image-create-parameters')
   .description($('Set virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -43717,11 +43717,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-os-image-create-parameters
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters = virtualMachineOSImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-os-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters = parametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-os-image.'));
-  remove.command('virtual-machine-os-image-create-parameters')
+  removeparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters.command('virtual-machine-os-image-create-parameters')
   .description($('Remove virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -43749,11 +43749,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-os-image-create-parameters
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters = virtualMachineOSImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-os-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters = parametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-os-image.'));
-  add.command('virtual-machine-os-image-create-parameters')
+  addparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters.command('virtual-machine-os-image-create-parameters')
   .description($('Remove virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -44048,11 +44048,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineOSImages.replicate(options.imageName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachineOSImage.category('parameters')
+  var virtualMachineOSImagereplicateParameters1 = virtualMachineOSImage.category('parameters')
   .description($('Commands to manage parameter for your virtual machine os image.'));
-  var generate = parameters.category('generate')
+  var virtualMachineOSImagereplicateGenerate1 = virtualMachineOSImagereplicateParameters1.category('generate')
   .description($('Commands to generate parameter file for your virtual machine os image.'));
-  generate.command('replicate')
+  virtualMachineOSImagereplicateGenerate1.command('replicate')
   .description($('Generate virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -44068,7 +44068,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachineOSImagereplicateParameters1.command('patch')
   .description($('Command to patch virtualMachineOSImage parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -44114,11 +44114,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-os-image-replicate-parameters
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters = virtualMachineOSImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-os-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters = parametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine-os-image.'));
-  set.command('virtual-machine-os-image-replicate-parameters')
+  setparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters.command('virtual-machine-os-image-replicate-parameters')
   .description($('Set virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -44187,11 +44187,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-os-image-replicate-parameters
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters = virtualMachineOSImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-os-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters = parametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-os-image.'));
-  remove.command('virtual-machine-os-image-replicate-parameters')
+  removeparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters.command('virtual-machine-os-image-replicate-parameters')
   .description($('Remove virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -44219,11 +44219,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-os-image-replicate-parameters
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters = virtualMachineOSImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-os-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters = parametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-os-image.'));
-  add.command('virtual-machine-os-image-replicate-parameters')
+  addparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters.command('virtual-machine-os-image-replicate-parameters')
   .description($('Remove virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -44296,11 +44296,11 @@ exports.init = function (cli) {
   });
 
   //parameters set compute-image-attributes
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageComputeImageAttributes = virtualMachineOSImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-os-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineOSImageComputeImageAttributes = parametersVirtualMachineOSImageComputeImageAttributes.category('set')
   .description($('Commands to set parameter file for your virtual-machine-os-image.'));
-  set.command('compute-image-attributes')
+  setparametersVirtualMachineOSImageComputeImageAttributes.command('compute-image-attributes')
   .description($('Set virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -44369,11 +44369,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove compute-image-attributes
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageComputeImageAttributes = virtualMachineOSImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-os-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineOSImageComputeImageAttributes = parametersVirtualMachineOSImageComputeImageAttributes.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-os-image.'));
-  remove.command('compute-image-attributes')
+  removeparametersVirtualMachineOSImageComputeImageAttributes.command('compute-image-attributes')
   .description($('Remove virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -44401,11 +44401,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add compute-image-attributes
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageComputeImageAttributes = virtualMachineOSImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-os-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineOSImageComputeImageAttributes = parametersVirtualMachineOSImageComputeImageAttributes.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-os-image.'));
-  add.command('compute-image-attributes')
+  addparametersVirtualMachineOSImageComputeImageAttributes.command('compute-image-attributes')
   .description($('Remove virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -44478,11 +44478,11 @@ exports.init = function (cli) {
   });
 
   //parameters set marketplace-image-attributes
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageMarketplaceImageAttributes = virtualMachineOSImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-os-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineOSImageMarketplaceImageAttributes = parametersVirtualMachineOSImageMarketplaceImageAttributes.category('set')
   .description($('Commands to set parameter file for your virtual-machine-os-image.'));
-  set.command('marketplace-image-attributes')
+  setparametersVirtualMachineOSImageMarketplaceImageAttributes.command('marketplace-image-attributes')
   .description($('Set virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -44540,11 +44540,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove marketplace-image-attributes
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageMarketplaceImageAttributes = virtualMachineOSImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-os-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineOSImageMarketplaceImageAttributes = parametersVirtualMachineOSImageMarketplaceImageAttributes.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-os-image.'));
-  remove.command('marketplace-image-attributes')
+  removeparametersVirtualMachineOSImageMarketplaceImageAttributes.command('marketplace-image-attributes')
   .description($('Remove virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -44572,11 +44572,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add marketplace-image-attributes
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageMarketplaceImageAttributes = virtualMachineOSImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-os-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineOSImageMarketplaceImageAttributes = parametersVirtualMachineOSImageMarketplaceImageAttributes.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-os-image.'));
-  add.command('marketplace-image-attributes')
+  addparametersVirtualMachineOSImageMarketplaceImageAttributes.command('marketplace-image-attributes')
   .description($('Remove virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -44638,11 +44638,11 @@ exports.init = function (cli) {
   });
 
   //parameters set plan
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImagePlan = virtualMachineOSImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-os-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineOSImagePlan = parametersVirtualMachineOSImagePlan.category('set')
   .description($('Commands to set parameter file for your virtual-machine-os-image.'));
-  set.command('plan')
+  setparametersVirtualMachineOSImagePlan.command('plan')
   .description($('Set virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -44711,11 +44711,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove plan
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImagePlan = virtualMachineOSImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-os-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineOSImagePlan = parametersVirtualMachineOSImagePlan.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-os-image.'));
-  remove.command('plan')
+  removeparametersVirtualMachineOSImagePlan.command('plan')
   .description($('Remove virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -44743,11 +44743,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add plan
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImagePlan = virtualMachineOSImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-os-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineOSImagePlan = parametersVirtualMachineOSImagePlan.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-os-image.'));
-  add.command('plan')
+  addparametersVirtualMachineOSImagePlan.command('plan')
   .description($('Remove virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -44820,11 +44820,11 @@ exports.init = function (cli) {
   });
 
   //parameters set target-locations
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageTargetLocations = virtualMachineOSImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-os-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineOSImageTargetLocations = parametersVirtualMachineOSImageTargetLocations.category('set')
   .description($('Commands to set parameter file for your virtual-machine-os-image.'));
-  set.command('target-locations')
+  setparametersVirtualMachineOSImageTargetLocations.command('target-locations')
   .description($('Set virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -44864,11 +44864,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove target-locations
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageTargetLocations = virtualMachineOSImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-os-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineOSImageTargetLocations = parametersVirtualMachineOSImageTargetLocations.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-os-image.'));
-  remove.command('target-locations')
+  removeparametersVirtualMachineOSImageTargetLocations.command('target-locations')
   .description($('Remove virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -44897,11 +44897,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add target-locations
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageTargetLocations = virtualMachineOSImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-os-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineOSImageTargetLocations = parametersVirtualMachineOSImageTargetLocations.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-os-image.'));
-  add.command('target-locations')
+  addparametersVirtualMachineOSImageTargetLocations.command('target-locations')
   .description($('Remove virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -45003,11 +45003,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineOSImages.update(options.imageName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachineOSImage.category('parameters')
+  var virtualMachineOSImageupdateParameters1 = virtualMachineOSImage.category('parameters')
   .description($('Commands to manage parameter for your virtual machine os image.'));
-  var generate = parameters.category('generate')
+  var virtualMachineOSImageupdateGenerate1 = virtualMachineOSImageupdateParameters1.category('generate')
   .description($('Commands to generate parameter file for your virtual machine os image.'));
-  generate.command('update')
+  virtualMachineOSImageupdateGenerate1.command('update')
   .description($('Generate virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -45023,7 +45023,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachineOSImageupdateParameters1.command('patch')
   .description($('Command to patch virtualMachineOSImage parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -45069,11 +45069,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-os-image-update-parameters
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters = virtualMachineOSImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-os-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters = parametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine-os-image.'));
-  set.command('virtual-machine-os-image-update-parameters')
+  setparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters.command('virtual-machine-os-image-update-parameters')
   .description($('Set virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -45241,11 +45241,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-os-image-update-parameters
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters = virtualMachineOSImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-os-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters = parametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-os-image.'));
-  remove.command('virtual-machine-os-image-update-parameters')
+  removeparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters.command('virtual-machine-os-image-update-parameters')
   .description($('Remove virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -45273,11 +45273,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-os-image-update-parameters
-  var parameters = virtualMachineOSImage.category('parameters')
+  var parametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters = virtualMachineOSImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-os-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters = parametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-os-image.'));
-  add.command('virtual-machine-os-image-update-parameters')
+  addparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters.command('virtual-machine-os-image-update-parameters')
   .description($('Remove virtualMachineOSImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -45477,11 +45477,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineVMImages.create(parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachineVMImage.category('parameters')
+  var virtualMachineVMImagecreateParameters0 = virtualMachineVMImage.category('parameters')
   .description($('Commands to manage parameter for your virtual machine vm image.'));
-  var generate = parameters.category('generate')
+  var virtualMachineVMImagecreateGenerate0 = virtualMachineVMImagecreateParameters0.category('generate')
   .description($('Commands to generate parameter file for your virtual machine vm image.'));
-  generate.command('create')
+  virtualMachineVMImagecreateGenerate0.command('create')
   .description($('Generate virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -45497,7 +45497,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachineVMImagecreateParameters0.command('patch')
   .description($('Command to patch virtualMachineVMImage parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -45543,11 +45543,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-vm-image-create-parameters
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters = virtualMachineVMImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters = parametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine-vm-image.'));
-  set.command('virtual-machine-vm-image-create-parameters')
+  setparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters.command('virtual-machine-vm-image-create-parameters')
   .description($('Set virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -45737,11 +45737,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-vm-image-create-parameters
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters = virtualMachineVMImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters = parametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-vm-image.'));
-  remove.command('virtual-machine-vm-image-create-parameters')
+  removeparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters.command('virtual-machine-vm-image-create-parameters')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -45769,11 +45769,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-vm-image-create-parameters
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters = virtualMachineVMImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters = parametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-vm-image.'));
-  add.command('virtual-machine-vm-image-create-parameters')
+  addparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters.command('virtual-machine-vm-image-create-parameters')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -45967,11 +45967,11 @@ exports.init = function (cli) {
   });
 
   //parameters set data-disk-configurations
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageDataDiskConfigurations = virtualMachineVMImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVMImageDataDiskConfigurations = parametersVirtualMachineVMImageDataDiskConfigurations.category('set')
   .description($('Commands to set parameter file for your virtual-machine-vm-image.'));
-  set.command('data-disk-configurations')
+  setparametersVirtualMachineVMImageDataDiskConfigurations.command('data-disk-configurations')
   .description($('Set virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -46044,11 +46044,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove data-disk-configurations
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageDataDiskConfigurations = virtualMachineVMImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVMImageDataDiskConfigurations = parametersVirtualMachineVMImageDataDiskConfigurations.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-vm-image.'));
-  remove.command('data-disk-configurations')
+  removeparametersVirtualMachineVMImageDataDiskConfigurations.command('data-disk-configurations')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -46077,11 +46077,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add data-disk-configurations
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageDataDiskConfigurations = virtualMachineVMImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVMImageDataDiskConfigurations = parametersVirtualMachineVMImageDataDiskConfigurations.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-vm-image.'));
-  add.command('data-disk-configurations')
+  addparametersVirtualMachineVMImageDataDiskConfigurations.command('data-disk-configurations')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -46154,11 +46154,11 @@ exports.init = function (cli) {
   });
 
   //parameters set os-disk-configuration
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageOSDiskConfiguration = virtualMachineVMImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVMImageOSDiskConfiguration = parametersVirtualMachineVMImageOSDiskConfiguration.category('set')
   .description($('Commands to set parameter file for your virtual-machine-vm-image.'));
-  set.command('os-disk-configuration')
+  setparametersVirtualMachineVMImageOSDiskConfiguration.command('os-disk-configuration')
   .description($('Set virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -46238,11 +46238,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove os-disk-configuration
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageOSDiskConfiguration = virtualMachineVMImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVMImageOSDiskConfiguration = parametersVirtualMachineVMImageOSDiskConfiguration.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-vm-image.'));
-  remove.command('os-disk-configuration')
+  removeparametersVirtualMachineVMImageOSDiskConfiguration.command('os-disk-configuration')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -46270,11 +46270,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add os-disk-configuration
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageOSDiskConfiguration = virtualMachineVMImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVMImageOSDiskConfiguration = parametersVirtualMachineVMImageOSDiskConfiguration.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-vm-image.'));
-  add.command('os-disk-configuration')
+  addparametersVirtualMachineVMImageOSDiskConfiguration.command('os-disk-configuration')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -46433,11 +46433,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineVMImages.replicate(options.vmImageName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachineVMImage.category('parameters')
+  var virtualMachineVMImagereplicateParameters1 = virtualMachineVMImage.category('parameters')
   .description($('Commands to manage parameter for your virtual machine vm image.'));
-  var generate = parameters.category('generate')
+  var virtualMachineVMImagereplicateGenerate1 = virtualMachineVMImagereplicateParameters1.category('generate')
   .description($('Commands to generate parameter file for your virtual machine vm image.'));
-  generate.command('replicate')
+  virtualMachineVMImagereplicateGenerate1.command('replicate')
   .description($('Generate virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -46453,7 +46453,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachineVMImagereplicateParameters1.command('patch')
   .description($('Command to patch virtualMachineVMImage parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -46499,11 +46499,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-vm-image-replicate-parameters
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters = virtualMachineVMImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters = parametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine-vm-image.'));
-  set.command('virtual-machine-vm-image-replicate-parameters')
+  setparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters.command('virtual-machine-vm-image-replicate-parameters')
   .description($('Set virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -46572,11 +46572,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-vm-image-replicate-parameters
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters = virtualMachineVMImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters = parametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-vm-image.'));
-  remove.command('virtual-machine-vm-image-replicate-parameters')
+  removeparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters.command('virtual-machine-vm-image-replicate-parameters')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -46604,11 +46604,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-vm-image-replicate-parameters
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters = virtualMachineVMImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters = parametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-vm-image.'));
-  add.command('virtual-machine-vm-image-replicate-parameters')
+  addparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters.command('virtual-machine-vm-image-replicate-parameters')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -46681,11 +46681,11 @@ exports.init = function (cli) {
   });
 
   //parameters set compute-image-attributes
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageComputeImageAttributes = virtualMachineVMImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVMImageComputeImageAttributes = parametersVirtualMachineVMImageComputeImageAttributes.category('set')
   .description($('Commands to set parameter file for your virtual-machine-vm-image.'));
-  set.command('compute-image-attributes')
+  setparametersVirtualMachineVMImageComputeImageAttributes.command('compute-image-attributes')
   .description($('Set virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -46754,11 +46754,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove compute-image-attributes
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageComputeImageAttributes = virtualMachineVMImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVMImageComputeImageAttributes = parametersVirtualMachineVMImageComputeImageAttributes.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-vm-image.'));
-  remove.command('compute-image-attributes')
+  removeparametersVirtualMachineVMImageComputeImageAttributes.command('compute-image-attributes')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -46786,11 +46786,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add compute-image-attributes
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageComputeImageAttributes = virtualMachineVMImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVMImageComputeImageAttributes = parametersVirtualMachineVMImageComputeImageAttributes.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-vm-image.'));
-  add.command('compute-image-attributes')
+  addparametersVirtualMachineVMImageComputeImageAttributes.command('compute-image-attributes')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -46863,11 +46863,11 @@ exports.init = function (cli) {
   });
 
   //parameters set marketplace-image-attributes
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageMarketplaceImageAttributes = virtualMachineVMImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVMImageMarketplaceImageAttributes = parametersVirtualMachineVMImageMarketplaceImageAttributes.category('set')
   .description($('Commands to set parameter file for your virtual-machine-vm-image.'));
-  set.command('marketplace-image-attributes')
+  setparametersVirtualMachineVMImageMarketplaceImageAttributes.command('marketplace-image-attributes')
   .description($('Set virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -46925,11 +46925,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove marketplace-image-attributes
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageMarketplaceImageAttributes = virtualMachineVMImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVMImageMarketplaceImageAttributes = parametersVirtualMachineVMImageMarketplaceImageAttributes.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-vm-image.'));
-  remove.command('marketplace-image-attributes')
+  removeparametersVirtualMachineVMImageMarketplaceImageAttributes.command('marketplace-image-attributes')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -46957,11 +46957,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add marketplace-image-attributes
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageMarketplaceImageAttributes = virtualMachineVMImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVMImageMarketplaceImageAttributes = parametersVirtualMachineVMImageMarketplaceImageAttributes.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-vm-image.'));
-  add.command('marketplace-image-attributes')
+  addparametersVirtualMachineVMImageMarketplaceImageAttributes.command('marketplace-image-attributes')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -47023,11 +47023,11 @@ exports.init = function (cli) {
   });
 
   //parameters set plan
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImagePlan = virtualMachineVMImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVMImagePlan = parametersVirtualMachineVMImagePlan.category('set')
   .description($('Commands to set parameter file for your virtual-machine-vm-image.'));
-  set.command('plan')
+  setparametersVirtualMachineVMImagePlan.command('plan')
   .description($('Set virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -47096,11 +47096,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove plan
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImagePlan = virtualMachineVMImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVMImagePlan = parametersVirtualMachineVMImagePlan.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-vm-image.'));
-  remove.command('plan')
+  removeparametersVirtualMachineVMImagePlan.command('plan')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -47128,11 +47128,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add plan
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImagePlan = virtualMachineVMImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVMImagePlan = parametersVirtualMachineVMImagePlan.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-vm-image.'));
-  add.command('plan')
+  addparametersVirtualMachineVMImagePlan.command('plan')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -47205,11 +47205,11 @@ exports.init = function (cli) {
   });
 
   //parameters set target-locations
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageTargetLocations = virtualMachineVMImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVMImageTargetLocations = parametersVirtualMachineVMImageTargetLocations.category('set')
   .description($('Commands to set parameter file for your virtual-machine-vm-image.'));
-  set.command('target-locations')
+  setparametersVirtualMachineVMImageTargetLocations.command('target-locations')
   .description($('Set virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -47249,11 +47249,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove target-locations
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageTargetLocations = virtualMachineVMImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVMImageTargetLocations = parametersVirtualMachineVMImageTargetLocations.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-vm-image.'));
-  remove.command('target-locations')
+  removeparametersVirtualMachineVMImageTargetLocations.command('target-locations')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -47282,11 +47282,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add target-locations
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageTargetLocations = virtualMachineVMImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVMImageTargetLocations = parametersVirtualMachineVMImageTargetLocations.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-vm-image.'));
-  add.command('target-locations')
+  addparametersVirtualMachineVMImageTargetLocations.command('target-locations')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -47388,11 +47388,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineVMImages.update(options.imageName, parametersObj, _);
     cli.output.json(result);
   });
-  var parameters = virtualMachineVMImage.category('parameters')
+  var virtualMachineVMImageupdateParameters1 = virtualMachineVMImage.category('parameters')
   .description($('Commands to manage parameter for your virtual machine vm image.'));
-  var generate = parameters.category('generate')
+  var virtualMachineVMImageupdateGenerate1 = virtualMachineVMImageupdateParameters1.category('generate')
   .description($('Commands to generate parameter file for your virtual machine vm image.'));
-  generate.command('update')
+  virtualMachineVMImageupdateGenerate1.command('update')
   .description($('Generate virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -47408,7 +47408,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  parameters.command('patch')
+  virtualMachineVMImageupdateParameters1.command('patch')
   .description($('Command to patch virtualMachineVMImage parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -47454,11 +47454,11 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-vm-image-update-parameters
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters = virtualMachineVMImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters = parametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters.category('set')
   .description($('Commands to set parameter file for your virtual-machine-vm-image.'));
-  set.command('virtual-machine-vm-image-update-parameters')
+  setparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters.command('virtual-machine-vm-image-update-parameters')
   .description($('Set virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -47637,11 +47637,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-vm-image-update-parameters
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters = virtualMachineVMImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters = parametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-vm-image.'));
-  remove.command('virtual-machine-vm-image-update-parameters')
+  removeparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters.command('virtual-machine-vm-image-update-parameters')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -47669,11 +47669,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-vm-image-update-parameters
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters = virtualMachineVMImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters = parametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-vm-image.'));
-  add.command('virtual-machine-vm-image-update-parameters')
+  addparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters.command('virtual-machine-vm-image-update-parameters')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -47856,11 +47856,11 @@ exports.init = function (cli) {
   });
 
   //parameters set data-disk-configurations
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageDataDiskConfigurations = virtualMachineVMImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVMImageDataDiskConfigurations = parametersVirtualMachineVMImageDataDiskConfigurations.category('set')
   .description($('Commands to set parameter file for your virtual-machine-vm-image.'));
-  set.command('data-disk-configurations')
+  setparametersVirtualMachineVMImageDataDiskConfigurations.command('data-disk-configurations')
   .description($('Set virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -47933,11 +47933,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove data-disk-configurations
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageDataDiskConfigurations = virtualMachineVMImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVMImageDataDiskConfigurations = parametersVirtualMachineVMImageDataDiskConfigurations.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-vm-image.'));
-  remove.command('data-disk-configurations')
+  removeparametersVirtualMachineVMImageDataDiskConfigurations.command('data-disk-configurations')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -47966,11 +47966,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add data-disk-configurations
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageDataDiskConfigurations = virtualMachineVMImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVMImageDataDiskConfigurations = parametersVirtualMachineVMImageDataDiskConfigurations.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-vm-image.'));
-  add.command('data-disk-configurations')
+  addparametersVirtualMachineVMImageDataDiskConfigurations.command('data-disk-configurations')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -48043,11 +48043,11 @@ exports.init = function (cli) {
   });
 
   //parameters set os-disk-configuration
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageOSDiskConfiguration = virtualMachineVMImage.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
-  var set = parameters.category('set')
+  var setparametersVirtualMachineVMImageOSDiskConfiguration = parametersVirtualMachineVMImageOSDiskConfiguration.category('set')
   .description($('Commands to set parameter file for your virtual-machine-vm-image.'));
-  set.command('os-disk-configuration')
+  setparametersVirtualMachineVMImageOSDiskConfiguration.command('os-disk-configuration')
   .description($('Set virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -48094,11 +48094,11 @@ exports.init = function (cli) {
   });
 
   //parameters remove os-disk-configuration
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageOSDiskConfiguration = virtualMachineVMImage.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
-  var remove = parameters.category('remove')
+  var removeparametersVirtualMachineVMImageOSDiskConfiguration = parametersVirtualMachineVMImageOSDiskConfiguration.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-vm-image.'));
-  remove.command('os-disk-configuration')
+  removeparametersVirtualMachineVMImageOSDiskConfiguration.command('os-disk-configuration')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -48126,11 +48126,11 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add os-disk-configuration
-  var parameters = virtualMachineVMImage.category('parameters')
+  var parametersVirtualMachineVMImageOSDiskConfiguration = virtualMachineVMImage.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
-  var add = parameters.category('add')
+  var addparametersVirtualMachineVMImageOSDiskConfiguration = parametersVirtualMachineVMImageOSDiskConfiguration.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-vm-image.'));
-  add.command('os-disk-configuration')
+  addparametersVirtualMachineVMImageOSDiskConfiguration.command('os-disk-configuration')
   .description($('Remove virtualMachineVMImage parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))

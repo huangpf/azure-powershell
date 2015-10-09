@@ -43,10 +43,12 @@ function Generate-CliParameterCommandImpl
         return $null;
     }
 
+    $paramSuffix = $OperationName + $TreeNode.Name;
     $cli_method_option_name = Get-CliOptionName $TreeNode.Name;
     $cli_op_description = Get-CliOptionName $OperationName;
     $category_name = Get-CliCategoryName $OperationName;
     $params_category_name = 'parameters';
+    $params_category_var_name_prefix = 'parameters';
     $cli_param_name = $params_category_name;
 
     # 0. Construct Path to Node
@@ -100,13 +102,15 @@ function Generate-CliParameterCommandImpl
     if ($TreeNode.Properties.Count -gt 0 -or ($TreeNode.IsListItem))
     {
         # 1. Parameter Set Command
+        $params_category_var_name = $params_category_var_name_prefix + $paramSuffix;
         $params_generate_category_name = 'set';
+        $params_generate_category_var_name = $params_generate_category_name + $params_category_var_name;
         $code = "  //$params_category_name set ${cli_method_option_name}" + $NEW_LINE;
-        $code += "  var ${params_category_name} = ${category_name}.category('${params_category_name}')" + $NEW_LINE;
+        $code += "  var ${params_category_var_name} = ${category_name}.category('${params_category_name}')" + $NEW_LINE;
         $code += "  .description(`$('Commands to manage parameter for your ${cli_op_description}.'));" + $NEW_LINE;
-        $code += "  var ${params_generate_category_name} = ${params_category_name}.category('${params_generate_category_name}')" + $NEW_LINE;
+        $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${params_generate_category_name}')" + $NEW_LINE;
         $code += "  .description(`$('Commands to set parameter file for your ${cli_op_description}.'));" + $NEW_LINE;
-        $code += "  ${params_generate_category_name}.command('${cli_method_option_name}')" + $NEW_LINE;
+        $code += "  ${params_generate_category_var_name}.command('${cli_method_option_name}')" + $NEW_LINE;
         $code += "  .description(`$('Set ${category_name} parameter string or files.'))" + $NEW_LINE;
         $code += "  .usage('[options]')" + $NEW_LINE;
         $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
@@ -204,13 +208,15 @@ function Generate-CliParameterCommandImpl
     }
 
     # 2. Parameter Remove Command
+    $params_category_var_name = $params_category_var_name_prefix + $paramSuffix;
     $params_generate_category_name = 'remove';
+    $params_generate_category_var_name = $params_generate_category_name + $params_category_var_name;
     $code += "  //$params_category_name ${params_generate_category_name} ${cli_method_option_name}" + $NEW_LINE;
-    $code += "  var ${params_category_name} = ${category_name}.category('${params_category_name}')" + $NEW_LINE;
+    $code += "  var ${params_category_var_name} = ${category_name}.category('${params_category_name}')" + $NEW_LINE;
     $code += "  .description(`$('Commands to remove parameter for your ${cli_op_description}.'));" + $NEW_LINE;
-    $code += "  var ${params_generate_category_name} = ${params_category_name}.category('${params_generate_category_name}')" + $NEW_LINE;
+    $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${params_generate_category_name}')" + $NEW_LINE;
     $code += "  .description(`$('Commands to remove values in the parameter file for your ${cli_op_description}.'));" + $NEW_LINE;
-    $code += "  ${params_generate_category_name}.command('${cli_method_option_name}')" + $NEW_LINE;
+    $code += "  ${params_generate_category_var_name}.command('${cli_method_option_name}')" + $NEW_LINE;
     $code += "  .description(`$('Remove ${category_name} parameter string or files.'))" + $NEW_LINE;
     $code += "  .usage('[options]')" + $NEW_LINE;
     $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
@@ -253,13 +259,15 @@ function Generate-CliParameterCommandImpl
     $code += "  });" + $NEW_LINE;
     
     # 3. Parameter Add Command
+    $params_category_var_name = $params_category_var_name_prefix + $paramSuffix;
     $params_generate_category_name = 'add';
+    $params_generate_category_var_name = $params_generate_category_name + $params_category_var_name;
     $code += "  //$params_category_name ${params_generate_category_name} ${cli_method_option_name}" + $NEW_LINE;
-    $code += "  var ${params_category_name} = ${category_name}.category('${params_category_name}')" + $NEW_LINE;
+    $code += "  var ${params_category_var_name} = ${category_name}.category('${params_category_name}')" + $NEW_LINE;
     $code += "  .description(`$('Commands to add parameter for your ${cli_op_description}.'));" + $NEW_LINE;
-    $code += "  var ${params_generate_category_name} = ${params_category_name}.category('${params_generate_category_name}')" + $NEW_LINE;
+    $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${params_generate_category_name}')" + $NEW_LINE;
     $code += "  .description(`$('Commands to add values in the parameter file for your ${cli_op_description}.'));" + $NEW_LINE;
-    $code += "  ${params_generate_category_name}.command('${cli_method_option_name}')" + $NEW_LINE;
+    $code += "  ${params_generate_category_var_name}.command('${cli_method_option_name}')" + $NEW_LINE;
     $code += "  .description(`$('Remove ${category_name} parameter string or files.'))" + $NEW_LINE;
     $code += "  .usage('[options]')" + $NEW_LINE;
     $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;

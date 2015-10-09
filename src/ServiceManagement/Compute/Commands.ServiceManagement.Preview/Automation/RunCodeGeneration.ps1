@@ -1653,14 +1653,16 @@ ${cmdlet_partial_class_code}
         if ($cli_param_name -eq 'Parameters')
         {
             $params_category_name = 'parameters';
+            $params_category_var_name = "${category_name}${cli_method_name}Parameters" + $index;
             $params_generate_category_name = 'generate';
+            $params_generate_category_var_name = "${category_name}${cli_method_name}Generate" + $index;
 
             # 3.3.1 Parameter Generate Command
-            $cli_op_code_content += "  var ${params_category_name} = ${category_name}.category('${params_category_name}')" + $NEW_LINE;
+            $cli_op_code_content += "  var ${params_category_var_name} = ${category_name}.category('${params_category_name}')" + $NEW_LINE;
             $cli_op_code_content += "  .description(`$('Commands to manage parameter for your ${cli_op_description}.'));" + $NEW_LINE;
-            $cli_op_code_content += "  var ${params_generate_category_name} = ${params_category_name}.category('${params_generate_category_name}')" + $NEW_LINE;
+            $cli_op_code_content += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${params_generate_category_name}')" + $NEW_LINE;
             $cli_op_code_content += "  .description(`$('Commands to generate parameter file for your ${cli_op_description}.'));" + $NEW_LINE;
-            $cli_op_code_content += "  ${params_generate_category_name}.command('${cli_method_option_name}')" + $NEW_LINE;
+            $cli_op_code_content += "  ${params_generate_category_var_name}.command('${cli_method_option_name}')" + $NEW_LINE;
             $cli_op_code_content += "  .description(`$('Generate ${category_name} parameter string or files.'))" + $NEW_LINE;
             $cli_op_code_content += "  .usage('[options]')" + $NEW_LINE;
             $cli_op_code_content += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
@@ -1685,7 +1687,7 @@ ${cmdlet_partial_class_code}
             $cli_op_code_content += $NEW_LINE;
 
             # 3.3.2 Parameter Patch Command
-            $cli_op_code_content += "  ${params_category_name}.command('patch')" + $NEW_LINE;
+            $cli_op_code_content += "  ${params_category_var_name}.command('patch')" + $NEW_LINE;
             $cli_op_code_content += "  .description(`$('Command to patch ${category_name} parameter JSON file.'))" + $NEW_LINE;
             $cli_op_code_content += "  .usage('[options]')" + $NEW_LINE;
             $cli_op_code_content += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
