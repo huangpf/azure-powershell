@@ -1667,9 +1667,7 @@ ${cmdlet_partial_class_code}
             $cli_op_code_content += "  .description(`$('Generate ${category_var_name} parameter string or files.'))" + $NEW_LINE;
             $cli_op_code_content += "  .usage('[options]')" + $NEW_LINE;
             $cli_op_code_content += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
-            $cli_op_code_content += "  .execute(function (";
-            $cli_op_code_content += "parameterFile";
-            $cli_op_code_content += ", options, _) {" + $NEW_LINE;
+            $cli_op_code_content += "  .execute(function (options) {" + $NEW_LINE;
 
             $output_content = $param_object_comment.Replace("`"", "\`"");
             $cli_op_code_content += "    cli.output.info(`'" + $output_content + "`');" + $NEW_LINE;
@@ -1696,7 +1694,7 @@ ${cmdlet_partial_class_code}
             $cli_op_code_content += "  .option('--path <path>', `$('The JSON data path, e.g.: \`"foo/1\`".'))" + $NEW_LINE;
             $cli_op_code_content += "  .option('--value <value>', `$('The JSON value.'))" + $NEW_LINE;
             $cli_op_code_content += "  .option('--parse', `$('Parse the JSON value to object.'))" + $NEW_LINE;
-            $cli_op_code_content += "  .execute(function (parameterFile, operation, path, value, parse, options, _) {" + $NEW_LINE;
+            $cli_op_code_content += "  .execute(function(options) {" + $NEW_LINE;
             $cli_op_code_content += "    cli.output.info(options.parameterFile);" + $NEW_LINE;
             $cli_op_code_content += "    cli.output.info(options.operation);" + $NEW_LINE;
             $cli_op_code_content += "    cli.output.info(options.path);" + $NEW_LINE;
@@ -2108,10 +2106,8 @@ function Write-CLICommandFile
 
 'use strict';
 
-var __ = require('underscore');
 var fs = require('fs');
 var jsonpatch = require('json-patch');
-var util = require('util');
 
 var profile = require('../../../util/profile');
 var utils = require('../../../util/utils');
