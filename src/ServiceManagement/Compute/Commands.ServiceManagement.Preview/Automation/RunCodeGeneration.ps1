@@ -1810,13 +1810,14 @@ ${cmdlet_partial_class_code}
         $cli_op_code_content += "    cli.output.info('${cli_param_name} = ' + options.${cli_param_name});" + $NEW_LINE;
         if ((${cli_param_name} -eq 'Parameters') -or (${cli_param_name} -like '*InstanceIds'))
         {
+            $cli_op_code_content += "    var ${cli_param_name}Obj = null;" + $NEW_LINE;
             $cli_op_code_content += "    if (options.parameterFile) {" + $NEW_LINE;
             $cli_op_code_content += "      cli.output.info(`'Reading file content from: \`"`' + options.parameterFile + `'\`"`');" + $NEW_LINE;
             $cli_op_code_content += "      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $NEW_LINE;
-            $cli_op_code_content += "      var ${cli_param_name}Obj = JSON.parse(fileContent);" + $NEW_LINE;
+            $cli_op_code_content += "      ${cli_param_name}Obj = JSON.parse(fileContent);" + $NEW_LINE;
             $cli_op_code_content += "    }" + $NEW_LINE;
             $cli_op_code_content += "    else {" + $NEW_LINE;
-            $cli_op_code_content += "      var ${cli_param_name}Obj = JSON.parse(options.${cli_param_name});" + $NEW_LINE;
+            $cli_op_code_content += "      ${cli_param_name}Obj = JSON.parse(options.${cli_param_name});" + $NEW_LINE;
             $cli_op_code_content += "    }" + $NEW_LINE;
             $cli_op_code_content += "    cli.output.info('${cli_param_name}Obj = ' + JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
         }

@@ -49,13 +49,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -985,13 +986,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -1921,13 +1923,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -2984,13 +2987,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -3377,13 +3381,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -3634,13 +3639,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -4060,13 +4066,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -4393,13 +4400,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -4724,13 +4732,14 @@ exports.init = function (cli) {
   .execute(function (serviceName, parameters, options, _) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -4981,13 +4990,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5292,13 +5302,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5603,13 +5614,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -6681,13 +6693,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -7759,13 +7772,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -7994,13 +8008,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -8229,13 +8244,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -8507,13 +8523,14 @@ exports.init = function (cli) {
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('dnsServerName = ' + options.dnsServerName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -8760,13 +8777,14 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function (parameters, options, _) {
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -10738,13 +10756,14 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function (parameters, options, _) {
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -12699,13 +12718,14 @@ exports.init = function (cli) {
   .execute(function (serviceName, parameters, options, _) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -13099,13 +13119,14 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function (parameters, options, _) {
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -13616,13 +13637,14 @@ exports.init = function (cli) {
   .execute(function (serviceName, parameters, options, _) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -13917,13 +13939,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -14377,13 +14400,14 @@ exports.init = function (cli) {
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('loadBalancerName = ' + options.loadBalancerName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -14840,13 +14864,14 @@ exports.init = function (cli) {
   .execute(function (serviceName, parameters, options, _) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -15191,13 +15216,14 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function (parameters, options, _) {
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -15466,13 +15492,14 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function (parameters, options, _) {
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -15762,13 +15789,14 @@ exports.init = function (cli) {
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('roleName = ' + options.roleName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -16125,13 +16153,14 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function (parameters, options, _) {
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -16519,13 +16548,14 @@ exports.init = function (cli) {
     cli.output.info('roleName = ' + options.roleName);
     cli.output.info('logicalUnitNumber = ' + options.logicalUnitNumber);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -16862,13 +16892,14 @@ exports.init = function (cli) {
   .execute(function (name, parameters, options, _) {
     cli.output.info('name = ' + options.name);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -17205,13 +17236,14 @@ exports.init = function (cli) {
   .execute(function (name, parameters, options, _) {
     cli.output.info('name = ' + options.name);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -17582,13 +17614,14 @@ exports.init = function (cli) {
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('virtualMachineName = ' + options.virtualMachineName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -17895,13 +17928,14 @@ exports.init = function (cli) {
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('virtualMachineName = ' + options.virtualMachineName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -22202,13 +22236,14 @@ exports.init = function (cli) {
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('virtualMachineName = ' + options.virtualMachineName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -22547,13 +22582,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -28507,13 +28543,14 @@ exports.init = function (cli) {
   .execute(function (serviceName, parameters, options, _) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -35714,13 +35751,14 @@ exports.init = function (cli) {
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('virtualMachineName = ' + options.virtualMachineName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -36025,13 +36063,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -36422,13 +36461,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -36780,13 +36820,14 @@ exports.init = function (cli) {
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('virtualMachineName = ' + options.virtualMachineName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -42235,13 +42276,14 @@ exports.init = function (cli) {
     cli.output.info('serviceName = ' + options.serviceName);
     cli.output.info('deploymentName = ' + options.deploymentName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -43389,13 +43431,14 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function (parameters, options, _) {
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -43990,13 +44033,14 @@ exports.init = function (cli) {
   .execute(function (imageName, parameters, options, _) {
     cli.output.info('imageName = ' + options.imageName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -44944,13 +44988,14 @@ exports.init = function (cli) {
   .execute(function (imageName, parameters, options, _) {
     cli.output.info('imageName = ' + options.imageName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -45417,13 +45462,14 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function (parameters, options, _) {
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -46372,13 +46418,14 @@ exports.init = function (cli) {
   .execute(function (vmImageName, parameters, options, _) {
     cli.output.info('vmImageName = ' + options.vmImageName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -47326,13 +47373,14 @@ exports.init = function (cli) {
   .execute(function (imageName, parameters, options, _) {
     cli.output.info('imageName = ' + options.imageName);
     cli.output.info('parameters = ' + options.parameters);
+    var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      var parametersObj = JSON.parse(fileContent);
+      parametersObj = JSON.parse(fileContent);
     }
     else {
-      var parametersObj = JSON.parse(options.parameters);
+      parametersObj = JSON.parse(options.parameters);
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
