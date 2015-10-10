@@ -5875,24 +5875,315 @@ exports.init = function (cli) {
   vmssvm.command('list')
   .description($('list method to manage your virtual machine scale set vm.'))
   .usage('[options]')
-  .option('--expand-expression <expand-expression>', $('expand-expression'))
-  .option('--filter-expression <filter-expression>', $('filter-expression'))
-  .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
-  .option('--select-expression <select-expression>', $('select-expression'))
-  .option('--virtual-machine-scale-set-name <virtual-machine-scale-set-name>', $('virtual-machine-scale-set-name'))
+  .option('--parameters <parameters>', $('parameters'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (expandExpression, filterExpression, resourceGroupName, selectExpression, virtualMachineScaleSetName, options, _) {
-    cli.output.info('expandExpression = ' + options.expandExpression);
-    cli.output.info('filterExpression = ' + options.filterExpression);
-    cli.output.info('resourceGroupName = ' + options.resourceGroupName);
-    cli.output.info('selectExpression = ' + options.selectExpression);
-    cli.output.info('virtualMachineScaleSetName = ' + options.virtualMachineScaleSetName);
+  .execute(function (parameters, options, _) {
+    cli.output.info('parameters = ' + options.parameters);
+    if (options.parameterFile) {
+      cli.output.info("Reading file content from: \"" + options.parameterFile + "\"");
+      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      var parametersObj = JSON.parse(fileContent);
+    }
+    else {
+      var parametersObj = JSON.parse(options.parameters);
+    }
+    cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSetVMs.list(options.expandExpression, options.filterExpression, options.resourceGroupName, options.selectExpression, options.virtualMachineScaleSetName, _);
+    var result = computeManagementClient.virtualMachineScaleSetVMs.list(parametersObj, _);
     cli.output.json(result);
   });
+  var parameters = vmssvm.category('parameters')
+  .description($('Commands to manage parameter for your virtual machine scale set vm.'));
+  var generate = parameters.category('generate')
+  .description($('Commands to generate parameter file for your virtual machine scale set vm.'));
+  generate.command('list')
+  .description($('Generate vmssvm parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (parameterFile, options, _) {
+    cli.output.info("{\"expandExpression\":\"\",\"filterExpression\":\"\",\"resourceGroupName\":\"\",\"selectExpression\":\"\",\"virtualMachineScaleSetName\":\"\"}");
+    var filePath = "vmssvm_list.json";
+    if (options.parameterFile) { filePath = options.parameterFile; };
+    fs.writeFileSync(filePath, beautify("{\r\n\"expandExpression\":\"\",\r\n\"filterExpression\":\"\",\r\n\"resourceGroupName\":\"\",\r\n\"selectExpression\":\"\",\r\n\"virtualMachineScaleSetName\":\"\"\r\n}"));
+    cli.output.info("=====================================");
+    cli.output.info("Parameter file output to: " + filePath);
+    cli.output.info("=====================================");
+  });
+
+  parameters.command('patch')
+  .description($('Command to patch vmssvm parameter JSON file.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--operation <operation>', $('The JSON patch operation: add, remove, or replace.'))
+  .option('--path <path>', $('The JSON data path, e.g.: \"foo/1\".'))
+  .option('--value <value>', $('The JSON value.'))
+  .option('--parse', $('Parse the JSON value to object.'))
+  .execute(function (parameterFile, operation, path, value, parse, options, _) {
+    cli.output.info(options.parameterFile);
+    cli.output.info(options.operation);
+    cli.output.info(options.path);
+    cli.output.info(options.value);
+    cli.output.info(options.parse);
+    if (options.parse) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.info(options.value);
+    cli.output.info("=====================================");
+    cli.output.info("Reading file content from: \"" + options.parameterFile + "\"");
+    cli.output.info("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.info("JSON object:");
+    cli.output.info(JSON.stringify(parametersObj));
+    if (options.operation == 'add') {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
+    else if (options.operation == 'remove') {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    else if (options.operation == 'replace') {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.info("=====================================");
+    cli.output.info("JSON object (updated):");
+    cli.output.info(JSON.stringify(parametersObj));
+    cli.output.info("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.info("=====================================");
+    cli.output.info("Parameter file updated at: " + options.parameterFile);
+    cli.output.info("=====================================");
+  });
+
+  //parameters set virtual-machine-scale-set-vm-list-parameters
+  var parameters = vmssvm.category('parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-set-vm.'));
+  var set = parameters.category('set')
+  .description($('Commands to set parameter file for your virtual-machine-scale-set-vm.'));
+  set.command('virtual-machine-scale-set-vm-list-parameters')
+  .description($('Set vmssvm parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--value <value>', $('The JSON value.'))
+  .option('--parse', $('Parse the JSON value to object.'))
+  .option('--expand-expression <expandExpression>', $('Set the expand-expression value.'))
+  .option('--filter-expression <filterExpression>', $('Set the filter-expression value.'))
+  .option('--resource-group-name <resourceGroupName>', $('Set the resource-group-name value.'))
+  .option('--select-expression <selectExpression>', $('Set the select-expression value.'))
+  .option('--virtual-machine-scale-set-name <virtualMachineScaleSetName>', $('Set the virtual-machine-scale-set-name value.'))
+  .execute(function (  parameterFile  , options, _) {
+    cli.output.info(options);
+    cli.output.info(options.parameterFile);
+    cli.output.info(options.value);
+    cli.output.info(options.parse);
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.info(options.value);
+    cli.output.info("=====================================");
+    cli.output.info("Reading file content from: \"" + options.parameterFile + "\"");
+    cli.output.info("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.info("JSON object:");
+    cli.output.info(JSON.stringify(parametersObj));
+    options.operation = 'replace';
+    options.path = "";
+    var paramPath = options.path + "/" + "expandExpression";
+    cli.output.info("================================================");
+    cli.output.info("JSON Parameters Path:" + paramPath);
+    cli.output.info("================================================");
+    if (options.expandExpression) {
+      if (options.parse && options.expandExpression) {
+        options.expandExpression = JSON.parse(options.expandExpression);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.expandExpression}]);
+    }
+    var paramPath = options.path + "/" + "filterExpression";
+    cli.output.info("================================================");
+    cli.output.info("JSON Parameters Path:" + paramPath);
+    cli.output.info("================================================");
+    if (options.filterExpression) {
+      if (options.parse && options.filterExpression) {
+        options.filterExpression = JSON.parse(options.filterExpression);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.filterExpression}]);
+    }
+    var paramPath = options.path + "/" + "resourceGroupName";
+    cli.output.info("================================================");
+    cli.output.info("JSON Parameters Path:" + paramPath);
+    cli.output.info("================================================");
+    if (options.resourceGroupName) {
+      if (options.parse && options.resourceGroupName) {
+        options.resourceGroupName = JSON.parse(options.resourceGroupName);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.resourceGroupName}]);
+    }
+    var paramPath = options.path + "/" + "selectExpression";
+    cli.output.info("================================================");
+    cli.output.info("JSON Parameters Path:" + paramPath);
+    cli.output.info("================================================");
+    if (options.selectExpression) {
+      if (options.parse && options.selectExpression) {
+        options.selectExpression = JSON.parse(options.selectExpression);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.selectExpression}]);
+    }
+    var paramPath = options.path + "/" + "virtualMachineScaleSetName";
+    cli.output.info("================================================");
+    cli.output.info("JSON Parameters Path:" + paramPath);
+    cli.output.info("================================================");
+    if (options.virtualMachineScaleSetName) {
+      if (options.parse && options.virtualMachineScaleSetName) {
+        options.virtualMachineScaleSetName = JSON.parse(options.virtualMachineScaleSetName);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.virtualMachineScaleSetName}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.info("=====================================");
+    cli.output.info("JSON object (updated):");
+    cli.output.info(JSON.stringify(parametersObj));
+    cli.output.info("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.info("=====================================");
+    cli.output.info("Parameter file updated at: " + options.parameterFile);
+    cli.output.info("=====================================");
+  });
+
+  //parameters remove virtual-machine-scale-set-vm-list-parameters
+  var parameters = vmssvm.category('parameters')
+  .description($('Commands to remove parameter for your virtual-machine-scale-set-vm.'));
+  var remove = parameters.category('remove')
+  .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set-vm.'));
+  remove.command('virtual-machine-scale-set-vm-list-parameters')
+  .description($('Remove vmssvm parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .execute(function (  parameterFile  , options, _) {
+    cli.output.info(options);
+    cli.output.info(options.parameterFile);
+    cli.output.info("=====================================");
+    cli.output.info("Reading file content from: \"" + options.parameterFile + "\"");
+    cli.output.info("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.info("JSON object:");
+    cli.output.info(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = "";
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.info("=====================================");
+    cli.output.info("JSON object (updated):");
+    cli.output.info(JSON.stringify(parametersObj));
+    cli.output.info("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.info("=====================================");
+    cli.output.info("Parameter file updated at: " + options.parameterFile);
+    cli.output.info("=====================================");
+  });
+  //parameters add virtual-machine-scale-set-vm-list-parameters
+  var parameters = vmssvm.category('parameters')
+  .description($('Commands to add parameter for your virtual-machine-scale-set-vm.'));
+  var add = parameters.category('add')
+  .description($('Commands to add values in the parameter file for your virtual-machine-scale-set-vm.'));
+  add.command('virtual-machine-scale-set-vm-list-parameters')
+  .description($('Remove vmssvm parameter string or files.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--key <key>', $('The JSON key.'))
+  .option('--value <value>', $('The JSON value.'))
+  .option('--parse', $('Parse the JSON value to object.'))
+  .option('--expand-expression <expandExpression>', $('Add the expand-expression value.'))
+  .option('--filter-expression <filterExpression>', $('Add the filter-expression value.'))
+  .option('--resource-group-name <resourceGroupName>', $('Add the resource-group-name value.'))
+  .option('--select-expression <selectExpression>', $('Add the select-expression value.'))
+  .option('--virtual-machine-scale-set-name <virtualMachineScaleSetName>', $('Add the virtual-machine-scale-set-name value.'))
+  .execute(function (  parameterFile  , options, _) {
+    cli.output.info(options);
+    cli.output.info(options.parameterFile);
+    cli.output.info(options.key);
+    cli.output.info(options.value);
+    cli.output.info(options.parse);
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.info(options.value);
+    cli.output.info("=====================================");
+    cli.output.info("Reading file content from: \"" + options.parameterFile + "\"");
+    cli.output.info("=====================================");
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.info("JSON object:");
+    cli.output.info(JSON.stringify(parametersObj));
+    options.operation = 'add';
+    options.path = "" + "/" + options.key;
+    cli.output.info("options.path = " + options.path);
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    var paramPath = "" + "/" + "expandExpression";
+    cli.output.info("================================================");
+    cli.output.info("JSON Parameters Path:" + paramPath);
+    cli.output.info("================================================");
+    if (options.expandExpression) {
+      if (options.parse && options.expandExpression) {
+        options.expandExpression = JSON.parse(options.expandExpression);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.expandExpression}]);
+    }
+    var paramPath = "" + "/" + "filterExpression";
+    cli.output.info("================================================");
+    cli.output.info("JSON Parameters Path:" + paramPath);
+    cli.output.info("================================================");
+    if (options.filterExpression) {
+      if (options.parse && options.filterExpression) {
+        options.filterExpression = JSON.parse(options.filterExpression);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.filterExpression}]);
+    }
+    var paramPath = "" + "/" + "resourceGroupName";
+    cli.output.info("================================================");
+    cli.output.info("JSON Parameters Path:" + paramPath);
+    cli.output.info("================================================");
+    if (options.resourceGroupName) {
+      if (options.parse && options.resourceGroupName) {
+        options.resourceGroupName = JSON.parse(options.resourceGroupName);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.resourceGroupName}]);
+    }
+    var paramPath = "" + "/" + "selectExpression";
+    cli.output.info("================================================");
+    cli.output.info("JSON Parameters Path:" + paramPath);
+    cli.output.info("================================================");
+    if (options.selectExpression) {
+      if (options.parse && options.selectExpression) {
+        options.selectExpression = JSON.parse(options.selectExpression);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.selectExpression}]);
+    }
+    var paramPath = "" + "/" + "virtualMachineScaleSetName";
+    cli.output.info("================================================");
+    cli.output.info("JSON Parameters Path:" + paramPath);
+    cli.output.info("================================================");
+    if (options.virtualMachineScaleSetName) {
+      if (options.parse && options.virtualMachineScaleSetName) {
+        options.virtualMachineScaleSetName = JSON.parse(options.virtualMachineScaleSetName);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.virtualMachineScaleSetName}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.info("=====================================");
+    cli.output.info("JSON object (updated):");
+    cli.output.info(JSON.stringify(parametersObj));
+    cli.output.info("=====================================");
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.info("=====================================");
+    cli.output.info("Parameter file updated at: " + options.parameterFile);
+    cli.output.info("=====================================");
+  });
+
+
 //virtualMachineScaleSetVM -> PowerOff
   var vmssvm = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvm.command('power-off')
