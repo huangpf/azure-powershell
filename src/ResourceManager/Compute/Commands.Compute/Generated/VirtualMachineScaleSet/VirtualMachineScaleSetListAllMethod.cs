@@ -63,14 +63,14 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     {
         protected PSArgument[] CreateVirtualMachineScaleSetListAllParameters()
         {
-            return ConvertFromObjectsToArguments(new string[] {}, new object[] {});
+            return ConvertFromObjectsToArguments(new string[0], new object[0]);
         }
     }
 
     [Cmdlet("Get", "AzureVmssAllList", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class GetAzureVmssAllList : InvokeAzureComputeMethodCmdlet
+    public partial class GetAzureVMSSAllList : InvokeAzureComputeMethodCmdlet
     {
-        public GetAzureVmssAllList()
+        public GetAzureVMSSAllList()
         {
             this.MethodName = "VirtualMachineScaleSetListAll";
         }

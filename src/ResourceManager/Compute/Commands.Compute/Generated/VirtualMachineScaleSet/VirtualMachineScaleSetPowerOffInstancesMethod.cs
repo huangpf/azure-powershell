@@ -114,9 +114,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     }
 
     [Cmdlet("Stop", "AzureVmssInstances", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class StopAzureVmssInstances : InvokeAzureComputeMethodCmdlet
+    public partial class StopAzureVMSSInstances : InvokeAzureComputeMethodCmdlet
     {
-        public StopAzureVmssInstances()
+        public StopAzureVMSSInstances()
         {
             this.MethodName = "VirtualMachineScaleSetPowerOffInstances";
         }

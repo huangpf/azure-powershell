@@ -112,9 +112,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     }
 
     [Cmdlet("Get", "AzureVmssVMInstanceView", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class GetAzureVmssVMInstanceView : InvokeAzureComputeMethodCmdlet
+    public partial class GetAzureVMSSVMInstanceView : InvokeAzureComputeMethodCmdlet
     {
-        public GetAzureVmssVMInstanceView()
+        public GetAzureVMSSVMInstanceView()
         {
             this.MethodName = "VirtualMachineScaleSetVMGetInstanceView";
         }

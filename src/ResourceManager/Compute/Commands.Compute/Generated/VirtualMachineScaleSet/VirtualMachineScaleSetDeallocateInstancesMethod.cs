@@ -114,9 +114,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     }
 
     [Cmdlet("Stop", "AzureVmssInstancesWithDeallocation", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class StopAzureVmssInstancesWithDeallocation : InvokeAzureComputeMethodCmdlet
+    public partial class StopAzureVMSSInstancesWithDeallocation : InvokeAzureComputeMethodCmdlet
     {
-        public StopAzureVmssInstancesWithDeallocation()
+        public StopAzureVMSSInstancesWithDeallocation()
         {
             this.MethodName = "VirtualMachineScaleSetDeallocateInstances";
         }

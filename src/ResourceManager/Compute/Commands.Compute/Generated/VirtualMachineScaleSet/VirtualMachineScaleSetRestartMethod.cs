@@ -98,9 +98,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     }
 
     [Cmdlet("Restart", "AzureVmss", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class RestartAzureVmss : InvokeAzureComputeMethodCmdlet
+    public partial class RestartAzureVMSS : InvokeAzureComputeMethodCmdlet
     {
-        public RestartAzureVmss()
+        public RestartAzureVMSS()
         {
             this.MethodName = "VirtualMachineScaleSetRestart";
         }

@@ -86,7 +86,8 @@ $common_verb_mapping =
 
 $common_noun_mapping =
 @{
-"VirtualMachineScaleSet" = "Vmss";
+"VirtualMachine" = "VM";
+"ScaleSet" = "SS";
 };
 
 $all_return_type_names = @();
@@ -1526,9 +1527,6 @@ function Write-OperationCmdletFile
 
         $param_type_full_name = Get-NormalizedTypeName -inputName $param_type_full_name;
 
-        Write-Verbose("paramTypeFullName: "+ $param_type_full_name);
-        Write-Verbose("paramName: "+ $param_name);
-
         if ($expose_param_name -like '*Parameters')
         {
             $expose_param_name = $invoke_param_set_name + $expose_param_name;
@@ -1648,7 +1646,7 @@ ${create_local_param_code_content}
 @"
         protected PSArgument[] Create${invoke_param_set_name}Parameters()
         {
-            return ConvertFromObjectsToArguments(new string[] {}, new object[] {});
+            return ConvertFromObjectsToArguments(new string[0], new object[0]);
         }
 "@;
     }
@@ -1684,6 +1682,7 @@ $parameter_cmdlt_source_template
     if ($cmdletFlavor -eq 'Verb')
     {
         # If the Cmdlet Flavor is 'Verb', generate the Verb-based cmdlet code
+        $mapped_noun_str = $mapped_noun_str.Replace("VMSS", "Vmss");
         $cmdlet_partial_class_code +=
 @"
 
