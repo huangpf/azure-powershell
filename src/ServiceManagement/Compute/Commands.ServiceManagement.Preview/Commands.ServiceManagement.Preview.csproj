@@ -372,4 +372,19 @@
     </PropertyGroup>
     <Exec Command="$(PowerShellExe) $(PSCodeGenScriptPath) $(PSCodeGenTargetFolder) $(ARMGeneratedPSCodeFolder) $(ARMClientLibraryNamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName) $(ARMCmdletFlavor) $(CliCmdletFlavor) $(OperationNameFilter)" />
   </Target>
+  <Target Name="BuildGenerateARMPowershellOnly">
+    <PropertyGroup>
+      <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
+      <PSCodeGenScriptPath>".\Automation\RunCodeGeneration.ps1"</PSCodeGenScriptPath>
+      <PSCodeGenTargetFolder>$(OutputPath)</PSCodeGenTargetFolder>
+      <BaseCmdletFullName>"Microsoft.Azure.Commands.Compute.ComputeClientBaseCmdlet"</BaseCmdletFullName>
+      <BaseCmdletClientName>"ComputeClient.ComputeManagementClient"</BaseCmdletClientName>
+      <ARMClientLibraryNamesSpace>"Microsoft.Azure.Management.Compute"</ARMClientLibraryNamesSpace>
+      <ARMGeneratedPSCodeFolder>..\..\..\ResourceManager\Compute\Commands.Compute</ARMGeneratedPSCodeFolder>
+      <ARMCmdletFlavor>Verb</ARMCmdletFlavor>
+      <CliCmdletFlavor>None</CliCmdletFlavor>
+      <OperationNameFilter>"VirtualMachineScaleSet","VirtualMachineScaleSetVM"</OperationNameFilter>
+    </PropertyGroup>
+    <Exec Command="$(PowerShellExe) $(PSCodeGenScriptPath) $(PSCodeGenTargetFolder) $(ARMGeneratedPSCodeFolder) $(ARMClientLibraryNamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName) $(ARMCmdletFlavor) $(CliCmdletFlavor) $(OperationNameFilter)" />
+  </Target>
 </Project>

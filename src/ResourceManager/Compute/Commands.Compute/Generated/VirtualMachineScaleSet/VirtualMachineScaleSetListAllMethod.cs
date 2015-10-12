@@ -35,25 +35,13 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         protected object CreateVirtualMachineScaleSetListAllDynamicParameters()
         {
             dynamicParameters = new RuntimeDefinedParameterDictionary();
-            var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "VirtualMachineScaleSetListAllParameters";
-            pParameters.ParameterType = typeof(Microsoft.Azure.Management.Compute.Models.ListParameters);
-            pParameters.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByDynamicParameters",
-                Position = 1,
-                Mandatory = true
-            });
-            pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("VirtualMachineScaleSetListAllParameters", pParameters);
-
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
             pArgumentList.ParameterType = typeof(object[]);
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 2,
+                Position = 1,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
@@ -64,7 +52,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         protected void ExecuteVirtualMachineScaleSetListAllMethod(object[] invokeMethodInputParameters)
         {
-            ListParameters parameters = (ListParameters)ParseParameter(invokeMethodInputParameters[0]);
+            ListParameters parameters = new ListParameters();
 
             var result = VirtualMachineScaleSetClient.ListAll(parameters);
             WriteObject(result);
@@ -75,13 +63,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     {
         protected PSArgument[] CreateVirtualMachineScaleSetListAllParameters()
         {
-            ListParameters parameters = new ListParameters();
-
-            return ConvertFromObjectsToArguments(new string[] { "Parameters" }, new object[] { parameters });
+            return ConvertFromObjectsToArguments(new string[0], new object[0]);
         }
     }
 
-    [Cmdlet("Get", "AzureVMSSAllList")]
+    [Cmdlet("Get", "AzureVmssAllList", DefaultParameterSetName = "InvokeByDynamicParameters")]
     public partial class GetAzureVMSSAllList : InvokeAzureComputeMethodCmdlet
     {
         public GetAzureVMSSAllList()
@@ -99,25 +85,13 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         public override object GetDynamicParameters()
         {
             dynamicParameters = new RuntimeDefinedParameterDictionary();
-            var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "VirtualMachineScaleSetListAllParameters";
-            pParameters.ParameterType = typeof(Microsoft.Azure.Management.Compute.Models.ListParameters);
-            pParameters.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByDynamicParameters",
-                Position = 1,
-                Mandatory = true
-            });
-            pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("VirtualMachineScaleSetListAllParameters", pParameters);
-
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
             pArgumentList.ParameterType = typeof(object[]);
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 2,
+                Position = 1,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());

@@ -35,17 +35,65 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         protected object CreateVirtualMachineScaleSetVMListDynamicParameters()
         {
             dynamicParameters = new RuntimeDefinedParameterDictionary();
-            var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "VirtualMachineScaleSetVMListParameters";
-            pParameters.ParameterType = typeof(Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMListParameters);
-            pParameters.Attributes.Add(new ParameterAttribute
+            var pExpandExpression = new RuntimeDefinedParameter();
+            pExpandExpression.Name = "ExpandExpression";
+            pExpandExpression.ParameterType = typeof(string);
+            pExpandExpression.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
-            pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("VirtualMachineScaleSetVMListParameters", pParameters);
+            pExpandExpression.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("ExpandExpression", pExpandExpression);
+
+            var pFilterExpression = new RuntimeDefinedParameter();
+            pFilterExpression.Name = "FilterExpression";
+            pFilterExpression.ParameterType = typeof(string);
+            pFilterExpression.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 2,
+                Mandatory = false
+            });
+            pFilterExpression.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("FilterExpression", pFilterExpression);
+
+            var pResourceGroupName = new RuntimeDefinedParameter();
+            pResourceGroupName.Name = "ResourceGroupName";
+            pResourceGroupName.ParameterType = typeof(string);
+            pResourceGroupName.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 3,
+                Mandatory = false
+            });
+            pResourceGroupName.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
+
+            var pSelectExpression = new RuntimeDefinedParameter();
+            pSelectExpression.Name = "SelectExpression";
+            pSelectExpression.ParameterType = typeof(string);
+            pSelectExpression.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 4,
+                Mandatory = false
+            });
+            pSelectExpression.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("SelectExpression", pSelectExpression);
+
+            var pVirtualMachineScaleSetName = new RuntimeDefinedParameter();
+            pVirtualMachineScaleSetName.Name = "VirtualMachineScaleSetName";
+            pVirtualMachineScaleSetName.ParameterType = typeof(string);
+            pVirtualMachineScaleSetName.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 5,
+                Mandatory = false
+            });
+            pVirtualMachineScaleSetName.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("VirtualMachineScaleSetName", pVirtualMachineScaleSetName);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
@@ -53,7 +101,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 2,
+                Position = 6,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
@@ -64,7 +112,17 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         protected void ExecuteVirtualMachineScaleSetVMListMethod(object[] invokeMethodInputParameters)
         {
-            VirtualMachineScaleSetVMListParameters parameters = (VirtualMachineScaleSetVMListParameters)ParseParameter(invokeMethodInputParameters[0]);
+            var parameters = new VirtualMachineScaleSetVMListParameters();
+            var pExpandExpression = (string) ParseParameter(invokeMethodInputParameters[0]);
+            parameters.ExpandExpression = string.IsNullOrEmpty(pExpandExpression) ? null : pExpandExpression;
+            var pFilterExpression = (string) ParseParameter(invokeMethodInputParameters[1]);
+            parameters.FilterExpression = string.IsNullOrEmpty(pFilterExpression) ? null : pFilterExpression;
+            var pResourceGroupName = (string) ParseParameter(invokeMethodInputParameters[2]);
+            parameters.ResourceGroupName = string.IsNullOrEmpty(pResourceGroupName) ? null : pResourceGroupName;
+            var pSelectExpression = (string) ParseParameter(invokeMethodInputParameters[3]);
+            parameters.SelectExpression = string.IsNullOrEmpty(pSelectExpression) ? null : pSelectExpression;
+            var pVirtualMachineScaleSetName = (string) ParseParameter(invokeMethodInputParameters[4]);
+            parameters.VirtualMachineScaleSetName = string.IsNullOrEmpty(pVirtualMachineScaleSetName) ? null : pVirtualMachineScaleSetName;
 
             var result = VirtualMachineScaleSetVMClient.List(parameters);
             WriteObject(result);
@@ -75,13 +133,19 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     {
         protected PSArgument[] CreateVirtualMachineScaleSetVMListParameters()
         {
-            VirtualMachineScaleSetVMListParameters parameters = new VirtualMachineScaleSetVMListParameters();
+            var pExpandExpression = string.Empty;
+            var pFilterExpression = string.Empty;
+            var pResourceGroupName = string.Empty;
+            var pSelectExpression = string.Empty;
+            var pVirtualMachineScaleSetName = string.Empty;
 
-            return ConvertFromObjectsToArguments(new string[] { "Parameters" }, new object[] { parameters });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ExpandExpression", "FilterExpression", "ResourceGroupName", "SelectExpression", "VirtualMachineScaleSetName" },
+                 new object[] { pExpandExpression, pFilterExpression, pResourceGroupName, pSelectExpression, pVirtualMachineScaleSetName });
         }
     }
 
-    [Cmdlet("Get", "AzureVMSSVMList")]
+    [Cmdlet("Get", "AzureVmssVMList", DefaultParameterSetName = "InvokeByDynamicParameters")]
     public partial class GetAzureVMSSVMList : InvokeAzureComputeMethodCmdlet
     {
         public GetAzureVMSSVMList()
@@ -99,17 +163,65 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         public override object GetDynamicParameters()
         {
             dynamicParameters = new RuntimeDefinedParameterDictionary();
-            var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "VirtualMachineScaleSetVMListParameters";
-            pParameters.ParameterType = typeof(Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMListParameters);
-            pParameters.Attributes.Add(new ParameterAttribute
+            var pExpandExpression = new RuntimeDefinedParameter();
+            pExpandExpression.Name = "ExpandExpression";
+            pExpandExpression.ParameterType = typeof(string);
+            pExpandExpression.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
-            pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("VirtualMachineScaleSetVMListParameters", pParameters);
+            pExpandExpression.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("ExpandExpression", pExpandExpression);
+
+            var pFilterExpression = new RuntimeDefinedParameter();
+            pFilterExpression.Name = "FilterExpression";
+            pFilterExpression.ParameterType = typeof(string);
+            pFilterExpression.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 2,
+                Mandatory = false
+            });
+            pFilterExpression.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("FilterExpression", pFilterExpression);
+
+            var pResourceGroupName = new RuntimeDefinedParameter();
+            pResourceGroupName.Name = "ResourceGroupName";
+            pResourceGroupName.ParameterType = typeof(string);
+            pResourceGroupName.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 3,
+                Mandatory = false
+            });
+            pResourceGroupName.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
+
+            var pSelectExpression = new RuntimeDefinedParameter();
+            pSelectExpression.Name = "SelectExpression";
+            pSelectExpression.ParameterType = typeof(string);
+            pSelectExpression.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 4,
+                Mandatory = false
+            });
+            pSelectExpression.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("SelectExpression", pSelectExpression);
+
+            var pVirtualMachineScaleSetName = new RuntimeDefinedParameter();
+            pVirtualMachineScaleSetName.Name = "VirtualMachineScaleSetName";
+            pVirtualMachineScaleSetName.ParameterType = typeof(string);
+            pVirtualMachineScaleSetName.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 5,
+                Mandatory = false
+            });
+            pVirtualMachineScaleSetName.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("VirtualMachineScaleSetName", pVirtualMachineScaleSetName);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
@@ -117,7 +229,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 2,
+                Position = 6,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());

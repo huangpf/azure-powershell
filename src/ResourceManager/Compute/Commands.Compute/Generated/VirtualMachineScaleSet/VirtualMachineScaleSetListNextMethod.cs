@@ -37,7 +37,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pNextLink = new RuntimeDefinedParameter();
             pNextLink.Name = "NextLink";
-            pNextLink.ParameterType = typeof(System.String);
+            pNextLink.ParameterType = typeof(string);
             pNextLink.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -77,11 +77,13 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         {
             string nextLink = string.Empty;
 
-            return ConvertFromObjectsToArguments(new string[] { "NextLink" }, new object[] { nextLink });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "NextLink" },
+                 new object[] { nextLink });
         }
     }
 
-    [Cmdlet("Get", "AzureVMSSNextList")]
+    [Cmdlet("Get", "AzureVmssNextList", DefaultParameterSetName = "InvokeByDynamicParameters")]
     public partial class GetAzureVMSSNextList : InvokeAzureComputeMethodCmdlet
     {
         public GetAzureVMSSNextList()
@@ -101,7 +103,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pNextLink = new RuntimeDefinedParameter();
             pNextLink.Name = "NextLink";
-            pNextLink.ParameterType = typeof(System.String);
+            pNextLink.ParameterType = typeof(string);
             pNextLink.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
