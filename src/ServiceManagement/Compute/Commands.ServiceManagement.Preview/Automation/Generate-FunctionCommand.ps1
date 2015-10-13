@@ -115,14 +115,7 @@ function Generate-CliFunctionCommandImpl
     }
     $code += "  .option('--parameter-file <parameter-file>', `$('the input parameter file'))" + $NEW_LINE;
     $code += "  .option('-s, --subscription <subscription>', `$('the subscription identifier'))" + $NEW_LINE;
-    $code += "  .execute(function ("
-    for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
-    {
-        if ($index -gt 0) { $code += ", "; }
-        $cli_param_name = Get-CliNormalizedName $methodParamNameList[$index];
-        $code += "$cli_param_name";
-    }
-    $code += ", options, _) {" + $NEW_LINE;
+    $code += "  .execute(function(options, _) {" + $NEW_LINE;
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {
         $cli_param_name = Get-CliNormalizedName $methodParamNameList[$index];

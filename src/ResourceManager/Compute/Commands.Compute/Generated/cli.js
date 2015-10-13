@@ -47,7 +47,7 @@ exports.init = function (cli) {
   .option('--parameters <parameters>', $('parameters'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, parameters, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('parameters = ' + options.parameters);
     var parametersObj = null;
@@ -5371,7 +5371,7 @@ exports.init = function (cli) {
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5392,7 +5392,7 @@ exports.init = function (cli) {
   .option('--vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
@@ -5420,7 +5420,7 @@ exports.init = function (cli) {
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5441,7 +5441,7 @@ exports.init = function (cli) {
   .option('--vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
@@ -5469,7 +5469,7 @@ exports.init = function (cli) {
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5486,7 +5486,7 @@ exports.init = function (cli) {
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5502,7 +5502,7 @@ exports.init = function (cli) {
   .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
@@ -5520,7 +5520,7 @@ exports.init = function (cli) {
   .option('--parameters <parameters>', $('parameters'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (parameters, options, _) {
+  .execute(function(options, _) {
     cli.output.info('parameters = ' + options.parameters);
     var parametersObj = null;
     if (options.parameterFile) {
@@ -5689,7 +5689,7 @@ exports.init = function (cli) {
   .option('--next-link <next-link>', $('next-link'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (nextLink, options, _) {
+  .execute(function(options, _) {
     cli.output.info('nextLink = ' + options.nextLink);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
@@ -5705,7 +5705,7 @@ exports.init = function (cli) {
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5722,7 +5722,7 @@ exports.init = function (cli) {
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5743,7 +5743,7 @@ exports.init = function (cli) {
   .option('--vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
@@ -5771,7 +5771,7 @@ exports.init = function (cli) {
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5792,7 +5792,7 @@ exports.init = function (cli) {
   .option('--vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
@@ -5820,7 +5820,7 @@ exports.init = function (cli) {
   .option('--vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5841,7 +5841,7 @@ exports.init = function (cli) {
   .option('--vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
@@ -5873,7 +5873,7 @@ exports.init = function (cli) {
   .option('--vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('vmInstanceIds = ' + options.vmInstanceIds);
@@ -5902,7 +5902,7 @@ exports.init = function (cli) {
   .option('--instance-id <instance-id>', $('instance-id'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, instanceId, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('instanceId = ' + options.instanceId);
@@ -5921,7 +5921,7 @@ exports.init = function (cli) {
   .option('--instance-id <instance-id>', $('instance-id'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, instanceId, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('instanceId = ' + options.instanceId);
@@ -5940,7 +5940,7 @@ exports.init = function (cli) {
   .option('--instance-id <instance-id>', $('instance-id'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, instanceId, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('instanceId = ' + options.instanceId);
@@ -5959,7 +5959,7 @@ exports.init = function (cli) {
   .option('--instance-id <instance-id>', $('instance-id'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, instanceId, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('instanceId = ' + options.instanceId);
@@ -5979,7 +5979,7 @@ exports.init = function (cli) {
   .option('--parameters <parameters>', $('parameters'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (parameters, options, _) {
+  .execute(function(options, _) {
     cli.output.info('parameters = ' + options.parameters);
     var parametersObj = null;
     if (options.parameterFile) {
@@ -6301,7 +6301,7 @@ exports.init = function (cli) {
   .option('--instance-id <instance-id>', $('instance-id'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, instanceId, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('instanceId = ' + options.instanceId);
@@ -6320,7 +6320,7 @@ exports.init = function (cli) {
   .option('--instance-id <instance-id>', $('instance-id'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, instanceId, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('instanceId = ' + options.instanceId);
@@ -6339,7 +6339,7 @@ exports.init = function (cli) {
   .option('--instance-id <instance-id>', $('instance-id'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function (resourceGroupName, vmScaleSetName, instanceId, options, _) {
+  .execute(function(options, _) {
     cli.output.info('resourceGroupName = ' + options.resourceGroupName);
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     cli.output.info('instanceId = ' + options.instanceId);
