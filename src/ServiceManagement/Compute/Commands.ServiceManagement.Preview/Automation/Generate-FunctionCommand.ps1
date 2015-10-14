@@ -35,6 +35,7 @@ $NEW_LINE = "`r`n";
 $BAR_LINE = "=============================================";
 $SEC_LINE = "---------------------------------------------";
 . "$PSScriptRoot\StringProcessingHelper.ps1";
+. "$PSScriptRoot\ParameterTypeHelper.ps1";
 
 function Generate-CliFunctionCommandImpl
 {
@@ -53,6 +54,8 @@ function Generate-CliFunctionCommandImpl
     $methodParameters = $MethodInfo.GetParameters();
     $methodName = ($MethodInfo.Name.Replace('Async', ''));
     $methodParamNameList = @();
+    $methodParamTypeDict = @{};
+    $allStringFieldCheck = @{};
 
     # 3. CLI Code
     # 3.1 Types
@@ -63,6 +66,9 @@ function Generate-CliFunctionCommandImpl
         {
             # Record the Normalized Parameter Name, i.e. 'vmName' => 'VMName', 'resourceGroup' => 'ResourceGroup', etc.
             $methodParamNameList += (Get-NormalizedName $paramItem.Name);
+            $methodParamTypeDict.Add($paramItem.Name, $paramType);
+            $allStringFields = Contains-OnlyStringFields $paramType;
+            $allStringFieldCheck.Add($paramItem.Name, $allStringFields);
 
             if ($paramType.Namespace -like $ModelNameSpace)
             {
@@ -81,7 +87,7 @@ function Generate-CliFunctionCommandImpl
             }
         }
     }
-
+    
     # 3.2 Functions
     
     # 3.2.1 Compute the CLI Category Name, i.e. VirtualMachineScaleSet => vmss, VirtualMachineScaleSetVM => vmssvm
@@ -125,18 +131,36 @@ function Generate-CliFunctionCommandImpl
     $code += "  .usage('[options]')" + $NEW_LINE;
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {
-        $cli_option_name = Get-CliOptionName $methodParamNameList[$index];
-        $code += "  .option('--${cli_option_name} <${cli_option_name}>', `$('${cli_option_name}'))" + $NEW_LINE;
+        # For Each Method Parameter
+        [string]$optionParamName = $methodParamNameList[$index];
+        if ($allStringFieldCheck[$optionParamName])
+        {
+            [System.Type]$optionParamType = $methodParamTypeDict[$optionParamName];
+            foreach ($propItem in $optionParamType.GetProperties())
+            {
+                [System.Reflection.PropertyInfo]$propInfoItem = $propItem;
+                $cli_option_name = Get-CliOptionName $propInfoItem.Name;
+                $code += "  .option('--${cli_option_name} <${cli_option_name}>', `$('${cli_option_name}'))" + $NEW_LINE;
+            }
+        }
+        else
+        {
+            $cli_option_name = Get-CliOptionName $optionParamName;
+            $code += "  .option('--${cli_option_name} <${cli_option_name}>', `$('${cli_option_name}'))" + $NEW_LINE;
+        }
     }
     $code += "  .option('--parameter-file <parameter-file>', `$('the input parameter file'))" + $NEW_LINE;
     $code += "  .option('-s, --subscription <subscription>', `$('the subscription identifier'))" + $NEW_LINE;
     $code += "  .execute(function(options, _) {" + $NEW_LINE;
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {
-        $cli_param_name = Get-CliNormalizedName $methodParamNameList[$index];
-        $code += "    cli.output.info('${cli_param_name} = ' + options.${cli_param_name});" + $NEW_LINE;
-        if ((${cli_param_name} -eq 'Parameters') -or (${cli_param_name} -like '*InstanceIds'))
+        # For Each Method Parameter
+        [string]$optionParamName = $methodParamNameList[$index];
+        if ($allStringFieldCheck[$optionParamName])
         {
+            [System.Type]$optionParamType = $methodParamTypeDict[$optionParamName];
+            $cli_param_name = Get-CliNormalizedName $optionParamName;
+
             $code += "    var ${cli_param_name}Obj = null;" + $NEW_LINE;
             $code += "    if (options.parameterFile) {" + $NEW_LINE;
             $code += "      cli.output.info(`'Reading file content from: \`"`' + options.parameterFile + `'\`"`');" + $NEW_LINE;
@@ -144,9 +168,36 @@ function Generate-CliFunctionCommandImpl
             $code += "      ${cli_param_name}Obj = JSON.parse(fileContent);" + $NEW_LINE;
             $code += "    }" + $NEW_LINE;
             $code += "    else {" + $NEW_LINE;
-            $code += "      ${cli_param_name}Obj = JSON.parse(options.${cli_param_name});" + $NEW_LINE;
+            $code += "      ${cli_param_name}Obj = {};" + $NEW_LINE;
+            
+            foreach ($propItem in $optionParamType.GetProperties())
+            {
+                [System.Reflection.PropertyInfo]$propInfoItem = $propItem;
+                $cli_op_param_name = Get-CliNormalizedName $propInfoItem.Name;
+                $code += "      cli.output.info('${cli_op_param_name} = ' + options.${cli_op_param_name});" + $NEW_LINE;
+                $code += "      ${cli_param_name}Obj.${cli_op_param_name} = options.${cli_op_param_name};" + $NEW_LINE;
+            }
+
             $code += "    }" + $NEW_LINE;
             $code += "    cli.output.info('${cli_param_name}Obj = ' + JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
+        }
+        else
+        {
+            $cli_param_name = Get-CliNormalizedName $optionParamName;
+            $code += "    cli.output.info('${cli_param_name} = ' + options.${cli_param_name});" + $NEW_LINE;
+            if ((${cli_param_name} -eq 'Parameters') -or (${cli_param_name} -like '*InstanceIds'))
+            {
+                $code += "    var ${cli_param_name}Obj = null;" + $NEW_LINE;
+                $code += "    if (options.parameterFile) {" + $NEW_LINE;
+                $code += "      cli.output.info(`'Reading file content from: \`"`' + options.parameterFile + `'\`"`');" + $NEW_LINE;
+                $code += "      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $NEW_LINE;
+                $code += "      ${cli_param_name}Obj = JSON.parse(fileContent);" + $NEW_LINE;
+                $code += "    }" + $NEW_LINE;
+                $code += "    else {" + $NEW_LINE;
+                $code += "      ${cli_param_name}Obj = JSON.parse(options.${cli_param_name});" + $NEW_LINE;
+                $code += "    }" + $NEW_LINE;
+                $code += "    cli.output.info('${cli_param_name}Obj = ' + JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
+            }
         }
     }
     $code += "    var subscription = profile.current.getSubscription(options.subscription);" + $NEW_LINE;

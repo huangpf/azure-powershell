@@ -5695,11 +5695,9 @@ exports.init = function (cli) {
   vmssListAll.command('list-all')
   .description($('list-all method to manage your virtual machine scale set.'))
   .usage('[options]')
-  .option('--parameters <parameters>', $('parameters'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(options, _) {
-    cli.output.info('parameters = ' + options.parameters);
     var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
@@ -5707,7 +5705,7 @@ exports.init = function (cli) {
       parametersObj = JSON.parse(fileContent);
     }
     else {
-      parametersObj = JSON.parse(options.parameters);
+      parametersObj = {};
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -6233,11 +6231,14 @@ exports.init = function (cli) {
   vmssvmList.command('list')
   .description($('list method to manage your virtual machine scale set vm.'))
   .usage('[options]')
-  .option('--parameters <parameters>', $('parameters'))
+  .option('--expand-expression <expand-expression>', $('expand-expression'))
+  .option('--filter-expression <filter-expression>', $('filter-expression'))
+  .option('--resource-group-name <resource-group-name>', $('resource-group-name'))
+  .option('--select-expression <select-expression>', $('select-expression'))
+  .option('--virtual-machine-scale-set-name <virtual-machine-scale-set-name>', $('virtual-machine-scale-set-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(options, _) {
-    cli.output.info('parameters = ' + options.parameters);
     var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
@@ -6245,7 +6246,17 @@ exports.init = function (cli) {
       parametersObj = JSON.parse(fileContent);
     }
     else {
-      parametersObj = JSON.parse(options.parameters);
+      parametersObj = {};
+      cli.output.info('expandExpression = ' + options.expandExpression);
+      parametersObj.expandExpression = options.expandExpression;
+      cli.output.info('filterExpression = ' + options.filterExpression);
+      parametersObj.filterExpression = options.filterExpression;
+      cli.output.info('resourceGroupName = ' + options.resourceGroupName);
+      parametersObj.resourceGroupName = options.resourceGroupName;
+      cli.output.info('selectExpression = ' + options.selectExpression);
+      parametersObj.selectExpression = options.selectExpression;
+      cli.output.info('virtualMachineScaleSetName = ' + options.virtualMachineScaleSetName);
+      parametersObj.virtualMachineScaleSetName = options.virtualMachineScaleSetName;
     }
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
