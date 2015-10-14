@@ -32,6 +32,8 @@ param(
 )
 
 $NEW_LINE = "`r`n";
+$BAR_LINE = "=============================================";
+$SEC_LINE = "---------------------------------------------";
 . "$PSScriptRoot\StringProcessingHelper.ps1";
 
 function Generate-CliFunctionCommandImpl
@@ -95,14 +97,27 @@ function Generate-CliFunctionCommandImpl
 
     # 3.2.4 Compute the CLI Command Description, i.e. VirtualMachineScaleSet => virtual machine scale set
     $cliOperationDescription = (Get-CliOptionName $OperationName).Replace('-', ' ');
-
-    $code = "";
-    $code += "//" + $cliOperationName + " -> " + $methodName + $NEW_LINE;
-    if ($param_object_comment -ne $null)
+    
+    # 3.2.5 Generate the CLI Command Comment
+    $cliOperationComment = "/*" + $NEW_LINE;
+    $cliOperationComment += "  " + $OperationName + " " + $methodName + $NEW_LINE;
+    for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {
-        $code += "/*" + $NEW_LINE + $param_object_comment + $NEW_LINE + "*/" + $NEW_LINE;
+        $cli_option_name = Get-CliOptionName $methodParamNameList[$index];
+        $cliOperationComment += "  --" + (Get-CliOptionName $methodParamNameList[$index]) + $NEW_LINE;
     }
 
+    if ($param_object_comment_no_compress -ne $null -and $param_object_comment_no_compress.Trim() -ne '')
+    {
+        $cliOperationComment += $BAR_LINE + $NEW_LINE;
+        $cliOperationComment += $param_object_comment_no_compress + $NEW_LINE;
+    }
+
+    $cliOperationComment += "*/" + $NEW_LINE;
+    
+    # 3.2.6 Generate the CLI Command Code
+    $code = "";
+    $code += $cliOperationComment;
     $code += "  var $cliCategoryVarName = cli.category('${cliCategoryName}').description(`$('Commands to manage your $cliOperationDescription.'));" + $NEW_LINE;
 
     $code += "  ${cliCategoryVarName}.command('${cliMethodOption}')" + $NEW_LINE;

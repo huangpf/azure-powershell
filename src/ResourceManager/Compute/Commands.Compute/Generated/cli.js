@@ -35,9 +35,148 @@ function beautify(jsonText) {
 
 exports.init = function (cli) {
 
-//virtualMachineScaleSet -> CreateOrUpdate
 /*
-{"provisioningState":"","sku":{"capacity":null,"name":"","tier":""},"upgradePolicy":{"mode":""},"virtualMachineProfile":{"extensionProfile":{"extensions":[{"autoUpgradeMinorVersion":false,"extensionType":"","protectedSettings":"","provisioningState":"","publisher":"","settings":"","typeHandlerVersion":"","id":"","name":"","type":"","location":"","tags":{}}]},"networkProfile":{"networkInterfaceConfigurations":[{"iPConfigurations":[{"loadBalancerBackendAddressPools":[{"referenceUri":""}],"loadBalancerInboundNatPools":[{"referenceUri":""}],"name":"","subnet":{"referenceUri":""}}],"name":"","primary":null}]},"oSProfile":{"computerNamePrefix":"","adminPassword":"","adminUsername":"","customData":"","linuxConfiguration":{"disablePasswordAuthentication":null,"sshConfiguration":{"publicKeys":[{"keyData":"","path":""}]}},"secrets":[{"sourceVault":{"referenceUri":""},"vaultCertificates":[{"certificateStore":"","certificateUrl":""}]}],"windowsConfiguration":{"additionalUnattendContents":[{"componentName":"","content":"","passName":"","settingName":""}],"enableAutomaticUpdates":null,"provisionVMAgent":null,"timeZone":"","winRMConfiguration":{"listeners":[{"certificateUrl":"","protocol":""}]}}},"storageProfile":{"imageReference":{"offer":"","publisher":"","sku":"","version":""},"oSDisk":{"caching":"","createOption":"","name":"","operatingSystemType":"","sourceImage":{"uri":""},"virtualHardDiskContainers":[""]}}},"id":"","name":"","type":"","location":"","tags":{}}
+  VirtualMachineScaleSet CreateOrUpdate
+  --resource-group-name
+  --parameters
+=============================================
+{
+  "provisioningState":"",
+  "sku":{
+    "capacity":null,
+    "name":"",
+    "tier":""
+  },
+  "upgradePolicy":{
+    "mode":""
+  },
+  "virtualMachineProfile":{
+    "extensionProfile":{
+      "extensions":[
+        {
+          "autoUpgradeMinorVersion":false,
+          "extensionType":"",
+          "protectedSettings":"",
+          "provisioningState":"",
+          "publisher":"",
+          "settings":"",
+          "typeHandlerVersion":"",
+          "id":"",
+          "name":"",
+          "type":"",
+          "location":"",
+          "tags":{
+
+          }
+        }
+      ]
+    },
+    "networkProfile":{
+      "networkInterfaceConfigurations":[
+        {
+          "iPConfigurations":[
+            {
+              "loadBalancerBackendAddressPools":[
+                {
+                  "referenceUri":""
+                }
+              ],
+              "loadBalancerInboundNatPools":[
+                {
+                  "referenceUri":""
+                }
+              ],
+              "name":"",
+              "subnet":{
+                "referenceUri":""
+              }
+            }
+          ],
+          "name":"",
+          "primary":null
+        }
+      ]
+    },
+    "oSProfile":{
+      "computerNamePrefix":"",
+      "adminPassword":"",
+      "adminUsername":"",
+      "customData":"",
+      "linuxConfiguration":{
+        "disablePasswordAuthentication":null,
+        "sshConfiguration":{
+          "publicKeys":[
+            {
+              "keyData":"",
+              "path":""
+            }
+          ]
+        }
+      },
+      "secrets":[
+        {
+          "sourceVault":{
+            "referenceUri":""
+          },
+          "vaultCertificates":[
+            {
+              "certificateStore":"",
+              "certificateUrl":""
+            }
+          ]
+        }
+      ],
+      "windowsConfiguration":{
+        "additionalUnattendContents":[
+          {
+            "componentName":"",
+            "content":"",
+            "passName":"",
+            "settingName":""
+          }
+        ],
+        "enableAutomaticUpdates":null,
+        "provisionVMAgent":null,
+        "timeZone":"",
+        "winRMConfiguration":{
+          "listeners":[
+            {
+              "certificateUrl":"",
+              "protocol":""
+            }
+          ]
+        }
+      }
+    },
+    "storageProfile":{
+      "imageReference":{
+        "offer":"",
+        "publisher":"",
+        "sku":"",
+        "version":""
+      },
+      "oSDisk":{
+        "caching":"",
+        "createOption":"",
+        "name":"",
+        "operatingSystemType":"",
+        "sourceImage":{
+          "uri":""
+        },
+        "virtualHardDiskContainers":[
+          ""
+        ]
+      }
+    }
+  },
+  "id":"",
+  "name":"",
+  "type":"",
+  "location":"",
+  "tags":{
+
+  }
+}
 */
   var vmssCreateOrUpdate = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssCreateOrUpdate.command('create-or-update')
@@ -5362,7 +5501,11 @@ exports.init = function (cli) {
   });
 
 
-//virtualMachineScaleSet -> Deallocate
+/*
+  VirtualMachineScaleSet Deallocate
+  --resource-group-name
+  --vm-scale-set-name
+*/
   var vmssDeallocate = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssDeallocate.command('deallocate')
   .description($('deallocate method to manage your virtual machine scale set.'))
@@ -5379,9 +5522,17 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.deallocate(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSet -> DeallocateInstances
 /*
-{"instanceIDs":[""]}
+  VirtualMachineScaleSet DeallocateInstances
+  --resource-group-name
+  --vm-scale-set-name
+  --vm-instance-ids
+=============================================
+{
+  "instanceIDs":[
+    ""
+  ]
+}
 */
   var vmssDeallocateInstances = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssDeallocateInstances.command('deallocate-instances')
@@ -5411,7 +5562,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.deallocateInstances(options.resourceGroupName, options.vmScaleSetName, vmInstanceIdsObj, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSet -> Delete
+/*
+  VirtualMachineScaleSet Delete
+  --resource-group-name
+  --vm-scale-set-name
+*/
   var vmssDelete = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssDelete.command('delete')
   .description($('delete method to manage your virtual machine scale set.'))
@@ -5428,9 +5583,17 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.delete(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSet -> DeleteInstances
 /*
-{"instanceIDs":[""]}
+  VirtualMachineScaleSet DeleteInstances
+  --resource-group-name
+  --vm-scale-set-name
+  --vm-instance-ids
+=============================================
+{
+  "instanceIDs":[
+    ""
+  ]
+}
 */
   var vmssDeleteInstances = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssDeleteInstances.command('delete-instances')
@@ -5460,7 +5623,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.deleteInstances(options.resourceGroupName, options.vmScaleSetName, vmInstanceIdsObj, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSet -> Get
+/*
+  VirtualMachineScaleSet Get
+  --resource-group-name
+  --vm-scale-set-name
+*/
   var vmssGet = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssGet.command('get')
   .description($('get method to manage your virtual machine scale set.'))
@@ -5477,7 +5644,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.get(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSet -> GetInstanceView
+/*
+  VirtualMachineScaleSet GetInstanceView
+  --resource-group-name
+  --vm-scale-set-name
+*/
   var vmssGetInstanceView = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssGetInstanceView.command('get-instance-view')
   .description($('get-instance-view method to manage your virtual machine scale set.'))
@@ -5494,7 +5665,10 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.getInstanceView(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSet -> List
+/*
+  VirtualMachineScaleSet List
+  --resource-group-name
+*/
   var vmssList = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssList.command('list')
   .description($('list method to manage your virtual machine scale set.'))
@@ -5509,9 +5683,13 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.list(options.resourceGroupName, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSet -> ListAll
 /*
-{}
+  VirtualMachineScaleSet ListAll
+  --parameters
+=============================================
+{
+
+}
 */
   var vmssListAll = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssListAll.command('list-all')
@@ -5681,7 +5859,10 @@ exports.init = function (cli) {
   });
 
 
-//virtualMachineScaleSet -> ListNext
+/*
+  VirtualMachineScaleSet ListNext
+  --next-link
+*/
   var vmssListNext = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssListNext.command('list-next')
   .description($('list-next method to manage your virtual machine scale set.'))
@@ -5696,7 +5877,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.listNext(options.nextLink, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSet -> ListSkus
+/*
+  VirtualMachineScaleSet ListSkus
+  --resource-group-name
+  --vm-scale-set-name
+*/
   var vmssListSkus = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssListSkus.command('list-skus')
   .description($('list-skus method to manage your virtual machine scale set.'))
@@ -5713,7 +5898,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.listSkus(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSet -> PowerOff
+/*
+  VirtualMachineScaleSet PowerOff
+  --resource-group-name
+  --vm-scale-set-name
+*/
   var vmssPowerOff = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssPowerOff.command('power-off')
   .description($('power-off method to manage your virtual machine scale set.'))
@@ -5730,9 +5919,17 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.powerOff(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSet -> PowerOffInstances
 /*
-{"instanceIDs":[""]}
+  VirtualMachineScaleSet PowerOffInstances
+  --resource-group-name
+  --vm-scale-set-name
+  --vm-instance-ids
+=============================================
+{
+  "instanceIDs":[
+    ""
+  ]
+}
 */
   var vmssPowerOffInstances = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssPowerOffInstances.command('power-off-instances')
@@ -5762,7 +5959,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.powerOffInstances(options.resourceGroupName, options.vmScaleSetName, vmInstanceIdsObj, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSet -> Restart
+/*
+  VirtualMachineScaleSet Restart
+  --resource-group-name
+  --vm-scale-set-name
+*/
   var vmssRestart = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssRestart.command('restart')
   .description($('restart method to manage your virtual machine scale set.'))
@@ -5779,9 +5980,17 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.restart(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSet -> RestartInstances
 /*
-{"instanceIDs":[""]}
+  VirtualMachineScaleSet RestartInstances
+  --resource-group-name
+  --vm-scale-set-name
+  --vm-instance-ids
+=============================================
+{
+  "instanceIDs":[
+    ""
+  ]
+}
 */
   var vmssRestartInstances = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssRestartInstances.command('restart-instances')
@@ -5811,7 +6020,11 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.restartInstances(options.resourceGroupName, options.vmScaleSetName, vmInstanceIdsObj, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSet -> Start
+/*
+  VirtualMachineScaleSet Start
+  --resource-group-name
+  --vm-scale-set-name
+*/
   var vmssStart = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssStart.command('start')
   .description($('start method to manage your virtual machine scale set.'))
@@ -5828,9 +6041,17 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.start(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSet -> StartInstances
 /*
-{"instanceIDs":[""]}
+  VirtualMachineScaleSet StartInstances
+  --resource-group-name
+  --vm-scale-set-name
+  --vm-instance-ids
+=============================================
+{
+  "instanceIDs":[
+    ""
+  ]
+}
 */
   var vmssStartInstances = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssStartInstances.command('start-instances')
@@ -5860,9 +6081,17 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.startInstances(options.resourceGroupName, options.vmScaleSetName, vmInstanceIdsObj, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSet -> UpdateInstances
 /*
-{"instanceIDs":[""]}
+  VirtualMachineScaleSet UpdateInstances
+  --resource-group-name
+  --vm-scale-set-name
+  --vm-instance-ids
+=============================================
+{
+  "instanceIDs":[
+    ""
+  ]
+}
 */
   var vmssUpdateInstances = cli.category('vmss').description($('Commands to manage your virtual machine scale set.'));
   vmssUpdateInstances.command('update-instances')
@@ -5892,7 +6121,12 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.updateInstances(options.resourceGroupName, options.vmScaleSetName, vmInstanceIdsObj, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSetVM -> Deallocate
+/*
+  VirtualMachineScaleSetVM Deallocate
+  --resource-group-name
+  --vm-scale-set-name
+  --instance-id
+*/
   var vmssvmDeallocate = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvmDeallocate.command('deallocate')
   .description($('deallocate method to manage your virtual machine scale set vm.'))
@@ -5911,7 +6145,12 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSetVMs.deallocate(options.resourceGroupName, options.vmScaleSetName, options.instanceId, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSetVM -> Delete
+/*
+  VirtualMachineScaleSetVM Delete
+  --resource-group-name
+  --vm-scale-set-name
+  --instance-id
+*/
   var vmssvmDelete = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvmDelete.command('delete')
   .description($('delete method to manage your virtual machine scale set vm.'))
@@ -5930,7 +6169,12 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSetVMs.delete(options.resourceGroupName, options.vmScaleSetName, options.instanceId, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSetVM -> Get
+/*
+  VirtualMachineScaleSetVM Get
+  --resource-group-name
+  --vm-scale-set-name
+  --instance-id
+*/
   var vmssvmGet = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvmGet.command('get')
   .description($('get method to manage your virtual machine scale set vm.'))
@@ -5949,7 +6193,12 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSetVMs.get(options.resourceGroupName, options.vmScaleSetName, options.instanceId, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSetVM -> GetInstanceView
+/*
+  VirtualMachineScaleSetVM GetInstanceView
+  --resource-group-name
+  --vm-scale-set-name
+  --instance-id
+*/
   var vmssvmGetInstanceView = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvmGetInstanceView.command('get-instance-view')
   .description($('get-instance-view method to manage your virtual machine scale set vm.'))
@@ -5968,9 +6217,17 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSetVMs.getInstanceView(options.resourceGroupName, options.vmScaleSetName, options.instanceId, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSetVM -> List
 /*
-{"expandExpression":"","filterExpression":"","resourceGroupName":"","selectExpression":"","virtualMachineScaleSetName":""}
+  VirtualMachineScaleSetVM List
+  --parameters
+=============================================
+{
+  "expandExpression":"",
+  "filterExpression":"",
+  "resourceGroupName":"",
+  "selectExpression":"",
+  "virtualMachineScaleSetName":""
+}
 */
   var vmssvmList = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvmList.command('list')
@@ -6291,7 +6548,12 @@ exports.init = function (cli) {
   });
 
 
-//virtualMachineScaleSetVM -> PowerOff
+/*
+  VirtualMachineScaleSetVM PowerOff
+  --resource-group-name
+  --vm-scale-set-name
+  --instance-id
+*/
   var vmssvmPowerOff = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvmPowerOff.command('power-off')
   .description($('power-off method to manage your virtual machine scale set vm.'))
@@ -6310,7 +6572,12 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSetVMs.powerOff(options.resourceGroupName, options.vmScaleSetName, options.instanceId, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSetVM -> Restart
+/*
+  VirtualMachineScaleSetVM Restart
+  --resource-group-name
+  --vm-scale-set-name
+  --instance-id
+*/
   var vmssvmRestart = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvmRestart.command('restart')
   .description($('restart method to manage your virtual machine scale set vm.'))
@@ -6329,7 +6596,12 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSetVMs.restart(options.resourceGroupName, options.vmScaleSetName, options.instanceId, _);
     cli.output.json(result);
   });
-//virtualMachineScaleSetVM -> Start
+/*
+  VirtualMachineScaleSetVM Start
+  --resource-group-name
+  --vm-scale-set-name
+  --instance-id
+*/
   var vmssvmStart = cli.category('vmssvm').description($('Commands to manage your virtual machine scale set vm.'));
   vmssvmStart.command('start')
   .description($('start method to manage your virtual machine scale set vm.'))

@@ -30,11 +30,90 @@ if ($compress)
 else
 {
     $jsonText = ConvertTo-Json -Depth $depth -InputObject $inputObject;
+    
+    # Re-format the JSON text
+    $newJsonText = "";
+    [int]$indent = 0;
+    $startQuote = $true;
+    $semiColon = $false;
+    for ($i = 0; $i -lt $jsonText.Length; $i++)
+    {
+        [char]$ch = $jsonText[$i];
+        if ($ch -eq "[")
+        {
+            if ($semiColon -ne $true)
+            {
+                $newJsonText += " " * $indent;
+            }
+
+            $newJsonText += $ch;
+            $indent += 2;
+        }
+        elseif ($ch -eq "]")
+        {
+            $indent -= 2;
+            $newJsonText += " " * $indent;
+            $newJsonText += $ch;
+        }
+        elseif ($ch -eq "{")
+        {
+            if ($semiColon -ne $true)
+            {
+                $newJsonText += " " * $indent;
+            }
+
+            $newJsonText += $ch;
+            $indent += 2;
+        }
+        elseif ($ch -eq "}")
+        {
+            $indent -= 2;
+            $newJsonText += " " * $indent;
+            $newJsonText += $ch;
+        }
+        elseif ($ch -eq " " -or $ch -eq "`t")
+        {
+            # Skip Space Characters
+        }
+        elseif ($ch -eq "`"")
+        {
+            if ($startQuote -eq $true)
+            {
+                if ($semiColon -ne $true)
+                {
+                    $newJsonText += " " * $indent;
+                }
+
+                $startQuote = $false;
+            }
+            else
+            {
+                $startQuote = $true;
+            }
+
+            $newJsonText += $ch;
+        }
+        else
+        {
+            $newJsonText += $ch;
+        }
+
+        # Track Semicolon
+        if ($ch -eq ":")
+        {
+            $semiColon = $true;
+        }
+        elseif ($ch -ne " ")
+        {
+            $semiColon = $false;
+        }
+    }
+
+    $jsonText = $newJsonText;
 }
 
-$lowerCaseJsonText = $jsonText;
-
 # Change the JSON fields to use lower cases, e.g. {"Say":"Hello World!"} => {"say":"Hello World!"}
+$lowerCaseJsonText = $jsonText;
 $letterA = [int]([char]'A');
 for ($i = 0; $i -lt 26; $i++)
 {
