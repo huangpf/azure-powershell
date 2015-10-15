@@ -5554,7 +5554,10 @@ exports.init = function (cli) {
       vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+      var vmInstanceIdsValArr = options.vmInstanceIds.split(",");
+      cli.output.info('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
+      vmInstanceIdsObj = {};
+      vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
     }
     cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5615,7 +5618,10 @@ exports.init = function (cli) {
       vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+      var vmInstanceIdsValArr = options.vmInstanceIds.split(",");
+      cli.output.info('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
+      vmInstanceIdsObj = {};
+      vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
     }
     cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -5949,7 +5955,10 @@ exports.init = function (cli) {
       vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+      var vmInstanceIdsValArr = options.vmInstanceIds.split(",");
+      cli.output.info('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
+      vmInstanceIdsObj = {};
+      vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
     }
     cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -6010,7 +6019,10 @@ exports.init = function (cli) {
       vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+      var vmInstanceIdsValArr = options.vmInstanceIds.split(",");
+      cli.output.info('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
+      vmInstanceIdsObj = {};
+      vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
     }
     cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -6071,7 +6083,10 @@ exports.init = function (cli) {
       vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+      var vmInstanceIdsValArr = options.vmInstanceIds.split(",");
+      cli.output.info('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
+      vmInstanceIdsObj = {};
+      vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
     }
     cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
@@ -6111,7 +6126,10 @@ exports.init = function (cli) {
       vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      vmInstanceIdsObj = JSON.parse(options.vmInstanceIds);
+      var vmInstanceIdsValArr = options.vmInstanceIds.split(",");
+      cli.output.info('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
+      vmInstanceIdsObj = {};
+      vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
     }
     cli.output.info('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);

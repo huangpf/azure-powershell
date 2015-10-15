@@ -134,7 +134,7 @@ function Generate-CliFunctionCommandImpl
     $code += "  .usage('[options]')" + $NEW_LINE;
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {
-        # For Each Method Parameter
+        # Parameter Declaration - For Each Method Parameter
         [string]$optionParamName = $methodParamNameList[$index];
         if ($allStringFieldCheck[$optionParamName])
         {
@@ -157,7 +157,7 @@ function Generate-CliFunctionCommandImpl
     $code += "  .execute(function(options, _) {" + $NEW_LINE;
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {
-        # For Each Method Parameter
+        # Parameter Assignment - For Each Method Parameter
         [string]$optionParamName = $methodParamNameList[$index];
         if ($allStringFieldCheck[$optionParamName])
         {
@@ -197,7 +197,19 @@ function Generate-CliFunctionCommandImpl
                 $code += "      ${cli_param_name}Obj = JSON.parse(fileContent);" + $NEW_LINE;
                 $code += "    }" + $NEW_LINE;
                 $code += "    else {" + $NEW_LINE;
-                $code += "      ${cli_param_name}Obj = JSON.parse(options.${cli_param_name});" + $NEW_LINE;
+                    
+                if ($oneStringListCheck[$optionParamName])
+                {
+                    $code += "      var ${cli_param_name}ValArr = options.${cli_param_name}.split(`",`");" + $NEW_LINE;
+                    $code += "      cli.output.info(`'${cli_param_name}ValArr : `' + ${cli_param_name}ValArr);" + $NEW_LINE;
+                    $code += "      ${cli_param_name}Obj = {};" + $NEW_LINE;
+                    $code += "      ${cli_param_name}Obj.instanceIDs = ${cli_param_name}ValArr;" + $NEW_LINE;
+                }
+                else
+                {
+                    $code += "      ${cli_param_name}Obj = JSON.parse(options.${cli_param_name});" + $NEW_LINE;
+                }
+
                 $code += "    }" + $NEW_LINE;
                 $code += "    cli.output.info('${cli_param_name}Obj = ' + JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
             }
@@ -208,6 +220,7 @@ function Generate-CliFunctionCommandImpl
     $code += "    var result = computeManagementClient.${cliOperationName}s.${cliMethodName}(";
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {
+        # Function Call - For Each Method Parameter
         if ($index -gt 0) { $code += ", "; }
         
         $cli_param_name = Get-CliNormalizedName $methodParamNameList[$index];
