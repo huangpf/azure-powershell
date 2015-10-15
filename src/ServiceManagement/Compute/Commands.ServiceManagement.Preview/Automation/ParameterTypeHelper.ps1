@@ -36,3 +36,35 @@ function Contains-OnlyStringFields
 
     return $result;
 }
+
+function Contains-OnlyStringList
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        [System.Type]$parameterType
+    )
+
+    if ($parameterType -eq $null)
+    {
+        return $false;
+    }
+
+    if ($parameterType.GetProperties().Count -ne 1)
+    {
+        return $false;
+    }
+    else
+    {
+        [System.Reflection.PropertyInfo]$propInfoItem = ($parameterType.GetProperties())[0];
+        if ($propInfoItem.PropertyType.FullName.StartsWith("System.Collections.Generic.IList"))
+        {
+            [System.Type]$itemType = $propInfoItem.PropertyType.GenericTypeArguments[0];
+            if ($itemType.IsEquivalentTo([string]))
+            {
+                return $true;
+            }
+        }
+
+        return $false;
+    }
+}

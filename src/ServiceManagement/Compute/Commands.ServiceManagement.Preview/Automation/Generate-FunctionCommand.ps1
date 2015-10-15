@@ -56,6 +56,7 @@ function Generate-CliFunctionCommandImpl
     $methodParamNameList = @();
     $methodParamTypeDict = @{};
     $allStringFieldCheck = @{};
+    $oneStringListCheck = @{};
 
     # 3. CLI Code
     # 3.1 Types
@@ -69,6 +70,8 @@ function Generate-CliFunctionCommandImpl
             $methodParamTypeDict.Add($paramItem.Name, $paramType);
             $allStringFields = Contains-OnlyStringFields $paramType;
             $allStringFieldCheck.Add($paramItem.Name, $allStringFields);
+            $oneStringList = Contains-OnlyStringList $paramType;
+            $oneStringListCheck.Add($paramItem.Name, $oneStringList);
 
             if ($paramType.Namespace -like $ModelNameSpace)
             {
