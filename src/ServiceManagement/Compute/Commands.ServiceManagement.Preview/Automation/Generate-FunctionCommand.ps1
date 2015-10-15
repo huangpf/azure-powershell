@@ -200,7 +200,7 @@ function Generate-CliFunctionCommandImpl
                     
                 if ($oneStringListCheck[$optionParamName])
                 {
-                    $code += "      var ${cli_param_name}ValArr = options.${cli_param_name}.split(`",`");" + $NEW_LINE;
+                    $code += "      var ${cli_param_name}ValArr = options.${cli_param_name}.split(',');" + $NEW_LINE;
                     $code += "      cli.output.info(`'${cli_param_name}ValArr : `' + ${cli_param_name}ValArr);" + $NEW_LINE;
                     $code += "      ${cli_param_name}Obj = {};" + $NEW_LINE;
                     $code += "      ${cli_param_name}Obj.instanceIDs = ${cli_param_name}ValArr;" + $NEW_LINE;

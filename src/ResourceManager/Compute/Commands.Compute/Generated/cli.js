@@ -5552,7 +5552,7 @@ exports.init = function (cli) {
       vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsValArr = options.vmInstanceIds.split(",");
+      var vmInstanceIdsValArr = options.vmInstanceIds.split(',');
       cli.output.info('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
       vmInstanceIdsObj = {};
       vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
@@ -5616,7 +5616,7 @@ exports.init = function (cli) {
       vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsValArr = options.vmInstanceIds.split(",");
+      var vmInstanceIdsValArr = options.vmInstanceIds.split(',');
       cli.output.info('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
       vmInstanceIdsObj = {};
       vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
@@ -5952,7 +5952,7 @@ exports.init = function (cli) {
       vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsValArr = options.vmInstanceIds.split(",");
+      var vmInstanceIdsValArr = options.vmInstanceIds.split(',');
       cli.output.info('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
       vmInstanceIdsObj = {};
       vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
@@ -6016,7 +6016,7 @@ exports.init = function (cli) {
       vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsValArr = options.vmInstanceIds.split(",");
+      var vmInstanceIdsValArr = options.vmInstanceIds.split(',');
       cli.output.info('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
       vmInstanceIdsObj = {};
       vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
@@ -6080,7 +6080,7 @@ exports.init = function (cli) {
       vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsValArr = options.vmInstanceIds.split(",");
+      var vmInstanceIdsValArr = options.vmInstanceIds.split(',');
       cli.output.info('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
       vmInstanceIdsObj = {};
       vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
@@ -6123,7 +6123,7 @@ exports.init = function (cli) {
       vmInstanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsValArr = options.vmInstanceIds.split(",");
+      var vmInstanceIdsValArr = options.vmInstanceIds.split(',');
       cli.output.info('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
       vmInstanceIdsObj = {};
       vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
