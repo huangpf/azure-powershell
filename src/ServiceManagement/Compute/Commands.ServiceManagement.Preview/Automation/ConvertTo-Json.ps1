@@ -32,7 +32,7 @@ else
     $jsonText = ConvertTo-Json -Depth $depth -InputObject $inputObject;
     
     # Re-format the JSON text
-    $newJsonText = "";
+    [string]$newJsonText = "";
     [int]$indent = 0;
     $startQuote = $true;
     $semiColon = $false;
@@ -109,7 +109,7 @@ else
         }
     }
 
-    $jsonText = $newJsonText;
+    $jsonText = $newJsonText.Replace("`r`n`r`n", "`r`n");
 }
 
 # Change the JSON fields to use lower cases, e.g. {"Say":"Hello World!"} => {"say":"Hello World!"}
