@@ -261,6 +261,7 @@ function Generate-CliFunctionCommandImpl
             $code += "  .execute(function(options, _) {" + $NEW_LINE;
 
             $output_content = $param_object_comment.Replace("`"", "\`"");
+            $code += "    cli.output.info(_);" + $NEW_LINE;
             $code += "    cli.output.info(`'" + $output_content + "`');" + $NEW_LINE;
 
             $file_content = $param_object_comment_no_compress.Replace($NEW_LINE, "\r\n").Replace("`r", "\r").Replace("`n", "\n");
