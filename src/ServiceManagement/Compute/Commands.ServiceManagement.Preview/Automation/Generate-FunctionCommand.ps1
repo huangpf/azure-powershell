@@ -166,6 +166,7 @@ function Generate-CliFunctionCommandImpl
 
             $code += "    var ${cli_param_name}Obj = null;" + $NEW_LINE;
             $code += "    if (options.parameterFile) {" + $NEW_LINE;
+            $code += "      cli.output.info(_);" + $NEW_LINE;
             $code += "      cli.output.info(`'Reading file content from: \`"`' + options.parameterFile + `'\`"`');" + $NEW_LINE;
             $code += "      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $NEW_LINE;
             $code += "      ${cli_param_name}Obj = JSON.parse(fileContent);" + $NEW_LINE;
@@ -284,12 +285,13 @@ function Generate-CliFunctionCommandImpl
             $code += "  .option('--path <path>', `$('The JSON data path, e.g.: \`"foo/1\`".'))" + $NEW_LINE;
             $code += "  .option('--value <value>', `$('The JSON value.'))" + $NEW_LINE;
             $code += "  .option('--parse', `$('Parse the JSON value to object.'))" + $NEW_LINE;
-            $code += "  .execute(function(options) {" + $NEW_LINE;
+            $code += "  .execute(function(options, _) {" + $NEW_LINE;
             $code += "    cli.output.info(options.parameterFile);" + $NEW_LINE;
             $code += "    cli.output.info(options.operation);" + $NEW_LINE;
             $code += "    cli.output.info(options.path);" + $NEW_LINE;
             $code += "    cli.output.info(options.value);" + $NEW_LINE;
             $code += "    cli.output.info(options.parse);" + $NEW_LINE;
+            $code += "    cli.output.info(_);" + $NEW_LINE;
             $code += "    if (options.parse) {" + $NEW_LINE;
             $code += "      options.value = JSON.parse(options.value);" + $NEW_LINE;
             $code += "    }" + $NEW_LINE;
