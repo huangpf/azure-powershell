@@ -258,7 +258,7 @@ function Generate-CliFunctionCommandImpl
             $code += "  .description(`$('Generate ${cliCategoryVarName} parameter string or files.'))" + $NEW_LINE;
             $code += "  .usage('[options]')" + $NEW_LINE;
             $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
-            $code += "  .execute(function (options) {" + $NEW_LINE;
+            $code += "  .execute(function(options, _) {" + $NEW_LINE;
 
             $output_content = $param_object_comment.Replace("`"", "\`"");
             $code += "    cli.output.info(`'" + $output_content + "`');" + $NEW_LINE;
