@@ -1,3 +1,5 @@
+﻿123123123123aaaa
+
 2014.11.14 Version 0.8.11
 * Profile
   * Clear-AzureProfile: remove all subscription and credential data from the user store
