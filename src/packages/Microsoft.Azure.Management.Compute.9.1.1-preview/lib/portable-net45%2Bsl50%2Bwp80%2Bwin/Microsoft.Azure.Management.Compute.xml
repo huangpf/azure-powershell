@@ -2746,6 +2746,33 @@
             The option to attach.
             </summary>
         </member>
+        <member name="T:Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings">
+            <summary>
+            Describes a Encryption Settings for a Disk
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings.#ctor">
+            <summary>
+            Initializes a new instance of the DiskEncryptionSettings class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings.#ctor(Microsoft.Azure.Management.Compute.Models.KeyVaultSecretReference)">
+            <summary>
+            Initializes a new instance of the DiskEncryptionSettings class with
+            required arguments.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings.DiskEncryptionKey">
+            <summary>
+            Required. Gets or sets the disk encryption key which is a KeyVault
+            Secret.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings.KeyEncryptionKey">
+            <summary>
+            Optional. Gets or sets the key encryption key which is KeyVault Key.
+            </summary>
+        </member>
         <member name="T:Microsoft.Azure.Management.Compute.Models.DiskInstanceView">
             <summary>
             The instance view of the disk.
@@ -2902,6 +2929,60 @@
             IPConfigurationLoadBalancerInboundNATPool class.
             </summary>
         </member>
+        <member name="T:Microsoft.Azure.Management.Compute.Models.KeyVaultKeyReference">
+            <summary>
+            Describes a reference to Key Vault Key
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.KeyVaultKeyReference.#ctor">
+            <summary>
+            Initializes a new instance of the KeyVaultKeyReference class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.KeyVaultKeyReference.#ctor(System.String,Microsoft.Azure.Management.Compute.Models.SourceVaultReference)">
+            <summary>
+            Initializes a new instance of the KeyVaultKeyReference class with
+            required arguments.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.KeyVaultKeyReference.KeyUrl">
+            <summary>
+            Required. Gets or sets the URL referencing a key in a Key Vault.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.KeyVaultKeyReference.SourceVault">
+            <summary>
+            Required. Gets or sets the Relative URL of the Key Vault containing
+            the key
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.Compute.Models.KeyVaultSecretReference">
+            <summary>
+            Describes a reference to Key Vault Secret
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.KeyVaultSecretReference.#ctor">
+            <summary>
+            Initializes a new instance of the KeyVaultSecretReference class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.Compute.Models.KeyVaultSecretReference.#ctor(System.String,Microsoft.Azure.Management.Compute.Models.SourceVaultReference)">
+            <summary>
+            Initializes a new instance of the KeyVaultSecretReference class
+            with required arguments.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.KeyVaultSecretReference.SecretUrl">
+            <summary>
+            Required. Gets or sets the URL referencing a secret in a Key Vault.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.KeyVaultSecretReference.SourceVault">
+            <summary>
+            Required. Gets or sets the Relative URL of the Key Vault containing
+            the secret.
+            </summary>
+        </member>
         <member name="T:Microsoft.Azure.Management.Compute.Models.LinuxConfiguration">
             <summary>
             Describes Windows Configuration of the OS Profile.
@@ -3018,6 +3099,11 @@
             <summary>
             Initializes a new instance of the OSDisk class with required
             arguments.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.Compute.Models.OSDisk.EncryptionSettings">
+            <summary>
+            Optional. Gets or sets the disk encryption settings.
             </summary>
         </member>
         <member name="P:Microsoft.Azure.Management.Compute.Models.OSDisk.OperatingSystemType">
@@ -4493,17 +4579,6 @@
         <member name="P:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetIPConfiguration.Subnet">
             <summary>
             Required. Gets or sets the subnet.
-            </summary>
-        </member>
-        <member name="T:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetIPConfigurationLoadBalancerAddressPool">
-            <summary>
-            Describes a load balancer address pool reference.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetIPConfigurationLoadBalancerAddressPool.#ctor">
-            <summary>
-            Initializes a new instance of the
-            VirtualMachineScaleSetIPConfigurationLoadBalancerAddressPool class.
             </summary>
         </member>
         <member name="T:Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetListResponse">

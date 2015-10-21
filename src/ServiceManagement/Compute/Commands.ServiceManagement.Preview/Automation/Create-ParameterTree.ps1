@@ -23,6 +23,8 @@ param(
     [string]$ParameterName = $null
 )
 
+. "$PSScriptRoot\ParameterTypeHelper.ps1";
+
 function New-ParameterTreeNode
 {
     param ([string]$Name, [System.Type]$TypeInfo, $Parent)
@@ -32,6 +34,8 @@ function New-ParameterTreeNode
     $node | Add-Member -Type NoteProperty -Name TypeInfo -Value $TypeInfo;
     $node | Add-Member -Type NoteProperty -Name Parent -Value $Parent;
     $node | Add-Member -Type NoteProperty -Name IsListItem -Value $false;
+    $node | Add-Member -Type NoteProperty -Name AllStrings -Value $false;
+    $node | Add-Member -Type NoteProperty -Name OneStringList -Value $false;
     $node | Add-Member -Type NoteProperty -Name Properties -Value @();
     $node | Add-Member -Type NoteProperty -Name SubNodes -Value @();
     
@@ -65,6 +69,14 @@ function Create-ParameterTreeImpl
     else
     {
         $treeNode = New-ParameterTreeNode $ParameterName $TypeInfo $Parent;
+        if (Contains-OnlyStringFields $TypeInfo)
+        {
+            $treeNode.AllStrings = $true;
+        }
+        elseif (Contains-OnlyStringList $TypeInfo)
+        {
+            $treeNode.OneStringList = $true;
+        }
 
         $padding = ($Depth.ToString() + (' ' * (4 * ($Depth + 1))));
         if ($Depth -gt 0)
@@ -72,7 +84,16 @@ function Create-ParameterTreeImpl
             Write-Verbose ($padding + "-----------------------------------------------------------");
         }
 
-        Write-Verbose ($padding + "[ Node ] "  + $treeNode.Name);
+        if ($treeNode.AllStrings)
+        {
+            $annotation = " *";
+        }
+        elseif ($treeNode.OneStringList)
+        {
+            $annotation = " ^";
+        }
+
+        Write-Verbose ($padding + "[ Node ] " + $treeNode.Name + $annotation);
         Write-Verbose ($padding + "[Parent] " + $Parent.Name);
 
         foreach ($item in $TypeInfo.GetProperties())

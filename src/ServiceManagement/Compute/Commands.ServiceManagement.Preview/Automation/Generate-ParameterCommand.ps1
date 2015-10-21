@@ -43,10 +43,12 @@ function Generate-CliParameterCommandImpl
         return $null;
     }
 
+    $paramSuffix = $OperationName + $TreeNode.Name;
     $cli_method_option_name = Get-CliOptionName $TreeNode.Name;
     $cli_op_description = Get-CliOptionName $OperationName;
     $category_name = Get-CliCategoryName $OperationName;
     $params_category_name = 'parameters';
+    $params_category_var_name_prefix = 'parameters';
     $cli_param_name = $params_category_name;
 
     # 0. Construct Path to Node
@@ -69,14 +71,14 @@ function Generate-CliParameterCommandImpl
                 if ($nodeName -eq $TreeNode.Name)
                 {
                     $indexerName = "index";
-                    $pathToTreeNode = "/$pathName`" + (options.${indexerName} ? ('/' + options.${indexerName}) : '')";
+                    $pathToTreeNode = "/$pathName`' + (options.${indexerName} ? ('/' + options.${indexerName}) : '')";
                 }
                 else
                 {
                     $indexerName = "${nodeName}Index";
-                    $pathToTreeNode = "/$pathName/`" + options.${indexerName} + `"" + $pathToTreeNode;
+                    $pathToTreeNode = "/$pathName/`' + options.${indexerName} + `'" + $pathToTreeNode;
                 }
-                    
+
                 $indexerParamList += $indexerName;
             }
             else
@@ -90,24 +92,28 @@ function Generate-CliParameterCommandImpl
 
     if ($TreeNode.IsListItem)
     {
-        $pathToTreeNode = "`"${pathToTreeNode}";
+        $pathToTreeNode = "`'${pathToTreeNode}";
     }
     else
     {
-        $pathToTreeNode = "`"${pathToTreeNode}`"";
+        $pathToTreeNode = "`'${pathToTreeNode}`'";
     }
     
     if ($TreeNode.Properties.Count -gt 0 -or ($TreeNode.IsListItem))
     {
         # 1. Parameter Set Command
+        $params_category_var_name = $params_category_var_name_prefix + $paramSuffix + "0";
+        $cat_params_category_var_name = 'cat' + $params_category_var_name;
         $params_generate_category_name = 'set';
+        $params_generate_category_var_name = $params_generate_category_name + $params_category_var_name;
         $code = "  //$params_category_name set ${cli_method_option_name}" + $NEW_LINE;
-        $code += "  var ${params_category_name} = ${category_name}.category('${params_category_name}')" + $NEW_LINE;
+        $code += "  var ${cat_params_category_var_name} = cli.category('vmss');" + $NEW_LINE;
+        $code += "  var ${params_category_var_name} = ${cat_params_category_var_name}.category('${params_category_name}')" + $NEW_LINE;
         $code += "  .description(`$('Commands to manage parameter for your ${cli_op_description}.'));" + $NEW_LINE;
-        $code += "  var ${params_generate_category_name} = ${params_category_name}.category('${params_generate_category_name}')" + $NEW_LINE;
+        $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${params_generate_category_name}')" + $NEW_LINE;
         $code += "  .description(`$('Commands to set parameter file for your ${cli_op_description}.'));" + $NEW_LINE;
-        $code += "  ${params_generate_category_name}.command('${cli_method_option_name}')" + $NEW_LINE;
-        $code += "  .description(`$('Set ${category_name} parameter string or files.'))" + $NEW_LINE;
+        $code += "  ${params_generate_category_var_name}.command('${cli_method_option_name}')" + $NEW_LINE;
+        $code += "  .description(`$('Set ${cat_params_category_var_name} parameter string or files.'))" + $NEW_LINE;
         $code += "  .usage('[options]')" + $NEW_LINE;
         $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
         $code += "  .option('--value <value>', `$('The JSON value.'))" + $NEW_LINE;
@@ -132,9 +138,8 @@ function Generate-CliParameterCommandImpl
             $code += " value.'))" + $NEW_LINE;
         }
 
-        $code += "  .execute(function (";
-        $code += "  parameterFile";
-        $code += "  , options, _) {" + $NEW_LINE;
+        $code += "  .execute(function(options, _) {" + $NEW_LINE;
+        $code += "    cli.output.info(_);" + $NEW_LINE;
         $code += "    cli.output.info(options);" + $NEW_LINE;
         $code += "    cli.output.info(options.parameterFile);" + $NEW_LINE;
         $code += "    cli.output.info(options.value);" + $NEW_LINE;
@@ -143,12 +148,12 @@ function Generate-CliParameterCommandImpl
         $code += "      options.value = JSON.parse(options.value);" + $NEW_LINE;
         $code += "    }" + $NEW_LINE;
         $code += "    cli.output.info(options.value);" + $NEW_LINE;
-        $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
-        $code += "    cli.output.info(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $NEW_LINE;
-        $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+        $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
+        $code += "    cli.output.info(`'Reading file content from: \`"`' + options.parameterFile + `'\`"`');" + $NEW_LINE;
+        $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
         $code += "    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $NEW_LINE;
         $code += "    var ${cli_param_name}Obj = JSON.parse(fileContent);" + $NEW_LINE;
-        $code += "    cli.output.info(`"JSON object:`");" + $NEW_LINE;
+        $code += "    cli.output.info(`'JSON object:`');" + $NEW_LINE;
         $code += "    cli.output.info(JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
     
         $code += "    options.operation = 'replace';" + $NEW_LINE;
@@ -163,13 +168,24 @@ function Generate-CliParameterCommandImpl
         }
         
         # 1.4 For Each Property, Apply the Change if Any
+        $isFirstDefinition = $true;
         foreach ($propertyItem in $TreeNode.Properties)
         {
+            if ($isFirstDefinition)
+            {
+                $isFirstDefinition = $false;
+                $defTypePrefix = "var ";
+            }
+            else
+            {
+                $defTypePrefix = "";
+            }
+
             $paramName = (Get-CliNormalizedName $propertyItem["Name"]);
-            $code += "    var paramPath = " + "options.path" + " + `"/`" + " + "`"" + ${paramName} + "`";" + $NEW_LINE;
-            $code += "    cli.output.info(`"================================================`");" + $NEW_LINE;
-            $code += "    cli.output.info(`"JSON Parameters Path:`" + paramPath);" + $NEW_LINE;
-            $code += "    cli.output.info(`"================================================`");" + $NEW_LINE;
+            $code += "    ${defTypePrefix}paramPath = " + "options.path" + " + `'/`' + " + "`'" + ${paramName} + "`';" + $NEW_LINE;
+            $code += "    cli.output.info(`'================================================`');" + $NEW_LINE;
+            $code += "    cli.output.info(`'JSON Parameters Path:`' + paramPath);" + $NEW_LINE;
+            $code += "    cli.output.info(`'================================================`');" + $NEW_LINE;
             $code += "    if (options.${paramName}) {" + $NEW_LINE;
             $code += "      if (options.parse && options.${paramName}) {" + $NEW_LINE;
             $code += "        options.${paramName} = JSON.parse(options.${paramName});" + $NEW_LINE;
@@ -179,28 +195,32 @@ function Generate-CliParameterCommandImpl
         }
 
         $code += "    var updatedContent = JSON.stringify(${cli_param_name}Obj);" + $NEW_LINE;
-        $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
-        $code += "    cli.output.info(`"JSON object (updated):`");" + $NEW_LINE;
+        $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
+        $code += "    cli.output.info(`'JSON object (updated):`');" + $NEW_LINE;
         $code += "    cli.output.info(JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
-        $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+        $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
         $code += "    fs.writeFileSync(options.parameterFile, beautify(updatedContent));" + $NEW_LINE;
-        $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
-        $code += "    cli.output.info(`"Parameter file updated at: `" + options.parameterFile);" + $NEW_LINE;
-        $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+        $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
+        $code += "    cli.output.info(`'Parameter file updated at: `' + options.parameterFile);" + $NEW_LINE;
+        $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
 
         $code += "  });" + $NEW_LINE;
         $code += "" + $NEW_LINE;
     }
 
     # 2. Parameter Remove Command
+    $params_category_var_name = $params_category_var_name_prefix + $paramSuffix + "1";
+    $cat_params_category_var_name = 'cat' + $params_category_var_name;
     $params_generate_category_name = 'remove';
+    $params_generate_category_var_name = $params_generate_category_name + $params_category_var_name;
     $code += "  //$params_category_name ${params_generate_category_name} ${cli_method_option_name}" + $NEW_LINE;
-    $code += "  var ${params_category_name} = ${category_name}.category('${params_category_name}')" + $NEW_LINE;
+    $code += "  var ${cat_params_category_var_name} = cli.category('vmss');" + $NEW_LINE;
+    $code += "  var ${params_category_var_name} = ${cat_params_category_var_name}.category('${params_category_name}')" + $NEW_LINE;
     $code += "  .description(`$('Commands to remove parameter for your ${cli_op_description}.'));" + $NEW_LINE;
-    $code += "  var ${params_generate_category_name} = ${params_category_name}.category('${params_generate_category_name}')" + $NEW_LINE;
+    $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${params_generate_category_name}')" + $NEW_LINE;
     $code += "  .description(`$('Commands to remove values in the parameter file for your ${cli_op_description}.'));" + $NEW_LINE;
-    $code += "  ${params_generate_category_name}.command('${cli_method_option_name}')" + $NEW_LINE;
-    $code += "  .description(`$('Remove ${category_name} parameter string or files.'))" + $NEW_LINE;
+    $code += "  ${params_generate_category_var_name}.command('${cli_method_option_name}')" + $NEW_LINE;
+    $code += "  .description(`$('Remove ${cat_params_category_var_name} parameter string or files.'))" + $NEW_LINE;
     $code += "  .usage('[options]')" + $NEW_LINE;
     $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
 
@@ -215,41 +235,44 @@ function Generate-CliParameterCommandImpl
     }
 
     # 2.2 Function Definition
-    $code += "  .execute(function (";
-    $code += "  parameterFile";
-    $code += "  , options, _) {" + $NEW_LINE;
+    $code += "  .execute(function(options, _) {" + $NEW_LINE;
+    $code += "    cli.output.info(_);" + $NEW_LINE;
     $code += "    cli.output.info(options);" + $NEW_LINE;
     $code += "    cli.output.info(options.parameterFile);" + $NEW_LINE;
-    $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
-    $code += "    cli.output.info(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $NEW_LINE;
-    $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+    $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
+    $code += "    cli.output.info(`'Reading file content from: \`"`' + options.parameterFile + `'\`"`');" + $NEW_LINE;
+    $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
     $code += "    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $NEW_LINE;
     $code += "    var ${cli_param_name}Obj = JSON.parse(fileContent);" + $NEW_LINE;
-    $code += "    cli.output.info(`"JSON object:`");" + $NEW_LINE;
+    $code += "    cli.output.info(`'JSON object:`');" + $NEW_LINE;
     $code += "    cli.output.info(JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
     $code += "    options.operation = 'remove';" + $NEW_LINE;
     $code += "    options.path = ${pathToTreeNode};" + $NEW_LINE;
     $code += "    jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path}]);" + $NEW_LINE;
     $code += "    var updatedContent = JSON.stringify(${cli_param_name}Obj);" + $NEW_LINE;
-    $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
-    $code += "    cli.output.info(`"JSON object (updated):`");" + $NEW_LINE;
+    $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
+    $code += "    cli.output.info(`'JSON object (updated):`');" + $NEW_LINE;
     $code += "    cli.output.info(JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
-    $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+    $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
     $code += "    fs.writeFileSync(options.parameterFile, beautify(updatedContent));" + $NEW_LINE;
-    $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
-    $code += "    cli.output.info(`"Parameter file updated at: `" + options.parameterFile);" + $NEW_LINE;
-    $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+    $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
+    $code += "    cli.output.info(`'Parameter file updated at: `' + options.parameterFile);" + $NEW_LINE;
+    $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
     $code += "  });" + $NEW_LINE;
     
     # 3. Parameter Add Command
+    $params_category_var_name = $params_category_var_name_prefix + $paramSuffix + "2";
+    $cat_params_category_var_name = 'cat' + $params_category_var_name;
     $params_generate_category_name = 'add';
+    $params_generate_category_var_name = $params_generate_category_name + $params_category_var_name;
     $code += "  //$params_category_name ${params_generate_category_name} ${cli_method_option_name}" + $NEW_LINE;
-    $code += "  var ${params_category_name} = ${category_name}.category('${params_category_name}')" + $NEW_LINE;
+    $code += "  var ${cat_params_category_var_name} = cli.category('vmss');" + $NEW_LINE;
+    $code += "  var ${params_category_var_name} = ${cat_params_category_var_name}.category('${params_category_name}')" + $NEW_LINE;
     $code += "  .description(`$('Commands to add parameter for your ${cli_op_description}.'));" + $NEW_LINE;
-    $code += "  var ${params_generate_category_name} = ${params_category_name}.category('${params_generate_category_name}')" + $NEW_LINE;
+    $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${params_generate_category_name}')" + $NEW_LINE;
     $code += "  .description(`$('Commands to add values in the parameter file for your ${cli_op_description}.'));" + $NEW_LINE;
-    $code += "  ${params_generate_category_name}.command('${cli_method_option_name}')" + $NEW_LINE;
-    $code += "  .description(`$('Remove ${category_name} parameter string or files.'))" + $NEW_LINE;
+    $code += "  ${params_generate_category_var_name}.command('${cli_method_option_name}')" + $NEW_LINE;
+    $code += "  .description(`$('Remove ${cat_params_category_var_name} parameter string or files.'))" + $NEW_LINE;
     $code += "  .usage('[options]')" + $NEW_LINE;
     $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
     $code += "  .option('--key <key>', `$('The JSON key.'))" + $NEW_LINE;
@@ -265,9 +288,8 @@ function Generate-CliParameterCommandImpl
         $code += " value.'))" + $NEW_LINE;
     }
 
-    $code += "  .execute(function (";
-    $code += "  parameterFile";
-    $code += "  , options, _) {" + $NEW_LINE;
+    $code += "  .execute(function(options, _) {" + $NEW_LINE;
+    $code += "    cli.output.info(_);" + $NEW_LINE;
     $code += "    cli.output.info(options);" + $NEW_LINE;
     $code += "    cli.output.info(options.parameterFile);" + $NEW_LINE;
     $code += "    cli.output.info(options.key);" + $NEW_LINE;
@@ -277,27 +299,38 @@ function Generate-CliParameterCommandImpl
     $code += "      options.value = JSON.parse(options.value);" + $NEW_LINE;
     $code += "    }" + $NEW_LINE;
     $code += "    cli.output.info(options.value);" + $NEW_LINE;
-    $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
-    $code += "    cli.output.info(`"Reading file content from: \`"`" + options.parameterFile + `"\`"`");" + $NEW_LINE;
-    $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+    $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
+    $code += "    cli.output.info(`'Reading file content from: \`"`' + options.parameterFile + `'\`"`');" + $NEW_LINE;
+    $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
     $code += "    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $NEW_LINE;
     $code += "    var ${cli_param_name}Obj = JSON.parse(fileContent);" + $NEW_LINE;
-    $code += "    cli.output.info(`"JSON object:`");" + $NEW_LINE;
+    $code += "    cli.output.info(`'JSON object:`');" + $NEW_LINE;
     $code += "    cli.output.info(JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
     
     $code += "    options.operation = 'add';" + $NEW_LINE;
-    $code += "    options.path = ${pathToTreeNode} + `"/`" + options.key;" + $NEW_LINE;
-    $code += "    cli.output.info(`"options.path = `" + options.path);" + $NEW_LINE;
+    $code += "    options.path = ${pathToTreeNode} + `'/`' + options.key;" + $NEW_LINE;
+    $code += "    cli.output.info(`'options.path = `' + options.path);" + $NEW_LINE;
     $code += "    jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $NEW_LINE;
 
     # For Each Property, Apply the Change if Any
+    $isFirstDefinition = $true;
     foreach ($propertyItem in $TreeNode.Properties)
     {
+        if ($isFirstDefinition)
+        {
+            $isFirstDefinition = $false;
+            $defTypePrefix = "var ";
+        }
+        else
+        {
+            $defTypePrefix = "";
+        }
+
         $paramName = (Get-CliNormalizedName $propertyItem["Name"]);
-        $code += "    var paramPath = ${pathToTreeNode} + `"/`" + `"${paramName}`";" + $NEW_LINE;
-        $code += "    cli.output.info(`"================================================`");" + $NEW_LINE;
-        $code += "    cli.output.info(`"JSON Parameters Path:`" + paramPath);" + $NEW_LINE;
-        $code += "    cli.output.info(`"================================================`");" + $NEW_LINE;
+        $code += "    ${defTypePrefix}paramPath = ${pathToTreeNode} + `'/`' + `'${paramName}`';" + $NEW_LINE;
+        $code += "    cli.output.info(`'================================================`');" + $NEW_LINE;
+        $code += "    cli.output.info(`'JSON Parameters Path:`' + paramPath);" + $NEW_LINE;
+        $code += "    cli.output.info(`'================================================`');" + $NEW_LINE;
         $code += "    if (options.${paramName}) {" + $NEW_LINE;
         $code += "      if (options.parse && options.${paramName}) {" + $NEW_LINE;
         $code += "        options.${paramName} = JSON.parse(options.${paramName});" + $NEW_LINE;
@@ -307,14 +340,14 @@ function Generate-CliParameterCommandImpl
     }
 
     $code += "    var updatedContent = JSON.stringify(${cli_param_name}Obj);" + $NEW_LINE;
-    $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
-    $code += "    cli.output.info(`"JSON object (updated):`");" + $NEW_LINE;
+    $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
+    $code += "    cli.output.info(`'JSON object (updated):`');" + $NEW_LINE;
     $code += "    cli.output.info(JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
-    $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+    $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
     $code += "    fs.writeFileSync(options.parameterFile, beautify(updatedContent));" + $NEW_LINE;
-    $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
-    $code += "    cli.output.info(`"Parameter file updated at: `" + options.parameterFile);" + $NEW_LINE;
-    $code += "    cli.output.info(`"=====================================`");" + $NEW_LINE;
+    $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
+    $code += "    cli.output.info(`'Parameter file updated at: `' + options.parameterFile);" + $NEW_LINE;
+    $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
 
     $code += "  });" + $NEW_LINE;
     $code += "" + $NEW_LINE;
