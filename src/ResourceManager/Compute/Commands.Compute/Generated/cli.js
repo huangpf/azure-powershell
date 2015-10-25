@@ -5667,7 +5667,7 @@ exports.init = function (cli) {
     cli.output.info('vmScaleSetName = ' + options.vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.delete(options.resourceGroupName, options.vmScaleSetName, _);
+    var result = computeManagementClient.virtualMachineScaleSets.deleteMethod(options.resourceGroupName, options.vmScaleSetName, _);
     cli.output.json(result);
   });
 /*
@@ -6270,7 +6270,7 @@ exports.init = function (cli) {
     cli.output.info('instanceId = ' + options.instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSetVMs.delete(options.resourceGroupName, options.vmScaleSetName, options.instanceId, _);
+    var result = computeManagementClient.virtualMachineScaleSetVMs.deleteMethod(options.resourceGroupName, options.vmScaleSetName, options.instanceId, _);
     cli.output.json(result);
   });
 /*

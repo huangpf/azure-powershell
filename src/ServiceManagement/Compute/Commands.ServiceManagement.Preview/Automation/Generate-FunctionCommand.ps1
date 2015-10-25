@@ -218,7 +218,18 @@ function Generate-CliFunctionCommandImpl
     }
     $code += "    var subscription = profile.current.getSubscription(options.subscription);" + $NEW_LINE;
     $code += "    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);" + $NEW_LINE;
-    $code += "    var result = computeManagementClient.${cliOperationName}s.${cliMethodName}(";
+
+    if ($cliMethodName -eq 'delete')
+    {
+        $cliMethodFuncName = $cliMethodName + 'Method';
+    }
+    else
+    {
+        $cliMethodFuncName = $cliMethodName;
+    }
+
+    $code += "    var result = computeManagementClient.${cliOperationName}s.${cliMethodFuncName}(";
+
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {
         # Function Call - For Each Method Parameter
