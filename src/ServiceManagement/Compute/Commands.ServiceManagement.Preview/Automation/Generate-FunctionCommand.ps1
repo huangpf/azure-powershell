@@ -166,7 +166,6 @@ function Generate-CliFunctionCommandImpl
 
             $code += "    var ${cli_param_name}Obj = null;" + $NEW_LINE;
             $code += "    if (options.parameterFile) {" + $NEW_LINE;
-            $code += "      cli.output.info(_);" + $NEW_LINE;
             $code += "      cli.output.info(`'Reading file content from: \`"`' + options.parameterFile + `'\`"`');" + $NEW_LINE;
             $code += "      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $NEW_LINE;
             $code += "      ${cli_param_name}Obj = JSON.parse(fileContent);" + $NEW_LINE;
@@ -218,7 +217,18 @@ function Generate-CliFunctionCommandImpl
     }
     $code += "    var subscription = profile.current.getSubscription(options.subscription);" + $NEW_LINE;
     $code += "    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);" + $NEW_LINE;
-    $code += "    var result = computeManagementClient.${cliOperationName}s.${cliMethodName}(";
+
+    if ($cliMethodName -eq 'delete')
+    {
+        $cliMethodFuncName = $cliMethodName + 'Method';
+    }
+    else
+    {
+        $cliMethodFuncName = $cliMethodName;
+    }
+
+    $code += "    var result = computeManagementClient.${cliOperationName}s.${cliMethodFuncName}(";
+
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {
         # Function Call - For Each Method Parameter
@@ -261,7 +271,6 @@ function Generate-CliFunctionCommandImpl
             $code += "  .execute(function(options, _) {" + $NEW_LINE;
 
             $output_content = $param_object_comment.Replace("`"", "\`"");
-            $code += "    cli.output.info(_);" + $NEW_LINE;
             $code += "    cli.output.info(`'" + $output_content + "`');" + $NEW_LINE;
 
             $file_content = $param_object_comment_no_compress.Replace($NEW_LINE, "\r\n").Replace("`r", "\r").Replace("`n", "\n");
@@ -292,7 +301,6 @@ function Generate-CliFunctionCommandImpl
             $code += "    cli.output.info(options.path);" + $NEW_LINE;
             $code += "    cli.output.info(options.value);" + $NEW_LINE;
             $code += "    cli.output.info(options.parse);" + $NEW_LINE;
-            $code += "    cli.output.info(_);" + $NEW_LINE;
             $code += "    if (options.parse) {" + $NEW_LINE;
             $code += "      options.value = JSON.parse(options.value);" + $NEW_LINE;
             $code += "    }" + $NEW_LINE;
