@@ -2126,7 +2126,7 @@ function Write-CLICommandFile
 'use strict';
 
 var fs = require('fs');
-var jsonpatch = require('json-patch');
+var jsonpatch = require('fast-json-patch');
 
 var profile = require('../../../util/profile');
 var utils = require('../../../util/utils');
