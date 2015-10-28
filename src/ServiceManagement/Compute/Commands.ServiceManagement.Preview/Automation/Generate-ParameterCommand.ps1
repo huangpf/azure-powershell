@@ -139,7 +139,7 @@ function Generate-CliParameterCommandImpl
         }
 
         $code += "  .execute(function(options, _) {" + $NEW_LINE;
-        $code += "    cli.output.info(_);" + $NEW_LINE;
+        $code += "    cli.output.info(_ != null);" + $NEW_LINE;
         $code += "    cli.output.info(options);" + $NEW_LINE;
         $code += "    cli.output.info(options.parameterFile);" + $NEW_LINE;
         $code += "    cli.output.info(options.value);" + $NEW_LINE;
@@ -236,7 +236,7 @@ function Generate-CliParameterCommandImpl
 
     # 2.2 Function Definition
     $code += "  .execute(function(options, _) {" + $NEW_LINE;
-    $code += "    cli.output.info(_);" + $NEW_LINE;
+    $code += "    cli.output.info(_ != null);" + $NEW_LINE;
     $code += "    cli.output.info(options);" + $NEW_LINE;
     $code += "    cli.output.info(options.parameterFile);" + $NEW_LINE;
     $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
@@ -289,7 +289,7 @@ function Generate-CliParameterCommandImpl
     }
 
     $code += "  .execute(function(options, _) {" + $NEW_LINE;
-    $code += "    cli.output.info(_);" + $NEW_LINE;
+    $code += "    cli.output.info(_ != null);" + $NEW_LINE;
     $code += "    cli.output.info(options);" + $NEW_LINE;
     $code += "    cli.output.info(options.parameterFile);" + $NEW_LINE;
     $code += "    cli.output.info(options.key);" + $NEW_LINE;
