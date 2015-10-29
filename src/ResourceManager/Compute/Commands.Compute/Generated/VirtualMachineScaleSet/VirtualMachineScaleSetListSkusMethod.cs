@@ -97,10 +97,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Get", "AzureVmssSkusList", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class GetAzureVMSSSkusList : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Get", "AzureRmVmssSkusList", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class GetAzureRmVMSSSkusList : InvokeAzureComputeMethodCmdlet
     {
-        public GetAzureVMSSSkusList()
+        public GetAzureRmVMSSSkusList()
         {
             this.MethodName = "VirtualMachineScaleSetListSkus";
         }

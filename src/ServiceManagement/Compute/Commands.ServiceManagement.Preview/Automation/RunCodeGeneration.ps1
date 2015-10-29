@@ -1660,7 +1660,7 @@ ${create_local_param_code_content}
     $mapped_verb_term_suffix = $return_vals[1];
     $shortNounName = Get-ShortNounName $opShortName;
 
-    $mapped_noun_str = 'Azure' + $shortNounName + $mapped_verb_term_suffix;
+    $mapped_noun_str = 'AzureRm' + $shortNounName + $mapped_verb_term_suffix;
     $verb_cmdlet_name = $mapped_verb_name + $mapped_noun_str;
 
     # Construct the Individual Cmdlet Code Content
