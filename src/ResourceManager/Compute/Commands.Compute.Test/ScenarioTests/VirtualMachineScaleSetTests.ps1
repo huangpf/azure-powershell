@@ -20,33 +20,33 @@ PS C:\> Get-Command *VMSS*
 
 CommandType     Name                                               Version    Source
 -----------     ----                                               -------    ------
-Cmdlet          Add-AzureRmVMSshPublicKey                          0.9.9      AzureResourceManager
-Cmdlet          Get-AzureVMSS                                      0.9.9      AzureResourceManager
-Cmdlet          Get-AzureVMSSAllList                               0.9.9      AzureResourceManager
-Cmdlet          Get-AzureVMSSInstanceView                          0.9.9      AzureResourceManager
-Cmdlet          Get-AzureVMSSList                                  0.9.9      AzureResourceManager
-Cmdlet          Get-AzureVMSSNextList                              0.9.9      AzureResourceManager
-Cmdlet          Get-AzureVMSSSkusList                              0.9.9      AzureResourceManager
-Cmdlet          Get-AzureVMSSVM                                    0.9.9      AzureResourceManager
-Cmdlet          Get-AzureVMSSVMInstanceView                        0.9.9      AzureResourceManager
-Cmdlet          Get-AzureVMSSVMList                                0.9.9      AzureResourceManager
-Cmdlet          New-AzureVMSS                                      0.9.9      AzureResourceManager
-Cmdlet          Remove-AzureVMSS                                   0.9.9      AzureResourceManager
-Cmdlet          Remove-AzureVMSSInstances                          0.9.9      AzureResourceManager
-Cmdlet          Remove-AzureVMSSVM                                 0.9.9      AzureResourceManager
-Cmdlet          Restart-AzureVMSS                                  0.9.9      AzureResourceManager
-Cmdlet          Restart-AzureVMSSInstances                         0.9.9      AzureResourceManager
-Cmdlet          Restart-AzureVMSSVM                                0.9.9      AzureResourceManager
-Cmdlet          Start-AzureVMSS                                    0.9.9      AzureResourceManager
-Cmdlet          Start-AzureVMSSInstances                           0.9.9      AzureResourceManager
-Cmdlet          Start-AzureVMSSVM                                  0.9.9      AzureResourceManager
-Cmdlet          Stop-AzureVMSS                                     0.9.9      AzureResourceManager
-Cmdlet          Stop-AzureVMSSInstances                            0.9.9      AzureResourceManager
-Cmdlet          Stop-AzureVMSSInstancesWithDeallocation            0.9.9      AzureResourceManager
-Cmdlet          Stop-AzureVMSSVM                                   0.9.9      AzureResourceManager
-Cmdlet          Stop-AzureVMSSVMWithDeallocation                   0.9.9      AzureResourceManager
-Cmdlet          Stop-AzureVMSSWithDeallocation                     0.9.9      AzureResourceManager
-Cmdlet          Update-AzureVMSSInstances                          0.9.9      AzureResourceManager
+Cmdlet          Add-AzureRmVMSshPublicKey                          0.10.1     AzureRM.Compute
+Cmdlet          Get-AzureRmVmss                                    0.10.1     AzureRM.Compute
+Cmdlet          Get-AzureRmVmssAllList                             0.10.1     AzureRM.Compute
+Cmdlet          Get-AzureRmVmssInstanceView                        0.10.1     AzureRM.Compute
+Cmdlet          Get-AzureRmVmssList                                0.10.1     AzureRM.Compute
+Cmdlet          Get-AzureRmVmssNextList                            0.10.1     AzureRM.Compute
+Cmdlet          Get-AzureRmVmssSkusList                            0.10.1     AzureRM.Compute
+Cmdlet          Get-AzureRmVmssVM                                  0.10.1     AzureRM.Compute
+Cmdlet          Get-AzureRmVmssVMInstanceView                      0.10.1     AzureRM.Compute
+Cmdlet          Get-AzureRmVmssVMList                              0.10.1     AzureRM.Compute
+Cmdlet          New-AzureRmVmss                                    0.10.1     AzureRM.Compute
+Cmdlet          Remove-AzureRmVmss                                 0.10.1     AzureRM.Compute
+Cmdlet          Remove-AzureRmVmssInstances                        0.10.1     AzureRM.Compute
+Cmdlet          Remove-AzureRmVmssVM                               0.10.1     AzureRM.Compute
+Cmdlet          Restart-AzureRmVmss                                0.10.1     AzureRM.Compute
+Cmdlet          Restart-AzureRmVmssInstances                       0.10.1     AzureRM.Compute
+Cmdlet          Restart-AzureRmVmssVM                              0.10.1     AzureRM.Compute
+Cmdlet          Start-AzureRmVmss                                  0.10.1     AzureRM.Compute
+Cmdlet          Start-AzureRmVmssInstances                         0.10.1     AzureRM.Compute
+Cmdlet          Start-AzureRmVmssVM                                0.10.1     AzureRM.Compute
+Cmdlet          Stop-AzureRmVmss                                   0.10.1     AzureRM.Compute
+Cmdlet          Stop-AzureRmVmssInstances                          0.10.1     AzureRM.Compute
+Cmdlet          Stop-AzureRmVmssInstancesWithDeallocation          0.10.1     AzureRM.Compute
+Cmdlet          Stop-AzureRmVmssVM                                 0.10.1     AzureRM.Compute
+Cmdlet          Stop-AzureRmVmssVMWithDeallocation                 0.10.1     AzureRM.Compute
+Cmdlet          Stop-AzureRmVmssWithDeallocation                   0.10.1     AzureRM.Compute
+Cmdlet          Update-AzureRmVmssInstances                        0.10.1     AzureRM.Compute
 #>
 function Test-VirtualMachineScaleSet
 {
@@ -122,51 +122,51 @@ function Test-VirtualMachineScaleSet
         $vhdContainer = "https://" + $stoname + ".blob.core.windows.net/" + $vmss.Name;
         $vmss.VirtualMachineProfile.StorageProfile.OSDisk.VirtualHardDiskContainers.Add($vhdContainer);
 
-        $st = New-AzureVMSS -ResourceGroupName $rgname -VirtualMachineScaleSetCreateOrUpdateParameters $vmss;
+        $st = New-AzureRmVmss -ResourceGroupName $rgname -VirtualMachineScaleSetCreateOrUpdateParameters $vmss;
 
-        Write-Verbose ('Running Command : ' + 'Get-AzureVMSS');
-        $vmssResult = Get-AzureVMSS -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
+        Write-Verbose ('Running Command : ' + 'Get-AzureRmVmss');
+        $vmssResult = Get-AzureRmVmss -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
         Assert-True { $vmss.Name -eq $vmssResult.VirtualMachineScaleSet.Name };
         $output = $vmssResult | Out-String;
         Write-Verbose ($output);
         Assert-True { $output.Contains("VirtualMachineScaleSet") };
 
         # List All
-        Write-Verbose ('Running Command : ' + 'Get-AzureVMSSAllList');
+        Write-Verbose ('Running Command : ' + 'Get-AzureRmVmssAllList');
 
         $argList = New-AzureComputeArgumentList -MethodName VirtualMachineScaleSetListAll;
         $args = ($argList | select -ExpandProperty Value);
         #$vmssList = Invoke-AzureComputeMethod -MethodName VirtualMachineScaleSetListAll -ArgumentList $args;
-        $vmssList = Get-AzureVMSSAllList;
+        $vmssList = Get-AzureRmVmssAllList;
         Assert-True { ($vmssList.VirtualMachineScaleSets | select -ExpandProperty Name) -contains $vmss.Name };
         $output = $vmssList | Out-String;
         Write-Verbose ($output);
         Assert-True { $output.Contains("VirtualMachineScaleSets") };
 
         # List from RG
-        Write-Verbose ('Running Command : ' + 'Get-AzureVMSSList');
-        $vmssList = Get-AzureVMSSList -ResourceGroupName $rgname;
+        Write-Verbose ('Running Command : ' + 'Get-AzureRmVmssList');
+        $vmssList = Get-AzureRmVmssList -ResourceGroupName $rgname;
         Assert-True { ($vmssList.VirtualMachineScaleSets | select -ExpandProperty Name) -contains $vmss.Name };
         $output = $vmssList | Out-String;
         Write-Verbose ($output);
         Assert-True { $output.Contains("VirtualMachineScaleSet") };
 
         # List Skus
-        Write-Verbose ('Running Command : ' + 'Get-AzureVMSSSkusList');
-        $skuList = Get-AzureVMSSSkusList -ResourceGroupName $rgname  -VMScaleSetName $vmss.Name;
+        Write-Verbose ('Running Command : ' + 'Get-AzureRmVmssSkusList');
+        $skuList = Get-AzureRmVmssSkusList -ResourceGroupName $rgname  -VMScaleSetName $vmss.Name;
         $output = $skuList | Out-String;
         Write-Verbose ($output);
         Assert-True { $output.Contains("VirtualMachineScaleSetSku") };
 
         # List All VMs
-        Write-Verbose ('Running Command : ' + 'Get-AzureVMSSVMList');
+        Write-Verbose ('Running Command : ' + 'Get-AzureRmVmssVMList');
 
         $argList = New-AzureComputeArgumentList -MethodName VirtualMachineScaleSetVMList;
         $argList[2].Value = $rgname;
         $argList[4].Value = $vmss.Name;
         $args = ($argList | select -ExpandProperty Value);
         #$vmListResult = Invoke-AzureComputeMethod -MethodName VirtualMachineScaleSetVMList -ArgumentList $args;
-        $vmListResult = Get-AzureVMSSVMList -ResourceGroupName $rgname -VirtualMachineScaleSetName $vmss.Name;
+        $vmListResult = Get-AzureRmVmssVMList -ResourceGroupName $rgname -VirtualMachineScaleSetName $vmss.Name;
         $output = $vmListResult | Out-String;
         Write-Verbose ($output);
         Assert-True { $output.Contains("VirtualMachineScaleSetVM") };
@@ -176,15 +176,15 @@ function Test-VirtualMachineScaleSet
         # List each VM
         for ($i = 0; $i -lt $vmList.Count; $i++)
         {
-            Write-Verbose ('Running Command : ' + 'Get-AzureVMSSVM');
-            $vm = Get-AzureVMSSVM -ResourceGroupName $rgname  -VMScaleSetName $vmss.Name -InstanceId $i;
+            Write-Verbose ('Running Command : ' + 'Get-AzureRmVmssVM');
+            $vm = Get-AzureRmVmssVM -ResourceGroupName $rgname  -VMScaleSetName $vmss.Name -InstanceId $i;
             Assert-NotNull $vm.VirtualMachineScaleSetVM;
             $output = $vm | Out-String;
             Write-Verbose ($output);
             Assert-True { $output.Contains("VirtualMachineScaleSetVM") };
 
-            Write-Verbose ('Running Command : ' + 'Get-AzureVMSSVMInstanceView');
-            $vmInstance = Get-AzureVMSSVMInstanceView  -ResourceGroupName $rgname  -VMScaleSetName $vmss.Name -InstanceId $i;
+            Write-Verbose ('Running Command : ' + 'Get-AzureRmVmssVMInstanceView');
+            $vmInstance = Get-AzureRmVmssVMInstanceView  -ResourceGroupName $rgname  -VMScaleSetName $vmss.Name -InstanceId $i;
             Assert-NotNull $vmInstance.VirtualMachineScaleSetVMInstanceView;
             $output = $vmInstance | Out-String;
             Write-Verbose($output);
@@ -192,21 +192,21 @@ function Test-VirtualMachineScaleSet
         }
 
         # List Next (negative test)
-        Assert-ThrowsContains { Get-AzureVMSSNextList -NextLink test.com  } "Invalid URI: The format of the URI could not be determined.";
+        Assert-ThrowsContains { Get-AzureRmVmssNextList -NextLink test.com  } "Invalid URI: The format of the URI could not be determined.";
 
         # Stop/Start/Restart Operation
         for ($i = 0; $i -lt $vmList.Count; $i++)
         {
-            $st = Stop-AzureVMSSVM -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -InstanceId $i;
-            $st = Stop-AzureVMSSVMWithDeallocation -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -InstanceId $i;
-            $st = Start-AzureVMSSVM -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -InstanceId $i;
-            $st = Restart-AzureVMSSVM -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -InstanceId $i;
+            $st = Stop-AzureRmVmssVM -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -InstanceId $i;
+            $st = Stop-AzureRmVmssVMWithDeallocation -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -InstanceId $i;
+            $st = Start-AzureRmVmssVM -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -InstanceId $i;
+            $st = Restart-AzureRmVmssVM -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -InstanceId $i;
         }
 
-        $st = Stop-AzureVMSS -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
-        $st = Stop-AzureVMSSWithDeallocation -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
-        $st = Start-AzureVMSS -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
-        $st = Restart-AzureVMSS -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
+        $st = Stop-AzureRmVmss -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
+        $st = Stop-AzureRmVmssWithDeallocation -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
+        $st = Start-AzureRmVmss -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
+        $st = Restart-AzureRmVmss -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
 
         $instanceListParam = @();
         for ($i = 0; $i -lt $vmList.Count; $i++)
@@ -225,17 +225,17 @@ function Test-VirtualMachineScaleSet
         }
 
         #$vmssResult = Invoke-AzureComputeMethod -MethodName VirtualMachineScaleSetPowerOffInstances -ArgumentList $args;
-        $st = Stop-AzureVMSSInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
-        $st = Stop-AzureVMSSInstancesWithDeallocation -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
-        $st = Start-AzureVMSSInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
-        $st = Restart-AzureVMSSInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
+        $st = Stop-AzureRmVmssInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
+        $st = Stop-AzureRmVmssInstancesWithDeallocation -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
+        $st = Start-AzureRmVmssInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
+        $st = Restart-AzureRmVmssInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
 
         # Remove
         $instanceListParam = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetVMInstanceIDs;
         $instanceListParam.InstanceIDs.Add(1);
-        $st = Remove-AzureVMSSInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
-        Assert-ThrowsContains { $st = Remove-AzureVMSSVM -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -InstanceId 0 } "cannot be deleted because it is the last remaining";
-        $st = Remove-AzureVMSS -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
+        $st = Remove-AzureRmVmssInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
+        Assert-ThrowsContains { $st = Remove-AzureRmVmssVM -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -InstanceId 0 } "cannot be deleted because it is the last remaining";
+        $st = Remove-AzureRmVmss -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
     }
     finally
     {
