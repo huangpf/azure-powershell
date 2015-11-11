@@ -271,7 +271,7 @@ function Generate-CliFunctionCommandImpl
             $code += "  .execute(function(options, _) {" + $NEW_LINE;
 
             $output_content = $param_object_comment.Replace("`"", "\`"");
-            $code += "    cli.output.info(`'" + $output_content + "`');" + $NEW_LINE;
+            $code += "    cli.output.info(`'" + $output_content + "`', _);" + $NEW_LINE;
 
             $file_content = $param_object_comment_no_compress.Replace($NEW_LINE, "\r\n").Replace("`r", "\r").Replace("`n", "\n");
             $file_content = $file_content.Replace("`"", "\`"").Replace(' ', '');
@@ -296,7 +296,7 @@ function Generate-CliFunctionCommandImpl
             $code += "  .option('--value <value>', `$('The JSON value.'))" + $NEW_LINE;
             $code += "  .option('--parse', `$('Parse the JSON value to object.'))" + $NEW_LINE;
             $code += "  .execute(function(options, _) {" + $NEW_LINE;
-            $code += "    cli.output.info(options.parameterFile);" + $NEW_LINE;
+            $code += "    cli.output.info(options.parameterFile, _);" + $NEW_LINE;
             $code += "    cli.output.info(options.operation);" + $NEW_LINE;
             $code += "    cli.output.info(options.path);" + $NEW_LINE;
             $code += "    cli.output.info(options.value);" + $NEW_LINE;
