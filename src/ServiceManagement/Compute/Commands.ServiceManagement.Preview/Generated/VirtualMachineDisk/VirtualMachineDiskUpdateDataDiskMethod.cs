@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pServiceName = new RuntimeDefinedParameter();
             pServiceName.Name = "ServiceName";
-            pServiceName.ParameterType = typeof(System.String);
+            pServiceName.ParameterType = typeof(string);
             pServiceName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pDeploymentName = new RuntimeDefinedParameter();
             pDeploymentName.Name = "DeploymentName";
-            pDeploymentName.ParameterType = typeof(System.String);
+            pDeploymentName.ParameterType = typeof(string);
             pDeploymentName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -61,7 +61,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pRoleName = new RuntimeDefinedParameter();
             pRoleName.Name = "RoleName";
-            pRoleName.ParameterType = typeof(System.String);
+            pRoleName.ParameterType = typeof(string);
             pRoleName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -71,25 +71,13 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             pRoleName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("RoleName", pRoleName);
 
-            var pLogicalUnitNumber = new RuntimeDefinedParameter();
-            pLogicalUnitNumber.Name = "LogicalUnitNumber";
-            pLogicalUnitNumber.ParameterType = typeof(System.Int32);
-            pLogicalUnitNumber.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByDynamicParameters",
-                Position = 4,
-                Mandatory = true
-            });
-            pLogicalUnitNumber.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("LogicalUnitNumber", pLogicalUnitNumber);
-
             var pParameters = new RuntimeDefinedParameter();
             pParameters.Name = "VirtualMachineDiskUpdateDataDiskParameters";
-            pParameters.ParameterType = typeof(Microsoft.WindowsAzure.Management.Compute.Models.VirtualMachineDataDiskUpdateParameters);
+            pParameters.ParameterType = typeof(VirtualMachineDataDiskUpdateParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
-                Position = 5,
+                Position = 4,
                 Mandatory = true
             });
             pParameters.Attributes.Add(new AllowNullAttribute());
@@ -101,7 +89,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 6,
+                Position = 5,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
@@ -115,7 +103,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string serviceName = (string)ParseParameter(invokeMethodInputParameters[0]);
             string deploymentName = (string)ParseParameter(invokeMethodInputParameters[1]);
             string roleName = (string)ParseParameter(invokeMethodInputParameters[2]);
-            int logicalUnitNumber = (int)ParseParameter(invokeMethodInputParameters[3]);
+            int logicalUnitNumber = new int();
             VirtualMachineDataDiskUpdateParameters parameters = (VirtualMachineDataDiskUpdateParameters)ParseParameter(invokeMethodInputParameters[4]);
 
             var result = VirtualMachineDiskClient.UpdateDataDisk(serviceName, deploymentName, roleName, logicalUnitNumber, parameters);
@@ -133,7 +121,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             int logicalUnitNumber = new int();
             VirtualMachineDataDiskUpdateParameters parameters = new VirtualMachineDataDiskUpdateParameters();
 
-            return ConvertFromObjectsToArguments(new string[] { "ServiceName", "DeploymentName", "RoleName", "LogicalUnitNumber", "Parameters" }, new object[] { serviceName, deploymentName, roleName, logicalUnitNumber, parameters });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ServiceName", "DeploymentName", "RoleName", "LogicalUnitNumber", "Parameters" },
+                 new object[] { serviceName, deploymentName, roleName, logicalUnitNumber, parameters });
         }
     }
 }

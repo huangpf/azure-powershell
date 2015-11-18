@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pVMImageName = new RuntimeDefinedParameter();
             pVMImageName.Name = "VMImageName";
-            pVMImageName.ParameterType = typeof(System.String);
+            pVMImageName.ParameterType = typeof(string);
             pVMImageName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -47,25 +47,13 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             pVMImageName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("VMImageName", pVMImageName);
 
-            var pDeleteFromStorage = new RuntimeDefinedParameter();
-            pDeleteFromStorage.Name = "DeleteFromStorage";
-            pDeleteFromStorage.ParameterType = typeof(System.Boolean);
-            pDeleteFromStorage.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByDynamicParameters",
-                Position = 2,
-                Mandatory = true
-            });
-            pDeleteFromStorage.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("DeleteFromStorage", pDeleteFromStorage);
-
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
             pArgumentList.ParameterType = typeof(object[]);
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 3,
+                Position = 2,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
@@ -77,7 +65,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         protected void ExecuteVirtualMachineVMImageDeleteMethod(object[] invokeMethodInputParameters)
         {
             string vmImageName = (string)ParseParameter(invokeMethodInputParameters[0]);
-            bool deleteFromStorage = (bool)ParseParameter(invokeMethodInputParameters[1]);
+            bool deleteFromStorage = new bool();
 
             var result = VirtualMachineVMImageClient.Delete(vmImageName, deleteFromStorage);
             WriteObject(result);
@@ -88,10 +76,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
     {
         protected PSArgument[] CreateVirtualMachineVMImageDeleteParameters()
         {
-            string vmImageName = string.Empty;
-            bool deleteFromStorage = new bool();
-
-            return ConvertFromObjectsToArguments(new string[] { "VMImageName", "DeleteFromStorage" }, new object[] { vmImageName, deleteFromStorage });
+            return ConvertFromObjectsToArguments(new string[0], new object[0]);
         }
     }
 }

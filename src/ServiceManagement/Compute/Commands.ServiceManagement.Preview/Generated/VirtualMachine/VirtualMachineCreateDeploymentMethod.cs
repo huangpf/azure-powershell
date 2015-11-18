@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pServiceName = new RuntimeDefinedParameter();
             pServiceName.Name = "ServiceName";
-            pServiceName.ParameterType = typeof(System.String);
+            pServiceName.ParameterType = typeof(string);
             pServiceName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pParameters = new RuntimeDefinedParameter();
             pParameters.Name = "VirtualMachineCreateDeploymentParameters";
-            pParameters.ParameterType = typeof(Microsoft.WindowsAzure.Management.Compute.Models.VirtualMachineCreateDeploymentParameters);
+            pParameters.ParameterType = typeof(VirtualMachineCreateDeploymentParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -91,7 +91,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string serviceName = string.Empty;
             VirtualMachineCreateDeploymentParameters parameters = new VirtualMachineCreateDeploymentParameters();
 
-            return ConvertFromObjectsToArguments(new string[] { "ServiceName", "Parameters" }, new object[] { serviceName, parameters });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ServiceName", "Parameters" },
+                 new object[] { serviceName, parameters });
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pServiceName = new RuntimeDefinedParameter();
             pServiceName.Name = "ServiceName";
-            pServiceName.ParameterType = typeof(System.String);
+            pServiceName.ParameterType = typeof(string);
             pServiceName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pDeploymentName = new RuntimeDefinedParameter();
             pDeploymentName.Name = "DeploymentName";
-            pDeploymentName.ParameterType = typeof(System.String);
+            pDeploymentName.ParameterType = typeof(string);
             pDeploymentName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -61,7 +61,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pDnsServerName = new RuntimeDefinedParameter();
             pDnsServerName.Name = "DnsServerName";
-            pDnsServerName.ParameterType = typeof(System.String);
+            pDnsServerName.ParameterType = typeof(string);
             pDnsServerName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -71,17 +71,29 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             pDnsServerName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("DnsServerName", pDnsServerName);
 
-            var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "DNSServerUpdateDNSServerParameters";
-            pParameters.ParameterType = typeof(Microsoft.WindowsAzure.Management.Compute.Models.DNSUpdateParameters);
-            pParameters.Attributes.Add(new ParameterAttribute
+            var pAddress = new RuntimeDefinedParameter();
+            pAddress.Name = "Address";
+            pAddress.ParameterType = typeof(string);
+            pAddress.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 4,
-                Mandatory = true
+                Mandatory = false
             });
-            pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("DNSServerUpdateDNSServerParameters", pParameters);
+            pAddress.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("Address", pAddress);
+
+            var pName = new RuntimeDefinedParameter();
+            pName.Name = "Name";
+            pName.ParameterType = typeof(string);
+            pName.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 5,
+                Mandatory = false
+            });
+            pName.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("Name", pName);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
@@ -89,7 +101,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 5,
+                Position = 6,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
@@ -103,7 +115,11 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string serviceName = (string)ParseParameter(invokeMethodInputParameters[0]);
             string deploymentName = (string)ParseParameter(invokeMethodInputParameters[1]);
             string dnsServerName = (string)ParseParameter(invokeMethodInputParameters[2]);
-            DNSUpdateParameters parameters = (DNSUpdateParameters)ParseParameter(invokeMethodInputParameters[3]);
+            var parameters = new DNSUpdateParameters();
+            var pAddress = (string) ParseParameter(invokeMethodInputParameters[3]);
+            parameters.Address = string.IsNullOrEmpty(pAddress) ? null : pAddress;
+            var pName = (string) ParseParameter(invokeMethodInputParameters[4]);
+            parameters.Name = string.IsNullOrEmpty(pName) ? null : pName;
 
             var result = DNSServerClient.UpdateDNSServer(serviceName, deploymentName, dnsServerName, parameters);
             WriteObject(result);
@@ -117,9 +133,12 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string serviceName = string.Empty;
             string deploymentName = string.Empty;
             string dnsServerName = string.Empty;
-            DNSUpdateParameters parameters = new DNSUpdateParameters();
+            var pAddress = string.Empty;
+            var pName = string.Empty;
 
-            return ConvertFromObjectsToArguments(new string[] { "ServiceName", "DeploymentName", "DnsServerName", "Parameters" }, new object[] { serviceName, deploymentName, dnsServerName, parameters });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ServiceName", "DeploymentName", "DnsServerName", "Address", "Name" },
+                 new object[] { serviceName, deploymentName, dnsServerName, pAddress, pName });
         }
     }
 }

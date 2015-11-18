@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pParameters = new RuntimeDefinedParameter();
             pParameters.Name = "ExtensionImageRegisterParameters";
-            pParameters.ParameterType = typeof(Microsoft.WindowsAzure.Management.Compute.Models.ExtensionImageRegisterParameters);
+            pParameters.ParameterType = typeof(ExtensionImageRegisterParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -77,7 +77,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         {
             ExtensionImageRegisterParameters parameters = new ExtensionImageRegisterParameters();
 
-            return ConvertFromObjectsToArguments(new string[] { "Parameters" }, new object[] { parameters });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "Parameters" },
+                 new object[] { parameters });
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pImageName = new RuntimeDefinedParameter();
             pImageName.Name = "ImageName";
-            pImageName.ParameterType = typeof(System.String);
+            pImageName.ParameterType = typeof(string);
             pImageName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pPermission = new RuntimeDefinedParameter();
             pPermission.Name = "Permission";
-            pPermission.ParameterType = typeof(System.String);
+            pPermission.ParameterType = typeof(string);
             pPermission.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -91,7 +91,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string imageName = string.Empty;
             string permission = string.Empty;
 
-            return ConvertFromObjectsToArguments(new string[] { "ImageName", "Permission" }, new object[] { imageName, permission });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ImageName", "Permission" },
+                 new object[] { imageName, permission });
         }
     }
 }
