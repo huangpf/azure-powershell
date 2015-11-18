@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pParameters = new RuntimeDefinedParameter();
             pParameters.Name = "HostedServiceCreateParameters";
-            pParameters.ParameterType = typeof(Microsoft.WindowsAzure.Management.Compute.Models.HostedServiceCreateParameters);
+            pParameters.ParameterType = typeof(HostedServiceCreateParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -77,7 +77,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         {
             HostedServiceCreateParameters parameters = new HostedServiceCreateParameters();
 
-            return ConvertFromObjectsToArguments(new string[] { "Parameters" }, new object[] { parameters });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "Parameters" },
+                 new object[] { parameters });
         }
     }
 }

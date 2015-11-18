@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pName = new RuntimeDefinedParameter();
             pName.Name = "Name";
-            pName.ParameterType = typeof(System.String);
+            pName.ParameterType = typeof(string);
             pName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -77,7 +77,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         {
             string name = string.Empty;
 
-            return ConvertFromObjectsToArguments(new string[] { "Name" }, new object[] { name });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "Name" },
+                 new object[] { name });
         }
     }
 }

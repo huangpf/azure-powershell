@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pServiceName = new RuntimeDefinedParameter();
             pServiceName.Name = "ServiceName";
-            pServiceName.ParameterType = typeof(System.String);
+            pServiceName.ParameterType = typeof(string);
             pServiceName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pExtensionId = new RuntimeDefinedParameter();
             pExtensionId.Name = "ExtensionId";
-            pExtensionId.ParameterType = typeof(System.String);
+            pExtensionId.ParameterType = typeof(string);
             pExtensionId.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -91,7 +91,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string serviceName = string.Empty;
             string extensionId = string.Empty;
 
-            return ConvertFromObjectsToArguments(new string[] { "ServiceName", "ExtensionId" }, new object[] { serviceName, extensionId });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ServiceName", "ExtensionId" },
+                 new object[] { serviceName, extensionId });
         }
     }
 }

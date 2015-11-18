@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pVMImageName = new RuntimeDefinedParameter();
             pVMImageName.Name = "VMImageName";
-            pVMImageName.ParameterType = typeof(System.String);
+            pVMImageName.ParameterType = typeof(string);
             pVMImageName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -77,7 +77,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         {
             string vmImageName = string.Empty;
 
-            return ConvertFromObjectsToArguments(new string[] { "VMImageName" }, new object[] { vmImageName });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "VMImageName" },
+                 new object[] { vmImageName });
         }
     }
 }

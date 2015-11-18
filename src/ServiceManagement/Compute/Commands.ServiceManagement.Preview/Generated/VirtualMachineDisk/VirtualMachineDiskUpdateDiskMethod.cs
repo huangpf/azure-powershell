@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pName = new RuntimeDefinedParameter();
             pName.Name = "Name";
-            pName.ParameterType = typeof(System.String);
+            pName.ParameterType = typeof(string);
             pName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pParameters = new RuntimeDefinedParameter();
             pParameters.Name = "VirtualMachineDiskUpdateDiskParameters";
-            pParameters.ParameterType = typeof(Microsoft.WindowsAzure.Management.Compute.Models.VirtualMachineDiskUpdateParameters);
+            pParameters.ParameterType = typeof(VirtualMachineDiskUpdateParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -91,7 +91,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string name = string.Empty;
             VirtualMachineDiskUpdateParameters parameters = new VirtualMachineDiskUpdateParameters();
 
-            return ConvertFromObjectsToArguments(new string[] { "Name", "Parameters" }, new object[] { name, parameters });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "Name", "Parameters" },
+                 new object[] { name, parameters });
         }
     }
 }

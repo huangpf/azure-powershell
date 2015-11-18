@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pServiceName = new RuntimeDefinedParameter();
             pServiceName.Name = "ServiceName";
-            pServiceName.ParameterType = typeof(System.String);
+            pServiceName.ParameterType = typeof(string);
             pServiceName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pDeploymentName = new RuntimeDefinedParameter();
             pDeploymentName.Name = "DeploymentName";
-            pDeploymentName.ParameterType = typeof(System.String);
+            pDeploymentName.ParameterType = typeof(string);
             pDeploymentName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -61,7 +61,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pParameters = new RuntimeDefinedParameter();
             pParameters.Name = "DeploymentWalkUpgradeDomainByDeploymentNameParameters";
-            pParameters.ParameterType = typeof(Microsoft.WindowsAzure.Management.Compute.Models.DeploymentWalkUpgradeDomainParameters);
+            pParameters.ParameterType = typeof(DeploymentWalkUpgradeDomainParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -105,7 +105,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string deploymentName = string.Empty;
             DeploymentWalkUpgradeDomainParameters parameters = new DeploymentWalkUpgradeDomainParameters();
 
-            return ConvertFromObjectsToArguments(new string[] { "ServiceName", "DeploymentName", "Parameters" }, new object[] { serviceName, deploymentName, parameters });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ServiceName", "DeploymentName", "Parameters" },
+                 new object[] { serviceName, deploymentName, parameters });
         }
     }
 }

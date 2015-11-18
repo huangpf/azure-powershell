@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pImageName = new RuntimeDefinedParameter();
             pImageName.Name = "ImageName";
-            pImageName.ParameterType = typeof(System.String);
+            pImageName.ParameterType = typeof(string);
             pImageName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -77,7 +77,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         {
             string imageName = string.Empty;
 
-            return ConvertFromObjectsToArguments(new string[] { "ImageName" }, new object[] { imageName });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ImageName" },
+                 new object[] { imageName });
         }
     }
 }
