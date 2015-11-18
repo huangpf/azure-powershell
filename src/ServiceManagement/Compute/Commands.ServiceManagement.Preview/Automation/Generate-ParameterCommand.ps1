@@ -28,7 +28,10 @@ param(
     [string]$CmdletNounPrefix = "Azure",
 
     [Parameter(Mandatory = $false)]
-    [string]$ModelNameSpace = $null
+    [string]$ModelNameSpace = $null,
+
+    [Parameter(Mandatory = $false)]
+    [string]$MethodName = $null
 )
 
 $NEW_LINE = "`r`n";
@@ -112,7 +115,7 @@ function Generate-CliParameterCommandImpl
     if ($TreeNode.Properties.Count -gt 0 -or ($TreeNode.IsListItem))
     {
         # 1. Parameter Set Command
-        $params_category_var_name = $params_category_var_name_prefix + $paramSuffix + "0";
+        $params_category_var_name = $params_category_var_name_prefix + $MethodName + $paramSuffix + "0";
         $cat_params_category_var_name = 'cat' + $params_category_var_name;
         $params_generate_category_name = 'set';
         $params_generate_category_var_name = $params_generate_category_name + $params_category_var_name;
@@ -218,7 +221,7 @@ function Generate-CliParameterCommandImpl
     }
 
     # 2. Parameter Remove Command
-    $params_category_var_name = $params_category_var_name_prefix + $paramSuffix + "1";
+    $params_category_var_name = $params_category_var_name_prefix + $MethodName + $paramSuffix + "1";
     $cat_params_category_var_name = 'cat' + $params_category_var_name;
     $params_generate_category_name = 'remove';
     $params_generate_category_var_name = $params_generate_category_name + $params_category_var_name;
@@ -269,7 +272,7 @@ function Generate-CliParameterCommandImpl
     $code += "  });" + $NEW_LINE;
     
     # 3. Parameter Add Command
-    $params_category_var_name = $params_category_var_name_prefix + $paramSuffix + "2";
+    $params_category_var_name = $params_category_var_name_prefix + $MethodName + $paramSuffix + "2";
     $cat_params_category_var_name = 'cat' + $params_category_var_name;
     $params_generate_category_name = 'add';
     $params_generate_category_var_name = $params_generate_category_name + $params_category_var_name;
