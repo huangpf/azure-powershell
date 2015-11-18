@@ -2253,7 +2253,18 @@ else
                 $dynamic_param_method_code += $outputs[-4];
                 $invoke_cmdlet_method_code += $outputs[-3];
                 $parameter_cmdlet_method_code += $outputs[-2];
-                $cliCommandCodeMainBody += $outputs[-1];
+                
+                # TODO : Comment Out RDFE Deployment APIs
+                if ($opShortName -eq 'Deployment' -and $client_library_namespace -like '*.WindowsAzure.*')
+                {
+                    $cliCommandCodeMainBody += "/*" + $NEW_LINE;
+                    $cliCommandCodeMainBody += $outputs[-1].Replace("/*", "").Replace("*/", "");
+                    $cliCommandCodeMainBody += $NEW_LINE + "*/" + $NEW_LINE;
+                }
+                else
+                {
+                    $cliCommandCodeMainBody += $outputs[-1];
+                }
             }
 
             $returnTypeResult = Process-ReturnType -rt $mt.ReturnType.GenericTypeArguments[0] -allrt $all_return_type_names;

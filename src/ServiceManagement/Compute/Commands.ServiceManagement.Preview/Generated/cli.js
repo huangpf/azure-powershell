@@ -36,6 +36,7 @@ function beautify(jsonText) {
 exports.init = function (cli) {
 
 /*
+
   Deployment ChangeConfigurationByName
   --service-name
   --deployment-name
@@ -65,7 +66,7 @@ exports.init = function (cli) {
   "mode":null,
   "treatWarningsAsError":null
 }
-*/
+
   var deploymentChangeConfigurationByName = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentChangeConfigurationByName.command('change-configuration-by-name')
   .description($('change-configuration-by-name method to manage your deployment.'))
@@ -1014,7 +1015,10 @@ exports.init = function (cli) {
   });
 
 
+
+*/
 /*
+
   Deployment ChangeConfigurationBySlot
   --service-name
   --deployment-slot
@@ -1044,7 +1048,7 @@ exports.init = function (cli) {
   "mode":null,
   "treatWarningsAsError":null
 }
-*/
+
   var deploymentChangeConfigurationBySlot = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentChangeConfigurationBySlot.command('change-configuration-by-slot')
   .description($('change-configuration-by-slot method to manage your deployment.'))
@@ -2001,7 +2005,10 @@ exports.init = function (cli) {
   });
 
 
+
+*/
 /*
+
   Deployment Create
   --service-name
   --deployment-slot
@@ -2034,7 +2041,7 @@ exports.init = function (cli) {
   "startDeployment":null,
   "treatWarningsAsError":null
 }
-*/
+
   var deploymentCreate = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentCreate.command('create')
   .description($('create method to manage your deployment.'))
@@ -3057,12 +3064,15 @@ exports.init = function (cli) {
   });
 
 
+
+*/
 /*
+
   Deployment DeleteByName
   --service-name
   --deployment-name
   --delete-from-storage
-*/
+
   var deploymentDeleteByName = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentDeleteByName.command('delete-by-name')
   .description($('delete-by-name method to manage your deployment.'))
@@ -3089,13 +3099,16 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.deleteByName(options.serviceName, options.deploymentName, options.deleteFromStorage, _);
     cli.output.json(result);
   });
+
+*/
 /*
+
   Deployment DeleteBySlot
   --service-name
   --deployment-slot
 =============================================
 0
-*/
+
   var deploymentDeleteBySlot = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentDeleteBySlot.command('delete-by-slot')
   .description($('delete-by-slot method to manage your deployment.'))
@@ -3120,7 +3133,10 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.deleteBySlot(options.serviceName, options.deploymentSlot, _);
     cli.output.json(result);
   });
+
+*/
 /*
+
   Deployment DeleteRoleInstanceByDeploymentName
   --service-name
   --deployment-name
@@ -3131,7 +3147,7 @@ exports.init = function (cli) {
     ""
   ]
 }
-*/
+
   var deploymentDeleteRoleInstanceByDeploymentName = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentDeleteRoleInstanceByDeploymentName.command('delete-role-instance-by-deployment-name')
   .description($('delete-role-instance-by-deployment-name method to manage your deployment.'))
@@ -3150,7 +3166,10 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.deleteRoleInstanceByDeploymentName(options.serviceName, options.deploymentName, options.roleInstanceName, _);
     cli.output.json(result);
   });
+
+*/
 /*
+
   Deployment DeleteRoleInstanceByDeploymentSlot
   --service-name
   --deployment-slot
@@ -3161,7 +3180,7 @@ exports.init = function (cli) {
     ""
   ]
 }
-*/
+
   var deploymentDeleteRoleInstanceByDeploymentSlot = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentDeleteRoleInstanceByDeploymentSlot.command('delete-role-instance-by-deployment-slot')
   .description($('delete-role-instance-by-deployment-slot method to manage your deployment.'))
@@ -3524,11 +3543,14 @@ exports.init = function (cli) {
   });
 
 
+
+*/
 /*
+
   Deployment GetByName
   --service-name
   --deployment-name
-*/
+
   var deploymentGetByName = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentGetByName.command('get-by-name')
   .description($('get-by-name method to manage your deployment.'))
@@ -3545,13 +3567,16 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.getByName(options.serviceName, options.deploymentName, _);
     cli.output.json(result);
   });
+
+*/
 /*
+
   Deployment GetBySlot
   --service-name
   --deployment-slot
 =============================================
 0
-*/
+
   var deploymentGetBySlot = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentGetBySlot.command('get-by-slot')
   .description($('get-by-slot method to manage your deployment.'))
@@ -3576,7 +3601,10 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.getBySlot(options.serviceName, options.deploymentSlot, _);
     cli.output.json(result);
   });
+
+*/
 /*
+
   Deployment GetPackageByName
   --service-name
   --deployment-name
@@ -3586,7 +3614,7 @@ exports.init = function (cli) {
   "containerUri":"",
   "overwriteExisting":null
 }
-*/
+
   var deploymentGetPackageByName = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentGetPackageByName.command('get-package-by-name')
   .description($('get-package-by-name method to manage your deployment.'))
@@ -3844,7 +3872,10 @@ exports.init = function (cli) {
   });
 
 
+
+*/
 /*
+
   Deployment GetPackageBySlot
   --service-name
   --deployment-slot
@@ -3854,7 +3885,7 @@ exports.init = function (cli) {
   "containerUri":"",
   "overwriteExisting":null
 }
-*/
+
   var deploymentGetPackageBySlot = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentGetPackageBySlot.command('get-package-by-slot')
   .description($('get-package-by-slot method to manage your deployment.'))
@@ -4120,13 +4151,16 @@ exports.init = function (cli) {
   });
 
 
+
+*/
 /*
+
   Deployment ListEvents
   --service-name
   --deployment-name
   --start-time
   --end-time
-*/
+
   var deploymentListEvents = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentListEvents.command('list-events')
   .description($('list-events method to manage your deployment.'))
@@ -4147,7 +4181,10 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.listEvents(options.serviceName, options.deploymentName, options.startTime, options.endTime, _);
     cli.output.json(result);
   });
+
+*/
 /*
+
   Deployment ListEventsBySlot
   --service-name
   --deployment-slot
@@ -4155,7 +4192,7 @@ exports.init = function (cli) {
   --end-time
 =============================================
 0
-*/
+
   var deploymentListEventsBySlot = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentListEventsBySlot.command('list-events-by-slot')
   .description($('list-events-by-slot method to manage your deployment.'))
@@ -4184,12 +4221,15 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.listEventsBySlot(options.serviceName, options.deploymentSlot, options.startTime, options.endTime, _);
     cli.output.json(result);
   });
+
+*/
 /*
+
   Deployment RebootRoleInstanceByDeploymentName
   --service-name
   --deployment-name
   --role-instance-name
-*/
+
   var deploymentRebootRoleInstanceByDeploymentName = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentRebootRoleInstanceByDeploymentName.command('reboot-role-instance-by-deployment-name')
   .description($('reboot-role-instance-by-deployment-name method to manage your deployment.'))
@@ -4208,14 +4248,17 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.rebootRoleInstanceByDeploymentName(options.serviceName, options.deploymentName, options.roleInstanceName, _);
     cli.output.json(result);
   });
+
+*/
 /*
+
   Deployment RebootRoleInstanceByDeploymentSlot
   --service-name
   --deployment-slot
   --role-instance-name
 =============================================
 0
-*/
+
   var deploymentRebootRoleInstanceByDeploymentSlot = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentRebootRoleInstanceByDeploymentSlot.command('reboot-role-instance-by-deployment-slot')
   .description($('reboot-role-instance-by-deployment-slot method to manage your deployment.'))
@@ -4242,13 +4285,16 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.rebootRoleInstanceByDeploymentSlot(options.serviceName, options.deploymentSlot, options.roleInstanceName, _);
     cli.output.json(result);
   });
+
+*/
 /*
+
   Deployment RebuildRoleInstanceByDeploymentName
   --service-name
   --deployment-name
   --role-instance-name
   --resources
-*/
+
   var deploymentRebuildRoleInstanceByDeploymentName = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentRebuildRoleInstanceByDeploymentName.command('rebuild-role-instance-by-deployment-name')
   .description($('rebuild-role-instance-by-deployment-name method to manage your deployment.'))
@@ -4269,13 +4315,16 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.rebuildRoleInstanceByDeploymentName(options.serviceName, options.deploymentName, options.roleInstanceName, options.resources, _);
     cli.output.json(result);
   });
+
+*/
 /*
+
   Deployment RebuildRoleInstanceByDeploymentSlot
   --service-name
   --deployment-slot
   --role-instance-name
   --resources
-*/
+
   var deploymentRebuildRoleInstanceByDeploymentSlot = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentRebuildRoleInstanceByDeploymentSlot.command('rebuild-role-instance-by-deployment-slot')
   .description($('rebuild-role-instance-by-deployment-slot method to manage your deployment.'))
@@ -4296,12 +4345,15 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.rebuildRoleInstanceByDeploymentSlot(options.serviceName, options.deploymentSlot, options.roleInstanceName, options.resources, _);
     cli.output.json(result);
   });
+
+*/
 /*
+
   Deployment ReimageRoleInstanceByDeploymentName
   --service-name
   --deployment-name
   --role-instance-name
-*/
+
   var deploymentReimageRoleInstanceByDeploymentName = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentReimageRoleInstanceByDeploymentName.command('reimage-role-instance-by-deployment-name')
   .description($('reimage-role-instance-by-deployment-name method to manage your deployment.'))
@@ -4320,14 +4372,17 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.reimageRoleInstanceByDeploymentName(options.serviceName, options.deploymentName, options.roleInstanceName, _);
     cli.output.json(result);
   });
+
+*/
 /*
+
   Deployment ReimageRoleInstanceByDeploymentSlot
   --service-name
   --deployment-slot
   --role-instance-name
 =============================================
 0
-*/
+
   var deploymentReimageRoleInstanceByDeploymentSlot = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentReimageRoleInstanceByDeploymentSlot.command('reimage-role-instance-by-deployment-slot')
   .description($('reimage-role-instance-by-deployment-slot method to manage your deployment.'))
@@ -4354,7 +4409,10 @@ exports.init = function (cli) {
     var result = computeManagementClient.deployments.reimageRoleInstanceByDeploymentSlot(options.serviceName, options.deploymentSlot, options.roleInstanceName, _);
     cli.output.json(result);
   });
+
+*/
 /*
+
   Deployment RollbackUpdateOrUpgradeByDeploymentName
   --service-name
   --deployment-name
@@ -4364,7 +4422,7 @@ exports.init = function (cli) {
   "force":false,
   "mode":0
 }
-*/
+
   var deploymentRollbackUpdateOrUpgradeByDeploymentName = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentRollbackUpdateOrUpgradeByDeploymentName.command('rollback-update-or-upgrade-by-deployment-name')
   .description($('rollback-update-or-upgrade-by-deployment-name method to manage your deployment.'))
@@ -4700,7 +4758,10 @@ exports.init = function (cli) {
   });
 
 
+
+*/
 /*
+
   Deployment RollbackUpdateOrUpgradeByDeploymentSlot
   --service-name
   --deployment-slot
@@ -4710,7 +4771,7 @@ exports.init = function (cli) {
   "force":false,
   "mode":0
 }
-*/
+
   var deploymentRollbackUpdateOrUpgradeByDeploymentSlot = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentRollbackUpdateOrUpgradeByDeploymentSlot.command('rollback-update-or-upgrade-by-deployment-slot')
   .description($('rollback-update-or-upgrade-by-deployment-slot method to manage your deployment.'))
@@ -5054,7 +5115,10 @@ exports.init = function (cli) {
   });
 
 
+
+*/
 /*
+
   Deployment Swap
   --service-name
   --parameters
@@ -5063,7 +5127,7 @@ exports.init = function (cli) {
   "productionDeployment":"",
   "sourceDeployment":""
 }
-*/
+
   var deploymentSwap = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentSwap.command('swap')
   .description($('swap method to manage your deployment.'))
@@ -5323,7 +5387,10 @@ exports.init = function (cli) {
   });
 
 
+
+*/
 /*
+
   Deployment UpdateStatusByDeploymentName
   --service-name
   --deployment-name
@@ -5332,7 +5399,7 @@ exports.init = function (cli) {
 {
   "status":0
 }
-*/
+
   var deploymentUpdateStatusByDeploymentName = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentUpdateStatusByDeploymentName.command('update-status-by-deployment-name')
   .description($('update-status-by-deployment-name method to manage your deployment.'))
@@ -5646,7 +5713,10 @@ exports.init = function (cli) {
   });
 
 
+
+*/
 /*
+
   Deployment UpdateStatusByDeploymentSlot
   --service-name
   --deployment-slot
@@ -5655,7 +5725,7 @@ exports.init = function (cli) {
 {
   "status":0
 }
-*/
+
   var deploymentUpdateStatusByDeploymentSlot = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentUpdateStatusByDeploymentSlot.command('update-status-by-deployment-slot')
   .description($('update-status-by-deployment-slot method to manage your deployment.'))
@@ -5977,7 +6047,10 @@ exports.init = function (cli) {
   });
 
 
+
+*/
 /*
+
   Deployment UpgradeByName
   --service-name
   --deployment-name
@@ -6010,7 +6083,7 @@ exports.init = function (cli) {
   "packageUri":"",
   "roleToUpgrade":""
 }
-*/
+
   var deploymentUpgradeByName = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentUpgradeByName.command('upgrade-by-name')
   .description($('upgrade-by-name method to manage your deployment.'))
@@ -7103,7 +7176,10 @@ exports.init = function (cli) {
   });
 
 
+
+*/
 /*
+
   Deployment UpgradeBySlot
   --service-name
   --deployment-slot
@@ -7136,7 +7212,7 @@ exports.init = function (cli) {
   "packageUri":"",
   "roleToUpgrade":""
 }
-*/
+
   var deploymentUpgradeBySlot = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentUpgradeBySlot.command('upgrade-by-slot')
   .description($('upgrade-by-slot method to manage your deployment.'))
@@ -8237,7 +8313,10 @@ exports.init = function (cli) {
   });
 
 
+
+*/
 /*
+
   Deployment WalkUpgradeDomainByDeploymentName
   --service-name
   --deployment-name
@@ -8246,7 +8325,7 @@ exports.init = function (cli) {
 {
   "upgradeDomain":0
 }
-*/
+
   var deploymentWalkUpgradeDomainByDeploymentName = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentWalkUpgradeDomainByDeploymentName.command('walk-upgrade-domain-by-deployment-name')
   .description($('walk-upgrade-domain-by-deployment-name method to manage your deployment.'))
@@ -8482,7 +8561,10 @@ exports.init = function (cli) {
   });
 
 
+
+*/
 /*
+
   Deployment WalkUpgradeDomainByDeploymentSlot
   --service-name
   --deployment-slot
@@ -8491,7 +8573,7 @@ exports.init = function (cli) {
 {
   "upgradeDomain":0
 }
-*/
+
   var deploymentWalkUpgradeDomainByDeploymentSlot = cli.category('deployment').description($('Commands to manage your deployment.'));
   deploymentWalkUpgradeDomainByDeploymentSlot.command('walk-upgrade-domain-by-deployment-slot')
   .description($('walk-upgrade-domain-by-deployment-slot method to manage your deployment.'))
@@ -8735,6 +8817,8 @@ exports.init = function (cli) {
   });
 
 
+
+*/
 /*
   DNSServer AddDNSServer
   --service-name
