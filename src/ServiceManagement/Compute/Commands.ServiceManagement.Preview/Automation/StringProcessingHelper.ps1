@@ -61,6 +61,10 @@ function Get-CliNormalizedName
     {
         $outName = 'ip' + $inName.Substring(2);
     }
+    elseif ($inName.StartsWith('DNS'))
+    {
+        $outName = 'dns' + $inName.Substring(3);
+    }
     else
     {
         [char]$firstChar = $inName[0];
@@ -93,13 +97,9 @@ function Get-CliCategoryName
     {
         $outName = 'vmssvm';
     }
-    elseif ($inName -eq 'HostedService')
-    {
-        $outName = 'hs';
-    }
     else
     {
-        $outName = Get-CliNormalizedName $inName;
+        $outName = Get-CliOptionName $inName;
     }
 
     return $outName;
@@ -133,7 +133,7 @@ function Get-CliOptionName
                 $outName += '-';
             }
 
-            [string[]]$abbrWords = @('VM', 'IP', 'RM', 'OS', 'NAT', 'IDs');
+            [string[]]$abbrWords = @('VM', 'IP', 'RM', 'OS', 'NAT', 'IDs', 'DNS');
             $matched = $false;
             foreach ($matchedAbbr in $abbrWords)
             {

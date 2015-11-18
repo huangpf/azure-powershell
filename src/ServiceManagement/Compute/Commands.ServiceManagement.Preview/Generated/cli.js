@@ -67,7 +67,7 @@ exports.init = function (cli) {
   "treatWarningsAsError":null
 }
 
-  var deploymentChangeConfigurationByName = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentChangeConfigurationByName = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentChangeConfigurationByName.command('change-configuration-by-name')
   .description($('change-configuration-by-name method to manage your deployment.'))
   .usage('[options]')
@@ -161,7 +161,7 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-change-configuration-parameters
-  var catparametersDeploymentDeploymentChangeConfigurationParameters0 = cli.category('deployment');
+  var catparametersDeploymentDeploymentChangeConfigurationParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentChangeConfigurationParameters0 = catparametersDeploymentDeploymentChangeConfigurationParameters0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentDeploymentChangeConfigurationParameters0 = parametersDeploymentDeploymentChangeConfigurationParameters0.category('set')
@@ -257,7 +257,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-change-configuration-parameters
-  var catparametersDeploymentDeploymentChangeConfigurationParameters1 = cli.category('deployment');
+  var catparametersDeploymentDeploymentChangeConfigurationParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentChangeConfigurationParameters1 = catparametersDeploymentDeploymentChangeConfigurationParameters1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentDeploymentChangeConfigurationParameters1 = parametersDeploymentDeploymentChangeConfigurationParameters1.category('remove')
@@ -290,7 +290,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-change-configuration-parameters
-  var catparametersDeploymentDeploymentChangeConfigurationParameters2 = cli.category('deployment');
+  var catparametersDeploymentDeploymentChangeConfigurationParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentChangeConfigurationParameters2 = catparametersDeploymentDeploymentChangeConfigurationParameters2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentDeploymentChangeConfigurationParameters2 = parametersDeploymentDeploymentChangeConfigurationParameters2.category('add')
@@ -390,7 +390,7 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-configuration
-  var catparametersDeploymentExtensionConfiguration0 = cli.category('deployment');
+  var catparametersDeploymentExtensionConfiguration0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensionConfiguration0 = catparametersDeploymentExtensionConfiguration0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentExtensionConfiguration0 = parametersDeploymentExtensionConfiguration0.category('set')
@@ -453,7 +453,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-configuration
-  var catparametersDeploymentExtensionConfiguration1 = cli.category('deployment');
+  var catparametersDeploymentExtensionConfiguration1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensionConfiguration1 = catparametersDeploymentExtensionConfiguration1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentExtensionConfiguration1 = parametersDeploymentExtensionConfiguration1.category('remove')
@@ -486,7 +486,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-configuration
-  var catparametersDeploymentExtensionConfiguration2 = cli.category('deployment');
+  var catparametersDeploymentExtensionConfiguration2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensionConfiguration2 = catparametersDeploymentExtensionConfiguration2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentExtensionConfiguration2 = parametersDeploymentExtensionConfiguration2.category('add')
@@ -553,7 +553,7 @@ exports.init = function (cli) {
   });
 
   //parameters set all-roles
-  var catparametersDeploymentAllRoles0 = cli.category('deployment');
+  var catparametersDeploymentAllRoles0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentAllRoles0 = catparametersDeploymentAllRoles0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentAllRoles0 = parametersDeploymentAllRoles0.category('set')
@@ -609,7 +609,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove all-roles
-  var catparametersDeploymentAllRoles1 = cli.category('deployment');
+  var catparametersDeploymentAllRoles1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentAllRoles1 = catparametersDeploymentAllRoles1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentAllRoles1 = parametersDeploymentAllRoles1.category('remove')
@@ -643,7 +643,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add all-roles
-  var catparametersDeploymentAllRoles2 = cli.category('deployment');
+  var catparametersDeploymentAllRoles2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentAllRoles2 = catparametersDeploymentAllRoles2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentAllRoles2 = parametersDeploymentAllRoles2.category('add')
@@ -699,7 +699,7 @@ exports.init = function (cli) {
   });
 
   //parameters set named-roles
-  var catparametersDeploymentNamedRoles0 = cli.category('deployment');
+  var catparametersDeploymentNamedRoles0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentNamedRoles0 = catparametersDeploymentNamedRoles0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentNamedRoles0 = parametersDeploymentNamedRoles0.category('set')
@@ -766,7 +766,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove named-roles
-  var catparametersDeploymentNamedRoles1 = cli.category('deployment');
+  var catparametersDeploymentNamedRoles1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentNamedRoles1 = catparametersDeploymentNamedRoles1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentNamedRoles1 = parametersDeploymentNamedRoles1.category('remove')
@@ -800,7 +800,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add named-roles
-  var catparametersDeploymentNamedRoles2 = cli.category('deployment');
+  var catparametersDeploymentNamedRoles2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentNamedRoles2 = catparametersDeploymentNamedRoles2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentNamedRoles2 = parametersDeploymentNamedRoles2.category('add')
@@ -867,7 +867,7 @@ exports.init = function (cli) {
   });
 
   //parameters set extensions
-  var catparametersDeploymentExtensions0 = cli.category('deployment');
+  var catparametersDeploymentExtensions0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensions0 = catparametersDeploymentExtensions0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentExtensions0 = parametersDeploymentExtensions0.category('set')
@@ -924,7 +924,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove extensions
-  var catparametersDeploymentExtensions1 = cli.category('deployment');
+  var catparametersDeploymentExtensions1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensions1 = catparametersDeploymentExtensions1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentExtensions1 = parametersDeploymentExtensions1.category('remove')
@@ -959,7 +959,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extensions
-  var catparametersDeploymentExtensions2 = cli.category('deployment');
+  var catparametersDeploymentExtensions2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensions2 = catparametersDeploymentExtensions2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentExtensions2 = parametersDeploymentExtensions2.category('add')
@@ -1049,7 +1049,7 @@ exports.init = function (cli) {
   "treatWarningsAsError":null
 }
 
-  var deploymentChangeConfigurationBySlot = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentChangeConfigurationBySlot = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentChangeConfigurationBySlot.command('change-configuration-by-slot')
   .description($('change-configuration-by-slot method to manage your deployment.'))
   .usage('[options]')
@@ -1151,7 +1151,7 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-change-configuration-parameters
-  var catparametersDeploymentDeploymentChangeConfigurationParameters0 = cli.category('deployment');
+  var catparametersDeploymentDeploymentChangeConfigurationParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentChangeConfigurationParameters0 = catparametersDeploymentDeploymentChangeConfigurationParameters0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentDeploymentChangeConfigurationParameters0 = parametersDeploymentDeploymentChangeConfigurationParameters0.category('set')
@@ -1247,7 +1247,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-change-configuration-parameters
-  var catparametersDeploymentDeploymentChangeConfigurationParameters1 = cli.category('deployment');
+  var catparametersDeploymentDeploymentChangeConfigurationParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentChangeConfigurationParameters1 = catparametersDeploymentDeploymentChangeConfigurationParameters1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentDeploymentChangeConfigurationParameters1 = parametersDeploymentDeploymentChangeConfigurationParameters1.category('remove')
@@ -1280,7 +1280,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-change-configuration-parameters
-  var catparametersDeploymentDeploymentChangeConfigurationParameters2 = cli.category('deployment');
+  var catparametersDeploymentDeploymentChangeConfigurationParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentChangeConfigurationParameters2 = catparametersDeploymentDeploymentChangeConfigurationParameters2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentDeploymentChangeConfigurationParameters2 = parametersDeploymentDeploymentChangeConfigurationParameters2.category('add')
@@ -1380,7 +1380,7 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-configuration
-  var catparametersDeploymentExtensionConfiguration0 = cli.category('deployment');
+  var catparametersDeploymentExtensionConfiguration0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensionConfiguration0 = catparametersDeploymentExtensionConfiguration0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentExtensionConfiguration0 = parametersDeploymentExtensionConfiguration0.category('set')
@@ -1443,7 +1443,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-configuration
-  var catparametersDeploymentExtensionConfiguration1 = cli.category('deployment');
+  var catparametersDeploymentExtensionConfiguration1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensionConfiguration1 = catparametersDeploymentExtensionConfiguration1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentExtensionConfiguration1 = parametersDeploymentExtensionConfiguration1.category('remove')
@@ -1476,7 +1476,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-configuration
-  var catparametersDeploymentExtensionConfiguration2 = cli.category('deployment');
+  var catparametersDeploymentExtensionConfiguration2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensionConfiguration2 = catparametersDeploymentExtensionConfiguration2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentExtensionConfiguration2 = parametersDeploymentExtensionConfiguration2.category('add')
@@ -1543,7 +1543,7 @@ exports.init = function (cli) {
   });
 
   //parameters set all-roles
-  var catparametersDeploymentAllRoles0 = cli.category('deployment');
+  var catparametersDeploymentAllRoles0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentAllRoles0 = catparametersDeploymentAllRoles0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentAllRoles0 = parametersDeploymentAllRoles0.category('set')
@@ -1599,7 +1599,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove all-roles
-  var catparametersDeploymentAllRoles1 = cli.category('deployment');
+  var catparametersDeploymentAllRoles1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentAllRoles1 = catparametersDeploymentAllRoles1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentAllRoles1 = parametersDeploymentAllRoles1.category('remove')
@@ -1633,7 +1633,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add all-roles
-  var catparametersDeploymentAllRoles2 = cli.category('deployment');
+  var catparametersDeploymentAllRoles2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentAllRoles2 = catparametersDeploymentAllRoles2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentAllRoles2 = parametersDeploymentAllRoles2.category('add')
@@ -1689,7 +1689,7 @@ exports.init = function (cli) {
   });
 
   //parameters set named-roles
-  var catparametersDeploymentNamedRoles0 = cli.category('deployment');
+  var catparametersDeploymentNamedRoles0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentNamedRoles0 = catparametersDeploymentNamedRoles0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentNamedRoles0 = parametersDeploymentNamedRoles0.category('set')
@@ -1756,7 +1756,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove named-roles
-  var catparametersDeploymentNamedRoles1 = cli.category('deployment');
+  var catparametersDeploymentNamedRoles1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentNamedRoles1 = catparametersDeploymentNamedRoles1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentNamedRoles1 = parametersDeploymentNamedRoles1.category('remove')
@@ -1790,7 +1790,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add named-roles
-  var catparametersDeploymentNamedRoles2 = cli.category('deployment');
+  var catparametersDeploymentNamedRoles2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentNamedRoles2 = catparametersDeploymentNamedRoles2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentNamedRoles2 = parametersDeploymentNamedRoles2.category('add')
@@ -1857,7 +1857,7 @@ exports.init = function (cli) {
   });
 
   //parameters set extensions
-  var catparametersDeploymentExtensions0 = cli.category('deployment');
+  var catparametersDeploymentExtensions0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensions0 = catparametersDeploymentExtensions0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentExtensions0 = parametersDeploymentExtensions0.category('set')
@@ -1914,7 +1914,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove extensions
-  var catparametersDeploymentExtensions1 = cli.category('deployment');
+  var catparametersDeploymentExtensions1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensions1 = catparametersDeploymentExtensions1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentExtensions1 = parametersDeploymentExtensions1.category('remove')
@@ -1949,7 +1949,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extensions
-  var catparametersDeploymentExtensions2 = cli.category('deployment');
+  var catparametersDeploymentExtensions2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensions2 = catparametersDeploymentExtensions2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentExtensions2 = parametersDeploymentExtensions2.category('add')
@@ -2042,7 +2042,7 @@ exports.init = function (cli) {
   "treatWarningsAsError":null
 }
 
-  var deploymentCreate = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentCreate = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentCreate.command('create')
   .description($('create method to manage your deployment.'))
   .usage('[options]')
@@ -2144,7 +2144,7 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-create-parameters
-  var catparametersDeploymentDeploymentCreateParameters0 = cli.category('deployment');
+  var catparametersDeploymentDeploymentCreateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentCreateParameters0 = catparametersDeploymentDeploymentCreateParameters0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentDeploymentCreateParameters0 = parametersDeploymentDeploymentCreateParameters0.category('set')
@@ -2273,7 +2273,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-create-parameters
-  var catparametersDeploymentDeploymentCreateParameters1 = cli.category('deployment');
+  var catparametersDeploymentDeploymentCreateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentCreateParameters1 = catparametersDeploymentDeploymentCreateParameters1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentDeploymentCreateParameters1 = parametersDeploymentDeploymentCreateParameters1.category('remove')
@@ -2306,7 +2306,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-create-parameters
-  var catparametersDeploymentDeploymentCreateParameters2 = cli.category('deployment');
+  var catparametersDeploymentDeploymentCreateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentCreateParameters2 = catparametersDeploymentDeploymentCreateParameters2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentDeploymentCreateParameters2 = parametersDeploymentDeploymentCreateParameters2.category('add')
@@ -2439,7 +2439,7 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-configuration
-  var catparametersDeploymentExtensionConfiguration0 = cli.category('deployment');
+  var catparametersDeploymentExtensionConfiguration0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensionConfiguration0 = catparametersDeploymentExtensionConfiguration0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentExtensionConfiguration0 = parametersDeploymentExtensionConfiguration0.category('set')
@@ -2502,7 +2502,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-configuration
-  var catparametersDeploymentExtensionConfiguration1 = cli.category('deployment');
+  var catparametersDeploymentExtensionConfiguration1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensionConfiguration1 = catparametersDeploymentExtensionConfiguration1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentExtensionConfiguration1 = parametersDeploymentExtensionConfiguration1.category('remove')
@@ -2535,7 +2535,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-configuration
-  var catparametersDeploymentExtensionConfiguration2 = cli.category('deployment');
+  var catparametersDeploymentExtensionConfiguration2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensionConfiguration2 = catparametersDeploymentExtensionConfiguration2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentExtensionConfiguration2 = parametersDeploymentExtensionConfiguration2.category('add')
@@ -2602,7 +2602,7 @@ exports.init = function (cli) {
   });
 
   //parameters set all-roles
-  var catparametersDeploymentAllRoles0 = cli.category('deployment');
+  var catparametersDeploymentAllRoles0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentAllRoles0 = catparametersDeploymentAllRoles0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentAllRoles0 = parametersDeploymentAllRoles0.category('set')
@@ -2658,7 +2658,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove all-roles
-  var catparametersDeploymentAllRoles1 = cli.category('deployment');
+  var catparametersDeploymentAllRoles1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentAllRoles1 = catparametersDeploymentAllRoles1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentAllRoles1 = parametersDeploymentAllRoles1.category('remove')
@@ -2692,7 +2692,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add all-roles
-  var catparametersDeploymentAllRoles2 = cli.category('deployment');
+  var catparametersDeploymentAllRoles2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentAllRoles2 = catparametersDeploymentAllRoles2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentAllRoles2 = parametersDeploymentAllRoles2.category('add')
@@ -2748,7 +2748,7 @@ exports.init = function (cli) {
   });
 
   //parameters set named-roles
-  var catparametersDeploymentNamedRoles0 = cli.category('deployment');
+  var catparametersDeploymentNamedRoles0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentNamedRoles0 = catparametersDeploymentNamedRoles0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentNamedRoles0 = parametersDeploymentNamedRoles0.category('set')
@@ -2815,7 +2815,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove named-roles
-  var catparametersDeploymentNamedRoles1 = cli.category('deployment');
+  var catparametersDeploymentNamedRoles1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentNamedRoles1 = catparametersDeploymentNamedRoles1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentNamedRoles1 = parametersDeploymentNamedRoles1.category('remove')
@@ -2849,7 +2849,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add named-roles
-  var catparametersDeploymentNamedRoles2 = cli.category('deployment');
+  var catparametersDeploymentNamedRoles2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentNamedRoles2 = catparametersDeploymentNamedRoles2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentNamedRoles2 = parametersDeploymentNamedRoles2.category('add')
@@ -2916,7 +2916,7 @@ exports.init = function (cli) {
   });
 
   //parameters set extensions
-  var catparametersDeploymentExtensions0 = cli.category('deployment');
+  var catparametersDeploymentExtensions0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensions0 = catparametersDeploymentExtensions0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentExtensions0 = parametersDeploymentExtensions0.category('set')
@@ -2973,7 +2973,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove extensions
-  var catparametersDeploymentExtensions1 = cli.category('deployment');
+  var catparametersDeploymentExtensions1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensions1 = catparametersDeploymentExtensions1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentExtensions1 = parametersDeploymentExtensions1.category('remove')
@@ -3008,7 +3008,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extensions
-  var catparametersDeploymentExtensions2 = cli.category('deployment');
+  var catparametersDeploymentExtensions2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensions2 = catparametersDeploymentExtensions2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentExtensions2 = parametersDeploymentExtensions2.category('add')
@@ -3073,7 +3073,7 @@ exports.init = function (cli) {
   --deployment-name
   --delete-from-storage
 
-  var deploymentDeleteByName = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentDeleteByName = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentDeleteByName.command('delete-by-name')
   .description($('delete-by-name method to manage your deployment.'))
   .usage('[options]')
@@ -3109,7 +3109,7 @@ exports.init = function (cli) {
 =============================================
 0
 
-  var deploymentDeleteBySlot = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentDeleteBySlot = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentDeleteBySlot.command('delete-by-slot')
   .description($('delete-by-slot method to manage your deployment.'))
   .usage('[options]')
@@ -3148,7 +3148,7 @@ exports.init = function (cli) {
   ]
 }
 
-  var deploymentDeleteRoleInstanceByDeploymentName = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentDeleteRoleInstanceByDeploymentName = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentDeleteRoleInstanceByDeploymentName.command('delete-role-instance-by-deployment-name')
   .description($('delete-role-instance-by-deployment-name method to manage your deployment.'))
   .usage('[options]')
@@ -3181,7 +3181,7 @@ exports.init = function (cli) {
   ]
 }
 
-  var deploymentDeleteRoleInstanceByDeploymentSlot = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentDeleteRoleInstanceByDeploymentSlot = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentDeleteRoleInstanceByDeploymentSlot.command('delete-role-instance-by-deployment-slot')
   .description($('delete-role-instance-by-deployment-slot method to manage your deployment.'))
   .usage('[options]')
@@ -3278,7 +3278,7 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-delete-role-instance-parameters
-  var catparametersDeploymentDeploymentDeleteRoleInstanceParameters0 = cli.category('deployment');
+  var catparametersDeploymentDeploymentDeleteRoleInstanceParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentDeleteRoleInstanceParameters0 = catparametersDeploymentDeploymentDeleteRoleInstanceParameters0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentDeploymentDeleteRoleInstanceParameters0 = parametersDeploymentDeploymentDeleteRoleInstanceParameters0.category('set')
@@ -3330,7 +3330,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-delete-role-instance-parameters
-  var catparametersDeploymentDeploymentDeleteRoleInstanceParameters1 = cli.category('deployment');
+  var catparametersDeploymentDeploymentDeleteRoleInstanceParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentDeleteRoleInstanceParameters1 = catparametersDeploymentDeploymentDeleteRoleInstanceParameters1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentDeploymentDeleteRoleInstanceParameters1 = parametersDeploymentDeploymentDeleteRoleInstanceParameters1.category('remove')
@@ -3363,7 +3363,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-delete-role-instance-parameters
-  var catparametersDeploymentDeploymentDeleteRoleInstanceParameters2 = cli.category('deployment');
+  var catparametersDeploymentDeploymentDeleteRoleInstanceParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentDeleteRoleInstanceParameters2 = catparametersDeploymentDeploymentDeleteRoleInstanceParameters2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentDeploymentDeleteRoleInstanceParameters2 = parametersDeploymentDeploymentDeleteRoleInstanceParameters2.category('add')
@@ -3419,7 +3419,7 @@ exports.init = function (cli) {
   });
 
   //parameters set name
-  var catparametersDeploymentName0 = cli.category('deployment');
+  var catparametersDeploymentName0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentName0 = catparametersDeploymentName0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentName0 = parametersDeploymentName0.category('set')
@@ -3464,7 +3464,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove name
-  var catparametersDeploymentName1 = cli.category('deployment');
+  var catparametersDeploymentName1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentName1 = catparametersDeploymentName1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentName1 = parametersDeploymentName1.category('remove')
@@ -3498,7 +3498,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add name
-  var catparametersDeploymentName2 = cli.category('deployment');
+  var catparametersDeploymentName2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentName2 = catparametersDeploymentName2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentName2 = parametersDeploymentName2.category('add')
@@ -3551,7 +3551,7 @@ exports.init = function (cli) {
   --service-name
   --deployment-name
 
-  var deploymentGetByName = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentGetByName = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentGetByName.command('get-by-name')
   .description($('get-by-name method to manage your deployment.'))
   .usage('[options]')
@@ -3577,7 +3577,7 @@ exports.init = function (cli) {
 =============================================
 0
 
-  var deploymentGetBySlot = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentGetBySlot = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentGetBySlot.command('get-by-slot')
   .description($('get-by-slot method to manage your deployment.'))
   .usage('[options]')
@@ -3615,7 +3615,7 @@ exports.init = function (cli) {
   "overwriteExisting":null
 }
 
-  var deploymentGetPackageByName = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentGetPackageByName = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentGetPackageByName.command('get-package-by-name')
   .description($('get-package-by-name method to manage your deployment.'))
   .usage('[options]')
@@ -3709,7 +3709,7 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-get-package-parameters
-  var catparametersDeploymentDeploymentGetPackageParameters0 = cli.category('deployment');
+  var catparametersDeploymentDeploymentGetPackageParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentGetPackageParameters0 = catparametersDeploymentDeploymentGetPackageParameters0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentDeploymentGetPackageParameters0 = parametersDeploymentDeploymentGetPackageParameters0.category('set')
@@ -3772,7 +3772,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-get-package-parameters
-  var catparametersDeploymentDeploymentGetPackageParameters1 = cli.category('deployment');
+  var catparametersDeploymentDeploymentGetPackageParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentGetPackageParameters1 = catparametersDeploymentDeploymentGetPackageParameters1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentDeploymentGetPackageParameters1 = parametersDeploymentDeploymentGetPackageParameters1.category('remove')
@@ -3805,7 +3805,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-get-package-parameters
-  var catparametersDeploymentDeploymentGetPackageParameters2 = cli.category('deployment');
+  var catparametersDeploymentDeploymentGetPackageParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentGetPackageParameters2 = catparametersDeploymentDeploymentGetPackageParameters2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentDeploymentGetPackageParameters2 = parametersDeploymentDeploymentGetPackageParameters2.category('add')
@@ -3886,7 +3886,7 @@ exports.init = function (cli) {
   "overwriteExisting":null
 }
 
-  var deploymentGetPackageBySlot = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentGetPackageBySlot = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentGetPackageBySlot.command('get-package-by-slot')
   .description($('get-package-by-slot method to manage your deployment.'))
   .usage('[options]')
@@ -3988,7 +3988,7 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-get-package-parameters
-  var catparametersDeploymentDeploymentGetPackageParameters0 = cli.category('deployment');
+  var catparametersDeploymentDeploymentGetPackageParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentGetPackageParameters0 = catparametersDeploymentDeploymentGetPackageParameters0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentDeploymentGetPackageParameters0 = parametersDeploymentDeploymentGetPackageParameters0.category('set')
@@ -4051,7 +4051,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-get-package-parameters
-  var catparametersDeploymentDeploymentGetPackageParameters1 = cli.category('deployment');
+  var catparametersDeploymentDeploymentGetPackageParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentGetPackageParameters1 = catparametersDeploymentDeploymentGetPackageParameters1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentDeploymentGetPackageParameters1 = parametersDeploymentDeploymentGetPackageParameters1.category('remove')
@@ -4084,7 +4084,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-get-package-parameters
-  var catparametersDeploymentDeploymentGetPackageParameters2 = cli.category('deployment');
+  var catparametersDeploymentDeploymentGetPackageParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentGetPackageParameters2 = catparametersDeploymentDeploymentGetPackageParameters2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentDeploymentGetPackageParameters2 = parametersDeploymentDeploymentGetPackageParameters2.category('add')
@@ -4161,7 +4161,7 @@ exports.init = function (cli) {
   --start-time
   --end-time
 
-  var deploymentListEvents = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentListEvents = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentListEvents.command('list-events')
   .description($('list-events method to manage your deployment.'))
   .usage('[options]')
@@ -4193,7 +4193,7 @@ exports.init = function (cli) {
 =============================================
 0
 
-  var deploymentListEventsBySlot = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentListEventsBySlot = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentListEventsBySlot.command('list-events-by-slot')
   .description($('list-events-by-slot method to manage your deployment.'))
   .usage('[options]')
@@ -4230,7 +4230,7 @@ exports.init = function (cli) {
   --deployment-name
   --role-instance-name
 
-  var deploymentRebootRoleInstanceByDeploymentName = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentRebootRoleInstanceByDeploymentName = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentRebootRoleInstanceByDeploymentName.command('reboot-role-instance-by-deployment-name')
   .description($('reboot-role-instance-by-deployment-name method to manage your deployment.'))
   .usage('[options]')
@@ -4259,7 +4259,7 @@ exports.init = function (cli) {
 =============================================
 0
 
-  var deploymentRebootRoleInstanceByDeploymentSlot = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentRebootRoleInstanceByDeploymentSlot = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentRebootRoleInstanceByDeploymentSlot.command('reboot-role-instance-by-deployment-slot')
   .description($('reboot-role-instance-by-deployment-slot method to manage your deployment.'))
   .usage('[options]')
@@ -4295,7 +4295,7 @@ exports.init = function (cli) {
   --role-instance-name
   --resources
 
-  var deploymentRebuildRoleInstanceByDeploymentName = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentRebuildRoleInstanceByDeploymentName = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentRebuildRoleInstanceByDeploymentName.command('rebuild-role-instance-by-deployment-name')
   .description($('rebuild-role-instance-by-deployment-name method to manage your deployment.'))
   .usage('[options]')
@@ -4325,7 +4325,7 @@ exports.init = function (cli) {
   --role-instance-name
   --resources
 
-  var deploymentRebuildRoleInstanceByDeploymentSlot = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentRebuildRoleInstanceByDeploymentSlot = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentRebuildRoleInstanceByDeploymentSlot.command('rebuild-role-instance-by-deployment-slot')
   .description($('rebuild-role-instance-by-deployment-slot method to manage your deployment.'))
   .usage('[options]')
@@ -4354,7 +4354,7 @@ exports.init = function (cli) {
   --deployment-name
   --role-instance-name
 
-  var deploymentReimageRoleInstanceByDeploymentName = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentReimageRoleInstanceByDeploymentName = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentReimageRoleInstanceByDeploymentName.command('reimage-role-instance-by-deployment-name')
   .description($('reimage-role-instance-by-deployment-name method to manage your deployment.'))
   .usage('[options]')
@@ -4383,7 +4383,7 @@ exports.init = function (cli) {
 =============================================
 0
 
-  var deploymentReimageRoleInstanceByDeploymentSlot = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentReimageRoleInstanceByDeploymentSlot = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentReimageRoleInstanceByDeploymentSlot.command('reimage-role-instance-by-deployment-slot')
   .description($('reimage-role-instance-by-deployment-slot method to manage your deployment.'))
   .usage('[options]')
@@ -4423,7 +4423,7 @@ exports.init = function (cli) {
   "mode":0
 }
 
-  var deploymentRollbackUpdateOrUpgradeByDeploymentName = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentRollbackUpdateOrUpgradeByDeploymentName = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentRollbackUpdateOrUpgradeByDeploymentName.command('rollback-update-or-upgrade-by-deployment-name')
   .description($('rollback-update-or-upgrade-by-deployment-name method to manage your deployment.'))
   .usage('[options]')
@@ -4517,7 +4517,7 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-rollback-update-or-upgrade-parameters
-  var catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters0 = cli.category('deployment');
+  var catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters0 = catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters0 = parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters0.category('set')
@@ -4580,7 +4580,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-rollback-update-or-upgrade-parameters
-  var catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters1 = cli.category('deployment');
+  var catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters1 = catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters1 = parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters1.category('remove')
@@ -4613,7 +4613,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-rollback-update-or-upgrade-parameters
-  var catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters2 = cli.category('deployment');
+  var catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters2 = catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters2 = parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters2.category('add')
@@ -4680,7 +4680,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove mode
-  var catparametersDeploymentMode1 = cli.category('deployment');
+  var catparametersDeploymentMode1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentMode1 = catparametersDeploymentMode1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentMode1 = parametersDeploymentMode1.category('remove')
@@ -4713,7 +4713,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add mode
-  var catparametersDeploymentMode2 = cli.category('deployment');
+  var catparametersDeploymentMode2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentMode2 = catparametersDeploymentMode2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentMode2 = parametersDeploymentMode2.category('add')
@@ -4772,7 +4772,7 @@ exports.init = function (cli) {
   "mode":0
 }
 
-  var deploymentRollbackUpdateOrUpgradeByDeploymentSlot = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentRollbackUpdateOrUpgradeByDeploymentSlot = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentRollbackUpdateOrUpgradeByDeploymentSlot.command('rollback-update-or-upgrade-by-deployment-slot')
   .description($('rollback-update-or-upgrade-by-deployment-slot method to manage your deployment.'))
   .usage('[options]')
@@ -4874,7 +4874,7 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-rollback-update-or-upgrade-parameters
-  var catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters0 = cli.category('deployment');
+  var catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters0 = catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters0 = parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters0.category('set')
@@ -4937,7 +4937,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-rollback-update-or-upgrade-parameters
-  var catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters1 = cli.category('deployment');
+  var catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters1 = catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters1 = parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters1.category('remove')
@@ -4970,7 +4970,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-rollback-update-or-upgrade-parameters
-  var catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters2 = cli.category('deployment');
+  var catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters2 = catparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters2 = parametersDeploymentDeploymentRollbackUpdateOrUpgradeParameters2.category('add')
@@ -5037,7 +5037,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove mode
-  var catparametersDeploymentMode1 = cli.category('deployment');
+  var catparametersDeploymentMode1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentMode1 = catparametersDeploymentMode1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentMode1 = parametersDeploymentMode1.category('remove')
@@ -5070,7 +5070,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add mode
-  var catparametersDeploymentMode2 = cli.category('deployment');
+  var catparametersDeploymentMode2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentMode2 = catparametersDeploymentMode2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentMode2 = parametersDeploymentMode2.category('add')
@@ -5128,7 +5128,7 @@ exports.init = function (cli) {
   "sourceDeployment":""
 }
 
-  var deploymentSwap = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentSwap = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentSwap.command('swap')
   .description($('swap method to manage your deployment.'))
   .usage('[options]')
@@ -5224,7 +5224,7 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-swap-parameters
-  var catparametersDeploymentDeploymentSwapParameters0 = cli.category('deployment');
+  var catparametersDeploymentDeploymentSwapParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentSwapParameters0 = catparametersDeploymentDeploymentSwapParameters0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentDeploymentSwapParameters0 = parametersDeploymentDeploymentSwapParameters0.category('set')
@@ -5287,7 +5287,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-swap-parameters
-  var catparametersDeploymentDeploymentSwapParameters1 = cli.category('deployment');
+  var catparametersDeploymentDeploymentSwapParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentSwapParameters1 = catparametersDeploymentDeploymentSwapParameters1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentDeploymentSwapParameters1 = parametersDeploymentDeploymentSwapParameters1.category('remove')
@@ -5320,7 +5320,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-swap-parameters
-  var catparametersDeploymentDeploymentSwapParameters2 = cli.category('deployment');
+  var catparametersDeploymentDeploymentSwapParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentSwapParameters2 = catparametersDeploymentDeploymentSwapParameters2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentDeploymentSwapParameters2 = parametersDeploymentDeploymentSwapParameters2.category('add')
@@ -5400,7 +5400,7 @@ exports.init = function (cli) {
   "status":0
 }
 
-  var deploymentUpdateStatusByDeploymentName = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentUpdateStatusByDeploymentName = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentUpdateStatusByDeploymentName.command('update-status-by-deployment-name')
   .description($('update-status-by-deployment-name method to manage your deployment.'))
   .usage('[options]')
@@ -5494,7 +5494,7 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-update-status-parameters
-  var catparametersDeploymentDeploymentUpdateStatusParameters0 = cli.category('deployment');
+  var catparametersDeploymentDeploymentUpdateStatusParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentUpdateStatusParameters0 = catparametersDeploymentDeploymentUpdateStatusParameters0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentDeploymentUpdateStatusParameters0 = parametersDeploymentDeploymentUpdateStatusParameters0.category('set')
@@ -5546,7 +5546,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-update-status-parameters
-  var catparametersDeploymentDeploymentUpdateStatusParameters1 = cli.category('deployment');
+  var catparametersDeploymentDeploymentUpdateStatusParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentUpdateStatusParameters1 = catparametersDeploymentDeploymentUpdateStatusParameters1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentDeploymentUpdateStatusParameters1 = parametersDeploymentDeploymentUpdateStatusParameters1.category('remove')
@@ -5579,7 +5579,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-update-status-parameters
-  var catparametersDeploymentDeploymentUpdateStatusParameters2 = cli.category('deployment');
+  var catparametersDeploymentDeploymentUpdateStatusParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentUpdateStatusParameters2 = catparametersDeploymentDeploymentUpdateStatusParameters2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentDeploymentUpdateStatusParameters2 = parametersDeploymentDeploymentUpdateStatusParameters2.category('add')
@@ -5635,7 +5635,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove status
-  var catparametersDeploymentStatus1 = cli.category('deployment');
+  var catparametersDeploymentStatus1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentStatus1 = catparametersDeploymentStatus1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentStatus1 = parametersDeploymentStatus1.category('remove')
@@ -5668,7 +5668,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add status
-  var catparametersDeploymentStatus2 = cli.category('deployment');
+  var catparametersDeploymentStatus2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentStatus2 = catparametersDeploymentStatus2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentStatus2 = parametersDeploymentStatus2.category('add')
@@ -5726,7 +5726,7 @@ exports.init = function (cli) {
   "status":0
 }
 
-  var deploymentUpdateStatusByDeploymentSlot = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentUpdateStatusByDeploymentSlot = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentUpdateStatusByDeploymentSlot.command('update-status-by-deployment-slot')
   .description($('update-status-by-deployment-slot method to manage your deployment.'))
   .usage('[options]')
@@ -5828,7 +5828,7 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-update-status-parameters
-  var catparametersDeploymentDeploymentUpdateStatusParameters0 = cli.category('deployment');
+  var catparametersDeploymentDeploymentUpdateStatusParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentUpdateStatusParameters0 = catparametersDeploymentDeploymentUpdateStatusParameters0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentDeploymentUpdateStatusParameters0 = parametersDeploymentDeploymentUpdateStatusParameters0.category('set')
@@ -5880,7 +5880,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-update-status-parameters
-  var catparametersDeploymentDeploymentUpdateStatusParameters1 = cli.category('deployment');
+  var catparametersDeploymentDeploymentUpdateStatusParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentUpdateStatusParameters1 = catparametersDeploymentDeploymentUpdateStatusParameters1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentDeploymentUpdateStatusParameters1 = parametersDeploymentDeploymentUpdateStatusParameters1.category('remove')
@@ -5913,7 +5913,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-update-status-parameters
-  var catparametersDeploymentDeploymentUpdateStatusParameters2 = cli.category('deployment');
+  var catparametersDeploymentDeploymentUpdateStatusParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentUpdateStatusParameters2 = catparametersDeploymentDeploymentUpdateStatusParameters2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentDeploymentUpdateStatusParameters2 = parametersDeploymentDeploymentUpdateStatusParameters2.category('add')
@@ -5969,7 +5969,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove status
-  var catparametersDeploymentStatus1 = cli.category('deployment');
+  var catparametersDeploymentStatus1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentStatus1 = catparametersDeploymentStatus1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentStatus1 = parametersDeploymentStatus1.category('remove')
@@ -6002,7 +6002,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add status
-  var catparametersDeploymentStatus2 = cli.category('deployment');
+  var catparametersDeploymentStatus2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentStatus2 = catparametersDeploymentStatus2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentStatus2 = parametersDeploymentStatus2.category('add')
@@ -6084,7 +6084,7 @@ exports.init = function (cli) {
   "roleToUpgrade":""
 }
 
-  var deploymentUpgradeByName = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentUpgradeByName = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentUpgradeByName.command('upgrade-by-name')
   .description($('upgrade-by-name method to manage your deployment.'))
   .usage('[options]')
@@ -6178,7 +6178,7 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-upgrade-parameters
-  var catparametersDeploymentDeploymentUpgradeParameters0 = cli.category('deployment');
+  var catparametersDeploymentDeploymentUpgradeParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentUpgradeParameters0 = catparametersDeploymentDeploymentUpgradeParameters0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentDeploymentUpgradeParameters0 = parametersDeploymentDeploymentUpgradeParameters0.category('set')
@@ -6307,7 +6307,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-upgrade-parameters
-  var catparametersDeploymentDeploymentUpgradeParameters1 = cli.category('deployment');
+  var catparametersDeploymentDeploymentUpgradeParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentUpgradeParameters1 = catparametersDeploymentDeploymentUpgradeParameters1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentDeploymentUpgradeParameters1 = parametersDeploymentDeploymentUpgradeParameters1.category('remove')
@@ -6340,7 +6340,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-upgrade-parameters
-  var catparametersDeploymentDeploymentUpgradeParameters2 = cli.category('deployment');
+  var catparametersDeploymentDeploymentUpgradeParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentUpgradeParameters2 = catparametersDeploymentDeploymentUpgradeParameters2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentDeploymentUpgradeParameters2 = parametersDeploymentDeploymentUpgradeParameters2.category('add')
@@ -6473,7 +6473,7 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-configuration
-  var catparametersDeploymentExtensionConfiguration0 = cli.category('deployment');
+  var catparametersDeploymentExtensionConfiguration0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensionConfiguration0 = catparametersDeploymentExtensionConfiguration0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentExtensionConfiguration0 = parametersDeploymentExtensionConfiguration0.category('set')
@@ -6536,7 +6536,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-configuration
-  var catparametersDeploymentExtensionConfiguration1 = cli.category('deployment');
+  var catparametersDeploymentExtensionConfiguration1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensionConfiguration1 = catparametersDeploymentExtensionConfiguration1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentExtensionConfiguration1 = parametersDeploymentExtensionConfiguration1.category('remove')
@@ -6569,7 +6569,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-configuration
-  var catparametersDeploymentExtensionConfiguration2 = cli.category('deployment');
+  var catparametersDeploymentExtensionConfiguration2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensionConfiguration2 = catparametersDeploymentExtensionConfiguration2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentExtensionConfiguration2 = parametersDeploymentExtensionConfiguration2.category('add')
@@ -6636,7 +6636,7 @@ exports.init = function (cli) {
   });
 
   //parameters set all-roles
-  var catparametersDeploymentAllRoles0 = cli.category('deployment');
+  var catparametersDeploymentAllRoles0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentAllRoles0 = catparametersDeploymentAllRoles0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentAllRoles0 = parametersDeploymentAllRoles0.category('set')
@@ -6692,7 +6692,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove all-roles
-  var catparametersDeploymentAllRoles1 = cli.category('deployment');
+  var catparametersDeploymentAllRoles1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentAllRoles1 = catparametersDeploymentAllRoles1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentAllRoles1 = parametersDeploymentAllRoles1.category('remove')
@@ -6726,7 +6726,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add all-roles
-  var catparametersDeploymentAllRoles2 = cli.category('deployment');
+  var catparametersDeploymentAllRoles2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentAllRoles2 = catparametersDeploymentAllRoles2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentAllRoles2 = parametersDeploymentAllRoles2.category('add')
@@ -6782,7 +6782,7 @@ exports.init = function (cli) {
   });
 
   //parameters set named-roles
-  var catparametersDeploymentNamedRoles0 = cli.category('deployment');
+  var catparametersDeploymentNamedRoles0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentNamedRoles0 = catparametersDeploymentNamedRoles0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentNamedRoles0 = parametersDeploymentNamedRoles0.category('set')
@@ -6849,7 +6849,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove named-roles
-  var catparametersDeploymentNamedRoles1 = cli.category('deployment');
+  var catparametersDeploymentNamedRoles1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentNamedRoles1 = catparametersDeploymentNamedRoles1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentNamedRoles1 = parametersDeploymentNamedRoles1.category('remove')
@@ -6883,7 +6883,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add named-roles
-  var catparametersDeploymentNamedRoles2 = cli.category('deployment');
+  var catparametersDeploymentNamedRoles2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentNamedRoles2 = catparametersDeploymentNamedRoles2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentNamedRoles2 = parametersDeploymentNamedRoles2.category('add')
@@ -6950,7 +6950,7 @@ exports.init = function (cli) {
   });
 
   //parameters set extensions
-  var catparametersDeploymentExtensions0 = cli.category('deployment');
+  var catparametersDeploymentExtensions0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensions0 = catparametersDeploymentExtensions0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentExtensions0 = parametersDeploymentExtensions0.category('set')
@@ -7007,7 +7007,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove extensions
-  var catparametersDeploymentExtensions1 = cli.category('deployment');
+  var catparametersDeploymentExtensions1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensions1 = catparametersDeploymentExtensions1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentExtensions1 = parametersDeploymentExtensions1.category('remove')
@@ -7042,7 +7042,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extensions
-  var catparametersDeploymentExtensions2 = cli.category('deployment');
+  var catparametersDeploymentExtensions2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensions2 = catparametersDeploymentExtensions2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentExtensions2 = parametersDeploymentExtensions2.category('add')
@@ -7098,7 +7098,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove mode
-  var catparametersDeploymentMode1 = cli.category('deployment');
+  var catparametersDeploymentMode1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentMode1 = catparametersDeploymentMode1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentMode1 = parametersDeploymentMode1.category('remove')
@@ -7131,7 +7131,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add mode
-  var catparametersDeploymentMode2 = cli.category('deployment');
+  var catparametersDeploymentMode2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentMode2 = catparametersDeploymentMode2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentMode2 = parametersDeploymentMode2.category('add')
@@ -7213,7 +7213,7 @@ exports.init = function (cli) {
   "roleToUpgrade":""
 }
 
-  var deploymentUpgradeBySlot = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentUpgradeBySlot = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentUpgradeBySlot.command('upgrade-by-slot')
   .description($('upgrade-by-slot method to manage your deployment.'))
   .usage('[options]')
@@ -7315,7 +7315,7 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-upgrade-parameters
-  var catparametersDeploymentDeploymentUpgradeParameters0 = cli.category('deployment');
+  var catparametersDeploymentDeploymentUpgradeParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentUpgradeParameters0 = catparametersDeploymentDeploymentUpgradeParameters0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentDeploymentUpgradeParameters0 = parametersDeploymentDeploymentUpgradeParameters0.category('set')
@@ -7444,7 +7444,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-upgrade-parameters
-  var catparametersDeploymentDeploymentUpgradeParameters1 = cli.category('deployment');
+  var catparametersDeploymentDeploymentUpgradeParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentUpgradeParameters1 = catparametersDeploymentDeploymentUpgradeParameters1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentDeploymentUpgradeParameters1 = parametersDeploymentDeploymentUpgradeParameters1.category('remove')
@@ -7477,7 +7477,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-upgrade-parameters
-  var catparametersDeploymentDeploymentUpgradeParameters2 = cli.category('deployment');
+  var catparametersDeploymentDeploymentUpgradeParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentUpgradeParameters2 = catparametersDeploymentDeploymentUpgradeParameters2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentDeploymentUpgradeParameters2 = parametersDeploymentDeploymentUpgradeParameters2.category('add')
@@ -7610,7 +7610,7 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-configuration
-  var catparametersDeploymentExtensionConfiguration0 = cli.category('deployment');
+  var catparametersDeploymentExtensionConfiguration0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensionConfiguration0 = catparametersDeploymentExtensionConfiguration0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentExtensionConfiguration0 = parametersDeploymentExtensionConfiguration0.category('set')
@@ -7673,7 +7673,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-configuration
-  var catparametersDeploymentExtensionConfiguration1 = cli.category('deployment');
+  var catparametersDeploymentExtensionConfiguration1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensionConfiguration1 = catparametersDeploymentExtensionConfiguration1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentExtensionConfiguration1 = parametersDeploymentExtensionConfiguration1.category('remove')
@@ -7706,7 +7706,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-configuration
-  var catparametersDeploymentExtensionConfiguration2 = cli.category('deployment');
+  var catparametersDeploymentExtensionConfiguration2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensionConfiguration2 = catparametersDeploymentExtensionConfiguration2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentExtensionConfiguration2 = parametersDeploymentExtensionConfiguration2.category('add')
@@ -7773,7 +7773,7 @@ exports.init = function (cli) {
   });
 
   //parameters set all-roles
-  var catparametersDeploymentAllRoles0 = cli.category('deployment');
+  var catparametersDeploymentAllRoles0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentAllRoles0 = catparametersDeploymentAllRoles0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentAllRoles0 = parametersDeploymentAllRoles0.category('set')
@@ -7829,7 +7829,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove all-roles
-  var catparametersDeploymentAllRoles1 = cli.category('deployment');
+  var catparametersDeploymentAllRoles1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentAllRoles1 = catparametersDeploymentAllRoles1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentAllRoles1 = parametersDeploymentAllRoles1.category('remove')
@@ -7863,7 +7863,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add all-roles
-  var catparametersDeploymentAllRoles2 = cli.category('deployment');
+  var catparametersDeploymentAllRoles2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentAllRoles2 = catparametersDeploymentAllRoles2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentAllRoles2 = parametersDeploymentAllRoles2.category('add')
@@ -7919,7 +7919,7 @@ exports.init = function (cli) {
   });
 
   //parameters set named-roles
-  var catparametersDeploymentNamedRoles0 = cli.category('deployment');
+  var catparametersDeploymentNamedRoles0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentNamedRoles0 = catparametersDeploymentNamedRoles0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentNamedRoles0 = parametersDeploymentNamedRoles0.category('set')
@@ -7986,7 +7986,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove named-roles
-  var catparametersDeploymentNamedRoles1 = cli.category('deployment');
+  var catparametersDeploymentNamedRoles1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentNamedRoles1 = catparametersDeploymentNamedRoles1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentNamedRoles1 = parametersDeploymentNamedRoles1.category('remove')
@@ -8020,7 +8020,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add named-roles
-  var catparametersDeploymentNamedRoles2 = cli.category('deployment');
+  var catparametersDeploymentNamedRoles2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentNamedRoles2 = catparametersDeploymentNamedRoles2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentNamedRoles2 = parametersDeploymentNamedRoles2.category('add')
@@ -8087,7 +8087,7 @@ exports.init = function (cli) {
   });
 
   //parameters set extensions
-  var catparametersDeploymentExtensions0 = cli.category('deployment');
+  var catparametersDeploymentExtensions0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensions0 = catparametersDeploymentExtensions0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentExtensions0 = parametersDeploymentExtensions0.category('set')
@@ -8144,7 +8144,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove extensions
-  var catparametersDeploymentExtensions1 = cli.category('deployment');
+  var catparametersDeploymentExtensions1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensions1 = catparametersDeploymentExtensions1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentExtensions1 = parametersDeploymentExtensions1.category('remove')
@@ -8179,7 +8179,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extensions
-  var catparametersDeploymentExtensions2 = cli.category('deployment');
+  var catparametersDeploymentExtensions2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentExtensions2 = catparametersDeploymentExtensions2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentExtensions2 = parametersDeploymentExtensions2.category('add')
@@ -8235,7 +8235,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove mode
-  var catparametersDeploymentMode1 = cli.category('deployment');
+  var catparametersDeploymentMode1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentMode1 = catparametersDeploymentMode1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentMode1 = parametersDeploymentMode1.category('remove')
@@ -8268,7 +8268,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add mode
-  var catparametersDeploymentMode2 = cli.category('deployment');
+  var catparametersDeploymentMode2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentMode2 = catparametersDeploymentMode2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentMode2 = parametersDeploymentMode2.category('add')
@@ -8326,7 +8326,7 @@ exports.init = function (cli) {
   "upgradeDomain":0
 }
 
-  var deploymentWalkUpgradeDomainByDeploymentName = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentWalkUpgradeDomainByDeploymentName = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentWalkUpgradeDomainByDeploymentName.command('walk-upgrade-domain-by-deployment-name')
   .description($('walk-upgrade-domain-by-deployment-name method to manage your deployment.'))
   .usage('[options]')
@@ -8420,7 +8420,7 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-walk-upgrade-domain-parameters
-  var catparametersDeploymentDeploymentWalkUpgradeDomainParameters0 = cli.category('deployment');
+  var catparametersDeploymentDeploymentWalkUpgradeDomainParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentWalkUpgradeDomainParameters0 = catparametersDeploymentDeploymentWalkUpgradeDomainParameters0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentDeploymentWalkUpgradeDomainParameters0 = parametersDeploymentDeploymentWalkUpgradeDomainParameters0.category('set')
@@ -8472,7 +8472,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-walk-upgrade-domain-parameters
-  var catparametersDeploymentDeploymentWalkUpgradeDomainParameters1 = cli.category('deployment');
+  var catparametersDeploymentDeploymentWalkUpgradeDomainParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentWalkUpgradeDomainParameters1 = catparametersDeploymentDeploymentWalkUpgradeDomainParameters1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentDeploymentWalkUpgradeDomainParameters1 = parametersDeploymentDeploymentWalkUpgradeDomainParameters1.category('remove')
@@ -8505,7 +8505,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-walk-upgrade-domain-parameters
-  var catparametersDeploymentDeploymentWalkUpgradeDomainParameters2 = cli.category('deployment');
+  var catparametersDeploymentDeploymentWalkUpgradeDomainParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentWalkUpgradeDomainParameters2 = catparametersDeploymentDeploymentWalkUpgradeDomainParameters2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentDeploymentWalkUpgradeDomainParameters2 = parametersDeploymentDeploymentWalkUpgradeDomainParameters2.category('add')
@@ -8574,7 +8574,7 @@ exports.init = function (cli) {
   "upgradeDomain":0
 }
 
-  var deploymentWalkUpgradeDomainByDeploymentSlot = cli.category('deployment').description($('Commands to manage your deployment.'));
+  var deploymentWalkUpgradeDomainByDeploymentSlot = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment').description($('Commands to manage your deployment.'));
   deploymentWalkUpgradeDomainByDeploymentSlot.command('walk-upgrade-domain-by-deployment-slot')
   .description($('walk-upgrade-domain-by-deployment-slot method to manage your deployment.'))
   .usage('[options]')
@@ -8676,7 +8676,7 @@ exports.init = function (cli) {
   });
 
   //parameters set deployment-walk-upgrade-domain-parameters
-  var catparametersDeploymentDeploymentWalkUpgradeDomainParameters0 = cli.category('deployment');
+  var catparametersDeploymentDeploymentWalkUpgradeDomainParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentWalkUpgradeDomainParameters0 = catparametersDeploymentDeploymentWalkUpgradeDomainParameters0.category('parameters')
   .description($('Commands to manage parameter for your deployment.'));
   var setparametersDeploymentDeploymentWalkUpgradeDomainParameters0 = parametersDeploymentDeploymentWalkUpgradeDomainParameters0.category('set')
@@ -8728,7 +8728,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-walk-upgrade-domain-parameters
-  var catparametersDeploymentDeploymentWalkUpgradeDomainParameters1 = cli.category('deployment');
+  var catparametersDeploymentDeploymentWalkUpgradeDomainParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentWalkUpgradeDomainParameters1 = catparametersDeploymentDeploymentWalkUpgradeDomainParameters1.category('parameters')
   .description($('Commands to remove parameter for your deployment.'));
   var removeparametersDeploymentDeploymentWalkUpgradeDomainParameters1 = parametersDeploymentDeploymentWalkUpgradeDomainParameters1.category('remove')
@@ -8761,7 +8761,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-walk-upgrade-domain-parameters
-  var catparametersDeploymentDeploymentWalkUpgradeDomainParameters2 = cli.category('deployment');
+  var catparametersDeploymentDeploymentWalkUpgradeDomainParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
   var parametersDeploymentDeploymentWalkUpgradeDomainParameters2 = catparametersDeploymentDeploymentWalkUpgradeDomainParameters2.category('parameters')
   .description($('Commands to add parameter for your deployment.'));
   var addparametersDeploymentDeploymentWalkUpgradeDomainParameters2 = parametersDeploymentDeploymentWalkUpgradeDomainParameters2.category('add')
@@ -8830,9 +8830,9 @@ exports.init = function (cli) {
   "name":""
 }
 */
-  var dNSServerAddDNSServer = cli.category('dNSServer').description($('Commands to manage your d n s server.'));
-  dNSServerAddDNSServer.command('add-d-n-s-server')
-  .description($('add-d-n-s-server method to manage your d n s server.'))
+  var dnsServerAddDNSServer = cli.category('invoke').description('Commands to invoke service management operations.').category('dns-server').description($('Commands to manage your dns server.'));
+  dnsServerAddDNSServer.command('add-dns-server')
+  .description($('add-dns-server method to manage your dns server.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
   .option('--deployment-name <deployment-name>', $('deployment-name'))
@@ -8859,20 +8859,20 @@ exports.init = function (cli) {
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeClient(subscription);
-    var result = computeManagementClient.dNSServers.addDNSServer(options.serviceName, options.deploymentName, parametersObj, _);
+    var result = computeManagementClient.dnsServers.addDNSServer(options.serviceName, options.deploymentName, parametersObj, _);
     cli.output.json(result);
   });
-  var dNSServerAddDNSServeraddDNSServerParameters2 = dNSServerAddDNSServer.category('parameters')
-  .description($('Commands to manage parameter for your d n s server.'));
-  var dNSServerAddDNSServeraddDNSServerGenerate2 = dNSServerAddDNSServeraddDNSServerParameters2.category('generate')
-  .description($('Commands to generate parameter file for your d n s server.'));
-  dNSServerAddDNSServeraddDNSServerGenerate2.command('add-d-n-s-server')
-  .description($('Generate dNSServerAddDNSServer parameter string or files.'))
+  var dnsServerAddDNSServeraddDNSServerParameters2 = dnsServerAddDNSServer.category('parameters')
+  .description($('Commands to manage parameter for your dns server.'));
+  var dnsServerAddDNSServeraddDNSServerGenerate2 = dnsServerAddDNSServeraddDNSServerParameters2.category('generate')
+  .description($('Commands to generate parameter file for your dns server.'));
+  dnsServerAddDNSServeraddDNSServerGenerate2.command('add-dns-server')
+  .description($('Generate dnsServerAddDNSServer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .execute(function(options, _) {
     cli.output.info('{\"address\":\"\",\"name\":\"\"}', _);
-    var filePath = 'dNSServerAddDNSServer_addDNSServer.json';
+    var filePath = 'dnsServerAddDNSServer_addDNSServer.json';
     if (options.parameterFile) {
       filePath = options.parameterFile;
     }
@@ -8882,8 +8882,8 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  dNSServerAddDNSServeraddDNSServerParameters2.command('patch')
-  .description($('Command to patch dNSServerAddDNSServer parameter JSON file.'))
+  dnsServerAddDNSServeraddDNSServerParameters2.command('patch')
+  .description($('Command to patch dnsServerAddDNSServer parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--operation <operation>', $('The JSON patch operation: add, remove, or replace.'))
@@ -8927,13 +8927,13 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  //parameters set d-n-s-add-parameters
-  var catparametersDNSServerDNSAddParameters0 = cli.category('dNSServer');
+  //parameters set dns-add-parameters
+  var catparametersDNSServerDNSAddParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('dns-server');
   var parametersDNSServerDNSAddParameters0 = catparametersDNSServerDNSAddParameters0.category('parameters')
-  .description($('Commands to manage parameter for your d-n-s-server.'));
+  .description($('Commands to manage parameter for your dns-server.'));
   var setparametersDNSServerDNSAddParameters0 = parametersDNSServerDNSAddParameters0.category('set')
-  .description($('Commands to set parameter file for your d-n-s-server.'));
-  setparametersDNSServerDNSAddParameters0.command('d-n-s-add-parameters')
+  .description($('Commands to set parameter file for your dns-server.'));
+  setparametersDNSServerDNSAddParameters0.command('dns-add-parameters')
   .description($('Set catparametersDNSServerDNSAddParameters0 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -8990,13 +8990,13 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  //parameters remove d-n-s-add-parameters
-  var catparametersDNSServerDNSAddParameters1 = cli.category('dNSServer');
+  //parameters remove dns-add-parameters
+  var catparametersDNSServerDNSAddParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('dns-server');
   var parametersDNSServerDNSAddParameters1 = catparametersDNSServerDNSAddParameters1.category('parameters')
-  .description($('Commands to remove parameter for your d-n-s-server.'));
+  .description($('Commands to remove parameter for your dns-server.'));
   var removeparametersDNSServerDNSAddParameters1 = parametersDNSServerDNSAddParameters1.category('remove')
-  .description($('Commands to remove values in the parameter file for your d-n-s-server.'));
-  removeparametersDNSServerDNSAddParameters1.command('d-n-s-add-parameters')
+  .description($('Commands to remove values in the parameter file for your dns-server.'));
+  removeparametersDNSServerDNSAddParameters1.command('dns-add-parameters')
   .description($('Remove catparametersDNSServerDNSAddParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -9023,13 +9023,13 @@ exports.init = function (cli) {
     cli.output.info('Parameter file updated at: ' + options.parameterFile);
     cli.output.info('=====================================');
   });
-  //parameters add d-n-s-add-parameters
-  var catparametersDNSServerDNSAddParameters2 = cli.category('dNSServer');
+  //parameters add dns-add-parameters
+  var catparametersDNSServerDNSAddParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('dns-server');
   var parametersDNSServerDNSAddParameters2 = catparametersDNSServerDNSAddParameters2.category('parameters')
-  .description($('Commands to add parameter for your d-n-s-server.'));
+  .description($('Commands to add parameter for your dns-server.'));
   var addparametersDNSServerDNSAddParameters2 = parametersDNSServerDNSAddParameters2.category('add')
-  .description($('Commands to add values in the parameter file for your d-n-s-server.'));
-  addparametersDNSServerDNSAddParameters2.command('d-n-s-add-parameters')
+  .description($('Commands to add values in the parameter file for your dns-server.'));
+  addparametersDNSServerDNSAddParameters2.command('dns-add-parameters')
   .description($('Remove catparametersDNSServerDNSAddParameters2 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -9097,9 +9097,9 @@ exports.init = function (cli) {
   --deployment-name
   --dns-server-name
 */
-  var dNSServerDeleteDNSServer = cli.category('dNSServer').description($('Commands to manage your d n s server.'));
-  dNSServerDeleteDNSServer.command('delete-d-n-s-server')
-  .description($('delete-d-n-s-server method to manage your d n s server.'))
+  var dnsServerDeleteDNSServer = cli.category('invoke').description('Commands to invoke service management operations.').category('dns-server').description($('Commands to manage your dns server.'));
+  dnsServerDeleteDNSServer.command('delete-dns-server')
+  .description($('delete-dns-server method to manage your dns server.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
   .option('--deployment-name <deployment-name>', $('deployment-name'))
@@ -9112,7 +9112,7 @@ exports.init = function (cli) {
     cli.output.info('dnsServerName = ' + options.dnsServerName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeClient(subscription);
-    var result = computeManagementClient.dNSServers.deleteDNSServer(options.serviceName, options.deploymentName, options.dnsServerName, _);
+    var result = computeManagementClient.dnsServers.deleteDNSServer(options.serviceName, options.deploymentName, options.dnsServerName, _);
     cli.output.json(result);
   });
 /*
@@ -9127,9 +9127,9 @@ exports.init = function (cli) {
   "name":""
 }
 */
-  var dNSServerUpdateDNSServer = cli.category('dNSServer').description($('Commands to manage your d n s server.'));
-  dNSServerUpdateDNSServer.command('update-d-n-s-server')
-  .description($('update-d-n-s-server method to manage your d n s server.'))
+  var dnsServerUpdateDNSServer = cli.category('invoke').description('Commands to invoke service management operations.').category('dns-server').description($('Commands to manage your dns server.'));
+  dnsServerUpdateDNSServer.command('update-dns-server')
+  .description($('update-dns-server method to manage your dns server.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
   .option('--deployment-name <deployment-name>', $('deployment-name'))
@@ -9158,20 +9158,20 @@ exports.init = function (cli) {
     cli.output.info('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeClient(subscription);
-    var result = computeManagementClient.dNSServers.updateDNSServer(options.serviceName, options.deploymentName, options.dnsServerName, parametersObj, _);
+    var result = computeManagementClient.dnsServers.updateDNSServer(options.serviceName, options.deploymentName, options.dnsServerName, parametersObj, _);
     cli.output.json(result);
   });
-  var dNSServerUpdateDNSServerupdateDNSServerParameters3 = dNSServerUpdateDNSServer.category('parameters')
-  .description($('Commands to manage parameter for your d n s server.'));
-  var dNSServerUpdateDNSServerupdateDNSServerGenerate3 = dNSServerUpdateDNSServerupdateDNSServerParameters3.category('generate')
-  .description($('Commands to generate parameter file for your d n s server.'));
-  dNSServerUpdateDNSServerupdateDNSServerGenerate3.command('update-d-n-s-server')
-  .description($('Generate dNSServerUpdateDNSServer parameter string or files.'))
+  var dnsServerUpdateDNSServerupdateDNSServerParameters3 = dnsServerUpdateDNSServer.category('parameters')
+  .description($('Commands to manage parameter for your dns server.'));
+  var dnsServerUpdateDNSServerupdateDNSServerGenerate3 = dnsServerUpdateDNSServerupdateDNSServerParameters3.category('generate')
+  .description($('Commands to generate parameter file for your dns server.'));
+  dnsServerUpdateDNSServerupdateDNSServerGenerate3.command('update-dns-server')
+  .description($('Generate dnsServerUpdateDNSServer parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .execute(function(options, _) {
     cli.output.info('{\"address\":\"\",\"name\":\"\"}', _);
-    var filePath = 'dNSServerUpdateDNSServer_updateDNSServer.json';
+    var filePath = 'dnsServerUpdateDNSServer_updateDNSServer.json';
     if (options.parameterFile) {
       filePath = options.parameterFile;
     }
@@ -9181,8 +9181,8 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  dNSServerUpdateDNSServerupdateDNSServerParameters3.command('patch')
-  .description($('Command to patch dNSServerUpdateDNSServer parameter JSON file.'))
+  dnsServerUpdateDNSServerupdateDNSServerParameters3.command('patch')
+  .description($('Command to patch dnsServerUpdateDNSServer parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--operation <operation>', $('The JSON patch operation: add, remove, or replace.'))
@@ -9226,13 +9226,13 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  //parameters set d-n-s-update-parameters
-  var catparametersDNSServerDNSUpdateParameters0 = cli.category('dNSServer');
+  //parameters set dns-update-parameters
+  var catparametersDNSServerDNSUpdateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('dns-server');
   var parametersDNSServerDNSUpdateParameters0 = catparametersDNSServerDNSUpdateParameters0.category('parameters')
-  .description($('Commands to manage parameter for your d-n-s-server.'));
+  .description($('Commands to manage parameter for your dns-server.'));
   var setparametersDNSServerDNSUpdateParameters0 = parametersDNSServerDNSUpdateParameters0.category('set')
-  .description($('Commands to set parameter file for your d-n-s-server.'));
-  setparametersDNSServerDNSUpdateParameters0.command('d-n-s-update-parameters')
+  .description($('Commands to set parameter file for your dns-server.'));
+  setparametersDNSServerDNSUpdateParameters0.command('dns-update-parameters')
   .description($('Set catparametersDNSServerDNSUpdateParameters0 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -9289,13 +9289,13 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  //parameters remove d-n-s-update-parameters
-  var catparametersDNSServerDNSUpdateParameters1 = cli.category('dNSServer');
+  //parameters remove dns-update-parameters
+  var catparametersDNSServerDNSUpdateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('dns-server');
   var parametersDNSServerDNSUpdateParameters1 = catparametersDNSServerDNSUpdateParameters1.category('parameters')
-  .description($('Commands to remove parameter for your d-n-s-server.'));
+  .description($('Commands to remove parameter for your dns-server.'));
   var removeparametersDNSServerDNSUpdateParameters1 = parametersDNSServerDNSUpdateParameters1.category('remove')
-  .description($('Commands to remove values in the parameter file for your d-n-s-server.'));
-  removeparametersDNSServerDNSUpdateParameters1.command('d-n-s-update-parameters')
+  .description($('Commands to remove values in the parameter file for your dns-server.'));
+  removeparametersDNSServerDNSUpdateParameters1.command('dns-update-parameters')
   .description($('Remove catparametersDNSServerDNSUpdateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -9322,13 +9322,13 @@ exports.init = function (cli) {
     cli.output.info('Parameter file updated at: ' + options.parameterFile);
     cli.output.info('=====================================');
   });
-  //parameters add d-n-s-update-parameters
-  var catparametersDNSServerDNSUpdateParameters2 = cli.category('dNSServer');
+  //parameters add dns-update-parameters
+  var catparametersDNSServerDNSUpdateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('dns-server');
   var parametersDNSServerDNSUpdateParameters2 = catparametersDNSServerDNSUpdateParameters2.category('parameters')
-  .description($('Commands to add parameter for your d-n-s-server.'));
+  .description($('Commands to add parameter for your dns-server.'));
   var addparametersDNSServerDNSUpdateParameters2 = parametersDNSServerDNSUpdateParameters2.category('add')
-  .description($('Commands to add values in the parameter file for your d-n-s-server.'));
-  addparametersDNSServerDNSUpdateParameters2.command('d-n-s-update-parameters')
+  .description($('Commands to add values in the parameter file for your dns-server.'));
+  addparametersDNSServerDNSUpdateParameters2.command('dns-update-parameters')
   .description($('Remove catparametersDNSServerDNSUpdateParameters2 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -9458,7 +9458,7 @@ exports.init = function (cli) {
   "version":""
 }
 */
-  var extensionImageRegister = cli.category('extensionImage').description($('Commands to manage your extension image.'));
+  var extensionImageRegister = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image').description($('Commands to manage your extension image.'));
   extensionImageRegister.command('register')
   .description($('register method to manage your extension image.'))
   .usage('[options]')
@@ -9548,7 +9548,7 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-image-register-parameters
-  var catparametersExtensionImageExtensionImageRegisterParameters0 = cli.category('extensionImage');
+  var catparametersExtensionImageExtensionImageRegisterParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageExtensionImageRegisterParameters0 = catparametersExtensionImageExtensionImageRegisterParameters0.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
   var setparametersExtensionImageExtensionImageRegisterParameters0 = parametersExtensionImageExtensionImageRegisterParameters0.category('set')
@@ -9875,7 +9875,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-image-register-parameters
-  var catparametersExtensionImageExtensionImageRegisterParameters1 = cli.category('extensionImage');
+  var catparametersExtensionImageExtensionImageRegisterParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageExtensionImageRegisterParameters1 = catparametersExtensionImageExtensionImageRegisterParameters1.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
   var removeparametersExtensionImageExtensionImageRegisterParameters1 = parametersExtensionImageExtensionImageRegisterParameters1.category('remove')
@@ -9908,7 +9908,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-image-register-parameters
-  var catparametersExtensionImageExtensionImageRegisterParameters2 = cli.category('extensionImage');
+  var catparametersExtensionImageExtensionImageRegisterParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageExtensionImageRegisterParameters2 = catparametersExtensionImageExtensionImageRegisterParameters2.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
   var addparametersExtensionImageExtensionImageRegisterParameters2 = parametersExtensionImageExtensionImageRegisterParameters2.category('add')
@@ -10239,7 +10239,7 @@ exports.init = function (cli) {
   });
 
   //parameters set certificate
-  var catparametersExtensionImageCertificate0 = cli.category('extensionImage');
+  var catparametersExtensionImageCertificate0 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageCertificate0 = catparametersExtensionImageCertificate0.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
   var setparametersExtensionImageCertificate0 = parametersExtensionImageCertificate0.category('set')
@@ -10324,7 +10324,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove certificate
-  var catparametersExtensionImageCertificate1 = cli.category('extensionImage');
+  var catparametersExtensionImageCertificate1 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageCertificate1 = catparametersExtensionImageCertificate1.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
   var removeparametersExtensionImageCertificate1 = parametersExtensionImageCertificate1.category('remove')
@@ -10357,7 +10357,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add certificate
-  var catparametersExtensionImageCertificate2 = cli.category('extensionImage');
+  var catparametersExtensionImageCertificate2 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageCertificate2 = catparametersExtensionImageCertificate2.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
   var addparametersExtensionImageCertificate2 = parametersExtensionImageCertificate2.category('add')
@@ -10446,7 +10446,7 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-endpoints
-  var catparametersExtensionImageExtensionEndpoints0 = cli.category('extensionImage');
+  var catparametersExtensionImageExtensionEndpoints0 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageExtensionEndpoints0 = catparametersExtensionImageExtensionEndpoints0.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
   var setparametersExtensionImageExtensionEndpoints0 = parametersExtensionImageExtensionEndpoints0.category('set')
@@ -10520,7 +10520,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-endpoints
-  var catparametersExtensionImageExtensionEndpoints1 = cli.category('extensionImage');
+  var catparametersExtensionImageExtensionEndpoints1 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageExtensionEndpoints1 = catparametersExtensionImageExtensionEndpoints1.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
   var removeparametersExtensionImageExtensionEndpoints1 = parametersExtensionImageExtensionEndpoints1.category('remove')
@@ -10553,7 +10553,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-endpoints
-  var catparametersExtensionImageExtensionEndpoints2 = cli.category('extensionImage');
+  var catparametersExtensionImageExtensionEndpoints2 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageExtensionEndpoints2 = catparametersExtensionImageExtensionEndpoints2.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
   var addparametersExtensionImageExtensionEndpoints2 = parametersExtensionImageExtensionEndpoints2.category('add')
@@ -10631,7 +10631,7 @@ exports.init = function (cli) {
   });
 
   //parameters set input-endpoints
-  var catparametersExtensionImageInputEndpoints0 = cli.category('extensionImage');
+  var catparametersExtensionImageInputEndpoints0 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInputEndpoints0 = catparametersExtensionImageInputEndpoints0.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
   var setparametersExtensionImageInputEndpoints0 = parametersExtensionImageInputEndpoints0.category('set')
@@ -10720,7 +10720,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove input-endpoints
-  var catparametersExtensionImageInputEndpoints1 = cli.category('extensionImage');
+  var catparametersExtensionImageInputEndpoints1 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInputEndpoints1 = catparametersExtensionImageInputEndpoints1.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
   var removeparametersExtensionImageInputEndpoints1 = parametersExtensionImageInputEndpoints1.category('remove')
@@ -10754,7 +10754,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add input-endpoints
-  var catparametersExtensionImageInputEndpoints2 = cli.category('extensionImage');
+  var catparametersExtensionImageInputEndpoints2 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInputEndpoints2 = catparametersExtensionImageInputEndpoints2.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
   var addparametersExtensionImageInputEndpoints2 = parametersExtensionImageInputEndpoints2.category('add')
@@ -10843,7 +10843,7 @@ exports.init = function (cli) {
   });
 
   //parameters set instance-input-endpoints
-  var catparametersExtensionImageInstanceInputEndpoints0 = cli.category('extensionImage');
+  var catparametersExtensionImageInstanceInputEndpoints0 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInstanceInputEndpoints0 = catparametersExtensionImageInstanceInputEndpoints0.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
   var setparametersExtensionImageInstanceInputEndpoints0 = parametersExtensionImageInstanceInputEndpoints0.category('set')
@@ -10943,7 +10943,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove instance-input-endpoints
-  var catparametersExtensionImageInstanceInputEndpoints1 = cli.category('extensionImage');
+  var catparametersExtensionImageInstanceInputEndpoints1 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInstanceInputEndpoints1 = catparametersExtensionImageInstanceInputEndpoints1.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
   var removeparametersExtensionImageInstanceInputEndpoints1 = parametersExtensionImageInstanceInputEndpoints1.category('remove')
@@ -10977,7 +10977,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add instance-input-endpoints
-  var catparametersExtensionImageInstanceInputEndpoints2 = cli.category('extensionImage');
+  var catparametersExtensionImageInstanceInputEndpoints2 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInstanceInputEndpoints2 = catparametersExtensionImageInstanceInputEndpoints2.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
   var addparametersExtensionImageInstanceInputEndpoints2 = parametersExtensionImageInstanceInputEndpoints2.category('add')
@@ -11077,7 +11077,7 @@ exports.init = function (cli) {
   });
 
   //parameters set internal-endpoints
-  var catparametersExtensionImageInternalEndpoints0 = cli.category('extensionImage');
+  var catparametersExtensionImageInternalEndpoints0 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInternalEndpoints0 = catparametersExtensionImageInternalEndpoints0.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
   var setparametersExtensionImageInternalEndpoints0 = parametersExtensionImageInternalEndpoints0.category('set')
@@ -11155,7 +11155,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove internal-endpoints
-  var catparametersExtensionImageInternalEndpoints1 = cli.category('extensionImage');
+  var catparametersExtensionImageInternalEndpoints1 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInternalEndpoints1 = catparametersExtensionImageInternalEndpoints1.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
   var removeparametersExtensionImageInternalEndpoints1 = parametersExtensionImageInternalEndpoints1.category('remove')
@@ -11189,7 +11189,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add internal-endpoints
-  var catparametersExtensionImageInternalEndpoints2 = cli.category('extensionImage');
+  var catparametersExtensionImageInternalEndpoints2 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInternalEndpoints2 = catparametersExtensionImageInternalEndpoints2.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
   var addparametersExtensionImageInternalEndpoints2 = parametersExtensionImageInternalEndpoints2.category('add')
@@ -11267,7 +11267,7 @@ exports.init = function (cli) {
   });
 
   //parameters set local-resources
-  var catparametersExtensionImageLocalResources0 = cli.category('extensionImage');
+  var catparametersExtensionImageLocalResources0 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageLocalResources0 = catparametersExtensionImageLocalResources0.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
   var setparametersExtensionImageLocalResources0 = parametersExtensionImageLocalResources0.category('set')
@@ -11334,7 +11334,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove local-resources
-  var catparametersExtensionImageLocalResources1 = cli.category('extensionImage');
+  var catparametersExtensionImageLocalResources1 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageLocalResources1 = catparametersExtensionImageLocalResources1.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
   var removeparametersExtensionImageLocalResources1 = parametersExtensionImageLocalResources1.category('remove')
@@ -11368,7 +11368,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add local-resources
-  var catparametersExtensionImageLocalResources2 = cli.category('extensionImage');
+  var catparametersExtensionImageLocalResources2 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageLocalResources2 = catparametersExtensionImageLocalResources2.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
   var addparametersExtensionImageLocalResources2 = parametersExtensionImageLocalResources2.category('add')
@@ -11441,7 +11441,7 @@ exports.init = function (cli) {
   --type
   --version
 */
-  var extensionImageUnregister = cli.category('extensionImage').description($('Commands to manage your extension image.'));
+  var extensionImageUnregister = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image').description($('Commands to manage your extension image.'));
   extensionImageUnregister.command('unregister')
   .description($('unregister method to manage your extension image.'))
   .usage('[options]')
@@ -11527,7 +11527,7 @@ exports.init = function (cli) {
   "version":""
 }
 */
-  var extensionImageUpdate = cli.category('extensionImage').description($('Commands to manage your extension image.'));
+  var extensionImageUpdate = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image').description($('Commands to manage your extension image.'));
   extensionImageUpdate.command('update')
   .description($('update method to manage your extension image.'))
   .usage('[options]')
@@ -11617,7 +11617,7 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-image-update-parameters
-  var catparametersExtensionImageExtensionImageUpdateParameters0 = cli.category('extensionImage');
+  var catparametersExtensionImageExtensionImageUpdateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageExtensionImageUpdateParameters0 = catparametersExtensionImageExtensionImageUpdateParameters0.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
   var setparametersExtensionImageExtensionImageUpdateParameters0 = parametersExtensionImageExtensionImageUpdateParameters0.category('set')
@@ -11944,7 +11944,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-image-update-parameters
-  var catparametersExtensionImageExtensionImageUpdateParameters1 = cli.category('extensionImage');
+  var catparametersExtensionImageExtensionImageUpdateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageExtensionImageUpdateParameters1 = catparametersExtensionImageExtensionImageUpdateParameters1.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
   var removeparametersExtensionImageExtensionImageUpdateParameters1 = parametersExtensionImageExtensionImageUpdateParameters1.category('remove')
@@ -11977,7 +11977,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-image-update-parameters
-  var catparametersExtensionImageExtensionImageUpdateParameters2 = cli.category('extensionImage');
+  var catparametersExtensionImageExtensionImageUpdateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageExtensionImageUpdateParameters2 = catparametersExtensionImageExtensionImageUpdateParameters2.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
   var addparametersExtensionImageExtensionImageUpdateParameters2 = parametersExtensionImageExtensionImageUpdateParameters2.category('add')
@@ -12308,7 +12308,7 @@ exports.init = function (cli) {
   });
 
   //parameters set certificate
-  var catparametersExtensionImageCertificate0 = cli.category('extensionImage');
+  var catparametersExtensionImageCertificate0 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageCertificate0 = catparametersExtensionImageCertificate0.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
   var setparametersExtensionImageCertificate0 = parametersExtensionImageCertificate0.category('set')
@@ -12393,7 +12393,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove certificate
-  var catparametersExtensionImageCertificate1 = cli.category('extensionImage');
+  var catparametersExtensionImageCertificate1 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageCertificate1 = catparametersExtensionImageCertificate1.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
   var removeparametersExtensionImageCertificate1 = parametersExtensionImageCertificate1.category('remove')
@@ -12426,7 +12426,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add certificate
-  var catparametersExtensionImageCertificate2 = cli.category('extensionImage');
+  var catparametersExtensionImageCertificate2 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageCertificate2 = catparametersExtensionImageCertificate2.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
   var addparametersExtensionImageCertificate2 = parametersExtensionImageCertificate2.category('add')
@@ -12515,7 +12515,7 @@ exports.init = function (cli) {
   });
 
   //parameters set extension-endpoints
-  var catparametersExtensionImageExtensionEndpoints0 = cli.category('extensionImage');
+  var catparametersExtensionImageExtensionEndpoints0 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageExtensionEndpoints0 = catparametersExtensionImageExtensionEndpoints0.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
   var setparametersExtensionImageExtensionEndpoints0 = parametersExtensionImageExtensionEndpoints0.category('set')
@@ -12589,7 +12589,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove extension-endpoints
-  var catparametersExtensionImageExtensionEndpoints1 = cli.category('extensionImage');
+  var catparametersExtensionImageExtensionEndpoints1 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageExtensionEndpoints1 = catparametersExtensionImageExtensionEndpoints1.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
   var removeparametersExtensionImageExtensionEndpoints1 = parametersExtensionImageExtensionEndpoints1.category('remove')
@@ -12622,7 +12622,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add extension-endpoints
-  var catparametersExtensionImageExtensionEndpoints2 = cli.category('extensionImage');
+  var catparametersExtensionImageExtensionEndpoints2 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageExtensionEndpoints2 = catparametersExtensionImageExtensionEndpoints2.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
   var addparametersExtensionImageExtensionEndpoints2 = parametersExtensionImageExtensionEndpoints2.category('add')
@@ -12700,7 +12700,7 @@ exports.init = function (cli) {
   });
 
   //parameters set input-endpoints
-  var catparametersExtensionImageInputEndpoints0 = cli.category('extensionImage');
+  var catparametersExtensionImageInputEndpoints0 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInputEndpoints0 = catparametersExtensionImageInputEndpoints0.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
   var setparametersExtensionImageInputEndpoints0 = parametersExtensionImageInputEndpoints0.category('set')
@@ -12789,7 +12789,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove input-endpoints
-  var catparametersExtensionImageInputEndpoints1 = cli.category('extensionImage');
+  var catparametersExtensionImageInputEndpoints1 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInputEndpoints1 = catparametersExtensionImageInputEndpoints1.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
   var removeparametersExtensionImageInputEndpoints1 = parametersExtensionImageInputEndpoints1.category('remove')
@@ -12823,7 +12823,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add input-endpoints
-  var catparametersExtensionImageInputEndpoints2 = cli.category('extensionImage');
+  var catparametersExtensionImageInputEndpoints2 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInputEndpoints2 = catparametersExtensionImageInputEndpoints2.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
   var addparametersExtensionImageInputEndpoints2 = parametersExtensionImageInputEndpoints2.category('add')
@@ -12912,7 +12912,7 @@ exports.init = function (cli) {
   });
 
   //parameters set instance-input-endpoints
-  var catparametersExtensionImageInstanceInputEndpoints0 = cli.category('extensionImage');
+  var catparametersExtensionImageInstanceInputEndpoints0 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInstanceInputEndpoints0 = catparametersExtensionImageInstanceInputEndpoints0.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
   var setparametersExtensionImageInstanceInputEndpoints0 = parametersExtensionImageInstanceInputEndpoints0.category('set')
@@ -13012,7 +13012,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove instance-input-endpoints
-  var catparametersExtensionImageInstanceInputEndpoints1 = cli.category('extensionImage');
+  var catparametersExtensionImageInstanceInputEndpoints1 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInstanceInputEndpoints1 = catparametersExtensionImageInstanceInputEndpoints1.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
   var removeparametersExtensionImageInstanceInputEndpoints1 = parametersExtensionImageInstanceInputEndpoints1.category('remove')
@@ -13046,7 +13046,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add instance-input-endpoints
-  var catparametersExtensionImageInstanceInputEndpoints2 = cli.category('extensionImage');
+  var catparametersExtensionImageInstanceInputEndpoints2 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInstanceInputEndpoints2 = catparametersExtensionImageInstanceInputEndpoints2.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
   var addparametersExtensionImageInstanceInputEndpoints2 = parametersExtensionImageInstanceInputEndpoints2.category('add')
@@ -13146,7 +13146,7 @@ exports.init = function (cli) {
   });
 
   //parameters set internal-endpoints
-  var catparametersExtensionImageInternalEndpoints0 = cli.category('extensionImage');
+  var catparametersExtensionImageInternalEndpoints0 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInternalEndpoints0 = catparametersExtensionImageInternalEndpoints0.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
   var setparametersExtensionImageInternalEndpoints0 = parametersExtensionImageInternalEndpoints0.category('set')
@@ -13224,7 +13224,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove internal-endpoints
-  var catparametersExtensionImageInternalEndpoints1 = cli.category('extensionImage');
+  var catparametersExtensionImageInternalEndpoints1 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInternalEndpoints1 = catparametersExtensionImageInternalEndpoints1.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
   var removeparametersExtensionImageInternalEndpoints1 = parametersExtensionImageInternalEndpoints1.category('remove')
@@ -13258,7 +13258,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add internal-endpoints
-  var catparametersExtensionImageInternalEndpoints2 = cli.category('extensionImage');
+  var catparametersExtensionImageInternalEndpoints2 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageInternalEndpoints2 = catparametersExtensionImageInternalEndpoints2.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
   var addparametersExtensionImageInternalEndpoints2 = parametersExtensionImageInternalEndpoints2.category('add')
@@ -13336,7 +13336,7 @@ exports.init = function (cli) {
   });
 
   //parameters set local-resources
-  var catparametersExtensionImageLocalResources0 = cli.category('extensionImage');
+  var catparametersExtensionImageLocalResources0 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageLocalResources0 = catparametersExtensionImageLocalResources0.category('parameters')
   .description($('Commands to manage parameter for your extension-image.'));
   var setparametersExtensionImageLocalResources0 = parametersExtensionImageLocalResources0.category('set')
@@ -13403,7 +13403,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove local-resources
-  var catparametersExtensionImageLocalResources1 = cli.category('extensionImage');
+  var catparametersExtensionImageLocalResources1 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageLocalResources1 = catparametersExtensionImageLocalResources1.category('parameters')
   .description($('Commands to remove parameter for your extension-image.'));
   var removeparametersExtensionImageLocalResources1 = parametersExtensionImageLocalResources1.category('remove')
@@ -13437,7 +13437,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add local-resources
-  var catparametersExtensionImageLocalResources2 = cli.category('extensionImage');
+  var catparametersExtensionImageLocalResources2 = cli.category('invoke').description('Commands to invoke service management operations.').category('extension-image');
   var parametersExtensionImageLocalResources2 = catparametersExtensionImageLocalResources2.category('parameters')
   .description($('Commands to add parameter for your extension-image.'));
   var addparametersExtensionImageLocalResources2 = parametersExtensionImageLocalResources2.category('add')
@@ -13520,8 +13520,8 @@ exports.init = function (cli) {
   "version":""
 }
 */
-  var hsAddExtension = cli.category('hs').description($('Commands to manage your hosted service.'));
-  hsAddExtension.command('add-extension')
+  var hostedServiceAddExtension = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service').description($('Commands to manage your hosted service.'));
+  hostedServiceAddExtension.command('add-extension')
   .description($('add-extension method to manage your hosted service.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
@@ -13568,17 +13568,17 @@ exports.init = function (cli) {
     var result = computeManagementClient.hostedServices.addExtension(options.serviceName, parametersObj, _);
     cli.output.json(result);
   });
-  var hsAddExtensionaddExtensionParameters1 = hsAddExtension.category('parameters')
+  var hostedServiceAddExtensionaddExtensionParameters1 = hostedServiceAddExtension.category('parameters')
   .description($('Commands to manage parameter for your hosted service.'));
-  var hsAddExtensionaddExtensionGenerate1 = hsAddExtensionaddExtensionParameters1.category('generate')
+  var hostedServiceAddExtensionaddExtensionGenerate1 = hostedServiceAddExtensionaddExtensionParameters1.category('generate')
   .description($('Commands to generate parameter file for your hosted service.'));
-  hsAddExtensionaddExtensionGenerate1.command('add-extension')
-  .description($('Generate hsAddExtension parameter string or files.'))
+  hostedServiceAddExtensionaddExtensionGenerate1.command('add-extension')
+  .description($('Generate hostedServiceAddExtension parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .execute(function(options, _) {
     cli.output.info('{\"id\":\"\",\"privateConfiguration\":\"\",\"providerNamespace\":\"\",\"publicConfiguration\":\"\",\"thumbprint\":\"\",\"thumbprintAlgorithm\":\"\",\"type\":\"\",\"version\":\"\"}', _);
-    var filePath = 'hsAddExtension_addExtension.json';
+    var filePath = 'hostedServiceAddExtension_addExtension.json';
     if (options.parameterFile) {
       filePath = options.parameterFile;
     }
@@ -13588,8 +13588,8 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  hsAddExtensionaddExtensionParameters1.command('patch')
-  .description($('Command to patch hsAddExtension parameter JSON file.'))
+  hostedServiceAddExtensionaddExtensionParameters1.command('patch')
+  .description($('Command to patch hostedServiceAddExtension parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--operation <operation>', $('The JSON patch operation: add, remove, or replace.'))
@@ -13634,7 +13634,7 @@ exports.init = function (cli) {
   });
 
   //parameters set hosted-service-add-extension-parameters
-  var catparametersHostedServiceHostedServiceAddExtensionParameters0 = cli.category('hs');
+  var catparametersHostedServiceHostedServiceAddExtensionParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service');
   var parametersHostedServiceHostedServiceAddExtensionParameters0 = catparametersHostedServiceHostedServiceAddExtensionParameters0.category('parameters')
   .description($('Commands to manage parameter for your hosted-service.'));
   var setparametersHostedServiceHostedServiceAddExtensionParameters0 = parametersHostedServiceHostedServiceAddExtensionParameters0.category('set')
@@ -13763,7 +13763,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove hosted-service-add-extension-parameters
-  var catparametersHostedServiceHostedServiceAddExtensionParameters1 = cli.category('hs');
+  var catparametersHostedServiceHostedServiceAddExtensionParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service');
   var parametersHostedServiceHostedServiceAddExtensionParameters1 = catparametersHostedServiceHostedServiceAddExtensionParameters1.category('parameters')
   .description($('Commands to remove parameter for your hosted-service.'));
   var removeparametersHostedServiceHostedServiceAddExtensionParameters1 = parametersHostedServiceHostedServiceAddExtensionParameters1.category('remove')
@@ -13796,7 +13796,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add hosted-service-add-extension-parameters
-  var catparametersHostedServiceHostedServiceAddExtensionParameters2 = cli.category('hs');
+  var catparametersHostedServiceHostedServiceAddExtensionParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service');
   var parametersHostedServiceHostedServiceAddExtensionParameters2 = catparametersHostedServiceHostedServiceAddExtensionParameters2.category('parameters')
   .description($('Commands to add parameter for your hosted-service.'));
   var addparametersHostedServiceHostedServiceAddExtensionParameters2 = parametersHostedServiceHostedServiceAddExtensionParameters2.category('add')
@@ -13933,8 +13933,8 @@ exports.init = function (cli) {
   HostedService CheckNameAvailability
   --service-name
 */
-  var hsCheckNameAvailability = cli.category('hs').description($('Commands to manage your hosted service.'));
-  hsCheckNameAvailability.command('check-name-availability')
+  var hostedServiceCheckNameAvailability = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service').description($('Commands to manage your hosted service.'));
+  hostedServiceCheckNameAvailability.command('check-name-availability')
   .description($('check-name-availability method to manage your hosted service.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
@@ -13962,8 +13962,8 @@ exports.init = function (cli) {
   "serviceName":""
 }
 */
-  var hsCreate = cli.category('hs').description($('Commands to manage your hosted service.'));
-  hsCreate.command('create')
+  var hostedServiceCreate = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service').description($('Commands to manage your hosted service.'));
+  hostedServiceCreate.command('create')
   .description($('create method to manage your hosted service.'))
   .usage('[options]')
   .option('--parameters <parameters>', $('parameters'))
@@ -13986,17 +13986,17 @@ exports.init = function (cli) {
     var result = computeManagementClient.hostedServices.create(parametersObj, _);
     cli.output.json(result);
   });
-  var hsCreatecreateParameters0 = hsCreate.category('parameters')
+  var hostedServiceCreatecreateParameters0 = hostedServiceCreate.category('parameters')
   .description($('Commands to manage parameter for your hosted service.'));
-  var hsCreatecreateGenerate0 = hsCreatecreateParameters0.category('generate')
+  var hostedServiceCreatecreateGenerate0 = hostedServiceCreatecreateParameters0.category('generate')
   .description($('Commands to generate parameter file for your hosted service.'));
-  hsCreatecreateGenerate0.command('create')
-  .description($('Generate hsCreate parameter string or files.'))
+  hostedServiceCreatecreateGenerate0.command('create')
+  .description($('Generate hostedServiceCreate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .execute(function(options, _) {
     cli.output.info('{\"affinityGroup\":\"\",\"description\":\"\",\"extendedProperties\":{},\"label\":\"\",\"location\":\"\",\"reverseDnsFqdn\":\"\",\"serviceName\":\"\"}', _);
-    var filePath = 'hsCreate_create.json';
+    var filePath = 'hostedServiceCreate_create.json';
     if (options.parameterFile) {
       filePath = options.parameterFile;
     }
@@ -14006,8 +14006,8 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  hsCreatecreateParameters0.command('patch')
-  .description($('Command to patch hsCreate parameter JSON file.'))
+  hostedServiceCreatecreateParameters0.command('patch')
+  .description($('Command to patch hostedServiceCreate parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--operation <operation>', $('The JSON patch operation: add, remove, or replace.'))
@@ -14052,7 +14052,7 @@ exports.init = function (cli) {
   });
 
   //parameters set hosted-service-create-parameters
-  var catparametersHostedServiceHostedServiceCreateParameters0 = cli.category('hs');
+  var catparametersHostedServiceHostedServiceCreateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service');
   var parametersHostedServiceHostedServiceCreateParameters0 = catparametersHostedServiceHostedServiceCreateParameters0.category('parameters')
   .description($('Commands to manage parameter for your hosted-service.'));
   var setparametersHostedServiceHostedServiceCreateParameters0 = parametersHostedServiceHostedServiceCreateParameters0.category('set')
@@ -14170,7 +14170,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove hosted-service-create-parameters
-  var catparametersHostedServiceHostedServiceCreateParameters1 = cli.category('hs');
+  var catparametersHostedServiceHostedServiceCreateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service');
   var parametersHostedServiceHostedServiceCreateParameters1 = catparametersHostedServiceHostedServiceCreateParameters1.category('parameters')
   .description($('Commands to remove parameter for your hosted-service.'));
   var removeparametersHostedServiceHostedServiceCreateParameters1 = parametersHostedServiceHostedServiceCreateParameters1.category('remove')
@@ -14203,7 +14203,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add hosted-service-create-parameters
-  var catparametersHostedServiceHostedServiceCreateParameters2 = cli.category('hs');
+  var catparametersHostedServiceHostedServiceCreateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service');
   var parametersHostedServiceHostedServiceCreateParameters2 = catparametersHostedServiceHostedServiceCreateParameters2.category('parameters')
   .description($('Commands to add parameter for your hosted-service.'));
   var addparametersHostedServiceHostedServiceCreateParameters2 = parametersHostedServiceHostedServiceCreateParameters2.category('add')
@@ -14329,8 +14329,8 @@ exports.init = function (cli) {
   HostedService Delete
   --service-name
 */
-  var hsDelete = cli.category('hs').description($('Commands to manage your hosted service.'));
-  hsDelete.command('delete')
+  var hostedServiceDelete = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service').description($('Commands to manage your hosted service.'));
+  hostedServiceDelete.command('delete')
   .description($('delete method to manage your hosted service.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
@@ -14347,8 +14347,8 @@ exports.init = function (cli) {
   HostedService DeleteAll
   --service-name
 */
-  var hsDeleteAll = cli.category('hs').description($('Commands to manage your hosted service.'));
-  hsDeleteAll.command('delete-all')
+  var hostedServiceDeleteAll = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service').description($('Commands to manage your hosted service.'));
+  hostedServiceDeleteAll.command('delete-all')
   .description($('delete-all method to manage your hosted service.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
@@ -14366,8 +14366,8 @@ exports.init = function (cli) {
   --service-name
   --extension-id
 */
-  var hsDeleteExtension = cli.category('hs').description($('Commands to manage your hosted service.'));
-  hsDeleteExtension.command('delete-extension')
+  var hostedServiceDeleteExtension = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service').description($('Commands to manage your hosted service.'));
+  hostedServiceDeleteExtension.command('delete-extension')
   .description($('delete-extension method to manage your hosted service.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
@@ -14386,8 +14386,8 @@ exports.init = function (cli) {
   HostedService Get
   --service-name
 */
-  var hsGet = cli.category('hs').description($('Commands to manage your hosted service.'));
-  hsGet.command('get')
+  var hostedServiceGet = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service').description($('Commands to manage your hosted service.'));
+  hostedServiceGet.command('get')
   .description($('get method to manage your hosted service.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
@@ -14404,8 +14404,8 @@ exports.init = function (cli) {
   HostedService GetDetailed
   --service-name
 */
-  var hsGetDetailed = cli.category('hs').description($('Commands to manage your hosted service.'));
-  hsGetDetailed.command('get-detailed')
+  var hostedServiceGetDetailed = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service').description($('Commands to manage your hosted service.'));
+  hostedServiceGetDetailed.command('get-detailed')
   .description($('get-detailed method to manage your hosted service.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
@@ -14423,8 +14423,8 @@ exports.init = function (cli) {
   --service-name
   --extension-id
 */
-  var hsGetExtension = cli.category('hs').description($('Commands to manage your hosted service.'));
-  hsGetExtension.command('get-extension')
+  var hostedServiceGetExtension = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service').description($('Commands to manage your hosted service.'));
+  hostedServiceGetExtension.command('get-extension')
   .description($('get-extension method to manage your hosted service.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
@@ -14442,8 +14442,8 @@ exports.init = function (cli) {
 /*
   HostedService List
 */
-  var hsList = cli.category('hs').description($('Commands to manage your hosted service.'));
-  hsList.command('list')
+  var hostedServiceList = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service').description($('Commands to manage your hosted service.'));
+  hostedServiceList.command('list')
   .description($('list method to manage your hosted service.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
@@ -14457,8 +14457,8 @@ exports.init = function (cli) {
 /*
   HostedService ListAvailableExtensions
 */
-  var hsListAvailableExtensions = cli.category('hs').description($('Commands to manage your hosted service.'));
-  hsListAvailableExtensions.command('list-available-extensions')
+  var hostedServiceListAvailableExtensions = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service').description($('Commands to manage your hosted service.'));
+  hostedServiceListAvailableExtensions.command('list-available-extensions')
   .description($('list-available-extensions method to manage your hosted service.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
@@ -14473,8 +14473,8 @@ exports.init = function (cli) {
   HostedService ListExtensions
   --service-name
 */
-  var hsListExtensions = cli.category('hs').description($('Commands to manage your hosted service.'));
-  hsListExtensions.command('list-extensions')
+  var hostedServiceListExtensions = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service').description($('Commands to manage your hosted service.'));
+  hostedServiceListExtensions.command('list-extensions')
   .description($('list-extensions method to manage your hosted service.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
@@ -14492,8 +14492,8 @@ exports.init = function (cli) {
   --provider-namespace
   --extension-type
 */
-  var hsListExtensionVersions = cli.category('hs').description($('Commands to manage your hosted service.'));
-  hsListExtensionVersions.command('list-extension-versions')
+  var hostedServiceListExtensionVersions = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service').description($('Commands to manage your hosted service.'));
+  hostedServiceListExtensionVersions.command('list-extension-versions')
   .description($('list-extension-versions method to manage your hosted service.'))
   .usage('[options]')
   .option('--provider-namespace <provider-namespace>', $('provider-namespace'))
@@ -14521,8 +14521,8 @@ exports.init = function (cli) {
   "reverseDnsFqdn":""
 }
 */
-  var hsUpdate = cli.category('hs').description($('Commands to manage your hosted service.'));
-  hsUpdate.command('update')
+  var hostedServiceUpdate = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service').description($('Commands to manage your hosted service.'));
+  hostedServiceUpdate.command('update')
   .description($('update method to manage your hosted service.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
@@ -14547,17 +14547,17 @@ exports.init = function (cli) {
     var result = computeManagementClient.hostedServices.update(options.serviceName, parametersObj, _);
     cli.output.json(result);
   });
-  var hsUpdateupdateParameters1 = hsUpdate.category('parameters')
+  var hostedServiceUpdateupdateParameters1 = hostedServiceUpdate.category('parameters')
   .description($('Commands to manage parameter for your hosted service.'));
-  var hsUpdateupdateGenerate1 = hsUpdateupdateParameters1.category('generate')
+  var hostedServiceUpdateupdateGenerate1 = hostedServiceUpdateupdateParameters1.category('generate')
   .description($('Commands to generate parameter file for your hosted service.'));
-  hsUpdateupdateGenerate1.command('update')
-  .description($('Generate hsUpdate parameter string or files.'))
+  hostedServiceUpdateupdateGenerate1.command('update')
+  .description($('Generate hostedServiceUpdate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .execute(function(options, _) {
     cli.output.info('{\"description\":\"\",\"extendedProperties\":{},\"label\":\"\",\"reverseDnsFqdn\":\"\"}', _);
-    var filePath = 'hsUpdate_update.json';
+    var filePath = 'hostedServiceUpdate_update.json';
     if (options.parameterFile) {
       filePath = options.parameterFile;
     }
@@ -14567,8 +14567,8 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
 
-  hsUpdateupdateParameters1.command('patch')
-  .description($('Command to patch hsUpdate parameter JSON file.'))
+  hostedServiceUpdateupdateParameters1.command('patch')
+  .description($('Command to patch hostedServiceUpdate parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--operation <operation>', $('The JSON patch operation: add, remove, or replace.'))
@@ -14613,7 +14613,7 @@ exports.init = function (cli) {
   });
 
   //parameters set hosted-service-update-parameters
-  var catparametersHostedServiceHostedServiceUpdateParameters0 = cli.category('hs');
+  var catparametersHostedServiceHostedServiceUpdateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service');
   var parametersHostedServiceHostedServiceUpdateParameters0 = catparametersHostedServiceHostedServiceUpdateParameters0.category('parameters')
   .description($('Commands to manage parameter for your hosted-service.'));
   var setparametersHostedServiceHostedServiceUpdateParameters0 = parametersHostedServiceHostedServiceUpdateParameters0.category('set')
@@ -14698,7 +14698,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove hosted-service-update-parameters
-  var catparametersHostedServiceHostedServiceUpdateParameters1 = cli.category('hs');
+  var catparametersHostedServiceHostedServiceUpdateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service');
   var parametersHostedServiceHostedServiceUpdateParameters1 = catparametersHostedServiceHostedServiceUpdateParameters1.category('parameters')
   .description($('Commands to remove parameter for your hosted-service.'));
   var removeparametersHostedServiceHostedServiceUpdateParameters1 = parametersHostedServiceHostedServiceUpdateParameters1.category('remove')
@@ -14731,7 +14731,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add hosted-service-update-parameters
-  var catparametersHostedServiceHostedServiceUpdateParameters2 = cli.category('hs');
+  var catparametersHostedServiceHostedServiceUpdateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('hosted-service');
   var parametersHostedServiceHostedServiceUpdateParameters2 = catparametersHostedServiceHostedServiceUpdateParameters2.category('parameters')
   .description($('Commands to add parameter for your hosted-service.'));
   var addparametersHostedServiceHostedServiceUpdateParameters2 = parametersHostedServiceHostedServiceUpdateParameters2.category('add')
@@ -14835,7 +14835,7 @@ exports.init = function (cli) {
   "name":""
 }
 */
-  var loadBalancerCreate = cli.category('loadBalancer').description($('Commands to manage your load balancer.'));
+  var loadBalancerCreate = cli.category('invoke').description('Commands to invoke service management operations.').category('load-balancer').description($('Commands to manage your load balancer.'));
   loadBalancerCreate.command('create')
   .description($('create method to manage your load balancer.'))
   .usage('[options]')
@@ -14929,7 +14929,7 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancer-create-parameters
-  var catparametersLoadBalancerLoadBalancerCreateParameters0 = cli.category('loadBalancer');
+  var catparametersLoadBalancerLoadBalancerCreateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('load-balancer');
   var parametersLoadBalancerLoadBalancerCreateParameters0 = catparametersLoadBalancerLoadBalancerCreateParameters0.category('parameters')
   .description($('Commands to manage parameter for your load-balancer.'));
   var setparametersLoadBalancerLoadBalancerCreateParameters0 = parametersLoadBalancerLoadBalancerCreateParameters0.category('set')
@@ -14992,7 +14992,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancer-create-parameters
-  var catparametersLoadBalancerLoadBalancerCreateParameters1 = cli.category('loadBalancer');
+  var catparametersLoadBalancerLoadBalancerCreateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('load-balancer');
   var parametersLoadBalancerLoadBalancerCreateParameters1 = catparametersLoadBalancerLoadBalancerCreateParameters1.category('parameters')
   .description($('Commands to remove parameter for your load-balancer.'));
   var removeparametersLoadBalancerLoadBalancerCreateParameters1 = parametersLoadBalancerLoadBalancerCreateParameters1.category('remove')
@@ -15025,7 +15025,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancer-create-parameters
-  var catparametersLoadBalancerLoadBalancerCreateParameters2 = cli.category('loadBalancer');
+  var catparametersLoadBalancerLoadBalancerCreateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('load-balancer');
   var parametersLoadBalancerLoadBalancerCreateParameters2 = catparametersLoadBalancerLoadBalancerCreateParameters2.category('parameters')
   .description($('Commands to add parameter for your load-balancer.'));
   var addparametersLoadBalancerLoadBalancerCreateParameters2 = parametersLoadBalancerLoadBalancerCreateParameters2.category('add')
@@ -15092,7 +15092,7 @@ exports.init = function (cli) {
   });
 
   //parameters set frontend-ip-configuration
-  var catparametersLoadBalancerFrontendIPConfiguration0 = cli.category('loadBalancer');
+  var catparametersLoadBalancerFrontendIPConfiguration0 = cli.category('invoke').description('Commands to invoke service management operations.').category('load-balancer');
   var parametersLoadBalancerFrontendIPConfiguration0 = catparametersLoadBalancerFrontendIPConfiguration0.category('parameters')
   .description($('Commands to manage parameter for your load-balancer.'));
   var setparametersLoadBalancerFrontendIPConfiguration0 = parametersLoadBalancerFrontendIPConfiguration0.category('set')
@@ -15166,7 +15166,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove frontend-ip-configuration
-  var catparametersLoadBalancerFrontendIPConfiguration1 = cli.category('loadBalancer');
+  var catparametersLoadBalancerFrontendIPConfiguration1 = cli.category('invoke').description('Commands to invoke service management operations.').category('load-balancer');
   var parametersLoadBalancerFrontendIPConfiguration1 = catparametersLoadBalancerFrontendIPConfiguration1.category('parameters')
   .description($('Commands to remove parameter for your load-balancer.'));
   var removeparametersLoadBalancerFrontendIPConfiguration1 = parametersLoadBalancerFrontendIPConfiguration1.category('remove')
@@ -15199,7 +15199,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add frontend-ip-configuration
-  var catparametersLoadBalancerFrontendIPConfiguration2 = cli.category('loadBalancer');
+  var catparametersLoadBalancerFrontendIPConfiguration2 = cli.category('invoke').description('Commands to invoke service management operations.').category('load-balancer');
   var parametersLoadBalancerFrontendIPConfiguration2 = catparametersLoadBalancerFrontendIPConfiguration2.category('parameters')
   .description($('Commands to add parameter for your load-balancer.'));
   var addparametersLoadBalancerFrontendIPConfiguration2 = parametersLoadBalancerFrontendIPConfiguration2.category('add')
@@ -15283,7 +15283,7 @@ exports.init = function (cli) {
   --deployment-name
   --load-balancer-name
 */
-  var loadBalancerDelete = cli.category('loadBalancer').description($('Commands to manage your load balancer.'));
+  var loadBalancerDelete = cli.category('invoke').description('Commands to invoke service management operations.').category('load-balancer').description($('Commands to manage your load balancer.'));
   loadBalancerDelete.command('delete')
   .description($('delete method to manage your load balancer.'))
   .usage('[options]')
@@ -15317,7 +15317,7 @@ exports.init = function (cli) {
   "name":""
 }
 */
-  var loadBalancerUpdate = cli.category('loadBalancer').description($('Commands to manage your load balancer.'));
+  var loadBalancerUpdate = cli.category('invoke').description('Commands to invoke service management operations.').category('load-balancer').description($('Commands to manage your load balancer.'));
   loadBalancerUpdate.command('update')
   .description($('update method to manage your load balancer.'))
   .usage('[options]')
@@ -15413,7 +15413,7 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancer-update-parameters
-  var catparametersLoadBalancerLoadBalancerUpdateParameters0 = cli.category('loadBalancer');
+  var catparametersLoadBalancerLoadBalancerUpdateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('load-balancer');
   var parametersLoadBalancerLoadBalancerUpdateParameters0 = catparametersLoadBalancerLoadBalancerUpdateParameters0.category('parameters')
   .description($('Commands to manage parameter for your load-balancer.'));
   var setparametersLoadBalancerLoadBalancerUpdateParameters0 = parametersLoadBalancerLoadBalancerUpdateParameters0.category('set')
@@ -15476,7 +15476,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancer-update-parameters
-  var catparametersLoadBalancerLoadBalancerUpdateParameters1 = cli.category('loadBalancer');
+  var catparametersLoadBalancerLoadBalancerUpdateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('load-balancer');
   var parametersLoadBalancerLoadBalancerUpdateParameters1 = catparametersLoadBalancerLoadBalancerUpdateParameters1.category('parameters')
   .description($('Commands to remove parameter for your load-balancer.'));
   var removeparametersLoadBalancerLoadBalancerUpdateParameters1 = parametersLoadBalancerLoadBalancerUpdateParameters1.category('remove')
@@ -15509,7 +15509,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancer-update-parameters
-  var catparametersLoadBalancerLoadBalancerUpdateParameters2 = cli.category('loadBalancer');
+  var catparametersLoadBalancerLoadBalancerUpdateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('load-balancer');
   var parametersLoadBalancerLoadBalancerUpdateParameters2 = catparametersLoadBalancerLoadBalancerUpdateParameters2.category('parameters')
   .description($('Commands to add parameter for your load-balancer.'));
   var addparametersLoadBalancerLoadBalancerUpdateParameters2 = parametersLoadBalancerLoadBalancerUpdateParameters2.category('add')
@@ -15576,7 +15576,7 @@ exports.init = function (cli) {
   });
 
   //parameters set frontend-ip-configuration
-  var catparametersLoadBalancerFrontendIPConfiguration0 = cli.category('loadBalancer');
+  var catparametersLoadBalancerFrontendIPConfiguration0 = cli.category('invoke').description('Commands to invoke service management operations.').category('load-balancer');
   var parametersLoadBalancerFrontendIPConfiguration0 = catparametersLoadBalancerFrontendIPConfiguration0.category('parameters')
   .description($('Commands to manage parameter for your load-balancer.'));
   var setparametersLoadBalancerFrontendIPConfiguration0 = parametersLoadBalancerFrontendIPConfiguration0.category('set')
@@ -15650,7 +15650,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove frontend-ip-configuration
-  var catparametersLoadBalancerFrontendIPConfiguration1 = cli.category('loadBalancer');
+  var catparametersLoadBalancerFrontendIPConfiguration1 = cli.category('invoke').description('Commands to invoke service management operations.').category('load-balancer');
   var parametersLoadBalancerFrontendIPConfiguration1 = catparametersLoadBalancerFrontendIPConfiguration1.category('parameters')
   .description($('Commands to remove parameter for your load-balancer.'));
   var removeparametersLoadBalancerFrontendIPConfiguration1 = parametersLoadBalancerFrontendIPConfiguration1.category('remove')
@@ -15683,7 +15683,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add frontend-ip-configuration
-  var catparametersLoadBalancerFrontendIPConfiguration2 = cli.category('loadBalancer');
+  var catparametersLoadBalancerFrontendIPConfiguration2 = cli.category('invoke').description('Commands to invoke service management operations.').category('load-balancer');
   var parametersLoadBalancerFrontendIPConfiguration2 = catparametersLoadBalancerFrontendIPConfiguration2.category('parameters')
   .description($('Commands to add parameter for your load-balancer.'));
   var addparametersLoadBalancerFrontendIPConfiguration2 = parametersLoadBalancerFrontendIPConfiguration2.category('add')
@@ -15764,7 +15764,7 @@ exports.init = function (cli) {
 /*
   OperatingSystem List
 */
-  var operatingSystemList = cli.category('operatingSystem').description($('Commands to manage your operating system.'));
+  var operatingSystemList = cli.category('invoke').description('Commands to invoke service management operations.').category('operating-system').description($('Commands to manage your operating system.'));
   operatingSystemList.command('list')
   .description($('list method to manage your operating system.'))
   .usage('[options]')
@@ -15779,7 +15779,7 @@ exports.init = function (cli) {
 /*
   OperatingSystem ListFamilies
 */
-  var operatingSystemListFamilies = cli.category('operatingSystem').description($('Commands to manage your operating system.'));
+  var operatingSystemListFamilies = cli.category('invoke').description('Commands to invoke service management operations.').category('operating-system').description($('Commands to manage your operating system.'));
   operatingSystemListFamilies.command('list-families')
   .description($('list-families method to manage your operating system.'))
   .usage('[options]')
@@ -15803,7 +15803,7 @@ exports.init = function (cli) {
   "password":""
 }
 */
-  var serviceCertificateCreate = cli.category('serviceCertificate').description($('Commands to manage your service certificate.'));
+  var serviceCertificateCreate = cli.category('invoke').description('Commands to invoke service management operations.').category('service-certificate').description($('Commands to manage your service certificate.'));
   serviceCertificateCreate.command('create')
   .description($('create method to manage your service certificate.'))
   .usage('[options]')
@@ -15895,7 +15895,7 @@ exports.init = function (cli) {
   });
 
   //parameters set service-certificate-create-parameters
-  var catparametersServiceCertificateServiceCertificateCreateParameters0 = cli.category('serviceCertificate');
+  var catparametersServiceCertificateServiceCertificateCreateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('service-certificate');
   var parametersServiceCertificateServiceCertificateCreateParameters0 = catparametersServiceCertificateServiceCertificateCreateParameters0.category('parameters')
   .description($('Commands to manage parameter for your service-certificate.'));
   var setparametersServiceCertificateServiceCertificateCreateParameters0 = parametersServiceCertificateServiceCertificateCreateParameters0.category('set')
@@ -15969,7 +15969,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove service-certificate-create-parameters
-  var catparametersServiceCertificateServiceCertificateCreateParameters1 = cli.category('serviceCertificate');
+  var catparametersServiceCertificateServiceCertificateCreateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('service-certificate');
   var parametersServiceCertificateServiceCertificateCreateParameters1 = catparametersServiceCertificateServiceCertificateCreateParameters1.category('parameters')
   .description($('Commands to remove parameter for your service-certificate.'));
   var removeparametersServiceCertificateServiceCertificateCreateParameters1 = parametersServiceCertificateServiceCertificateCreateParameters1.category('remove')
@@ -16002,7 +16002,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add service-certificate-create-parameters
-  var catparametersServiceCertificateServiceCertificateCreateParameters2 = cli.category('serviceCertificate');
+  var catparametersServiceCertificateServiceCertificateCreateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('service-certificate');
   var parametersServiceCertificateServiceCertificateCreateParameters2 = catparametersServiceCertificateServiceCertificateCreateParameters2.category('parameters')
   .description($('Commands to add parameter for your service-certificate.'));
   var addparametersServiceCertificateServiceCertificateCreateParameters2 = parametersServiceCertificateServiceCertificateCreateParameters2.category('add')
@@ -16080,7 +16080,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove certificate-format
-  var catparametersServiceCertificateCertificateFormat1 = cli.category('serviceCertificate');
+  var catparametersServiceCertificateCertificateFormat1 = cli.category('invoke').description('Commands to invoke service management operations.').category('service-certificate');
   var parametersServiceCertificateCertificateFormat1 = catparametersServiceCertificateCertificateFormat1.category('parameters')
   .description($('Commands to remove parameter for your service-certificate.'));
   var removeparametersServiceCertificateCertificateFormat1 = parametersServiceCertificateCertificateFormat1.category('remove')
@@ -16113,7 +16113,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add certificate-format
-  var catparametersServiceCertificateCertificateFormat2 = cli.category('serviceCertificate');
+  var catparametersServiceCertificateCertificateFormat2 = cli.category('invoke').description('Commands to invoke service management operations.').category('service-certificate');
   var parametersServiceCertificateCertificateFormat2 = catparametersServiceCertificateCertificateFormat2.category('parameters')
   .description($('Commands to add parameter for your service-certificate.'));
   var addparametersServiceCertificateCertificateFormat2 = parametersServiceCertificateCertificateFormat2.category('add')
@@ -16168,7 +16168,7 @@ exports.init = function (cli) {
   "thumbprintAlgorithm":""
 }
 */
-  var serviceCertificateDelete = cli.category('serviceCertificate').description($('Commands to manage your service certificate.'));
+  var serviceCertificateDelete = cli.category('invoke').description('Commands to invoke service management operations.').category('service-certificate').description($('Commands to manage your service certificate.'));
   serviceCertificateDelete.command('delete')
   .description($('delete method to manage your service certificate.'))
   .usage('[options]')
@@ -16265,7 +16265,7 @@ exports.init = function (cli) {
   });
 
   //parameters set service-certificate-delete-parameters
-  var catparametersServiceCertificateServiceCertificateDeleteParameters0 = cli.category('serviceCertificate');
+  var catparametersServiceCertificateServiceCertificateDeleteParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('service-certificate');
   var parametersServiceCertificateServiceCertificateDeleteParameters0 = catparametersServiceCertificateServiceCertificateDeleteParameters0.category('parameters')
   .description($('Commands to manage parameter for your service-certificate.'));
   var setparametersServiceCertificateServiceCertificateDeleteParameters0 = parametersServiceCertificateServiceCertificateDeleteParameters0.category('set')
@@ -16339,7 +16339,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove service-certificate-delete-parameters
-  var catparametersServiceCertificateServiceCertificateDeleteParameters1 = cli.category('serviceCertificate');
+  var catparametersServiceCertificateServiceCertificateDeleteParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('service-certificate');
   var parametersServiceCertificateServiceCertificateDeleteParameters1 = catparametersServiceCertificateServiceCertificateDeleteParameters1.category('parameters')
   .description($('Commands to remove parameter for your service-certificate.'));
   var removeparametersServiceCertificateServiceCertificateDeleteParameters1 = parametersServiceCertificateServiceCertificateDeleteParameters1.category('remove')
@@ -16372,7 +16372,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add service-certificate-delete-parameters
-  var catparametersServiceCertificateServiceCertificateDeleteParameters2 = cli.category('serviceCertificate');
+  var catparametersServiceCertificateServiceCertificateDeleteParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('service-certificate');
   var parametersServiceCertificateServiceCertificateDeleteParameters2 = catparametersServiceCertificateServiceCertificateDeleteParameters2.category('parameters')
   .description($('Commands to add parameter for your service-certificate.'));
   var addparametersServiceCertificateServiceCertificateDeleteParameters2 = parametersServiceCertificateServiceCertificateDeleteParameters2.category('add')
@@ -16460,7 +16460,7 @@ exports.init = function (cli) {
   "thumbprintAlgorithm":""
 }
 */
-  var serviceCertificateGet = cli.category('serviceCertificate').description($('Commands to manage your service certificate.'));
+  var serviceCertificateGet = cli.category('invoke').description('Commands to invoke service management operations.').category('service-certificate').description($('Commands to manage your service certificate.'));
   serviceCertificateGet.command('get')
   .description($('get method to manage your service certificate.'))
   .usage('[options]')
@@ -16557,7 +16557,7 @@ exports.init = function (cli) {
   });
 
   //parameters set service-certificate-get-parameters
-  var catparametersServiceCertificateServiceCertificateGetParameters0 = cli.category('serviceCertificate');
+  var catparametersServiceCertificateServiceCertificateGetParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('service-certificate');
   var parametersServiceCertificateServiceCertificateGetParameters0 = catparametersServiceCertificateServiceCertificateGetParameters0.category('parameters')
   .description($('Commands to manage parameter for your service-certificate.'));
   var setparametersServiceCertificateServiceCertificateGetParameters0 = parametersServiceCertificateServiceCertificateGetParameters0.category('set')
@@ -16631,7 +16631,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove service-certificate-get-parameters
-  var catparametersServiceCertificateServiceCertificateGetParameters1 = cli.category('serviceCertificate');
+  var catparametersServiceCertificateServiceCertificateGetParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('service-certificate');
   var parametersServiceCertificateServiceCertificateGetParameters1 = catparametersServiceCertificateServiceCertificateGetParameters1.category('parameters')
   .description($('Commands to remove parameter for your service-certificate.'));
   var removeparametersServiceCertificateServiceCertificateGetParameters1 = parametersServiceCertificateServiceCertificateGetParameters1.category('remove')
@@ -16664,7 +16664,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add service-certificate-get-parameters
-  var catparametersServiceCertificateServiceCertificateGetParameters2 = cli.category('serviceCertificate');
+  var catparametersServiceCertificateServiceCertificateGetParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('service-certificate');
   var parametersServiceCertificateServiceCertificateGetParameters2 = catparametersServiceCertificateServiceCertificateGetParameters2.category('parameters')
   .description($('Commands to add parameter for your service-certificate.'));
   var addparametersServiceCertificateServiceCertificateGetParameters2 = parametersServiceCertificateServiceCertificateGetParameters2.category('add')
@@ -16746,7 +16746,7 @@ exports.init = function (cli) {
   ServiceCertificate List
   --service-name
 */
-  var serviceCertificateList = cli.category('serviceCertificate').description($('Commands to manage your service certificate.'));
+  var serviceCertificateList = cli.category('invoke').description('Commands to invoke service management operations.').category('service-certificate').description($('Commands to manage your service certificate.'));
   serviceCertificateList.command('list')
   .description($('list method to manage your service certificate.'))
   .usage('[options]')
@@ -16777,7 +16777,7 @@ exports.init = function (cli) {
   "sourceMediaLinkUri":""
 }
 */
-  var virtualMachineDiskCreateDataDisk = cli.category('virtualMachineDisk').description($('Commands to manage your virtual machine disk.'));
+  var virtualMachineDiskCreateDataDisk = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk').description($('Commands to manage your virtual machine disk.'));
   virtualMachineDiskCreateDataDisk.command('create-data-disk')
   .description($('create-data-disk method to manage your virtual machine disk.'))
   .usage('[options]')
@@ -16873,7 +16873,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-data-disk-create-parameters
-  var catparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters0 = cli.category('virtualMachineDisk');
+  var catparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk');
   var parametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters0 = catparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-disk.'));
   var setparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters0 = parametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters0.category('set')
@@ -16991,7 +16991,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-data-disk-create-parameters
-  var catparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters1 = cli.category('virtualMachineDisk');
+  var catparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk');
   var parametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters1 = catparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-disk.'));
   var removeparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters1 = parametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters1.category('remove')
@@ -17024,7 +17024,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-data-disk-create-parameters
-  var catparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters2 = cli.category('virtualMachineDisk');
+  var catparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk');
   var parametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters2 = catparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-disk.'));
   var addparametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters2 = parametersVirtualMachineDiskVirtualMachineDataDiskCreateParameters2.category('add')
@@ -17157,7 +17157,7 @@ exports.init = function (cli) {
   "operatingSystemType":""
 }
 */
-  var virtualMachineDiskCreateDisk = cli.category('virtualMachineDisk').description($('Commands to manage your virtual machine disk.'));
+  var virtualMachineDiskCreateDisk = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk').description($('Commands to manage your virtual machine disk.'));
   virtualMachineDiskCreateDisk.command('create-disk')
   .description($('create-disk method to manage your virtual machine disk.'))
   .usage('[options]')
@@ -17247,7 +17247,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-disk-create-parameters
-  var catparametersVirtualMachineDiskVirtualMachineDiskCreateParameters0 = cli.category('virtualMachineDisk');
+  var catparametersVirtualMachineDiskVirtualMachineDiskCreateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk');
   var parametersVirtualMachineDiskVirtualMachineDiskCreateParameters0 = catparametersVirtualMachineDiskVirtualMachineDiskCreateParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-disk.'));
   var setparametersVirtualMachineDiskVirtualMachineDiskCreateParameters0 = parametersVirtualMachineDiskVirtualMachineDiskCreateParameters0.category('set')
@@ -17332,7 +17332,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-disk-create-parameters
-  var catparametersVirtualMachineDiskVirtualMachineDiskCreateParameters1 = cli.category('virtualMachineDisk');
+  var catparametersVirtualMachineDiskVirtualMachineDiskCreateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk');
   var parametersVirtualMachineDiskVirtualMachineDiskCreateParameters1 = catparametersVirtualMachineDiskVirtualMachineDiskCreateParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-disk.'));
   var removeparametersVirtualMachineDiskVirtualMachineDiskCreateParameters1 = parametersVirtualMachineDiskVirtualMachineDiskCreateParameters1.category('remove')
@@ -17365,7 +17365,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-disk-create-parameters
-  var catparametersVirtualMachineDiskVirtualMachineDiskCreateParameters2 = cli.category('virtualMachineDisk');
+  var catparametersVirtualMachineDiskVirtualMachineDiskCreateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk');
   var parametersVirtualMachineDiskVirtualMachineDiskCreateParameters2 = catparametersVirtualMachineDiskVirtualMachineDiskCreateParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-disk.'));
   var addparametersVirtualMachineDiskVirtualMachineDiskCreateParameters2 = parametersVirtualMachineDiskVirtualMachineDiskCreateParameters2.category('add')
@@ -17462,7 +17462,7 @@ exports.init = function (cli) {
   --logical-unit-number
   --delete-from-storage
 */
-  var virtualMachineDiskDeleteDataDisk = cli.category('virtualMachineDisk').description($('Commands to manage your virtual machine disk.'));
+  var virtualMachineDiskDeleteDataDisk = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk').description($('Commands to manage your virtual machine disk.'));
   virtualMachineDiskDeleteDataDisk.command('delete-data-disk')
   .description($('delete-data-disk method to manage your virtual machine disk.'))
   .usage('[options]')
@@ -17505,7 +17505,7 @@ exports.init = function (cli) {
   --name
   --delete-from-storage
 */
-  var virtualMachineDiskDeleteDisk = cli.category('virtualMachineDisk').description($('Commands to manage your virtual machine disk.'));
+  var virtualMachineDiskDeleteDisk = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk').description($('Commands to manage your virtual machine disk.'));
   virtualMachineDiskDeleteDisk.command('delete-disk')
   .description($('delete-disk method to manage your virtual machine disk.'))
   .usage('[options]')
@@ -17536,7 +17536,7 @@ exports.init = function (cli) {
   --role-name
   --logical-unit-number
 */
-  var virtualMachineDiskGetDataDisk = cli.category('virtualMachineDisk').description($('Commands to manage your virtual machine disk.'));
+  var virtualMachineDiskGetDataDisk = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk').description($('Commands to manage your virtual machine disk.'));
   virtualMachineDiskGetDataDisk.command('get-data-disk')
   .description($('get-data-disk method to manage your virtual machine disk.'))
   .usage('[options]')
@@ -17568,7 +17568,7 @@ exports.init = function (cli) {
   VirtualMachineDisk GetDisk
   --name
 */
-  var virtualMachineDiskGetDisk = cli.category('virtualMachineDisk').description($('Commands to manage your virtual machine disk.'));
+  var virtualMachineDiskGetDisk = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk').description($('Commands to manage your virtual machine disk.'));
   virtualMachineDiskGetDisk.command('get-disk')
   .description($('get-disk method to manage your virtual machine disk.'))
   .usage('[options]')
@@ -17585,7 +17585,7 @@ exports.init = function (cli) {
 /*
   VirtualMachineDisk ListDisks
 */
-  var virtualMachineDiskListDisks = cli.category('virtualMachineDisk').description($('Commands to manage your virtual machine disk.'));
+  var virtualMachineDiskListDisks = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk').description($('Commands to manage your virtual machine disk.'));
   virtualMachineDiskListDisks.command('list-disks')
   .description($('list-disks method to manage your virtual machine disk.'))
   .usage('[options]')
@@ -17614,7 +17614,7 @@ exports.init = function (cli) {
   "name":""
 }
 */
-  var virtualMachineDiskUpdateDataDisk = cli.category('virtualMachineDisk').description($('Commands to manage your virtual machine disk.'));
+  var virtualMachineDiskUpdateDataDisk = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk').description($('Commands to manage your virtual machine disk.'));
   virtualMachineDiskUpdateDataDisk.command('update-data-disk')
   .description($('update-data-disk method to manage your virtual machine disk.'))
   .usage('[options]')
@@ -17720,7 +17720,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-data-disk-update-parameters
-  var catparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters0 = cli.category('virtualMachineDisk');
+  var catparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk');
   var parametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters0 = catparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-disk.'));
   var setparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters0 = parametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters0.category('set')
@@ -17827,7 +17827,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-data-disk-update-parameters
-  var catparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters1 = cli.category('virtualMachineDisk');
+  var catparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk');
   var parametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters1 = catparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-disk.'));
   var removeparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters1 = parametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters1.category('remove')
@@ -17860,7 +17860,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-data-disk-update-parameters
-  var catparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters2 = cli.category('virtualMachineDisk');
+  var catparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk');
   var parametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters2 = catparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-disk.'));
   var addparametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters2 = parametersVirtualMachineDiskVirtualMachineDataDiskUpdateParameters2.category('add')
@@ -17985,7 +17985,7 @@ exports.init = function (cli) {
   "resizedSizeInGB":null
 }
 */
-  var virtualMachineDiskUpdateDisk = cli.category('virtualMachineDisk').description($('Commands to manage your virtual machine disk.'));
+  var virtualMachineDiskUpdateDisk = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk').description($('Commands to manage your virtual machine disk.'));
   virtualMachineDiskUpdateDisk.command('update-disk')
   .description($('update-disk method to manage your virtual machine disk.'))
   .usage('[options]')
@@ -18077,7 +18077,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-disk-update-parameters
-  var catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters0 = cli.category('virtualMachineDisk');
+  var catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk');
   var parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters0 = catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-disk.'));
   var setparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters0 = parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters0.category('set')
@@ -18184,7 +18184,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-disk-update-parameters
-  var catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters1 = cli.category('virtualMachineDisk');
+  var catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk');
   var parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters1 = catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-disk.'));
   var removeparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters1 = parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters1.category('remove')
@@ -18217,7 +18217,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-disk-update-parameters
-  var catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters2 = cli.category('virtualMachineDisk');
+  var catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk');
   var parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters2 = catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-disk.'));
   var addparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters2 = parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters2.category('add')
@@ -18342,7 +18342,7 @@ exports.init = function (cli) {
   "resizedSizeInGB":null
 }
 */
-  var virtualMachineDiskUpdateDiskSize = cli.category('virtualMachineDisk').description($('Commands to manage your virtual machine disk.'));
+  var virtualMachineDiskUpdateDiskSize = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk').description($('Commands to manage your virtual machine disk.'));
   virtualMachineDiskUpdateDiskSize.command('update-disk-size')
   .description($('update-disk-size method to manage your virtual machine disk.'))
   .usage('[options]')
@@ -18434,7 +18434,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-disk-update-parameters
-  var catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters0 = cli.category('virtualMachineDisk');
+  var catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk');
   var parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters0 = catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-disk.'));
   var setparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters0 = parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters0.category('set')
@@ -18541,7 +18541,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-disk-update-parameters
-  var catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters1 = cli.category('virtualMachineDisk');
+  var catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk');
   var parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters1 = catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-disk.'));
   var removeparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters1 = parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters1.category('remove')
@@ -18574,7 +18574,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-disk-update-parameters
-  var catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters2 = cli.category('virtualMachineDisk');
+  var catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-disk');
   var parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters2 = catparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-disk.'));
   var addparametersVirtualMachineDiskVirtualMachineDiskUpdateParameters2 = parametersVirtualMachineDiskVirtualMachineDiskUpdateParameters2.category('add')
@@ -18688,7 +18688,7 @@ exports.init = function (cli) {
 /*
   VirtualMachineExtension List
 */
-  var virtualMachineExtensionList = cli.category('virtualMachineExtension').description($('Commands to manage your virtual machine extension.'));
+  var virtualMachineExtensionList = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-extension').description($('Commands to manage your virtual machine extension.'));
   virtualMachineExtensionList.command('list')
   .description($('list method to manage your virtual machine extension.'))
   .usage('[options]')
@@ -18705,7 +18705,7 @@ exports.init = function (cli) {
   --publisher-name
   --extension-name
 */
-  var virtualMachineExtensionListVersions = cli.category('virtualMachineExtension').description($('Commands to manage your virtual machine extension.'));
+  var virtualMachineExtensionListVersions = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-extension').description($('Commands to manage your virtual machine extension.'));
   virtualMachineExtensionListVersions.command('list-versions')
   .description($('list-versions method to manage your virtual machine extension.'))
   .usage('[options]')
@@ -18732,7 +18732,7 @@ exports.init = function (cli) {
   "postShutdownAction":0
 }
 */
-  var virtualMachineBeginShutdown = cli.category('virtualMachine').description($('Commands to manage your virtual machine.'));
+  var virtualMachineBeginShutdown = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine').description($('Commands to manage your virtual machine.'));
   virtualMachineBeginShutdown.command('begin-shutdown')
   .description($('begin-shutdown method to manage your virtual machine.'))
   .usage('[options]')
@@ -18828,7 +18828,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-shutdown-parameters
-  var catparametersVirtualMachineVirtualMachineShutdownParameters0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineShutdownParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineShutdownParameters0 = catparametersVirtualMachineVirtualMachineShutdownParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineVirtualMachineShutdownParameters0 = parametersVirtualMachineVirtualMachineShutdownParameters0.category('set')
@@ -18880,7 +18880,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-shutdown-parameters
-  var catparametersVirtualMachineVirtualMachineShutdownParameters1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineShutdownParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineShutdownParameters1 = catparametersVirtualMachineVirtualMachineShutdownParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineVirtualMachineShutdownParameters1 = parametersVirtualMachineVirtualMachineShutdownParameters1.category('remove')
@@ -18913,7 +18913,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-shutdown-parameters
-  var catparametersVirtualMachineVirtualMachineShutdownParameters2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineShutdownParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineShutdownParameters2 = catparametersVirtualMachineVirtualMachineShutdownParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineVirtualMachineShutdownParameters2 = parametersVirtualMachineVirtualMachineShutdownParameters2.category('add')
@@ -18969,7 +18969,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove post-shutdown-action
-  var catparametersVirtualMachinePostShutdownAction1 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePostShutdownAction1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePostShutdownAction1 = catparametersVirtualMachinePostShutdownAction1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachinePostShutdownAction1 = parametersVirtualMachinePostShutdownAction1.category('remove')
@@ -19002,7 +19002,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add post-shutdown-action
-  var catparametersVirtualMachinePostShutdownAction2 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePostShutdownAction2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePostShutdownAction2 = catparametersVirtualMachinePostShutdownAction2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachinePostShutdownAction2 = parametersVirtualMachinePostShutdownAction2.category('add')
@@ -19172,7 +19172,7 @@ exports.init = function (cli) {
   "targetImageName":""
 }
 */
-  var virtualMachineCaptureOSImage = cli.category('virtualMachine').description($('Commands to manage your virtual machine.'));
+  var virtualMachineCaptureOSImage = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine').description($('Commands to manage your virtual machine.'));
   virtualMachineCaptureOSImage.command('capture-os-image')
   .description($('capture-os-image method to manage your virtual machine.'))
   .usage('[options]')
@@ -19268,7 +19268,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-capture-os-image-parameters
-  var catparametersVirtualMachineVirtualMachineCaptureOSImageParameters0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineCaptureOSImageParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineCaptureOSImageParameters0 = catparametersVirtualMachineVirtualMachineCaptureOSImageParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineVirtualMachineCaptureOSImageParameters0 = parametersVirtualMachineVirtualMachineCaptureOSImageParameters0.category('set')
@@ -19353,7 +19353,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-capture-os-image-parameters
-  var catparametersVirtualMachineVirtualMachineCaptureOSImageParameters1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineCaptureOSImageParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineCaptureOSImageParameters1 = catparametersVirtualMachineVirtualMachineCaptureOSImageParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineVirtualMachineCaptureOSImageParameters1 = parametersVirtualMachineVirtualMachineCaptureOSImageParameters1.category('remove')
@@ -19386,7 +19386,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-capture-os-image-parameters
-  var catparametersVirtualMachineVirtualMachineCaptureOSImageParameters2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineCaptureOSImageParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineCaptureOSImageParameters2 = catparametersVirtualMachineVirtualMachineCaptureOSImageParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineVirtualMachineCaptureOSImageParameters2 = parametersVirtualMachineVirtualMachineCaptureOSImageParameters2.category('add')
@@ -19475,7 +19475,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove post-capture-action
-  var catparametersVirtualMachinePostCaptureAction1 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePostCaptureAction1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePostCaptureAction1 = catparametersVirtualMachinePostCaptureAction1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachinePostCaptureAction1 = parametersVirtualMachinePostCaptureAction1.category('remove')
@@ -19508,7 +19508,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add post-capture-action
-  var catparametersVirtualMachinePostCaptureAction2 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePostCaptureAction2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePostCaptureAction2 = catparametersVirtualMachinePostCaptureAction2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachinePostCaptureAction2 = parametersVirtualMachinePostCaptureAction2.category('add')
@@ -19553,7 +19553,7 @@ exports.init = function (cli) {
   });
 
   //parameters set provisioning-configuration
-  var catparametersVirtualMachineProvisioningConfiguration0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProvisioningConfiguration0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProvisioningConfiguration0 = catparametersVirtualMachineProvisioningConfiguration0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineProvisioningConfiguration0 = parametersVirtualMachineProvisioningConfiguration0.category('set')
@@ -19847,7 +19847,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove provisioning-configuration
-  var catparametersVirtualMachineProvisioningConfiguration1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProvisioningConfiguration1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProvisioningConfiguration1 = catparametersVirtualMachineProvisioningConfiguration1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineProvisioningConfiguration1 = parametersVirtualMachineProvisioningConfiguration1.category('remove')
@@ -19880,7 +19880,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add provisioning-configuration
-  var catparametersVirtualMachineProvisioningConfiguration2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProvisioningConfiguration2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProvisioningConfiguration2 = catparametersVirtualMachineProvisioningConfiguration2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineProvisioningConfiguration2 = parametersVirtualMachineProvisioningConfiguration2.category('add')
@@ -20178,7 +20178,7 @@ exports.init = function (cli) {
   });
 
   //parameters set domain-join
-  var catparametersVirtualMachineDomainJoin0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDomainJoin0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDomainJoin0 = catparametersVirtualMachineDomainJoin0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineDomainJoin0 = parametersVirtualMachineDomainJoin0.category('set')
@@ -20263,7 +20263,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove domain-join
-  var catparametersVirtualMachineDomainJoin1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDomainJoin1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDomainJoin1 = catparametersVirtualMachineDomainJoin1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineDomainJoin1 = parametersVirtualMachineDomainJoin1.category('remove')
@@ -20296,7 +20296,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add domain-join
-  var catparametersVirtualMachineDomainJoin2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDomainJoin2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDomainJoin2 = catparametersVirtualMachineDomainJoin2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineDomainJoin2 = parametersVirtualMachineDomainJoin2.category('add')
@@ -20385,7 +20385,7 @@ exports.init = function (cli) {
   });
 
   //parameters set credentials
-  var catparametersVirtualMachineCredentials0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineCredentials0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineCredentials0 = catparametersVirtualMachineCredentials0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineCredentials0 = parametersVirtualMachineCredentials0.category('set')
@@ -20459,7 +20459,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove credentials
-  var catparametersVirtualMachineCredentials1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineCredentials1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineCredentials1 = catparametersVirtualMachineCredentials1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineCredentials1 = parametersVirtualMachineCredentials1.category('remove')
@@ -20492,7 +20492,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add credentials
-  var catparametersVirtualMachineCredentials2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineCredentials2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineCredentials2 = catparametersVirtualMachineCredentials2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineCredentials2 = parametersVirtualMachineCredentials2.category('add')
@@ -20570,7 +20570,7 @@ exports.init = function (cli) {
   });
 
   //parameters set provisioning
-  var catparametersVirtualMachineProvisioning0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProvisioning0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProvisioning0 = catparametersVirtualMachineProvisioning0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineProvisioning0 = parametersVirtualMachineProvisioning0.category('set')
@@ -20622,7 +20622,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove provisioning
-  var catparametersVirtualMachineProvisioning1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProvisioning1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProvisioning1 = catparametersVirtualMachineProvisioning1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineProvisioning1 = parametersVirtualMachineProvisioning1.category('remove')
@@ -20655,7 +20655,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add provisioning
-  var catparametersVirtualMachineProvisioning2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProvisioning2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProvisioning2 = catparametersVirtualMachineProvisioning2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineProvisioning2 = parametersVirtualMachineProvisioning2.category('add')
@@ -20711,7 +20711,7 @@ exports.init = function (cli) {
   });
 
   //parameters set input-endpoints
-  var catparametersVirtualMachineInputEndpoints0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineInputEndpoints0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineInputEndpoints0 = catparametersVirtualMachineInputEndpoints0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineInputEndpoints0 = parametersVirtualMachineInputEndpoints0.category('set')
@@ -20899,7 +20899,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove input-endpoints
-  var catparametersVirtualMachineInputEndpoints1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineInputEndpoints1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineInputEndpoints1 = catparametersVirtualMachineInputEndpoints1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineInputEndpoints1 = parametersVirtualMachineInputEndpoints1.category('remove')
@@ -20933,7 +20933,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add input-endpoints
-  var catparametersVirtualMachineInputEndpoints2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineInputEndpoints2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineInputEndpoints2 = catparametersVirtualMachineInputEndpoints2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineInputEndpoints2 = parametersVirtualMachineInputEndpoints2.category('add')
@@ -21121,7 +21121,7 @@ exports.init = function (cli) {
   });
 
   //parameters set endpoint-acl
-  var catparametersVirtualMachineEndpointAcl0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineEndpointAcl0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineEndpointAcl0 = catparametersVirtualMachineEndpointAcl0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineEndpointAcl0 = parametersVirtualMachineEndpointAcl0.category('set')
@@ -21174,7 +21174,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove endpoint-acl
-  var catparametersVirtualMachineEndpointAcl1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineEndpointAcl1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineEndpointAcl1 = catparametersVirtualMachineEndpointAcl1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineEndpointAcl1 = parametersVirtualMachineEndpointAcl1.category('remove')
@@ -21208,7 +21208,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add endpoint-acl
-  var catparametersVirtualMachineEndpointAcl2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineEndpointAcl2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineEndpointAcl2 = catparametersVirtualMachineEndpointAcl2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineEndpointAcl2 = parametersVirtualMachineEndpointAcl2.category('add')
@@ -21264,7 +21264,7 @@ exports.init = function (cli) {
   });
 
   //parameters set rules
-  var catparametersVirtualMachineRules0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRules0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRules0 = catparametersVirtualMachineRules0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineRules0 = parametersVirtualMachineRules0.category('set')
@@ -21354,7 +21354,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove rules
-  var catparametersVirtualMachineRules1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRules1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRules1 = catparametersVirtualMachineRules1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineRules1 = parametersVirtualMachineRules1.category('remove')
@@ -21389,7 +21389,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add rules
-  var catparametersVirtualMachineRules2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRules2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRules2 = catparametersVirtualMachineRules2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineRules2 = parametersVirtualMachineRules2.category('add')
@@ -21478,7 +21478,7 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancer-probe
-  var catparametersVirtualMachineLoadBalancerProbe0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancerProbe0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancerProbe0 = catparametersVirtualMachineLoadBalancerProbe0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineLoadBalancerProbe0 = parametersVirtualMachineLoadBalancerProbe0.category('set')
@@ -21575,7 +21575,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancer-probe
-  var catparametersVirtualMachineLoadBalancerProbe1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancerProbe1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancerProbe1 = catparametersVirtualMachineLoadBalancerProbe1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineLoadBalancerProbe1 = parametersVirtualMachineLoadBalancerProbe1.category('remove')
@@ -21609,7 +21609,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancer-probe
-  var catparametersVirtualMachineLoadBalancerProbe2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancerProbe2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancerProbe2 = catparametersVirtualMachineLoadBalancerProbe2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineLoadBalancerProbe2 = parametersVirtualMachineLoadBalancerProbe2.category('add')
@@ -21709,7 +21709,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove protocol
-  var catparametersVirtualMachineProtocol1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProtocol1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProtocol1 = catparametersVirtualMachineProtocol1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineProtocol1 = parametersVirtualMachineProtocol1.category('remove')
@@ -21743,7 +21743,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add protocol
-  var catparametersVirtualMachineProtocol2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProtocol2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProtocol2 = catparametersVirtualMachineProtocol2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineProtocol2 = parametersVirtualMachineProtocol2.category('add')
@@ -21788,7 +21788,7 @@ exports.init = function (cli) {
   });
 
   //parameters set network-interfaces
-  var catparametersVirtualMachineNetworkInterfaces0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineNetworkInterfaces0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineNetworkInterfaces0 = catparametersVirtualMachineNetworkInterfaces0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineNetworkInterfaces0 = parametersVirtualMachineNetworkInterfaces0.category('set')
@@ -21877,7 +21877,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove network-interfaces
-  var catparametersVirtualMachineNetworkInterfaces1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineNetworkInterfaces1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineNetworkInterfaces1 = catparametersVirtualMachineNetworkInterfaces1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineNetworkInterfaces1 = parametersVirtualMachineNetworkInterfaces1.category('remove')
@@ -21911,7 +21911,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add network-interfaces
-  var catparametersVirtualMachineNetworkInterfaces2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineNetworkInterfaces2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineNetworkInterfaces2 = catparametersVirtualMachineNetworkInterfaces2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineNetworkInterfaces2 = parametersVirtualMachineNetworkInterfaces2.category('add')
@@ -22000,7 +22000,7 @@ exports.init = function (cli) {
   });
 
   //parameters set ip-configurations
-  var catparametersVirtualMachineIPConfigurations0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineIPConfigurations0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineIPConfigurations0 = catparametersVirtualMachineIPConfigurations0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineIPConfigurations0 = parametersVirtualMachineIPConfigurations0.category('set')
@@ -22068,7 +22068,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove ip-configurations
-  var catparametersVirtualMachineIPConfigurations1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineIPConfigurations1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineIPConfigurations1 = catparametersVirtualMachineIPConfigurations1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineIPConfigurations1 = parametersVirtualMachineIPConfigurations1.category('remove')
@@ -22103,7 +22103,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ip-configurations
-  var catparametersVirtualMachineIPConfigurations2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineIPConfigurations2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineIPConfigurations2 = catparametersVirtualMachineIPConfigurations2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineIPConfigurations2 = parametersVirtualMachineIPConfigurations2.category('add')
@@ -22170,7 +22170,7 @@ exports.init = function (cli) {
   });
 
   //parameters set public-ip
-  var catparametersVirtualMachinePublicIPs0 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicIPs0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicIPs0 = catparametersVirtualMachinePublicIPs0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachinePublicIPs0 = parametersVirtualMachinePublicIPs0.category('set')
@@ -22248,7 +22248,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove public-ip
-  var catparametersVirtualMachinePublicIPs1 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicIPs1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicIPs1 = catparametersVirtualMachinePublicIPs1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachinePublicIPs1 = parametersVirtualMachinePublicIPs1.category('remove')
@@ -22282,7 +22282,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add public-ip
-  var catparametersVirtualMachinePublicIPs2 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicIPs2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicIPs2 = catparametersVirtualMachinePublicIPs2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachinePublicIPs2 = parametersVirtualMachinePublicIPs2.category('add')
@@ -22360,7 +22360,7 @@ exports.init = function (cli) {
   });
 
   //parameters set ssh-settings
-  var catparametersVirtualMachineSshSettings0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSshSettings0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSshSettings0 = catparametersVirtualMachineSshSettings0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineSshSettings0 = parametersVirtualMachineSshSettings0.category('set')
@@ -22423,7 +22423,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove ssh-settings
-  var catparametersVirtualMachineSshSettings1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSshSettings1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSshSettings1 = catparametersVirtualMachineSshSettings1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineSshSettings1 = parametersVirtualMachineSshSettings1.category('remove')
@@ -22456,7 +22456,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ssh-settings
-  var catparametersVirtualMachineSshSettings2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSshSettings2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSshSettings2 = catparametersVirtualMachineSshSettings2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineSshSettings2 = parametersVirtualMachineSshSettings2.category('add')
@@ -22523,7 +22523,7 @@ exports.init = function (cli) {
   });
 
   //parameters set key-pairs
-  var catparametersVirtualMachineKeyPairs0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineKeyPairs0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineKeyPairs0 = catparametersVirtualMachineKeyPairs0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineKeyPairs0 = parametersVirtualMachineKeyPairs0.category('set')
@@ -22590,7 +22590,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove key-pairs
-  var catparametersVirtualMachineKeyPairs1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineKeyPairs1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineKeyPairs1 = catparametersVirtualMachineKeyPairs1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineKeyPairs1 = parametersVirtualMachineKeyPairs1.category('remove')
@@ -22624,7 +22624,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add key-pairs
-  var catparametersVirtualMachineKeyPairs2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineKeyPairs2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineKeyPairs2 = catparametersVirtualMachineKeyPairs2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineKeyPairs2 = parametersVirtualMachineKeyPairs2.category('add')
@@ -22691,7 +22691,7 @@ exports.init = function (cli) {
   });
 
   //parameters set public-keys
-  var catparametersVirtualMachinePublicKeys0 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicKeys0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicKeys0 = catparametersVirtualMachinePublicKeys0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachinePublicKeys0 = parametersVirtualMachinePublicKeys0.category('set')
@@ -22758,7 +22758,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove public-keys
-  var catparametersVirtualMachinePublicKeys1 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicKeys1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicKeys1 = catparametersVirtualMachinePublicKeys1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachinePublicKeys1 = parametersVirtualMachinePublicKeys1.category('remove')
@@ -22792,7 +22792,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add public-keys
-  var catparametersVirtualMachinePublicKeys2 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicKeys2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicKeys2 = catparametersVirtualMachinePublicKeys2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachinePublicKeys2 = parametersVirtualMachinePublicKeys2.category('add')
@@ -22859,7 +22859,7 @@ exports.init = function (cli) {
   });
 
   //parameters set stored-certificate-settings
-  var catparametersVirtualMachineStoredCertificateSettings0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineStoredCertificateSettings0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineStoredCertificateSettings0 = catparametersVirtualMachineStoredCertificateSettings0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineStoredCertificateSettings0 = parametersVirtualMachineStoredCertificateSettings0.category('set')
@@ -22926,7 +22926,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove stored-certificate-settings
-  var catparametersVirtualMachineStoredCertificateSettings1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineStoredCertificateSettings1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineStoredCertificateSettings1 = catparametersVirtualMachineStoredCertificateSettings1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineStoredCertificateSettings1 = parametersVirtualMachineStoredCertificateSettings1.category('remove')
@@ -22960,7 +22960,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add stored-certificate-settings
-  var catparametersVirtualMachineStoredCertificateSettings2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineStoredCertificateSettings2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineStoredCertificateSettings2 = catparametersVirtualMachineStoredCertificateSettings2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineStoredCertificateSettings2 = parametersVirtualMachineStoredCertificateSettings2.category('add')
@@ -23027,7 +23027,7 @@ exports.init = function (cli) {
   });
 
   //parameters set subnet-names
-  var catparametersVirtualMachineSubnetNames0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSubnetNames0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSubnetNames0 = catparametersVirtualMachineSubnetNames0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineSubnetNames0 = parametersVirtualMachineSubnetNames0.category('set')
@@ -23072,7 +23072,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove subnet-names
-  var catparametersVirtualMachineSubnetNames1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSubnetNames1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSubnetNames1 = catparametersVirtualMachineSubnetNames1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineSubnetNames1 = parametersVirtualMachineSubnetNames1.category('remove')
@@ -23106,7 +23106,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add subnet-names
-  var catparametersVirtualMachineSubnetNames2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSubnetNames2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSubnetNames2 = catparametersVirtualMachineSubnetNames2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineSubnetNames2 = parametersVirtualMachineSubnetNames2.category('add')
@@ -23151,7 +23151,7 @@ exports.init = function (cli) {
   });
 
   //parameters set windows-remote-management
-  var catparametersVirtualMachineWindowsRemoteManagement0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineWindowsRemoteManagement0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineWindowsRemoteManagement0 = catparametersVirtualMachineWindowsRemoteManagement0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineWindowsRemoteManagement0 = parametersVirtualMachineWindowsRemoteManagement0.category('set')
@@ -23203,7 +23203,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove windows-remote-management
-  var catparametersVirtualMachineWindowsRemoteManagement1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineWindowsRemoteManagement1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineWindowsRemoteManagement1 = catparametersVirtualMachineWindowsRemoteManagement1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineWindowsRemoteManagement1 = parametersVirtualMachineWindowsRemoteManagement1.category('remove')
@@ -23236,7 +23236,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add windows-remote-management
-  var catparametersVirtualMachineWindowsRemoteManagement2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineWindowsRemoteManagement2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineWindowsRemoteManagement2 = catparametersVirtualMachineWindowsRemoteManagement2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineWindowsRemoteManagement2 = parametersVirtualMachineWindowsRemoteManagement2.category('add')
@@ -23292,7 +23292,7 @@ exports.init = function (cli) {
   });
 
   //parameters set listeners
-  var catparametersVirtualMachineListeners0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListeners0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListeners0 = catparametersVirtualMachineListeners0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineListeners0 = parametersVirtualMachineListeners0.category('set')
@@ -23359,7 +23359,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove listeners
-  var catparametersVirtualMachineListeners1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListeners1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListeners1 = catparametersVirtualMachineListeners1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineListeners1 = parametersVirtualMachineListeners1.category('remove')
@@ -23393,7 +23393,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add listeners
-  var catparametersVirtualMachineListeners2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListeners2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListeners2 = catparametersVirtualMachineListeners2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineListeners2 = parametersVirtualMachineListeners2.category('add')
@@ -23460,7 +23460,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove listener-type
-  var catparametersVirtualMachineListenerType1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListenerType1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListenerType1 = catparametersVirtualMachineListenerType1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineListenerType1 = parametersVirtualMachineListenerType1.category('remove')
@@ -23494,7 +23494,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add listener-type
-  var catparametersVirtualMachineListenerType2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListenerType2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListenerType2 = catparametersVirtualMachineListenerType2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineListenerType2 = parametersVirtualMachineListenerType2.category('add')
@@ -23555,7 +23555,7 @@ exports.init = function (cli) {
   "statusCode":0
 }
 */
-  var virtualMachineCaptureVMImage = cli.category('virtualMachine').description($('Commands to manage your virtual machine.'));
+  var virtualMachineCaptureVMImage = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine').description($('Commands to manage your virtual machine.'));
   virtualMachineCaptureVMImage.command('capture-vm-image')
   .description($('capture-vm-image method to manage your virtual machine.'))
   .usage('[options]')
@@ -23651,7 +23651,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-capture-vm-image-parameters
-  var catparametersVirtualMachineVirtualMachineCaptureVMImageParameters0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineCaptureVMImageParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineCaptureVMImageParameters0 = catparametersVirtualMachineVirtualMachineCaptureVMImageParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineVirtualMachineCaptureVMImageParameters0 = parametersVirtualMachineVirtualMachineCaptureVMImageParameters0.category('set')
@@ -23758,7 +23758,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-capture-vm-image-parameters
-  var catparametersVirtualMachineVirtualMachineCaptureVMImageParameters1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineCaptureVMImageParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineCaptureVMImageParameters1 = catparametersVirtualMachineVirtualMachineCaptureVMImageParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineVirtualMachineCaptureVMImageParameters1 = parametersVirtualMachineVirtualMachineCaptureVMImageParameters1.category('remove')
@@ -23791,7 +23791,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-capture-vm-image-parameters
-  var catparametersVirtualMachineVirtualMachineCaptureVMImageParameters2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineCaptureVMImageParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineCaptureVMImageParameters2 = catparametersVirtualMachineVirtualMachineCaptureVMImageParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineVirtualMachineCaptureVMImageParameters2 = parametersVirtualMachineVirtualMachineCaptureVMImageParameters2.category('add')
@@ -24082,7 +24082,7 @@ exports.init = function (cli) {
   "vMImageName":""
 }
 */
-  var virtualMachineCreate = cli.category('virtualMachine').description($('Commands to manage your virtual machine.'));
+  var virtualMachineCreate = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine').description($('Commands to manage your virtual machine.'));
   virtualMachineCreate.command('create')
   .description($('create method to manage your virtual machine.'))
   .usage('[options]')
@@ -24176,7 +24176,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-create-parameters
-  var catparametersVirtualMachineVirtualMachineCreateParameters0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineCreateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineCreateParameters0 = catparametersVirtualMachineVirtualMachineCreateParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineVirtualMachineCreateParameters0 = parametersVirtualMachineVirtualMachineCreateParameters0.category('set')
@@ -24338,7 +24338,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-create-parameters
-  var catparametersVirtualMachineVirtualMachineCreateParameters1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineCreateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineCreateParameters1 = catparametersVirtualMachineVirtualMachineCreateParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineVirtualMachineCreateParameters1 = parametersVirtualMachineVirtualMachineCreateParameters1.category('remove')
@@ -24371,7 +24371,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-create-parameters
-  var catparametersVirtualMachineVirtualMachineCreateParameters2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineCreateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineCreateParameters2 = catparametersVirtualMachineVirtualMachineCreateParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineVirtualMachineCreateParameters2 = parametersVirtualMachineVirtualMachineCreateParameters2.category('add')
@@ -24537,7 +24537,7 @@ exports.init = function (cli) {
   });
 
   //parameters set configuration-sets
-  var catparametersVirtualMachineConfigurationSets0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineConfigurationSets0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineConfigurationSets0 = catparametersVirtualMachineConfigurationSets0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineConfigurationSets0 = parametersVirtualMachineConfigurationSets0.category('set')
@@ -24835,7 +24835,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove configuration-sets
-  var catparametersVirtualMachineConfigurationSets1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineConfigurationSets1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineConfigurationSets1 = catparametersVirtualMachineConfigurationSets1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineConfigurationSets1 = parametersVirtualMachineConfigurationSets1.category('remove')
@@ -24869,7 +24869,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add configuration-sets
-  var catparametersVirtualMachineConfigurationSets2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineConfigurationSets2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineConfigurationSets2 = catparametersVirtualMachineConfigurationSets2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineConfigurationSets2 = parametersVirtualMachineConfigurationSets2.category('add')
@@ -25167,7 +25167,7 @@ exports.init = function (cli) {
   });
 
   //parameters set domain-join
-  var catparametersVirtualMachineDomainJoin0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDomainJoin0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDomainJoin0 = catparametersVirtualMachineDomainJoin0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineDomainJoin0 = parametersVirtualMachineDomainJoin0.category('set')
@@ -25253,7 +25253,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove domain-join
-  var catparametersVirtualMachineDomainJoin1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDomainJoin1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDomainJoin1 = catparametersVirtualMachineDomainJoin1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineDomainJoin1 = parametersVirtualMachineDomainJoin1.category('remove')
@@ -25287,7 +25287,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add domain-join
-  var catparametersVirtualMachineDomainJoin2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDomainJoin2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDomainJoin2 = catparametersVirtualMachineDomainJoin2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineDomainJoin2 = parametersVirtualMachineDomainJoin2.category('add')
@@ -25376,7 +25376,7 @@ exports.init = function (cli) {
   });
 
   //parameters set credentials
-  var catparametersVirtualMachineCredentials0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineCredentials0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineCredentials0 = catparametersVirtualMachineCredentials0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineCredentials0 = parametersVirtualMachineCredentials0.category('set')
@@ -25451,7 +25451,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove credentials
-  var catparametersVirtualMachineCredentials1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineCredentials1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineCredentials1 = catparametersVirtualMachineCredentials1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineCredentials1 = parametersVirtualMachineCredentials1.category('remove')
@@ -25485,7 +25485,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add credentials
-  var catparametersVirtualMachineCredentials2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineCredentials2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineCredentials2 = catparametersVirtualMachineCredentials2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineCredentials2 = parametersVirtualMachineCredentials2.category('add')
@@ -25563,7 +25563,7 @@ exports.init = function (cli) {
   });
 
   //parameters set provisioning
-  var catparametersVirtualMachineProvisioning0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProvisioning0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProvisioning0 = catparametersVirtualMachineProvisioning0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineProvisioning0 = parametersVirtualMachineProvisioning0.category('set')
@@ -25616,7 +25616,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove provisioning
-  var catparametersVirtualMachineProvisioning1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProvisioning1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProvisioning1 = catparametersVirtualMachineProvisioning1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineProvisioning1 = parametersVirtualMachineProvisioning1.category('remove')
@@ -25650,7 +25650,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add provisioning
-  var catparametersVirtualMachineProvisioning2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProvisioning2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProvisioning2 = catparametersVirtualMachineProvisioning2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineProvisioning2 = parametersVirtualMachineProvisioning2.category('add')
@@ -25706,7 +25706,7 @@ exports.init = function (cli) {
   });
 
   //parameters set input-endpoints
-  var catparametersVirtualMachineInputEndpoints0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineInputEndpoints0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineInputEndpoints0 = catparametersVirtualMachineInputEndpoints0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineInputEndpoints0 = parametersVirtualMachineInputEndpoints0.category('set')
@@ -25895,7 +25895,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove input-endpoints
-  var catparametersVirtualMachineInputEndpoints1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineInputEndpoints1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineInputEndpoints1 = catparametersVirtualMachineInputEndpoints1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineInputEndpoints1 = parametersVirtualMachineInputEndpoints1.category('remove')
@@ -25930,7 +25930,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add input-endpoints
-  var catparametersVirtualMachineInputEndpoints2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineInputEndpoints2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineInputEndpoints2 = catparametersVirtualMachineInputEndpoints2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineInputEndpoints2 = parametersVirtualMachineInputEndpoints2.category('add')
@@ -26118,7 +26118,7 @@ exports.init = function (cli) {
   });
 
   //parameters set endpoint-acl
-  var catparametersVirtualMachineEndpointAcl0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineEndpointAcl0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineEndpointAcl0 = catparametersVirtualMachineEndpointAcl0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineEndpointAcl0 = parametersVirtualMachineEndpointAcl0.category('set')
@@ -26172,7 +26172,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove endpoint-acl
-  var catparametersVirtualMachineEndpointAcl1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineEndpointAcl1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineEndpointAcl1 = catparametersVirtualMachineEndpointAcl1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineEndpointAcl1 = parametersVirtualMachineEndpointAcl1.category('remove')
@@ -26207,7 +26207,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add endpoint-acl
-  var catparametersVirtualMachineEndpointAcl2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineEndpointAcl2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineEndpointAcl2 = catparametersVirtualMachineEndpointAcl2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineEndpointAcl2 = parametersVirtualMachineEndpointAcl2.category('add')
@@ -26263,7 +26263,7 @@ exports.init = function (cli) {
   });
 
   //parameters set rules
-  var catparametersVirtualMachineRules0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRules0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRules0 = catparametersVirtualMachineRules0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineRules0 = parametersVirtualMachineRules0.category('set')
@@ -26354,7 +26354,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove rules
-  var catparametersVirtualMachineRules1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRules1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRules1 = catparametersVirtualMachineRules1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineRules1 = parametersVirtualMachineRules1.category('remove')
@@ -26390,7 +26390,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add rules
-  var catparametersVirtualMachineRules2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRules2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRules2 = catparametersVirtualMachineRules2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineRules2 = parametersVirtualMachineRules2.category('add')
@@ -26479,7 +26479,7 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancer-probe
-  var catparametersVirtualMachineLoadBalancerProbe0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancerProbe0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancerProbe0 = catparametersVirtualMachineLoadBalancerProbe0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineLoadBalancerProbe0 = parametersVirtualMachineLoadBalancerProbe0.category('set')
@@ -26577,7 +26577,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancer-probe
-  var catparametersVirtualMachineLoadBalancerProbe1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancerProbe1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancerProbe1 = catparametersVirtualMachineLoadBalancerProbe1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineLoadBalancerProbe1 = parametersVirtualMachineLoadBalancerProbe1.category('remove')
@@ -26612,7 +26612,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancer-probe
-  var catparametersVirtualMachineLoadBalancerProbe2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancerProbe2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancerProbe2 = catparametersVirtualMachineLoadBalancerProbe2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineLoadBalancerProbe2 = parametersVirtualMachineLoadBalancerProbe2.category('add')
@@ -26712,7 +26712,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove protocol
-  var catparametersVirtualMachineProtocol1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProtocol1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProtocol1 = catparametersVirtualMachineProtocol1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineProtocol1 = parametersVirtualMachineProtocol1.category('remove')
@@ -26747,7 +26747,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add protocol
-  var catparametersVirtualMachineProtocol2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProtocol2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProtocol2 = catparametersVirtualMachineProtocol2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineProtocol2 = parametersVirtualMachineProtocol2.category('add')
@@ -26792,7 +26792,7 @@ exports.init = function (cli) {
   });
 
   //parameters set network-interfaces
-  var catparametersVirtualMachineNetworkInterfaces0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineNetworkInterfaces0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineNetworkInterfaces0 = catparametersVirtualMachineNetworkInterfaces0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineNetworkInterfaces0 = parametersVirtualMachineNetworkInterfaces0.category('set')
@@ -26882,7 +26882,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove network-interfaces
-  var catparametersVirtualMachineNetworkInterfaces1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineNetworkInterfaces1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineNetworkInterfaces1 = catparametersVirtualMachineNetworkInterfaces1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineNetworkInterfaces1 = parametersVirtualMachineNetworkInterfaces1.category('remove')
@@ -26917,7 +26917,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add network-interfaces
-  var catparametersVirtualMachineNetworkInterfaces2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineNetworkInterfaces2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineNetworkInterfaces2 = catparametersVirtualMachineNetworkInterfaces2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineNetworkInterfaces2 = parametersVirtualMachineNetworkInterfaces2.category('add')
@@ -27006,7 +27006,7 @@ exports.init = function (cli) {
   });
 
   //parameters set ip-configurations
-  var catparametersVirtualMachineIPConfigurations0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineIPConfigurations0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineIPConfigurations0 = catparametersVirtualMachineIPConfigurations0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineIPConfigurations0 = parametersVirtualMachineIPConfigurations0.category('set')
@@ -27075,7 +27075,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove ip-configurations
-  var catparametersVirtualMachineIPConfigurations1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineIPConfigurations1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineIPConfigurations1 = catparametersVirtualMachineIPConfigurations1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineIPConfigurations1 = parametersVirtualMachineIPConfigurations1.category('remove')
@@ -27111,7 +27111,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ip-configurations
-  var catparametersVirtualMachineIPConfigurations2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineIPConfigurations2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineIPConfigurations2 = catparametersVirtualMachineIPConfigurations2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineIPConfigurations2 = parametersVirtualMachineIPConfigurations2.category('add')
@@ -27178,7 +27178,7 @@ exports.init = function (cli) {
   });
 
   //parameters set public-ip
-  var catparametersVirtualMachinePublicIPs0 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicIPs0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicIPs0 = catparametersVirtualMachinePublicIPs0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachinePublicIPs0 = parametersVirtualMachinePublicIPs0.category('set')
@@ -27257,7 +27257,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove public-ip
-  var catparametersVirtualMachinePublicIPs1 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicIPs1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicIPs1 = catparametersVirtualMachinePublicIPs1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachinePublicIPs1 = parametersVirtualMachinePublicIPs1.category('remove')
@@ -27292,7 +27292,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add public-ip
-  var catparametersVirtualMachinePublicIPs2 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicIPs2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicIPs2 = catparametersVirtualMachinePublicIPs2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachinePublicIPs2 = parametersVirtualMachinePublicIPs2.category('add')
@@ -27370,7 +27370,7 @@ exports.init = function (cli) {
   });
 
   //parameters set ssh-settings
-  var catparametersVirtualMachineSshSettings0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSshSettings0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSshSettings0 = catparametersVirtualMachineSshSettings0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineSshSettings0 = parametersVirtualMachineSshSettings0.category('set')
@@ -27434,7 +27434,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove ssh-settings
-  var catparametersVirtualMachineSshSettings1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSshSettings1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSshSettings1 = catparametersVirtualMachineSshSettings1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineSshSettings1 = parametersVirtualMachineSshSettings1.category('remove')
@@ -27468,7 +27468,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ssh-settings
-  var catparametersVirtualMachineSshSettings2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSshSettings2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSshSettings2 = catparametersVirtualMachineSshSettings2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineSshSettings2 = parametersVirtualMachineSshSettings2.category('add')
@@ -27535,7 +27535,7 @@ exports.init = function (cli) {
   });
 
   //parameters set key-pairs
-  var catparametersVirtualMachineKeyPairs0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineKeyPairs0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineKeyPairs0 = catparametersVirtualMachineKeyPairs0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineKeyPairs0 = parametersVirtualMachineKeyPairs0.category('set')
@@ -27603,7 +27603,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove key-pairs
-  var catparametersVirtualMachineKeyPairs1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineKeyPairs1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineKeyPairs1 = catparametersVirtualMachineKeyPairs1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineKeyPairs1 = parametersVirtualMachineKeyPairs1.category('remove')
@@ -27638,7 +27638,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add key-pairs
-  var catparametersVirtualMachineKeyPairs2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineKeyPairs2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineKeyPairs2 = catparametersVirtualMachineKeyPairs2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineKeyPairs2 = parametersVirtualMachineKeyPairs2.category('add')
@@ -27705,7 +27705,7 @@ exports.init = function (cli) {
   });
 
   //parameters set public-keys
-  var catparametersVirtualMachinePublicKeys0 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicKeys0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicKeys0 = catparametersVirtualMachinePublicKeys0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachinePublicKeys0 = parametersVirtualMachinePublicKeys0.category('set')
@@ -27773,7 +27773,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove public-keys
-  var catparametersVirtualMachinePublicKeys1 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicKeys1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicKeys1 = catparametersVirtualMachinePublicKeys1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachinePublicKeys1 = parametersVirtualMachinePublicKeys1.category('remove')
@@ -27808,7 +27808,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add public-keys
-  var catparametersVirtualMachinePublicKeys2 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicKeys2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicKeys2 = catparametersVirtualMachinePublicKeys2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachinePublicKeys2 = parametersVirtualMachinePublicKeys2.category('add')
@@ -27875,7 +27875,7 @@ exports.init = function (cli) {
   });
 
   //parameters set stored-certificate-settings
-  var catparametersVirtualMachineStoredCertificateSettings0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineStoredCertificateSettings0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineStoredCertificateSettings0 = catparametersVirtualMachineStoredCertificateSettings0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineStoredCertificateSettings0 = parametersVirtualMachineStoredCertificateSettings0.category('set')
@@ -27943,7 +27943,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove stored-certificate-settings
-  var catparametersVirtualMachineStoredCertificateSettings1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineStoredCertificateSettings1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineStoredCertificateSettings1 = catparametersVirtualMachineStoredCertificateSettings1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineStoredCertificateSettings1 = parametersVirtualMachineStoredCertificateSettings1.category('remove')
@@ -27978,7 +27978,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add stored-certificate-settings
-  var catparametersVirtualMachineStoredCertificateSettings2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineStoredCertificateSettings2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineStoredCertificateSettings2 = catparametersVirtualMachineStoredCertificateSettings2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineStoredCertificateSettings2 = parametersVirtualMachineStoredCertificateSettings2.category('add')
@@ -28045,7 +28045,7 @@ exports.init = function (cli) {
   });
 
   //parameters set subnet-names
-  var catparametersVirtualMachineSubnetNames0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSubnetNames0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSubnetNames0 = catparametersVirtualMachineSubnetNames0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineSubnetNames0 = parametersVirtualMachineSubnetNames0.category('set')
@@ -28091,7 +28091,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove subnet-names
-  var catparametersVirtualMachineSubnetNames1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSubnetNames1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSubnetNames1 = catparametersVirtualMachineSubnetNames1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineSubnetNames1 = parametersVirtualMachineSubnetNames1.category('remove')
@@ -28126,7 +28126,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add subnet-names
-  var catparametersVirtualMachineSubnetNames2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSubnetNames2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSubnetNames2 = catparametersVirtualMachineSubnetNames2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineSubnetNames2 = parametersVirtualMachineSubnetNames2.category('add')
@@ -28171,7 +28171,7 @@ exports.init = function (cli) {
   });
 
   //parameters set windows-remote-management
-  var catparametersVirtualMachineWindowsRemoteManagement0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineWindowsRemoteManagement0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineWindowsRemoteManagement0 = catparametersVirtualMachineWindowsRemoteManagement0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineWindowsRemoteManagement0 = parametersVirtualMachineWindowsRemoteManagement0.category('set')
@@ -28224,7 +28224,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove windows-remote-management
-  var catparametersVirtualMachineWindowsRemoteManagement1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineWindowsRemoteManagement1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineWindowsRemoteManagement1 = catparametersVirtualMachineWindowsRemoteManagement1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineWindowsRemoteManagement1 = parametersVirtualMachineWindowsRemoteManagement1.category('remove')
@@ -28258,7 +28258,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add windows-remote-management
-  var catparametersVirtualMachineWindowsRemoteManagement2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineWindowsRemoteManagement2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineWindowsRemoteManagement2 = catparametersVirtualMachineWindowsRemoteManagement2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineWindowsRemoteManagement2 = parametersVirtualMachineWindowsRemoteManagement2.category('add')
@@ -28314,7 +28314,7 @@ exports.init = function (cli) {
   });
 
   //parameters set listeners
-  var catparametersVirtualMachineListeners0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListeners0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListeners0 = catparametersVirtualMachineListeners0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineListeners0 = parametersVirtualMachineListeners0.category('set')
@@ -28382,7 +28382,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove listeners
-  var catparametersVirtualMachineListeners1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListeners1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListeners1 = catparametersVirtualMachineListeners1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineListeners1 = parametersVirtualMachineListeners1.category('remove')
@@ -28417,7 +28417,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add listeners
-  var catparametersVirtualMachineListeners2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListeners2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListeners2 = catparametersVirtualMachineListeners2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineListeners2 = parametersVirtualMachineListeners2.category('add')
@@ -28484,7 +28484,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove listener-type
-  var catparametersVirtualMachineListenerType1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListenerType1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListenerType1 = catparametersVirtualMachineListenerType1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineListenerType1 = parametersVirtualMachineListenerType1.category('remove')
@@ -28519,7 +28519,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add listener-type
-  var catparametersVirtualMachineListenerType2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListenerType2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListenerType2 = catparametersVirtualMachineListenerType2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineListenerType2 = parametersVirtualMachineListenerType2.category('add')
@@ -28564,7 +28564,7 @@ exports.init = function (cli) {
   });
 
   //parameters set data-virtual-hard-disks
-  var catparametersVirtualMachineDataVirtualHardDisks0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDataVirtualHardDisks0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDataVirtualHardDisks0 = catparametersVirtualMachineDataVirtualHardDisks0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineDataVirtualHardDisks0 = parametersVirtualMachineDataVirtualHardDisks0.category('set')
@@ -28697,7 +28697,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove data-virtual-hard-disks
-  var catparametersVirtualMachineDataVirtualHardDisks1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDataVirtualHardDisks1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDataVirtualHardDisks1 = catparametersVirtualMachineDataVirtualHardDisks1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineDataVirtualHardDisks1 = parametersVirtualMachineDataVirtualHardDisks1.category('remove')
@@ -28731,7 +28731,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add data-virtual-hard-disks
-  var catparametersVirtualMachineDataVirtualHardDisks2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDataVirtualHardDisks2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDataVirtualHardDisks2 = catparametersVirtualMachineDataVirtualHardDisks2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineDataVirtualHardDisks2 = parametersVirtualMachineDataVirtualHardDisks2.category('add')
@@ -28864,7 +28864,7 @@ exports.init = function (cli) {
   });
 
   //parameters set os-virtual-hard-disk
-  var catparametersVirtualMachineOSVirtualHardDisk0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineOSVirtualHardDisk0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineOSVirtualHardDisk0 = catparametersVirtualMachineOSVirtualHardDisk0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineOSVirtualHardDisk0 = parametersVirtualMachineOSVirtualHardDisk0.category('set')
@@ -29004,7 +29004,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove os-virtual-hard-disk
-  var catparametersVirtualMachineOSVirtualHardDisk1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineOSVirtualHardDisk1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineOSVirtualHardDisk1 = catparametersVirtualMachineOSVirtualHardDisk1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineOSVirtualHardDisk1 = parametersVirtualMachineOSVirtualHardDisk1.category('remove')
@@ -29037,7 +29037,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add os-virtual-hard-disk
-  var catparametersVirtualMachineOSVirtualHardDisk2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineOSVirtualHardDisk2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineOSVirtualHardDisk2 = catparametersVirtualMachineOSVirtualHardDisk2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineOSVirtualHardDisk2 = parametersVirtualMachineOSVirtualHardDisk2.category('add')
@@ -29181,7 +29181,7 @@ exports.init = function (cli) {
   });
 
   //parameters set resource-extension-references
-  var catparametersVirtualMachineResourceExtensionReferences0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionReferences0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionReferences0 = catparametersVirtualMachineResourceExtensionReferences0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineResourceExtensionReferences0 = parametersVirtualMachineResourceExtensionReferences0.category('set')
@@ -29303,7 +29303,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove resource-extension-references
-  var catparametersVirtualMachineResourceExtensionReferences1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionReferences1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionReferences1 = catparametersVirtualMachineResourceExtensionReferences1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineResourceExtensionReferences1 = parametersVirtualMachineResourceExtensionReferences1.category('remove')
@@ -29337,7 +29337,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add resource-extension-references
-  var catparametersVirtualMachineResourceExtensionReferences2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionReferences2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionReferences2 = catparametersVirtualMachineResourceExtensionReferences2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineResourceExtensionReferences2 = parametersVirtualMachineResourceExtensionReferences2.category('add')
@@ -29459,7 +29459,7 @@ exports.init = function (cli) {
   });
 
   //parameters set resource-extension-parameter-values
-  var catparametersVirtualMachineResourceExtensionParameterValues0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionParameterValues0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionParameterValues0 = catparametersVirtualMachineResourceExtensionParameterValues0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineResourceExtensionParameterValues0 = parametersVirtualMachineResourceExtensionParameterValues0.category('set')
@@ -29538,7 +29538,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove resource-extension-parameter-values
-  var catparametersVirtualMachineResourceExtensionParameterValues1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionParameterValues1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionParameterValues1 = catparametersVirtualMachineResourceExtensionParameterValues1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineResourceExtensionParameterValues1 = parametersVirtualMachineResourceExtensionParameterValues1.category('remove')
@@ -29573,7 +29573,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add resource-extension-parameter-values
-  var catparametersVirtualMachineResourceExtensionParameterValues2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionParameterValues2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionParameterValues2 = catparametersVirtualMachineResourceExtensionParameterValues2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineResourceExtensionParameterValues2 = parametersVirtualMachineResourceExtensionParameterValues2.category('add')
@@ -29651,7 +29651,7 @@ exports.init = function (cli) {
   });
 
   //parameters set vm-image-input
-  var catparametersVirtualMachineVMImageInput0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVMImageInput0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVMImageInput0 = catparametersVirtualMachineVMImageInput0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineVMImageInput0 = parametersVirtualMachineVMImageInput0.category('set')
@@ -29714,7 +29714,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove vm-image-input
-  var catparametersVirtualMachineVMImageInput1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVMImageInput1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVMImageInput1 = catparametersVirtualMachineVMImageInput1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineVMImageInput1 = parametersVirtualMachineVMImageInput1.category('remove')
@@ -29747,7 +29747,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add vm-image-input
-  var catparametersVirtualMachineVMImageInput2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVMImageInput2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVMImageInput2 = catparametersVirtualMachineVMImageInput2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineVMImageInput2 = parametersVirtualMachineVMImageInput2.category('add')
@@ -29814,7 +29814,7 @@ exports.init = function (cli) {
   });
 
   //parameters set data-disk-configurations
-  var catparametersVirtualMachineDataDiskConfigurations0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDataDiskConfigurations0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDataDiskConfigurations0 = catparametersVirtualMachineDataDiskConfigurations0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineDataDiskConfigurations0 = parametersVirtualMachineDataDiskConfigurations0.category('set')
@@ -29881,7 +29881,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove data-disk-configurations
-  var catparametersVirtualMachineDataDiskConfigurations1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDataDiskConfigurations1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDataDiskConfigurations1 = catparametersVirtualMachineDataDiskConfigurations1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineDataDiskConfigurations1 = parametersVirtualMachineDataDiskConfigurations1.category('remove')
@@ -29915,7 +29915,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add data-disk-configurations
-  var catparametersVirtualMachineDataDiskConfigurations2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDataDiskConfigurations2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDataDiskConfigurations2 = catparametersVirtualMachineDataDiskConfigurations2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineDataDiskConfigurations2 = parametersVirtualMachineDataDiskConfigurations2.category('add')
@@ -29982,7 +29982,7 @@ exports.init = function (cli) {
   });
 
   //parameters set os-disk-configuration
-  var catparametersVirtualMachineOSDiskConfiguration0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineOSDiskConfiguration0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineOSDiskConfiguration0 = catparametersVirtualMachineOSDiskConfiguration0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineOSDiskConfiguration0 = parametersVirtualMachineOSDiskConfiguration0.category('set')
@@ -30034,7 +30034,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove os-disk-configuration
-  var catparametersVirtualMachineOSDiskConfiguration1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineOSDiskConfiguration1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineOSDiskConfiguration1 = catparametersVirtualMachineOSDiskConfiguration1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineOSDiskConfiguration1 = parametersVirtualMachineOSDiskConfiguration1.category('remove')
@@ -30067,7 +30067,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add os-disk-configuration
-  var catparametersVirtualMachineOSDiskConfiguration2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineOSDiskConfiguration2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineOSDiskConfiguration2 = catparametersVirtualMachineOSDiskConfiguration2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineOSDiskConfiguration2 = parametersVirtualMachineOSDiskConfiguration2.category('add')
@@ -30333,7 +30333,7 @@ exports.init = function (cli) {
   "virtualNetworkName":""
 }
 */
-  var virtualMachineCreateDeployment = cli.category('virtualMachine').description($('Commands to manage your virtual machine.'));
+  var virtualMachineCreateDeployment = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine').description($('Commands to manage your virtual machine.'));
   virtualMachineCreateDeployment.command('create-deployment')
   .description($('create-deployment method to manage your virtual machine.'))
   .usage('[options]')
@@ -30425,7 +30425,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-create-deployment-parameters
-  var catparametersVirtualMachineVirtualMachineCreateDeploymentParameters0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineCreateDeploymentParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineCreateDeploymentParameters0 = catparametersVirtualMachineVirtualMachineCreateDeploymentParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineVirtualMachineCreateDeploymentParameters0 = parametersVirtualMachineVirtualMachineCreateDeploymentParameters0.category('set')
@@ -30554,7 +30554,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-create-deployment-parameters
-  var catparametersVirtualMachineVirtualMachineCreateDeploymentParameters1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineCreateDeploymentParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineCreateDeploymentParameters1 = catparametersVirtualMachineVirtualMachineCreateDeploymentParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineVirtualMachineCreateDeploymentParameters1 = parametersVirtualMachineVirtualMachineCreateDeploymentParameters1.category('remove')
@@ -30587,7 +30587,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-create-deployment-parameters
-  var catparametersVirtualMachineVirtualMachineCreateDeploymentParameters2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineCreateDeploymentParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineCreateDeploymentParameters2 = catparametersVirtualMachineVirtualMachineCreateDeploymentParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineVirtualMachineCreateDeploymentParameters2 = parametersVirtualMachineVirtualMachineCreateDeploymentParameters2.category('add')
@@ -30720,7 +30720,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove deployment-slot
-  var catparametersVirtualMachineDeploymentSlot1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDeploymentSlot1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDeploymentSlot1 = catparametersVirtualMachineDeploymentSlot1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineDeploymentSlot1 = parametersVirtualMachineDeploymentSlot1.category('remove')
@@ -30753,7 +30753,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add deployment-slot
-  var catparametersVirtualMachineDeploymentSlot2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDeploymentSlot2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDeploymentSlot2 = catparametersVirtualMachineDeploymentSlot2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineDeploymentSlot2 = parametersVirtualMachineDeploymentSlot2.category('add')
@@ -30798,7 +30798,7 @@ exports.init = function (cli) {
   });
 
   //parameters set dns-settings
-  var catparametersVirtualMachineDnsSettings0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDnsSettings0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDnsSettings0 = catparametersVirtualMachineDnsSettings0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineDnsSettings0 = parametersVirtualMachineDnsSettings0.category('set')
@@ -30850,7 +30850,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove dns-settings
-  var catparametersVirtualMachineDnsSettings1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDnsSettings1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDnsSettings1 = catparametersVirtualMachineDnsSettings1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineDnsSettings1 = parametersVirtualMachineDnsSettings1.category('remove')
@@ -30883,7 +30883,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add dns-settings
-  var catparametersVirtualMachineDnsSettings2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDnsSettings2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDnsSettings2 = catparametersVirtualMachineDnsSettings2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineDnsSettings2 = parametersVirtualMachineDnsSettings2.category('add')
@@ -30939,7 +30939,7 @@ exports.init = function (cli) {
   });
 
   //parameters set dns-servers
-  var catparametersVirtualMachineDnsServers0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDnsServers0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDnsServers0 = catparametersVirtualMachineDnsServers0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineDnsServers0 = parametersVirtualMachineDnsServers0.category('set')
@@ -31006,7 +31006,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove dns-servers
-  var catparametersVirtualMachineDnsServers1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDnsServers1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDnsServers1 = catparametersVirtualMachineDnsServers1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineDnsServers1 = parametersVirtualMachineDnsServers1.category('remove')
@@ -31040,7 +31040,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add dns-servers
-  var catparametersVirtualMachineDnsServers2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDnsServers2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDnsServers2 = catparametersVirtualMachineDnsServers2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineDnsServers2 = parametersVirtualMachineDnsServers2.category('add')
@@ -31107,7 +31107,7 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancers
-  var catparametersVirtualMachineLoadBalancers0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancers0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancers0 = catparametersVirtualMachineLoadBalancers0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineLoadBalancers0 = parametersVirtualMachineLoadBalancers0.category('set')
@@ -31174,7 +31174,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancers
-  var catparametersVirtualMachineLoadBalancers1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancers1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancers1 = catparametersVirtualMachineLoadBalancers1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineLoadBalancers1 = parametersVirtualMachineLoadBalancers1.category('remove')
@@ -31208,7 +31208,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancers
-  var catparametersVirtualMachineLoadBalancers2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancers2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancers2 = catparametersVirtualMachineLoadBalancers2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineLoadBalancers2 = parametersVirtualMachineLoadBalancers2.category('add')
@@ -31275,7 +31275,7 @@ exports.init = function (cli) {
   });
 
   //parameters set frontend-ip-configuration
-  var catparametersVirtualMachineFrontendIPConfiguration0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineFrontendIPConfiguration0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineFrontendIPConfiguration0 = catparametersVirtualMachineFrontendIPConfiguration0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineFrontendIPConfiguration0 = parametersVirtualMachineFrontendIPConfiguration0.category('set')
@@ -31350,7 +31350,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove frontend-ip-configuration
-  var catparametersVirtualMachineFrontendIPConfiguration1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineFrontendIPConfiguration1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineFrontendIPConfiguration1 = catparametersVirtualMachineFrontendIPConfiguration1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineFrontendIPConfiguration1 = parametersVirtualMachineFrontendIPConfiguration1.category('remove')
@@ -31384,7 +31384,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add frontend-ip-configuration
-  var catparametersVirtualMachineFrontendIPConfiguration2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineFrontendIPConfiguration2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineFrontendIPConfiguration2 = catparametersVirtualMachineFrontendIPConfiguration2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineFrontendIPConfiguration2 = parametersVirtualMachineFrontendIPConfiguration2.category('add')
@@ -31462,7 +31462,7 @@ exports.init = function (cli) {
   });
 
   //parameters set roles
-  var catparametersVirtualMachineRoles0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRoles0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRoles0 = catparametersVirtualMachineRoles0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineRoles0 = parametersVirtualMachineRoles0.category('set')
@@ -31672,7 +31672,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove roles
-  var catparametersVirtualMachineRoles1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRoles1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRoles1 = catparametersVirtualMachineRoles1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineRoles1 = parametersVirtualMachineRoles1.category('remove')
@@ -31706,7 +31706,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add roles
-  var catparametersVirtualMachineRoles2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRoles2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRoles2 = catparametersVirtualMachineRoles2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineRoles2 = parametersVirtualMachineRoles2.category('add')
@@ -31916,7 +31916,7 @@ exports.init = function (cli) {
   });
 
   //parameters set configuration-sets
-  var catparametersVirtualMachineConfigurationSets0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineConfigurationSets0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineConfigurationSets0 = catparametersVirtualMachineConfigurationSets0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineConfigurationSets0 = parametersVirtualMachineConfigurationSets0.category('set')
@@ -32215,7 +32215,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove configuration-sets
-  var catparametersVirtualMachineConfigurationSets1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineConfigurationSets1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineConfigurationSets1 = catparametersVirtualMachineConfigurationSets1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineConfigurationSets1 = parametersVirtualMachineConfigurationSets1.category('remove')
@@ -32250,7 +32250,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add configuration-sets
-  var catparametersVirtualMachineConfigurationSets2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineConfigurationSets2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineConfigurationSets2 = catparametersVirtualMachineConfigurationSets2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineConfigurationSets2 = parametersVirtualMachineConfigurationSets2.category('add')
@@ -32548,7 +32548,7 @@ exports.init = function (cli) {
   });
 
   //parameters set domain-join
-  var catparametersVirtualMachineDomainJoin0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDomainJoin0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDomainJoin0 = catparametersVirtualMachineDomainJoin0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineDomainJoin0 = parametersVirtualMachineDomainJoin0.category('set')
@@ -32635,7 +32635,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove domain-join
-  var catparametersVirtualMachineDomainJoin1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDomainJoin1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDomainJoin1 = catparametersVirtualMachineDomainJoin1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineDomainJoin1 = parametersVirtualMachineDomainJoin1.category('remove')
@@ -32670,7 +32670,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add domain-join
-  var catparametersVirtualMachineDomainJoin2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDomainJoin2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDomainJoin2 = catparametersVirtualMachineDomainJoin2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineDomainJoin2 = parametersVirtualMachineDomainJoin2.category('add')
@@ -32759,7 +32759,7 @@ exports.init = function (cli) {
   });
 
   //parameters set credentials
-  var catparametersVirtualMachineCredentials0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineCredentials0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineCredentials0 = catparametersVirtualMachineCredentials0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineCredentials0 = parametersVirtualMachineCredentials0.category('set')
@@ -32835,7 +32835,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove credentials
-  var catparametersVirtualMachineCredentials1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineCredentials1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineCredentials1 = catparametersVirtualMachineCredentials1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineCredentials1 = parametersVirtualMachineCredentials1.category('remove')
@@ -32870,7 +32870,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add credentials
-  var catparametersVirtualMachineCredentials2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineCredentials2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineCredentials2 = catparametersVirtualMachineCredentials2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineCredentials2 = parametersVirtualMachineCredentials2.category('add')
@@ -32948,7 +32948,7 @@ exports.init = function (cli) {
   });
 
   //parameters set provisioning
-  var catparametersVirtualMachineProvisioning0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProvisioning0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProvisioning0 = catparametersVirtualMachineProvisioning0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineProvisioning0 = parametersVirtualMachineProvisioning0.category('set')
@@ -33002,7 +33002,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove provisioning
-  var catparametersVirtualMachineProvisioning1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProvisioning1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProvisioning1 = catparametersVirtualMachineProvisioning1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineProvisioning1 = parametersVirtualMachineProvisioning1.category('remove')
@@ -33037,7 +33037,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add provisioning
-  var catparametersVirtualMachineProvisioning2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProvisioning2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProvisioning2 = catparametersVirtualMachineProvisioning2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineProvisioning2 = parametersVirtualMachineProvisioning2.category('add')
@@ -33093,7 +33093,7 @@ exports.init = function (cli) {
   });
 
   //parameters set input-endpoints
-  var catparametersVirtualMachineInputEndpoints0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineInputEndpoints0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineInputEndpoints0 = catparametersVirtualMachineInputEndpoints0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineInputEndpoints0 = parametersVirtualMachineInputEndpoints0.category('set')
@@ -33283,7 +33283,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove input-endpoints
-  var catparametersVirtualMachineInputEndpoints1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineInputEndpoints1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineInputEndpoints1 = catparametersVirtualMachineInputEndpoints1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineInputEndpoints1 = parametersVirtualMachineInputEndpoints1.category('remove')
@@ -33319,7 +33319,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add input-endpoints
-  var catparametersVirtualMachineInputEndpoints2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineInputEndpoints2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineInputEndpoints2 = catparametersVirtualMachineInputEndpoints2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineInputEndpoints2 = parametersVirtualMachineInputEndpoints2.category('add')
@@ -33507,7 +33507,7 @@ exports.init = function (cli) {
   });
 
   //parameters set endpoint-acl
-  var catparametersVirtualMachineEndpointAcl0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineEndpointAcl0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineEndpointAcl0 = catparametersVirtualMachineEndpointAcl0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineEndpointAcl0 = parametersVirtualMachineEndpointAcl0.category('set')
@@ -33562,7 +33562,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove endpoint-acl
-  var catparametersVirtualMachineEndpointAcl1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineEndpointAcl1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineEndpointAcl1 = catparametersVirtualMachineEndpointAcl1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineEndpointAcl1 = parametersVirtualMachineEndpointAcl1.category('remove')
@@ -33598,7 +33598,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add endpoint-acl
-  var catparametersVirtualMachineEndpointAcl2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineEndpointAcl2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineEndpointAcl2 = catparametersVirtualMachineEndpointAcl2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineEndpointAcl2 = parametersVirtualMachineEndpointAcl2.category('add')
@@ -33654,7 +33654,7 @@ exports.init = function (cli) {
   });
 
   //parameters set rules
-  var catparametersVirtualMachineRules0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRules0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRules0 = catparametersVirtualMachineRules0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineRules0 = parametersVirtualMachineRules0.category('set')
@@ -33746,7 +33746,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove rules
-  var catparametersVirtualMachineRules1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRules1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRules1 = catparametersVirtualMachineRules1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineRules1 = parametersVirtualMachineRules1.category('remove')
@@ -33783,7 +33783,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add rules
-  var catparametersVirtualMachineRules2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRules2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRules2 = catparametersVirtualMachineRules2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineRules2 = parametersVirtualMachineRules2.category('add')
@@ -33872,7 +33872,7 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancer-probe
-  var catparametersVirtualMachineLoadBalancerProbe0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancerProbe0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancerProbe0 = catparametersVirtualMachineLoadBalancerProbe0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineLoadBalancerProbe0 = parametersVirtualMachineLoadBalancerProbe0.category('set')
@@ -33971,7 +33971,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancer-probe
-  var catparametersVirtualMachineLoadBalancerProbe1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancerProbe1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancerProbe1 = catparametersVirtualMachineLoadBalancerProbe1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineLoadBalancerProbe1 = parametersVirtualMachineLoadBalancerProbe1.category('remove')
@@ -34007,7 +34007,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancer-probe
-  var catparametersVirtualMachineLoadBalancerProbe2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancerProbe2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancerProbe2 = catparametersVirtualMachineLoadBalancerProbe2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineLoadBalancerProbe2 = parametersVirtualMachineLoadBalancerProbe2.category('add')
@@ -34107,7 +34107,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove protocol
-  var catparametersVirtualMachineProtocol1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProtocol1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProtocol1 = catparametersVirtualMachineProtocol1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineProtocol1 = parametersVirtualMachineProtocol1.category('remove')
@@ -34143,7 +34143,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add protocol
-  var catparametersVirtualMachineProtocol2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProtocol2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProtocol2 = catparametersVirtualMachineProtocol2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineProtocol2 = parametersVirtualMachineProtocol2.category('add')
@@ -34188,7 +34188,7 @@ exports.init = function (cli) {
   });
 
   //parameters set network-interfaces
-  var catparametersVirtualMachineNetworkInterfaces0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineNetworkInterfaces0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineNetworkInterfaces0 = catparametersVirtualMachineNetworkInterfaces0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineNetworkInterfaces0 = parametersVirtualMachineNetworkInterfaces0.category('set')
@@ -34279,7 +34279,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove network-interfaces
-  var catparametersVirtualMachineNetworkInterfaces1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineNetworkInterfaces1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineNetworkInterfaces1 = catparametersVirtualMachineNetworkInterfaces1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineNetworkInterfaces1 = parametersVirtualMachineNetworkInterfaces1.category('remove')
@@ -34315,7 +34315,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add network-interfaces
-  var catparametersVirtualMachineNetworkInterfaces2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineNetworkInterfaces2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineNetworkInterfaces2 = catparametersVirtualMachineNetworkInterfaces2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineNetworkInterfaces2 = parametersVirtualMachineNetworkInterfaces2.category('add')
@@ -34404,7 +34404,7 @@ exports.init = function (cli) {
   });
 
   //parameters set ip-configurations
-  var catparametersVirtualMachineIPConfigurations0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineIPConfigurations0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineIPConfigurations0 = catparametersVirtualMachineIPConfigurations0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineIPConfigurations0 = parametersVirtualMachineIPConfigurations0.category('set')
@@ -34474,7 +34474,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove ip-configurations
-  var catparametersVirtualMachineIPConfigurations1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineIPConfigurations1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineIPConfigurations1 = catparametersVirtualMachineIPConfigurations1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineIPConfigurations1 = parametersVirtualMachineIPConfigurations1.category('remove')
@@ -34511,7 +34511,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ip-configurations
-  var catparametersVirtualMachineIPConfigurations2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineIPConfigurations2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineIPConfigurations2 = catparametersVirtualMachineIPConfigurations2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineIPConfigurations2 = parametersVirtualMachineIPConfigurations2.category('add')
@@ -34578,7 +34578,7 @@ exports.init = function (cli) {
   });
 
   //parameters set public-ip
-  var catparametersVirtualMachinePublicIPs0 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicIPs0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicIPs0 = catparametersVirtualMachinePublicIPs0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachinePublicIPs0 = parametersVirtualMachinePublicIPs0.category('set')
@@ -34658,7 +34658,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove public-ip
-  var catparametersVirtualMachinePublicIPs1 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicIPs1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicIPs1 = catparametersVirtualMachinePublicIPs1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachinePublicIPs1 = parametersVirtualMachinePublicIPs1.category('remove')
@@ -34694,7 +34694,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add public-ip
-  var catparametersVirtualMachinePublicIPs2 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicIPs2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicIPs2 = catparametersVirtualMachinePublicIPs2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachinePublicIPs2 = parametersVirtualMachinePublicIPs2.category('add')
@@ -34772,7 +34772,7 @@ exports.init = function (cli) {
   });
 
   //parameters set ssh-settings
-  var catparametersVirtualMachineSshSettings0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSshSettings0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSshSettings0 = catparametersVirtualMachineSshSettings0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineSshSettings0 = parametersVirtualMachineSshSettings0.category('set')
@@ -34837,7 +34837,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove ssh-settings
-  var catparametersVirtualMachineSshSettings1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSshSettings1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSshSettings1 = catparametersVirtualMachineSshSettings1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineSshSettings1 = parametersVirtualMachineSshSettings1.category('remove')
@@ -34872,7 +34872,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ssh-settings
-  var catparametersVirtualMachineSshSettings2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSshSettings2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSshSettings2 = catparametersVirtualMachineSshSettings2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineSshSettings2 = parametersVirtualMachineSshSettings2.category('add')
@@ -34939,7 +34939,7 @@ exports.init = function (cli) {
   });
 
   //parameters set key-pairs
-  var catparametersVirtualMachineKeyPairs0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineKeyPairs0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineKeyPairs0 = catparametersVirtualMachineKeyPairs0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineKeyPairs0 = parametersVirtualMachineKeyPairs0.category('set')
@@ -35008,7 +35008,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove key-pairs
-  var catparametersVirtualMachineKeyPairs1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineKeyPairs1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineKeyPairs1 = catparametersVirtualMachineKeyPairs1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineKeyPairs1 = parametersVirtualMachineKeyPairs1.category('remove')
@@ -35044,7 +35044,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add key-pairs
-  var catparametersVirtualMachineKeyPairs2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineKeyPairs2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineKeyPairs2 = catparametersVirtualMachineKeyPairs2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineKeyPairs2 = parametersVirtualMachineKeyPairs2.category('add')
@@ -35111,7 +35111,7 @@ exports.init = function (cli) {
   });
 
   //parameters set public-keys
-  var catparametersVirtualMachinePublicKeys0 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicKeys0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicKeys0 = catparametersVirtualMachinePublicKeys0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachinePublicKeys0 = parametersVirtualMachinePublicKeys0.category('set')
@@ -35180,7 +35180,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove public-keys
-  var catparametersVirtualMachinePublicKeys1 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicKeys1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicKeys1 = catparametersVirtualMachinePublicKeys1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachinePublicKeys1 = parametersVirtualMachinePublicKeys1.category('remove')
@@ -35216,7 +35216,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add public-keys
-  var catparametersVirtualMachinePublicKeys2 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicKeys2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicKeys2 = catparametersVirtualMachinePublicKeys2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachinePublicKeys2 = parametersVirtualMachinePublicKeys2.category('add')
@@ -35283,7 +35283,7 @@ exports.init = function (cli) {
   });
 
   //parameters set stored-certificate-settings
-  var catparametersVirtualMachineStoredCertificateSettings0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineStoredCertificateSettings0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineStoredCertificateSettings0 = catparametersVirtualMachineStoredCertificateSettings0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineStoredCertificateSettings0 = parametersVirtualMachineStoredCertificateSettings0.category('set')
@@ -35352,7 +35352,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove stored-certificate-settings
-  var catparametersVirtualMachineStoredCertificateSettings1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineStoredCertificateSettings1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineStoredCertificateSettings1 = catparametersVirtualMachineStoredCertificateSettings1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineStoredCertificateSettings1 = parametersVirtualMachineStoredCertificateSettings1.category('remove')
@@ -35388,7 +35388,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add stored-certificate-settings
-  var catparametersVirtualMachineStoredCertificateSettings2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineStoredCertificateSettings2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineStoredCertificateSettings2 = catparametersVirtualMachineStoredCertificateSettings2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineStoredCertificateSettings2 = parametersVirtualMachineStoredCertificateSettings2.category('add')
@@ -35455,7 +35455,7 @@ exports.init = function (cli) {
   });
 
   //parameters set subnet-names
-  var catparametersVirtualMachineSubnetNames0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSubnetNames0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSubnetNames0 = catparametersVirtualMachineSubnetNames0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineSubnetNames0 = parametersVirtualMachineSubnetNames0.category('set')
@@ -35502,7 +35502,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove subnet-names
-  var catparametersVirtualMachineSubnetNames1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSubnetNames1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSubnetNames1 = catparametersVirtualMachineSubnetNames1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineSubnetNames1 = parametersVirtualMachineSubnetNames1.category('remove')
@@ -35538,7 +35538,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add subnet-names
-  var catparametersVirtualMachineSubnetNames2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSubnetNames2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSubnetNames2 = catparametersVirtualMachineSubnetNames2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineSubnetNames2 = parametersVirtualMachineSubnetNames2.category('add')
@@ -35583,7 +35583,7 @@ exports.init = function (cli) {
   });
 
   //parameters set windows-remote-management
-  var catparametersVirtualMachineWindowsRemoteManagement0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineWindowsRemoteManagement0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineWindowsRemoteManagement0 = catparametersVirtualMachineWindowsRemoteManagement0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineWindowsRemoteManagement0 = parametersVirtualMachineWindowsRemoteManagement0.category('set')
@@ -35637,7 +35637,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove windows-remote-management
-  var catparametersVirtualMachineWindowsRemoteManagement1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineWindowsRemoteManagement1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineWindowsRemoteManagement1 = catparametersVirtualMachineWindowsRemoteManagement1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineWindowsRemoteManagement1 = parametersVirtualMachineWindowsRemoteManagement1.category('remove')
@@ -35672,7 +35672,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add windows-remote-management
-  var catparametersVirtualMachineWindowsRemoteManagement2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineWindowsRemoteManagement2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineWindowsRemoteManagement2 = catparametersVirtualMachineWindowsRemoteManagement2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineWindowsRemoteManagement2 = parametersVirtualMachineWindowsRemoteManagement2.category('add')
@@ -35728,7 +35728,7 @@ exports.init = function (cli) {
   });
 
   //parameters set listeners
-  var catparametersVirtualMachineListeners0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListeners0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListeners0 = catparametersVirtualMachineListeners0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineListeners0 = parametersVirtualMachineListeners0.category('set')
@@ -35797,7 +35797,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove listeners
-  var catparametersVirtualMachineListeners1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListeners1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListeners1 = catparametersVirtualMachineListeners1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineListeners1 = parametersVirtualMachineListeners1.category('remove')
@@ -35833,7 +35833,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add listeners
-  var catparametersVirtualMachineListeners2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListeners2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListeners2 = catparametersVirtualMachineListeners2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineListeners2 = parametersVirtualMachineListeners2.category('add')
@@ -35900,7 +35900,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove listener-type
-  var catparametersVirtualMachineListenerType1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListenerType1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListenerType1 = catparametersVirtualMachineListenerType1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineListenerType1 = parametersVirtualMachineListenerType1.category('remove')
@@ -35936,7 +35936,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add listener-type
-  var catparametersVirtualMachineListenerType2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListenerType2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListenerType2 = catparametersVirtualMachineListenerType2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineListenerType2 = parametersVirtualMachineListenerType2.category('add')
@@ -35981,7 +35981,7 @@ exports.init = function (cli) {
   });
 
   //parameters set data-virtual-hard-disks
-  var catparametersVirtualMachineDataVirtualHardDisks0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDataVirtualHardDisks0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDataVirtualHardDisks0 = catparametersVirtualMachineDataVirtualHardDisks0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineDataVirtualHardDisks0 = parametersVirtualMachineDataVirtualHardDisks0.category('set')
@@ -36115,7 +36115,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove data-virtual-hard-disks
-  var catparametersVirtualMachineDataVirtualHardDisks1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDataVirtualHardDisks1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDataVirtualHardDisks1 = catparametersVirtualMachineDataVirtualHardDisks1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineDataVirtualHardDisks1 = parametersVirtualMachineDataVirtualHardDisks1.category('remove')
@@ -36150,7 +36150,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add data-virtual-hard-disks
-  var catparametersVirtualMachineDataVirtualHardDisks2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDataVirtualHardDisks2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDataVirtualHardDisks2 = catparametersVirtualMachineDataVirtualHardDisks2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineDataVirtualHardDisks2 = parametersVirtualMachineDataVirtualHardDisks2.category('add')
@@ -36283,7 +36283,7 @@ exports.init = function (cli) {
   });
 
   //parameters set os-virtual-hard-disk
-  var catparametersVirtualMachineOSVirtualHardDisk0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineOSVirtualHardDisk0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineOSVirtualHardDisk0 = catparametersVirtualMachineOSVirtualHardDisk0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineOSVirtualHardDisk0 = parametersVirtualMachineOSVirtualHardDisk0.category('set')
@@ -36424,7 +36424,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove os-virtual-hard-disk
-  var catparametersVirtualMachineOSVirtualHardDisk1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineOSVirtualHardDisk1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineOSVirtualHardDisk1 = catparametersVirtualMachineOSVirtualHardDisk1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineOSVirtualHardDisk1 = parametersVirtualMachineOSVirtualHardDisk1.category('remove')
@@ -36458,7 +36458,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add os-virtual-hard-disk
-  var catparametersVirtualMachineOSVirtualHardDisk2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineOSVirtualHardDisk2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineOSVirtualHardDisk2 = catparametersVirtualMachineOSVirtualHardDisk2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineOSVirtualHardDisk2 = parametersVirtualMachineOSVirtualHardDisk2.category('add')
@@ -36602,7 +36602,7 @@ exports.init = function (cli) {
   });
 
   //parameters set resource-extension-references
-  var catparametersVirtualMachineResourceExtensionReferences0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionReferences0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionReferences0 = catparametersVirtualMachineResourceExtensionReferences0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineResourceExtensionReferences0 = parametersVirtualMachineResourceExtensionReferences0.category('set')
@@ -36725,7 +36725,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove resource-extension-references
-  var catparametersVirtualMachineResourceExtensionReferences1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionReferences1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionReferences1 = catparametersVirtualMachineResourceExtensionReferences1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineResourceExtensionReferences1 = parametersVirtualMachineResourceExtensionReferences1.category('remove')
@@ -36760,7 +36760,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add resource-extension-references
-  var catparametersVirtualMachineResourceExtensionReferences2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionReferences2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionReferences2 = catparametersVirtualMachineResourceExtensionReferences2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineResourceExtensionReferences2 = parametersVirtualMachineResourceExtensionReferences2.category('add')
@@ -36882,7 +36882,7 @@ exports.init = function (cli) {
   });
 
   //parameters set resource-extension-parameter-values
-  var catparametersVirtualMachineResourceExtensionParameterValues0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionParameterValues0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionParameterValues0 = catparametersVirtualMachineResourceExtensionParameterValues0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineResourceExtensionParameterValues0 = parametersVirtualMachineResourceExtensionParameterValues0.category('set')
@@ -36962,7 +36962,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove resource-extension-parameter-values
-  var catparametersVirtualMachineResourceExtensionParameterValues1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionParameterValues1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionParameterValues1 = catparametersVirtualMachineResourceExtensionParameterValues1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineResourceExtensionParameterValues1 = parametersVirtualMachineResourceExtensionParameterValues1.category('remove')
@@ -36998,7 +36998,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add resource-extension-parameter-values
-  var catparametersVirtualMachineResourceExtensionParameterValues2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionParameterValues2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionParameterValues2 = catparametersVirtualMachineResourceExtensionParameterValues2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineResourceExtensionParameterValues2 = parametersVirtualMachineResourceExtensionParameterValues2.category('add')
@@ -37076,7 +37076,7 @@ exports.init = function (cli) {
   });
 
   //parameters set vm-image-input
-  var catparametersVirtualMachineVMImageInput0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVMImageInput0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVMImageInput0 = catparametersVirtualMachineVMImageInput0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineVMImageInput0 = parametersVirtualMachineVMImageInput0.category('set')
@@ -37140,7 +37140,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove vm-image-input
-  var catparametersVirtualMachineVMImageInput1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVMImageInput1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVMImageInput1 = catparametersVirtualMachineVMImageInput1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineVMImageInput1 = parametersVirtualMachineVMImageInput1.category('remove')
@@ -37174,7 +37174,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add vm-image-input
-  var catparametersVirtualMachineVMImageInput2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVMImageInput2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVMImageInput2 = catparametersVirtualMachineVMImageInput2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineVMImageInput2 = parametersVirtualMachineVMImageInput2.category('add')
@@ -37241,7 +37241,7 @@ exports.init = function (cli) {
   });
 
   //parameters set data-disk-configurations
-  var catparametersVirtualMachineDataDiskConfigurations0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDataDiskConfigurations0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDataDiskConfigurations0 = catparametersVirtualMachineDataDiskConfigurations0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineDataDiskConfigurations0 = parametersVirtualMachineDataDiskConfigurations0.category('set')
@@ -37309,7 +37309,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove data-disk-configurations
-  var catparametersVirtualMachineDataDiskConfigurations1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDataDiskConfigurations1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDataDiskConfigurations1 = catparametersVirtualMachineDataDiskConfigurations1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineDataDiskConfigurations1 = parametersVirtualMachineDataDiskConfigurations1.category('remove')
@@ -37344,7 +37344,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add data-disk-configurations
-  var catparametersVirtualMachineDataDiskConfigurations2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDataDiskConfigurations2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDataDiskConfigurations2 = catparametersVirtualMachineDataDiskConfigurations2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineDataDiskConfigurations2 = parametersVirtualMachineDataDiskConfigurations2.category('add')
@@ -37411,7 +37411,7 @@ exports.init = function (cli) {
   });
 
   //parameters set os-disk-configuration
-  var catparametersVirtualMachineOSDiskConfiguration0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineOSDiskConfiguration0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineOSDiskConfiguration0 = catparametersVirtualMachineOSDiskConfiguration0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineOSDiskConfiguration0 = parametersVirtualMachineOSDiskConfiguration0.category('set')
@@ -37464,7 +37464,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove os-disk-configuration
-  var catparametersVirtualMachineOSDiskConfiguration1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineOSDiskConfiguration1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineOSDiskConfiguration1 = catparametersVirtualMachineOSDiskConfiguration1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineOSDiskConfiguration1 = parametersVirtualMachineOSDiskConfiguration1.category('remove')
@@ -37498,7 +37498,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add os-disk-configuration
-  var catparametersVirtualMachineOSDiskConfiguration2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineOSDiskConfiguration2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineOSDiskConfiguration2 = catparametersVirtualMachineOSDiskConfiguration2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineOSDiskConfiguration2 = parametersVirtualMachineOSDiskConfiguration2.category('add')
@@ -37561,7 +37561,7 @@ exports.init = function (cli) {
   --virtual-machine-name
   --delete-from-storage
 */
-  var virtualMachineDelete = cli.category('virtualMachine').description($('Commands to manage your virtual machine.'));
+  var virtualMachineDelete = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine').description($('Commands to manage your virtual machine.'));
   virtualMachineDelete.command('delete')
   .description($('delete method to manage your virtual machine.'))
   .usage('[options]')
@@ -37595,7 +37595,7 @@ exports.init = function (cli) {
   --deployment-name
   --virtual-machine-name
 */
-  var virtualMachineGet = cli.category('virtualMachine').description($('Commands to manage your virtual machine.'));
+  var virtualMachineGet = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine').description($('Commands to manage your virtual machine.'));
   virtualMachineGet.command('get')
   .description($('get method to manage your virtual machine.'))
   .usage('[options]')
@@ -37619,7 +37619,7 @@ exports.init = function (cli) {
   --deployment-name
   --virtual-machine-name
 */
-  var virtualMachineGetRemoteDesktopFile = cli.category('virtualMachine').description($('Commands to manage your virtual machine.'));
+  var virtualMachineGetRemoteDesktopFile = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine').description($('Commands to manage your virtual machine.'));
   virtualMachineGetRemoteDesktopFile.command('get-remote-desktop-file')
   .description($('get-remote-desktop-file method to manage your virtual machine.'))
   .usage('[options]')
@@ -37643,7 +37643,7 @@ exports.init = function (cli) {
   --deployment-name
   --virtual-machine-name
 */
-  var virtualMachineRestart = cli.category('virtualMachine').description($('Commands to manage your virtual machine.'));
+  var virtualMachineRestart = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine').description($('Commands to manage your virtual machine.'));
   virtualMachineRestart.command('restart')
   .description($('restart method to manage your virtual machine.'))
   .usage('[options]')
@@ -37672,7 +37672,7 @@ exports.init = function (cli) {
   "postShutdownAction":0
 }
 */
-  var virtualMachineShutdown = cli.category('virtualMachine').description($('Commands to manage your virtual machine.'));
+  var virtualMachineShutdown = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine').description($('Commands to manage your virtual machine.'));
   virtualMachineShutdown.command('shutdown')
   .description($('shutdown method to manage your virtual machine.'))
   .usage('[options]')
@@ -37768,7 +37768,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-shutdown-parameters
-  var catparametersVirtualMachineVirtualMachineShutdownParameters0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineShutdownParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineShutdownParameters0 = catparametersVirtualMachineVirtualMachineShutdownParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineVirtualMachineShutdownParameters0 = parametersVirtualMachineVirtualMachineShutdownParameters0.category('set')
@@ -37820,7 +37820,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-shutdown-parameters
-  var catparametersVirtualMachineVirtualMachineShutdownParameters1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineShutdownParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineShutdownParameters1 = catparametersVirtualMachineVirtualMachineShutdownParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineVirtualMachineShutdownParameters1 = parametersVirtualMachineVirtualMachineShutdownParameters1.category('remove')
@@ -37853,7 +37853,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-shutdown-parameters
-  var catparametersVirtualMachineVirtualMachineShutdownParameters2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineShutdownParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineShutdownParameters2 = catparametersVirtualMachineVirtualMachineShutdownParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineVirtualMachineShutdownParameters2 = parametersVirtualMachineVirtualMachineShutdownParameters2.category('add')
@@ -37909,7 +37909,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove post-shutdown-action
-  var catparametersVirtualMachinePostShutdownAction1 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePostShutdownAction1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePostShutdownAction1 = catparametersVirtualMachinePostShutdownAction1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachinePostShutdownAction1 = parametersVirtualMachinePostShutdownAction1.category('remove')
@@ -37942,7 +37942,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add post-shutdown-action
-  var catparametersVirtualMachinePostShutdownAction2 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePostShutdownAction2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePostShutdownAction2 = catparametersVirtualMachinePostShutdownAction2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachinePostShutdownAction2 = parametersVirtualMachinePostShutdownAction2.category('add')
@@ -38000,7 +38000,7 @@ exports.init = function (cli) {
   ]
 }
 */
-  var virtualMachineShutdownRoles = cli.category('virtualMachine').description($('Commands to manage your virtual machine.'));
+  var virtualMachineShutdownRoles = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine').description($('Commands to manage your virtual machine.'));
   virtualMachineShutdownRoles.command('shutdown-roles')
   .description($('shutdown-roles method to manage your virtual machine.'))
   .usage('[options]')
@@ -38094,7 +38094,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-shutdown-roles-parameters
-  var catparametersVirtualMachineVirtualMachineShutdownRolesParameters0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineShutdownRolesParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineShutdownRolesParameters0 = catparametersVirtualMachineVirtualMachineShutdownRolesParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineVirtualMachineShutdownRolesParameters0 = parametersVirtualMachineVirtualMachineShutdownRolesParameters0.category('set')
@@ -38157,7 +38157,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-shutdown-roles-parameters
-  var catparametersVirtualMachineVirtualMachineShutdownRolesParameters1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineShutdownRolesParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineShutdownRolesParameters1 = catparametersVirtualMachineVirtualMachineShutdownRolesParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineVirtualMachineShutdownRolesParameters1 = parametersVirtualMachineVirtualMachineShutdownRolesParameters1.category('remove')
@@ -38190,7 +38190,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-shutdown-roles-parameters
-  var catparametersVirtualMachineVirtualMachineShutdownRolesParameters2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineShutdownRolesParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineShutdownRolesParameters2 = catparametersVirtualMachineVirtualMachineShutdownRolesParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineVirtualMachineShutdownRolesParameters2 = parametersVirtualMachineVirtualMachineShutdownRolesParameters2.category('add')
@@ -38257,7 +38257,7 @@ exports.init = function (cli) {
   });
 
   //parameters set roles
-  var catparametersVirtualMachineRoles0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRoles0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRoles0 = catparametersVirtualMachineRoles0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineRoles0 = parametersVirtualMachineRoles0.category('set')
@@ -38302,7 +38302,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove roles
-  var catparametersVirtualMachineRoles1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRoles1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRoles1 = catparametersVirtualMachineRoles1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineRoles1 = parametersVirtualMachineRoles1.category('remove')
@@ -38336,7 +38336,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add roles
-  var catparametersVirtualMachineRoles2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRoles2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRoles2 = catparametersVirtualMachineRoles2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineRoles2 = parametersVirtualMachineRoles2.category('add')
@@ -38387,7 +38387,7 @@ exports.init = function (cli) {
   --deployment-name
   --virtual-machine-name
 */
-  var virtualMachineStart = cli.category('virtualMachine').description($('Commands to manage your virtual machine.'));
+  var virtualMachineStart = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine').description($('Commands to manage your virtual machine.'));
   virtualMachineStart.command('start')
   .description($('start method to manage your virtual machine.'))
   .usage('[options]')
@@ -38417,7 +38417,7 @@ exports.init = function (cli) {
   ]
 }
 */
-  var virtualMachineStartRoles = cli.category('virtualMachine').description($('Commands to manage your virtual machine.'));
+  var virtualMachineStartRoles = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine').description($('Commands to manage your virtual machine.'));
   virtualMachineStartRoles.command('start-roles')
   .description($('start-roles method to manage your virtual machine.'))
   .usage('[options]')
@@ -38514,7 +38514,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-start-roles-parameters
-  var catparametersVirtualMachineVirtualMachineStartRolesParameters0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineStartRolesParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineStartRolesParameters0 = catparametersVirtualMachineVirtualMachineStartRolesParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineVirtualMachineStartRolesParameters0 = parametersVirtualMachineVirtualMachineStartRolesParameters0.category('set')
@@ -38566,7 +38566,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-start-roles-parameters
-  var catparametersVirtualMachineVirtualMachineStartRolesParameters1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineStartRolesParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineStartRolesParameters1 = catparametersVirtualMachineVirtualMachineStartRolesParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineVirtualMachineStartRolesParameters1 = parametersVirtualMachineVirtualMachineStartRolesParameters1.category('remove')
@@ -38599,7 +38599,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-start-roles-parameters
-  var catparametersVirtualMachineVirtualMachineStartRolesParameters2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineStartRolesParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineStartRolesParameters2 = catparametersVirtualMachineVirtualMachineStartRolesParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineVirtualMachineStartRolesParameters2 = parametersVirtualMachineVirtualMachineStartRolesParameters2.category('add')
@@ -38655,7 +38655,7 @@ exports.init = function (cli) {
   });
 
   //parameters set roles
-  var catparametersVirtualMachineRoles0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRoles0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRoles0 = catparametersVirtualMachineRoles0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineRoles0 = parametersVirtualMachineRoles0.category('set')
@@ -38700,7 +38700,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove roles
-  var catparametersVirtualMachineRoles1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRoles1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRoles1 = catparametersVirtualMachineRoles1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineRoles1 = parametersVirtualMachineRoles1.category('remove')
@@ -38734,7 +38734,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add roles
-  var catparametersVirtualMachineRoles2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRoles2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRoles2 = catparametersVirtualMachineRoles2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineRoles2 = parametersVirtualMachineRoles2.category('add')
@@ -38948,7 +38948,7 @@ exports.init = function (cli) {
   "roleSize":""
 }
 */
-  var virtualMachineUpdate = cli.category('virtualMachine').description($('Commands to manage your virtual machine.'));
+  var virtualMachineUpdate = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine').description($('Commands to manage your virtual machine.'));
   virtualMachineUpdate.command('update')
   .description($('update method to manage your virtual machine.'))
   .usage('[options]')
@@ -39044,7 +39044,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-update-parameters
-  var catparametersVirtualMachineVirtualMachineUpdateParameters0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineUpdateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineUpdateParameters0 = catparametersVirtualMachineVirtualMachineUpdateParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineVirtualMachineUpdateParameters0 = parametersVirtualMachineVirtualMachineUpdateParameters0.category('set')
@@ -39184,7 +39184,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-update-parameters
-  var catparametersVirtualMachineVirtualMachineUpdateParameters1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineUpdateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineUpdateParameters1 = catparametersVirtualMachineVirtualMachineUpdateParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineVirtualMachineUpdateParameters1 = parametersVirtualMachineVirtualMachineUpdateParameters1.category('remove')
@@ -39217,7 +39217,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-update-parameters
-  var catparametersVirtualMachineVirtualMachineUpdateParameters2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineUpdateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineUpdateParameters2 = catparametersVirtualMachineVirtualMachineUpdateParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineVirtualMachineUpdateParameters2 = parametersVirtualMachineVirtualMachineUpdateParameters2.category('add')
@@ -39361,7 +39361,7 @@ exports.init = function (cli) {
   });
 
   //parameters set configuration-sets
-  var catparametersVirtualMachineConfigurationSets0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineConfigurationSets0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineConfigurationSets0 = catparametersVirtualMachineConfigurationSets0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineConfigurationSets0 = parametersVirtualMachineConfigurationSets0.category('set')
@@ -39659,7 +39659,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove configuration-sets
-  var catparametersVirtualMachineConfigurationSets1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineConfigurationSets1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineConfigurationSets1 = catparametersVirtualMachineConfigurationSets1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineConfigurationSets1 = parametersVirtualMachineConfigurationSets1.category('remove')
@@ -39693,7 +39693,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add configuration-sets
-  var catparametersVirtualMachineConfigurationSets2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineConfigurationSets2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineConfigurationSets2 = catparametersVirtualMachineConfigurationSets2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineConfigurationSets2 = parametersVirtualMachineConfigurationSets2.category('add')
@@ -39991,7 +39991,7 @@ exports.init = function (cli) {
   });
 
   //parameters set domain-join
-  var catparametersVirtualMachineDomainJoin0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDomainJoin0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDomainJoin0 = catparametersVirtualMachineDomainJoin0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineDomainJoin0 = parametersVirtualMachineDomainJoin0.category('set')
@@ -40077,7 +40077,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove domain-join
-  var catparametersVirtualMachineDomainJoin1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDomainJoin1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDomainJoin1 = catparametersVirtualMachineDomainJoin1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineDomainJoin1 = parametersVirtualMachineDomainJoin1.category('remove')
@@ -40111,7 +40111,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add domain-join
-  var catparametersVirtualMachineDomainJoin2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDomainJoin2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDomainJoin2 = catparametersVirtualMachineDomainJoin2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineDomainJoin2 = parametersVirtualMachineDomainJoin2.category('add')
@@ -40200,7 +40200,7 @@ exports.init = function (cli) {
   });
 
   //parameters set credentials
-  var catparametersVirtualMachineCredentials0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineCredentials0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineCredentials0 = catparametersVirtualMachineCredentials0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineCredentials0 = parametersVirtualMachineCredentials0.category('set')
@@ -40275,7 +40275,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove credentials
-  var catparametersVirtualMachineCredentials1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineCredentials1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineCredentials1 = catparametersVirtualMachineCredentials1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineCredentials1 = parametersVirtualMachineCredentials1.category('remove')
@@ -40309,7 +40309,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add credentials
-  var catparametersVirtualMachineCredentials2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineCredentials2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineCredentials2 = catparametersVirtualMachineCredentials2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineCredentials2 = parametersVirtualMachineCredentials2.category('add')
@@ -40387,7 +40387,7 @@ exports.init = function (cli) {
   });
 
   //parameters set provisioning
-  var catparametersVirtualMachineProvisioning0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProvisioning0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProvisioning0 = catparametersVirtualMachineProvisioning0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineProvisioning0 = parametersVirtualMachineProvisioning0.category('set')
@@ -40440,7 +40440,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove provisioning
-  var catparametersVirtualMachineProvisioning1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProvisioning1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProvisioning1 = catparametersVirtualMachineProvisioning1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineProvisioning1 = parametersVirtualMachineProvisioning1.category('remove')
@@ -40474,7 +40474,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add provisioning
-  var catparametersVirtualMachineProvisioning2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProvisioning2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProvisioning2 = catparametersVirtualMachineProvisioning2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineProvisioning2 = parametersVirtualMachineProvisioning2.category('add')
@@ -40530,7 +40530,7 @@ exports.init = function (cli) {
   });
 
   //parameters set input-endpoints
-  var catparametersVirtualMachineInputEndpoints0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineInputEndpoints0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineInputEndpoints0 = catparametersVirtualMachineInputEndpoints0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineInputEndpoints0 = parametersVirtualMachineInputEndpoints0.category('set')
@@ -40719,7 +40719,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove input-endpoints
-  var catparametersVirtualMachineInputEndpoints1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineInputEndpoints1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineInputEndpoints1 = catparametersVirtualMachineInputEndpoints1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineInputEndpoints1 = parametersVirtualMachineInputEndpoints1.category('remove')
@@ -40754,7 +40754,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add input-endpoints
-  var catparametersVirtualMachineInputEndpoints2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineInputEndpoints2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineInputEndpoints2 = catparametersVirtualMachineInputEndpoints2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineInputEndpoints2 = parametersVirtualMachineInputEndpoints2.category('add')
@@ -40942,7 +40942,7 @@ exports.init = function (cli) {
   });
 
   //parameters set endpoint-acl
-  var catparametersVirtualMachineEndpointAcl0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineEndpointAcl0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineEndpointAcl0 = catparametersVirtualMachineEndpointAcl0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineEndpointAcl0 = parametersVirtualMachineEndpointAcl0.category('set')
@@ -40996,7 +40996,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove endpoint-acl
-  var catparametersVirtualMachineEndpointAcl1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineEndpointAcl1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineEndpointAcl1 = catparametersVirtualMachineEndpointAcl1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineEndpointAcl1 = parametersVirtualMachineEndpointAcl1.category('remove')
@@ -41031,7 +41031,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add endpoint-acl
-  var catparametersVirtualMachineEndpointAcl2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineEndpointAcl2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineEndpointAcl2 = catparametersVirtualMachineEndpointAcl2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineEndpointAcl2 = parametersVirtualMachineEndpointAcl2.category('add')
@@ -41087,7 +41087,7 @@ exports.init = function (cli) {
   });
 
   //parameters set rules
-  var catparametersVirtualMachineRules0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRules0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRules0 = catparametersVirtualMachineRules0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineRules0 = parametersVirtualMachineRules0.category('set')
@@ -41178,7 +41178,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove rules
-  var catparametersVirtualMachineRules1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRules1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRules1 = catparametersVirtualMachineRules1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineRules1 = parametersVirtualMachineRules1.category('remove')
@@ -41214,7 +41214,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add rules
-  var catparametersVirtualMachineRules2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRules2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRules2 = catparametersVirtualMachineRules2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineRules2 = parametersVirtualMachineRules2.category('add')
@@ -41303,7 +41303,7 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancer-probe
-  var catparametersVirtualMachineLoadBalancerProbe0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancerProbe0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancerProbe0 = catparametersVirtualMachineLoadBalancerProbe0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineLoadBalancerProbe0 = parametersVirtualMachineLoadBalancerProbe0.category('set')
@@ -41401,7 +41401,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancer-probe
-  var catparametersVirtualMachineLoadBalancerProbe1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancerProbe1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancerProbe1 = catparametersVirtualMachineLoadBalancerProbe1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineLoadBalancerProbe1 = parametersVirtualMachineLoadBalancerProbe1.category('remove')
@@ -41436,7 +41436,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancer-probe
-  var catparametersVirtualMachineLoadBalancerProbe2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancerProbe2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancerProbe2 = catparametersVirtualMachineLoadBalancerProbe2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineLoadBalancerProbe2 = parametersVirtualMachineLoadBalancerProbe2.category('add')
@@ -41536,7 +41536,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove protocol
-  var catparametersVirtualMachineProtocol1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProtocol1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProtocol1 = catparametersVirtualMachineProtocol1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineProtocol1 = parametersVirtualMachineProtocol1.category('remove')
@@ -41571,7 +41571,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add protocol
-  var catparametersVirtualMachineProtocol2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProtocol2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProtocol2 = catparametersVirtualMachineProtocol2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineProtocol2 = parametersVirtualMachineProtocol2.category('add')
@@ -41616,7 +41616,7 @@ exports.init = function (cli) {
   });
 
   //parameters set network-interfaces
-  var catparametersVirtualMachineNetworkInterfaces0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineNetworkInterfaces0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineNetworkInterfaces0 = catparametersVirtualMachineNetworkInterfaces0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineNetworkInterfaces0 = parametersVirtualMachineNetworkInterfaces0.category('set')
@@ -41706,7 +41706,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove network-interfaces
-  var catparametersVirtualMachineNetworkInterfaces1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineNetworkInterfaces1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineNetworkInterfaces1 = catparametersVirtualMachineNetworkInterfaces1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineNetworkInterfaces1 = parametersVirtualMachineNetworkInterfaces1.category('remove')
@@ -41741,7 +41741,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add network-interfaces
-  var catparametersVirtualMachineNetworkInterfaces2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineNetworkInterfaces2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineNetworkInterfaces2 = catparametersVirtualMachineNetworkInterfaces2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineNetworkInterfaces2 = parametersVirtualMachineNetworkInterfaces2.category('add')
@@ -41830,7 +41830,7 @@ exports.init = function (cli) {
   });
 
   //parameters set ip-configurations
-  var catparametersVirtualMachineIPConfigurations0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineIPConfigurations0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineIPConfigurations0 = catparametersVirtualMachineIPConfigurations0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineIPConfigurations0 = parametersVirtualMachineIPConfigurations0.category('set')
@@ -41899,7 +41899,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove ip-configurations
-  var catparametersVirtualMachineIPConfigurations1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineIPConfigurations1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineIPConfigurations1 = catparametersVirtualMachineIPConfigurations1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineIPConfigurations1 = parametersVirtualMachineIPConfigurations1.category('remove')
@@ -41935,7 +41935,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ip-configurations
-  var catparametersVirtualMachineIPConfigurations2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineIPConfigurations2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineIPConfigurations2 = catparametersVirtualMachineIPConfigurations2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineIPConfigurations2 = parametersVirtualMachineIPConfigurations2.category('add')
@@ -42002,7 +42002,7 @@ exports.init = function (cli) {
   });
 
   //parameters set public-ip
-  var catparametersVirtualMachinePublicIPs0 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicIPs0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicIPs0 = catparametersVirtualMachinePublicIPs0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachinePublicIPs0 = parametersVirtualMachinePublicIPs0.category('set')
@@ -42081,7 +42081,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove public-ip
-  var catparametersVirtualMachinePublicIPs1 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicIPs1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicIPs1 = catparametersVirtualMachinePublicIPs1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachinePublicIPs1 = parametersVirtualMachinePublicIPs1.category('remove')
@@ -42116,7 +42116,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add public-ip
-  var catparametersVirtualMachinePublicIPs2 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicIPs2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicIPs2 = catparametersVirtualMachinePublicIPs2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachinePublicIPs2 = parametersVirtualMachinePublicIPs2.category('add')
@@ -42194,7 +42194,7 @@ exports.init = function (cli) {
   });
 
   //parameters set ssh-settings
-  var catparametersVirtualMachineSshSettings0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSshSettings0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSshSettings0 = catparametersVirtualMachineSshSettings0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineSshSettings0 = parametersVirtualMachineSshSettings0.category('set')
@@ -42258,7 +42258,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove ssh-settings
-  var catparametersVirtualMachineSshSettings1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSshSettings1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSshSettings1 = catparametersVirtualMachineSshSettings1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineSshSettings1 = parametersVirtualMachineSshSettings1.category('remove')
@@ -42292,7 +42292,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add ssh-settings
-  var catparametersVirtualMachineSshSettings2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSshSettings2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSshSettings2 = catparametersVirtualMachineSshSettings2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineSshSettings2 = parametersVirtualMachineSshSettings2.category('add')
@@ -42359,7 +42359,7 @@ exports.init = function (cli) {
   });
 
   //parameters set key-pairs
-  var catparametersVirtualMachineKeyPairs0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineKeyPairs0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineKeyPairs0 = catparametersVirtualMachineKeyPairs0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineKeyPairs0 = parametersVirtualMachineKeyPairs0.category('set')
@@ -42427,7 +42427,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove key-pairs
-  var catparametersVirtualMachineKeyPairs1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineKeyPairs1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineKeyPairs1 = catparametersVirtualMachineKeyPairs1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineKeyPairs1 = parametersVirtualMachineKeyPairs1.category('remove')
@@ -42462,7 +42462,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add key-pairs
-  var catparametersVirtualMachineKeyPairs2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineKeyPairs2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineKeyPairs2 = catparametersVirtualMachineKeyPairs2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineKeyPairs2 = parametersVirtualMachineKeyPairs2.category('add')
@@ -42529,7 +42529,7 @@ exports.init = function (cli) {
   });
 
   //parameters set public-keys
-  var catparametersVirtualMachinePublicKeys0 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicKeys0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicKeys0 = catparametersVirtualMachinePublicKeys0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachinePublicKeys0 = parametersVirtualMachinePublicKeys0.category('set')
@@ -42597,7 +42597,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove public-keys
-  var catparametersVirtualMachinePublicKeys1 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicKeys1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicKeys1 = catparametersVirtualMachinePublicKeys1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachinePublicKeys1 = parametersVirtualMachinePublicKeys1.category('remove')
@@ -42632,7 +42632,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add public-keys
-  var catparametersVirtualMachinePublicKeys2 = cli.category('virtualMachine');
+  var catparametersVirtualMachinePublicKeys2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachinePublicKeys2 = catparametersVirtualMachinePublicKeys2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachinePublicKeys2 = parametersVirtualMachinePublicKeys2.category('add')
@@ -42699,7 +42699,7 @@ exports.init = function (cli) {
   });
 
   //parameters set stored-certificate-settings
-  var catparametersVirtualMachineStoredCertificateSettings0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineStoredCertificateSettings0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineStoredCertificateSettings0 = catparametersVirtualMachineStoredCertificateSettings0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineStoredCertificateSettings0 = parametersVirtualMachineStoredCertificateSettings0.category('set')
@@ -42767,7 +42767,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove stored-certificate-settings
-  var catparametersVirtualMachineStoredCertificateSettings1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineStoredCertificateSettings1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineStoredCertificateSettings1 = catparametersVirtualMachineStoredCertificateSettings1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineStoredCertificateSettings1 = parametersVirtualMachineStoredCertificateSettings1.category('remove')
@@ -42802,7 +42802,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add stored-certificate-settings
-  var catparametersVirtualMachineStoredCertificateSettings2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineStoredCertificateSettings2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineStoredCertificateSettings2 = catparametersVirtualMachineStoredCertificateSettings2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineStoredCertificateSettings2 = parametersVirtualMachineStoredCertificateSettings2.category('add')
@@ -42869,7 +42869,7 @@ exports.init = function (cli) {
   });
 
   //parameters set subnet-names
-  var catparametersVirtualMachineSubnetNames0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSubnetNames0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSubnetNames0 = catparametersVirtualMachineSubnetNames0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineSubnetNames0 = parametersVirtualMachineSubnetNames0.category('set')
@@ -42915,7 +42915,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove subnet-names
-  var catparametersVirtualMachineSubnetNames1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSubnetNames1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSubnetNames1 = catparametersVirtualMachineSubnetNames1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineSubnetNames1 = parametersVirtualMachineSubnetNames1.category('remove')
@@ -42950,7 +42950,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add subnet-names
-  var catparametersVirtualMachineSubnetNames2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineSubnetNames2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineSubnetNames2 = catparametersVirtualMachineSubnetNames2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineSubnetNames2 = parametersVirtualMachineSubnetNames2.category('add')
@@ -42995,7 +42995,7 @@ exports.init = function (cli) {
   });
 
   //parameters set windows-remote-management
-  var catparametersVirtualMachineWindowsRemoteManagement0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineWindowsRemoteManagement0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineWindowsRemoteManagement0 = catparametersVirtualMachineWindowsRemoteManagement0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineWindowsRemoteManagement0 = parametersVirtualMachineWindowsRemoteManagement0.category('set')
@@ -43048,7 +43048,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove windows-remote-management
-  var catparametersVirtualMachineWindowsRemoteManagement1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineWindowsRemoteManagement1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineWindowsRemoteManagement1 = catparametersVirtualMachineWindowsRemoteManagement1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineWindowsRemoteManagement1 = parametersVirtualMachineWindowsRemoteManagement1.category('remove')
@@ -43082,7 +43082,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add windows-remote-management
-  var catparametersVirtualMachineWindowsRemoteManagement2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineWindowsRemoteManagement2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineWindowsRemoteManagement2 = catparametersVirtualMachineWindowsRemoteManagement2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineWindowsRemoteManagement2 = parametersVirtualMachineWindowsRemoteManagement2.category('add')
@@ -43138,7 +43138,7 @@ exports.init = function (cli) {
   });
 
   //parameters set listeners
-  var catparametersVirtualMachineListeners0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListeners0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListeners0 = catparametersVirtualMachineListeners0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineListeners0 = parametersVirtualMachineListeners0.category('set')
@@ -43206,7 +43206,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove listeners
-  var catparametersVirtualMachineListeners1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListeners1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListeners1 = catparametersVirtualMachineListeners1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineListeners1 = parametersVirtualMachineListeners1.category('remove')
@@ -43241,7 +43241,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add listeners
-  var catparametersVirtualMachineListeners2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListeners2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListeners2 = catparametersVirtualMachineListeners2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineListeners2 = parametersVirtualMachineListeners2.category('add')
@@ -43308,7 +43308,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove listener-type
-  var catparametersVirtualMachineListenerType1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListenerType1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListenerType1 = catparametersVirtualMachineListenerType1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineListenerType1 = parametersVirtualMachineListenerType1.category('remove')
@@ -43343,7 +43343,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add listener-type
-  var catparametersVirtualMachineListenerType2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineListenerType2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineListenerType2 = catparametersVirtualMachineListenerType2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineListenerType2 = parametersVirtualMachineListenerType2.category('add')
@@ -43388,7 +43388,7 @@ exports.init = function (cli) {
   });
 
   //parameters set data-virtual-hard-disks
-  var catparametersVirtualMachineDataVirtualHardDisks0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDataVirtualHardDisks0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDataVirtualHardDisks0 = catparametersVirtualMachineDataVirtualHardDisks0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineDataVirtualHardDisks0 = parametersVirtualMachineDataVirtualHardDisks0.category('set')
@@ -43521,7 +43521,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove data-virtual-hard-disks
-  var catparametersVirtualMachineDataVirtualHardDisks1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDataVirtualHardDisks1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDataVirtualHardDisks1 = catparametersVirtualMachineDataVirtualHardDisks1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineDataVirtualHardDisks1 = parametersVirtualMachineDataVirtualHardDisks1.category('remove')
@@ -43555,7 +43555,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add data-virtual-hard-disks
-  var catparametersVirtualMachineDataVirtualHardDisks2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineDataVirtualHardDisks2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineDataVirtualHardDisks2 = catparametersVirtualMachineDataVirtualHardDisks2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineDataVirtualHardDisks2 = parametersVirtualMachineDataVirtualHardDisks2.category('add')
@@ -43688,7 +43688,7 @@ exports.init = function (cli) {
   });
 
   //parameters set os-virtual-hard-disk
-  var catparametersVirtualMachineOSVirtualHardDisk0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineOSVirtualHardDisk0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineOSVirtualHardDisk0 = catparametersVirtualMachineOSVirtualHardDisk0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineOSVirtualHardDisk0 = parametersVirtualMachineOSVirtualHardDisk0.category('set')
@@ -43828,7 +43828,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove os-virtual-hard-disk
-  var catparametersVirtualMachineOSVirtualHardDisk1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineOSVirtualHardDisk1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineOSVirtualHardDisk1 = catparametersVirtualMachineOSVirtualHardDisk1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineOSVirtualHardDisk1 = parametersVirtualMachineOSVirtualHardDisk1.category('remove')
@@ -43861,7 +43861,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add os-virtual-hard-disk
-  var catparametersVirtualMachineOSVirtualHardDisk2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineOSVirtualHardDisk2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineOSVirtualHardDisk2 = catparametersVirtualMachineOSVirtualHardDisk2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineOSVirtualHardDisk2 = parametersVirtualMachineOSVirtualHardDisk2.category('add')
@@ -44005,7 +44005,7 @@ exports.init = function (cli) {
   });
 
   //parameters set resource-extension-references
-  var catparametersVirtualMachineResourceExtensionReferences0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionReferences0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionReferences0 = catparametersVirtualMachineResourceExtensionReferences0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineResourceExtensionReferences0 = parametersVirtualMachineResourceExtensionReferences0.category('set')
@@ -44127,7 +44127,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove resource-extension-references
-  var catparametersVirtualMachineResourceExtensionReferences1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionReferences1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionReferences1 = catparametersVirtualMachineResourceExtensionReferences1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineResourceExtensionReferences1 = parametersVirtualMachineResourceExtensionReferences1.category('remove')
@@ -44161,7 +44161,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add resource-extension-references
-  var catparametersVirtualMachineResourceExtensionReferences2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionReferences2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionReferences2 = catparametersVirtualMachineResourceExtensionReferences2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineResourceExtensionReferences2 = parametersVirtualMachineResourceExtensionReferences2.category('add')
@@ -44283,7 +44283,7 @@ exports.init = function (cli) {
   });
 
   //parameters set resource-extension-parameter-values
-  var catparametersVirtualMachineResourceExtensionParameterValues0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionParameterValues0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionParameterValues0 = catparametersVirtualMachineResourceExtensionParameterValues0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineResourceExtensionParameterValues0 = parametersVirtualMachineResourceExtensionParameterValues0.category('set')
@@ -44362,7 +44362,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove resource-extension-parameter-values
-  var catparametersVirtualMachineResourceExtensionParameterValues1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionParameterValues1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionParameterValues1 = catparametersVirtualMachineResourceExtensionParameterValues1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineResourceExtensionParameterValues1 = parametersVirtualMachineResourceExtensionParameterValues1.category('remove')
@@ -44397,7 +44397,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add resource-extension-parameter-values
-  var catparametersVirtualMachineResourceExtensionParameterValues2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineResourceExtensionParameterValues2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineResourceExtensionParameterValues2 = catparametersVirtualMachineResourceExtensionParameterValues2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineResourceExtensionParameterValues2 = parametersVirtualMachineResourceExtensionParameterValues2.category('add')
@@ -44514,7 +44514,7 @@ exports.init = function (cli) {
   ]
 }
 */
-  var virtualMachineUpdateLoadBalancedEndpointSet = cli.category('virtualMachine').description($('Commands to manage your virtual machine.'));
+  var virtualMachineUpdateLoadBalancedEndpointSet = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine').description($('Commands to manage your virtual machine.'));
   virtualMachineUpdateLoadBalancedEndpointSet.command('update-load-balanced-endpoint-set')
   .description($('update-load-balanced-endpoint-set method to manage your virtual machine.'))
   .usage('[options]')
@@ -44608,7 +44608,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-update-load-balanced-set-parameters
-  var catparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters0 = catparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters0 = parametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters0.category('set')
@@ -44660,7 +44660,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-update-load-balanced-set-parameters
-  var catparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters1 = catparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters1 = parametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters1.category('remove')
@@ -44693,7 +44693,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-update-load-balanced-set-parameters
-  var catparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters2 = catparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters2 = parametersVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters2.category('add')
@@ -44749,7 +44749,7 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balanced-endpoints
-  var catparametersVirtualMachineLoadBalancedEndpoints0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancedEndpoints0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancedEndpoints0 = catparametersVirtualMachineLoadBalancedEndpoints0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineLoadBalancedEndpoints0 = parametersVirtualMachineLoadBalancedEndpoints0.category('set')
@@ -44937,7 +44937,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balanced-endpoints
-  var catparametersVirtualMachineLoadBalancedEndpoints1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancedEndpoints1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancedEndpoints1 = catparametersVirtualMachineLoadBalancedEndpoints1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineLoadBalancedEndpoints1 = parametersVirtualMachineLoadBalancedEndpoints1.category('remove')
@@ -44971,7 +44971,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balanced-endpoints
-  var catparametersVirtualMachineLoadBalancedEndpoints2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancedEndpoints2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancedEndpoints2 = catparametersVirtualMachineLoadBalancedEndpoints2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineLoadBalancedEndpoints2 = parametersVirtualMachineLoadBalancedEndpoints2.category('add')
@@ -45159,7 +45159,7 @@ exports.init = function (cli) {
   });
 
   //parameters set load-balancer-probe
-  var catparametersVirtualMachineLoadBalancerProbe0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancerProbe0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancerProbe0 = catparametersVirtualMachineLoadBalancerProbe0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineLoadBalancerProbe0 = parametersVirtualMachineLoadBalancerProbe0.category('set')
@@ -45256,7 +45256,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove load-balancer-probe
-  var catparametersVirtualMachineLoadBalancerProbe1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancerProbe1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancerProbe1 = catparametersVirtualMachineLoadBalancerProbe1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineLoadBalancerProbe1 = parametersVirtualMachineLoadBalancerProbe1.category('remove')
@@ -45290,7 +45290,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add load-balancer-probe
-  var catparametersVirtualMachineLoadBalancerProbe2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineLoadBalancerProbe2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineLoadBalancerProbe2 = catparametersVirtualMachineLoadBalancerProbe2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineLoadBalancerProbe2 = parametersVirtualMachineLoadBalancerProbe2.category('add')
@@ -45390,7 +45390,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove protocol
-  var catparametersVirtualMachineProtocol1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProtocol1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProtocol1 = catparametersVirtualMachineProtocol1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineProtocol1 = parametersVirtualMachineProtocol1.category('remove')
@@ -45424,7 +45424,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add protocol
-  var catparametersVirtualMachineProtocol2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineProtocol2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineProtocol2 = catparametersVirtualMachineProtocol2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineProtocol2 = parametersVirtualMachineProtocol2.category('add')
@@ -45469,7 +45469,7 @@ exports.init = function (cli) {
   });
 
   //parameters set rules
-  var catparametersVirtualMachineRules0 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRules0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRules0 = catparametersVirtualMachineRules0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine.'));
   var setparametersVirtualMachineRules0 = parametersVirtualMachineRules0.category('set')
@@ -45559,7 +45559,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove rules
-  var catparametersVirtualMachineRules1 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRules1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRules1 = catparametersVirtualMachineRules1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine.'));
   var removeparametersVirtualMachineRules1 = parametersVirtualMachineRules1.category('remove')
@@ -45594,7 +45594,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add rules
-  var catparametersVirtualMachineRules2 = cli.category('virtualMachine');
+  var catparametersVirtualMachineRules2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
   var parametersVirtualMachineRules2 = catparametersVirtualMachineRules2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine.'));
   var addparametersVirtualMachineRules2 = parametersVirtualMachineRules2.category('add')
@@ -45705,7 +45705,7 @@ exports.init = function (cli) {
   "smallIconUri":""
 }
 */
-  var virtualMachineOSImageCreate = cli.category('virtualMachineOSImage').description($('Commands to manage your virtual machine os image.'));
+  var virtualMachineOSImageCreate = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image').description($('Commands to manage your virtual machine os image.'));
   virtualMachineOSImageCreate.command('create')
   .description($('create method to manage your virtual machine os image.'))
   .usage('[options]')
@@ -45795,7 +45795,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-os-image-create-parameters
-  var catparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters0 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters0 = catparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-os-image.'));
   var setparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters0 = parametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters0.category('set')
@@ -46001,7 +46001,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-os-image-create-parameters
-  var catparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters1 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters1 = catparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-os-image.'));
   var removeparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters1 = parametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters1.category('remove')
@@ -46034,7 +46034,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-os-image-create-parameters
-  var catparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters2 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters2 = catparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-os-image.'));
   var addparametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters2 = parametersVirtualMachineOSImageVirtualMachineOSImageCreateParameters2.category('add')
@@ -46249,7 +46249,7 @@ exports.init = function (cli) {
   --image-name
   --delete-from-storage
 */
-  var virtualMachineOSImageDelete = cli.category('virtualMachineOSImage').description($('Commands to manage your virtual machine os image.'));
+  var virtualMachineOSImageDelete = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image').description($('Commands to manage your virtual machine os image.'));
   virtualMachineOSImageDelete.command('delete')
   .description($('delete method to manage your virtual machine os image.'))
   .usage('[options]')
@@ -46277,7 +46277,7 @@ exports.init = function (cli) {
   VirtualMachineOSImage Get
   --image-name
 */
-  var virtualMachineOSImageGet = cli.category('virtualMachineOSImage').description($('Commands to manage your virtual machine os image.'));
+  var virtualMachineOSImageGet = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image').description($('Commands to manage your virtual machine os image.'));
   virtualMachineOSImageGet.command('get')
   .description($('get method to manage your virtual machine os image.'))
   .usage('[options]')
@@ -46295,7 +46295,7 @@ exports.init = function (cli) {
   VirtualMachineOSImage GetDetails
   --image-name
 */
-  var virtualMachineOSImageGetDetails = cli.category('virtualMachineOSImage').description($('Commands to manage your virtual machine os image.'));
+  var virtualMachineOSImageGetDetails = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image').description($('Commands to manage your virtual machine os image.'));
   virtualMachineOSImageGetDetails.command('get-details')
   .description($('get-details method to manage your virtual machine os image.'))
   .usage('[options]')
@@ -46312,7 +46312,7 @@ exports.init = function (cli) {
 /*
   VirtualMachineOSImage List
 */
-  var virtualMachineOSImageList = cli.category('virtualMachineOSImage').description($('Commands to manage your virtual machine os image.'));
+  var virtualMachineOSImageList = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image').description($('Commands to manage your virtual machine os image.'));
   virtualMachineOSImageList.command('list')
   .description($('list method to manage your virtual machine os image.'))
   .usage('[options]')
@@ -46348,7 +46348,7 @@ exports.init = function (cli) {
   ]
 }
 */
-  var virtualMachineOSImageReplicate = cli.category('virtualMachineOSImage').description($('Commands to manage your virtual machine os image.'));
+  var virtualMachineOSImageReplicate = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image').description($('Commands to manage your virtual machine os image.'));
   virtualMachineOSImageReplicate.command('replicate')
   .description($('replicate method to manage your virtual machine os image.'))
   .usage('[options]')
@@ -46440,7 +46440,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-os-image-replicate-parameters
-  var catparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters0 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters0 = catparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-os-image.'));
   var setparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters0 = parametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters0.category('set')
@@ -46514,7 +46514,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-os-image-replicate-parameters
-  var catparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters1 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters1 = catparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-os-image.'));
   var removeparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters1 = parametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters1.category('remove')
@@ -46547,7 +46547,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-os-image-replicate-parameters
-  var catparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters2 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters2 = catparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-os-image.'));
   var addparametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters2 = parametersVirtualMachineOSImageVirtualMachineOSImageReplicateParameters2.category('add')
@@ -46625,7 +46625,7 @@ exports.init = function (cli) {
   });
 
   //parameters set compute-image-attributes
-  var catparametersVirtualMachineOSImageComputeImageAttributes0 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageComputeImageAttributes0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageComputeImageAttributes0 = catparametersVirtualMachineOSImageComputeImageAttributes0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-os-image.'));
   var setparametersVirtualMachineOSImageComputeImageAttributes0 = parametersVirtualMachineOSImageComputeImageAttributes0.category('set')
@@ -46699,7 +46699,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove compute-image-attributes
-  var catparametersVirtualMachineOSImageComputeImageAttributes1 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageComputeImageAttributes1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageComputeImageAttributes1 = catparametersVirtualMachineOSImageComputeImageAttributes1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-os-image.'));
   var removeparametersVirtualMachineOSImageComputeImageAttributes1 = parametersVirtualMachineOSImageComputeImageAttributes1.category('remove')
@@ -46732,7 +46732,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add compute-image-attributes
-  var catparametersVirtualMachineOSImageComputeImageAttributes2 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageComputeImageAttributes2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageComputeImageAttributes2 = catparametersVirtualMachineOSImageComputeImageAttributes2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-os-image.'));
   var addparametersVirtualMachineOSImageComputeImageAttributes2 = parametersVirtualMachineOSImageComputeImageAttributes2.category('add')
@@ -46810,7 +46810,7 @@ exports.init = function (cli) {
   });
 
   //parameters set marketplace-image-attributes
-  var catparametersVirtualMachineOSImageMarketplaceImageAttributes0 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageMarketplaceImageAttributes0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageMarketplaceImageAttributes0 = catparametersVirtualMachineOSImageMarketplaceImageAttributes0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-os-image.'));
   var setparametersVirtualMachineOSImageMarketplaceImageAttributes0 = parametersVirtualMachineOSImageMarketplaceImageAttributes0.category('set')
@@ -46873,7 +46873,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove marketplace-image-attributes
-  var catparametersVirtualMachineOSImageMarketplaceImageAttributes1 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageMarketplaceImageAttributes1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageMarketplaceImageAttributes1 = catparametersVirtualMachineOSImageMarketplaceImageAttributes1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-os-image.'));
   var removeparametersVirtualMachineOSImageMarketplaceImageAttributes1 = parametersVirtualMachineOSImageMarketplaceImageAttributes1.category('remove')
@@ -46906,7 +46906,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add marketplace-image-attributes
-  var catparametersVirtualMachineOSImageMarketplaceImageAttributes2 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageMarketplaceImageAttributes2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageMarketplaceImageAttributes2 = catparametersVirtualMachineOSImageMarketplaceImageAttributes2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-os-image.'));
   var addparametersVirtualMachineOSImageMarketplaceImageAttributes2 = parametersVirtualMachineOSImageMarketplaceImageAttributes2.category('add')
@@ -46973,7 +46973,7 @@ exports.init = function (cli) {
   });
 
   //parameters set plan
-  var catparametersVirtualMachineOSImagePlan0 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImagePlan0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImagePlan0 = catparametersVirtualMachineOSImagePlan0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-os-image.'));
   var setparametersVirtualMachineOSImagePlan0 = parametersVirtualMachineOSImagePlan0.category('set')
@@ -47047,7 +47047,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove plan
-  var catparametersVirtualMachineOSImagePlan1 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImagePlan1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImagePlan1 = catparametersVirtualMachineOSImagePlan1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-os-image.'));
   var removeparametersVirtualMachineOSImagePlan1 = parametersVirtualMachineOSImagePlan1.category('remove')
@@ -47080,7 +47080,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add plan
-  var catparametersVirtualMachineOSImagePlan2 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImagePlan2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImagePlan2 = catparametersVirtualMachineOSImagePlan2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-os-image.'));
   var addparametersVirtualMachineOSImagePlan2 = parametersVirtualMachineOSImagePlan2.category('add')
@@ -47158,7 +47158,7 @@ exports.init = function (cli) {
   });
 
   //parameters set target-locations
-  var catparametersVirtualMachineOSImageTargetLocations0 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageTargetLocations0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageTargetLocations0 = catparametersVirtualMachineOSImageTargetLocations0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-os-image.'));
   var setparametersVirtualMachineOSImageTargetLocations0 = parametersVirtualMachineOSImageTargetLocations0.category('set')
@@ -47203,7 +47203,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove target-locations
-  var catparametersVirtualMachineOSImageTargetLocations1 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageTargetLocations1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageTargetLocations1 = catparametersVirtualMachineOSImageTargetLocations1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-os-image.'));
   var removeparametersVirtualMachineOSImageTargetLocations1 = parametersVirtualMachineOSImageTargetLocations1.category('remove')
@@ -47237,7 +47237,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add target-locations
-  var catparametersVirtualMachineOSImageTargetLocations2 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageTargetLocations2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageTargetLocations2 = catparametersVirtualMachineOSImageTargetLocations2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-os-image.'));
   var addparametersVirtualMachineOSImageTargetLocations2 = parametersVirtualMachineOSImageTargetLocations2.category('add')
@@ -47287,7 +47287,7 @@ exports.init = function (cli) {
   --image-name
   --permission
 */
-  var virtualMachineOSImageShare = cli.category('virtualMachineOSImage').description($('Commands to manage your virtual machine os image.'));
+  var virtualMachineOSImageShare = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image').description($('Commands to manage your virtual machine os image.'));
   virtualMachineOSImageShare.command('share')
   .description($('share method to manage your virtual machine os image.'))
   .usage('[options]')
@@ -47307,7 +47307,7 @@ exports.init = function (cli) {
   VirtualMachineOSImage Unreplicate
   --image-name
 */
-  var virtualMachineOSImageUnreplicate = cli.category('virtualMachineOSImage').description($('Commands to manage your virtual machine os image.'));
+  var virtualMachineOSImageUnreplicate = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image').description($('Commands to manage your virtual machine os image.'));
   virtualMachineOSImageUnreplicate.command('unreplicate')
   .description($('unreplicate method to manage your virtual machine os image.'))
   .usage('[options]')
@@ -47341,7 +47341,7 @@ exports.init = function (cli) {
   "smallIconUri":""
 }
 */
-  var virtualMachineOSImageUpdate = cli.category('virtualMachineOSImage').description($('Commands to manage your virtual machine os image.'));
+  var virtualMachineOSImageUpdate = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image').description($('Commands to manage your virtual machine os image.'));
   virtualMachineOSImageUpdate.command('update')
   .description($('update method to manage your virtual machine os image.'))
   .usage('[options]')
@@ -47433,7 +47433,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-os-image-update-parameters
-  var catparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters0 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters0 = catparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-os-image.'));
   var setparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters0 = parametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters0.category('set')
@@ -47606,7 +47606,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-os-image-update-parameters
-  var catparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters1 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters1 = catparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-os-image.'));
   var removeparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters1 = parametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters1.category('remove')
@@ -47639,7 +47639,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-os-image-update-parameters
-  var catparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters2 = cli.category('virtualMachineOSImage');
+  var catparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-os-image');
   var parametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters2 = catparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-os-image.'));
   var addparametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters2 = parametersVirtualMachineOSImageVirtualMachineOSImageUpdateParameters2.category('add')
@@ -47848,7 +47848,7 @@ exports.init = function (cli) {
   "smallIconUri":""
 }
 */
-  var virtualMachineVMImageCreate = cli.category('virtualMachineVMImage').description($('Commands to manage your virtual machine vm image.'));
+  var virtualMachineVMImageCreate = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image').description($('Commands to manage your virtual machine vm image.'));
   virtualMachineVMImageCreate.command('create')
   .description($('create method to manage your virtual machine vm image.'))
   .usage('[options]')
@@ -47938,7 +47938,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-vm-image-create-parameters
-  var catparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters0 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters0 = catparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
   var setparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters0 = parametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters0.category('set')
@@ -48133,7 +48133,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-vm-image-create-parameters
-  var catparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters1 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters1 = catparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
   var removeparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters1 = parametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters1.category('remove')
@@ -48166,7 +48166,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-vm-image-create-parameters
-  var catparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters2 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters2 = catparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
   var addparametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters2 = parametersVirtualMachineVMImageVirtualMachineVMImageCreateParameters2.category('add')
@@ -48365,7 +48365,7 @@ exports.init = function (cli) {
   });
 
   //parameters set data-disk-configurations
-  var catparametersVirtualMachineVMImageDataDiskConfigurations0 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageDataDiskConfigurations0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageDataDiskConfigurations0 = catparametersVirtualMachineVMImageDataDiskConfigurations0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
   var setparametersVirtualMachineVMImageDataDiskConfigurations0 = parametersVirtualMachineVMImageDataDiskConfigurations0.category('set')
@@ -48443,7 +48443,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove data-disk-configurations
-  var catparametersVirtualMachineVMImageDataDiskConfigurations1 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageDataDiskConfigurations1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageDataDiskConfigurations1 = catparametersVirtualMachineVMImageDataDiskConfigurations1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
   var removeparametersVirtualMachineVMImageDataDiskConfigurations1 = parametersVirtualMachineVMImageDataDiskConfigurations1.category('remove')
@@ -48477,7 +48477,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add data-disk-configurations
-  var catparametersVirtualMachineVMImageDataDiskConfigurations2 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageDataDiskConfigurations2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageDataDiskConfigurations2 = catparametersVirtualMachineVMImageDataDiskConfigurations2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
   var addparametersVirtualMachineVMImageDataDiskConfigurations2 = parametersVirtualMachineVMImageDataDiskConfigurations2.category('add')
@@ -48555,7 +48555,7 @@ exports.init = function (cli) {
   });
 
   //parameters set os-disk-configuration
-  var catparametersVirtualMachineVMImageOSDiskConfiguration0 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageOSDiskConfiguration0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageOSDiskConfiguration0 = catparametersVirtualMachineVMImageOSDiskConfiguration0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
   var setparametersVirtualMachineVMImageOSDiskConfiguration0 = parametersVirtualMachineVMImageOSDiskConfiguration0.category('set')
@@ -48640,7 +48640,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove os-disk-configuration
-  var catparametersVirtualMachineVMImageOSDiskConfiguration1 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageOSDiskConfiguration1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageOSDiskConfiguration1 = catparametersVirtualMachineVMImageOSDiskConfiguration1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
   var removeparametersVirtualMachineVMImageOSDiskConfiguration1 = parametersVirtualMachineVMImageOSDiskConfiguration1.category('remove')
@@ -48673,7 +48673,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add os-disk-configuration
-  var catparametersVirtualMachineVMImageOSDiskConfiguration2 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageOSDiskConfiguration2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageOSDiskConfiguration2 = catparametersVirtualMachineVMImageOSDiskConfiguration2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
   var addparametersVirtualMachineVMImageOSDiskConfiguration2 = parametersVirtualMachineVMImageOSDiskConfiguration2.category('add')
@@ -48767,7 +48767,7 @@ exports.init = function (cli) {
   --vm-image-name
   --delete-from-storage
 */
-  var virtualMachineVMImageDelete = cli.category('virtualMachineVMImage').description($('Commands to manage your virtual machine vm image.'));
+  var virtualMachineVMImageDelete = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image').description($('Commands to manage your virtual machine vm image.'));
   virtualMachineVMImageDelete.command('delete')
   .description($('delete method to manage your virtual machine vm image.'))
   .usage('[options]')
@@ -48795,7 +48795,7 @@ exports.init = function (cli) {
   VirtualMachineVMImage GetDetails
   --vm-image-name
 */
-  var virtualMachineVMImageGetDetails = cli.category('virtualMachineVMImage').description($('Commands to manage your virtual machine vm image.'));
+  var virtualMachineVMImageGetDetails = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image').description($('Commands to manage your virtual machine vm image.'));
   virtualMachineVMImageGetDetails.command('get-details')
   .description($('get-details method to manage your virtual machine vm image.'))
   .usage('[options]')
@@ -48812,7 +48812,7 @@ exports.init = function (cli) {
 /*
   VirtualMachineVMImage List
 */
-  var virtualMachineVMImageList = cli.category('virtualMachineVMImage').description($('Commands to manage your virtual machine vm image.'));
+  var virtualMachineVMImageList = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image').description($('Commands to manage your virtual machine vm image.'));
   virtualMachineVMImageList.command('list')
   .description($('list method to manage your virtual machine vm image.'))
   .usage('[options]')
@@ -48848,7 +48848,7 @@ exports.init = function (cli) {
   ]
 }
 */
-  var virtualMachineVMImageReplicate = cli.category('virtualMachineVMImage').description($('Commands to manage your virtual machine vm image.'));
+  var virtualMachineVMImageReplicate = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image').description($('Commands to manage your virtual machine vm image.'));
   virtualMachineVMImageReplicate.command('replicate')
   .description($('replicate method to manage your virtual machine vm image.'))
   .usage('[options]')
@@ -48940,7 +48940,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-vm-image-replicate-parameters
-  var catparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters0 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters0 = catparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
   var setparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters0 = parametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters0.category('set')
@@ -49014,7 +49014,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-vm-image-replicate-parameters
-  var catparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters1 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters1 = catparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
   var removeparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters1 = parametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters1.category('remove')
@@ -49047,7 +49047,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-vm-image-replicate-parameters
-  var catparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters2 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters2 = catparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
   var addparametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters2 = parametersVirtualMachineVMImageVirtualMachineVMImageReplicateParameters2.category('add')
@@ -49125,7 +49125,7 @@ exports.init = function (cli) {
   });
 
   //parameters set compute-image-attributes
-  var catparametersVirtualMachineVMImageComputeImageAttributes0 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageComputeImageAttributes0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageComputeImageAttributes0 = catparametersVirtualMachineVMImageComputeImageAttributes0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
   var setparametersVirtualMachineVMImageComputeImageAttributes0 = parametersVirtualMachineVMImageComputeImageAttributes0.category('set')
@@ -49199,7 +49199,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove compute-image-attributes
-  var catparametersVirtualMachineVMImageComputeImageAttributes1 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageComputeImageAttributes1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageComputeImageAttributes1 = catparametersVirtualMachineVMImageComputeImageAttributes1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
   var removeparametersVirtualMachineVMImageComputeImageAttributes1 = parametersVirtualMachineVMImageComputeImageAttributes1.category('remove')
@@ -49232,7 +49232,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add compute-image-attributes
-  var catparametersVirtualMachineVMImageComputeImageAttributes2 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageComputeImageAttributes2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageComputeImageAttributes2 = catparametersVirtualMachineVMImageComputeImageAttributes2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
   var addparametersVirtualMachineVMImageComputeImageAttributes2 = parametersVirtualMachineVMImageComputeImageAttributes2.category('add')
@@ -49310,7 +49310,7 @@ exports.init = function (cli) {
   });
 
   //parameters set marketplace-image-attributes
-  var catparametersVirtualMachineVMImageMarketplaceImageAttributes0 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageMarketplaceImageAttributes0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageMarketplaceImageAttributes0 = catparametersVirtualMachineVMImageMarketplaceImageAttributes0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
   var setparametersVirtualMachineVMImageMarketplaceImageAttributes0 = parametersVirtualMachineVMImageMarketplaceImageAttributes0.category('set')
@@ -49373,7 +49373,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove marketplace-image-attributes
-  var catparametersVirtualMachineVMImageMarketplaceImageAttributes1 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageMarketplaceImageAttributes1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageMarketplaceImageAttributes1 = catparametersVirtualMachineVMImageMarketplaceImageAttributes1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
   var removeparametersVirtualMachineVMImageMarketplaceImageAttributes1 = parametersVirtualMachineVMImageMarketplaceImageAttributes1.category('remove')
@@ -49406,7 +49406,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add marketplace-image-attributes
-  var catparametersVirtualMachineVMImageMarketplaceImageAttributes2 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageMarketplaceImageAttributes2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageMarketplaceImageAttributes2 = catparametersVirtualMachineVMImageMarketplaceImageAttributes2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
   var addparametersVirtualMachineVMImageMarketplaceImageAttributes2 = parametersVirtualMachineVMImageMarketplaceImageAttributes2.category('add')
@@ -49473,7 +49473,7 @@ exports.init = function (cli) {
   });
 
   //parameters set plan
-  var catparametersVirtualMachineVMImagePlan0 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImagePlan0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImagePlan0 = catparametersVirtualMachineVMImagePlan0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
   var setparametersVirtualMachineVMImagePlan0 = parametersVirtualMachineVMImagePlan0.category('set')
@@ -49547,7 +49547,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove plan
-  var catparametersVirtualMachineVMImagePlan1 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImagePlan1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImagePlan1 = catparametersVirtualMachineVMImagePlan1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
   var removeparametersVirtualMachineVMImagePlan1 = parametersVirtualMachineVMImagePlan1.category('remove')
@@ -49580,7 +49580,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add plan
-  var catparametersVirtualMachineVMImagePlan2 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImagePlan2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImagePlan2 = catparametersVirtualMachineVMImagePlan2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
   var addparametersVirtualMachineVMImagePlan2 = parametersVirtualMachineVMImagePlan2.category('add')
@@ -49658,7 +49658,7 @@ exports.init = function (cli) {
   });
 
   //parameters set target-locations
-  var catparametersVirtualMachineVMImageTargetLocations0 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageTargetLocations0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageTargetLocations0 = catparametersVirtualMachineVMImageTargetLocations0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
   var setparametersVirtualMachineVMImageTargetLocations0 = parametersVirtualMachineVMImageTargetLocations0.category('set')
@@ -49703,7 +49703,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove target-locations
-  var catparametersVirtualMachineVMImageTargetLocations1 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageTargetLocations1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageTargetLocations1 = catparametersVirtualMachineVMImageTargetLocations1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
   var removeparametersVirtualMachineVMImageTargetLocations1 = parametersVirtualMachineVMImageTargetLocations1.category('remove')
@@ -49737,7 +49737,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add target-locations
-  var catparametersVirtualMachineVMImageTargetLocations2 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageTargetLocations2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageTargetLocations2 = catparametersVirtualMachineVMImageTargetLocations2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
   var addparametersVirtualMachineVMImageTargetLocations2 = parametersVirtualMachineVMImageTargetLocations2.category('add')
@@ -49787,7 +49787,7 @@ exports.init = function (cli) {
   --vm-image-name
   --permission
 */
-  var virtualMachineVMImageShare = cli.category('virtualMachineVMImage').description($('Commands to manage your virtual machine vm image.'));
+  var virtualMachineVMImageShare = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image').description($('Commands to manage your virtual machine vm image.'));
   virtualMachineVMImageShare.command('share')
   .description($('share method to manage your virtual machine vm image.'))
   .usage('[options]')
@@ -49807,7 +49807,7 @@ exports.init = function (cli) {
   VirtualMachineVMImage Unreplicate
   --vm-image-name
 */
-  var virtualMachineVMImageUnreplicate = cli.category('virtualMachineVMImage').description($('Commands to manage your virtual machine vm image.'));
+  var virtualMachineVMImageUnreplicate = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image').description($('Commands to manage your virtual machine vm image.'));
   virtualMachineVMImageUnreplicate.command('unreplicate')
   .description($('unreplicate method to manage your virtual machine vm image.'))
   .usage('[options]')
@@ -49850,7 +49850,7 @@ exports.init = function (cli) {
   "smallIconUri":""
 }
 */
-  var virtualMachineVMImageUpdate = cli.category('virtualMachineVMImage').description($('Commands to manage your virtual machine vm image.'));
+  var virtualMachineVMImageUpdate = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image').description($('Commands to manage your virtual machine vm image.'));
   virtualMachineVMImageUpdate.command('update')
   .description($('update method to manage your virtual machine vm image.'))
   .usage('[options]')
@@ -49942,7 +49942,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-vm-image-update-parameters
-  var catparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters0 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters0 = catparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
   var setparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters0 = parametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters0.category('set')
@@ -50126,7 +50126,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-vm-image-update-parameters
-  var catparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters1 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters1 = catparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
   var removeparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters1 = parametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters1.category('remove')
@@ -50159,7 +50159,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-vm-image-update-parameters
-  var catparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters2 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters2 = catparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
   var addparametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters2 = parametersVirtualMachineVMImageVirtualMachineVMImageUpdateParameters2.category('add')
@@ -50347,7 +50347,7 @@ exports.init = function (cli) {
   });
 
   //parameters set data-disk-configurations
-  var catparametersVirtualMachineVMImageDataDiskConfigurations0 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageDataDiskConfigurations0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageDataDiskConfigurations0 = catparametersVirtualMachineVMImageDataDiskConfigurations0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
   var setparametersVirtualMachineVMImageDataDiskConfigurations0 = parametersVirtualMachineVMImageDataDiskConfigurations0.category('set')
@@ -50425,7 +50425,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove data-disk-configurations
-  var catparametersVirtualMachineVMImageDataDiskConfigurations1 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageDataDiskConfigurations1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageDataDiskConfigurations1 = catparametersVirtualMachineVMImageDataDiskConfigurations1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
   var removeparametersVirtualMachineVMImageDataDiskConfigurations1 = parametersVirtualMachineVMImageDataDiskConfigurations1.category('remove')
@@ -50459,7 +50459,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add data-disk-configurations
-  var catparametersVirtualMachineVMImageDataDiskConfigurations2 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageDataDiskConfigurations2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageDataDiskConfigurations2 = catparametersVirtualMachineVMImageDataDiskConfigurations2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
   var addparametersVirtualMachineVMImageDataDiskConfigurations2 = parametersVirtualMachineVMImageDataDiskConfigurations2.category('add')
@@ -50537,7 +50537,7 @@ exports.init = function (cli) {
   });
 
   //parameters set os-disk-configuration
-  var catparametersVirtualMachineVMImageOSDiskConfiguration0 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageOSDiskConfiguration0 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageOSDiskConfiguration0 = catparametersVirtualMachineVMImageOSDiskConfiguration0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-vm-image.'));
   var setparametersVirtualMachineVMImageOSDiskConfiguration0 = parametersVirtualMachineVMImageOSDiskConfiguration0.category('set')
@@ -50589,7 +50589,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove os-disk-configuration
-  var catparametersVirtualMachineVMImageOSDiskConfiguration1 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageOSDiskConfiguration1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageOSDiskConfiguration1 = catparametersVirtualMachineVMImageOSDiskConfiguration1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-vm-image.'));
   var removeparametersVirtualMachineVMImageOSDiskConfiguration1 = parametersVirtualMachineVMImageOSDiskConfiguration1.category('remove')
@@ -50622,7 +50622,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add os-disk-configuration
-  var catparametersVirtualMachineVMImageOSDiskConfiguration2 = cli.category('virtualMachineVMImage');
+  var catparametersVirtualMachineVMImageOSDiskConfiguration2 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine-vm-image');
   var parametersVirtualMachineVMImageOSDiskConfiguration2 = catparametersVirtualMachineVMImageOSDiskConfiguration2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-vm-image.'));
   var addparametersVirtualMachineVMImageOSDiskConfiguration2 = parametersVirtualMachineVMImageOSDiskConfiguration2.category('add')
