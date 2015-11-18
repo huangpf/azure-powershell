@@ -369,7 +369,7 @@
       <BaseCmdletClientName>"ComputeClient"</BaseCmdletClientName>
       <ASMCmdletFlavor>Invoke</ASMCmdletFlavor>
       <CliCmdletFlavor>Verb</CliCmdletFlavor>
-      <OperationNameFilter>"HostedService"</OperationNameFilter>
+      <OperationNameFilter></OperationNameFilter>
     </PropertyGroup>
     <Exec Command="$(PowerShellExe) $(PSCodeGenScriptPath) $(PSCodeGenTargetFolder) $(MSBuildProjectDirectory) $(ClientLibraryNamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName) $(ASMCmdletFlavor) $(CliCmdletFlavor) $(OperationNameFilter)" />
   </Target>

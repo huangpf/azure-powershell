@@ -6345,7 +6345,7 @@ exports.init = function (cli) {
   });
 
   //parameters set virtual-machine-scale-set-vm-list-parameters
-  var catparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters0 = cli.category('vmss');
+  var catparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters0 = cli.category('vmssvm');
   var parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters0 = catparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters0.category('parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set-vm.'));
   var setparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters0 = parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters0.category('set')
@@ -6441,7 +6441,7 @@ exports.init = function (cli) {
   });
 
   //parameters remove virtual-machine-scale-set-vm-list-parameters
-  var catparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters1 = cli.category('vmss');
+  var catparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters1 = cli.category('vmssvm');
   var parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters1 = catparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters1.category('parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set-vm.'));
   var removeparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters1 = parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters1.category('remove')
@@ -6474,7 +6474,7 @@ exports.init = function (cli) {
     cli.output.info('=====================================');
   });
   //parameters add virtual-machine-scale-set-vm-list-parameters
-  var catparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters2 = cli.category('vmss');
+  var catparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters2 = cli.category('vmssvm');
   var parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters2 = catparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters2.category('parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set-vm.'));
   var addparametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters2 = parametersVirtualMachineScaleSetVMVirtualMachineScaleSetVMListParameters2.category('add')
