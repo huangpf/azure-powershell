@@ -93,6 +93,10 @@ function Get-CliCategoryName
     {
         $outName = 'vmssvm';
     }
+    elseif ($inName -eq 'HostedService')
+    {
+        $outName = 'hs';
+    }
     else
     {
         $outName = Get-CliNormalizedName $inName;

@@ -216,7 +216,15 @@ function Generate-CliFunctionCommandImpl
         }
     }
     $code += "    var subscription = profile.current.getSubscription(options.subscription);" + $NEW_LINE;
-    $code += "    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);" + $NEW_LINE;
+
+    if ($ModelNameSpace.Contains(".WindowsAzure."))
+    {
+        $code += "    var computeManagementClient = utils.createComputeClient(subscription);" + $NEW_LINE;
+    }
+    else
+    {
+        $code += "    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);" + $NEW_LINE;
+    }
 
     if ($cliMethodName -eq 'delete')
     {
@@ -232,8 +240,6 @@ function Generate-CliFunctionCommandImpl
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {
         # Function Call - For Each Method Parameter
-        if ($index -gt 0) { $code += ", "; }
-        
         $cli_param_name = Get-CliNormalizedName $methodParamNameList[$index];
         if ((${cli_param_name} -eq 'Parameters') -or (${cli_param_name} -like '*InstanceIds'))
         {
@@ -243,8 +249,11 @@ function Generate-CliFunctionCommandImpl
         {
             $code += "options.${cli_param_name}";
         }
+
+        $code += ", ";
     }
-    $code += ", _);" + $NEW_LINE;
+
+    $code += "_);" + $NEW_LINE;
     $code += "    cli.output.json(result);" + $NEW_LINE;
     $code += "  });" + $NEW_LINE;
 
