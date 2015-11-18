@@ -175,8 +175,8 @@ function Generate-CliFunctionCommandImpl
             $code += "    var ${cli_param_name}Obj = null;" + $NEW_LINE;
             $code += "    if (options.parameterFile) {" + $NEW_LINE;
             $code += "      cli.output.info(`'Reading file content from: \`"`' + options.parameterFile + `'\`"`');" + $NEW_LINE;
-            $code += "      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $NEW_LINE;
-            $code += "      ${cli_param_name}Obj = JSON.parse(fileContent);" + $NEW_LINE;
+            $code += "      var ${cli_param_name}FileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $NEW_LINE;
+            $code += "      ${cli_param_name}Obj = JSON.parse(${cli_param_name}FileContent);" + $NEW_LINE;
             $code += "    }" + $NEW_LINE;
             $code += "    else {" + $NEW_LINE;
             $code += "      ${cli_param_name}Obj = {};" + $NEW_LINE;

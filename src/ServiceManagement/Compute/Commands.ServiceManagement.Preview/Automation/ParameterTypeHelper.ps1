@@ -24,6 +24,11 @@ function Contains-OnlyStringFields
         return $false;
     }
 
+    if ($parameterType.BaseType.IsEquivalentTo([System.Enum]))
+    {
+        return $false;
+    }
+
     $result = $true;
 
     foreach ($propItem in $parameterType.GetProperties())
@@ -45,6 +50,11 @@ function Contains-OnlyStringList
     )
 
     if ($parameterType -eq $null)
+    {
+        return $false;
+    }
+
+    if ($parameterType.BaseType.IsEquivalentTo([System.Enum]))
     {
         return $false;
     }

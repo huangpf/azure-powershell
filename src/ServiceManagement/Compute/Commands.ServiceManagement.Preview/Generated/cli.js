@@ -1050,21 +1050,13 @@ exports.init = function (cli) {
   .description($('change-configuration-by-slot method to manage your deployment.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
+  .option('--deployment-slot <deployment-slot>', $('deployment-slot'))
   .option('--parameters <parameters>', $('parameters'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(options, _) {
     cli.output.info('serviceName = ' + options.serviceName);
-    var deploymentSlotObj = null;
-    if (options.parameterFile) {
-      cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deploymentSlotObj = JSON.parse(fileContent);
-    }
-    else {
-      deploymentSlotObj = {};
-    }
-    cli.output.info('deploymentSlotObj = ' + JSON.stringify(deploymentSlotObj));
+    cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('parameters = ' + options.parameters);
     var parametersObj = null;
     if (options.parameterFile) {
@@ -2040,21 +2032,13 @@ exports.init = function (cli) {
   .description($('create method to manage your deployment.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
+  .option('--deployment-slot <deployment-slot>', $('deployment-slot'))
   .option('--parameters <parameters>', $('parameters'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(options, _) {
     cli.output.info('serviceName = ' + options.serviceName);
-    var deploymentSlotObj = null;
-    if (options.parameterFile) {
-      cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deploymentSlotObj = JSON.parse(fileContent);
-    }
-    else {
-      deploymentSlotObj = {};
-    }
-    cli.output.info('deploymentSlotObj = ' + JSON.stringify(deploymentSlotObj));
+    cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('parameters = ' + options.parameters);
     var parametersObj = null;
     if (options.parameterFile) {
@@ -3077,8 +3061,8 @@ exports.init = function (cli) {
     var deleteFromStorageObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deleteFromStorageObj = JSON.parse(fileContent);
+      var deleteFromStorageFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      deleteFromStorageObj = JSON.parse(deleteFromStorageFileContent);
     }
     else {
       deleteFromStorageObj = {};
@@ -3101,20 +3085,12 @@ exports.init = function (cli) {
   .description($('delete-by-slot method to manage your deployment.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
+  .option('--deployment-slot <deployment-slot>', $('deployment-slot'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(options, _) {
     cli.output.info('serviceName = ' + options.serviceName);
-    var deploymentSlotObj = null;
-    if (options.parameterFile) {
-      cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deploymentSlotObj = JSON.parse(fileContent);
-    }
-    else {
-      deploymentSlotObj = {};
-    }
-    cli.output.info('deploymentSlotObj = ' + JSON.stringify(deploymentSlotObj));
+    cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeClient(subscription);
     var result = computeManagementClient.deployments.deleteBySlot(options.serviceName, options.deploymentSlot, _);
@@ -3557,20 +3533,12 @@ exports.init = function (cli) {
   .description($('get-by-slot method to manage your deployment.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
+  .option('--deployment-slot <deployment-slot>', $('deployment-slot'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(options, _) {
     cli.output.info('serviceName = ' + options.serviceName);
-    var deploymentSlotObj = null;
-    if (options.parameterFile) {
-      cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deploymentSlotObj = JSON.parse(fileContent);
-    }
-    else {
-      deploymentSlotObj = {};
-    }
-    cli.output.info('deploymentSlotObj = ' + JSON.stringify(deploymentSlotObj));
+    cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeClient(subscription);
     var result = computeManagementClient.deployments.getBySlot(options.serviceName, options.deploymentSlot, _);
@@ -3860,21 +3828,13 @@ exports.init = function (cli) {
   .description($('get-package-by-slot method to manage your deployment.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
+  .option('--deployment-slot <deployment-slot>', $('deployment-slot'))
   .option('--parameters <parameters>', $('parameters'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(options, _) {
     cli.output.info('serviceName = ' + options.serviceName);
-    var deploymentSlotObj = null;
-    if (options.parameterFile) {
-      cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deploymentSlotObj = JSON.parse(fileContent);
-    }
-    else {
-      deploymentSlotObj = {};
-    }
-    cli.output.info('deploymentSlotObj = ' + JSON.stringify(deploymentSlotObj));
+    cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('parameters = ' + options.parameters);
     var parametersObj = null;
     if (options.parameterFile) {
@@ -4161,22 +4121,14 @@ exports.init = function (cli) {
   .description($('list-events-by-slot method to manage your deployment.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
+  .option('--deployment-slot <deployment-slot>', $('deployment-slot'))
   .option('--start-time <start-time>', $('start-time'))
   .option('--end-time <end-time>', $('end-time'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(options, _) {
     cli.output.info('serviceName = ' + options.serviceName);
-    var deploymentSlotObj = null;
-    if (options.parameterFile) {
-      cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deploymentSlotObj = JSON.parse(fileContent);
-    }
-    else {
-      deploymentSlotObj = {};
-    }
-    cli.output.info('deploymentSlotObj = ' + JSON.stringify(deploymentSlotObj));
+    cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('startTime = ' + options.startTime);
     cli.output.info('endTime = ' + options.endTime);
     var subscription = profile.current.getSubscription(options.subscription);
@@ -4221,21 +4173,13 @@ exports.init = function (cli) {
   .description($('reboot-role-instance-by-deployment-slot method to manage your deployment.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
+  .option('--deployment-slot <deployment-slot>', $('deployment-slot'))
   .option('--role-instance-name <role-instance-name>', $('role-instance-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(options, _) {
     cli.output.info('serviceName = ' + options.serviceName);
-    var deploymentSlotObj = null;
-    if (options.parameterFile) {
-      cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deploymentSlotObj = JSON.parse(fileContent);
-    }
-    else {
-      deploymentSlotObj = {};
-    }
-    cli.output.info('deploymentSlotObj = ' + JSON.stringify(deploymentSlotObj));
+    cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('roleInstanceName = ' + options.roleInstanceName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeClient(subscription);
@@ -4333,21 +4277,13 @@ exports.init = function (cli) {
   .description($('reimage-role-instance-by-deployment-slot method to manage your deployment.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
+  .option('--deployment-slot <deployment-slot>', $('deployment-slot'))
   .option('--role-instance-name <role-instance-name>', $('role-instance-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(options, _) {
     cli.output.info('serviceName = ' + options.serviceName);
-    var deploymentSlotObj = null;
-    if (options.parameterFile) {
-      cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deploymentSlotObj = JSON.parse(fileContent);
-    }
-    else {
-      deploymentSlotObj = {};
-    }
-    cli.output.info('deploymentSlotObj = ' + JSON.stringify(deploymentSlotObj));
+    cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('roleInstanceName = ' + options.roleInstanceName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeClient(subscription);
@@ -4716,21 +4652,13 @@ exports.init = function (cli) {
   .description($('rollback-update-or-upgrade-by-deployment-slot method to manage your deployment.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
+  .option('--deployment-slot <deployment-slot>', $('deployment-slot'))
   .option('--parameters <parameters>', $('parameters'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(options, _) {
     cli.output.info('serviceName = ' + options.serviceName);
-    var deploymentSlotObj = null;
-    if (options.parameterFile) {
-      cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deploymentSlotObj = JSON.parse(fileContent);
-    }
-    else {
-      deploymentSlotObj = {};
-    }
-    cli.output.info('deploymentSlotObj = ' + JSON.stringify(deploymentSlotObj));
+    cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('parameters = ' + options.parameters);
     var parametersObj = null;
     if (options.parameterFile) {
@@ -5078,8 +5006,8 @@ exports.init = function (cli) {
     var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      parametersObj = JSON.parse(fileContent);
+      var parametersFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      parametersObj = JSON.parse(parametersFileContent);
     }
     else {
       parametersObj = {};
@@ -5661,21 +5589,13 @@ exports.init = function (cli) {
   .description($('update-status-by-deployment-slot method to manage your deployment.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
+  .option('--deployment-slot <deployment-slot>', $('deployment-slot'))
   .option('--parameters <parameters>', $('parameters'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(options, _) {
     cli.output.info('serviceName = ' + options.serviceName);
-    var deploymentSlotObj = null;
-    if (options.parameterFile) {
-      cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deploymentSlotObj = JSON.parse(fileContent);
-    }
-    else {
-      deploymentSlotObj = {};
-    }
-    cli.output.info('deploymentSlotObj = ' + JSON.stringify(deploymentSlotObj));
+    cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('parameters = ' + options.parameters);
     var parametersObj = null;
     if (options.parameterFile) {
@@ -7142,21 +7062,13 @@ exports.init = function (cli) {
   .description($('upgrade-by-slot method to manage your deployment.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
+  .option('--deployment-slot <deployment-slot>', $('deployment-slot'))
   .option('--parameters <parameters>', $('parameters'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(options, _) {
     cli.output.info('serviceName = ' + options.serviceName);
-    var deploymentSlotObj = null;
-    if (options.parameterFile) {
-      cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deploymentSlotObj = JSON.parse(fileContent);
-    }
-    else {
-      deploymentSlotObj = {};
-    }
-    cli.output.info('deploymentSlotObj = ' + JSON.stringify(deploymentSlotObj));
+    cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('parameters = ' + options.parameters);
     var parametersObj = null;
     if (options.parameterFile) {
@@ -8497,21 +8409,13 @@ exports.init = function (cli) {
   .description($('walk-upgrade-domain-by-deployment-slot method to manage your deployment.'))
   .usage('[options]')
   .option('--service-name <service-name>', $('service-name'))
+  .option('--deployment-slot <deployment-slot>', $('deployment-slot'))
   .option('--parameters <parameters>', $('parameters'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(options, _) {
     cli.output.info('serviceName = ' + options.serviceName);
-    var deploymentSlotObj = null;
-    if (options.parameterFile) {
-      cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deploymentSlotObj = JSON.parse(fileContent);
-    }
-    else {
-      deploymentSlotObj = {};
-    }
-    cli.output.info('deploymentSlotObj = ' + JSON.stringify(deploymentSlotObj));
+    cli.output.info('deploymentSlot = ' + options.deploymentSlot);
     cli.output.info('parameters = ' + options.parameters);
     var parametersObj = null;
     if (options.parameterFile) {
@@ -8762,8 +8666,8 @@ exports.init = function (cli) {
     var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      parametersObj = JSON.parse(fileContent);
+      var parametersFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      parametersObj = JSON.parse(parametersFileContent);
     }
     else {
       parametersObj = {};
@@ -9061,8 +8965,8 @@ exports.init = function (cli) {
     var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      parametersObj = JSON.parse(fileContent);
+      var parametersFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      parametersObj = JSON.parse(parametersFileContent);
     }
     else {
       parametersObj = {};
@@ -13456,8 +13360,8 @@ exports.init = function (cli) {
     var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      parametersObj = JSON.parse(fileContent);
+      var parametersFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      parametersObj = JSON.parse(parametersFileContent);
     }
     else {
       parametersObj = {};
@@ -16097,8 +16001,8 @@ exports.init = function (cli) {
     var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      parametersObj = JSON.parse(fileContent);
+      var parametersFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      parametersObj = JSON.parse(parametersFileContent);
     }
     else {
       parametersObj = {};
@@ -16389,8 +16293,8 @@ exports.init = function (cli) {
     var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      parametersObj = JSON.parse(fileContent);
+      var parametersFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      parametersObj = JSON.parse(parametersFileContent);
     }
     else {
       parametersObj = {};
@@ -17394,8 +17298,8 @@ exports.init = function (cli) {
     var logicalUnitNumberObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      logicalUnitNumberObj = JSON.parse(fileContent);
+      var logicalUnitNumberFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      logicalUnitNumberObj = JSON.parse(logicalUnitNumberFileContent);
     }
     else {
       logicalUnitNumberObj = {};
@@ -17404,8 +17308,8 @@ exports.init = function (cli) {
     var deleteFromStorageObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deleteFromStorageObj = JSON.parse(fileContent);
+      var deleteFromStorageFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      deleteFromStorageObj = JSON.parse(deleteFromStorageFileContent);
     }
     else {
       deleteFromStorageObj = {};
@@ -17433,8 +17337,8 @@ exports.init = function (cli) {
     var deleteFromStorageObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deleteFromStorageObj = JSON.parse(fileContent);
+      var deleteFromStorageFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      deleteFromStorageObj = JSON.parse(deleteFromStorageFileContent);
     }
     else {
       deleteFromStorageObj = {};
@@ -17468,8 +17372,8 @@ exports.init = function (cli) {
     var logicalUnitNumberObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      logicalUnitNumberObj = JSON.parse(fileContent);
+      var logicalUnitNumberFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      logicalUnitNumberObj = JSON.parse(logicalUnitNumberFileContent);
     }
     else {
       logicalUnitNumberObj = {};
@@ -17547,8 +17451,8 @@ exports.init = function (cli) {
     var logicalUnitNumberObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      logicalUnitNumberObj = JSON.parse(fileContent);
+      var logicalUnitNumberFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      logicalUnitNumberObj = JSON.parse(logicalUnitNumberFileContent);
     }
     else {
       logicalUnitNumberObj = {};
@@ -37493,8 +37397,8 @@ exports.init = function (cli) {
     var deleteFromStorageObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deleteFromStorageObj = JSON.parse(fileContent);
+      var deleteFromStorageFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      deleteFromStorageObj = JSON.parse(deleteFromStorageFileContent);
     }
     else {
       deleteFromStorageObj = {};
@@ -46177,8 +46081,8 @@ exports.init = function (cli) {
     var deleteFromStorageObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deleteFromStorageObj = JSON.parse(fileContent);
+      var deleteFromStorageFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      deleteFromStorageObj = JSON.parse(deleteFromStorageFileContent);
     }
     else {
       deleteFromStorageObj = {};
@@ -48695,8 +48599,8 @@ exports.init = function (cli) {
     var deleteFromStorageObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      deleteFromStorageObj = JSON.parse(fileContent);
+      var deleteFromStorageFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      deleteFromStorageObj = JSON.parse(deleteFromStorageFileContent);
     }
     else {
       deleteFromStorageObj = {};

@@ -5704,8 +5704,8 @@ exports.init = function (cli) {
     var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      parametersObj = JSON.parse(fileContent);
+      var parametersFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      parametersObj = JSON.parse(parametersFileContent);
     }
     else {
       parametersObj = {};
@@ -6257,8 +6257,8 @@ exports.init = function (cli) {
     var parametersObj = null;
     if (options.parameterFile) {
       cli.output.info('Reading file content from: \"' + options.parameterFile + '\"');
-      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      parametersObj = JSON.parse(fileContent);
+      var parametersFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      parametersObj = JSON.parse(parametersFileContent);
     }
     else {
       parametersObj = {};
