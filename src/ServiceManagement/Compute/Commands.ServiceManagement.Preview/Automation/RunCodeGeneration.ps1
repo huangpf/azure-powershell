@@ -2208,11 +2208,15 @@ else
     $cliCommandCodeMainBody = "";
 
     # Write Operation Cmdlet Files
+    $operation_type_count = 0;
+    $total_operation_type_count = $filtered_types.Count;
     foreach ($ft in $filtered_types)
     {
+        $operation_type_count++;
+        
         Write-Verbose '';
         Write-Verbose $BAR_LINE;
-        Write-Verbose $ft.Name;
+        Write-Verbose ("${operation_type_count}/${total_operation_type_count} " + $ft.Name);
         Write-Verbose $BAR_LINE;
     
         $opShortName = Get-OperationShortName $ft.Name;
@@ -2224,6 +2228,8 @@ else
         $st = mkdir -Force $opOutFolder;
 
         $methods = $ft.GetMethods();
+
+        $total_method_count = 0;
         foreach ($mtItem in $methods)
         {
             [System.Reflection.MethodInfo]$mt = $mtItem;
@@ -2233,10 +2239,25 @@ else
                 continue;
             }
 
+            $total_method_count++;
+        }
+        
+        $method_count = 0;
+        foreach ($mtItem in $methods)
+        {
+            [System.Reflection.MethodInfo]$mt = $mtItem;
+            if ($mt.Name.StartsWith('Begin') -and $mt.Name.Contains('ing'))
+            {
+                # Skip 'Begin*ing*' Calls for Now...
+                continue;
+            }
+
+            $method_count++;
+
             # Output Info for Method Signature
             Write-Verbose "";
             Write-Verbose $SEC_LINE;
-            Write-Verbose $mt.Name.Replace('Async', '');
+            Write-Verbose ("[${operation_type_count}] ${method_count}/${total_method_count} " + $mt.Name.Replace('Async', ''));
             foreach ($paramInfoItem in $mt.GetParameters())
             {
                 [System.Reflection.ParameterInfo]$paramInfo = $paramInfoItem;
@@ -2254,12 +2275,19 @@ else
                 $invoke_cmdlet_method_code += $outputs[-3];
                 $parameter_cmdlet_method_code += $outputs[-2];
                 
-                # TODO : Comment Out RDFE Deployment APIs
+                
                 if ($opShortName -eq 'Deployment' -and $client_library_namespace -like '*.WindowsAzure.*')
                 {
-                    $cliCommandCodeMainBody += "/*" + $NEW_LINE;
-                    $cliCommandCodeMainBody += $outputs[-1].Replace("/*", "").Replace("*/", "");
-                    $cliCommandCodeMainBody += $NEW_LINE + "*/" + $NEW_LINE;
+                    $output_code = $outputs[-1];
+                    
+                    <# TODO : Comment Out RDFE Deployment APIs
+                    if ($method_count -gt 100)
+                    {
+                        $output_code = "/*" + $NEW_LINE + $output_code.Replace("/*", "").Replace("*/", "") + $NEW_LINE + "*/" + $NEW_LINE;
+                    }
+                    #>
+                    
+                    $cliCommandCodeMainBody += $output_code;
                 }
                 else
                 {
