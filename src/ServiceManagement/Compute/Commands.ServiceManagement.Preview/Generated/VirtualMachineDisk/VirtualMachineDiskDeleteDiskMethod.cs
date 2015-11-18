@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pName = new RuntimeDefinedParameter();
             pName.Name = "Name";
-            pName.ParameterType = typeof(System.String);
+            pName.ParameterType = typeof(string);
             pName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -47,25 +47,13 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             pName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("Name", pName);
 
-            var pDeleteFromStorage = new RuntimeDefinedParameter();
-            pDeleteFromStorage.Name = "DeleteFromStorage";
-            pDeleteFromStorage.ParameterType = typeof(System.Boolean);
-            pDeleteFromStorage.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByDynamicParameters",
-                Position = 2,
-                Mandatory = true
-            });
-            pDeleteFromStorage.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("DeleteFromStorage", pDeleteFromStorage);
-
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
             pArgumentList.ParameterType = typeof(object[]);
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 3,
+                Position = 2,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
@@ -77,7 +65,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         protected void ExecuteVirtualMachineDiskDeleteDiskMethod(object[] invokeMethodInputParameters)
         {
             string name = (string)ParseParameter(invokeMethodInputParameters[0]);
-            bool deleteFromStorage = (bool)ParseParameter(invokeMethodInputParameters[1]);
+            bool deleteFromStorage = new bool();
 
             var result = VirtualMachineDiskClient.DeleteDisk(name, deleteFromStorage);
             WriteObject(result);
@@ -88,10 +76,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
     {
         protected PSArgument[] CreateVirtualMachineDiskDeleteDiskParameters()
         {
-            string name = string.Empty;
-            bool deleteFromStorage = new bool();
-
-            return ConvertFromObjectsToArguments(new string[] { "Name", "DeleteFromStorage" }, new object[] { name, deleteFromStorage });
+            return ConvertFromObjectsToArguments(new string[0], new object[0]);
         }
     }
 }

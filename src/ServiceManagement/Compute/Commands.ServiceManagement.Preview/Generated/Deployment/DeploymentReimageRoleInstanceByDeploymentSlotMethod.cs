@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pServiceName = new RuntimeDefinedParameter();
             pServiceName.Name = "ServiceName";
-            pServiceName.ParameterType = typeof(System.String);
+            pServiceName.ParameterType = typeof(string);
             pServiceName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -47,25 +47,13 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             pServiceName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ServiceName", pServiceName);
 
-            var pDeploymentSlot = new RuntimeDefinedParameter();
-            pDeploymentSlot.Name = "DeploymentSlot";
-            pDeploymentSlot.ParameterType = typeof(Microsoft.WindowsAzure.Management.Compute.Models.DeploymentSlot);
-            pDeploymentSlot.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByDynamicParameters",
-                Position = 2,
-                Mandatory = true
-            });
-            pDeploymentSlot.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("DeploymentSlot", pDeploymentSlot);
-
             var pRoleInstanceName = new RuntimeDefinedParameter();
             pRoleInstanceName.Name = "RoleInstanceName";
-            pRoleInstanceName.ParameterType = typeof(System.String);
+            pRoleInstanceName.ParameterType = typeof(string);
             pRoleInstanceName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
-                Position = 3,
+                Position = 2,
                 Mandatory = true
             });
             pRoleInstanceName.Attributes.Add(new AllowNullAttribute());
@@ -77,7 +65,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 4,
+                Position = 3,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
@@ -89,7 +77,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         protected void ExecuteDeploymentReimageRoleInstanceByDeploymentSlotMethod(object[] invokeMethodInputParameters)
         {
             string serviceName = (string)ParseParameter(invokeMethodInputParameters[0]);
-            DeploymentSlot deploymentSlot = (DeploymentSlot)ParseParameter(invokeMethodInputParameters[1]);
+            DeploymentSlot deploymentSlot = new DeploymentSlot();
             string roleInstanceName = (string)ParseParameter(invokeMethodInputParameters[2]);
 
             var result = DeploymentClient.ReimageRoleInstanceByDeploymentSlot(serviceName, deploymentSlot, roleInstanceName);
@@ -105,7 +93,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             DeploymentSlot deploymentSlot = new DeploymentSlot();
             string roleInstanceName = string.Empty;
 
-            return ConvertFromObjectsToArguments(new string[] { "ServiceName", "DeploymentSlot", "RoleInstanceName" }, new object[] { serviceName, deploymentSlot, roleInstanceName });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ServiceName", "DeploymentSlot", "RoleInstanceName" },
+                 new object[] { serviceName, deploymentSlot, roleInstanceName });
         }
     }
 }

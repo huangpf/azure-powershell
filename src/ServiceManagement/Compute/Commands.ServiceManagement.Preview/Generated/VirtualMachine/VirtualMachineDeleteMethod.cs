@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pServiceName = new RuntimeDefinedParameter();
             pServiceName.Name = "ServiceName";
-            pServiceName.ParameterType = typeof(System.String);
+            pServiceName.ParameterType = typeof(string);
             pServiceName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pDeploymentName = new RuntimeDefinedParameter();
             pDeploymentName.Name = "DeploymentName";
-            pDeploymentName.ParameterType = typeof(System.String);
+            pDeploymentName.ParameterType = typeof(string);
             pDeploymentName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -61,7 +61,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pVirtualMachineName = new RuntimeDefinedParameter();
             pVirtualMachineName.Name = "VirtualMachineName";
-            pVirtualMachineName.ParameterType = typeof(System.String);
+            pVirtualMachineName.ParameterType = typeof(string);
             pVirtualMachineName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -71,25 +71,13 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             pVirtualMachineName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("VirtualMachineName", pVirtualMachineName);
 
-            var pDeleteFromStorage = new RuntimeDefinedParameter();
-            pDeleteFromStorage.Name = "DeleteFromStorage";
-            pDeleteFromStorage.ParameterType = typeof(System.Boolean);
-            pDeleteFromStorage.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByDynamicParameters",
-                Position = 4,
-                Mandatory = true
-            });
-            pDeleteFromStorage.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("DeleteFromStorage", pDeleteFromStorage);
-
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
             pArgumentList.ParameterType = typeof(object[]);
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 5,
+                Position = 4,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
@@ -103,7 +91,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string serviceName = (string)ParseParameter(invokeMethodInputParameters[0]);
             string deploymentName = (string)ParseParameter(invokeMethodInputParameters[1]);
             string virtualMachineName = (string)ParseParameter(invokeMethodInputParameters[2]);
-            bool deleteFromStorage = (bool)ParseParameter(invokeMethodInputParameters[3]);
+            bool deleteFromStorage = new bool();
 
             var result = VirtualMachineClient.Delete(serviceName, deploymentName, virtualMachineName, deleteFromStorage);
             WriteObject(result);
@@ -114,12 +102,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
     {
         protected PSArgument[] CreateVirtualMachineDeleteParameters()
         {
-            string serviceName = string.Empty;
-            string deploymentName = string.Empty;
-            string virtualMachineName = string.Empty;
-            bool deleteFromStorage = new bool();
-
-            return ConvertFromObjectsToArguments(new string[] { "ServiceName", "DeploymentName", "VirtualMachineName", "DeleteFromStorage" }, new object[] { serviceName, deploymentName, virtualMachineName, deleteFromStorage });
+            return ConvertFromObjectsToArguments(new string[0], new object[0]);
         }
     }
 }

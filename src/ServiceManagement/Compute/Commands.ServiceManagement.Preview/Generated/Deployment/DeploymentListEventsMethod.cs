@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pServiceName = new RuntimeDefinedParameter();
             pServiceName.Name = "ServiceName";
-            pServiceName.ParameterType = typeof(System.String);
+            pServiceName.ParameterType = typeof(string);
             pServiceName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pDeploymentName = new RuntimeDefinedParameter();
             pDeploymentName.Name = "DeploymentName";
-            pDeploymentName.ParameterType = typeof(System.String);
+            pDeploymentName.ParameterType = typeof(string);
             pDeploymentName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -61,7 +61,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pStartTime = new RuntimeDefinedParameter();
             pStartTime.Name = "StartTime";
-            pStartTime.ParameterType = typeof(System.DateTime);
+            pStartTime.ParameterType = typeof(DateTime);
             pStartTime.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -73,7 +73,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pEndTime = new RuntimeDefinedParameter();
             pEndTime.Name = "EndTime";
-            pEndTime.ParameterType = typeof(System.DateTime);
+            pEndTime.ParameterType = typeof(DateTime);
             pEndTime.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -119,7 +119,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             DateTime startTime = new DateTime();
             DateTime endTime = new DateTime();
 
-            return ConvertFromObjectsToArguments(new string[] { "ServiceName", "DeploymentName", "StartTime", "EndTime" }, new object[] { serviceName, deploymentName, startTime, endTime });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ServiceName", "DeploymentName", "StartTime", "EndTime" },
+                 new object[] { serviceName, deploymentName, startTime, endTime });
         }
     }
 }

@@ -1441,6 +1441,7 @@ function Write-OperationCmdletFile
 
             if ($only_strings)
             {
+                 $create_local_param_definition = "";
                  # Case 1: the parameter type contains only string types.
                  foreach ($param in $does_contain_only_strings)
                  {

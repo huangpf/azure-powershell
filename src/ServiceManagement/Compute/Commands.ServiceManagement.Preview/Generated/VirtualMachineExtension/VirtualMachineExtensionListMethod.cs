@@ -62,8 +62,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
     {
         protected PSArgument[] CreateVirtualMachineExtensionListParameters()
         {
-
-            return ConvertFromObjectsToArguments(new string[] { "" }, new object[] {  });
+            return ConvertFromObjectsToArguments(new string[0], new object[0]);
         }
     }
 }
