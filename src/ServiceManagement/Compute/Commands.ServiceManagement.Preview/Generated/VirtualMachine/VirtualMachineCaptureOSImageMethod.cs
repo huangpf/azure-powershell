@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pServiceName = new RuntimeDefinedParameter();
             pServiceName.Name = "ServiceName";
-            pServiceName.ParameterType = typeof(System.String);
+            pServiceName.ParameterType = typeof(string);
             pServiceName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pDeploymentName = new RuntimeDefinedParameter();
             pDeploymentName.Name = "DeploymentName";
-            pDeploymentName.ParameterType = typeof(System.String);
+            pDeploymentName.ParameterType = typeof(string);
             pDeploymentName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -61,7 +61,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pVirtualMachineName = new RuntimeDefinedParameter();
             pVirtualMachineName.Name = "VirtualMachineName";
-            pVirtualMachineName.ParameterType = typeof(System.String);
+            pVirtualMachineName.ParameterType = typeof(string);
             pVirtualMachineName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -73,7 +73,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pParameters = new RuntimeDefinedParameter();
             pParameters.Name = "VirtualMachineCaptureOSImageParameters";
-            pParameters.ParameterType = typeof(Microsoft.WindowsAzure.Management.Compute.Models.VirtualMachineCaptureOSImageParameters);
+            pParameters.ParameterType = typeof(VirtualMachineCaptureOSImageParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -119,7 +119,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string virtualMachineName = string.Empty;
             VirtualMachineCaptureOSImageParameters parameters = new VirtualMachineCaptureOSImageParameters();
 
-            return ConvertFromObjectsToArguments(new string[] { "ServiceName", "DeploymentName", "VirtualMachineName", "Parameters" }, new object[] { serviceName, deploymentName, virtualMachineName, parameters });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ServiceName", "DeploymentName", "VirtualMachineName", "Parameters" },
+                 new object[] { serviceName, deploymentName, virtualMachineName, parameters });
         }
     }
 }

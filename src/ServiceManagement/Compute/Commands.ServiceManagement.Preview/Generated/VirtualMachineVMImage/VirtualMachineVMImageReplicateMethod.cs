@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pVMImageName = new RuntimeDefinedParameter();
             pVMImageName.Name = "VMImageName";
-            pVMImageName.ParameterType = typeof(System.String);
+            pVMImageName.ParameterType = typeof(string);
             pVMImageName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pParameters = new RuntimeDefinedParameter();
             pParameters.Name = "VirtualMachineVMImageReplicateParameters";
-            pParameters.ParameterType = typeof(Microsoft.WindowsAzure.Management.Compute.Models.VirtualMachineVMImageReplicateParameters);
+            pParameters.ParameterType = typeof(VirtualMachineVMImageReplicateParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -91,7 +91,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string vmImageName = string.Empty;
             VirtualMachineVMImageReplicateParameters parameters = new VirtualMachineVMImageReplicateParameters();
 
-            return ConvertFromObjectsToArguments(new string[] { "VMImageName", "Parameters" }, new object[] { vmImageName, parameters });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "VMImageName", "Parameters" },
+                 new object[] { vmImageName, parameters });
         }
     }
 }

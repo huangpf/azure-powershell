@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pServiceName = new RuntimeDefinedParameter();
             pServiceName.Name = "ServiceName";
-            pServiceName.ParameterType = typeof(System.String);
+            pServiceName.ParameterType = typeof(string);
             pServiceName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pDeploymentSlot = new RuntimeDefinedParameter();
             pDeploymentSlot.Name = "DeploymentSlot";
-            pDeploymentSlot.ParameterType = typeof(System.String);
+            pDeploymentSlot.ParameterType = typeof(string);
             pDeploymentSlot.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -61,7 +61,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pRoleInstanceName = new RuntimeDefinedParameter();
             pRoleInstanceName.Name = "RoleInstanceName";
-            pRoleInstanceName.ParameterType = typeof(System.String);
+            pRoleInstanceName.ParameterType = typeof(string);
             pRoleInstanceName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -73,7 +73,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pResources = new RuntimeDefinedParameter();
             pResources.Name = "Resources";
-            pResources.ParameterType = typeof(System.String);
+            pResources.ParameterType = typeof(string);
             pResources.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -119,7 +119,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string roleInstanceName = string.Empty;
             string resources = string.Empty;
 
-            return ConvertFromObjectsToArguments(new string[] { "ServiceName", "DeploymentSlot", "RoleInstanceName", "Resources" }, new object[] { serviceName, deploymentSlot, roleInstanceName, resources });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ServiceName", "DeploymentSlot", "RoleInstanceName", "Resources" },
+                 new object[] { serviceName, deploymentSlot, roleInstanceName, resources });
         }
     }
 }
