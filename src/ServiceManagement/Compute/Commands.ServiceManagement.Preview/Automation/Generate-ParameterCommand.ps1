@@ -107,9 +107,9 @@ function Generate-CliParameterCommandImpl
 
     if ($ModelNameSpace -like "*.WindowsAzure.*")
     {
-        # Use Preview Category for RDFE APIs
-        $invoke_category_desc = "Commands (preview) to invoke service management operations.";
-        $invoke_category_code = ".category('preview').description('${invoke_category_desc}')";
+        # Use Invoke Category for RDFE APIs
+        $invoke_category_desc = "Commands to invoke service management operations.";
+        $invoke_category_code = ".category('invoke').description('${invoke_category_desc}')";
     }
 
     if ($TreeNode.Properties.Count -gt 0 -or ($TreeNode.IsListItem))
