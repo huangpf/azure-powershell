@@ -23,9 +23,15 @@ param(
     # CLI commands or PS cmdlets
     [Parameter(Mandatory = $false)]
     [string]$ToolType = "CLI",
-    
+
     [Parameter(Mandatory = $false)]
-    [string]$CmdletNounPrefix = "Azure"
+    [string]$CmdletNounPrefix = "Azure",
+
+    [Parameter(Mandatory = $false)]
+    [string]$ModelNameSpace = $null,
+
+    [Parameter(Mandatory = $false)]
+    [string]$MethodName = $null
 )
 
 $NEW_LINE = "`r`n";
@@ -98,16 +104,23 @@ function Generate-CliParameterCommandImpl
     {
         $pathToTreeNode = "`'${pathToTreeNode}`'";
     }
-    
+
+    if ($ModelNameSpace -like "*.WindowsAzure.*")
+    {
+        # Use Invoke Category for RDFE APIs
+        $invoke_category_desc = "Commands to invoke service management operations.";
+        $invoke_category_code = ".category('invoke').description('${invoke_category_desc}')";
+    }
+
     if ($TreeNode.Properties.Count -gt 0 -or ($TreeNode.IsListItem))
     {
         # 1. Parameter Set Command
-        $params_category_var_name = $params_category_var_name_prefix + $paramSuffix + "0";
+        $params_category_var_name = $params_category_var_name_prefix + $MethodName + $paramSuffix + "0";
         $cat_params_category_var_name = 'cat' + $params_category_var_name;
         $params_generate_category_name = 'set';
         $params_generate_category_var_name = $params_generate_category_name + $params_category_var_name;
         $code = "  //$params_category_name set ${cli_method_option_name}" + $NEW_LINE;
-        $code += "  var ${cat_params_category_var_name} = cli.category('vmss');" + $NEW_LINE;
+        $code += "  var ${cat_params_category_var_name} = cli${invoke_category_code}.category('${category_name}');" + $NEW_LINE;
         $code += "  var ${params_category_var_name} = ${cat_params_category_var_name}.category('${params_category_name}')" + $NEW_LINE;
         $code += "  .description(`$('Commands to manage parameter for your ${cli_op_description}.'));" + $NEW_LINE;
         $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${params_generate_category_name}')" + $NEW_LINE;
@@ -208,12 +221,12 @@ function Generate-CliParameterCommandImpl
     }
 
     # 2. Parameter Remove Command
-    $params_category_var_name = $params_category_var_name_prefix + $paramSuffix + "1";
+    $params_category_var_name = $params_category_var_name_prefix + $MethodName + $paramSuffix + "1";
     $cat_params_category_var_name = 'cat' + $params_category_var_name;
     $params_generate_category_name = 'remove';
     $params_generate_category_var_name = $params_generate_category_name + $params_category_var_name;
     $code += "  //$params_category_name ${params_generate_category_name} ${cli_method_option_name}" + $NEW_LINE;
-    $code += "  var ${cat_params_category_var_name} = cli.category('vmss');" + $NEW_LINE;
+    $code += "  var ${cat_params_category_var_name} = cli${invoke_category_code}.category('${category_name}');" + $NEW_LINE;
     $code += "  var ${params_category_var_name} = ${cat_params_category_var_name}.category('${params_category_name}')" + $NEW_LINE;
     $code += "  .description(`$('Commands to remove parameter for your ${cli_op_description}.'));" + $NEW_LINE;
     $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${params_generate_category_name}')" + $NEW_LINE;
@@ -259,12 +272,12 @@ function Generate-CliParameterCommandImpl
     $code += "  });" + $NEW_LINE;
     
     # 3. Parameter Add Command
-    $params_category_var_name = $params_category_var_name_prefix + $paramSuffix + "2";
+    $params_category_var_name = $params_category_var_name_prefix + $MethodName + $paramSuffix + "2";
     $cat_params_category_var_name = 'cat' + $params_category_var_name;
     $params_generate_category_name = 'add';
     $params_generate_category_var_name = $params_generate_category_name + $params_category_var_name;
     $code += "  //$params_category_name ${params_generate_category_name} ${cli_method_option_name}" + $NEW_LINE;
-    $code += "  var ${cat_params_category_var_name} = cli.category('vmss');" + $NEW_LINE;
+    $code += "  var ${cat_params_category_var_name} = cli${invoke_category_code}.category('${category_name}');" + $NEW_LINE;
     $code += "  var ${params_category_var_name} = ${cat_params_category_var_name}.category('${params_category_name}')" + $NEW_LINE;
     $code += "  .description(`$('Commands to add parameter for your ${cli_op_description}.'));" + $NEW_LINE;
     $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${params_generate_category_name}')" + $NEW_LINE;

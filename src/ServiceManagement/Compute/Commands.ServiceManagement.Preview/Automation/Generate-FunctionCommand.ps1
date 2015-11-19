@@ -86,7 +86,7 @@ function Generate-CliFunctionCommandImpl
                 $cmdlet_tree = (. $PSScriptRoot\Create-ParameterTree.ps1 -TypeInfo $paramType -NameSpace $ModelNameSpace -ParameterName $paramType.Name);
 
                 # 3.1.3 Generate the parameter command according to the parameter tree
-                $cmdlet_tree_code = (. $PSScriptRoot\Generate-ParameterCommand.ps1 -CmdletTreeNode $cmdlet_tree -Operation $opShortName);
+                $cmdlet_tree_code = (. $PSScriptRoot\Generate-ParameterCommand.ps1 -CmdletTreeNode $cmdlet_tree -Operation $opShortName -ModelNameSpace $ModelNameSpace -MethodName $methodName);
             }
         }
     }
@@ -101,7 +101,7 @@ function Generate-CliFunctionCommandImpl
     
     # 3.2.3 Normalize the CLI Method Name, i.e. CreateOrUpdate => createOrUpdate, ListAll => listAll
     $cliMethodName = Get-CliNormalizedName $methodName;
-    $cliCategoryVarName = $cliCategoryName + $methodName;
+    $cliCategoryVarName = $cliOperationName + $methodName;
     $cliMethodOption = Get-CliOptionName $methodName;
 
     # 3.2.4 Compute the CLI Command Description, i.e. VirtualMachineScaleSet => virtual machine scale set
@@ -127,7 +127,15 @@ function Generate-CliFunctionCommandImpl
     # 3.2.6 Generate the CLI Command Code
     $code = "";
     $code += $cliOperationComment;
-    $code += "  var $cliCategoryVarName = cli.category('${cliCategoryName}').description(`$('Commands to manage your $cliOperationDescription.'));" + $NEW_LINE;
+
+    if ($ModelNameSpace -like "*.WindowsAzure.*")
+    {
+        # Use Invoke Category for RDFE APIs
+        $invoke_category_desc = "Commands to invoke service management operations.";
+        $invoke_category_code = ".category('invoke').description('${invoke_category_desc}')";
+    }
+    
+    $code += "  var $cliCategoryVarName = cli${invoke_category_code}.category('${cliCategoryName}').description(`$('Commands to manage your $cliOperationDescription.'));" + $NEW_LINE;
 
     $code += "  ${cliCategoryVarName}.command('${cliMethodOption}')" + $NEW_LINE;
     $code += "  .description(`$('${cliMethodOption} method to manage your $cliOperationDescription.'))" + $NEW_LINE;
@@ -167,8 +175,8 @@ function Generate-CliFunctionCommandImpl
             $code += "    var ${cli_param_name}Obj = null;" + $NEW_LINE;
             $code += "    if (options.parameterFile) {" + $NEW_LINE;
             $code += "      cli.output.info(`'Reading file content from: \`"`' + options.parameterFile + `'\`"`');" + $NEW_LINE;
-            $code += "      var fileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $NEW_LINE;
-            $code += "      ${cli_param_name}Obj = JSON.parse(fileContent);" + $NEW_LINE;
+            $code += "      var ${cli_param_name}FileContent = fs.readFileSync(options.parameterFile, 'utf8');" + $NEW_LINE;
+            $code += "      ${cli_param_name}Obj = JSON.parse(${cli_param_name}FileContent);" + $NEW_LINE;
             $code += "    }" + $NEW_LINE;
             $code += "    else {" + $NEW_LINE;
             $code += "      ${cli_param_name}Obj = {};" + $NEW_LINE;
@@ -216,7 +224,15 @@ function Generate-CliFunctionCommandImpl
         }
     }
     $code += "    var subscription = profile.current.getSubscription(options.subscription);" + $NEW_LINE;
-    $code += "    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);" + $NEW_LINE;
+
+    if ($ModelNameSpace.Contains(".WindowsAzure."))
+    {
+        $code += "    var computeManagementClient = utils.createComputeClient(subscription);" + $NEW_LINE;
+    }
+    else
+    {
+        $code += "    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);" + $NEW_LINE;
+    }
 
     if ($cliMethodName -eq 'delete')
     {
@@ -232,8 +248,6 @@ function Generate-CliFunctionCommandImpl
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {
         # Function Call - For Each Method Parameter
-        if ($index -gt 0) { $code += ", "; }
-        
         $cli_param_name = Get-CliNormalizedName $methodParamNameList[$index];
         if ((${cli_param_name} -eq 'Parameters') -or (${cli_param_name} -like '*InstanceIds'))
         {
@@ -243,8 +257,11 @@ function Generate-CliFunctionCommandImpl
         {
             $code += "options.${cli_param_name}";
         }
+
+        $code += ", ";
     }
-    $code += ", _);" + $NEW_LINE;
+
+    $code += "_);" + $NEW_LINE;
     $code += "    cli.output.json(result);" + $NEW_LINE;
     $code += "  });" + $NEW_LINE;
 
