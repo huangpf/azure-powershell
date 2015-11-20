@@ -61,14 +61,15 @@ param(
     [string[]]$operationNameFilter = $null
 )
 
+$VerbosePreference='Continue';
+$ErrorActionPreference = "Stop";
+
 $NEW_LINE = "`r`n";
 $BAR_LINE = "=============================================";
 $SEC_LINE = "---------------------------------------------";
 $verbs_common_new = "VerbsCommon.New";
 $verbs_lifecycle_invoke = "VerbsLifecycle.Invoke";
 $client_model_namespace = $client_library_namespace + '.Models';
-
-#$verbosePreference='Continue';
 
 $common_verb_mapping =
 @{
