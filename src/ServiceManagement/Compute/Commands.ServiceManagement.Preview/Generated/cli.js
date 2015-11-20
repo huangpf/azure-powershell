@@ -265,6 +265,11 @@ exports.init = function (cli) {
   .description($('Remove catparametersChangeConfigurationByNameDeploymentDeploymentChangeConfigurationParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--configuration', $('Remove the configuration value.'))
+  .option('--extended-properties', $('Remove the extended-properties value.'))
+  .option('--extension-configuration', $('Remove the extension-configuration value.'))
+  .option('--mode', $('Remove the mode value.'))
+  .option('--treat-warnings-as-error', $('Remove the treat-warnings-as-error value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -277,7 +282,33 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.configuration || options.extendedProperties || options.extensionConfiguration || options.mode || options.treatWarningsAsError;
+    if (anySubItem) {
+      if (options.configuration) {
+        var subItemPath = options.path + "/configuration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.extendedProperties) {
+        var subItemPath = options.path + "/extendedProperties";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.extensionConfiguration) {
+        var subItemPath = options.path + "/extensionConfiguration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mode) {
+        var subItemPath = options.path + "/mode";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.treatWarningsAsError) {
+        var subItemPath = options.path + "/treatWarningsAsError";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -461,6 +492,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersChangeConfigurationByNameDeploymentExtensionConfiguration1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--all-roles', $('Remove the all-roles value.'))
+  .option('--named-roles', $('Remove the named-roles value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -473,7 +506,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.allRoles || options.namedRoles;
+    if (anySubItem) {
+      if (options.allRoles) {
+        var subItemPath = options.path + "/allRoles";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.namedRoles) {
+        var subItemPath = options.path + "/namedRoles";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -618,6 +665,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -630,7 +678,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration/allRoles' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.id;
+    if (anySubItem) {
+      if (options.id) {
+        var subItemPath = options.path + "/id";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -775,6 +833,8 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--extensions', $('Remove the extensions value.'))
+  .option('--role-name', $('Remove the role-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -787,7 +847,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration/namedRoles' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.extensions || options.roleName;
+    if (anySubItem) {
+      if (options.extensions) {
+        var subItemPath = options.path + "/extensions";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.roleName) {
+        var subItemPath = options.path + "/roleName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -934,6 +1008,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--named-roles-index <named-roles-index>', $('Indexer: named-roles-index.'))
+  .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -946,7 +1021,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration/namedRoles/' + options.namedRolesIndex + '/extensions' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.id;
+    if (anySubItem) {
+      if (options.id) {
+        var subItemPath = options.path + "/id";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -1244,6 +1329,11 @@ exports.init = function (cli) {
   .description($('Remove catparametersChangeConfigurationBySlotDeploymentDeploymentChangeConfigurationParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--configuration', $('Remove the configuration value.'))
+  .option('--extended-properties', $('Remove the extended-properties value.'))
+  .option('--extension-configuration', $('Remove the extension-configuration value.'))
+  .option('--mode', $('Remove the mode value.'))
+  .option('--treat-warnings-as-error', $('Remove the treat-warnings-as-error value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -1256,7 +1346,33 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.configuration || options.extendedProperties || options.extensionConfiguration || options.mode || options.treatWarningsAsError;
+    if (anySubItem) {
+      if (options.configuration) {
+        var subItemPath = options.path + "/configuration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.extendedProperties) {
+        var subItemPath = options.path + "/extendedProperties";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.extensionConfiguration) {
+        var subItemPath = options.path + "/extensionConfiguration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mode) {
+        var subItemPath = options.path + "/mode";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.treatWarningsAsError) {
+        var subItemPath = options.path + "/treatWarningsAsError";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -1440,6 +1556,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersChangeConfigurationBySlotDeploymentExtensionConfiguration1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--all-roles', $('Remove the all-roles value.'))
+  .option('--named-roles', $('Remove the named-roles value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -1452,7 +1570,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.allRoles || options.namedRoles;
+    if (anySubItem) {
+      if (options.allRoles) {
+        var subItemPath = options.path + "/allRoles";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.namedRoles) {
+        var subItemPath = options.path + "/namedRoles";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -1597,6 +1729,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -1609,7 +1742,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration/allRoles' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.id;
+    if (anySubItem) {
+      if (options.id) {
+        var subItemPath = options.path + "/id";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -1754,6 +1897,8 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--extensions', $('Remove the extensions value.'))
+  .option('--role-name', $('Remove the role-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -1766,7 +1911,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration/namedRoles' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.extensions || options.roleName;
+    if (anySubItem) {
+      if (options.extensions) {
+        var subItemPath = options.path + "/extensions";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.roleName) {
+        var subItemPath = options.path + "/roleName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -1913,6 +2072,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--named-roles-index <named-roles-index>', $('Indexer: named-roles-index.'))
+  .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -1925,7 +2085,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration/namedRoles/' + options.namedRolesIndex + '/extensions' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.id;
+    if (anySubItem) {
+      if (options.id) {
+        var subItemPath = options.path + "/id";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -2259,6 +2429,14 @@ exports.init = function (cli) {
   .description($('Remove catparametersCreateDeploymentDeploymentCreateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--configuration', $('Remove the configuration value.'))
+  .option('--extended-properties', $('Remove the extended-properties value.'))
+  .option('--extension-configuration', $('Remove the extension-configuration value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--package-uri', $('Remove the package-uri value.'))
+  .option('--start-deployment', $('Remove the start-deployment value.'))
+  .option('--treat-warnings-as-error', $('Remove the treat-warnings-as-error value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -2271,7 +2449,45 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.configuration || options.extendedProperties || options.extensionConfiguration || options.label || options.name || options.packageUri || options.startDeployment || options.treatWarningsAsError;
+    if (anySubItem) {
+      if (options.configuration) {
+        var subItemPath = options.path + "/configuration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.extendedProperties) {
+        var subItemPath = options.path + "/extendedProperties";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.extensionConfiguration) {
+        var subItemPath = options.path + "/extensionConfiguration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.packageUri) {
+        var subItemPath = options.path + "/packageUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.startDeployment) {
+        var subItemPath = options.path + "/startDeployment";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.treatWarningsAsError) {
+        var subItemPath = options.path + "/treatWarningsAsError";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -2488,6 +2704,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersCreateDeploymentExtensionConfiguration1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--all-roles', $('Remove the all-roles value.'))
+  .option('--named-roles', $('Remove the named-roles value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -2500,7 +2718,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.allRoles || options.namedRoles;
+    if (anySubItem) {
+      if (options.allRoles) {
+        var subItemPath = options.path + "/allRoles";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.namedRoles) {
+        var subItemPath = options.path + "/namedRoles";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -2645,6 +2877,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -2657,7 +2890,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration/allRoles' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.id;
+    if (anySubItem) {
+      if (options.id) {
+        var subItemPath = options.path + "/id";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -2802,6 +3045,8 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--extensions', $('Remove the extensions value.'))
+  .option('--role-name', $('Remove the role-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -2814,7 +3059,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration/namedRoles' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.extensions || options.roleName;
+    if (anySubItem) {
+      if (options.extensions) {
+        var subItemPath = options.path + "/extensions";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.roleName) {
+        var subItemPath = options.path + "/roleName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -2961,6 +3220,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--named-roles-index <named-roles-index>', $('Indexer: named-roles-index.'))
+  .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -2973,7 +3233,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration/namedRoles/' + options.namedRolesIndex + '/extensions' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.id;
+    if (anySubItem) {
+      if (options.id) {
+        var subItemPath = options.path + "/id";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -3296,6 +3566,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersDeleteRoleInstanceByDeploymentSlotDeploymentDeploymentDeleteRoleInstanceParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--name', $('Remove the name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -3308,7 +3579,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.name;
+    if (anySubItem) {
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -3443,7 +3724,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/name' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -3721,6 +4008,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersGetPackageByNameDeploymentDeploymentGetPackageParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--container-uri', $('Remove the container-uri value.'))
+  .option('--overwrite-existing', $('Remove the overwrite-existing value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -3733,7 +4022,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.containerUri || options.overwriteExisting;
+    if (anySubItem) {
+      if (options.containerUri) {
+        var subItemPath = options.path + "/containerUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.overwriteExisting) {
+        var subItemPath = options.path + "/overwriteExisting";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -3989,6 +4292,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersGetPackageBySlotDeploymentDeploymentGetPackageParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--container-uri', $('Remove the container-uri value.'))
+  .option('--overwrite-existing', $('Remove the overwrite-existing value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -4001,7 +4306,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.containerUri || options.overwriteExisting;
+    if (anySubItem) {
+      if (options.containerUri) {
+        var subItemPath = options.path + "/containerUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.overwriteExisting) {
+        var subItemPath = options.path + "/overwriteExisting";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -4467,6 +4786,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersRollbackUpdateOrUpgradeByDeploymentNameDeploymentDeploymentRollbackUpdateOrUpgradeParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--force', $('Remove the force value.'))
+  .option('--mode', $('Remove the mode value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -4479,7 +4800,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.force || options.mode;
+    if (anySubItem) {
+      if (options.force) {
+        var subItemPath = options.path + "/force";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mode) {
+        var subItemPath = options.path + "/mode";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -4579,7 +4914,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/mode';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -4813,6 +5154,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersRollbackUpdateOrUpgradeByDeploymentSlotDeploymentDeploymentRollbackUpdateOrUpgradeParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--force', $('Remove the force value.'))
+  .option('--mode', $('Remove the mode value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -4825,7 +5168,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.force || options.mode;
+    if (anySubItem) {
+      if (options.force) {
+        var subItemPath = options.path + "/force";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mode) {
+        var subItemPath = options.path + "/mode";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -4925,7 +5282,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/mode';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -5160,6 +5523,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersSwapDeploymentDeploymentSwapParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--production-deployment', $('Remove the production-deployment value.'))
+  .option('--source-deployment', $('Remove the source-deployment value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -5172,7 +5537,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.productionDeployment || options.sourceDeployment;
+    if (anySubItem) {
+      if (options.productionDeployment) {
+        var subItemPath = options.path + "/productionDeployment";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sourceDeployment) {
+        var subItemPath = options.path + "/sourceDeployment";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -5416,6 +5795,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateStatusByDeploymentNameDeploymentDeploymentUpdateStatusParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--status', $('Remove the status value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -5428,7 +5808,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.status;
+    if (anySubItem) {
+      if (options.status) {
+        var subItemPath = options.path + "/status";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -5517,7 +5907,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/status';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -5739,6 +6135,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateStatusByDeploymentSlotDeploymentDeploymentUpdateStatusParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--status', $('Remove the status value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -5751,7 +6148,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.status;
+    if (anySubItem) {
+      if (options.status) {
+        var subItemPath = options.path + "/status";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -5840,7 +6247,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/status';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -6163,6 +6576,14 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpgradeByNameDeploymentDeploymentUpgradeParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--configuration', $('Remove the configuration value.'))
+  .option('--extended-properties', $('Remove the extended-properties value.'))
+  .option('--extension-configuration', $('Remove the extension-configuration value.'))
+  .option('--force', $('Remove the force value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--mode', $('Remove the mode value.'))
+  .option('--package-uri', $('Remove the package-uri value.'))
+  .option('--role-to-upgrade', $('Remove the role-to-upgrade value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -6175,7 +6596,45 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.configuration || options.extendedProperties || options.extensionConfiguration || options.force || options.label || options.mode || options.packageUri || options.roleToUpgrade;
+    if (anySubItem) {
+      if (options.configuration) {
+        var subItemPath = options.path + "/configuration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.extendedProperties) {
+        var subItemPath = options.path + "/extendedProperties";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.extensionConfiguration) {
+        var subItemPath = options.path + "/extensionConfiguration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.force) {
+        var subItemPath = options.path + "/force";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mode) {
+        var subItemPath = options.path + "/mode";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.packageUri) {
+        var subItemPath = options.path + "/packageUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.roleToUpgrade) {
+        var subItemPath = options.path + "/roleToUpgrade";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -6392,6 +6851,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpgradeByNameDeploymentExtensionConfiguration1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--all-roles', $('Remove the all-roles value.'))
+  .option('--named-roles', $('Remove the named-roles value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -6404,7 +6865,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.allRoles || options.namedRoles;
+    if (anySubItem) {
+      if (options.allRoles) {
+        var subItemPath = options.path + "/allRoles";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.namedRoles) {
+        var subItemPath = options.path + "/namedRoles";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -6549,6 +7024,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -6561,7 +7037,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration/allRoles' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.id;
+    if (anySubItem) {
+      if (options.id) {
+        var subItemPath = options.path + "/id";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -6706,6 +7192,8 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--extensions', $('Remove the extensions value.'))
+  .option('--role-name', $('Remove the role-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -6718,7 +7206,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration/namedRoles' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.extensions || options.roleName;
+    if (anySubItem) {
+      if (options.extensions) {
+        var subItemPath = options.path + "/extensions";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.roleName) {
+        var subItemPath = options.path + "/roleName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -6865,6 +7367,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--named-roles-index <named-roles-index>', $('Indexer: named-roles-index.'))
+  .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -6877,7 +7380,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration/namedRoles/' + options.namedRolesIndex + '/extensions' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.id;
+    if (anySubItem) {
+      if (options.id) {
+        var subItemPath = options.path + "/id";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -6966,7 +7479,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/mode';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -7289,6 +7808,14 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpgradeBySlotDeploymentDeploymentUpgradeParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--configuration', $('Remove the configuration value.'))
+  .option('--extended-properties', $('Remove the extended-properties value.'))
+  .option('--extension-configuration', $('Remove the extension-configuration value.'))
+  .option('--force', $('Remove the force value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--mode', $('Remove the mode value.'))
+  .option('--package-uri', $('Remove the package-uri value.'))
+  .option('--role-to-upgrade', $('Remove the role-to-upgrade value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -7301,7 +7828,45 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.configuration || options.extendedProperties || options.extensionConfiguration || options.force || options.label || options.mode || options.packageUri || options.roleToUpgrade;
+    if (anySubItem) {
+      if (options.configuration) {
+        var subItemPath = options.path + "/configuration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.extendedProperties) {
+        var subItemPath = options.path + "/extendedProperties";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.extensionConfiguration) {
+        var subItemPath = options.path + "/extensionConfiguration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.force) {
+        var subItemPath = options.path + "/force";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mode) {
+        var subItemPath = options.path + "/mode";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.packageUri) {
+        var subItemPath = options.path + "/packageUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.roleToUpgrade) {
+        var subItemPath = options.path + "/roleToUpgrade";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -7518,6 +8083,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpgradeBySlotDeploymentExtensionConfiguration1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--all-roles', $('Remove the all-roles value.'))
+  .option('--named-roles', $('Remove the named-roles value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -7530,7 +8097,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.allRoles || options.namedRoles;
+    if (anySubItem) {
+      if (options.allRoles) {
+        var subItemPath = options.path + "/allRoles";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.namedRoles) {
+        var subItemPath = options.path + "/namedRoles";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -7675,6 +8256,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -7687,7 +8269,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration/allRoles' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.id;
+    if (anySubItem) {
+      if (options.id) {
+        var subItemPath = options.path + "/id";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -7832,6 +8424,8 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--extensions', $('Remove the extensions value.'))
+  .option('--role-name', $('Remove the role-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -7844,7 +8438,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration/namedRoles' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.extensions || options.roleName;
+    if (anySubItem) {
+      if (options.extensions) {
+        var subItemPath = options.path + "/extensions";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.roleName) {
+        var subItemPath = options.path + "/roleName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -7991,6 +8599,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--named-roles-index <named-roles-index>', $('Indexer: named-roles-index.'))
+  .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -8003,7 +8612,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionConfiguration/namedRoles/' + options.namedRolesIndex + '/extensions' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.id;
+    if (anySubItem) {
+      if (options.id) {
+        var subItemPath = options.path + "/id";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -8092,7 +8711,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/mode';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -8314,6 +8939,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersWalkUpgradeDomainByDeploymentNameDeploymentDeploymentWalkUpgradeDomainParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--upgrade-domain', $('Remove the upgrade-domain value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -8326,7 +8952,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.upgradeDomain;
+    if (anySubItem) {
+      if (options.upgradeDomain) {
+        var subItemPath = options.path + "/upgradeDomain";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -8559,6 +9195,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersWalkUpgradeDomainByDeploymentSlotDeploymentDeploymentWalkUpgradeDomainParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--upgrade-domain', $('Remove the upgrade-domain value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -8571,7 +9208,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.upgradeDomain;
+    if (anySubItem) {
+      if (options.upgradeDomain) {
+        var subItemPath = options.path + "/upgradeDomain";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -8820,6 +9467,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersAddDNSServerDNSServerDNSAddParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--address', $('Remove the address value.'))
+  .option('--name', $('Remove the name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -8832,7 +9481,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.address || options.name;
+    if (anySubItem) {
+      if (options.address) {
+        var subItemPath = options.path + "/address";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -9119,6 +9782,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateDNSServerDNSServerDNSUpdateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--address', $('Remove the address value.'))
+  .option('--name', $('Remove the name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -9131,7 +9796,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.address || options.name;
+    if (anySubItem) {
+      if (options.address) {
+        var subItemPath = options.path + "/address";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -9704,6 +10383,32 @@ exports.init = function (cli) {
   .description($('Remove catparametersRegisterExtensionImageExtensionImageRegisterParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--block-role-upon-failure', $('Remove the block-role-upon-failure value.'))
+  .option('--certificate', $('Remove the certificate value.'))
+  .option('--company-name', $('Remove the company-name value.'))
+  .option('--description', $('Remove the description value.'))
+  .option('--disallow-major-version-upgrade', $('Remove the disallow-major-version-upgrade value.'))
+  .option('--eula', $('Remove the eula value.'))
+  .option('--extension-endpoints', $('Remove the extension-endpoints value.'))
+  .option('--homepage-uri', $('Remove the homepage-uri value.'))
+  .option('--hosting-resources', $('Remove the hosting-resources value.'))
+  .option('--is-internal-extension', $('Remove the is-internal-extension value.'))
+  .option('--is-json-extension', $('Remove the is-json-extension value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--local-resources', $('Remove the local-resources value.'))
+  .option('--media-link', $('Remove the media-link value.'))
+  .option('--privacy-uri', $('Remove the privacy-uri value.'))
+  .option('--private-configuration-schema', $('Remove the private-configuration-schema value.'))
+  .option('--provider-name-space', $('Remove the provider-name-space value.'))
+  .option('--public-configuration-schema', $('Remove the public-configuration-schema value.'))
+  .option('--published-date', $('Remove the published-date value.'))
+  .option('--publisher-name', $('Remove the publisher-name value.'))
+  .option('--regions', $('Remove the regions value.'))
+  .option('--replication-completed', $('Remove the replication-completed value.'))
+  .option('--sample-config', $('Remove the sample-config value.'))
+  .option('--supported-os', $('Remove the supported-os value.'))
+  .option('--type', $('Remove the type value.'))
+  .option('--version', $('Remove the version value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -9716,7 +10421,117 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.blockRoleUponFailure || options.certificate || options.companyName || options.description || options.disallowMajorVersionUpgrade || options.eula || options.extensionEndpoints || options.homepageUri || options.hostingResources || options.isInternalExtension || options.isJsonExtension || options.label || options.localResources || options.mediaLink || options.privacyUri || options.privateConfigurationSchema || options.providerNameSpace || options.publicConfigurationSchema || options.publishedDate || options.publisherName || options.regions || options.replicationCompleted || options.sampleConfig || options.supportedOS || options.type || options.version;
+    if (anySubItem) {
+      if (options.blockRoleUponFailure) {
+        var subItemPath = options.path + "/blockRoleUponFailure";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.certificate) {
+        var subItemPath = options.path + "/certificate";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.companyName) {
+        var subItemPath = options.path + "/companyName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.description) {
+        var subItemPath = options.path + "/description";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.disallowMajorVersionUpgrade) {
+        var subItemPath = options.path + "/disallowMajorVersionUpgrade";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.eula) {
+        var subItemPath = options.path + "/eula";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.extensionEndpoints) {
+        var subItemPath = options.path + "/extensionEndpoints";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.homepageUri) {
+        var subItemPath = options.path + "/homepageUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.hostingResources) {
+        var subItemPath = options.path + "/hostingResources";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.isInternalExtension) {
+        var subItemPath = options.path + "/isInternalExtension";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.isJsonExtension) {
+        var subItemPath = options.path + "/isJsonExtension";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.localResources) {
+        var subItemPath = options.path + "/localResources";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLink) {
+        var subItemPath = options.path + "/mediaLink";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.privacyUri) {
+        var subItemPath = options.path + "/privacyUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.privateConfigurationSchema) {
+        var subItemPath = options.path + "/privateConfigurationSchema";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.providerNameSpace) {
+        var subItemPath = options.path + "/providerNameSpace";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publicConfigurationSchema) {
+        var subItemPath = options.path + "/publicConfigurationSchema";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publishedDate) {
+        var subItemPath = options.path + "/publishedDate";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publisherName) {
+        var subItemPath = options.path + "/publisherName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.regions) {
+        var subItemPath = options.path + "/regions";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.replicationCompleted) {
+        var subItemPath = options.path + "/replicationCompleted";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sampleConfig) {
+        var subItemPath = options.path + "/sampleConfig";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.supportedOS) {
+        var subItemPath = options.path + "/supportedOS";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.type) {
+        var subItemPath = options.path + "/type";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.version) {
+        var subItemPath = options.path + "/version";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -10153,6 +10968,10 @@ exports.init = function (cli) {
   .description($('Remove catparametersRegisterExtensionImageCertificate1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--store-location', $('Remove the store-location value.'))
+  .option('--store-name', $('Remove the store-name value.'))
+  .option('--thumbprint-algorithm', $('Remove the thumbprint-algorithm value.'))
+  .option('--thumbprint-required', $('Remove the thumbprint-required value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -10165,7 +10984,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/certificate';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.storeLocation || options.storeName || options.thumbprintAlgorithm || options.thumbprintRequired;
+    if (anySubItem) {
+      if (options.storeLocation) {
+        var subItemPath = options.path + "/storeLocation";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.storeName) {
+        var subItemPath = options.path + "/storeName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.thumbprintAlgorithm) {
+        var subItemPath = options.path + "/thumbprintAlgorithm";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.thumbprintRequired) {
+        var subItemPath = options.path + "/thumbprintRequired";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -10349,6 +11190,9 @@ exports.init = function (cli) {
   .description($('Remove catparametersRegisterExtensionImageExtensionEndpoints1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--input-endpoints', $('Remove the input-endpoints value.'))
+  .option('--instance-input-endpoints', $('Remove the instance-input-endpoints value.'))
+  .option('--internal-endpoints', $('Remove the internal-endpoints value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -10361,7 +11205,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionEndpoints';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.inputEndpoints || options.instanceInputEndpoints || options.internalEndpoints;
+    if (anySubItem) {
+      if (options.inputEndpoints) {
+        var subItemPath = options.path + "/inputEndpoints";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.instanceInputEndpoints) {
+        var subItemPath = options.path + "/instanceInputEndpoints";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.internalEndpoints) {
+        var subItemPath = options.path + "/internalEndpoints";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -10550,6 +11412,10 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--local-port', $('Remove the local-port value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--port', $('Remove the port value.'))
+  .option('--protocol', $('Remove the protocol value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -10562,7 +11428,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionEndpoints/inputEndpoints' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.localPort || options.name || options.port || options.protocol;
+    if (anySubItem) {
+      if (options.localPort) {
+        var subItemPath = options.path + "/localPort";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.port) {
+        var subItemPath = options.path + "/port";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.protocol) {
+        var subItemPath = options.path + "/protocol";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -10773,6 +11661,11 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--fixed-port-max', $('Remove the fixed-port-max value.'))
+  .option('--fixed-port-min', $('Remove the fixed-port-min value.'))
+  .option('--local-port', $('Remove the local-port value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--protocol', $('Remove the protocol value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -10785,7 +11678,33 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionEndpoints/instanceInputEndpoints' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.fixedPortMax || options.fixedPortMin || options.localPort || options.name || options.protocol;
+    if (anySubItem) {
+      if (options.fixedPortMax) {
+        var subItemPath = options.path + "/fixedPortMax";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.fixedPortMin) {
+        var subItemPath = options.path + "/fixedPortMin";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.localPort) {
+        var subItemPath = options.path + "/localPort";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.protocol) {
+        var subItemPath = options.path + "/protocol";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -10985,6 +11904,9 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--port', $('Remove the port value.'))
+  .option('--protocol', $('Remove the protocol value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -10997,7 +11919,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionEndpoints/internalEndpoints' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.name || options.port || options.protocol;
+    if (anySubItem) {
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.port) {
+        var subItemPath = options.path + "/port";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.protocol) {
+        var subItemPath = options.path + "/protocol";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -11164,6 +12104,8 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--size-in-m-b', $('Remove the size-in-m-b value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -11176,7 +12118,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/localResources' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.name || options.sizeInMB;
+    if (anySubItem) {
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sizeInMB) {
+        var subItemPath = options.path + "/sizeInMB";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -11773,6 +12729,32 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateExtensionImageExtensionImageUpdateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--block-role-upon-failure', $('Remove the block-role-upon-failure value.'))
+  .option('--certificate', $('Remove the certificate value.'))
+  .option('--company-name', $('Remove the company-name value.'))
+  .option('--description', $('Remove the description value.'))
+  .option('--disallow-major-version-upgrade', $('Remove the disallow-major-version-upgrade value.'))
+  .option('--eula', $('Remove the eula value.'))
+  .option('--extension-endpoints', $('Remove the extension-endpoints value.'))
+  .option('--homepage-uri', $('Remove the homepage-uri value.'))
+  .option('--hosting-resources', $('Remove the hosting-resources value.'))
+  .option('--is-internal-extension', $('Remove the is-internal-extension value.'))
+  .option('--is-json-extension', $('Remove the is-json-extension value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--local-resources', $('Remove the local-resources value.'))
+  .option('--media-link', $('Remove the media-link value.'))
+  .option('--privacy-uri', $('Remove the privacy-uri value.'))
+  .option('--private-configuration-schema', $('Remove the private-configuration-schema value.'))
+  .option('--provider-name-space', $('Remove the provider-name-space value.'))
+  .option('--public-configuration-schema', $('Remove the public-configuration-schema value.'))
+  .option('--published-date', $('Remove the published-date value.'))
+  .option('--publisher-name', $('Remove the publisher-name value.'))
+  .option('--regions', $('Remove the regions value.'))
+  .option('--replication-completed', $('Remove the replication-completed value.'))
+  .option('--sample-config', $('Remove the sample-config value.'))
+  .option('--supported-os', $('Remove the supported-os value.'))
+  .option('--type', $('Remove the type value.'))
+  .option('--version', $('Remove the version value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -11785,7 +12767,117 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.blockRoleUponFailure || options.certificate || options.companyName || options.description || options.disallowMajorVersionUpgrade || options.eula || options.extensionEndpoints || options.homepageUri || options.hostingResources || options.isInternalExtension || options.isJsonExtension || options.label || options.localResources || options.mediaLink || options.privacyUri || options.privateConfigurationSchema || options.providerNameSpace || options.publicConfigurationSchema || options.publishedDate || options.publisherName || options.regions || options.replicationCompleted || options.sampleConfig || options.supportedOS || options.type || options.version;
+    if (anySubItem) {
+      if (options.blockRoleUponFailure) {
+        var subItemPath = options.path + "/blockRoleUponFailure";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.certificate) {
+        var subItemPath = options.path + "/certificate";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.companyName) {
+        var subItemPath = options.path + "/companyName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.description) {
+        var subItemPath = options.path + "/description";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.disallowMajorVersionUpgrade) {
+        var subItemPath = options.path + "/disallowMajorVersionUpgrade";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.eula) {
+        var subItemPath = options.path + "/eula";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.extensionEndpoints) {
+        var subItemPath = options.path + "/extensionEndpoints";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.homepageUri) {
+        var subItemPath = options.path + "/homepageUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.hostingResources) {
+        var subItemPath = options.path + "/hostingResources";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.isInternalExtension) {
+        var subItemPath = options.path + "/isInternalExtension";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.isJsonExtension) {
+        var subItemPath = options.path + "/isJsonExtension";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.localResources) {
+        var subItemPath = options.path + "/localResources";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLink) {
+        var subItemPath = options.path + "/mediaLink";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.privacyUri) {
+        var subItemPath = options.path + "/privacyUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.privateConfigurationSchema) {
+        var subItemPath = options.path + "/privateConfigurationSchema";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.providerNameSpace) {
+        var subItemPath = options.path + "/providerNameSpace";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publicConfigurationSchema) {
+        var subItemPath = options.path + "/publicConfigurationSchema";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publishedDate) {
+        var subItemPath = options.path + "/publishedDate";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publisherName) {
+        var subItemPath = options.path + "/publisherName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.regions) {
+        var subItemPath = options.path + "/regions";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.replicationCompleted) {
+        var subItemPath = options.path + "/replicationCompleted";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sampleConfig) {
+        var subItemPath = options.path + "/sampleConfig";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.supportedOS) {
+        var subItemPath = options.path + "/supportedOS";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.type) {
+        var subItemPath = options.path + "/type";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.version) {
+        var subItemPath = options.path + "/version";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -12222,6 +13314,10 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateExtensionImageCertificate1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--store-location', $('Remove the store-location value.'))
+  .option('--store-name', $('Remove the store-name value.'))
+  .option('--thumbprint-algorithm', $('Remove the thumbprint-algorithm value.'))
+  .option('--thumbprint-required', $('Remove the thumbprint-required value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -12234,7 +13330,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/certificate';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.storeLocation || options.storeName || options.thumbprintAlgorithm || options.thumbprintRequired;
+    if (anySubItem) {
+      if (options.storeLocation) {
+        var subItemPath = options.path + "/storeLocation";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.storeName) {
+        var subItemPath = options.path + "/storeName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.thumbprintAlgorithm) {
+        var subItemPath = options.path + "/thumbprintAlgorithm";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.thumbprintRequired) {
+        var subItemPath = options.path + "/thumbprintRequired";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -12418,6 +13536,9 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateExtensionImageExtensionEndpoints1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--input-endpoints', $('Remove the input-endpoints value.'))
+  .option('--instance-input-endpoints', $('Remove the instance-input-endpoints value.'))
+  .option('--internal-endpoints', $('Remove the internal-endpoints value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -12430,7 +13551,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionEndpoints';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.inputEndpoints || options.instanceInputEndpoints || options.internalEndpoints;
+    if (anySubItem) {
+      if (options.inputEndpoints) {
+        var subItemPath = options.path + "/inputEndpoints";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.instanceInputEndpoints) {
+        var subItemPath = options.path + "/instanceInputEndpoints";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.internalEndpoints) {
+        var subItemPath = options.path + "/internalEndpoints";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -12619,6 +13758,10 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--local-port', $('Remove the local-port value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--port', $('Remove the port value.'))
+  .option('--protocol', $('Remove the protocol value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -12631,7 +13774,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionEndpoints/inputEndpoints' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.localPort || options.name || options.port || options.protocol;
+    if (anySubItem) {
+      if (options.localPort) {
+        var subItemPath = options.path + "/localPort";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.port) {
+        var subItemPath = options.path + "/port";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.protocol) {
+        var subItemPath = options.path + "/protocol";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -12842,6 +14007,11 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--fixed-port-max', $('Remove the fixed-port-max value.'))
+  .option('--fixed-port-min', $('Remove the fixed-port-min value.'))
+  .option('--local-port', $('Remove the local-port value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--protocol', $('Remove the protocol value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -12854,7 +14024,33 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionEndpoints/instanceInputEndpoints' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.fixedPortMax || options.fixedPortMin || options.localPort || options.name || options.protocol;
+    if (anySubItem) {
+      if (options.fixedPortMax) {
+        var subItemPath = options.path + "/fixedPortMax";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.fixedPortMin) {
+        var subItemPath = options.path + "/fixedPortMin";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.localPort) {
+        var subItemPath = options.path + "/localPort";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.protocol) {
+        var subItemPath = options.path + "/protocol";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -13054,6 +14250,9 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--port', $('Remove the port value.'))
+  .option('--protocol', $('Remove the protocol value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -13066,7 +14265,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/extensionEndpoints/internalEndpoints' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.name || options.port || options.protocol;
+    if (anySubItem) {
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.port) {
+        var subItemPath = options.path + "/port";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.protocol) {
+        var subItemPath = options.path + "/protocol";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -13233,6 +14450,8 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--size-in-m-b', $('Remove the size-in-m-b value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -13245,7 +14464,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/localResources' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.name || options.sizeInMB;
+    if (anySubItem) {
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sizeInMB) {
+        var subItemPath = options.path + "/sizeInMB";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -13592,6 +14825,14 @@ exports.init = function (cli) {
   .description($('Remove catparametersAddExtensionHostedServiceHostedServiceAddExtensionParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--id', $('Remove the id value.'))
+  .option('--private-configuration', $('Remove the private-configuration value.'))
+  .option('--provider-namespace', $('Remove the provider-namespace value.'))
+  .option('--public-configuration', $('Remove the public-configuration value.'))
+  .option('--thumbprint', $('Remove the thumbprint value.'))
+  .option('--thumbprint-algorithm', $('Remove the thumbprint-algorithm value.'))
+  .option('--type', $('Remove the type value.'))
+  .option('--version', $('Remove the version value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -13604,7 +14845,45 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.id || options.privateConfiguration || options.providerNamespace || options.publicConfiguration || options.thumbprint || options.thumbprintAlgorithm || options.type || options.version;
+    if (anySubItem) {
+      if (options.id) {
+        var subItemPath = options.path + "/id";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.privateConfiguration) {
+        var subItemPath = options.path + "/privateConfiguration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.providerNamespace) {
+        var subItemPath = options.path + "/providerNamespace";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publicConfiguration) {
+        var subItemPath = options.path + "/publicConfiguration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.thumbprint) {
+        var subItemPath = options.path + "/thumbprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.thumbprintAlgorithm) {
+        var subItemPath = options.path + "/thumbprintAlgorithm";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.type) {
+        var subItemPath = options.path + "/type";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.version) {
+        var subItemPath = options.path + "/version";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -13999,6 +15278,13 @@ exports.init = function (cli) {
   .description($('Remove catparametersCreateHostedServiceHostedServiceCreateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--affinity-group', $('Remove the affinity-group value.'))
+  .option('--description', $('Remove the description value.'))
+  .option('--extended-properties', $('Remove the extended-properties value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--location', $('Remove the location value.'))
+  .option('--reverse-dns-fqdn', $('Remove the reverse-dns-fqdn value.'))
+  .option('--service-name', $('Remove the service-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -14011,7 +15297,41 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.affinityGroup || options.description || options.extendedProperties || options.label || options.location || options.reverseDnsFqdn || options.serviceName;
+    if (anySubItem) {
+      if (options.affinityGroup) {
+        var subItemPath = options.path + "/affinityGroup";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.description) {
+        var subItemPath = options.path + "/description";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.extendedProperties) {
+        var subItemPath = options.path + "/extendedProperties";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.location) {
+        var subItemPath = options.path + "/location";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.reverseDnsFqdn) {
+        var subItemPath = options.path + "/reverseDnsFqdn";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.serviceName) {
+        var subItemPath = options.path + "/serviceName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -14527,6 +15847,10 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateHostedServiceHostedServiceUpdateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--description', $('Remove the description value.'))
+  .option('--extended-properties', $('Remove the extended-properties value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--reverse-dns-fqdn', $('Remove the reverse-dns-fqdn value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -14539,7 +15863,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.description || options.extendedProperties || options.label || options.reverseDnsFqdn;
+    if (anySubItem) {
+      if (options.description) {
+        var subItemPath = options.path + "/description";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.extendedProperties) {
+        var subItemPath = options.path + "/extendedProperties";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.reverseDnsFqdn) {
+        var subItemPath = options.path + "/reverseDnsFqdn";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -14821,6 +16167,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersCreateLoadBalancerLoadBalancerCreateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--frontend-ip-configuration', $('Remove the frontend-ip-configuration value.'))
+  .option('--name', $('Remove the name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -14833,7 +16181,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.frontendIPConfiguration || options.name;
+    if (anySubItem) {
+      if (options.frontendIPConfiguration) {
+        var subItemPath = options.path + "/frontendIPConfiguration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -14995,6 +16357,9 @@ exports.init = function (cli) {
   .description($('Remove catparametersCreateLoadBalancerFrontendIPConfiguration1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--static-virtual-network-ip-address', $('Remove the static-virtual-network-ip-address value.'))
+  .option('--subnet-name', $('Remove the subnet-name value.'))
+  .option('--type', $('Remove the type value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -15007,7 +16372,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/frontendIPConfiguration';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.staticVirtualNetworkIPAddress || options.subnetName || options.type;
+    if (anySubItem) {
+      if (options.staticVirtualNetworkIPAddress) {
+        var subItemPath = options.path + "/staticVirtualNetworkIPAddress";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.subnetName) {
+        var subItemPath = options.path + "/subnetName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.type) {
+        var subItemPath = options.path + "/type";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -15305,6 +16688,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateLoadBalancerLoadBalancerUpdateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--frontend-ip-configuration', $('Remove the frontend-ip-configuration value.'))
+  .option('--name', $('Remove the name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -15317,7 +16702,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.frontendIPConfiguration || options.name;
+    if (anySubItem) {
+      if (options.frontendIPConfiguration) {
+        var subItemPath = options.path + "/frontendIPConfiguration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -15479,6 +16878,9 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateLoadBalancerFrontendIPConfiguration1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--static-virtual-network-ip-address', $('Remove the static-virtual-network-ip-address value.'))
+  .option('--subnet-name', $('Remove the subnet-name value.'))
+  .option('--type', $('Remove the type value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -15491,7 +16893,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/frontendIPConfiguration';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.staticVirtualNetworkIPAddress || options.subnetName || options.type;
+    if (anySubItem) {
+      if (options.staticVirtualNetworkIPAddress) {
+        var subItemPath = options.path + "/staticVirtualNetworkIPAddress";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.subnetName) {
+        var subItemPath = options.path + "/subnetName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.type) {
+        var subItemPath = options.path + "/type";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -15798,6 +17218,9 @@ exports.init = function (cli) {
   .description($('Remove catparametersCreateServiceCertificateServiceCertificateCreateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--certificate-format', $('Remove the certificate-format value.'))
+  .option('--data', $('Remove the data value.'))
+  .option('--password', $('Remove the password value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -15810,7 +17233,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.certificateFormat || options.data || options.password;
+    if (anySubItem) {
+      if (options.certificateFormat) {
+        var subItemPath = options.path + "/certificateFormat";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.data) {
+        var subItemPath = options.path + "/data";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.password) {
+        var subItemPath = options.path + "/password";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -15921,7 +17362,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/certificateFormat';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -16168,6 +17615,9 @@ exports.init = function (cli) {
   .description($('Remove catparametersDeleteServiceCertificateServiceCertificateDeleteParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--service-name', $('Remove the service-name value.'))
+  .option('--thumbprint', $('Remove the thumbprint value.'))
+  .option('--thumbprint-algorithm', $('Remove the thumbprint-algorithm value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -16180,7 +17630,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.serviceName || options.thumbprint || options.thumbprintAlgorithm;
+    if (anySubItem) {
+      if (options.serviceName) {
+        var subItemPath = options.path + "/serviceName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.thumbprint) {
+        var subItemPath = options.path + "/thumbprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.thumbprintAlgorithm) {
+        var subItemPath = options.path + "/thumbprintAlgorithm";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -16460,6 +17928,9 @@ exports.init = function (cli) {
   .description($('Remove catparametersGetServiceCertificateServiceCertificateGetParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--service-name', $('Remove the service-name value.'))
+  .option('--thumbprint', $('Remove the thumbprint value.'))
+  .option('--thumbprint-algorithm', $('Remove the thumbprint-algorithm value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -16472,7 +17943,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.serviceName || options.thumbprint || options.thumbprintAlgorithm;
+    if (anySubItem) {
+      if (options.serviceName) {
+        var subItemPath = options.path + "/serviceName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.thumbprint) {
+        var subItemPath = options.path + "/thumbprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.thumbprintAlgorithm) {
+        var subItemPath = options.path + "/thumbprintAlgorithm";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -16820,6 +18309,13 @@ exports.init = function (cli) {
   .description($('Remove catparametersCreateDataDiskVirtualMachineDiskVirtualMachineDataDiskCreateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--host-caching', $('Remove the host-caching value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--logical-disk-size-in-g-b', $('Remove the logical-disk-size-in-g-b value.'))
+  .option('--logical-unit-number', $('Remove the logical-unit-number value.'))
+  .option('--media-link-uri', $('Remove the media-link-uri value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--source-media-link-uri', $('Remove the source-media-link-uri value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -16832,7 +18328,41 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.hostCaching || options.label || options.logicalDiskSizeInGB || options.logicalUnitNumber || options.mediaLinkUri || options.name || options.sourceMediaLinkUri;
+    if (anySubItem) {
+      if (options.hostCaching) {
+        var subItemPath = options.path + "/hostCaching";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.logicalDiskSizeInGB) {
+        var subItemPath = options.path + "/logicalDiskSizeInGB";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.logicalUnitNumber) {
+        var subItemPath = options.path + "/logicalUnitNumber";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLinkUri) {
+        var subItemPath = options.path + "/mediaLinkUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sourceMediaLinkUri) {
+        var subItemPath = options.path + "/sourceMediaLinkUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -17161,6 +18691,10 @@ exports.init = function (cli) {
   .description($('Remove catparametersCreateDiskVirtualMachineDiskVirtualMachineDiskCreateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--media-link-uri', $('Remove the media-link-uri value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--operating-system-type', $('Remove the operating-system-type value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -17173,7 +18707,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.label || options.mediaLinkUri || options.name || options.operatingSystemType;
+    if (anySubItem) {
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLinkUri) {
+        var subItemPath = options.path + "/mediaLinkUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.operatingSystemType) {
+        var subItemPath = options.path + "/operatingSystemType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -17656,6 +19212,12 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateDataDiskVirtualMachineDiskVirtualMachineDataDiskUpdateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--host-caching', $('Remove the host-caching value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--logical-disk-size-in-g-b', $('Remove the logical-disk-size-in-g-b value.'))
+  .option('--logical-unit-number', $('Remove the logical-unit-number value.'))
+  .option('--media-link-uri', $('Remove the media-link-uri value.'))
+  .option('--name', $('Remove the name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -17668,7 +19230,37 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.hostCaching || options.label || options.logicalDiskSizeInGB || options.logicalUnitNumber || options.mediaLinkUri || options.name;
+    if (anySubItem) {
+      if (options.hostCaching) {
+        var subItemPath = options.path + "/hostCaching";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.logicalDiskSizeInGB) {
+        var subItemPath = options.path + "/logicalDiskSizeInGB";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.logicalUnitNumber) {
+        var subItemPath = options.path + "/logicalUnitNumber";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLinkUri) {
+        var subItemPath = options.path + "/mediaLinkUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -18013,6 +19605,12 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateDiskVirtualMachineDiskVirtualMachineDiskUpdateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--has-operating-system', $('Remove the has-operating-system value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--media-link-uri', $('Remove the media-link-uri value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--operating-system-type', $('Remove the operating-system-type value.'))
+  .option('--resized-size-in-g-b', $('Remove the resized-size-in-g-b value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -18025,7 +19623,37 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.hasOperatingSystem || options.label || options.mediaLinkUri || options.name || options.operatingSystemType || options.resizedSizeInGB;
+    if (anySubItem) {
+      if (options.hasOperatingSystem) {
+        var subItemPath = options.path + "/hasOperatingSystem";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLinkUri) {
+        var subItemPath = options.path + "/mediaLinkUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.operatingSystemType) {
+        var subItemPath = options.path + "/operatingSystemType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.resizedSizeInGB) {
+        var subItemPath = options.path + "/resizedSizeInGB";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -18370,6 +19998,12 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateDiskSizeVirtualMachineDiskVirtualMachineDiskUpdateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--has-operating-system', $('Remove the has-operating-system value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--media-link-uri', $('Remove the media-link-uri value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--operating-system-type', $('Remove the operating-system-type value.'))
+  .option('--resized-size-in-g-b', $('Remove the resized-size-in-g-b value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -18382,7 +20016,37 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.hasOperatingSystem || options.label || options.mediaLinkUri || options.name || options.operatingSystemType || options.resizedSizeInGB;
+    if (anySubItem) {
+      if (options.hasOperatingSystem) {
+        var subItemPath = options.path + "/hasOperatingSystem";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLinkUri) {
+        var subItemPath = options.path + "/mediaLinkUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.operatingSystemType) {
+        var subItemPath = options.path + "/operatingSystemType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.resizedSizeInGB) {
+        var subItemPath = options.path + "/resizedSizeInGB";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -18709,6 +20373,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersBeginShutdownVirtualMachineVirtualMachineShutdownParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--post-shutdown-action', $('Remove the post-shutdown-action value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -18721,7 +20386,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.postShutdownAction;
+    if (anySubItem) {
+      if (options.postShutdownAction) {
+        var subItemPath = options.path + "/postShutdownAction";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -18810,7 +20485,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/postShutdownAction';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -19182,6 +20863,10 @@ exports.init = function (cli) {
   .description($('Remove catparametersCaptureOSImageVirtualMachineVirtualMachineCaptureOSImageParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--post-capture-action', $('Remove the post-capture-action value.'))
+  .option('--provisioning-configuration', $('Remove the provisioning-configuration value.'))
+  .option('--target-image-label', $('Remove the target-image-label value.'))
+  .option('--target-image-name', $('Remove the target-image-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -19194,7 +20879,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.postCaptureAction || options.provisioningConfiguration || options.targetImageLabel || options.targetImageName;
+    if (anySubItem) {
+      if (options.postCaptureAction) {
+        var subItemPath = options.path + "/postCaptureAction";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.provisioningConfiguration) {
+        var subItemPath = options.path + "/provisioningConfiguration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.targetImageLabel) {
+        var subItemPath = options.path + "/targetImageLabel";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.targetImageName) {
+        var subItemPath = options.path + "/targetImageName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -19316,7 +21023,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/postCaptureAction';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -19676,6 +21389,29 @@ exports.init = function (cli) {
   .description($('Remove catparametersCaptureOSImageVirtualMachineProvisioningConfiguration1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--admin-password', $('Remove the admin-password value.'))
+  .option('--admin-user-name', $('Remove the admin-user-name value.'))
+  .option('--computer-name', $('Remove the computer-name value.'))
+  .option('--configuration-set-type', $('Remove the configuration-set-type value.'))
+  .option('--custom-data', $('Remove the custom-data value.'))
+  .option('--disable-ssh-password-authentication', $('Remove the disable-ssh-password-authentication value.'))
+  .option('--domain-join', $('Remove the domain-join value.'))
+  .option('--enable-automatic-updates', $('Remove the enable-automatic-updates value.'))
+  .option('--host-name', $('Remove the host-name value.'))
+  .option('--input-endpoints', $('Remove the input-endpoints value.'))
+  .option('--ip-forwarding', $('Remove the ip-forwarding value.'))
+  .option('--network-interfaces', $('Remove the network-interfaces value.'))
+  .option('--network-security-group', $('Remove the network-security-group value.'))
+  .option('--public-ip', $('Remove the public-ip value.'))
+  .option('--reset-password-on-first-logon', $('Remove the reset-password-on-first-logon value.'))
+  .option('--ssh-settings', $('Remove the ssh-settings value.'))
+  .option('--static-virtual-network-ip-address', $('Remove the static-virtual-network-ip-address value.'))
+  .option('--stored-certificate-settings', $('Remove the stored-certificate-settings value.'))
+  .option('--subnet-names', $('Remove the subnet-names value.'))
+  .option('--time-zone', $('Remove the time-zone value.'))
+  .option('--user-name', $('Remove the user-name value.'))
+  .option('--user-password', $('Remove the user-password value.'))
+  .option('--windows-remote-management', $('Remove the windows-remote-management value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -19688,7 +21424,105 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.adminPassword || options.adminUserName || options.computerName || options.configurationSetType || options.customData || options.disableSshPasswordAuthentication || options.domainJoin || options.enableAutomaticUpdates || options.hostName || options.inputEndpoints || options.ipForwarding || options.networkInterfaces || options.networkSecurityGroup || options.publicIPs || options.resetPasswordOnFirstLogon || options.sshSettings || options.staticVirtualNetworkIPAddress || options.storedCertificateSettings || options.subnetNames || options.timeZone || options.userName || options.userPassword || options.windowsRemoteManagement;
+    if (anySubItem) {
+      if (options.adminPassword) {
+        var subItemPath = options.path + "/adminPassword";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.adminUserName) {
+        var subItemPath = options.path + "/adminUserName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.computerName) {
+        var subItemPath = options.path + "/computerName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.configurationSetType) {
+        var subItemPath = options.path + "/configurationSetType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.customData) {
+        var subItemPath = options.path + "/customData";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.disableSshPasswordAuthentication) {
+        var subItemPath = options.path + "/disableSshPasswordAuthentication";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.domainJoin) {
+        var subItemPath = options.path + "/domainJoin";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.enableAutomaticUpdates) {
+        var subItemPath = options.path + "/enableAutomaticUpdates";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.hostName) {
+        var subItemPath = options.path + "/hostName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.inputEndpoints) {
+        var subItemPath = options.path + "/inputEndpoints";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.ipForwarding) {
+        var subItemPath = options.path + "/ipForwarding";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.networkInterfaces) {
+        var subItemPath = options.path + "/networkInterfaces";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.networkSecurityGroup) {
+        var subItemPath = options.path + "/networkSecurityGroup";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publicIPs) {
+        var subItemPath = options.path + "/publicIPs";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.resetPasswordOnFirstLogon) {
+        var subItemPath = options.path + "/resetPasswordOnFirstLogon";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sshSettings) {
+        var subItemPath = options.path + "/sshSettings";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.staticVirtualNetworkIPAddress) {
+        var subItemPath = options.path + "/staticVirtualNetworkIPAddress";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.storedCertificateSettings) {
+        var subItemPath = options.path + "/storedCertificateSettings";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.subnetNames) {
+        var subItemPath = options.path + "/subnetNames";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.timeZone) {
+        var subItemPath = options.path + "/timeZone";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.userName) {
+        var subItemPath = options.path + "/userName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.userPassword) {
+        var subItemPath = options.path + "/userPassword";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.windowsRemoteManagement) {
+        var subItemPath = options.path + "/windowsRemoteManagement";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -20092,6 +21926,10 @@ exports.init = function (cli) {
   .description($('Remove catparametersCaptureOSImageVirtualMachineDomainJoin1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--credentials', $('Remove the credentials value.'))
+  .option('--domain-to-join', $('Remove the domain-to-join value.'))
+  .option('--ldap-machine-object-o-u', $('Remove the ldap-machine-object-o-u value.'))
+  .option('--provisioning', $('Remove the provisioning value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -20104,7 +21942,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/domainJoin';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.credentials || options.domainToJoin || options.ldapMachineObjectOU || options.provisioning;
+    if (anySubItem) {
+      if (options.credentials) {
+        var subItemPath = options.path + "/credentials";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.domainToJoin) {
+        var subItemPath = options.path + "/domainToJoin";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.ldapMachineObjectOU) {
+        var subItemPath = options.path + "/ldapMachineObjectOU";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.provisioning) {
+        var subItemPath = options.path + "/provisioning";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -20288,6 +22148,9 @@ exports.init = function (cli) {
   .description($('Remove catparametersCaptureOSImageVirtualMachineCredentials1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--domain', $('Remove the domain value.'))
+  .option('--password', $('Remove the password value.'))
+  .option('--user-name', $('Remove the user-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -20300,7 +22163,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/domainJoin/credentials';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.domain || options.password || options.userName;
+    if (anySubItem) {
+      if (options.domain) {
+        var subItemPath = options.path + "/domain";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.password) {
+        var subItemPath = options.path + "/password";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.userName) {
+        var subItemPath = options.path + "/userName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -20451,6 +22332,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersCaptureOSImageVirtualMachineProvisioning1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--account-data', $('Remove the account-data value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -20463,7 +22345,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/domainJoin/provisioning';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.accountData;
+    if (anySubItem) {
+      if (options.accountData) {
+        var subItemPath = options.path + "/accountData";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -20729,6 +22621,19 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--enable-direct-server-return', $('Remove the enable-direct-server-return value.'))
+  .option('--endpoint-acl', $('Remove the endpoint-acl value.'))
+  .option('--idle-timeout-in-minutes', $('Remove the idle-timeout-in-minutes value.'))
+  .option('--load-balanced-endpoint-set-name', $('Remove the load-balanced-endpoint-set-name value.'))
+  .option('--load-balancer-distribution', $('Remove the load-balancer-distribution value.'))
+  .option('--load-balancer-name', $('Remove the load-balancer-name value.'))
+  .option('--load-balancer-probe', $('Remove the load-balancer-probe value.'))
+  .option('--local-port', $('Remove the local-port value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--port', $('Remove the port value.'))
+  .option('--protocol', $('Remove the protocol value.'))
+  .option('--virtual-ip-address', $('Remove the virtual-ip-address value.'))
+  .option('--virtual-ip-name', $('Remove the virtual-ip-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -20741,7 +22646,65 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/inputEndpoints' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.enableDirectServerReturn || options.endpointAcl || options.idleTimeoutInMinutes || options.loadBalancedEndpointSetName || options.loadBalancerDistribution || options.loadBalancerName || options.loadBalancerProbe || options.localPort || options.name || options.port || options.protocol || options.virtualIPAddress || options.virtualIPName;
+    if (anySubItem) {
+      if (options.enableDirectServerReturn) {
+        var subItemPath = options.path + "/enableDirectServerReturn";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.endpointAcl) {
+        var subItemPath = options.path + "/endpointAcl";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.idleTimeoutInMinutes) {
+        var subItemPath = options.path + "/idleTimeoutInMinutes";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancedEndpointSetName) {
+        var subItemPath = options.path + "/loadBalancedEndpointSetName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancerDistribution) {
+        var subItemPath = options.path + "/loadBalancerDistribution";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancerName) {
+        var subItemPath = options.path + "/loadBalancerName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancerProbe) {
+        var subItemPath = options.path + "/loadBalancerProbe";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.localPort) {
+        var subItemPath = options.path + "/localPort";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.port) {
+        var subItemPath = options.path + "/port";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.protocol) {
+        var subItemPath = options.path + "/protocol";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.virtualIPAddress) {
+        var subItemPath = options.path + "/virtualIPAddress";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.virtualIPName) {
+        var subItemPath = options.path + "/virtualIPName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -21004,6 +22967,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
+  .option('--rules', $('Remove the rules value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -21016,7 +22980,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/inputEndpoints/' + options.inputEndpointsIndex + '/endpointAcl';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.rules;
+    if (anySubItem) {
+      if (options.rules) {
+        var subItemPath = options.path + "/rules";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -21185,6 +23159,10 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
+  .option('--action', $('Remove the action value.'))
+  .option('--description', $('Remove the description value.'))
+  .option('--order', $('Remove the order value.'))
+  .option('--remote-subnet', $('Remove the remote-subnet value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -21197,7 +23175,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/inputEndpoints/' + options.inputEndpointsIndex + '/endpointAcl/rules' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.action || options.description || options.order || options.remoteSubnet;
+    if (anySubItem) {
+      if (options.action) {
+        var subItemPath = options.path + "/action";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.description) {
+        var subItemPath = options.path + "/description";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.order) {
+        var subItemPath = options.path + "/order";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.remoteSubnet) {
+        var subItemPath = options.path + "/remoteSubnet";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -21405,6 +23405,11 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
+  .option('--interval-in-seconds', $('Remove the interval-in-seconds value.'))
+  .option('--path', $('Remove the path value.'))
+  .option('--port', $('Remove the port value.'))
+  .option('--protocol', $('Remove the protocol value.'))
+  .option('--timeout-in-seconds', $('Remove the timeout-in-seconds value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -21417,7 +23422,33 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/inputEndpoints/' + options.inputEndpointsIndex + '/loadBalancerProbe';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.intervalInSeconds || options.path || options.port || options.protocol || options.timeoutInSeconds;
+    if (anySubItem) {
+      if (options.intervalInSeconds) {
+        var subItemPath = options.path + "/intervalInSeconds";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.path) {
+        var subItemPath = options.path + "/path";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.port) {
+        var subItemPath = options.path + "/port";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.protocol) {
+        var subItemPath = options.path + "/protocol";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.timeoutInSeconds) {
+        var subItemPath = options.path + "/timeoutInSeconds";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -21551,7 +23582,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/inputEndpoints/' + options.inputEndpointsIndex + '/loadBalancerProbe/protocol';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -21707,6 +23744,10 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--ip-configurations', $('Remove the ip-configurations value.'))
+  .option('--ip-forwarding', $('Remove the ip-forwarding value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--network-security-group', $('Remove the network-security-group value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -21719,7 +23760,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/networkInterfaces' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.ipConfigurations || options.ipForwarding || options.name || options.networkSecurityGroup;
+    if (anySubItem) {
+      if (options.ipConfigurations) {
+        var subItemPath = options.path + "/ipConfigurations";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.ipForwarding) {
+        var subItemPath = options.path + "/ipForwarding";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.networkSecurityGroup) {
+        var subItemPath = options.path + "/networkSecurityGroup";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -21899,6 +23962,8 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--network-interfaces-index <network-interfaces-index>', $('Indexer: network-interfaces-index.'))
+  .option('--static-virtual-network-ip-address', $('Remove the static-virtual-network-ip-address value.'))
+  .option('--subnet-name', $('Remove the subnet-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -21911,7 +23976,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/networkInterfaces/' + options.networkInterfacesIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.staticVirtualNetworkIPAddress || options.subnetName;
+    if (anySubItem) {
+      if (options.staticVirtualNetworkIPAddress) {
+        var subItemPath = options.path + "/staticVirtualNetworkIPAddress";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.subnetName) {
+        var subItemPath = options.path + "/subnetName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -22078,6 +24157,9 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--domain-name-label', $('Remove the domain-name-label value.'))
+  .option('--idle-timeout-in-minutes', $('Remove the idle-timeout-in-minutes value.'))
+  .option('--name', $('Remove the name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -22090,7 +24172,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/publicIPs' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.domainNameLabel || options.idleTimeoutInMinutes || options.name;
+    if (anySubItem) {
+      if (options.domainNameLabel) {
+        var subItemPath = options.path + "/domainNameLabel";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.idleTimeoutInMinutes) {
+        var subItemPath = options.path + "/idleTimeoutInMinutes";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -22252,6 +24352,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersCaptureOSImageVirtualMachineSshSettings1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--key-pairs', $('Remove the key-pairs value.'))
+  .option('--public-keys', $('Remove the public-keys value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -22264,7 +24366,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/sshSettings';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.keyPairs || options.publicKeys;
+    if (anySubItem) {
+      if (options.keyPairs) {
+        var subItemPath = options.path + "/keyPairs";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publicKeys) {
+        var subItemPath = options.path + "/publicKeys";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -22420,6 +24536,8 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--fingerprint', $('Remove the fingerprint value.'))
+  .option('--path', $('Remove the path value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -22432,7 +24550,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/sshSettings/keyPairs' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.fingerprint || options.path;
+    if (anySubItem) {
+      if (options.fingerprint) {
+        var subItemPath = options.path + "/fingerprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.path) {
+        var subItemPath = options.path + "/path";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -22588,6 +24720,8 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--fingerprint', $('Remove the fingerprint value.'))
+  .option('--path', $('Remove the path value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -22600,7 +24734,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/sshSettings/publicKeys' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.fingerprint || options.path;
+    if (anySubItem) {
+      if (options.fingerprint) {
+        var subItemPath = options.path + "/fingerprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.path) {
+        var subItemPath = options.path + "/path";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -22756,6 +24904,8 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--store-name', $('Remove the store-name value.'))
+  .option('--thumbprint', $('Remove the thumbprint value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -22768,7 +24918,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/storedCertificateSettings' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.storeName || options.thumbprint;
+    if (anySubItem) {
+      if (options.storeName) {
+        var subItemPath = options.path + "/storeName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.thumbprint) {
+        var subItemPath = options.path + "/thumbprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -22914,7 +25078,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/subnetNames' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -23032,6 +25202,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersCaptureOSImageVirtualMachineWindowsRemoteManagement1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--listeners', $('Remove the listeners value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -23044,7 +25215,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/windowsRemoteManagement';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.listeners;
+    if (anySubItem) {
+      if (options.listeners) {
+        var subItemPath = options.path + "/listeners";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -23189,6 +25370,8 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--certificate-thumbprint', $('Remove the certificate-thumbprint value.'))
+  .option('--listener-type', $('Remove the listener-type value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -23201,7 +25384,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/windowsRemoteManagement/listeners' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.certificateThumbprint || options.listenerType;
+    if (anySubItem) {
+      if (options.certificateThumbprint) {
+        var subItemPath = options.path + "/certificateThumbprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.listenerType) {
+        var subItemPath = options.path + "/listenerType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -23302,7 +25499,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/windowsRemoteManagement/listeners/' + options.listenersIndex + '/listenerType';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -23587,6 +25790,12 @@ exports.init = function (cli) {
   .description($('Remove catparametersCaptureVMImageVirtualMachineVirtualMachineCaptureVMImageParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--operation-type', $('Remove the operation-type value.'))
+  .option('--os-state', $('Remove the os-state value.'))
+  .option('--vm-image-label', $('Remove the vm-image-label value.'))
+  .option('--vm-image-name', $('Remove the vm-image-name value.'))
+  .option('--request-id', $('Remove the request-id value.'))
+  .option('--status-code', $('Remove the status-code value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -23599,7 +25808,37 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.operationType || options.oSState || options.vmImageLabel || options.vmImageName || options.requestId || options.statusCode;
+    if (anySubItem) {
+      if (options.operationType) {
+        var subItemPath = options.path + "/operationType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.oSState) {
+        var subItemPath = options.path + "/oSState";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.vmImageLabel) {
+        var subItemPath = options.path + "/vmImageLabel";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.vmImageName) {
+        var subItemPath = options.path + "/vmImageName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.requestId) {
+        var subItemPath = options.path + "/requestId";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.statusCode) {
+        var subItemPath = options.path + "/statusCode";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -24167,6 +26406,17 @@ exports.init = function (cli) {
   .description($('Remove catparametersCreateVirtualMachineVirtualMachineCreateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--availability-set-name', $('Remove the availability-set-name value.'))
+  .option('--configuration-sets', $('Remove the configuration-sets value.'))
+  .option('--data-virtual-hard-disks', $('Remove the data-virtual-hard-disks value.'))
+  .option('--media-location', $('Remove the media-location value.'))
+  .option('--os-virtual-hard-disk', $('Remove the os-virtual-hard-disk value.'))
+  .option('--provision-guest-agent', $('Remove the provision-guest-agent value.'))
+  .option('--resource-extension-references', $('Remove the resource-extension-references value.'))
+  .option('--role-name', $('Remove the role-name value.'))
+  .option('--role-size', $('Remove the role-size value.'))
+  .option('--vm-image-input', $('Remove the vm-image-input value.'))
+  .option('--vm-image-name', $('Remove the vm-image-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -24179,7 +26429,57 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.availabilitySetName || options.configurationSets || options.dataVirtualHardDisks || options.mediaLocation || options.oSVirtualHardDisk || options.provisionGuestAgent || options.resourceExtensionReferences || options.roleName || options.roleSize || options.vmImageInput || options.vmImageName;
+    if (anySubItem) {
+      if (options.availabilitySetName) {
+        var subItemPath = options.path + "/availabilitySetName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.configurationSets) {
+        var subItemPath = options.path + "/configurationSets";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.dataVirtualHardDisks) {
+        var subItemPath = options.path + "/dataVirtualHardDisks";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLocation) {
+        var subItemPath = options.path + "/mediaLocation";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.oSVirtualHardDisk) {
+        var subItemPath = options.path + "/oSVirtualHardDisk";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.provisionGuestAgent) {
+        var subItemPath = options.path + "/provisionGuestAgent";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.resourceExtensionReferences) {
+        var subItemPath = options.path + "/resourceExtensionReferences";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.roleName) {
+        var subItemPath = options.path + "/roleName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.roleSize) {
+        var subItemPath = options.path + "/roleSize";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.vmImageInput) {
+        var subItemPath = options.path + "/vmImageInput";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.vmImageName) {
+        var subItemPath = options.path + "/vmImageName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -24665,6 +26965,29 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--admin-password', $('Remove the admin-password value.'))
+  .option('--admin-user-name', $('Remove the admin-user-name value.'))
+  .option('--computer-name', $('Remove the computer-name value.'))
+  .option('--configuration-set-type', $('Remove the configuration-set-type value.'))
+  .option('--custom-data', $('Remove the custom-data value.'))
+  .option('--disable-ssh-password-authentication', $('Remove the disable-ssh-password-authentication value.'))
+  .option('--domain-join', $('Remove the domain-join value.'))
+  .option('--enable-automatic-updates', $('Remove the enable-automatic-updates value.'))
+  .option('--host-name', $('Remove the host-name value.'))
+  .option('--input-endpoints', $('Remove the input-endpoints value.'))
+  .option('--ip-forwarding', $('Remove the ip-forwarding value.'))
+  .option('--network-interfaces', $('Remove the network-interfaces value.'))
+  .option('--network-security-group', $('Remove the network-security-group value.'))
+  .option('--public-ip', $('Remove the public-ip value.'))
+  .option('--reset-password-on-first-logon', $('Remove the reset-password-on-first-logon value.'))
+  .option('--ssh-settings', $('Remove the ssh-settings value.'))
+  .option('--static-virtual-network-ip-address', $('Remove the static-virtual-network-ip-address value.'))
+  .option('--stored-certificate-settings', $('Remove the stored-certificate-settings value.'))
+  .option('--subnet-names', $('Remove the subnet-names value.'))
+  .option('--time-zone', $('Remove the time-zone value.'))
+  .option('--user-name', $('Remove the user-name value.'))
+  .option('--user-password', $('Remove the user-password value.'))
+  .option('--windows-remote-management', $('Remove the windows-remote-management value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -24677,7 +27000,105 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.adminPassword || options.adminUserName || options.computerName || options.configurationSetType || options.customData || options.disableSshPasswordAuthentication || options.domainJoin || options.enableAutomaticUpdates || options.hostName || options.inputEndpoints || options.ipForwarding || options.networkInterfaces || options.networkSecurityGroup || options.publicIPs || options.resetPasswordOnFirstLogon || options.sshSettings || options.staticVirtualNetworkIPAddress || options.storedCertificateSettings || options.subnetNames || options.timeZone || options.userName || options.userPassword || options.windowsRemoteManagement;
+    if (anySubItem) {
+      if (options.adminPassword) {
+        var subItemPath = options.path + "/adminPassword";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.adminUserName) {
+        var subItemPath = options.path + "/adminUserName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.computerName) {
+        var subItemPath = options.path + "/computerName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.configurationSetType) {
+        var subItemPath = options.path + "/configurationSetType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.customData) {
+        var subItemPath = options.path + "/customData";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.disableSshPasswordAuthentication) {
+        var subItemPath = options.path + "/disableSshPasswordAuthentication";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.domainJoin) {
+        var subItemPath = options.path + "/domainJoin";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.enableAutomaticUpdates) {
+        var subItemPath = options.path + "/enableAutomaticUpdates";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.hostName) {
+        var subItemPath = options.path + "/hostName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.inputEndpoints) {
+        var subItemPath = options.path + "/inputEndpoints";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.ipForwarding) {
+        var subItemPath = options.path + "/ipForwarding";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.networkInterfaces) {
+        var subItemPath = options.path + "/networkInterfaces";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.networkSecurityGroup) {
+        var subItemPath = options.path + "/networkSecurityGroup";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publicIPs) {
+        var subItemPath = options.path + "/publicIPs";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.resetPasswordOnFirstLogon) {
+        var subItemPath = options.path + "/resetPasswordOnFirstLogon";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sshSettings) {
+        var subItemPath = options.path + "/sshSettings";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.staticVirtualNetworkIPAddress) {
+        var subItemPath = options.path + "/staticVirtualNetworkIPAddress";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.storedCertificateSettings) {
+        var subItemPath = options.path + "/storedCertificateSettings";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.subnetNames) {
+        var subItemPath = options.path + "/subnetNames";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.timeZone) {
+        var subItemPath = options.path + "/timeZone";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.userName) {
+        var subItemPath = options.path + "/userName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.userPassword) {
+        var subItemPath = options.path + "/userPassword";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.windowsRemoteManagement) {
+        var subItemPath = options.path + "/windowsRemoteManagement";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -25083,6 +27504,10 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--credentials', $('Remove the credentials value.'))
+  .option('--domain-to-join', $('Remove the domain-to-join value.'))
+  .option('--ldap-machine-object-o-u', $('Remove the ldap-machine-object-o-u value.'))
+  .option('--provisioning', $('Remove the provisioning value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -25095,7 +27520,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/domainJoin';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.credentials || options.domainToJoin || options.ldapMachineObjectOU || options.provisioning;
+    if (anySubItem) {
+      if (options.credentials) {
+        var subItemPath = options.path + "/credentials";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.domainToJoin) {
+        var subItemPath = options.path + "/domainToJoin";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.ldapMachineObjectOU) {
+        var subItemPath = options.path + "/ldapMachineObjectOU";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.provisioning) {
+        var subItemPath = options.path + "/provisioning";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -25281,6 +27728,9 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--domain', $('Remove the domain value.'))
+  .option('--password', $('Remove the password value.'))
+  .option('--user-name', $('Remove the user-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -25293,7 +27743,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/domainJoin/credentials';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.domain || options.password || options.userName;
+    if (anySubItem) {
+      if (options.domain) {
+        var subItemPath = options.path + "/domain";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.password) {
+        var subItemPath = options.path + "/password";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.userName) {
+        var subItemPath = options.path + "/userName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -25446,6 +27914,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--account-data', $('Remove the account-data value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -25458,7 +27927,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/domainJoin/provisioning';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.accountData;
+    if (anySubItem) {
+      if (options.accountData) {
+        var subItemPath = options.path + "/accountData";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -25726,6 +28205,19 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--enable-direct-server-return', $('Remove the enable-direct-server-return value.'))
+  .option('--endpoint-acl', $('Remove the endpoint-acl value.'))
+  .option('--idle-timeout-in-minutes', $('Remove the idle-timeout-in-minutes value.'))
+  .option('--load-balanced-endpoint-set-name', $('Remove the load-balanced-endpoint-set-name value.'))
+  .option('--load-balancer-distribution', $('Remove the load-balancer-distribution value.'))
+  .option('--load-balancer-name', $('Remove the load-balancer-name value.'))
+  .option('--load-balancer-probe', $('Remove the load-balancer-probe value.'))
+  .option('--local-port', $('Remove the local-port value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--port', $('Remove the port value.'))
+  .option('--protocol', $('Remove the protocol value.'))
+  .option('--virtual-ip-address', $('Remove the virtual-ip-address value.'))
+  .option('--virtual-ip-name', $('Remove the virtual-ip-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -25738,7 +28230,65 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.enableDirectServerReturn || options.endpointAcl || options.idleTimeoutInMinutes || options.loadBalancedEndpointSetName || options.loadBalancerDistribution || options.loadBalancerName || options.loadBalancerProbe || options.localPort || options.name || options.port || options.protocol || options.virtualIPAddress || options.virtualIPName;
+    if (anySubItem) {
+      if (options.enableDirectServerReturn) {
+        var subItemPath = options.path + "/enableDirectServerReturn";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.endpointAcl) {
+        var subItemPath = options.path + "/endpointAcl";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.idleTimeoutInMinutes) {
+        var subItemPath = options.path + "/idleTimeoutInMinutes";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancedEndpointSetName) {
+        var subItemPath = options.path + "/loadBalancedEndpointSetName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancerDistribution) {
+        var subItemPath = options.path + "/loadBalancerDistribution";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancerName) {
+        var subItemPath = options.path + "/loadBalancerName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancerProbe) {
+        var subItemPath = options.path + "/loadBalancerProbe";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.localPort) {
+        var subItemPath = options.path + "/localPort";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.port) {
+        var subItemPath = options.path + "/port";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.protocol) {
+        var subItemPath = options.path + "/protocol";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.virtualIPAddress) {
+        var subItemPath = options.path + "/virtualIPAddress";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.virtualIPName) {
+        var subItemPath = options.path + "/virtualIPName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -26003,6 +28553,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--rules', $('Remove the rules value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -26015,7 +28566,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/endpointAcl';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.rules;
+    if (anySubItem) {
+      if (options.rules) {
+        var subItemPath = options.path + "/rules";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -26186,6 +28747,10 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--action', $('Remove the action value.'))
+  .option('--description', $('Remove the description value.'))
+  .option('--order', $('Remove the order value.'))
+  .option('--remote-subnet', $('Remove the remote-subnet value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -26198,7 +28763,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/endpointAcl/rules' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.action || options.description || options.order || options.remoteSubnet;
+    if (anySubItem) {
+      if (options.action) {
+        var subItemPath = options.path + "/action";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.description) {
+        var subItemPath = options.path + "/description";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.order) {
+        var subItemPath = options.path + "/order";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.remoteSubnet) {
+        var subItemPath = options.path + "/remoteSubnet";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -26408,6 +28995,11 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--interval-in-seconds', $('Remove the interval-in-seconds value.'))
+  .option('--path', $('Remove the path value.'))
+  .option('--port', $('Remove the port value.'))
+  .option('--protocol', $('Remove the protocol value.'))
+  .option('--timeout-in-seconds', $('Remove the timeout-in-seconds value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -26420,7 +29012,33 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/loadBalancerProbe';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.intervalInSeconds || options.path || options.port || options.protocol || options.timeoutInSeconds;
+    if (anySubItem) {
+      if (options.intervalInSeconds) {
+        var subItemPath = options.path + "/intervalInSeconds";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.path) {
+        var subItemPath = options.path + "/path";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.port) {
+        var subItemPath = options.path + "/port";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.protocol) {
+        var subItemPath = options.path + "/protocol";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.timeoutInSeconds) {
+        var subItemPath = options.path + "/timeoutInSeconds";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -26555,7 +29173,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/loadBalancerProbe/protocol';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -26713,6 +29337,10 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--ip-configurations', $('Remove the ip-configurations value.'))
+  .option('--ip-forwarding', $('Remove the ip-forwarding value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--network-security-group', $('Remove the network-security-group value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -26725,7 +29353,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/networkInterfaces' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.ipConfigurations || options.ipForwarding || options.name || options.networkSecurityGroup;
+    if (anySubItem) {
+      if (options.ipConfigurations) {
+        var subItemPath = options.path + "/ipConfigurations";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.ipForwarding) {
+        var subItemPath = options.path + "/ipForwarding";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.networkSecurityGroup) {
+        var subItemPath = options.path + "/networkSecurityGroup";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -26907,6 +29557,8 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--network-interfaces-index <network-interfaces-index>', $('Indexer: network-interfaces-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--static-virtual-network-ip-address', $('Remove the static-virtual-network-ip-address value.'))
+  .option('--subnet-name', $('Remove the subnet-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -26919,7 +29571,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/networkInterfaces/' + options.networkInterfacesIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.staticVirtualNetworkIPAddress || options.subnetName;
+    if (anySubItem) {
+      if (options.staticVirtualNetworkIPAddress) {
+        var subItemPath = options.path + "/staticVirtualNetworkIPAddress";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.subnetName) {
+        var subItemPath = options.path + "/subnetName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -27088,6 +29754,9 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--domain-name-label', $('Remove the domain-name-label value.'))
+  .option('--idle-timeout-in-minutes', $('Remove the idle-timeout-in-minutes value.'))
+  .option('--name', $('Remove the name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -27100,7 +29769,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/publicIPs' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.domainNameLabel || options.idleTimeoutInMinutes || options.name;
+    if (anySubItem) {
+      if (options.domainNameLabel) {
+        var subItemPath = options.path + "/domainNameLabel";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.idleTimeoutInMinutes) {
+        var subItemPath = options.path + "/idleTimeoutInMinutes";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -27264,6 +29951,8 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--key-pairs', $('Remove the key-pairs value.'))
+  .option('--public-keys', $('Remove the public-keys value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -27276,7 +29965,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/sshSettings';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.keyPairs || options.publicKeys;
+    if (anySubItem) {
+      if (options.keyPairs) {
+        var subItemPath = options.path + "/keyPairs";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publicKeys) {
+        var subItemPath = options.path + "/publicKeys";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -27434,6 +30137,8 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--fingerprint', $('Remove the fingerprint value.'))
+  .option('--path', $('Remove the path value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -27446,7 +30151,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/sshSettings/keyPairs' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.fingerprint || options.path;
+    if (anySubItem) {
+      if (options.fingerprint) {
+        var subItemPath = options.path + "/fingerprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.path) {
+        var subItemPath = options.path + "/path";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -27604,6 +30323,8 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--fingerprint', $('Remove the fingerprint value.'))
+  .option('--path', $('Remove the path value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -27616,7 +30337,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/sshSettings/publicKeys' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.fingerprint || options.path;
+    if (anySubItem) {
+      if (options.fingerprint) {
+        var subItemPath = options.path + "/fingerprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.path) {
+        var subItemPath = options.path + "/path";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -27774,6 +30509,8 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--store-name', $('Remove the store-name value.'))
+  .option('--thumbprint', $('Remove the thumbprint value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -27786,7 +30523,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/storedCertificateSettings' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.storeName || options.thumbprint;
+    if (anySubItem) {
+      if (options.storeName) {
+        var subItemPath = options.path + "/storeName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.thumbprint) {
+        var subItemPath = options.path + "/thumbprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -27934,7 +30685,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/subnetNames' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -28054,6 +30811,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--listeners', $('Remove the listeners value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -28066,7 +30824,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/windowsRemoteManagement';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.listeners;
+    if (anySubItem) {
+      if (options.listeners) {
+        var subItemPath = options.path + "/listeners";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -28213,6 +30981,8 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--certificate-thumbprint', $('Remove the certificate-thumbprint value.'))
+  .option('--listener-type', $('Remove the listener-type value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -28225,7 +30995,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/windowsRemoteManagement/listeners' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.certificateThumbprint || options.listenerType;
+    if (anySubItem) {
+      if (options.certificateThumbprint) {
+        var subItemPath = options.path + "/certificateThumbprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.listenerType) {
+        var subItemPath = options.path + "/listenerType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -28327,7 +31111,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/windowsRemoteManagement/listeners/' + options.listenersIndex + '/listenerType';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -28527,6 +31317,14 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--host-caching', $('Remove the host-caching value.'))
+  .option('--i-o-type', $('Remove the i-o-type value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--logical-disk-size-in-g-b', $('Remove the logical-disk-size-in-g-b value.'))
+  .option('--logical-unit-number', $('Remove the logical-unit-number value.'))
+  .option('--media-link', $('Remove the media-link value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--source-media-link', $('Remove the source-media-link value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -28539,7 +31337,45 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/dataVirtualHardDisks' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.hostCaching || options.iOType || options.label || options.logicalDiskSizeInGB || options.logicalUnitNumber || options.mediaLink || options.name || options.sourceMediaLink;
+    if (anySubItem) {
+      if (options.hostCaching) {
+        var subItemPath = options.path + "/hostCaching";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.iOType) {
+        var subItemPath = options.path + "/iOType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.logicalDiskSizeInGB) {
+        var subItemPath = options.path + "/logicalDiskSizeInGB";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.logicalUnitNumber) {
+        var subItemPath = options.path + "/logicalUnitNumber";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLink) {
+        var subItemPath = options.path + "/mediaLink";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sourceMediaLink) {
+        var subItemPath = options.path + "/sourceMediaLink";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -28833,6 +31669,15 @@ exports.init = function (cli) {
   .description($('Remove catparametersCreateVirtualMachineOSVirtualHardDisk1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--host-caching', $('Remove the host-caching value.'))
+  .option('--i-o-type', $('Remove the i-o-type value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--media-link', $('Remove the media-link value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--operating-system', $('Remove the operating-system value.'))
+  .option('--remote-source-image-link', $('Remove the remote-source-image-link value.'))
+  .option('--resized-size-in-g-b', $('Remove the resized-size-in-g-b value.'))
+  .option('--source-image-name', $('Remove the source-image-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -28845,7 +31690,49 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/oSVirtualHardDisk';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.hostCaching || options.iOType || options.label || options.mediaLink || options.name || options.operatingSystem || options.remoteSourceImageLink || options.resizedSizeInGB || options.sourceImageName;
+    if (anySubItem) {
+      if (options.hostCaching) {
+        var subItemPath = options.path + "/hostCaching";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.iOType) {
+        var subItemPath = options.path + "/iOType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLink) {
+        var subItemPath = options.path + "/mediaLink";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.operatingSystem) {
+        var subItemPath = options.path + "/operatingSystem";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.remoteSourceImageLink) {
+        var subItemPath = options.path + "/remoteSourceImageLink";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.resizedSizeInGB) {
+        var subItemPath = options.path + "/resizedSizeInGB";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sourceImageName) {
+        var subItemPath = options.path + "/sourceImageName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -29133,6 +32020,13 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--force-update', $('Remove the force-update value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--publisher', $('Remove the publisher value.'))
+  .option('--reference-name', $('Remove the reference-name value.'))
+  .option('--resource-extension-parameter-values', $('Remove the resource-extension-parameter-values value.'))
+  .option('--state', $('Remove the state value.'))
+  .option('--version', $('Remove the version value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -29145,7 +32039,41 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/resourceExtensionReferences' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.forceUpdate || options.name || options.publisher || options.referenceName || options.resourceExtensionParameterValues || options.state || options.version;
+    if (anySubItem) {
+      if (options.forceUpdate) {
+        var subItemPath = options.path + "/forceUpdate";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publisher) {
+        var subItemPath = options.path + "/publisher";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.referenceName) {
+        var subItemPath = options.path + "/referenceName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.resourceExtensionParameterValues) {
+        var subItemPath = options.path + "/resourceExtensionParameterValues";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.state) {
+        var subItemPath = options.path + "/state";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.version) {
+        var subItemPath = options.path + "/version";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -29369,6 +32297,9 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--resource-extension-references-index <resource-extension-references-index>', $('Indexer: resource-extension-references-index.'))
+  .option('--key', $('Remove the key value.'))
+  .option('--type', $('Remove the type value.'))
+  .option('--value', $('Remove the value value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -29381,7 +32312,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/resourceExtensionReferences/' + options.resourceExtensionReferencesIndex + '/resourceExtensionParameterValues' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.key || options.type || options.value;
+    if (anySubItem) {
+      if (options.key) {
+        var subItemPath = options.path + "/key";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.type) {
+        var subItemPath = options.path + "/type";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.value) {
+        var subItemPath = options.path + "/value";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -29543,6 +32492,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersCreateVirtualMachineVMImageInput1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--data-disk-configurations', $('Remove the data-disk-configurations value.'))
+  .option('--os-disk-configuration', $('Remove the os-disk-configuration value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -29555,7 +32506,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/vmImageInput';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.dataDiskConfigurations || options.oSDiskConfiguration;
+    if (anySubItem) {
+      if (options.dataDiskConfigurations) {
+        var subItemPath = options.path + "/dataDiskConfigurations";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.oSDiskConfiguration) {
+        var subItemPath = options.path + "/oSDiskConfiguration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -29711,6 +32676,8 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--disk-name', $('Remove the disk-name value.'))
+  .option('--resized-size-in-g-b', $('Remove the resized-size-in-g-b value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -29723,7 +32690,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/vmImageInput/dataDiskConfigurations' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.diskName || options.resizedSizeInGB;
+    if (anySubItem) {
+      if (options.diskName) {
+        var subItemPath = options.path + "/diskName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.resizedSizeInGB) {
+        var subItemPath = options.path + "/resizedSizeInGB";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -29863,6 +32844,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersCreateVirtualMachineOSDiskConfiguration1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--resized-size-in-g-b', $('Remove the resized-size-in-g-b value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -29875,7 +32857,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/vmImageInput/oSDiskConfiguration';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.resizedSizeInGB;
+    if (anySubItem) {
+      if (options.resizedSizeInGB) {
+        var subItemPath = options.path + "/resizedSizeInGB";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -30383,6 +33375,14 @@ exports.init = function (cli) {
   .description($('Remove catparametersCreateDeploymentVirtualMachineVirtualMachineCreateDeploymentParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--deployment-slot', $('Remove the deployment-slot value.'))
+  .option('--dns-settings', $('Remove the dns-settings value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--load-balancers', $('Remove the load-balancers value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--reserved-ip-name', $('Remove the reserved-ip-name value.'))
+  .option('--roles', $('Remove the roles value.'))
+  .option('--virtual-network-name', $('Remove the virtual-network-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -30395,7 +33395,45 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.deploymentSlot || options.dnsSettings || options.label || options.loadBalancers || options.name || options.reservedIPName || options.roles || options.virtualNetworkName;
+    if (anySubItem) {
+      if (options.deploymentSlot) {
+        var subItemPath = options.path + "/deploymentSlot";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.dnsSettings) {
+        var subItemPath = options.path + "/dnsSettings";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancers) {
+        var subItemPath = options.path + "/loadBalancers";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.reservedIPName) {
+        var subItemPath = options.path + "/reservedIPName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.roles) {
+        var subItemPath = options.path + "/roles";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.virtualNetworkName) {
+        var subItemPath = options.path + "/virtualNetworkName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -30561,7 +33599,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/deploymentSlot';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -30679,6 +33723,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersCreateDeploymentVirtualMachineDnsSettings1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--dns-servers', $('Remove the dns-servers value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -30691,7 +33736,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/dnsSettings';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.dnsServers;
+    if (anySubItem) {
+      if (options.dnsServers) {
+        var subItemPath = options.path + "/dnsServers";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -30836,6 +33891,8 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--address', $('Remove the address value.'))
+  .option('--name', $('Remove the name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -30848,7 +33905,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/dnsSettings/dnsServers' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.address || options.name;
+    if (anySubItem) {
+      if (options.address) {
+        var subItemPath = options.path + "/address";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -31004,6 +34075,8 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--frontend-ip-configuration', $('Remove the frontend-ip-configuration value.'))
+  .option('--name', $('Remove the name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -31016,7 +34089,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/loadBalancers' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.frontendIPConfiguration || options.name;
+    if (anySubItem) {
+      if (options.frontendIPConfiguration) {
+        var subItemPath = options.path + "/frontendIPConfiguration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -31180,6 +34267,9 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--load-balancers-index <load-balancers-index>', $('Indexer: load-balancers-index.'))
+  .option('--static-virtual-network-ip-address', $('Remove the static-virtual-network-ip-address value.'))
+  .option('--subnet-name', $('Remove the subnet-name value.'))
+  .option('--type', $('Remove the type value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -31192,7 +34282,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/loadBalancers/' + options.loadBalancersIndex + '/frontendIPConfiguration';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.staticVirtualNetworkIPAddress || options.subnetName || options.type;
+    if (anySubItem) {
+      if (options.staticVirtualNetworkIPAddress) {
+        var subItemPath = options.path + "/staticVirtualNetworkIPAddress";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.subnetName) {
+        var subItemPath = options.path + "/subnetName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.type) {
+        var subItemPath = options.path + "/type";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -31502,6 +34610,21 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--availability-set-name', $('Remove the availability-set-name value.'))
+  .option('--configuration-sets', $('Remove the configuration-sets value.'))
+  .option('--data-virtual-hard-disks', $('Remove the data-virtual-hard-disks value.'))
+  .option('--default-win-rm-certificate-thumbprint', $('Remove the default-win-rm-certificate-thumbprint value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--media-location', $('Remove the media-location value.'))
+  .option('--os-version', $('Remove the os-version value.'))
+  .option('--os-virtual-hard-disk', $('Remove the os-virtual-hard-disk value.'))
+  .option('--provision-guest-agent', $('Remove the provision-guest-agent value.'))
+  .option('--resource-extension-references', $('Remove the resource-extension-references value.'))
+  .option('--role-name', $('Remove the role-name value.'))
+  .option('--role-size', $('Remove the role-size value.'))
+  .option('--role-type', $('Remove the role-type value.'))
+  .option('--vm-image-input', $('Remove the vm-image-input value.'))
+  .option('--vm-image-name', $('Remove the vm-image-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -31514,7 +34637,73 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.availabilitySetName || options.configurationSets || options.dataVirtualHardDisks || options.defaultWinRmCertificateThumbprint || options.label || options.mediaLocation || options.oSVersion || options.oSVirtualHardDisk || options.provisionGuestAgent || options.resourceExtensionReferences || options.roleName || options.roleSize || options.roleType || options.vmImageInput || options.vmImageName;
+    if (anySubItem) {
+      if (options.availabilitySetName) {
+        var subItemPath = options.path + "/availabilitySetName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.configurationSets) {
+        var subItemPath = options.path + "/configurationSets";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.dataVirtualHardDisks) {
+        var subItemPath = options.path + "/dataVirtualHardDisks";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.defaultWinRmCertificateThumbprint) {
+        var subItemPath = options.path + "/defaultWinRmCertificateThumbprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLocation) {
+        var subItemPath = options.path + "/mediaLocation";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.oSVersion) {
+        var subItemPath = options.path + "/oSVersion";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.oSVirtualHardDisk) {
+        var subItemPath = options.path + "/oSVirtualHardDisk";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.provisionGuestAgent) {
+        var subItemPath = options.path + "/provisionGuestAgent";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.resourceExtensionReferences) {
+        var subItemPath = options.path + "/resourceExtensionReferences";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.roleName) {
+        var subItemPath = options.path + "/roleName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.roleSize) {
+        var subItemPath = options.path + "/roleSize";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.roleType) {
+        var subItemPath = options.path + "/roleType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.vmImageInput) {
+        var subItemPath = options.path + "/vmImageInput";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.vmImageName) {
+        var subItemPath = options.path + "/vmImageName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -32046,6 +35235,29 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--admin-password', $('Remove the admin-password value.'))
+  .option('--admin-user-name', $('Remove the admin-user-name value.'))
+  .option('--computer-name', $('Remove the computer-name value.'))
+  .option('--configuration-set-type', $('Remove the configuration-set-type value.'))
+  .option('--custom-data', $('Remove the custom-data value.'))
+  .option('--disable-ssh-password-authentication', $('Remove the disable-ssh-password-authentication value.'))
+  .option('--domain-join', $('Remove the domain-join value.'))
+  .option('--enable-automatic-updates', $('Remove the enable-automatic-updates value.'))
+  .option('--host-name', $('Remove the host-name value.'))
+  .option('--input-endpoints', $('Remove the input-endpoints value.'))
+  .option('--ip-forwarding', $('Remove the ip-forwarding value.'))
+  .option('--network-interfaces', $('Remove the network-interfaces value.'))
+  .option('--network-security-group', $('Remove the network-security-group value.'))
+  .option('--public-ip', $('Remove the public-ip value.'))
+  .option('--reset-password-on-first-logon', $('Remove the reset-password-on-first-logon value.'))
+  .option('--ssh-settings', $('Remove the ssh-settings value.'))
+  .option('--static-virtual-network-ip-address', $('Remove the static-virtual-network-ip-address value.'))
+  .option('--stored-certificate-settings', $('Remove the stored-certificate-settings value.'))
+  .option('--subnet-names', $('Remove the subnet-names value.'))
+  .option('--time-zone', $('Remove the time-zone value.'))
+  .option('--user-name', $('Remove the user-name value.'))
+  .option('--user-password', $('Remove the user-password value.'))
+  .option('--windows-remote-management', $('Remove the windows-remote-management value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -32058,7 +35270,105 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.adminPassword || options.adminUserName || options.computerName || options.configurationSetType || options.customData || options.disableSshPasswordAuthentication || options.domainJoin || options.enableAutomaticUpdates || options.hostName || options.inputEndpoints || options.ipForwarding || options.networkInterfaces || options.networkSecurityGroup || options.publicIPs || options.resetPasswordOnFirstLogon || options.sshSettings || options.staticVirtualNetworkIPAddress || options.storedCertificateSettings || options.subnetNames || options.timeZone || options.userName || options.userPassword || options.windowsRemoteManagement;
+    if (anySubItem) {
+      if (options.adminPassword) {
+        var subItemPath = options.path + "/adminPassword";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.adminUserName) {
+        var subItemPath = options.path + "/adminUserName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.computerName) {
+        var subItemPath = options.path + "/computerName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.configurationSetType) {
+        var subItemPath = options.path + "/configurationSetType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.customData) {
+        var subItemPath = options.path + "/customData";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.disableSshPasswordAuthentication) {
+        var subItemPath = options.path + "/disableSshPasswordAuthentication";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.domainJoin) {
+        var subItemPath = options.path + "/domainJoin";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.enableAutomaticUpdates) {
+        var subItemPath = options.path + "/enableAutomaticUpdates";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.hostName) {
+        var subItemPath = options.path + "/hostName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.inputEndpoints) {
+        var subItemPath = options.path + "/inputEndpoints";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.ipForwarding) {
+        var subItemPath = options.path + "/ipForwarding";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.networkInterfaces) {
+        var subItemPath = options.path + "/networkInterfaces";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.networkSecurityGroup) {
+        var subItemPath = options.path + "/networkSecurityGroup";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publicIPs) {
+        var subItemPath = options.path + "/publicIPs";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.resetPasswordOnFirstLogon) {
+        var subItemPath = options.path + "/resetPasswordOnFirstLogon";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sshSettings) {
+        var subItemPath = options.path + "/sshSettings";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.staticVirtualNetworkIPAddress) {
+        var subItemPath = options.path + "/staticVirtualNetworkIPAddress";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.storedCertificateSettings) {
+        var subItemPath = options.path + "/storedCertificateSettings";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.subnetNames) {
+        var subItemPath = options.path + "/subnetNames";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.timeZone) {
+        var subItemPath = options.path + "/timeZone";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.userName) {
+        var subItemPath = options.path + "/userName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.userPassword) {
+        var subItemPath = options.path + "/userPassword";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.windowsRemoteManagement) {
+        var subItemPath = options.path + "/windowsRemoteManagement";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -32466,6 +35776,10 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--credentials', $('Remove the credentials value.'))
+  .option('--domain-to-join', $('Remove the domain-to-join value.'))
+  .option('--ldap-machine-object-o-u', $('Remove the ldap-machine-object-o-u value.'))
+  .option('--provisioning', $('Remove the provisioning value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -32478,7 +35792,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/domainJoin';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.credentials || options.domainToJoin || options.ldapMachineObjectOU || options.provisioning;
+    if (anySubItem) {
+      if (options.credentials) {
+        var subItemPath = options.path + "/credentials";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.domainToJoin) {
+        var subItemPath = options.path + "/domainToJoin";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.ldapMachineObjectOU) {
+        var subItemPath = options.path + "/ldapMachineObjectOU";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.provisioning) {
+        var subItemPath = options.path + "/provisioning";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -32666,6 +36002,9 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--domain', $('Remove the domain value.'))
+  .option('--password', $('Remove the password value.'))
+  .option('--user-name', $('Remove the user-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -32678,7 +36017,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/domainJoin/credentials';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.domain || options.password || options.userName;
+    if (anySubItem) {
+      if (options.domain) {
+        var subItemPath = options.path + "/domain";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.password) {
+        var subItemPath = options.path + "/password";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.userName) {
+        var subItemPath = options.path + "/userName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -32833,6 +36190,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--account-data', $('Remove the account-data value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -32845,7 +36203,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/domainJoin/provisioning';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.accountData;
+    if (anySubItem) {
+      if (options.accountData) {
+        var subItemPath = options.path + "/accountData";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -33115,6 +36483,19 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--enable-direct-server-return', $('Remove the enable-direct-server-return value.'))
+  .option('--endpoint-acl', $('Remove the endpoint-acl value.'))
+  .option('--idle-timeout-in-minutes', $('Remove the idle-timeout-in-minutes value.'))
+  .option('--load-balanced-endpoint-set-name', $('Remove the load-balanced-endpoint-set-name value.'))
+  .option('--load-balancer-distribution', $('Remove the load-balancer-distribution value.'))
+  .option('--load-balancer-name', $('Remove the load-balancer-name value.'))
+  .option('--load-balancer-probe', $('Remove the load-balancer-probe value.'))
+  .option('--local-port', $('Remove the local-port value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--port', $('Remove the port value.'))
+  .option('--protocol', $('Remove the protocol value.'))
+  .option('--virtual-ip-address', $('Remove the virtual-ip-address value.'))
+  .option('--virtual-ip-name', $('Remove the virtual-ip-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -33127,7 +36508,65 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.enableDirectServerReturn || options.endpointAcl || options.idleTimeoutInMinutes || options.loadBalancedEndpointSetName || options.loadBalancerDistribution || options.loadBalancerName || options.loadBalancerProbe || options.localPort || options.name || options.port || options.protocol || options.virtualIPAddress || options.virtualIPName;
+    if (anySubItem) {
+      if (options.enableDirectServerReturn) {
+        var subItemPath = options.path + "/enableDirectServerReturn";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.endpointAcl) {
+        var subItemPath = options.path + "/endpointAcl";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.idleTimeoutInMinutes) {
+        var subItemPath = options.path + "/idleTimeoutInMinutes";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancedEndpointSetName) {
+        var subItemPath = options.path + "/loadBalancedEndpointSetName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancerDistribution) {
+        var subItemPath = options.path + "/loadBalancerDistribution";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancerName) {
+        var subItemPath = options.path + "/loadBalancerName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancerProbe) {
+        var subItemPath = options.path + "/loadBalancerProbe";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.localPort) {
+        var subItemPath = options.path + "/localPort";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.port) {
+        var subItemPath = options.path + "/port";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.protocol) {
+        var subItemPath = options.path + "/protocol";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.virtualIPAddress) {
+        var subItemPath = options.path + "/virtualIPAddress";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.virtualIPName) {
+        var subItemPath = options.path + "/virtualIPName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -33394,6 +36833,7 @@ exports.init = function (cli) {
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--rules', $('Remove the rules value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -33406,7 +36846,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/endpointAcl';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.rules;
+    if (anySubItem) {
+      if (options.rules) {
+        var subItemPath = options.path + "/rules";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -33579,6 +37029,10 @@ exports.init = function (cli) {
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--action', $('Remove the action value.'))
+  .option('--description', $('Remove the description value.'))
+  .option('--order', $('Remove the order value.'))
+  .option('--remote-subnet', $('Remove the remote-subnet value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -33591,7 +37045,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/endpointAcl/rules' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.action || options.description || options.order || options.remoteSubnet;
+    if (anySubItem) {
+      if (options.action) {
+        var subItemPath = options.path + "/action";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.description) {
+        var subItemPath = options.path + "/description";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.order) {
+        var subItemPath = options.path + "/order";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.remoteSubnet) {
+        var subItemPath = options.path + "/remoteSubnet";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -33803,6 +37279,11 @@ exports.init = function (cli) {
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--interval-in-seconds', $('Remove the interval-in-seconds value.'))
+  .option('--path', $('Remove the path value.'))
+  .option('--port', $('Remove the port value.'))
+  .option('--protocol', $('Remove the protocol value.'))
+  .option('--timeout-in-seconds', $('Remove the timeout-in-seconds value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -33815,7 +37296,33 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/loadBalancerProbe';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.intervalInSeconds || options.path || options.port || options.protocol || options.timeoutInSeconds;
+    if (anySubItem) {
+      if (options.intervalInSeconds) {
+        var subItemPath = options.path + "/intervalInSeconds";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.path) {
+        var subItemPath = options.path + "/path";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.port) {
+        var subItemPath = options.path + "/port";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.protocol) {
+        var subItemPath = options.path + "/protocol";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.timeoutInSeconds) {
+        var subItemPath = options.path + "/timeoutInSeconds";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -33951,7 +37458,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/loadBalancerProbe/protocol';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -34111,6 +37624,10 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--ip-configurations', $('Remove the ip-configurations value.'))
+  .option('--ip-forwarding', $('Remove the ip-forwarding value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--network-security-group', $('Remove the network-security-group value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -34123,7 +37640,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/networkInterfaces' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.ipConfigurations || options.ipForwarding || options.name || options.networkSecurityGroup;
+    if (anySubItem) {
+      if (options.ipConfigurations) {
+        var subItemPath = options.path + "/ipConfigurations";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.ipForwarding) {
+        var subItemPath = options.path + "/ipForwarding";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.networkSecurityGroup) {
+        var subItemPath = options.path + "/networkSecurityGroup";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -34307,6 +37846,8 @@ exports.init = function (cli) {
   .option('--network-interfaces-index <network-interfaces-index>', $('Indexer: network-interfaces-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--static-virtual-network-ip-address', $('Remove the static-virtual-network-ip-address value.'))
+  .option('--subnet-name', $('Remove the subnet-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -34319,7 +37860,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/networkInterfaces/' + options.networkInterfacesIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.staticVirtualNetworkIPAddress || options.subnetName;
+    if (anySubItem) {
+      if (options.staticVirtualNetworkIPAddress) {
+        var subItemPath = options.path + "/staticVirtualNetworkIPAddress";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.subnetName) {
+        var subItemPath = options.path + "/subnetName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -34490,6 +38045,9 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--domain-name-label', $('Remove the domain-name-label value.'))
+  .option('--idle-timeout-in-minutes', $('Remove the idle-timeout-in-minutes value.'))
+  .option('--name', $('Remove the name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -34502,7 +38060,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/publicIPs' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.domainNameLabel || options.idleTimeoutInMinutes || options.name;
+    if (anySubItem) {
+      if (options.domainNameLabel) {
+        var subItemPath = options.path + "/domainNameLabel";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.idleTimeoutInMinutes) {
+        var subItemPath = options.path + "/idleTimeoutInMinutes";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -34668,6 +38244,8 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--key-pairs', $('Remove the key-pairs value.'))
+  .option('--public-keys', $('Remove the public-keys value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -34680,7 +38258,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/sshSettings';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.keyPairs || options.publicKeys;
+    if (anySubItem) {
+      if (options.keyPairs) {
+        var subItemPath = options.path + "/keyPairs";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publicKeys) {
+        var subItemPath = options.path + "/publicKeys";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -34840,6 +38432,8 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--fingerprint', $('Remove the fingerprint value.'))
+  .option('--path', $('Remove the path value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -34852,7 +38446,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/sshSettings/keyPairs' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.fingerprint || options.path;
+    if (anySubItem) {
+      if (options.fingerprint) {
+        var subItemPath = options.path + "/fingerprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.path) {
+        var subItemPath = options.path + "/path";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -35012,6 +38620,8 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--fingerprint', $('Remove the fingerprint value.'))
+  .option('--path', $('Remove the path value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -35024,7 +38634,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/sshSettings/publicKeys' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.fingerprint || options.path;
+    if (anySubItem) {
+      if (options.fingerprint) {
+        var subItemPath = options.path + "/fingerprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.path) {
+        var subItemPath = options.path + "/path";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -35184,6 +38808,8 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--store-name', $('Remove the store-name value.'))
+  .option('--thumbprint', $('Remove the thumbprint value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -35196,7 +38822,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/storedCertificateSettings' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.storeName || options.thumbprint;
+    if (anySubItem) {
+      if (options.storeName) {
+        var subItemPath = options.path + "/storeName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.thumbprint) {
+        var subItemPath = options.path + "/thumbprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -35346,7 +38986,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/subnetNames' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -35468,6 +39114,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--listeners', $('Remove the listeners value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -35480,7 +39127,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/windowsRemoteManagement';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.listeners;
+    if (anySubItem) {
+      if (options.listeners) {
+        var subItemPath = options.path + "/listeners";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -35629,6 +39286,8 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--certificate-thumbprint', $('Remove the certificate-thumbprint value.'))
+  .option('--listener-type', $('Remove the listener-type value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -35641,7 +39300,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/windowsRemoteManagement/listeners' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.certificateThumbprint || options.listenerType;
+    if (anySubItem) {
+      if (options.certificateThumbprint) {
+        var subItemPath = options.path + "/certificateThumbprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.listenerType) {
+        var subItemPath = options.path + "/listenerType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -35744,7 +39417,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/windowsRemoteManagement/listeners/' + options.listenersIndex + '/listenerType';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -35946,6 +39625,14 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--host-caching', $('Remove the host-caching value.'))
+  .option('--i-o-type', $('Remove the i-o-type value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--logical-disk-size-in-g-b', $('Remove the logical-disk-size-in-g-b value.'))
+  .option('--logical-unit-number', $('Remove the logical-unit-number value.'))
+  .option('--media-link', $('Remove the media-link value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--source-media-link', $('Remove the source-media-link value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -35958,7 +39645,45 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/dataVirtualHardDisks' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.hostCaching || options.iOType || options.label || options.logicalDiskSizeInGB || options.logicalUnitNumber || options.mediaLink || options.name || options.sourceMediaLink;
+    if (anySubItem) {
+      if (options.hostCaching) {
+        var subItemPath = options.path + "/hostCaching";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.iOType) {
+        var subItemPath = options.path + "/iOType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.logicalDiskSizeInGB) {
+        var subItemPath = options.path + "/logicalDiskSizeInGB";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.logicalUnitNumber) {
+        var subItemPath = options.path + "/logicalUnitNumber";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLink) {
+        var subItemPath = options.path + "/mediaLink";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sourceMediaLink) {
+        var subItemPath = options.path + "/sourceMediaLink";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -36254,6 +39979,15 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--host-caching', $('Remove the host-caching value.'))
+  .option('--i-o-type', $('Remove the i-o-type value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--media-link', $('Remove the media-link value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--operating-system', $('Remove the operating-system value.'))
+  .option('--remote-source-image-link', $('Remove the remote-source-image-link value.'))
+  .option('--resized-size-in-g-b', $('Remove the resized-size-in-g-b value.'))
+  .option('--source-image-name', $('Remove the source-image-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -36266,7 +40000,49 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/oSVirtualHardDisk';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.hostCaching || options.iOType || options.label || options.mediaLink || options.name || options.operatingSystem || options.remoteSourceImageLink || options.resizedSizeInGB || options.sourceImageName;
+    if (anySubItem) {
+      if (options.hostCaching) {
+        var subItemPath = options.path + "/hostCaching";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.iOType) {
+        var subItemPath = options.path + "/iOType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLink) {
+        var subItemPath = options.path + "/mediaLink";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.operatingSystem) {
+        var subItemPath = options.path + "/operatingSystem";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.remoteSourceImageLink) {
+        var subItemPath = options.path + "/remoteSourceImageLink";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.resizedSizeInGB) {
+        var subItemPath = options.path + "/resizedSizeInGB";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sourceImageName) {
+        var subItemPath = options.path + "/sourceImageName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -36556,6 +40332,13 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--force-update', $('Remove the force-update value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--publisher', $('Remove the publisher value.'))
+  .option('--reference-name', $('Remove the reference-name value.'))
+  .option('--resource-extension-parameter-values', $('Remove the resource-extension-parameter-values value.'))
+  .option('--state', $('Remove the state value.'))
+  .option('--version', $('Remove the version value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -36568,7 +40351,41 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/resourceExtensionReferences' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.forceUpdate || options.name || options.publisher || options.referenceName || options.resourceExtensionParameterValues || options.state || options.version;
+    if (anySubItem) {
+      if (options.forceUpdate) {
+        var subItemPath = options.path + "/forceUpdate";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publisher) {
+        var subItemPath = options.path + "/publisher";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.referenceName) {
+        var subItemPath = options.path + "/referenceName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.resourceExtensionParameterValues) {
+        var subItemPath = options.path + "/resourceExtensionParameterValues";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.state) {
+        var subItemPath = options.path + "/state";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.version) {
+        var subItemPath = options.path + "/version";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -36794,6 +40611,9 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--resource-extension-references-index <resource-extension-references-index>', $('Indexer: resource-extension-references-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--key', $('Remove the key value.'))
+  .option('--type', $('Remove the type value.'))
+  .option('--value', $('Remove the value value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -36806,7 +40626,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/resourceExtensionReferences/' + options.resourceExtensionReferencesIndex + '/resourceExtensionParameterValues' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.key || options.type || options.value;
+    if (anySubItem) {
+      if (options.key) {
+        var subItemPath = options.path + "/key";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.type) {
+        var subItemPath = options.path + "/type";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.value) {
+        var subItemPath = options.path + "/value";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -36970,6 +40808,8 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--data-disk-configurations', $('Remove the data-disk-configurations value.'))
+  .option('--os-disk-configuration', $('Remove the os-disk-configuration value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -36982,7 +40822,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/vmImageInput';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.dataDiskConfigurations || options.oSDiskConfiguration;
+    if (anySubItem) {
+      if (options.dataDiskConfigurations) {
+        var subItemPath = options.path + "/dataDiskConfigurations";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.oSDiskConfiguration) {
+        var subItemPath = options.path + "/oSDiskConfiguration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -37140,6 +40994,8 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--disk-name', $('Remove the disk-name value.'))
+  .option('--resized-size-in-g-b', $('Remove the resized-size-in-g-b value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -37152,7 +41008,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/vmImageInput/dataDiskConfigurations' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.diskName || options.resizedSizeInGB;
+    if (anySubItem) {
+      if (options.diskName) {
+        var subItemPath = options.path + "/diskName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.resizedSizeInGB) {
+        var subItemPath = options.path + "/resizedSizeInGB";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -37294,6 +41164,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
+  .option('--resized-size-in-g-b', $('Remove the resized-size-in-g-b value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -37306,7 +41177,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/vmImageInput/oSDiskConfiguration';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.resizedSizeInGB;
+    if (anySubItem) {
+      if (options.resizedSizeInGB) {
+        var subItemPath = options.path + "/resizedSizeInGB";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -37649,6 +41530,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersShutdownVirtualMachineVirtualMachineShutdownParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--post-shutdown-action', $('Remove the post-shutdown-action value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -37661,7 +41543,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.postShutdownAction;
+    if (anySubItem) {
+      if (options.postShutdownAction) {
+        var subItemPath = options.path + "/postShutdownAction";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -37750,7 +41642,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/postShutdownAction';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -37986,6 +41884,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersShutdownRolesVirtualMachineVirtualMachineShutdownRolesParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--post-shutdown-action', $('Remove the post-shutdown-action value.'))
+  .option('--roles', $('Remove the roles value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -37998,7 +41898,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.postShutdownAction || options.roles;
+    if (anySubItem) {
+      if (options.postShutdownAction) {
+        var subItemPath = options.path + "/postShutdownAction";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.roles) {
+        var subItemPath = options.path + "/roles";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -38144,7 +42058,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -38395,6 +42315,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersStartRolesVirtualMachineVirtualMachineStartRolesParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--roles', $('Remove the roles value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -38407,7 +42328,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.roles;
+    if (anySubItem) {
+      if (options.roles) {
+        var subItemPath = options.path + "/roles";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -38542,7 +42473,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -39013,6 +42950,15 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateVirtualMachineVirtualMachineUpdateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--availability-set-name', $('Remove the availability-set-name value.'))
+  .option('--configuration-sets', $('Remove the configuration-sets value.'))
+  .option('--data-virtual-hard-disks', $('Remove the data-virtual-hard-disks value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--os-virtual-hard-disk', $('Remove the os-virtual-hard-disk value.'))
+  .option('--provision-guest-agent', $('Remove the provision-guest-agent value.'))
+  .option('--resource-extension-references', $('Remove the resource-extension-references value.'))
+  .option('--role-name', $('Remove the role-name value.'))
+  .option('--role-size', $('Remove the role-size value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -39025,7 +42971,49 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.availabilitySetName || options.configurationSets || options.dataVirtualHardDisks || options.label || options.oSVirtualHardDisk || options.provisionGuestAgent || options.resourceExtensionReferences || options.roleName || options.roleSize;
+    if (anySubItem) {
+      if (options.availabilitySetName) {
+        var subItemPath = options.path + "/availabilitySetName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.configurationSets) {
+        var subItemPath = options.path + "/configurationSets";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.dataVirtualHardDisks) {
+        var subItemPath = options.path + "/dataVirtualHardDisks";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.oSVirtualHardDisk) {
+        var subItemPath = options.path + "/oSVirtualHardDisk";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.provisionGuestAgent) {
+        var subItemPath = options.path + "/provisionGuestAgent";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.resourceExtensionReferences) {
+        var subItemPath = options.path + "/resourceExtensionReferences";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.roleName) {
+        var subItemPath = options.path + "/roleName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.roleSize) {
+        var subItemPath = options.path + "/roleSize";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -39489,6 +43477,29 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--admin-password', $('Remove the admin-password value.'))
+  .option('--admin-user-name', $('Remove the admin-user-name value.'))
+  .option('--computer-name', $('Remove the computer-name value.'))
+  .option('--configuration-set-type', $('Remove the configuration-set-type value.'))
+  .option('--custom-data', $('Remove the custom-data value.'))
+  .option('--disable-ssh-password-authentication', $('Remove the disable-ssh-password-authentication value.'))
+  .option('--domain-join', $('Remove the domain-join value.'))
+  .option('--enable-automatic-updates', $('Remove the enable-automatic-updates value.'))
+  .option('--host-name', $('Remove the host-name value.'))
+  .option('--input-endpoints', $('Remove the input-endpoints value.'))
+  .option('--ip-forwarding', $('Remove the ip-forwarding value.'))
+  .option('--network-interfaces', $('Remove the network-interfaces value.'))
+  .option('--network-security-group', $('Remove the network-security-group value.'))
+  .option('--public-ip', $('Remove the public-ip value.'))
+  .option('--reset-password-on-first-logon', $('Remove the reset-password-on-first-logon value.'))
+  .option('--ssh-settings', $('Remove the ssh-settings value.'))
+  .option('--static-virtual-network-ip-address', $('Remove the static-virtual-network-ip-address value.'))
+  .option('--stored-certificate-settings', $('Remove the stored-certificate-settings value.'))
+  .option('--subnet-names', $('Remove the subnet-names value.'))
+  .option('--time-zone', $('Remove the time-zone value.'))
+  .option('--user-name', $('Remove the user-name value.'))
+  .option('--user-password', $('Remove the user-password value.'))
+  .option('--windows-remote-management', $('Remove the windows-remote-management value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -39501,7 +43512,105 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.adminPassword || options.adminUserName || options.computerName || options.configurationSetType || options.customData || options.disableSshPasswordAuthentication || options.domainJoin || options.enableAutomaticUpdates || options.hostName || options.inputEndpoints || options.ipForwarding || options.networkInterfaces || options.networkSecurityGroup || options.publicIPs || options.resetPasswordOnFirstLogon || options.sshSettings || options.staticVirtualNetworkIPAddress || options.storedCertificateSettings || options.subnetNames || options.timeZone || options.userName || options.userPassword || options.windowsRemoteManagement;
+    if (anySubItem) {
+      if (options.adminPassword) {
+        var subItemPath = options.path + "/adminPassword";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.adminUserName) {
+        var subItemPath = options.path + "/adminUserName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.computerName) {
+        var subItemPath = options.path + "/computerName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.configurationSetType) {
+        var subItemPath = options.path + "/configurationSetType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.customData) {
+        var subItemPath = options.path + "/customData";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.disableSshPasswordAuthentication) {
+        var subItemPath = options.path + "/disableSshPasswordAuthentication";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.domainJoin) {
+        var subItemPath = options.path + "/domainJoin";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.enableAutomaticUpdates) {
+        var subItemPath = options.path + "/enableAutomaticUpdates";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.hostName) {
+        var subItemPath = options.path + "/hostName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.inputEndpoints) {
+        var subItemPath = options.path + "/inputEndpoints";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.ipForwarding) {
+        var subItemPath = options.path + "/ipForwarding";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.networkInterfaces) {
+        var subItemPath = options.path + "/networkInterfaces";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.networkSecurityGroup) {
+        var subItemPath = options.path + "/networkSecurityGroup";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publicIPs) {
+        var subItemPath = options.path + "/publicIPs";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.resetPasswordOnFirstLogon) {
+        var subItemPath = options.path + "/resetPasswordOnFirstLogon";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sshSettings) {
+        var subItemPath = options.path + "/sshSettings";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.staticVirtualNetworkIPAddress) {
+        var subItemPath = options.path + "/staticVirtualNetworkIPAddress";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.storedCertificateSettings) {
+        var subItemPath = options.path + "/storedCertificateSettings";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.subnetNames) {
+        var subItemPath = options.path + "/subnetNames";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.timeZone) {
+        var subItemPath = options.path + "/timeZone";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.userName) {
+        var subItemPath = options.path + "/userName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.userPassword) {
+        var subItemPath = options.path + "/userPassword";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.windowsRemoteManagement) {
+        var subItemPath = options.path + "/windowsRemoteManagement";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -39907,6 +44016,10 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--credentials', $('Remove the credentials value.'))
+  .option('--domain-to-join', $('Remove the domain-to-join value.'))
+  .option('--ldap-machine-object-o-u', $('Remove the ldap-machine-object-o-u value.'))
+  .option('--provisioning', $('Remove the provisioning value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -39919,7 +44032,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/domainJoin';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.credentials || options.domainToJoin || options.ldapMachineObjectOU || options.provisioning;
+    if (anySubItem) {
+      if (options.credentials) {
+        var subItemPath = options.path + "/credentials";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.domainToJoin) {
+        var subItemPath = options.path + "/domainToJoin";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.ldapMachineObjectOU) {
+        var subItemPath = options.path + "/ldapMachineObjectOU";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.provisioning) {
+        var subItemPath = options.path + "/provisioning";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -40105,6 +44240,9 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--domain', $('Remove the domain value.'))
+  .option('--password', $('Remove the password value.'))
+  .option('--user-name', $('Remove the user-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -40117,7 +44255,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/domainJoin/credentials';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.domain || options.password || options.userName;
+    if (anySubItem) {
+      if (options.domain) {
+        var subItemPath = options.path + "/domain";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.password) {
+        var subItemPath = options.path + "/password";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.userName) {
+        var subItemPath = options.path + "/userName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -40270,6 +44426,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--account-data', $('Remove the account-data value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -40282,7 +44439,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/domainJoin/provisioning';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.accountData;
+    if (anySubItem) {
+      if (options.accountData) {
+        var subItemPath = options.path + "/accountData";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -40550,6 +44717,19 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--enable-direct-server-return', $('Remove the enable-direct-server-return value.'))
+  .option('--endpoint-acl', $('Remove the endpoint-acl value.'))
+  .option('--idle-timeout-in-minutes', $('Remove the idle-timeout-in-minutes value.'))
+  .option('--load-balanced-endpoint-set-name', $('Remove the load-balanced-endpoint-set-name value.'))
+  .option('--load-balancer-distribution', $('Remove the load-balancer-distribution value.'))
+  .option('--load-balancer-name', $('Remove the load-balancer-name value.'))
+  .option('--load-balancer-probe', $('Remove the load-balancer-probe value.'))
+  .option('--local-port', $('Remove the local-port value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--port', $('Remove the port value.'))
+  .option('--protocol', $('Remove the protocol value.'))
+  .option('--virtual-ip-address', $('Remove the virtual-ip-address value.'))
+  .option('--virtual-ip-name', $('Remove the virtual-ip-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -40562,7 +44742,65 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.enableDirectServerReturn || options.endpointAcl || options.idleTimeoutInMinutes || options.loadBalancedEndpointSetName || options.loadBalancerDistribution || options.loadBalancerName || options.loadBalancerProbe || options.localPort || options.name || options.port || options.protocol || options.virtualIPAddress || options.virtualIPName;
+    if (anySubItem) {
+      if (options.enableDirectServerReturn) {
+        var subItemPath = options.path + "/enableDirectServerReturn";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.endpointAcl) {
+        var subItemPath = options.path + "/endpointAcl";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.idleTimeoutInMinutes) {
+        var subItemPath = options.path + "/idleTimeoutInMinutes";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancedEndpointSetName) {
+        var subItemPath = options.path + "/loadBalancedEndpointSetName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancerDistribution) {
+        var subItemPath = options.path + "/loadBalancerDistribution";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancerName) {
+        var subItemPath = options.path + "/loadBalancerName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancerProbe) {
+        var subItemPath = options.path + "/loadBalancerProbe";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.localPort) {
+        var subItemPath = options.path + "/localPort";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.port) {
+        var subItemPath = options.path + "/port";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.protocol) {
+        var subItemPath = options.path + "/protocol";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.virtualIPAddress) {
+        var subItemPath = options.path + "/virtualIPAddress";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.virtualIPName) {
+        var subItemPath = options.path + "/virtualIPName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -40827,6 +45065,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--rules', $('Remove the rules value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -40839,7 +45078,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/endpointAcl';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.rules;
+    if (anySubItem) {
+      if (options.rules) {
+        var subItemPath = options.path + "/rules";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -41010,6 +45259,10 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--action', $('Remove the action value.'))
+  .option('--description', $('Remove the description value.'))
+  .option('--order', $('Remove the order value.'))
+  .option('--remote-subnet', $('Remove the remote-subnet value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -41022,7 +45275,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/endpointAcl/rules' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.action || options.description || options.order || options.remoteSubnet;
+    if (anySubItem) {
+      if (options.action) {
+        var subItemPath = options.path + "/action";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.description) {
+        var subItemPath = options.path + "/description";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.order) {
+        var subItemPath = options.path + "/order";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.remoteSubnet) {
+        var subItemPath = options.path + "/remoteSubnet";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -41232,6 +45507,11 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--interval-in-seconds', $('Remove the interval-in-seconds value.'))
+  .option('--path', $('Remove the path value.'))
+  .option('--port', $('Remove the port value.'))
+  .option('--protocol', $('Remove the protocol value.'))
+  .option('--timeout-in-seconds', $('Remove the timeout-in-seconds value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -41244,7 +45524,33 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/loadBalancerProbe';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.intervalInSeconds || options.path || options.port || options.protocol || options.timeoutInSeconds;
+    if (anySubItem) {
+      if (options.intervalInSeconds) {
+        var subItemPath = options.path + "/intervalInSeconds";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.path) {
+        var subItemPath = options.path + "/path";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.port) {
+        var subItemPath = options.path + "/port";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.protocol) {
+        var subItemPath = options.path + "/protocol";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.timeoutInSeconds) {
+        var subItemPath = options.path + "/timeoutInSeconds";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -41379,7 +45685,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/loadBalancerProbe/protocol';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -41537,6 +45849,10 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--ip-configurations', $('Remove the ip-configurations value.'))
+  .option('--ip-forwarding', $('Remove the ip-forwarding value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--network-security-group', $('Remove the network-security-group value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -41549,7 +45865,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/networkInterfaces' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.ipConfigurations || options.ipForwarding || options.name || options.networkSecurityGroup;
+    if (anySubItem) {
+      if (options.ipConfigurations) {
+        var subItemPath = options.path + "/ipConfigurations";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.ipForwarding) {
+        var subItemPath = options.path + "/ipForwarding";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.networkSecurityGroup) {
+        var subItemPath = options.path + "/networkSecurityGroup";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -41731,6 +46069,8 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--network-interfaces-index <network-interfaces-index>', $('Indexer: network-interfaces-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--static-virtual-network-ip-address', $('Remove the static-virtual-network-ip-address value.'))
+  .option('--subnet-name', $('Remove the subnet-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -41743,7 +46083,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/networkInterfaces/' + options.networkInterfacesIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.staticVirtualNetworkIPAddress || options.subnetName;
+    if (anySubItem) {
+      if (options.staticVirtualNetworkIPAddress) {
+        var subItemPath = options.path + "/staticVirtualNetworkIPAddress";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.subnetName) {
+        var subItemPath = options.path + "/subnetName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -41912,6 +46266,9 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--domain-name-label', $('Remove the domain-name-label value.'))
+  .option('--idle-timeout-in-minutes', $('Remove the idle-timeout-in-minutes value.'))
+  .option('--name', $('Remove the name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -41924,7 +46281,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/publicIPs' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.domainNameLabel || options.idleTimeoutInMinutes || options.name;
+    if (anySubItem) {
+      if (options.domainNameLabel) {
+        var subItemPath = options.path + "/domainNameLabel";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.idleTimeoutInMinutes) {
+        var subItemPath = options.path + "/idleTimeoutInMinutes";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -42088,6 +46463,8 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--key-pairs', $('Remove the key-pairs value.'))
+  .option('--public-keys', $('Remove the public-keys value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -42100,7 +46477,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/sshSettings';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.keyPairs || options.publicKeys;
+    if (anySubItem) {
+      if (options.keyPairs) {
+        var subItemPath = options.path + "/keyPairs";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publicKeys) {
+        var subItemPath = options.path + "/publicKeys";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -42258,6 +46649,8 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--fingerprint', $('Remove the fingerprint value.'))
+  .option('--path', $('Remove the path value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -42270,7 +46663,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/sshSettings/keyPairs' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.fingerprint || options.path;
+    if (anySubItem) {
+      if (options.fingerprint) {
+        var subItemPath = options.path + "/fingerprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.path) {
+        var subItemPath = options.path + "/path";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -42428,6 +46835,8 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--fingerprint', $('Remove the fingerprint value.'))
+  .option('--path', $('Remove the path value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -42440,7 +46849,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/sshSettings/publicKeys' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.fingerprint || options.path;
+    if (anySubItem) {
+      if (options.fingerprint) {
+        var subItemPath = options.path + "/fingerprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.path) {
+        var subItemPath = options.path + "/path";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -42598,6 +47021,8 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--store-name', $('Remove the store-name value.'))
+  .option('--thumbprint', $('Remove the thumbprint value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -42610,7 +47035,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/storedCertificateSettings' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.storeName || options.thumbprint;
+    if (anySubItem) {
+      if (options.storeName) {
+        var subItemPath = options.path + "/storeName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.thumbprint) {
+        var subItemPath = options.path + "/thumbprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -42758,7 +47197,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/subnetNames' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -42878,6 +47323,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--listeners', $('Remove the listeners value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -42890,7 +47336,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/windowsRemoteManagement';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.listeners;
+    if (anySubItem) {
+      if (options.listeners) {
+        var subItemPath = options.path + "/listeners";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -43037,6 +47493,8 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
+  .option('--certificate-thumbprint', $('Remove the certificate-thumbprint value.'))
+  .option('--listener-type', $('Remove the listener-type value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -43049,7 +47507,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/windowsRemoteManagement/listeners' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.certificateThumbprint || options.listenerType;
+    if (anySubItem) {
+      if (options.certificateThumbprint) {
+        var subItemPath = options.path + "/certificateThumbprint";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.listenerType) {
+        var subItemPath = options.path + "/listenerType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -43151,7 +47623,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/windowsRemoteManagement/listeners/' + options.listenersIndex + '/listenerType';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -43351,6 +47829,14 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--host-caching', $('Remove the host-caching value.'))
+  .option('--i-o-type', $('Remove the i-o-type value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--logical-disk-size-in-g-b', $('Remove the logical-disk-size-in-g-b value.'))
+  .option('--logical-unit-number', $('Remove the logical-unit-number value.'))
+  .option('--media-link', $('Remove the media-link value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--source-media-link', $('Remove the source-media-link value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -43363,7 +47849,45 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/dataVirtualHardDisks' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.hostCaching || options.iOType || options.label || options.logicalDiskSizeInGB || options.logicalUnitNumber || options.mediaLink || options.name || options.sourceMediaLink;
+    if (anySubItem) {
+      if (options.hostCaching) {
+        var subItemPath = options.path + "/hostCaching";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.iOType) {
+        var subItemPath = options.path + "/iOType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.logicalDiskSizeInGB) {
+        var subItemPath = options.path + "/logicalDiskSizeInGB";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.logicalUnitNumber) {
+        var subItemPath = options.path + "/logicalUnitNumber";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLink) {
+        var subItemPath = options.path + "/mediaLink";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sourceMediaLink) {
+        var subItemPath = options.path + "/sourceMediaLink";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -43657,6 +48181,15 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateVirtualMachineOSVirtualHardDisk1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--host-caching', $('Remove the host-caching value.'))
+  .option('--i-o-type', $('Remove the i-o-type value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--media-link', $('Remove the media-link value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--operating-system', $('Remove the operating-system value.'))
+  .option('--remote-source-image-link', $('Remove the remote-source-image-link value.'))
+  .option('--resized-size-in-g-b', $('Remove the resized-size-in-g-b value.'))
+  .option('--source-image-name', $('Remove the source-image-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -43669,7 +48202,49 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/oSVirtualHardDisk';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.hostCaching || options.iOType || options.label || options.mediaLink || options.name || options.operatingSystem || options.remoteSourceImageLink || options.resizedSizeInGB || options.sourceImageName;
+    if (anySubItem) {
+      if (options.hostCaching) {
+        var subItemPath = options.path + "/hostCaching";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.iOType) {
+        var subItemPath = options.path + "/iOType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLink) {
+        var subItemPath = options.path + "/mediaLink";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.operatingSystem) {
+        var subItemPath = options.path + "/operatingSystem";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.remoteSourceImageLink) {
+        var subItemPath = options.path + "/remoteSourceImageLink";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.resizedSizeInGB) {
+        var subItemPath = options.path + "/resizedSizeInGB";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sourceImageName) {
+        var subItemPath = options.path + "/sourceImageName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -43957,6 +48532,13 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--force-update', $('Remove the force-update value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--publisher', $('Remove the publisher value.'))
+  .option('--reference-name', $('Remove the reference-name value.'))
+  .option('--resource-extension-parameter-values', $('Remove the resource-extension-parameter-values value.'))
+  .option('--state', $('Remove the state value.'))
+  .option('--version', $('Remove the version value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -43969,7 +48551,41 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/resourceExtensionReferences' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.forceUpdate || options.name || options.publisher || options.referenceName || options.resourceExtensionParameterValues || options.state || options.version;
+    if (anySubItem) {
+      if (options.forceUpdate) {
+        var subItemPath = options.path + "/forceUpdate";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publisher) {
+        var subItemPath = options.path + "/publisher";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.referenceName) {
+        var subItemPath = options.path + "/referenceName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.resourceExtensionParameterValues) {
+        var subItemPath = options.path + "/resourceExtensionParameterValues";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.state) {
+        var subItemPath = options.path + "/state";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.version) {
+        var subItemPath = options.path + "/version";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -44193,6 +48809,9 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--resource-extension-references-index <resource-extension-references-index>', $('Indexer: resource-extension-references-index.'))
+  .option('--key', $('Remove the key value.'))
+  .option('--type', $('Remove the type value.'))
+  .option('--value', $('Remove the value value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -44205,7 +48824,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/resourceExtensionReferences/' + options.resourceExtensionReferencesIndex + '/resourceExtensionParameterValues' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.key || options.type || options.value;
+    if (anySubItem) {
+      if (options.key) {
+        var subItemPath = options.path + "/key";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.type) {
+        var subItemPath = options.path + "/type";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.value) {
+        var subItemPath = options.path + "/value";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -44489,6 +49126,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateLoadBalancedEndpointSetVirtualMachineVirtualMachineUpdateLoadBalancedSetParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--load-balanced-endpoints', $('Remove the load-balanced-endpoints value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -44501,7 +49139,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.loadBalancedEndpoints;
+    if (anySubItem) {
+      if (options.loadBalancedEndpoints) {
+        var subItemPath = options.path + "/loadBalancedEndpoints";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -44767,6 +49415,19 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--enable-direct-server-return', $('Remove the enable-direct-server-return value.'))
+  .option('--idle-timeout-in-minutes', $('Remove the idle-timeout-in-minutes value.'))
+  .option('--load-balanced-endpoint-set-name', $('Remove the load-balanced-endpoint-set-name value.'))
+  .option('--load-balancer-distribution', $('Remove the load-balancer-distribution value.'))
+  .option('--load-balancer-name', $('Remove the load-balancer-name value.'))
+  .option('--load-balancer-probe', $('Remove the load-balancer-probe value.'))
+  .option('--local-port', $('Remove the local-port value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--port', $('Remove the port value.'))
+  .option('--protocol', $('Remove the protocol value.'))
+  .option('--rules', $('Remove the rules value.'))
+  .option('--virtual-ip-address', $('Remove the virtual-ip-address value.'))
+  .option('--virtual-ip-name', $('Remove the virtual-ip-name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -44779,7 +49440,65 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/loadBalancedEndpoints' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.enableDirectServerReturn || options.idleTimeoutInMinutes || options.loadBalancedEndpointSetName || options.loadBalancerDistribution || options.loadBalancerName || options.loadBalancerProbe || options.localPort || options.name || options.port || options.protocol || options.rules || options.virtualIPAddress || options.virtualIPName;
+    if (anySubItem) {
+      if (options.enableDirectServerReturn) {
+        var subItemPath = options.path + "/enableDirectServerReturn";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.idleTimeoutInMinutes) {
+        var subItemPath = options.path + "/idleTimeoutInMinutes";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancedEndpointSetName) {
+        var subItemPath = options.path + "/loadBalancedEndpointSetName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancerDistribution) {
+        var subItemPath = options.path + "/loadBalancerDistribution";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancerName) {
+        var subItemPath = options.path + "/loadBalancerName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancerProbe) {
+        var subItemPath = options.path + "/loadBalancerProbe";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.localPort) {
+        var subItemPath = options.path + "/localPort";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.port) {
+        var subItemPath = options.path + "/port";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.protocol) {
+        var subItemPath = options.path + "/protocol";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.rules) {
+        var subItemPath = options.path + "/rules";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.virtualIPAddress) {
+        var subItemPath = options.path + "/virtualIPAddress";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.virtualIPName) {
+        var subItemPath = options.path + "/virtualIPName";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -45086,6 +49805,11 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--load-balanced-endpoints-index <load-balanced-endpoints-index>', $('Indexer: load-balanced-endpoints-index.'))
+  .option('--interval-in-seconds', $('Remove the interval-in-seconds value.'))
+  .option('--path', $('Remove the path value.'))
+  .option('--port', $('Remove the port value.'))
+  .option('--protocol', $('Remove the protocol value.'))
+  .option('--timeout-in-seconds', $('Remove the timeout-in-seconds value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -45098,7 +49822,33 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/loadBalancedEndpoints/' + options.loadBalancedEndpointsIndex + '/loadBalancerProbe';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.intervalInSeconds || options.path || options.port || options.protocol || options.timeoutInSeconds;
+    if (anySubItem) {
+      if (options.intervalInSeconds) {
+        var subItemPath = options.path + "/intervalInSeconds";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.path) {
+        var subItemPath = options.path + "/path";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.port) {
+        var subItemPath = options.path + "/port";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.protocol) {
+        var subItemPath = options.path + "/protocol";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.timeoutInSeconds) {
+        var subItemPath = options.path + "/timeoutInSeconds";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -45232,7 +49982,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/loadBalancedEndpoints/' + options.loadBalancedEndpointsIndex + '/loadBalancerProbe/protocol';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -45390,6 +50146,10 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--load-balanced-endpoints-index <load-balanced-endpoints-index>', $('Indexer: load-balanced-endpoints-index.'))
+  .option('--action', $('Remove the action value.'))
+  .option('--description', $('Remove the description value.'))
+  .option('--order', $('Remove the order value.'))
+  .option('--remote-subnet', $('Remove the remote-subnet value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -45402,7 +50162,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/loadBalancedEndpoints/' + options.loadBalancedEndpointsIndex + '/rules' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.action || options.description || options.order || options.remoteSubnet;
+    if (anySubItem) {
+      if (options.action) {
+        var subItemPath = options.path + "/action";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.description) {
+        var subItemPath = options.path + "/description";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.order) {
+        var subItemPath = options.path + "/order";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.remoteSubnet) {
+        var subItemPath = options.path + "/remoteSubnet";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -45830,6 +50612,21 @@ exports.init = function (cli) {
   .description($('Remove catparametersCreateVirtualMachineOSImageVirtualMachineOSImageCreateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--description', $('Remove the description value.'))
+  .option('--eula', $('Remove the eula value.'))
+  .option('--icon-uri', $('Remove the icon-uri value.'))
+  .option('--image-family', $('Remove the image-family value.'))
+  .option('--is-premium', $('Remove the is-premium value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--language', $('Remove the language value.'))
+  .option('--media-link-uri', $('Remove the media-link-uri value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--operating-system-type', $('Remove the operating-system-type value.'))
+  .option('--privacy-uri', $('Remove the privacy-uri value.'))
+  .option('--published-date', $('Remove the published-date value.'))
+  .option('--recommended-vm-size', $('Remove the recommended-vm-size value.'))
+  .option('--show-in-gui', $('Remove the show-in-gui value.'))
+  .option('--small-icon-uri', $('Remove the small-icon-uri value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -45842,7 +50639,73 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.description || options.eula || options.iconUri || options.imageFamily || options.isPremium || options.label || options.language || options.mediaLinkUri || options.name || options.operatingSystemType || options.privacyUri || options.publishedDate || options.recommendedVMSize || options.showInGui || options.smallIconUri;
+    if (anySubItem) {
+      if (options.description) {
+        var subItemPath = options.path + "/description";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.eula) {
+        var subItemPath = options.path + "/eula";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.iconUri) {
+        var subItemPath = options.path + "/iconUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.imageFamily) {
+        var subItemPath = options.path + "/imageFamily";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.isPremium) {
+        var subItemPath = options.path + "/isPremium";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.language) {
+        var subItemPath = options.path + "/language";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLinkUri) {
+        var subItemPath = options.path + "/mediaLinkUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.operatingSystemType) {
+        var subItemPath = options.path + "/operatingSystemType";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.privacyUri) {
+        var subItemPath = options.path + "/privacyUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publishedDate) {
+        var subItemPath = options.path + "/publishedDate";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.recommendedVMSize) {
+        var subItemPath = options.path + "/recommendedVMSize";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.showInGui) {
+        var subItemPath = options.path + "/showInGui";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.smallIconUri) {
+        var subItemPath = options.path + "/smallIconUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -46343,6 +51206,9 @@ exports.init = function (cli) {
   .description($('Remove catparametersReplicateVirtualMachineOSImageVirtualMachineOSImageReplicateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--compute-image-attributes', $('Remove the compute-image-attributes value.'))
+  .option('--marketplace-image-attributes', $('Remove the marketplace-image-attributes value.'))
+  .option('--target-locations', $('Remove the target-locations value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -46355,7 +51221,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.computeImageAttributes || options.marketplaceImageAttributes || options.targetLocations;
+    if (anySubItem) {
+      if (options.computeImageAttributes) {
+        var subItemPath = options.path + "/computeImageAttributes";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.marketplaceImageAttributes) {
+        var subItemPath = options.path + "/marketplaceImageAttributes";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.targetLocations) {
+        var subItemPath = options.path + "/targetLocations";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -46528,6 +51412,9 @@ exports.init = function (cli) {
   .description($('Remove catparametersReplicateVirtualMachineOSImageComputeImageAttributes1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--offer', $('Remove the offer value.'))
+  .option('--sku', $('Remove the sku value.'))
+  .option('--version', $('Remove the version value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -46540,7 +51427,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/computeImageAttributes';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.offer || options.sku || options.version;
+    if (anySubItem) {
+      if (options.offer) {
+        var subItemPath = options.path + "/offer";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sku) {
+        var subItemPath = options.path + "/sku";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.version) {
+        var subItemPath = options.path + "/version";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -46702,6 +51607,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersReplicateVirtualMachineOSImageMarketplaceImageAttributes1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--plan', $('Remove the plan value.'))
+  .option('--publisher-id', $('Remove the publisher-id value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -46714,7 +51621,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/marketplaceImageAttributes';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.plan || options.publisherId;
+    if (anySubItem) {
+      if (options.plan) {
+        var subItemPath = options.path + "/plan";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publisherId) {
+        var subItemPath = options.path + "/publisherId";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -46876,6 +51797,9 @@ exports.init = function (cli) {
   .description($('Remove catparametersReplicateVirtualMachineOSImagePlan1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--product', $('Remove the product value.'))
+  .option('--publisher', $('Remove the publisher value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -46888,7 +51812,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/marketplaceImageAttributes/plan';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.name || options.product || options.publisher;
+    if (anySubItem) {
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.product) {
+        var subItemPath = options.path + "/product";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publisher) {
+        var subItemPath = options.path + "/publisher";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -47045,7 +51987,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/targetLocations' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -47435,6 +52383,18 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateVirtualMachineOSImageVirtualMachineOSImageUpdateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--description', $('Remove the description value.'))
+  .option('--eula', $('Remove the eula value.'))
+  .option('--icon-uri', $('Remove the icon-uri value.'))
+  .option('--image-family', $('Remove the image-family value.'))
+  .option('--is-premium', $('Remove the is-premium value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--language', $('Remove the language value.'))
+  .option('--privacy-uri', $('Remove the privacy-uri value.'))
+  .option('--published-date', $('Remove the published-date value.'))
+  .option('--recommended-vm-size', $('Remove the recommended-vm-size value.'))
+  .option('--show-in-gui', $('Remove the show-in-gui value.'))
+  .option('--small-icon-uri', $('Remove the small-icon-uri value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -47447,7 +52407,61 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.description || options.eula || options.iconUri || options.imageFamily || options.isPremium || options.label || options.language || options.privacyUri || options.publishedDate || options.recommendedVMSize || options.showInGui || options.smallIconUri;
+    if (anySubItem) {
+      if (options.description) {
+        var subItemPath = options.path + "/description";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.eula) {
+        var subItemPath = options.path + "/eula";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.iconUri) {
+        var subItemPath = options.path + "/iconUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.imageFamily) {
+        var subItemPath = options.path + "/imageFamily";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.isPremium) {
+        var subItemPath = options.path + "/isPremium";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.language) {
+        var subItemPath = options.path + "/language";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.privacyUri) {
+        var subItemPath = options.path + "/privacyUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publishedDate) {
+        var subItemPath = options.path + "/publishedDate";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.recommendedVMSize) {
+        var subItemPath = options.path + "/recommendedVMSize";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.showInGui) {
+        var subItemPath = options.path + "/showInGui";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.smallIconUri) {
+        var subItemPath = options.path + "/smallIconUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -47962,6 +52976,20 @@ exports.init = function (cli) {
   .description($('Remove catparametersCreateVirtualMachineVMImageVirtualMachineVMImageCreateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--data-disk-configurations', $('Remove the data-disk-configurations value.'))
+  .option('--description', $('Remove the description value.'))
+  .option('--eula', $('Remove the eula value.'))
+  .option('--icon-uri', $('Remove the icon-uri value.'))
+  .option('--image-family', $('Remove the image-family value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--language', $('Remove the language value.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--os-disk-configuration', $('Remove the os-disk-configuration value.'))
+  .option('--privacy-uri', $('Remove the privacy-uri value.'))
+  .option('--published-date', $('Remove the published-date value.'))
+  .option('--recommended-vm-size', $('Remove the recommended-vm-size value.'))
+  .option('--show-in-gui', $('Remove the show-in-gui value.'))
+  .option('--small-icon-uri', $('Remove the small-icon-uri value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -47974,7 +53002,69 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.dataDiskConfigurations || options.description || options.eula || options.iconUri || options.imageFamily || options.label || options.language || options.name || options.oSDiskConfiguration || options.privacyUri || options.publishedDate || options.recommendedVMSize || options.showInGui || options.smallIconUri;
+    if (anySubItem) {
+      if (options.dataDiskConfigurations) {
+        var subItemPath = options.path + "/dataDiskConfigurations";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.description) {
+        var subItemPath = options.path + "/description";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.eula) {
+        var subItemPath = options.path + "/eula";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.iconUri) {
+        var subItemPath = options.path + "/iconUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.imageFamily) {
+        var subItemPath = options.path + "/imageFamily";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.language) {
+        var subItemPath = options.path + "/language";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.oSDiskConfiguration) {
+        var subItemPath = options.path + "/oSDiskConfiguration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.privacyUri) {
+        var subItemPath = options.path + "/privacyUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publishedDate) {
+        var subItemPath = options.path + "/publishedDate";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.recommendedVMSize) {
+        var subItemPath = options.path + "/recommendedVMSize";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.showInGui) {
+        var subItemPath = options.path + "/showInGui";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.smallIconUri) {
+        var subItemPath = options.path + "/smallIconUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -48273,6 +53363,9 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--host-caching', $('Remove the host-caching value.'))
+  .option('--logical-unit-number', $('Remove the logical-unit-number value.'))
+  .option('--media-link', $('Remove the media-link value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -48285,7 +53378,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/dataDiskConfigurations' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.hostCaching || options.logicalUnitNumber || options.mediaLink;
+    if (anySubItem) {
+      if (options.hostCaching) {
+        var subItemPath = options.path + "/hostCaching";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.logicalUnitNumber) {
+        var subItemPath = options.path + "/logicalUnitNumber";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLink) {
+        var subItemPath = options.path + "/mediaLink";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -48469,6 +53580,10 @@ exports.init = function (cli) {
   .description($('Remove catparametersCreateVirtualMachineVMImageOSDiskConfiguration1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--host-caching', $('Remove the host-caching value.'))
+  .option('--media-link', $('Remove the media-link value.'))
+  .option('--os', $('Remove the os value.'))
+  .option('--os-state', $('Remove the os-state value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -48481,7 +53596,29 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/oSDiskConfiguration';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.hostCaching || options.mediaLink || options.oS || options.oSState;
+    if (anySubItem) {
+      if (options.hostCaching) {
+        var subItemPath = options.path + "/hostCaching";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.mediaLink) {
+        var subItemPath = options.path + "/mediaLink";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.oS) {
+        var subItemPath = options.path + "/oS";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.oSState) {
+        var subItemPath = options.path + "/oSState";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -48843,6 +53980,9 @@ exports.init = function (cli) {
   .description($('Remove catparametersReplicateVirtualMachineVMImageVirtualMachineVMImageReplicateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--compute-image-attributes', $('Remove the compute-image-attributes value.'))
+  .option('--marketplace-image-attributes', $('Remove the marketplace-image-attributes value.'))
+  .option('--target-locations', $('Remove the target-locations value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -48855,7 +53995,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.computeImageAttributes || options.marketplaceImageAttributes || options.targetLocations;
+    if (anySubItem) {
+      if (options.computeImageAttributes) {
+        var subItemPath = options.path + "/computeImageAttributes";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.marketplaceImageAttributes) {
+        var subItemPath = options.path + "/marketplaceImageAttributes";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.targetLocations) {
+        var subItemPath = options.path + "/targetLocations";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -49028,6 +54186,9 @@ exports.init = function (cli) {
   .description($('Remove catparametersReplicateVirtualMachineVMImageComputeImageAttributes1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--offer', $('Remove the offer value.'))
+  .option('--sku', $('Remove the sku value.'))
+  .option('--version', $('Remove the version value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -49040,7 +54201,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/computeImageAttributes';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.offer || options.sku || options.version;
+    if (anySubItem) {
+      if (options.offer) {
+        var subItemPath = options.path + "/offer";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sku) {
+        var subItemPath = options.path + "/sku";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.version) {
+        var subItemPath = options.path + "/version";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -49202,6 +54381,8 @@ exports.init = function (cli) {
   .description($('Remove catparametersReplicateVirtualMachineVMImageMarketplaceImageAttributes1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--plan', $('Remove the plan value.'))
+  .option('--publisher-id', $('Remove the publisher-id value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -49214,7 +54395,21 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/marketplaceImageAttributes';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.plan || options.publisherId;
+    if (anySubItem) {
+      if (options.plan) {
+        var subItemPath = options.path + "/plan";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publisherId) {
+        var subItemPath = options.path + "/publisherId";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -49376,6 +54571,9 @@ exports.init = function (cli) {
   .description($('Remove catparametersReplicateVirtualMachineVMImagePlan1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--product', $('Remove the product value.'))
+  .option('--publisher', $('Remove the publisher value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -49388,7 +54586,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/marketplaceImageAttributes/plan';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.name || options.product || options.publisher;
+    if (anySubItem) {
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.product) {
+        var subItemPath = options.path + "/product";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publisher) {
+        var subItemPath = options.path + "/publisher";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -49545,7 +54761,13 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/targetLocations' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false;
+    if (anySubItem) {
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -49955,6 +55177,19 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateVirtualMachineVMImageVirtualMachineVMImageUpdateParameters1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--data-disk-configurations', $('Remove the data-disk-configurations value.'))
+  .option('--description', $('Remove the description value.'))
+  .option('--eula', $('Remove the eula value.'))
+  .option('--icon-uri', $('Remove the icon-uri value.'))
+  .option('--image-family', $('Remove the image-family value.'))
+  .option('--label', $('Remove the label value.'))
+  .option('--language', $('Remove the language value.'))
+  .option('--os-disk-configuration', $('Remove the os-disk-configuration value.'))
+  .option('--privacy-uri', $('Remove the privacy-uri value.'))
+  .option('--published-date', $('Remove the published-date value.'))
+  .option('--recommended-vm-size', $('Remove the recommended-vm-size value.'))
+  .option('--show-in-gui', $('Remove the show-in-gui value.'))
+  .option('--small-icon-uri', $('Remove the small-icon-uri value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -49967,7 +55202,65 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.dataDiskConfigurations || options.description || options.eula || options.iconUri || options.imageFamily || options.label || options.language || options.oSDiskConfiguration || options.privacyUri || options.publishedDate || options.recommendedVMSize || options.showInGui || options.smallIconUri;
+    if (anySubItem) {
+      if (options.dataDiskConfigurations) {
+        var subItemPath = options.path + "/dataDiskConfigurations";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.description) {
+        var subItemPath = options.path + "/description";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.eula) {
+        var subItemPath = options.path + "/eula";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.iconUri) {
+        var subItemPath = options.path + "/iconUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.imageFamily) {
+        var subItemPath = options.path + "/imageFamily";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.label) {
+        var subItemPath = options.path + "/label";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.language) {
+        var subItemPath = options.path + "/language";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.oSDiskConfiguration) {
+        var subItemPath = options.path + "/oSDiskConfiguration";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.privacyUri) {
+        var subItemPath = options.path + "/privacyUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.publishedDate) {
+        var subItemPath = options.path + "/publishedDate";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.recommendedVMSize) {
+        var subItemPath = options.path + "/recommendedVMSize";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.showInGui) {
+        var subItemPath = options.path + "/showInGui";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.smallIconUri) {
+        var subItemPath = options.path + "/smallIconUri";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -50255,6 +55548,9 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
+  .option('--host-caching', $('Remove the host-caching value.'))
+  .option('--logical-unit-number', $('Remove the logical-unit-number value.'))
+  .option('--name', $('Remove the name value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -50267,7 +55563,25 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/dataDiskConfigurations' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.hostCaching || options.logicalUnitNumber || options.name;
+    if (anySubItem) {
+      if (options.hostCaching) {
+        var subItemPath = options.path + "/hostCaching";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.logicalUnitNumber) {
+        var subItemPath = options.path + "/logicalUnitNumber";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.name) {
+        var subItemPath = options.path + "/name";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');
@@ -50418,6 +55732,7 @@ exports.init = function (cli) {
   .description($('Remove catparametersUpdateVirtualMachineVMImageOSDiskConfiguration1 parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--host-caching', $('Remove the host-caching value.'))
   .execute(function(options, _) {
     cli.output.info(options, _);
     cli.output.info(options.parameterFile);
@@ -50430,7 +55745,17 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/oSDiskConfiguration';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    var anySubItem = false || options.hostCaching;
+    if (anySubItem) {
+      if (options.hostCaching) {
+        var subItemPath = options.path + "/hostCaching";
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
     cli.output.info('JSON object (updated):');

@@ -246,7 +246,15 @@ function Generate-CliParameterCommandImpl
         }
     }
 
-    # 2.2 Function Definition
+    # 2.2 For Each Property, Append the Option for Removal
+    foreach ($propertyItem in $TreeNode.Properties)
+    {
+        $code += "  .option('--" + (Get-CliOptionName $propertyItem["Name"]) + "',";
+        $code += " `$('Remove the " + (Get-CliOptionName $propertyItem["Name"]);
+        $code += " value.'))" + $NEW_LINE;
+    }
+
+    # 2.3 Function Definition
     $code += "  .execute(function(options, _) {" + $NEW_LINE;
     $code += "    cli.output.info(options, _);" + $NEW_LINE;
     $code += "    cli.output.info(options.parameterFile);" + $NEW_LINE;
@@ -259,7 +267,29 @@ function Generate-CliParameterCommandImpl
     $code += "    cli.output.info(JSON.stringify(${cli_param_name}Obj));" + $NEW_LINE;
     $code += "    options.operation = 'remove';" + $NEW_LINE;
     $code += "    options.path = ${pathToTreeNode};" + $NEW_LINE;
-    $code += "    jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path}]);" + $NEW_LINE;
+
+    # 2.3.1 For Any Sub-Item Removal
+    $code += "    var anySubItem = false";
+    foreach ($propertyItem in $TreeNode.Properties)
+    {
+        $code += " || options." + (Get-CliNormalizedName $propertyItem["Name"]);
+    }
+    $code += ";" + $NEW_LINE;
+
+    # 2.3.2 For Removal of the Entire Item
+    $code += "    if (anySubItem) {" + $NEW_LINE;
+    foreach ($propertyItem in $TreeNode.Properties)
+    {
+        $code += "      if (options." + (Get-CliNormalizedName $propertyItem["Name"]) + ") {" + $NEW_LINE;
+        $code += "        var subItemPath = options.path + `"/" + (Get-CliNormalizedName $propertyItem["Name"]) + "`";" + $NEW_LINE;
+        $code += "        jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: subItemPath}]);" + $NEW_LINE;
+        $code += "      }" + $NEW_LINE;
+    }
+    $code += "    }" + $NEW_LINE;
+    $code += "    else {" + $NEW_LINE;
+    $code += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path}]);" + $NEW_LINE;
+    $code += "    }" + $NEW_LINE;
+    $code += "    " + $NEW_LINE;
     $code += "    var updatedContent = JSON.stringify(${cli_param_name}Obj);" + $NEW_LINE;
     $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;
     $code += "    cli.output.info(`'JSON object (updated):`');" + $NEW_LINE;
