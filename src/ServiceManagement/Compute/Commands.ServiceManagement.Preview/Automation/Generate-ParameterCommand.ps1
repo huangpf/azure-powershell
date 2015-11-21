@@ -278,17 +278,23 @@ function Generate-CliParameterCommandImpl
 
     # 2.3.2 For Removal of the Entire Item
     $code += "    if (anySubItem) {" + $NEW_LINE;
-    foreach ($propertyItem in $TreeNode.Properties)
+    if ($TreeNode.Properties.Count -gt 0)
     {
-        $code += "      if (options." + (Get-CliNormalizedName $propertyItem["Name"]) + ") {" + $NEW_LINE;
-        $code += "        var subItemPath = options.path + `"/" + (Get-CliNormalizedName $propertyItem["Name"]) + "`";" + $NEW_LINE;
-        $code += "        jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: subItemPath}]);" + $NEW_LINE;
-        $code += "      }" + $NEW_LINE;
+        $code += "      var subItemPath = null;" + $NEW_LINE;
+        foreach ($propertyItem in $TreeNode.Properties)
+        {
+            $code += "      if (options." + (Get-CliNormalizedName $propertyItem["Name"]) + ") {" + $NEW_LINE;
+            $code += "        subItemPath = options.path + '/" + (Get-CliNormalizedName $propertyItem["Name"]) + "';" + $NEW_LINE;
+            $code += "        jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: subItemPath}]);" + $NEW_LINE;
+            $code += "      }" + $NEW_LINE;
+        }
+    
+        $code += "    }" + $NEW_LINE;
+        $code += "    else {" + $NEW_LINE;
+        $code += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path}]);" + $NEW_LINE;
+        $code += "    }" + $NEW_LINE;
     }
-    $code += "    }" + $NEW_LINE;
-    $code += "    else {" + $NEW_LINE;
-    $code += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path}]);" + $NEW_LINE;
-    $code += "    }" + $NEW_LINE;
+    
     $code += "    " + $NEW_LINE;
     $code += "    var updatedContent = JSON.stringify(${cli_param_name}Obj);" + $NEW_LINE;
     $code += "    cli.output.info(`'=====================================`');" + $NEW_LINE;

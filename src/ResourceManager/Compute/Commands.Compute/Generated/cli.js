@@ -440,40 +440,41 @@ exports.init = function (cli) {
     options.path = '';
     var anySubItem = false || options.provisioningState || options.sku || options.upgradePolicy || options.virtualMachineProfile || options.id || options.name || options.type || options.location || options.tags;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.provisioningState) {
-        var subItemPath = options.path + "/provisioningState";
+        subItemPath = options.path + '/provisioningState';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.sku) {
-        var subItemPath = options.path + "/sku";
+        subItemPath = options.path + '/sku';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.upgradePolicy) {
-        var subItemPath = options.path + "/upgradePolicy";
+        subItemPath = options.path + '/upgradePolicy';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.virtualMachineProfile) {
-        var subItemPath = options.path + "/virtualMachineProfile";
+        subItemPath = options.path + '/virtualMachineProfile';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.id) {
-        var subItemPath = options.path + "/id";
+        subItemPath = options.path + '/id';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.name) {
-        var subItemPath = options.path + "/name";
+        subItemPath = options.path + '/name';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.type) {
-        var subItemPath = options.path + "/type";
+        subItemPath = options.path + '/type';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.location) {
-        var subItemPath = options.path + "/location";
+        subItemPath = options.path + '/location';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.tags) {
-        var subItemPath = options.path + "/tags";
+        subItemPath = options.path + '/tags';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -736,16 +737,17 @@ exports.init = function (cli) {
     options.path = '/sku';
     var anySubItem = false || options.capacity || options.name || options.tier;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.capacity) {
-        var subItemPath = options.path + "/capacity";
+        subItemPath = options.path + '/capacity';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.name) {
-        var subItemPath = options.path + "/name";
+        subItemPath = options.path + '/name';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.tier) {
-        var subItemPath = options.path + "/tier";
+        subItemPath = options.path + '/tier';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -918,8 +920,9 @@ exports.init = function (cli) {
     options.path = '/upgradePolicy';
     var anySubItem = false || options.mode;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.mode) {
-        var subItemPath = options.path + "/mode";
+        subItemPath = options.path + '/mode';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -1106,20 +1109,21 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile';
     var anySubItem = false || options.extensionProfile || options.networkProfile || options.oSProfile || options.storageProfile;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.extensionProfile) {
-        var subItemPath = options.path + "/extensionProfile";
+        subItemPath = options.path + '/extensionProfile';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.networkProfile) {
-        var subItemPath = options.path + "/networkProfile";
+        subItemPath = options.path + '/networkProfile';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.oSProfile) {
-        var subItemPath = options.path + "/oSProfile";
+        subItemPath = options.path + '/oSProfile';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.storageProfile) {
-        var subItemPath = options.path + "/storageProfile";
+        subItemPath = options.path + '/storageProfile';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -1303,8 +1307,9 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/extensionProfile';
     var anySubItem = false || options.extensions;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.extensions) {
-        var subItemPath = options.path + "/extensions";
+        subItemPath = options.path + '/extensions';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -1592,52 +1597,53 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '');
     var anySubItem = false || options.autoUpgradeMinorVersion || options.extensionType || options.protectedSettings || options.provisioningState || options.publisher || options.settings || options.typeHandlerVersion || options.id || options.name || options.type || options.location || options.tags;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.autoUpgradeMinorVersion) {
-        var subItemPath = options.path + "/autoUpgradeMinorVersion";
+        subItemPath = options.path + '/autoUpgradeMinorVersion';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.extensionType) {
-        var subItemPath = options.path + "/extensionType";
+        subItemPath = options.path + '/extensionType';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.protectedSettings) {
-        var subItemPath = options.path + "/protectedSettings";
+        subItemPath = options.path + '/protectedSettings';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.provisioningState) {
-        var subItemPath = options.path + "/provisioningState";
+        subItemPath = options.path + '/provisioningState';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.publisher) {
-        var subItemPath = options.path + "/publisher";
+        subItemPath = options.path + '/publisher';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.settings) {
-        var subItemPath = options.path + "/settings";
+        subItemPath = options.path + '/settings';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.typeHandlerVersion) {
-        var subItemPath = options.path + "/typeHandlerVersion";
+        subItemPath = options.path + '/typeHandlerVersion';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.id) {
-        var subItemPath = options.path + "/id";
+        subItemPath = options.path + '/id';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.name) {
-        var subItemPath = options.path + "/name";
+        subItemPath = options.path + '/name';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.type) {
-        var subItemPath = options.path + "/type";
+        subItemPath = options.path + '/type';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.location) {
-        var subItemPath = options.path + "/location";
+        subItemPath = options.path + '/location';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.tags) {
-        var subItemPath = options.path + "/tags";
+        subItemPath = options.path + '/tags';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -1909,8 +1915,9 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile';
     var anySubItem = false || options.networkInterfaceConfigurations;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.networkInterfaceConfigurations) {
-        var subItemPath = options.path + "/networkInterfaceConfigurations";
+        subItemPath = options.path + '/networkInterfaceConfigurations';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -2090,16 +2097,17 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '');
     var anySubItem = false || options.ipConfigurations || options.name || options.primary;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.ipConfigurations) {
-        var subItemPath = options.path + "/ipConfigurations";
+        subItemPath = options.path + '/ipConfigurations';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.name) {
-        var subItemPath = options.path + "/name";
+        subItemPath = options.path + '/name';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.primary) {
-        var subItemPath = options.path + "/primary";
+        subItemPath = options.path + '/primary';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -2315,20 +2323,21 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '');
     var anySubItem = false || options.loadBalancerBackendAddressPools || options.loadBalancerInboundNatPools || options.name || options.subnet;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.loadBalancerBackendAddressPools) {
-        var subItemPath = options.path + "/loadBalancerBackendAddressPools";
+        subItemPath = options.path + '/loadBalancerBackendAddressPools';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.loadBalancerInboundNatPools) {
-        var subItemPath = options.path + "/loadBalancerInboundNatPools";
+        subItemPath = options.path + '/loadBalancerInboundNatPools';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.name) {
-        var subItemPath = options.path + "/name";
+        subItemPath = options.path + '/name';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.subnet) {
-        var subItemPath = options.path + "/subnet";
+        subItemPath = options.path + '/subnet';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -2521,8 +2530,9 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '');
     var anySubItem = false || options.referenceUri;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.referenceUri) {
-        var subItemPath = options.path + "/referenceUri";
+        subItemPath = options.path + '/referenceUri';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -2682,8 +2692,9 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerInboundNatPools' + (options.index ? ('/' + options.index) : '');
     var anySubItem = false || options.referenceUri;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.referenceUri) {
-        var subItemPath = options.path + "/referenceUri";
+        subItemPath = options.path + '/referenceUri';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -2838,8 +2849,9 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/subnet';
     var anySubItem = false || options.referenceUri;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.referenceUri) {
-        var subItemPath = options.path + "/referenceUri";
+        subItemPath = options.path + '/referenceUri';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -3062,32 +3074,33 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile';
     var anySubItem = false || options.computerNamePrefix || options.adminPassword || options.adminUsername || options.customData || options.linuxConfiguration || options.secrets || options.windowsConfiguration;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.computerNamePrefix) {
-        var subItemPath = options.path + "/computerNamePrefix";
+        subItemPath = options.path + '/computerNamePrefix';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.adminPassword) {
-        var subItemPath = options.path + "/adminPassword";
+        subItemPath = options.path + '/adminPassword';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.adminUsername) {
-        var subItemPath = options.path + "/adminUsername";
+        subItemPath = options.path + '/adminUsername';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.customData) {
-        var subItemPath = options.path + "/customData";
+        subItemPath = options.path + '/customData';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.linuxConfiguration) {
-        var subItemPath = options.path + "/linuxConfiguration";
+        subItemPath = options.path + '/linuxConfiguration';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.secrets) {
-        var subItemPath = options.path + "/secrets";
+        subItemPath = options.path + '/secrets';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.windowsConfiguration) {
-        var subItemPath = options.path + "/windowsConfiguration";
+        subItemPath = options.path + '/windowsConfiguration';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -3316,12 +3329,13 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration';
     var anySubItem = false || options.disablePasswordAuthentication || options.sshConfiguration;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.disablePasswordAuthentication) {
-        var subItemPath = options.path + "/disablePasswordAuthentication";
+        subItemPath = options.path + '/disablePasswordAuthentication';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.sshConfiguration) {
-        var subItemPath = options.path + "/sshConfiguration";
+        subItemPath = options.path + '/sshConfiguration';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -3483,8 +3497,9 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration';
     var anySubItem = false || options.publicKeys;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.publicKeys) {
-        var subItemPath = options.path + "/publicKeys";
+        subItemPath = options.path + '/publicKeys';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -3652,12 +3667,13 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys' + (options.index ? ('/' + options.index) : '');
     var anySubItem = false || options.keyData || options.path;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.keyData) {
-        var subItemPath = options.path + "/keyData";
+        subItemPath = options.path + '/keyData';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.path) {
-        var subItemPath = options.path + "/path";
+        subItemPath = options.path + '/path';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -3836,12 +3852,13 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/secrets' + (options.index ? ('/' + options.index) : '');
     var anySubItem = false || options.sourceVault || options.vaultCertificates;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.sourceVault) {
-        var subItemPath = options.path + "/sourceVault";
+        subItemPath = options.path + '/sourceVault';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.vaultCertificates) {
-        var subItemPath = options.path + "/vaultCertificates";
+        subItemPath = options.path + '/vaultCertificates';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -4005,8 +4022,9 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/sourceVault';
     var anySubItem = false || options.referenceUri;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.referenceUri) {
-        var subItemPath = options.path + "/referenceUri";
+        subItemPath = options.path + '/referenceUri';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -4176,12 +4194,13 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '');
     var anySubItem = false || options.certificateStore || options.certificateUrl;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.certificateStore) {
-        var subItemPath = options.path + "/certificateStore";
+        subItemPath = options.path + '/certificateStore';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.certificateUrl) {
-        var subItemPath = options.path + "/certificateUrl";
+        subItemPath = options.path + '/certificateUrl';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -4391,24 +4410,25 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration';
     var anySubItem = false || options.additionalUnattendContents || options.enableAutomaticUpdates || options.provisionVMAgent || options.timeZone || options.winRMConfiguration;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.additionalUnattendContents) {
-        var subItemPath = options.path + "/additionalUnattendContents";
+        subItemPath = options.path + '/additionalUnattendContents';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.enableAutomaticUpdates) {
-        var subItemPath = options.path + "/enableAutomaticUpdates";
+        subItemPath = options.path + '/enableAutomaticUpdates';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.provisionVMAgent) {
-        var subItemPath = options.path + "/provisionVMAgent";
+        subItemPath = options.path + '/provisionVMAgent';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.timeZone) {
-        var subItemPath = options.path + "/timeZone";
+        subItemPath = options.path + '/timeZone';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.winRMConfiguration) {
-        var subItemPath = options.path + "/winRMConfiguration";
+        subItemPath = options.path + '/winRMConfiguration';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -4644,20 +4664,21 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '');
     var anySubItem = false || options.componentName || options.content || options.passName || options.settingName;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.componentName) {
-        var subItemPath = options.path + "/componentName";
+        subItemPath = options.path + '/componentName';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.content) {
-        var subItemPath = options.path + "/content";
+        subItemPath = options.path + '/content';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.passName) {
-        var subItemPath = options.path + "/passName";
+        subItemPath = options.path + '/passName';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.settingName) {
-        var subItemPath = options.path + "/settingName";
+        subItemPath = options.path + '/settingName';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -4841,8 +4862,9 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration';
     var anySubItem = false || options.listeners;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.listeners) {
-        var subItemPath = options.path + "/listeners";
+        subItemPath = options.path + '/listeners';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -5010,12 +5032,13 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners' + (options.index ? ('/' + options.index) : '');
     var anySubItem = false || options.certificateUrl || options.protocol;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.certificateUrl) {
-        var subItemPath = options.path + "/certificateUrl";
+        subItemPath = options.path + '/certificateUrl';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.protocol) {
-        var subItemPath = options.path + "/protocol";
+        subItemPath = options.path + '/protocol';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -5189,12 +5212,13 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/storageProfile';
     var anySubItem = false || options.imageReference || options.oSDisk;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.imageReference) {
-        var subItemPath = options.path + "/imageReference";
+        subItemPath = options.path + '/imageReference';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.oSDisk) {
-        var subItemPath = options.path + "/oSDisk";
+        subItemPath = options.path + '/oSDisk';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -5392,20 +5416,21 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/storageProfile/imageReference';
     var anySubItem = false || options.offer || options.publisher || options.sku || options.version;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.offer) {
-        var subItemPath = options.path + "/offer";
+        subItemPath = options.path + '/offer';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.publisher) {
-        var subItemPath = options.path + "/publisher";
+        subItemPath = options.path + '/publisher';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.sku) {
-        var subItemPath = options.path + "/sku";
+        subItemPath = options.path + '/sku';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.version) {
-        var subItemPath = options.path + "/version";
+        subItemPath = options.path + '/version';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -5649,28 +5674,29 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/storageProfile/oSDisk';
     var anySubItem = false || options.caching || options.createOption || options.name || options.operatingSystemType || options.sourceImage || options.virtualHardDiskContainers;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.caching) {
-        var subItemPath = options.path + "/caching";
+        subItemPath = options.path + '/caching';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.createOption) {
-        var subItemPath = options.path + "/createOption";
+        subItemPath = options.path + '/createOption';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.name) {
-        var subItemPath = options.path + "/name";
+        subItemPath = options.path + '/name';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.operatingSystemType) {
-        var subItemPath = options.path + "/operatingSystemType";
+        subItemPath = options.path + '/operatingSystemType';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.sourceImage) {
-        var subItemPath = options.path + "/sourceImage";
+        subItemPath = options.path + '/sourceImage';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.virtualHardDiskContainers) {
-        var subItemPath = options.path + "/virtualHardDiskContainers";
+        subItemPath = options.path + '/virtualHardDiskContainers';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -5876,8 +5902,9 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/storageProfile/oSDisk/sourceImage';
     var anySubItem = false || options.uri;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.uri) {
-        var subItemPath = options.path + "/uri";
+        subItemPath = options.path + '/uri';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -6021,10 +6048,6 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/storageProfile/oSDisk/virtualHardDiskContainers' + (options.index ? ('/' + options.index) : '');
     var anySubItem = false;
     if (anySubItem) {
-    }
-    else {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    }
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -6388,10 +6411,6 @@ exports.init = function (cli) {
     options.path = '';
     var anySubItem = false;
     if (anySubItem) {
-    }
-    else {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    }
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -7058,24 +7077,25 @@ exports.init = function (cli) {
     options.path = '';
     var anySubItem = false || options.expandExpression || options.filterExpression || options.resourceGroupName || options.selectExpression || options.virtualMachineScaleSetName;
     if (anySubItem) {
+      var subItemPath = null;
       if (options.expandExpression) {
-        var subItemPath = options.path + "/expandExpression";
+        subItemPath = options.path + '/expandExpression';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.filterExpression) {
-        var subItemPath = options.path + "/filterExpression";
+        subItemPath = options.path + '/filterExpression';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.resourceGroupName) {
-        var subItemPath = options.path + "/resourceGroupName";
+        subItemPath = options.path + '/resourceGroupName';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.selectExpression) {
-        var subItemPath = options.path + "/selectExpression";
+        subItemPath = options.path + '/selectExpression';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.virtualMachineScaleSetName) {
-        var subItemPath = options.path + "/virtualMachineScaleSetName";
+        subItemPath = options.path + '/virtualMachineScaleSetName';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
