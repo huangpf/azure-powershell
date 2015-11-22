@@ -268,18 +268,18 @@ function Generate-CliParameterCommandImpl
     $code += "    options.operation = 'remove';" + $NEW_LINE;
     $code += "    options.path = ${pathToTreeNode};" + $NEW_LINE;
 
-    # 2.3.1 For Any Sub-Item Removal
-    $code += "    var anySubItem = false";
-    foreach ($propertyItem in $TreeNode.Properties)
-    {
-        $code += " || options." + (Get-CliNormalizedName $propertyItem["Name"]);
-    }
-    $code += ";" + $NEW_LINE;
-
-    # 2.3.2 For Removal of the Entire Item
-    $code += "    if (anySubItem) {" + $NEW_LINE;
     if ($TreeNode.Properties.Count -gt 0)
     {
+        # 2.3.1 For Any Sub-Item Removal
+        $code += "    var anySubItem = false";
+        foreach ($propertyItem in $TreeNode.Properties)
+        {
+            $code += " || options." + (Get-CliNormalizedName $propertyItem["Name"]);
+        }
+        $code += ";" + $NEW_LINE;
+
+        # 2.3.2 For Removal of the Entire Item
+        $code += "    if (anySubItem) {" + $NEW_LINE;
         $code += "      var subItemPath = null;" + $NEW_LINE;
         foreach ($propertyItem in $TreeNode.Properties)
         {

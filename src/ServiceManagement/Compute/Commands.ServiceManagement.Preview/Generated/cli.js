@@ -3740,8 +3740,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/name' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -4929,8 +4927,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/mode';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -5294,8 +5290,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/mode';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -5917,8 +5911,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/status';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -6254,8 +6246,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/status';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -7487,8 +7477,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/mode';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -8720,8 +8708,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/mode';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -17393,8 +17379,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/certificateFormat';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -20520,8 +20504,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/postShutdownAction';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -21055,8 +21037,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/postCaptureAction';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -23618,8 +23598,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/inputEndpoints/' + options.inputEndpointsIndex + '/loadBalancerProbe/protocol';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -25117,8 +25095,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/subnetNames' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -25536,8 +25512,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/provisioningConfiguration/windowsRemoteManagement/listeners/' + options.listenersIndex + '/listenerType';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -29216,8 +29190,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/loadBalancerProbe/protocol';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -30731,8 +30703,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/subnetNames' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -31155,8 +31125,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/windowsRemoteManagement/listeners/' + options.listenersIndex + '/listenerType';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -33647,8 +33615,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/deploymentSlot';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -37515,8 +37481,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/loadBalancerProbe/protocol';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -39046,8 +39010,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/subnetNames' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -39475,8 +39437,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/windowsRemoteManagement/listeners/' + options.listenersIndex + '/listenerType';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -41704,8 +41664,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/postShutdownAction';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -42117,8 +42075,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -42529,8 +42485,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/roles' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -45746,8 +45700,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/loadBalancerProbe/protocol';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -47261,8 +47213,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/subnetNames' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -47685,8 +47635,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/configurationSets/' + options.configurationSetsIndex + '/windowsRemoteManagement/listeners/' + options.listenersIndex + '/listenerType';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -50047,8 +49995,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/loadBalancedEndpoints/' + options.loadBalancedEndpointsIndex + '/loadBalancerProbe/protocol';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -52054,8 +52000,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/targetLocations' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -54832,8 +54776,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/targetLocations' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');

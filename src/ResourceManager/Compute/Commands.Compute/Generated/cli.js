@@ -6046,8 +6046,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/virtualMachineProfile/storageProfile/oSDisk/virtualHardDiskContainers' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
@@ -6409,8 +6407,6 @@ exports.init = function (cli) {
     cli.output.info(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    var anySubItem = false;
-    if (anySubItem) {
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.info('=====================================');
