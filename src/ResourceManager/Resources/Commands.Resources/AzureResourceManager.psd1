@@ -114,6 +114,7 @@ NestedModules = @(
     '.\AzureRM.SiteRecovery',
     '.\AzureRM.DataLakeAnalytics',
     '.\AzureRM.DataLakeStore',
+    '.\AzureRM.Intune',
     '.\AzureRM.RecoveryServices'
 )  
   
