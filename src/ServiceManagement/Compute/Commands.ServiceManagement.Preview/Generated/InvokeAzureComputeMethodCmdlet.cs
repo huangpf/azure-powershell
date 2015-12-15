@@ -153,7 +153,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "VirtualMachineVMImageUnreplicate",
             "VirtualMachineVMImageUpdate"
         )]
-        public string MethodName { get; set; }
+        public virtual string MethodName { get; set; }
 
         protected object ParseParameter(object input)
         {
@@ -167,9 +167,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             }
         }
 
-        public override void ExecuteCmdlet()
+        protected override void ProcessRecord()
         {
-            base.ExecuteCmdlet();
+            base.ProcessRecord();
             ExecuteClientAction(() =>
             {
                 if (ParameterSetName == "InvokeByDynamicParameters")
@@ -489,7 +489,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         }
 
 
-        public object GetDynamicParameters()
+        public virtual object GetDynamicParameters()
         {
             switch (MethodName)
             {

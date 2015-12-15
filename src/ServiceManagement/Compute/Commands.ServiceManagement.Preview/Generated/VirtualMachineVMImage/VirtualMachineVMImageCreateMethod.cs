@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pParameters = new RuntimeDefinedParameter();
             pParameters.Name = "VirtualMachineVMImageCreateParameters";
-            pParameters.ParameterType = typeof(Microsoft.WindowsAzure.Management.Compute.Models.VirtualMachineVMImageCreateParameters);
+            pParameters.ParameterType = typeof(VirtualMachineVMImageCreateParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -77,7 +77,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         {
             VirtualMachineVMImageCreateParameters parameters = new VirtualMachineVMImageCreateParameters();
 
-            return ConvertFromObjectsToArguments(new string[] { "Parameters" }, new object[] { parameters });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "Parameters" },
+                 new object[] { parameters });
         }
     }
 }

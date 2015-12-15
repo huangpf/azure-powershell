@@ -35,17 +35,41 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         protected object CreateServiceCertificateGetDynamicParameters()
         {
             dynamicParameters = new RuntimeDefinedParameterDictionary();
-            var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "ServiceCertificateGetParameters";
-            pParameters.ParameterType = typeof(Microsoft.WindowsAzure.Management.Compute.Models.ServiceCertificateGetParameters);
-            pParameters.Attributes.Add(new ParameterAttribute
+            var pServiceName = new RuntimeDefinedParameter();
+            pServiceName.Name = "ServiceName";
+            pServiceName.ParameterType = typeof(string);
+            pServiceName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
-            pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("ServiceCertificateGetParameters", pParameters);
+            pServiceName.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("ServiceName", pServiceName);
+
+            var pThumbprint = new RuntimeDefinedParameter();
+            pThumbprint.Name = "Thumbprint";
+            pThumbprint.ParameterType = typeof(string);
+            pThumbprint.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 2,
+                Mandatory = false
+            });
+            pThumbprint.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("Thumbprint", pThumbprint);
+
+            var pThumbprintAlgorithm = new RuntimeDefinedParameter();
+            pThumbprintAlgorithm.Name = "ThumbprintAlgorithm";
+            pThumbprintAlgorithm.ParameterType = typeof(string);
+            pThumbprintAlgorithm.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 3,
+                Mandatory = false
+            });
+            pThumbprintAlgorithm.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("ThumbprintAlgorithm", pThumbprintAlgorithm);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
@@ -53,7 +77,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 2,
+                Position = 4,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
@@ -64,7 +88,13 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
         protected void ExecuteServiceCertificateGetMethod(object[] invokeMethodInputParameters)
         {
-            ServiceCertificateGetParameters parameters = (ServiceCertificateGetParameters)ParseParameter(invokeMethodInputParameters[0]);
+            var parameters = new ServiceCertificateGetParameters();
+            var pServiceName = (string) ParseParameter(invokeMethodInputParameters[0]);
+            parameters.ServiceName = string.IsNullOrEmpty(pServiceName) ? null : pServiceName;
+            var pThumbprint = (string) ParseParameter(invokeMethodInputParameters[1]);
+            parameters.Thumbprint = string.IsNullOrEmpty(pThumbprint) ? null : pThumbprint;
+            var pThumbprintAlgorithm = (string) ParseParameter(invokeMethodInputParameters[2]);
+            parameters.ThumbprintAlgorithm = string.IsNullOrEmpty(pThumbprintAlgorithm) ? null : pThumbprintAlgorithm;
 
             var result = ServiceCertificateClient.Get(parameters);
             WriteObject(result);
@@ -75,9 +105,13 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
     {
         protected PSArgument[] CreateServiceCertificateGetParameters()
         {
-            ServiceCertificateGetParameters parameters = new ServiceCertificateGetParameters();
+            var pServiceName = string.Empty;
+            var pThumbprint = string.Empty;
+            var pThumbprintAlgorithm = string.Empty;
 
-            return ConvertFromObjectsToArguments(new string[] { "Parameters" }, new object[] { parameters });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ServiceName", "Thumbprint", "ThumbprintAlgorithm" },
+                 new object[] { pServiceName, pThumbprint, pThumbprintAlgorithm });
         }
     }
 }

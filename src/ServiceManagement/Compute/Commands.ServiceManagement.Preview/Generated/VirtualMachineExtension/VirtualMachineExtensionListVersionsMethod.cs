@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pPublisherName = new RuntimeDefinedParameter();
             pPublisherName.Name = "PublisherName";
-            pPublisherName.ParameterType = typeof(System.String);
+            pPublisherName.ParameterType = typeof(string);
             pPublisherName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pExtensionName = new RuntimeDefinedParameter();
             pExtensionName.Name = "ExtensionName";
-            pExtensionName.ParameterType = typeof(System.String);
+            pExtensionName.ParameterType = typeof(string);
             pExtensionName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -91,7 +91,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string publisherName = string.Empty;
             string extensionName = string.Empty;
 
-            return ConvertFromObjectsToArguments(new string[] { "PublisherName", "ExtensionName" }, new object[] { publisherName, extensionName });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "PublisherName", "ExtensionName" },
+                 new object[] { publisherName, extensionName });
         }
     }
 }

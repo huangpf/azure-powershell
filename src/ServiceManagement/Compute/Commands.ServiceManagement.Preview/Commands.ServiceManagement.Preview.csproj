@@ -290,7 +290,14 @@
     <Compile Include="ServiceManagementPreviewProfile.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Automation\Generate-FunctionCommand.ps1" />
+    <None Include="Automation\ParameterTypeHelper.ps1" />
+    <None Include="Automation\StringProcessingHelper.ps1" />
+    <None Include="Automation\Generate-ParameterCommand.ps1" />
+    <None Include="Automation\Create-ParameterTree.ps1" />
+    <None Include="Automation\Create-ParameterObject.ps1" />
     <None Include="Automation\RunCodeGeneration.ps1" />
+    <None Include="Automation\ConvertTo-Json.ps1" />
     <None Include="AzurePreview.psd1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -348,7 +355,37 @@
       <ClientLibraryNamesSpace>"Microsoft.WindowsAzure.Management.Compute"</ClientLibraryNamesSpace>
       <BaseCmdletFullName>"Microsoft.WindowsAzure.Commands.Utilities.Common.ServiceManagementBaseCmdlet"</BaseCmdletFullName>
       <BaseCmdletClientName>"ComputeClient"</BaseCmdletClientName>
+      <ASMCmdletFlavor>Invoke</ASMCmdletFlavor>
     </PropertyGroup>
-    <Exec Command="$(PowerShellExe) $(PSCodeGenScriptPath) $(PSCodeGenTargetFolder) $(MSBuildProjectDirectory) $(ClientLibraryNamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName)" />
+    <Exec Command="$(PowerShellExe) $(PSCodeGenScriptPath) $(PSCodeGenTargetFolder) $(MSBuildProjectDirectory) $(ClientLibraryNamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName) $(ASMCmdletFlavor)" />
+  </Target>
+  <Target Name="BuildGenerateRDFE">
+    <PropertyGroup>
+      <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
+      <PSCodeGenScriptPath>".\Automation\RunCodeGeneration.ps1"</PSCodeGenScriptPath>
+      <PSCodeGenTargetFolder>$(OutputPath)</PSCodeGenTargetFolder>
+      <ClientLibraryNamesSpace>"Microsoft.WindowsAzure.Management.Compute"</ClientLibraryNamesSpace>
+      <BaseCmdletFullName>"Microsoft.WindowsAzure.Commands.Utilities.Common.ServiceManagementBaseCmdlet"</BaseCmdletFullName>
+      <BaseCmdletClientName>"ComputeClient"</BaseCmdletClientName>
+      <ASMCmdletFlavor>Invoke</ASMCmdletFlavor>
+      <CliCmdletFlavor>Verb</CliCmdletFlavor>
+      <OperationNameFilter></OperationNameFilter>
+    </PropertyGroup>
+    <Exec Command="$(PowerShellExe) $(PSCodeGenScriptPath) $(PSCodeGenTargetFolder) $(MSBuildProjectDirectory) $(ClientLibraryNamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName) $(ASMCmdletFlavor) $(CliCmdletFlavor) $(OperationNameFilter)" />
+  </Target>
+  <Target Name="BuildGenerateARM">
+    <PropertyGroup>
+      <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
+      <PSCodeGenScriptPath>".\Automation\RunCodeGeneration.ps1"</PSCodeGenScriptPath>
+      <PSCodeGenTargetFolder>$(OutputPath)</PSCodeGenTargetFolder>
+      <BaseCmdletFullName>"Microsoft.Azure.Commands.Compute.ComputeClientBaseCmdlet"</BaseCmdletFullName>
+      <BaseCmdletClientName>"ComputeClient.ComputeManagementClient"</BaseCmdletClientName>
+      <ARMClientLibraryNamesSpace>"Microsoft.Azure.Management.Compute"</ARMClientLibraryNamesSpace>
+      <ARMGeneratedPSCodeFolder>..\..\..\ResourceManager\Compute\Commands.Compute</ARMGeneratedPSCodeFolder>
+      <ARMCmdletFlavor>Verb</ARMCmdletFlavor>
+      <CliCmdletFlavor>Verb</CliCmdletFlavor>
+      <OperationNameFilter>"VirtualMachineScaleSet","VirtualMachineScaleSetVM"</OperationNameFilter>
+    </PropertyGroup>
+    <Exec Command="$(PowerShellExe) $(PSCodeGenScriptPath) $(PSCodeGenTargetFolder) $(ARMGeneratedPSCodeFolder) $(ARMClientLibraryNamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName) $(ARMCmdletFlavor) $(CliCmdletFlavor) $(OperationNameFilter)" />
   </Target>
 </Project>

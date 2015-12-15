@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pProviderNamespace = new RuntimeDefinedParameter();
             pProviderNamespace.Name = "ProviderNamespace";
-            pProviderNamespace.ParameterType = typeof(System.String);
+            pProviderNamespace.ParameterType = typeof(string);
             pProviderNamespace.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pType = new RuntimeDefinedParameter();
             pType.Name = "Type";
-            pType.ParameterType = typeof(System.String);
+            pType.ParameterType = typeof(string);
             pType.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -61,7 +61,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pVersion = new RuntimeDefinedParameter();
             pVersion.Name = "Version";
-            pVersion.ParameterType = typeof(System.String);
+            pVersion.ParameterType = typeof(string);
             pVersion.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -105,7 +105,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string type = string.Empty;
             string version = string.Empty;
 
-            return ConvertFromObjectsToArguments(new string[] { "ProviderNamespace", "Type", "Version" }, new object[] { providerNamespace, type, version });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ProviderNamespace", "Type", "Version" },
+                 new object[] { providerNamespace, type, version });
         }
     }
 }

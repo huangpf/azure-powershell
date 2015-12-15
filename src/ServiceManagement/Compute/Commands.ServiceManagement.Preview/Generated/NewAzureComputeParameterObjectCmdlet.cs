@@ -58,6 +58,8 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "ExtensionImageExtensionLocalResourceConfigurationList",
             "ExtensionImageInputEndpoint",
             "ExtensionImageInputEndpointList",
+            "ExtensionImageInstanceInputEndpoint",
+            "ExtensionImageInstanceInputEndpointList",
             "ExtensionImageInternalEndpoint",
             "ExtensionImageInternalEndpointList",
             "ExtensionImageRegisterParameters",
@@ -173,6 +175,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "Microsoft.WindowsAzure.Management.Compute.Models.ExtensionConfiguration.NamedRole",
             "Microsoft.WindowsAzure.Management.Compute.Models.ExtensionEndpointConfiguration",
             "Microsoft.WindowsAzure.Management.Compute.Models.ExtensionEndpointConfiguration.InputEndpoint",
+            "Microsoft.WindowsAzure.Management.Compute.Models.ExtensionEndpointConfiguration.InstanceInputEndpoint",
             "Microsoft.WindowsAzure.Management.Compute.Models.ExtensionEndpointConfiguration.InternalEndpoint",
             "Microsoft.WindowsAzure.Management.Compute.Models.ExtensionImageRegisterParameters",
             "Microsoft.WindowsAzure.Management.Compute.Models.ExtensionImageUpdateParameters",
@@ -234,6 +237,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "System.Collections.Generic.List<ExtensionConfiguration.Extension>",
             "System.Collections.Generic.List<ExtensionConfiguration.NamedRole>",
             "System.Collections.Generic.List<ExtensionEndpointConfiguration.InputEndpoint>",
+            "System.Collections.Generic.List<ExtensionEndpointConfiguration.InstanceInputEndpoint>",
             "System.Collections.Generic.List<ExtensionEndpointConfiguration.InternalEndpoint>",
             "System.Collections.Generic.List<ExtensionLocalResourceConfiguration>",
             "System.Collections.Generic.List<InputEndpoint>",
@@ -249,9 +253,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         )]
         public string FullName { get; set; }
 
-        public override void ExecuteCmdlet()
+        protected override void ProcessRecord()
         {
-            base.ExecuteCmdlet();
+            base.ProcessRecord();
             ExecuteClientAction(() =>
             {
                 if (ParameterSetName == "CreateParameterObjectByFriendlyName")
@@ -280,6 +284,8 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                         case "ExtensionImageExtensionLocalResourceConfigurationList" : WriteObject(new List<ExtensionLocalResourceConfiguration>()); break;
                         case "ExtensionImageInputEndpoint" : WriteObject(new ExtensionEndpointConfiguration.InputEndpoint()); break;
                         case "ExtensionImageInputEndpointList" : WriteObject(new List<ExtensionEndpointConfiguration.InputEndpoint>()); break;
+                        case "ExtensionImageInstanceInputEndpoint" : WriteObject(new ExtensionEndpointConfiguration.InstanceInputEndpoint()); break;
+                        case "ExtensionImageInstanceInputEndpointList" : WriteObject(new List<ExtensionEndpointConfiguration.InstanceInputEndpoint>()); break;
                         case "ExtensionImageInternalEndpoint" : WriteObject(new ExtensionEndpointConfiguration.InternalEndpoint()); break;
                         case "ExtensionImageInternalEndpointList" : WriteObject(new List<ExtensionEndpointConfiguration.InternalEndpoint>()); break;
                         case "ExtensionImageRegisterParameters" : WriteObject(new ExtensionImageRegisterParameters()); break;
@@ -397,6 +403,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                         case "Microsoft.WindowsAzure.Management.Compute.Models.ExtensionConfiguration.NamedRole" : WriteObject(new ExtensionConfiguration.NamedRole()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.ExtensionEndpointConfiguration" : WriteObject(new ExtensionEndpointConfiguration()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.ExtensionEndpointConfiguration.InputEndpoint" : WriteObject(new ExtensionEndpointConfiguration.InputEndpoint()); break;
+                        case "Microsoft.WindowsAzure.Management.Compute.Models.ExtensionEndpointConfiguration.InstanceInputEndpoint" : WriteObject(new ExtensionEndpointConfiguration.InstanceInputEndpoint()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.ExtensionEndpointConfiguration.InternalEndpoint" : WriteObject(new ExtensionEndpointConfiguration.InternalEndpoint()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.ExtensionImageRegisterParameters" : WriteObject(new ExtensionImageRegisterParameters()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.ExtensionImageUpdateParameters" : WriteObject(new ExtensionImageUpdateParameters()); break;
@@ -458,6 +465,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                         case "System.Collections.Generic.List<ExtensionConfiguration.Extension>" : WriteObject(new List<ExtensionConfiguration.Extension>()); break;
                         case "System.Collections.Generic.List<ExtensionConfiguration.NamedRole>" : WriteObject(new List<ExtensionConfiguration.NamedRole>()); break;
                         case "System.Collections.Generic.List<ExtensionEndpointConfiguration.InputEndpoint>" : WriteObject(new List<ExtensionEndpointConfiguration.InputEndpoint>()); break;
+                        case "System.Collections.Generic.List<ExtensionEndpointConfiguration.InstanceInputEndpoint>" : WriteObject(new List<ExtensionEndpointConfiguration.InstanceInputEndpoint>()); break;
                         case "System.Collections.Generic.List<ExtensionEndpointConfiguration.InternalEndpoint>" : WriteObject(new List<ExtensionEndpointConfiguration.InternalEndpoint>()); break;
                         case "System.Collections.Generic.List<ExtensionLocalResourceConfiguration>" : WriteObject(new List<ExtensionLocalResourceConfiguration>()); break;
                         case "System.Collections.Generic.List<InputEndpoint>" : WriteObject(new List<InputEndpoint>()); break;

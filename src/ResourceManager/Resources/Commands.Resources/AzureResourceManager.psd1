@@ -72,6 +72,7 @@ FormatsToProcess = @(
     '.\AzureRM.StreamAnalytics\Microsoft.Azure.Commands.StreamAnalytics.format.ps1xml',  
     '.\AzureRM.Compute\Microsoft.Azure.Commands.Compute.format.ps1xml',  
     '.\AzureRM.Compute\Microsoft.Azure.Commands.Compute.format.generated.ps1xml',  
+    '.\AzureRM.Compute\Generated\Microsoft.Azure.Commands.Compute.Automation.format.generated.ps1xml',
     '.\AzureRM.Network\Microsoft.Azure.Commands.Network.format.ps1xml',  
     '.\Azure.Storage\Microsoft.WindowsAzure.Commands.Storage.format.ps1xml',
     '.\AzureRM.Storage\Microsoft.Azure.Commands.Management.Storage.format.ps1xml', 

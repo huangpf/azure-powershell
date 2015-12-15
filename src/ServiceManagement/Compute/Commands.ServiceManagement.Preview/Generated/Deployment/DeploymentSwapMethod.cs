@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pServiceName = new RuntimeDefinedParameter();
             pServiceName.Name = "ServiceName";
-            pServiceName.ParameterType = typeof(System.String);
+            pServiceName.ParameterType = typeof(string);
             pServiceName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -47,17 +47,29 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             pServiceName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ServiceName", pServiceName);
 
-            var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "DeploymentSwapParameters";
-            pParameters.ParameterType = typeof(Microsoft.WindowsAzure.Management.Compute.Models.DeploymentSwapParameters);
-            pParameters.Attributes.Add(new ParameterAttribute
+            var pProductionDeployment = new RuntimeDefinedParameter();
+            pProductionDeployment.Name = "ProductionDeployment";
+            pProductionDeployment.ParameterType = typeof(string);
+            pProductionDeployment.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = true
+                Mandatory = false
             });
-            pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("DeploymentSwapParameters", pParameters);
+            pProductionDeployment.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("ProductionDeployment", pProductionDeployment);
+
+            var pSourceDeployment = new RuntimeDefinedParameter();
+            pSourceDeployment.Name = "SourceDeployment";
+            pSourceDeployment.ParameterType = typeof(string);
+            pSourceDeployment.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 3,
+                Mandatory = false
+            });
+            pSourceDeployment.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("SourceDeployment", pSourceDeployment);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
@@ -65,7 +77,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 3,
+                Position = 4,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
@@ -77,7 +89,11 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         protected void ExecuteDeploymentSwapMethod(object[] invokeMethodInputParameters)
         {
             string serviceName = (string)ParseParameter(invokeMethodInputParameters[0]);
-            DeploymentSwapParameters parameters = (DeploymentSwapParameters)ParseParameter(invokeMethodInputParameters[1]);
+            var parameters = new DeploymentSwapParameters();
+            var pProductionDeployment = (string) ParseParameter(invokeMethodInputParameters[1]);
+            parameters.ProductionDeployment = string.IsNullOrEmpty(pProductionDeployment) ? null : pProductionDeployment;
+            var pSourceDeployment = (string) ParseParameter(invokeMethodInputParameters[2]);
+            parameters.SourceDeployment = string.IsNullOrEmpty(pSourceDeployment) ? null : pSourceDeployment;
 
             var result = DeploymentClient.Swap(serviceName, parameters);
             WriteObject(result);
@@ -89,9 +105,12 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         protected PSArgument[] CreateDeploymentSwapParameters()
         {
             string serviceName = string.Empty;
-            DeploymentSwapParameters parameters = new DeploymentSwapParameters();
+            var pProductionDeployment = string.Empty;
+            var pSourceDeployment = string.Empty;
 
-            return ConvertFromObjectsToArguments(new string[] { "ServiceName", "Parameters" }, new object[] { serviceName, parameters });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ServiceName", "ProductionDeployment", "SourceDeployment" },
+                 new object[] { serviceName, pProductionDeployment, pSourceDeployment });
         }
     }
 }

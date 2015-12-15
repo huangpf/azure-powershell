@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pServiceName = new RuntimeDefinedParameter();
             pServiceName.Name = "ServiceName";
-            pServiceName.ParameterType = typeof(System.String);
+            pServiceName.ParameterType = typeof(string);
             pServiceName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pDeploymentName = new RuntimeDefinedParameter();
             pDeploymentName.Name = "DeploymentName";
-            pDeploymentName.ParameterType = typeof(System.String);
+            pDeploymentName.ParameterType = typeof(string);
             pDeploymentName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -61,7 +61,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pRoleName = new RuntimeDefinedParameter();
             pRoleName.Name = "RoleName";
-            pRoleName.ParameterType = typeof(System.String);
+            pRoleName.ParameterType = typeof(string);
             pRoleName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -73,7 +73,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
             var pParameters = new RuntimeDefinedParameter();
             pParameters.Name = "VirtualMachineDiskCreateDataDiskParameters";
-            pParameters.ParameterType = typeof(Microsoft.WindowsAzure.Management.Compute.Models.VirtualMachineDataDiskCreateParameters);
+            pParameters.ParameterType = typeof(VirtualMachineDataDiskCreateParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
@@ -119,7 +119,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string roleName = string.Empty;
             VirtualMachineDataDiskCreateParameters parameters = new VirtualMachineDataDiskCreateParameters();
 
-            return ConvertFromObjectsToArguments(new string[] { "ServiceName", "DeploymentName", "RoleName", "Parameters" }, new object[] { serviceName, deploymentName, roleName, parameters });
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ServiceName", "DeploymentName", "RoleName", "Parameters" },
+                 new object[] { serviceName, deploymentName, roleName, parameters });
         }
     }
 }
