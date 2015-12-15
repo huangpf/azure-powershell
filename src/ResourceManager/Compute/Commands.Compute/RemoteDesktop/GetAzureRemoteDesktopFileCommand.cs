@@ -23,9 +23,15 @@ using Microsoft.Azure.Management.Network;
 
 namespace Microsoft.Azure.Commands.Compute
 {
+    using Microsoft.Azure.Management.Network.Models;
+
     [Cmdlet(VerbsCommon.Get, ProfileNouns.RemoteDesktopFile)]
     public class GetAzureRemoteDesktopFileCommand : VirtualMachineRemoteDesktopBaseCmdlet
     {
+        const string PublicIPAddressResource = "publicIPAddresses";
+        const string NetworkInterfaceResouce = "networkInterfaces";
+        const string LoadBalancerResouce = "loadBalancers";
+
         [Parameter(
            Mandatory = true,
            Position = 0,
@@ -39,40 +45,88 @@ namespace Microsoft.Azure.Commands.Compute
             Mandatory = true,
             Position = 1,
             ValueFromPipelineByPropertyName = true,
-            HelpMessage = "The resource name.")]
+            HelpMessage = "The resource name.",
+            ParameterSetName = "StandAloneVMDownload")]
+        [Parameter(
+            Mandatory = true,
+            Position = 1,
+            ValueFromPipelineByPropertyName = true,
+            HelpMessage = "The resource name.",
+            ParameterSetName = "StandAloneVMLaunch")]
         [ValidateNotNullOrEmpty]
         public string Name { get; set; }
+
+        [Parameter(
+            Mandatory = true,
+            Position = 1,
+            ValueFromPipelineByPropertyName = true,
+            HelpMessage = "The instance of the VM in virtual machine scaleset.",
+            ParameterSetName = "ScaleSetVMDownload")]
+        [Parameter(
+            Mandatory = true,
+            Position = 1,
+            ValueFromPipelineByPropertyName = true,
+            HelpMessage = "The instance of the VM in virtual machine scaleset.",
+            ParameterSetName = "ScaleSetVMLaunch")]
+        [ValidateNotNullOrEmpty]
+        public string InstanceId { get; set; }
 
         [Parameter(
             Mandatory = true,
             Position = 2,
             ValueFromPipelineByPropertyName = true,
             HelpMessage = "Path and name of the output RDP file.",
-            ParameterSetName = "Download")]
+            ParameterSetName = "StandAloneVMDownload")]
         [Parameter(
             Mandatory = false,
             Position = 2,
             ValueFromPipelineByPropertyName = true,
             HelpMessage = "Path and name of the output RDP file.",
-            ParameterSetName = "Launch")]
+            ParameterSetName = "StandAloneVMLaunch")]
+        [Parameter(
+            Mandatory = true,
+            Position = 2,
+            ValueFromPipelineByPropertyName = true,
+            HelpMessage = "Path and name of the output RDP file.",
+            ParameterSetName = "ScaleSetVMDownload")]
+        [Parameter(
+            Mandatory = false,
+            Position = 2,
+            ValueFromPipelineByPropertyName = true,
+            HelpMessage = "Path and name of the output RDP file.",
+            ParameterSetName = "ScaleSetVMLaunch")]
         [ValidateNotNullOrEmpty]
         public string LocalPath { get; set; }
 
         [Parameter(
             Mandatory = true,
             Position = 3, 
-            HelpMessage = "Start a remote desktop session to the specified role instance.", 
-            ParameterSetName = "Launch")]
+            HelpMessage = "Start a remote desktop session to the specified role instance.",
+            ParameterSetName = "StandAloneVMLaunch")]
+        [Parameter(
+            Mandatory = true,
+            Position = 3,
+            HelpMessage = "Start a remote desktop session to the specified role instance.",
+            ParameterSetName = "ScaleSetVMLaunch")]
         public SwitchParameter Launch
         {
             get;
             set;
         }
 
-        const string PublicIPAddressResource = "publicIPAddresses";
-        const string NetworkInterfaceResouce = "networkInterfaces";
-        const string LoadBalancerResouce = "loadBalancers";
-
+        [Parameter(
+            Mandatory = true,
+            ValueFromPipelineByPropertyName = true,
+            HelpMessage = "The virtual machine scaleset name.",
+            ParameterSetName = "ScaleSetVMDownload")]
+        [Parameter(
+            Mandatory = true,
+            ValueFromPipelineByPropertyName = true,
+            HelpMessage = "The virtual machine scaleset name.",
+            ParameterSetName = "ScaleSetVMLaunch")]
+        [ValidateNotNullOrEmpty]
+        public string VirtualMachineScaleSetName { get; set; }
+        
         public override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
@@ -86,17 +140,41 @@ namespace Microsoft.Azure.Commands.Compute
                 string address = string.Empty;
                 int port = defaultPort;
 
-                // Get Azure VM
-                var vmResponse = this.VirtualMachineClient.Get(this.ResourceGroupName, this.Name);
+                NetworkInterface nic;
 
-                var nicId = vmResponse.VirtualMachine.NetworkProfile.NetworkInterfaces.First().ReferenceUri;
+                if (this.ParameterSetName.Contains("StandAloneVM"))
+                {
+                    // Get standalone Azure VM
+                    var vmResponse = this.VirtualMachineClient.Get(this.ResourceGroupName, this.Name);
 
-                // Get the NIC
-                var nicResourceGroupName = this.GetResourceGroupName(nicId);
+                    var nicId = vmResponse.VirtualMachine.NetworkProfile.NetworkInterfaces.First().ReferenceUri;
 
-                var nicName = this.GetResourceName(nicId, NetworkInterfaceResouce);
+                    // Get the NIC
+                    var nicResourceGroupName = this.GetResourceGroupName(nicId);
 
-                var nic = this.NetworkClient.NetworkManagementClient.NetworkInterfaces.Get(nicResourceGroupName, nicName);
+                    var nicName = this.GetResourceName(nicId, NetworkInterfaceResouce);
+
+                    nic = this.NetworkClient.NetworkManagementClient.NetworkInterfaces.Get(
+                        nicResourceGroupName,
+                        nicName);
+                }
+                else
+                {
+                    var vmResponse = this.VirtualMachineScaleSetVMClient.Get(this.ResourceGroupName, this.VirtualMachineScaleSetName, this.InstanceId);
+
+                    var nicId = vmResponse.VirtualMachineScaleSetVM.NetworkProfile.NetworkInterfaces.First().ReferenceUri;
+
+                    // Get the NIC
+                    var nicResourceGroupName = this.GetResourceGroupName(nicId);
+
+                    var nicName = this.GetResourceName(nicId, NetworkInterfaceResouce);
+
+                    nic = this.NetworkClient.NetworkManagementClient.NetworkInterfaces.GetVirtualMachineScaleSetNetworkInterface(
+                        nicResourceGroupName,
+                        this.VirtualMachineScaleSetName,
+                        this.InstanceId,
+                        nicName);
+                }
 
                 if (nic.IpConfigurations.First().PublicIPAddress != null && !string.IsNullOrEmpty(nic.IpConfigurations.First().PublicIPAddress.Id))
                 {
@@ -174,7 +252,7 @@ namespace Microsoft.Azure.Commands.Compute
                                             WindowStyle = ProcessWindowStyle.Hidden
                                         };
 
-                    if (this.LocalPath == null)
+                    if (string.IsNullOrEmpty(this.LocalPath))
                     {
                         string scriptGuid = Guid.NewGuid().ToString();
 
@@ -225,6 +303,7 @@ namespace Microsoft.Azure.Commands.Compute
 
             return address;
         }
+
         private string GetResourceGroupName(string resourceId)
         {
             return resourceId.Split('/')[4];
