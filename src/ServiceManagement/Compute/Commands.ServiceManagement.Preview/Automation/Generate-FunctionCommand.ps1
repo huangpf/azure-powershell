@@ -183,6 +183,7 @@ function Generate-CliFunctionCommandImpl
     {
         # Parameter Declaration - For Each Method Parameter
         [string]$optionParamName = $methodParamNameList[$index];
+        $optionShorthandStr = $null;
         if ($allStringFieldCheck[$optionParamName])
         {
             [System.Type]$optionParamType = $methodParamTypeDict[$optionParamName];
@@ -190,13 +191,23 @@ function Generate-CliFunctionCommandImpl
             {
                 [System.Reflection.PropertyInfo]$propInfoItem = $propItem;
                 $cli_option_name = Get-CliOptionName $propInfoItem.Name;
-                $code += "  .option('--${cli_option_name} <${cli_option_name}>', `$('${cli_option_name}'))" + $NEW_LINE;
+                $cli_shorthand_str = Get-CliShorthandName $propInfoItem.Name;
+                if ($cli_shorthand_str -ne '')
+                {
+                    $cli_shorthand_str = "-" + $cli_shorthand_str + ", ";
+                }
+                $code += "  .option('${cli_shorthand_str}--${cli_option_name} <${cli_option_name}>', `$('${cli_option_name}'))" + $NEW_LINE;
             }
         }
         else
         {
             $cli_option_name = Get-CliOptionName $optionParamName;
-            $code += "  .option('--${cli_option_name} <${cli_option_name}>', `$('${cli_option_name}'))" + $NEW_LINE;
+            $cli_shorthand_str = Get-CliShorthandName $optionParamName;
+            if ($cli_shorthand_str -ne '')
+            {
+                $cli_shorthand_str = "-" + $cli_shorthand_str + ", ";
+            }
+            $code += "  .option('${cli_shorthand_str}--${cli_option_name} <${cli_option_name}>', `$('${cli_option_name}'))" + $NEW_LINE;
         }
     }
     $code += "  .option('--parameter-file <parameter-file>', `$('the input parameter file'))" + $NEW_LINE;

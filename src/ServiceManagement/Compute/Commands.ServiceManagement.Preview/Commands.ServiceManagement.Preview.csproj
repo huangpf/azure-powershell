@@ -52,6 +52,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Azure.Management.Compute">
+      <HintPath>..\..\..\packages\Microsoft.Azure.Management.Compute.9.1.1-preview\lib\net40\Microsoft.Azure.Management.Compute.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="AutoMapper, Version=3.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.dll</HintPath>
@@ -132,8 +136,8 @@
       <HintPath>..\..\..\packages\Microsoft.WindowsAzure.Management.Compute.12.3.1\lib\net40\Microsoft.WindowsAzure.Management.Compute.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Management.Network, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>	
-      <HintPath>..\..\..\packages\Microsoft.WindowsAzure.Management.Network.7.0.4\lib\net40\Microsoft.WindowsAzure.Management.Network.dll</HintPath>      
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.WindowsAzure.Management.Network.7.0.4\lib\net40\Microsoft.WindowsAzure.Management.Network.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Management.Storage">
       <HintPath>..\..\..\packages\Microsoft.WindowsAzure.Management.Storage.5.1.1\lib\net40\Microsoft.WindowsAzure.Management.Storage.dll</HintPath>
@@ -369,7 +373,8 @@
       <BaseCmdletClientName>"ComputeClient"</BaseCmdletClientName>
       <ASMCmdletFlavor>Invoke</ASMCmdletFlavor>
       <CliCmdletFlavor>Verb</CliCmdletFlavor>
-      <OperationNameFilter></OperationNameFilter>
+      <OperationNameFilter>
+      </OperationNameFilter>
     </PropertyGroup>
     <Exec Command="$(PowerShellExe) $(PSCodeGenScriptPath) $(PSCodeGenTargetFolder) $(MSBuildProjectDirectory) $(ClientLibraryNamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName) $(ASMCmdletFlavor) $(CliCmdletFlavor) $(OperationNameFilter)" />
   </Target>

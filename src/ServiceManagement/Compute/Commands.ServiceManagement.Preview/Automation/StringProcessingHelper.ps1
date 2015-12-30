@@ -169,3 +169,49 @@ function Get-CliOptionName
 
     return $outName;
 }
+
+
+function Get-CliShorthandName
+{
+    # Sample: 'ResourceGroupName' => '-g', 'Name' => '-n', etc.
+    param(
+        [Parameter(Mandatory = $True)]
+        [string]$inName
+    )
+
+    if ($inName -eq 'ResourceGroupName')
+    {
+        $outName = 'g';
+    }
+    elseif ($inName -eq 'Name')
+    {
+        $outName = 'n';
+    }
+    elseif ($inName -eq 'VMName')
+    {
+        $outName = 'n';
+    }
+    elseif ($inName -eq 'vmscalesetname')
+    {
+        $outName = 'n';
+    }
+    elseif ($inName -eq 'instanceid')
+    {
+        $outName = 'd';
+    }
+    elseif ($inName -eq 'vminstanceids')
+    {
+        $outName = 'D';
+    }
+    elseif ($inName -eq 'parameters')
+    {
+        $outName = 'p';
+    }
+    else
+    {
+        $outName = '';
+    }
+
+    return $outName;
+}
+
