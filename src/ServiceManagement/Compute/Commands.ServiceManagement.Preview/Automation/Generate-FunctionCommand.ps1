@@ -137,9 +137,9 @@ function Generate-CliFunctionCommandImpl
     
     $code += "  var $cliCategoryVarName = cli${invoke_category_code}.category('${cliCategoryName}').description(`$('Commands to manage your $cliOperationDescription.'));" + $NEW_LINE;
 
-    $code += "  ${cliCategoryVarName}.command('${cliMethodOption}')" + $NEW_LINE;
-    $code += "  .description(`$('${cliMethodOption} method to manage your $cliOperationDescription.'))" + $NEW_LINE;
-    $code += "  .usage('[options]')" + $NEW_LINE;
+    # Set Required Parameters
+    $requireParams = @();
+    $requireParamNormalizedNames = @();
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {
         # Parameter Declaration - For Each Method Parameter
@@ -151,18 +151,68 @@ function Generate-CliFunctionCommandImpl
             {
                 [System.Reflection.PropertyInfo]$propInfoItem = $propItem;
                 $cli_option_name = Get-CliOptionName $propInfoItem.Name;
-                $code += "  .option('--${cli_option_name} <${cli_option_name}>', `$('${cli_option_name}'))" + $NEW_LINE;
+                $requireParams += $cli_option_name;
+                $requireParamNormalizedNames += (Get-CliNormalizedName $propInfoItem.Name);
             }
         }
         else
         {
             $cli_option_name = Get-CliOptionName $optionParamName;
-            $code += "  .option('--${cli_option_name} <${cli_option_name}>', `$('${cli_option_name}'))" + $NEW_LINE;
+            $requireParams += $cli_option_name;
+            $requireParamNormalizedNames += (Get-CliNormalizedName $optionParamName);
+        }
+    }
+
+    $requireParamsString = $null;
+    $usageParamsString = $null;
+    $optionParamString = $null;
+    if ($requireParams.Count -gt 0)
+    {
+        $requireParamsJoinStr = "] [";
+        $requireParamsString = " [" + ([string]::Join($requireParamsJoinStr, $requireParams)) + "]";
+        $usageParamsJoinStr = "> <";
+        $usageParamsString = " <" + ([string]::Join($usageParamsJoinStr, $requireParams)) + ">";
+        $optionParamString = ([string]::Join(", ", $requireParamNormalizedNames)) + ", ";
+    }
+
+
+    $code += "  ${cliCategoryVarName}.command('${cliMethodOption}${requireParamsString}')" + $NEW_LINE;
+    $code += "  .description(`$('${cliMethodOption} method to manage your $cliOperationDescription.'))" + $NEW_LINE;
+    $code += "  .usage('[options]${usageParamsString}')" + $NEW_LINE;
+    for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
+    {
+        # Parameter Declaration - For Each Method Parameter
+        [string]$optionParamName = $methodParamNameList[$index];
+        $optionShorthandStr = $null;
+        if ($allStringFieldCheck[$optionParamName])
+        {
+            [System.Type]$optionParamType = $methodParamTypeDict[$optionParamName];
+            foreach ($propItem in $optionParamType.GetProperties())
+            {
+                [System.Reflection.PropertyInfo]$propInfoItem = $propItem;
+                $cli_option_name = Get-CliOptionName $propInfoItem.Name;
+                $cli_shorthand_str = Get-CliShorthandName $propInfoItem.Name;
+                if ($cli_shorthand_str -ne '')
+                {
+                    $cli_shorthand_str = "-" + $cli_shorthand_str + ", ";
+                }
+                $code += "  .option('${cli_shorthand_str}--${cli_option_name} <${cli_option_name}>', `$('${cli_option_name}'))" + $NEW_LINE;
+            }
+        }
+        else
+        {
+            $cli_option_name = Get-CliOptionName $optionParamName;
+            $cli_shorthand_str = Get-CliShorthandName $optionParamName;
+            if ($cli_shorthand_str -ne '')
+            {
+                $cli_shorthand_str = "-" + $cli_shorthand_str + ", ";
+            }
+            $code += "  .option('${cli_shorthand_str}--${cli_option_name} <${cli_option_name}>', `$('${cli_option_name}'))" + $NEW_LINE;
         }
     }
     $code += "  .option('--parameter-file <parameter-file>', `$('the input parameter file'))" + $NEW_LINE;
     $code += "  .option('-s, --subscription <subscription>', `$('the subscription identifier'))" + $NEW_LINE;
-    $code += "  .execute(function(options, _) {" + $NEW_LINE;
+    $code += "  .execute(function(${optionParamString}options, _) {" + $NEW_LINE;
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {
         # Parameter Assignment - For Each Method Parameter
@@ -185,8 +235,8 @@ function Generate-CliFunctionCommandImpl
             {
                 [System.Reflection.PropertyInfo]$propInfoItem = $propItem;
                 $cli_op_param_name = Get-CliNormalizedName $propInfoItem.Name;
-                $code += "      cli.output.verbose('${cli_op_param_name} = ' + options.${cli_op_param_name});" + $NEW_LINE;
-                $code += "      ${cli_param_name}Obj.${cli_op_param_name} = options.${cli_op_param_name};" + $NEW_LINE;
+                $code += "      cli.output.verbose('${cli_op_param_name} = ' + ${cli_op_param_name});" + $NEW_LINE;
+                $code += "      ${cli_param_name}Obj.${cli_op_param_name} = ${cli_op_param_name};" + $NEW_LINE;
             }
 
             $code += "    }" + $NEW_LINE;
@@ -195,7 +245,7 @@ function Generate-CliFunctionCommandImpl
         else
         {
             $cli_param_name = Get-CliNormalizedName $optionParamName;
-            $code += "    cli.output.verbose('${cli_param_name} = ' + options.${cli_param_name});" + $NEW_LINE;
+            $code += "    cli.output.verbose('${cli_param_name} = ' + ${cli_param_name});" + $NEW_LINE;
             if ((${cli_param_name} -eq 'Parameters') -or (${cli_param_name} -like '*InstanceIds'))
             {
                 $code += "    var ${cli_param_name}Obj = null;" + $NEW_LINE;
@@ -208,14 +258,14 @@ function Generate-CliFunctionCommandImpl
                     
                 if ($oneStringListCheck[$optionParamName])
                 {
-                    $code += "      var ${cli_param_name}ValArr = options.${cli_param_name}.split(',');" + $NEW_LINE;
+                    $code += "      var ${cli_param_name}ValArr = ${cli_param_name}.split(',');" + $NEW_LINE;
                     $code += "      cli.output.verbose(`'${cli_param_name}ValArr : `' + ${cli_param_name}ValArr);" + $NEW_LINE;
                     $code += "      ${cli_param_name}Obj = {};" + $NEW_LINE;
                     $code += "      ${cli_param_name}Obj.instanceIDs = ${cli_param_name}ValArr;" + $NEW_LINE;
                 }
                 else
                 {
-                    $code += "      ${cli_param_name}Obj = JSON.parse(options.${cli_param_name});" + $NEW_LINE;
+                    $code += "      ${cli_param_name}Obj = JSON.parse(${cli_param_name});" + $NEW_LINE;
                 }
 
                 $code += "    }" + $NEW_LINE;
@@ -255,7 +305,7 @@ function Generate-CliFunctionCommandImpl
         }
         else
         {
-            $code += "options.${cli_param_name}";
+            $code += "${cli_param_name}";
         }
 
         $code += ", ";
