@@ -126,7 +126,7 @@ function Generate-CliParameterCommandImpl
         $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${cli_method_option_name}')" + $NEW_LINE;
         $code += "  .description(`$('Commands to set parameter input file for your ${cli_op_description}.'));" + $NEW_LINE;
         $code += "  ${params_generate_category_var_name}.command('${params_generate_category_name}')" + $NEW_LINE;
-        $code += "  .description(`$('Set ${cat_params_category_var_name} parameter string or files.'))" + $NEW_LINE;
+        $code += "  .description(`$('Set ${cli_method_option_name} in ${params_category_name} string or files.'))" + $NEW_LINE;
         $code += "  .usage('[options]')" + $NEW_LINE;
         $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
         $code += "  .option('--value <value>', `$('The JSON value.'))" + $NEW_LINE;
@@ -232,7 +232,7 @@ function Generate-CliParameterCommandImpl
     $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${cli_method_option_name}')" + $NEW_LINE;
     $code += "  .description(`$('Commands to remove values in the parameter input file for your ${cli_op_description}.'));" + $NEW_LINE;
     $code += "  ${params_generate_category_var_name}.command('${params_generate_category_name}')" + $NEW_LINE;
-    $code += "  .description(`$('Remove ${cat_params_category_var_name} parameter string or files.'))" + $NEW_LINE;
+    $code += "  .description(`$('Remove ${cli_method_option_name} in ${params_category_name} string or files.'))" + $NEW_LINE;
     $code += "  .usage('[options]')" + $NEW_LINE;
     $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
 
@@ -319,7 +319,7 @@ function Generate-CliParameterCommandImpl
     $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${cli_method_option_name}')" + $NEW_LINE;
     $code += "  .description(`$('Commands to add values in the parameter input file for your ${cli_op_description}.'));" + $NEW_LINE;
     $code += "  ${params_generate_category_var_name}.command('${params_generate_category_name}')" + $NEW_LINE;
-    $code += "  .description(`$('Remove ${cat_params_category_var_name} parameter string or files.'))" + $NEW_LINE;
+    $code += "  .description(`$('Add ${cli_method_option_name} in ${params_category_name} string or files.'))" + $NEW_LINE;
     $code += "  .usage('[options]')" + $NEW_LINE;
     $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
     $code += "  .option('--key <key>', `$('The JSON key.'))" + $NEW_LINE;
