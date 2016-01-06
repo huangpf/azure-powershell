@@ -202,11 +202,9 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSets.createOrUpdate(resourceGroupName, parametersObj, _);
     cli.output.json(result);
   });
-  var virtualMachineScaleSetCreateOrUpdatecreateOrUpdateParameters1 = virtualMachineScaleSetCreateOrUpdate.category('parameters')
-  .description($('Commands to manage parameter for your virtual machine scale set.'));
-  var virtualMachineScaleSetCreateOrUpdatecreateOrUpdateGenerate1 = virtualMachineScaleSetCreateOrUpdatecreateOrUpdateParameters1.category('generate')
+  var virtualMachineScaleSetCreateOrUpdatecreateOrUpdateParameters1 = virtualMachineScaleSetCreateOrUpdate.category('create-or-update-parameters')
   .description($('Commands to generate parameter file for your virtual machine scale set.'));
-  virtualMachineScaleSetCreateOrUpdatecreateOrUpdateGenerate1.command('create-or-update')
+  virtualMachineScaleSetCreateOrUpdatecreateOrUpdateParameters1.command('generate')
   .description($('Generate virtualMachineScaleSetCreateOrUpdate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -267,9 +265,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set virtual-machine-scale-set
+  //create-or-update-parameters set virtual-machine-scale-set
   var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet0 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet0 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet0 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -407,9 +405,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove virtual-machine-scale-set
+  //create-or-update-parameters remove virtual-machine-scale-set
   var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet1 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet1 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet1 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -492,9 +490,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add virtual-machine-scale-set
+  //create-or-update-parameters add virtual-machine-scale-set
   var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet2 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet2 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet2 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -636,9 +634,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set sku
+  //create-or-update-parameters set sku
   var catparametersCreateOrUpdateVirtualMachineScaleSetSku0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSku0 = catparametersCreateOrUpdateVirtualMachineScaleSetSku0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSku0 = catparametersCreateOrUpdateVirtualMachineScaleSetSku0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetSku0 = parametersCreateOrUpdateVirtualMachineScaleSetSku0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -710,9 +708,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove sku
+  //create-or-update-parameters remove sku
   var catparametersCreateOrUpdateVirtualMachineScaleSetSku1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSku1 = catparametersCreateOrUpdateVirtualMachineScaleSetSku1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSku1 = catparametersCreateOrUpdateVirtualMachineScaleSetSku1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetSku1 = parametersCreateOrUpdateVirtualMachineScaleSetSku1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -765,9 +763,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add sku
+  //create-or-update-parameters add sku
   var catparametersCreateOrUpdateVirtualMachineScaleSetSku2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSku2 = catparametersCreateOrUpdateVirtualMachineScaleSetSku2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSku2 = catparametersCreateOrUpdateVirtualMachineScaleSetSku2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetSku2 = parametersCreateOrUpdateVirtualMachineScaleSetSku2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -843,9 +841,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set upgrade-policy
+  //create-or-update-parameters set upgrade-policy
   var catparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy0 = catparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy0 = catparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy0 = parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -895,9 +893,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove upgrade-policy
+  //create-or-update-parameters remove upgrade-policy
   var catparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy1 = catparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy1 = catparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy1 = parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -940,9 +938,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add upgrade-policy
+  //create-or-update-parameters add upgrade-policy
   var catparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy2 = catparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy2 = catparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy2 = parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -996,9 +994,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set virtual-machine-profile
+  //create-or-update-parameters set virtual-machine-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -1081,9 +1079,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove virtual-machine-profile
+  //create-or-update-parameters remove virtual-machine-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -1141,9 +1139,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add virtual-machine-profile
+  //create-or-update-parameters add virtual-machine-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -1230,9 +1228,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set extension-profile
+  //create-or-update-parameters set extension-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -1282,9 +1280,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove extension-profile
+  //create-or-update-parameters remove extension-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -1327,9 +1325,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add extension-profile
+  //create-or-update-parameters add extension-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -1383,9 +1381,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set extensions
+  //create-or-update-parameters set extensions
   var catparametersCreateOrUpdateVirtualMachineScaleSetExtensions0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetExtensions0 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensions0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetExtensions0 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensions0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetExtensions0 = parametersCreateOrUpdateVirtualMachineScaleSetExtensions0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -1560,9 +1558,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove extensions
+  //create-or-update-parameters remove extensions
   var catparametersCreateOrUpdateVirtualMachineScaleSetExtensions1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetExtensions1 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensions1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetExtensions1 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensions1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetExtensions1 = parametersCreateOrUpdateVirtualMachineScaleSetExtensions1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -1661,9 +1659,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add extensions
+  //create-or-update-parameters add extensions
   var catparametersCreateOrUpdateVirtualMachineScaleSetExtensions2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetExtensions2 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensions2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetExtensions2 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensions2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetExtensions2 = parametersCreateOrUpdateVirtualMachineScaleSetExtensions2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -1838,9 +1836,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set network-profile
+  //create-or-update-parameters set network-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -1890,9 +1888,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove network-profile
+  //create-or-update-parameters remove network-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -1935,9 +1933,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add network-profile
+  //create-or-update-parameters add network-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -1991,9 +1989,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set network-interface-configurations
+  //create-or-update-parameters set network-interface-configurations
   var catparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations0 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations0 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations0 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -2069,9 +2067,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove network-interface-configurations
+  //create-or-update-parameters remove network-interface-configurations
   var catparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations1 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations1 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations1 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -2125,9 +2123,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add network-interface-configurations
+  //create-or-update-parameters add network-interface-configurations
   var catparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations2 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations2 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations2 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -2203,9 +2201,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set ip-configurations
+  //create-or-update-parameters set ip-configurations
   var catparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations0 = catparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations0 = catparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations0 = parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -2293,9 +2291,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove ip-configurations
+  //create-or-update-parameters remove ip-configurations
   var catparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations1 = catparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations1 = catparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations1 = parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -2355,9 +2353,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add ip-configurations
+  //create-or-update-parameters add ip-configurations
   var catparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations2 = catparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations2 = catparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations2 = parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -2444,9 +2442,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set load-balancer-backend-address-pools
+  //create-or-update-parameters set load-balancer-backend-address-pools
   var catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools0 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools0 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools0 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -2502,9 +2500,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove load-balancer-backend-address-pools
+  //create-or-update-parameters remove load-balancer-backend-address-pools
   var catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools1 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools1 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools1 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -2550,9 +2548,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add load-balancer-backend-address-pools
+  //create-or-update-parameters add load-balancer-backend-address-pools
   var catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools2 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools2 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools2 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -2606,9 +2604,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set load-balancer-inbound-nat-pools
+  //create-or-update-parameters set load-balancer-inbound-nat-pools
   var catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools0 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools0 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools0 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -2664,9 +2662,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove load-balancer-inbound-nat-pools
+  //create-or-update-parameters remove load-balancer-inbound-nat-pools
   var catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools1 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools1 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools1 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -2712,9 +2710,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add load-balancer-inbound-nat-pools
+  //create-or-update-parameters add load-balancer-inbound-nat-pools
   var catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools2 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools2 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools2 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -2768,9 +2766,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set subnet
+  //create-or-update-parameters set subnet
   var catparametersCreateOrUpdateVirtualMachineScaleSetSubnet0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSubnet0 = catparametersCreateOrUpdateVirtualMachineScaleSetSubnet0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSubnet0 = catparametersCreateOrUpdateVirtualMachineScaleSetSubnet0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetSubnet0 = parametersCreateOrUpdateVirtualMachineScaleSetSubnet0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -2822,9 +2820,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove subnet
+  //create-or-update-parameters remove subnet
   var catparametersCreateOrUpdateVirtualMachineScaleSetSubnet1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSubnet1 = catparametersCreateOrUpdateVirtualMachineScaleSetSubnet1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSubnet1 = catparametersCreateOrUpdateVirtualMachineScaleSetSubnet1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetSubnet1 = parametersCreateOrUpdateVirtualMachineScaleSetSubnet1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -2869,9 +2867,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add subnet
+  //create-or-update-parameters add subnet
   var catparametersCreateOrUpdateVirtualMachineScaleSetSubnet2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSubnet2 = catparametersCreateOrUpdateVirtualMachineScaleSetSubnet2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSubnet2 = catparametersCreateOrUpdateVirtualMachineScaleSetSubnet2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetSubnet2 = parametersCreateOrUpdateVirtualMachineScaleSetSubnet2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -2925,9 +2923,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set os-profile
+  //create-or-update-parameters set os-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetOSProfile0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetOSProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetOSProfile0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetOSProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetOSProfile0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetOSProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetOSProfile0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -3043,9 +3041,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove os-profile
+  //create-or-update-parameters remove os-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetOSProfile1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetOSProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetOSProfile1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetOSProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetOSProfile1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetOSProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetOSProfile1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -3118,9 +3116,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add os-profile
+  //create-or-update-parameters add os-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetOSProfile2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetOSProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetOSProfile2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetOSProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetOSProfile2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetOSProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetOSProfile2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -3240,9 +3238,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set linux-configuration
+  //create-or-update-parameters set linux-configuration
   var catparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration0 = catparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration0 = catparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration0 = parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -3303,9 +3301,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove linux-configuration
+  //create-or-update-parameters remove linux-configuration
   var catparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration1 = catparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration1 = catparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -3353,9 +3351,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add linux-configuration
+  //create-or-update-parameters add linux-configuration
   var catparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration2 = catparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration2 = catparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration2 = parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -3420,9 +3418,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set ssh-configuration
+  //create-or-update-parameters set ssh-configuration
   var catparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration0 = catparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration0 = catparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration0 = parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -3472,9 +3470,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove ssh-configuration
+  //create-or-update-parameters remove ssh-configuration
   var catparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration1 = catparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration1 = catparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -3517,9 +3515,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add ssh-configuration
+  //create-or-update-parameters add ssh-configuration
   var catparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration2 = catparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration2 = catparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration2 = parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -3573,9 +3571,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set public-keys
+  //create-or-update-parameters set public-keys
   var catparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys0 = catparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys0 = catparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys0 = parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -3640,9 +3638,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove public-keys
+  //create-or-update-parameters remove public-keys
   var catparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys1 = catparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys1 = catparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys1 = parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -3691,9 +3689,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add public-keys
+  //create-or-update-parameters add public-keys
   var catparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys2 = catparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys2 = catparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys2 = parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -3758,9 +3756,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set secrets
+  //create-or-update-parameters set secrets
   var catparametersCreateOrUpdateVirtualMachineScaleSetSecrets0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSecrets0 = catparametersCreateOrUpdateVirtualMachineScaleSetSecrets0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSecrets0 = catparametersCreateOrUpdateVirtualMachineScaleSetSecrets0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetSecrets0 = parametersCreateOrUpdateVirtualMachineScaleSetSecrets0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -3825,9 +3823,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove secrets
+  //create-or-update-parameters remove secrets
   var catparametersCreateOrUpdateVirtualMachineScaleSetSecrets1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSecrets1 = catparametersCreateOrUpdateVirtualMachineScaleSetSecrets1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSecrets1 = catparametersCreateOrUpdateVirtualMachineScaleSetSecrets1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetSecrets1 = parametersCreateOrUpdateVirtualMachineScaleSetSecrets1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -3876,9 +3874,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add secrets
+  //create-or-update-parameters add secrets
   var catparametersCreateOrUpdateVirtualMachineScaleSetSecrets2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSecrets2 = catparametersCreateOrUpdateVirtualMachineScaleSetSecrets2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSecrets2 = catparametersCreateOrUpdateVirtualMachineScaleSetSecrets2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetSecrets2 = parametersCreateOrUpdateVirtualMachineScaleSetSecrets2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -3943,9 +3941,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set source-vault
+  //create-or-update-parameters set source-vault
   var catparametersCreateOrUpdateVirtualMachineScaleSetSourceVault0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSourceVault0 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceVault0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSourceVault0 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceVault0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetSourceVault0 = parametersCreateOrUpdateVirtualMachineScaleSetSourceVault0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -3996,9 +3994,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove source-vault
+  //create-or-update-parameters remove source-vault
   var catparametersCreateOrUpdateVirtualMachineScaleSetSourceVault1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSourceVault1 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceVault1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSourceVault1 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceVault1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetSourceVault1 = parametersCreateOrUpdateVirtualMachineScaleSetSourceVault1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -4042,9 +4040,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add source-vault
+  //create-or-update-parameters add source-vault
   var catparametersCreateOrUpdateVirtualMachineScaleSetSourceVault2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSourceVault2 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceVault2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSourceVault2 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceVault2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetSourceVault2 = parametersCreateOrUpdateVirtualMachineScaleSetSourceVault2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -4098,9 +4096,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set vault-certificates
+  //create-or-update-parameters set vault-certificates
   var catparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates0 = catparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates0 = catparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates0 = parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -4166,9 +4164,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove vault-certificates
+  //create-or-update-parameters remove vault-certificates
   var catparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates1 = catparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates1 = catparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates1 = parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -4218,9 +4216,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add vault-certificates
+  //create-or-update-parameters add vault-certificates
   var catparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates2 = catparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates2 = catparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates2 = parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -4285,9 +4283,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set windows-configuration
+  //create-or-update-parameters set windows-configuration
   var catparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration0 = catparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration0 = catparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration0 = parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -4381,9 +4379,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove windows-configuration
+  //create-or-update-parameters remove windows-configuration
   var catparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration1 = catparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration1 = catparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -4446,9 +4444,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add windows-configuration
+  //create-or-update-parameters add windows-configuration
   var catparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration2 = catparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration2 = catparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration2 = parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -4546,9 +4544,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set additional-unattend-contents
+  //create-or-update-parameters set additional-unattend-contents
   var catparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents0 = catparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents0 = catparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents0 = parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -4635,9 +4633,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove additional-unattend-contents
+  //create-or-update-parameters remove additional-unattend-contents
   var catparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents1 = catparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents1 = catparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents1 = parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -4696,9 +4694,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add additional-unattend-contents
+  //create-or-update-parameters add additional-unattend-contents
   var catparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents2 = catparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents2 = catparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents2 = parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -4785,9 +4783,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set win-rm-configuration
+  //create-or-update-parameters set win-rm-configuration
   var catparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration0 = catparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration0 = catparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration0 = parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -4837,9 +4835,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove win-rm-configuration
+  //create-or-update-parameters remove win-rm-configuration
   var catparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration1 = catparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration1 = catparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -4882,9 +4880,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add win-rm-configuration
+  //create-or-update-parameters add win-rm-configuration
   var catparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration2 = catparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration2 = catparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration2 = parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -4938,9 +4936,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set listeners
+  //create-or-update-parameters set listeners
   var catparametersCreateOrUpdateVirtualMachineScaleSetListeners0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetListeners0 = catparametersCreateOrUpdateVirtualMachineScaleSetListeners0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetListeners0 = catparametersCreateOrUpdateVirtualMachineScaleSetListeners0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetListeners0 = parametersCreateOrUpdateVirtualMachineScaleSetListeners0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -5005,9 +5003,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove listeners
+  //create-or-update-parameters remove listeners
   var catparametersCreateOrUpdateVirtualMachineScaleSetListeners1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetListeners1 = catparametersCreateOrUpdateVirtualMachineScaleSetListeners1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetListeners1 = catparametersCreateOrUpdateVirtualMachineScaleSetListeners1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetListeners1 = parametersCreateOrUpdateVirtualMachineScaleSetListeners1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -5056,9 +5054,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add listeners
+  //create-or-update-parameters add listeners
   var catparametersCreateOrUpdateVirtualMachineScaleSetListeners2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetListeners2 = catparametersCreateOrUpdateVirtualMachineScaleSetListeners2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetListeners2 = catparametersCreateOrUpdateVirtualMachineScaleSetListeners2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetListeners2 = parametersCreateOrUpdateVirtualMachineScaleSetListeners2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -5123,9 +5121,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set storage-profile
+  //create-or-update-parameters set storage-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -5186,9 +5184,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove storage-profile
+  //create-or-update-parameters remove storage-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -5236,9 +5234,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add storage-profile
+  //create-or-update-parameters add storage-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -5303,9 +5301,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set image-reference
+  //create-or-update-parameters set image-reference
   var catparametersCreateOrUpdateVirtualMachineScaleSetImageReference0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetImageReference0 = catparametersCreateOrUpdateVirtualMachineScaleSetImageReference0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetImageReference0 = catparametersCreateOrUpdateVirtualMachineScaleSetImageReference0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetImageReference0 = parametersCreateOrUpdateVirtualMachineScaleSetImageReference0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -5388,9 +5386,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove image-reference
+  //create-or-update-parameters remove image-reference
   var catparametersCreateOrUpdateVirtualMachineScaleSetImageReference1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetImageReference1 = catparametersCreateOrUpdateVirtualMachineScaleSetImageReference1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetImageReference1 = catparametersCreateOrUpdateVirtualMachineScaleSetImageReference1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetImageReference1 = parametersCreateOrUpdateVirtualMachineScaleSetImageReference1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -5448,9 +5446,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add image-reference
+  //create-or-update-parameters add image-reference
   var catparametersCreateOrUpdateVirtualMachineScaleSetImageReference2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetImageReference2 = catparametersCreateOrUpdateVirtualMachineScaleSetImageReference2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetImageReference2 = catparametersCreateOrUpdateVirtualMachineScaleSetImageReference2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetImageReference2 = parametersCreateOrUpdateVirtualMachineScaleSetImageReference2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -5537,9 +5535,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set os-disk
+  //create-or-update-parameters set os-disk
   var catparametersCreateOrUpdateVirtualMachineScaleSetOSDisk0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetOSDisk0 = catparametersCreateOrUpdateVirtualMachineScaleSetOSDisk0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetOSDisk0 = catparametersCreateOrUpdateVirtualMachineScaleSetOSDisk0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetOSDisk0 = parametersCreateOrUpdateVirtualMachineScaleSetOSDisk0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -5644,9 +5642,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove os-disk
+  //create-or-update-parameters remove os-disk
   var catparametersCreateOrUpdateVirtualMachineScaleSetOSDisk1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetOSDisk1 = catparametersCreateOrUpdateVirtualMachineScaleSetOSDisk1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetOSDisk1 = catparametersCreateOrUpdateVirtualMachineScaleSetOSDisk1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetOSDisk1 = parametersCreateOrUpdateVirtualMachineScaleSetOSDisk1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -5714,9 +5712,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add os-disk
+  //create-or-update-parameters add os-disk
   var catparametersCreateOrUpdateVirtualMachineScaleSetOSDisk2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetOSDisk2 = catparametersCreateOrUpdateVirtualMachineScaleSetOSDisk2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetOSDisk2 = catparametersCreateOrUpdateVirtualMachineScaleSetOSDisk2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetOSDisk2 = parametersCreateOrUpdateVirtualMachineScaleSetOSDisk2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -5825,9 +5823,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set source-image
+  //create-or-update-parameters set source-image
   var catparametersCreateOrUpdateVirtualMachineScaleSetSourceImage0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSourceImage0 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceImage0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSourceImage0 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceImage0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetSourceImage0 = parametersCreateOrUpdateVirtualMachineScaleSetSourceImage0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -5877,9 +5875,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove source-image
+  //create-or-update-parameters remove source-image
   var catparametersCreateOrUpdateVirtualMachineScaleSetSourceImage1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSourceImage1 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceImage1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSourceImage1 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceImage1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetSourceImage1 = parametersCreateOrUpdateVirtualMachineScaleSetSourceImage1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -5922,9 +5920,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add source-image
+  //create-or-update-parameters add source-image
   var catparametersCreateOrUpdateVirtualMachineScaleSetSourceImage2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSourceImage2 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceImage2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetSourceImage2 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceImage2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetSourceImage2 = parametersCreateOrUpdateVirtualMachineScaleSetSourceImage2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));
@@ -5978,9 +5976,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters set virtual-hard-disk-containers
+  //create-or-update-parameters set virtual-hard-disk-containers
   var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers0 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers0.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers0 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers0.category('create-or-update-parameters')
   .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
   var setparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers0 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers0.category('set')
   .description($('Commands to set parameter file for your virtual-machine-scale-set.'));
@@ -6023,9 +6021,9 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //parameters remove virtual-hard-disk-containers
+  //create-or-update-parameters remove virtual-hard-disk-containers
   var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers1 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers1.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers1 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers1.category('create-or-update-parameters')
   .description($('Commands to remove parameter for your virtual-machine-scale-set.'));
   var removeparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers1 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers1.category('remove')
   .description($('Commands to remove values in the parameter file for your virtual-machine-scale-set.'));
@@ -6057,9 +6055,9 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //parameters add virtual-hard-disk-containers
+  //create-or-update-parameters add virtual-hard-disk-containers
   var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers2 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers2.category('parameters')
+  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers2 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers2.category('create-or-update-parameters')
   .description($('Commands to add parameter for your virtual-machine-scale-set.'));
   var addparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers2 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers2.category('add')
   .description($('Commands to add values in the parameter file for your virtual-machine-scale-set.'));

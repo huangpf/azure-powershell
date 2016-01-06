@@ -20,18 +20,18 @@ param(
     [Parameter(Mandatory = $true)]
     [string]$OperationName,
 
+    [Parameter(Mandatory = $false)]
+    [string]$MethodName = $null,
+
+    [Parameter(Mandatory = $false)]
+    [string]$ModelNameSpace = $null,
+
     # CLI commands or PS cmdlets
     [Parameter(Mandatory = $false)]
     [string]$ToolType = "CLI",
 
     [Parameter(Mandatory = $false)]
-    [string]$CmdletNounPrefix = "Azure",
-
-    [Parameter(Mandatory = $false)]
-    [string]$ModelNameSpace = $null,
-
-    [Parameter(Mandatory = $false)]
-    [string]$MethodName = $null
+    [string]$CmdletNounPrefix = "Azure"
 )
 
 $NEW_LINE = "`r`n";
@@ -53,9 +53,9 @@ function Generate-CliParameterCommandImpl
     $cli_method_option_name = Get-CliOptionName $TreeNode.Name;
     $cli_op_description = Get-CliOptionName $OperationName;
     $category_name = Get-CliCategoryName $OperationName;
-    $params_category_name = 'parameters';
+    $params_category_name = (Get-CliCategoryName $MethodName) + '-parameters';
     $params_category_var_name_prefix = 'parameters';
-    $cli_param_name = $params_category_name;
+    $cli_param_name = 'parameters';
 
     # 0. Construct Path to Node
     $pathToTreeNode = "";

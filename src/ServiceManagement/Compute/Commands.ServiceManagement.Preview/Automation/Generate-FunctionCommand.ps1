@@ -86,7 +86,7 @@ function Generate-CliFunctionCommandImpl
                 $cmdlet_tree = (. $PSScriptRoot\Create-ParameterTree.ps1 -TypeInfo $paramType -NameSpace $ModelNameSpace -ParameterName $paramType.Name);
 
                 # 3.1.3 Generate the parameter command according to the parameter tree
-                $cmdlet_tree_code = (. $PSScriptRoot\Generate-ParameterCommand.ps1 -CmdletTreeNode $cmdlet_tree -Operation $opShortName -ModelNameSpace $ModelNameSpace -MethodName $methodName);
+                $cmdlet_tree_code = (. $PSScriptRoot\Generate-ParameterCommand.ps1 -CmdletTreeNode $cmdlet_tree -Operation $opShortName -MethodName $methodName -ModelNameSpace $ModelNameSpace);
             }
         }
     }
@@ -328,17 +328,15 @@ function Generate-CliFunctionCommandImpl
         $cli_param_name = Get-CliNormalizedName $methodParamNameList[$index];
         if ($cli_param_name -eq 'Parameters')
         {
-            $params_category_name = 'parameters';
+            $params_category_name = $cliMethodOption + '-parameters';
             $params_category_var_name = "${cliCategoryVarName}${cliMethodName}Parameters" + $index;
             $params_generate_category_name = 'generate';
             $params_generate_category_var_name = "${cliCategoryVarName}${cliMethodName}Generate" + $index;
 
             # 3.3.1 Parameter Generate Command
             $code += "  var ${params_category_var_name} = ${cliCategoryVarName}.category('${params_category_name}')" + $NEW_LINE;
-            $code += "  .description(`$('Commands to manage parameter for your ${cliOperationDescription}.'));" + $NEW_LINE;
-            $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${params_generate_category_name}')" + $NEW_LINE;
             $code += "  .description(`$('Commands to generate parameter file for your ${cliOperationDescription}.'));" + $NEW_LINE;
-            $code += "  ${params_generate_category_var_name}.command('${cliMethodOption}')" + $NEW_LINE;
+            $code += "  ${params_category_var_name}.command('generate')" + $NEW_LINE;
             $code += "  .description(`$('Generate ${cliCategoryVarName} parameter string or files.'))" + $NEW_LINE;
             $code += "  .usage('[options]')" + $NEW_LINE;
             $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
