@@ -114,6 +114,14 @@ function Generate-CliParameterCommandImpl
 
     if ($TreeNode.Properties.Count -gt 0 -or ($TreeNode.IsListItem))
     {
+        # Construct Sample JSON Parameter Body for Help Messages
+        $sampleJsonText += "{\r\n..." + "\r\n";
+        foreach ($propertyItem in $TreeNode.Properties)
+        {
+            $sampleJsonText += "  `"" + (Get-CliNormalizedName $propertyItem["Name"]) + "`" : `"__input_value__`"" + "\r\n";
+        }
+        $sampleJsonText += "...\r\n}" + "\r\n";
+
         # 1. Parameter Set Command
         $params_category_var_name = $params_category_var_name_prefix + $MethodName + $paramSuffix + "0";
         $cat_params_category_var_name = 'cat' + $params_category_var_name;
@@ -126,7 +134,7 @@ function Generate-CliParameterCommandImpl
         $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${cli_method_option_name}')" + $NEW_LINE;
         $code += "  .description(`$('Commands to set parameter input file for your ${cli_op_description}.'));" + $NEW_LINE;
         $code += "  ${params_generate_category_var_name}.command('${params_generate_category_name}')" + $NEW_LINE;
-        $code += "  .description(`$('Set ${cli_method_option_name} in ${params_category_name} string or files.'))" + $NEW_LINE;
+        $code += "  .description(`$('Set ${cli_method_option_name} in ${params_category_name} string or files, e.g. \r\n${sampleJsonText}'))" + $NEW_LINE;
         $code += "  .usage('[options]')" + $NEW_LINE;
         $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
         $code += "  .option('--value <value>', `$('The JSON value.'))" + $NEW_LINE;
@@ -232,7 +240,7 @@ function Generate-CliParameterCommandImpl
     $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${cli_method_option_name}')" + $NEW_LINE;
     $code += "  .description(`$('Commands to remove values in the parameter input file for your ${cli_op_description}.'));" + $NEW_LINE;
     $code += "  ${params_generate_category_var_name}.command('${params_generate_category_name}')" + $NEW_LINE;
-    $code += "  .description(`$('Remove ${cli_method_option_name} in ${params_category_name} string or files.'))" + $NEW_LINE;
+    $code += "  .description(`$('Remove ${cli_method_option_name} in ${params_category_name} string or files, e.g. \r\n${sampleJsonText}'))" + $NEW_LINE;
     $code += "  .usage('[options]')" + $NEW_LINE;
     $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
 
@@ -319,7 +327,7 @@ function Generate-CliParameterCommandImpl
     $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${cli_method_option_name}')" + $NEW_LINE;
     $code += "  .description(`$('Commands to add values in the parameter input file for your ${cli_op_description}.'));" + $NEW_LINE;
     $code += "  ${params_generate_category_var_name}.command('${params_generate_category_name}')" + $NEW_LINE;
-    $code += "  .description(`$('Add ${cli_method_option_name} in ${params_category_name} string or files.'))" + $NEW_LINE;
+    $code += "  .description(`$('Add ${cli_method_option_name} in ${params_category_name} string or files, e.g. \r\n${sampleJsonText}'))" + $NEW_LINE;
     $code += "  .usage('[options]')" + $NEW_LINE;
     $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
     $code += "  .option('--key <key>', `$('The JSON key.'))" + $NEW_LINE;
