@@ -107,21 +107,28 @@ function Generate-CliParameterCommandImpl
 
     if ($ModelNameSpace -like "*.WindowsAzure.*")
     {
-        # Use Invoke Category for RDFE APIs
+        # 0.1 Use Invoke Category for RDFE APIs
         $invoke_category_desc = "Commands to invoke service management operations.";
         $invoke_category_code = ".category('invoke').description('${invoke_category_desc}')";
+    }
+    
+    # 0.2 Construct Sample JSON Parameter Body for Help Messages
+    $paramObject = (. $PSScriptRoot\Create-ParameterObject.ps1 -typeInfo $TreeNode.TypeInfo);
+    $paramObjText = (. $PSScriptRoot\ConvertTo-Json.ps1 -inputObject $paramObject);
+    if ($TreeNode.Parent -eq $null)
+    {
+        $sampleJsonText = $paramObjText.Replace("`r`n", "\r\n");
+    }
+    else
+    {
+        $sampleJsonText = "{\r\n  ...\r\n";
+        $sampleJsonText += "  `"" + (Get-CliNormalizedName $TreeNode.Name) + "`" : ";
+        $sampleJsonText += ($paramObjText.Replace("`r`n", "\r\n  ")) + "\r\n";
+        $sampleJsonText += "  ...\r\n}\r\n";
     }
 
     if ($TreeNode.Properties.Count -gt 0 -or ($TreeNode.IsListItem))
     {
-        # Construct Sample JSON Parameter Body for Help Messages
-        $sampleJsonText += "{\r\n..." + "\r\n";
-        foreach ($propertyItem in $TreeNode.Properties)
-        {
-            $sampleJsonText += "  `"" + (Get-CliNormalizedName $propertyItem["Name"]) + "`" : `"__input_value__`"" + "\r\n";
-        }
-        $sampleJsonText += "...\r\n}" + "\r\n";
-
         # 1. Parameter Set Command
         $params_category_var_name = $params_category_var_name_prefix + $MethodName + $paramSuffix + "0";
         $cat_params_category_var_name = 'cat' + $params_category_var_name;

@@ -272,7 +272,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet0 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet0.category('virtual-machine-scale-set')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet0.command('set')
-  .description($('Set virtual-machine-scale-set in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "provisioningState" : "__input_value__"\r\n  "sku" : "__input_value__"\r\n  "upgradePolicy" : "__input_value__"\r\n  "virtualMachineProfile" : "__input_value__"\r\n  "id" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "type" : "__input_value__"\r\n  "location" : "__input_value__"\r\n  "tags" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set virtual-machine-scale-set in create-or-update-parameters string or files, e.g. \r\n{\r\n  "provisioningState":"",\r\n  "sku":{\r\n    "capacity":null,\r\n    "name":"",\r\n    "tier":""\r\n  },\r\n  "upgradePolicy":{\r\n    "mode":""\r\n  },\r\n  "virtualMachineProfile":{\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "autoUpgradeMinorVersion":false,\r\n          "extensionType":"",\r\n          "protectedSettings":"",\r\n          "provisioningState":"",\r\n          "publisher":"",\r\n          "settings":"",\r\n          "typeHandlerVersion":"",\r\n          "id":"",\r\n          "name":"",\r\n          "type":"",\r\n          "location":"",\r\n          "tags":{\r\n          }\r\n        }\r\n      ]\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "iPConfigurations":[\r\n            {\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "name":"",\r\n              "subnet":{\r\n                "referenceUri":""\r\n              }\r\n            }\r\n          ],\r\n          "name":"",\r\n          "primary":null\r\n        }\r\n      ]\r\n    },\r\n    "oSProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminPassword":"",\r\n      "adminUsername":"",\r\n      "customData":"",\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "sshConfiguration":{\r\n          "publicKeys":[\r\n            {\r\n              "keyData":"",\r\n              "path":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "referenceUri":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateStore":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      ],\r\n      "windowsConfiguration":{\r\n        "additionalUnattendContents":[\r\n          {\r\n            "componentName":"",\r\n            "content":"",\r\n            "passName":"",\r\n            "settingName":""\r\n          }\r\n        ],\r\n        "enableAutomaticUpdates":null,\r\n        "provisionVMAgent":null,\r\n        "timeZone":"",\r\n        "winRMConfiguration":{\r\n          "listeners":[\r\n            {\r\n              "certificateUrl":"",\r\n              "protocol":""\r\n            }\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "offer":"",\r\n        "publisher":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "oSDisk":{\r\n        "caching":"",\r\n        "createOption":"",\r\n        "name":"",\r\n        "operatingSystemType":"",\r\n        "sourceImage":{\r\n          "uri":""\r\n        },\r\n        "virtualHardDiskContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  "id":"",\r\n  "name":"",\r\n  "type":"",\r\n  "location":"",\r\n  "tags":{\r\n  }\r\n}'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -412,7 +412,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet1 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet1.category('virtual-machine-scale-set')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet1.command('remove')
-  .description($('Remove virtual-machine-scale-set in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "provisioningState" : "__input_value__"\r\n  "sku" : "__input_value__"\r\n  "upgradePolicy" : "__input_value__"\r\n  "virtualMachineProfile" : "__input_value__"\r\n  "id" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "type" : "__input_value__"\r\n  "location" : "__input_value__"\r\n  "tags" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove virtual-machine-scale-set in create-or-update-parameters string or files, e.g. \r\n{\r\n  "provisioningState":"",\r\n  "sku":{\r\n    "capacity":null,\r\n    "name":"",\r\n    "tier":""\r\n  },\r\n  "upgradePolicy":{\r\n    "mode":""\r\n  },\r\n  "virtualMachineProfile":{\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "autoUpgradeMinorVersion":false,\r\n          "extensionType":"",\r\n          "protectedSettings":"",\r\n          "provisioningState":"",\r\n          "publisher":"",\r\n          "settings":"",\r\n          "typeHandlerVersion":"",\r\n          "id":"",\r\n          "name":"",\r\n          "type":"",\r\n          "location":"",\r\n          "tags":{\r\n          }\r\n        }\r\n      ]\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "iPConfigurations":[\r\n            {\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "name":"",\r\n              "subnet":{\r\n                "referenceUri":""\r\n              }\r\n            }\r\n          ],\r\n          "name":"",\r\n          "primary":null\r\n        }\r\n      ]\r\n    },\r\n    "oSProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminPassword":"",\r\n      "adminUsername":"",\r\n      "customData":"",\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "sshConfiguration":{\r\n          "publicKeys":[\r\n            {\r\n              "keyData":"",\r\n              "path":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "referenceUri":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateStore":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      ],\r\n      "windowsConfiguration":{\r\n        "additionalUnattendContents":[\r\n          {\r\n            "componentName":"",\r\n            "content":"",\r\n            "passName":"",\r\n            "settingName":""\r\n          }\r\n        ],\r\n        "enableAutomaticUpdates":null,\r\n        "provisionVMAgent":null,\r\n        "timeZone":"",\r\n        "winRMConfiguration":{\r\n          "listeners":[\r\n            {\r\n              "certificateUrl":"",\r\n              "protocol":""\r\n            }\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "offer":"",\r\n        "publisher":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "oSDisk":{\r\n        "caching":"",\r\n        "createOption":"",\r\n        "name":"",\r\n        "operatingSystemType":"",\r\n        "sourceImage":{\r\n          "uri":""\r\n        },\r\n        "virtualHardDiskContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  "id":"",\r\n  "name":"",\r\n  "type":"",\r\n  "location":"",\r\n  "tags":{\r\n  }\r\n}'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--provisioning-state', $('Remove the provisioning-state value.'))
@@ -497,7 +497,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet2 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet2.category('virtual-machine-scale-set')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet2.command('add')
-  .description($('Add virtual-machine-scale-set in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "provisioningState" : "__input_value__"\r\n  "sku" : "__input_value__"\r\n  "upgradePolicy" : "__input_value__"\r\n  "virtualMachineProfile" : "__input_value__"\r\n  "id" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "type" : "__input_value__"\r\n  "location" : "__input_value__"\r\n  "tags" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add virtual-machine-scale-set in create-or-update-parameters string or files, e.g. \r\n{\r\n  "provisioningState":"",\r\n  "sku":{\r\n    "capacity":null,\r\n    "name":"",\r\n    "tier":""\r\n  },\r\n  "upgradePolicy":{\r\n    "mode":""\r\n  },\r\n  "virtualMachineProfile":{\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "autoUpgradeMinorVersion":false,\r\n          "extensionType":"",\r\n          "protectedSettings":"",\r\n          "provisioningState":"",\r\n          "publisher":"",\r\n          "settings":"",\r\n          "typeHandlerVersion":"",\r\n          "id":"",\r\n          "name":"",\r\n          "type":"",\r\n          "location":"",\r\n          "tags":{\r\n          }\r\n        }\r\n      ]\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "iPConfigurations":[\r\n            {\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "name":"",\r\n              "subnet":{\r\n                "referenceUri":""\r\n              }\r\n            }\r\n          ],\r\n          "name":"",\r\n          "primary":null\r\n        }\r\n      ]\r\n    },\r\n    "oSProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminPassword":"",\r\n      "adminUsername":"",\r\n      "customData":"",\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "sshConfiguration":{\r\n          "publicKeys":[\r\n            {\r\n              "keyData":"",\r\n              "path":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "referenceUri":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateStore":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      ],\r\n      "windowsConfiguration":{\r\n        "additionalUnattendContents":[\r\n          {\r\n            "componentName":"",\r\n            "content":"",\r\n            "passName":"",\r\n            "settingName":""\r\n          }\r\n        ],\r\n        "enableAutomaticUpdates":null,\r\n        "provisionVMAgent":null,\r\n        "timeZone":"",\r\n        "winRMConfiguration":{\r\n          "listeners":[\r\n            {\r\n              "certificateUrl":"",\r\n              "protocol":""\r\n            }\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "offer":"",\r\n        "publisher":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "oSDisk":{\r\n        "caching":"",\r\n        "createOption":"",\r\n        "name":"",\r\n        "operatingSystemType":"",\r\n        "sourceImage":{\r\n          "uri":""\r\n        },\r\n        "virtualHardDiskContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  "id":"",\r\n  "name":"",\r\n  "type":"",\r\n  "location":"",\r\n  "tags":{\r\n  }\r\n}'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -641,7 +641,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetSku0 = parametersCreateOrUpdateVirtualMachineScaleSetSku0.category('sku')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetSku0.command('set')
-  .description($('Set sku in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "capacity" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "tier" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set sku in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sku" : {\r\n    "capacity":null,\r\n    "name":"",\r\n    "tier":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -715,7 +715,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetSku1 = parametersCreateOrUpdateVirtualMachineScaleSetSku1.category('sku')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetSku1.command('remove')
-  .description($('Remove sku in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "capacity" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "tier" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove sku in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sku" : {\r\n    "capacity":null,\r\n    "name":"",\r\n    "tier":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--capacity', $('Remove the capacity value.'))
@@ -770,7 +770,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetSku2 = parametersCreateOrUpdateVirtualMachineScaleSetSku2.category('sku')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetSku2.command('add')
-  .description($('Add sku in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "capacity" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "tier" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add sku in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sku" : {\r\n    "capacity":null,\r\n    "name":"",\r\n    "tier":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -848,7 +848,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy0 = parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy0.category('upgrade-policy')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy0.command('set')
-  .description($('Set upgrade-policy in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "mode" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set upgrade-policy in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "upgradePolicy" : {\r\n    "mode":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -900,7 +900,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy1 = parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy1.category('upgrade-policy')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy1.command('remove')
-  .description($('Remove upgrade-policy in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "mode" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove upgrade-policy in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "upgradePolicy" : {\r\n    "mode":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--mode', $('Remove the mode value.'))
@@ -945,7 +945,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy2 = parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy2.category('upgrade-policy')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy2.command('add')
-  .description($('Add upgrade-policy in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "mode" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add upgrade-policy in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "upgradePolicy" : {\r\n    "mode":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -1001,7 +1001,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile0.category('virtual-machine-profile')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile0.command('set')
-  .description($('Set virtual-machine-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "extensionProfile" : "__input_value__"\r\n  "networkProfile" : "__input_value__"\r\n  "oSProfile" : "__input_value__"\r\n  "storageProfile" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set virtual-machine-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "virtualMachineProfile" : {\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "autoUpgradeMinorVersion":false,\r\n          "extensionType":"",\r\n          "protectedSettings":"",\r\n          "provisioningState":"",\r\n          "publisher":"",\r\n          "settings":"",\r\n          "typeHandlerVersion":"",\r\n          "id":"",\r\n          "name":"",\r\n          "type":"",\r\n          "location":"",\r\n          "tags":{\r\n          }\r\n        }\r\n      ]\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "iPConfigurations":[\r\n            {\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "name":"",\r\n              "subnet":{\r\n                "referenceUri":""\r\n              }\r\n            }\r\n          ],\r\n          "name":"",\r\n          "primary":null\r\n        }\r\n      ]\r\n    },\r\n    "oSProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminPassword":"",\r\n      "adminUsername":"",\r\n      "customData":"",\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "sshConfiguration":{\r\n          "publicKeys":[\r\n            {\r\n              "keyData":"",\r\n              "path":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "referenceUri":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateStore":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      ],\r\n      "windowsConfiguration":{\r\n        "additionalUnattendContents":[\r\n          {\r\n            "componentName":"",\r\n            "content":"",\r\n            "passName":"",\r\n            "settingName":""\r\n          }\r\n        ],\r\n        "enableAutomaticUpdates":null,\r\n        "provisionVMAgent":null,\r\n        "timeZone":"",\r\n        "winRMConfiguration":{\r\n          "listeners":[\r\n            {\r\n              "certificateUrl":"",\r\n              "protocol":""\r\n            }\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "offer":"",\r\n        "publisher":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "oSDisk":{\r\n        "caching":"",\r\n        "createOption":"",\r\n        "name":"",\r\n        "operatingSystemType":"",\r\n        "sourceImage":{\r\n          "uri":""\r\n        },\r\n        "virtualHardDiskContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -1086,7 +1086,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile1.category('virtual-machine-profile')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile1.command('remove')
-  .description($('Remove virtual-machine-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "extensionProfile" : "__input_value__"\r\n  "networkProfile" : "__input_value__"\r\n  "oSProfile" : "__input_value__"\r\n  "storageProfile" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove virtual-machine-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "virtualMachineProfile" : {\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "autoUpgradeMinorVersion":false,\r\n          "extensionType":"",\r\n          "protectedSettings":"",\r\n          "provisioningState":"",\r\n          "publisher":"",\r\n          "settings":"",\r\n          "typeHandlerVersion":"",\r\n          "id":"",\r\n          "name":"",\r\n          "type":"",\r\n          "location":"",\r\n          "tags":{\r\n          }\r\n        }\r\n      ]\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "iPConfigurations":[\r\n            {\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "name":"",\r\n              "subnet":{\r\n                "referenceUri":""\r\n              }\r\n            }\r\n          ],\r\n          "name":"",\r\n          "primary":null\r\n        }\r\n      ]\r\n    },\r\n    "oSProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminPassword":"",\r\n      "adminUsername":"",\r\n      "customData":"",\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "sshConfiguration":{\r\n          "publicKeys":[\r\n            {\r\n              "keyData":"",\r\n              "path":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "referenceUri":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateStore":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      ],\r\n      "windowsConfiguration":{\r\n        "additionalUnattendContents":[\r\n          {\r\n            "componentName":"",\r\n            "content":"",\r\n            "passName":"",\r\n            "settingName":""\r\n          }\r\n        ],\r\n        "enableAutomaticUpdates":null,\r\n        "provisionVMAgent":null,\r\n        "timeZone":"",\r\n        "winRMConfiguration":{\r\n          "listeners":[\r\n            {\r\n              "certificateUrl":"",\r\n              "protocol":""\r\n            }\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "offer":"",\r\n        "publisher":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "oSDisk":{\r\n        "caching":"",\r\n        "createOption":"",\r\n        "name":"",\r\n        "operatingSystemType":"",\r\n        "sourceImage":{\r\n          "uri":""\r\n        },\r\n        "virtualHardDiskContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--extension-profile', $('Remove the extension-profile value.'))
@@ -1146,7 +1146,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile2.category('virtual-machine-profile')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile2.command('add')
-  .description($('Add virtual-machine-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "extensionProfile" : "__input_value__"\r\n  "networkProfile" : "__input_value__"\r\n  "oSProfile" : "__input_value__"\r\n  "storageProfile" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add virtual-machine-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "virtualMachineProfile" : {\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "autoUpgradeMinorVersion":false,\r\n          "extensionType":"",\r\n          "protectedSettings":"",\r\n          "provisioningState":"",\r\n          "publisher":"",\r\n          "settings":"",\r\n          "typeHandlerVersion":"",\r\n          "id":"",\r\n          "name":"",\r\n          "type":"",\r\n          "location":"",\r\n          "tags":{\r\n          }\r\n        }\r\n      ]\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "iPConfigurations":[\r\n            {\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "name":"",\r\n              "subnet":{\r\n                "referenceUri":""\r\n              }\r\n            }\r\n          ],\r\n          "name":"",\r\n          "primary":null\r\n        }\r\n      ]\r\n    },\r\n    "oSProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminPassword":"",\r\n      "adminUsername":"",\r\n      "customData":"",\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "sshConfiguration":{\r\n          "publicKeys":[\r\n            {\r\n              "keyData":"",\r\n              "path":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "referenceUri":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateStore":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      ],\r\n      "windowsConfiguration":{\r\n        "additionalUnattendContents":[\r\n          {\r\n            "componentName":"",\r\n            "content":"",\r\n            "passName":"",\r\n            "settingName":""\r\n          }\r\n        ],\r\n        "enableAutomaticUpdates":null,\r\n        "provisionVMAgent":null,\r\n        "timeZone":"",\r\n        "winRMConfiguration":{\r\n          "listeners":[\r\n            {\r\n              "certificateUrl":"",\r\n              "protocol":""\r\n            }\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "offer":"",\r\n        "publisher":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "oSDisk":{\r\n        "caching":"",\r\n        "createOption":"",\r\n        "name":"",\r\n        "operatingSystemType":"",\r\n        "sourceImage":{\r\n          "uri":""\r\n        },\r\n        "virtualHardDiskContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -1235,7 +1235,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile0.category('extension-profile')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile0.command('set')
-  .description($('Set extension-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "extensions" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set extension-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "extensionProfile" : {\r\n    "extensions":[\r\n      {\r\n        "autoUpgradeMinorVersion":false,\r\n        "extensionType":"",\r\n        "protectedSettings":"",\r\n        "provisioningState":"",\r\n        "publisher":"",\r\n        "settings":"",\r\n        "typeHandlerVersion":"",\r\n        "id":"",\r\n        "name":"",\r\n        "type":"",\r\n        "location":"",\r\n        "tags":{\r\n        }\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -1287,7 +1287,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile1.category('extension-profile')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile1.command('remove')
-  .description($('Remove extension-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "extensions" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove extension-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "extensionProfile" : {\r\n    "extensions":[\r\n      {\r\n        "autoUpgradeMinorVersion":false,\r\n        "extensionType":"",\r\n        "protectedSettings":"",\r\n        "provisioningState":"",\r\n        "publisher":"",\r\n        "settings":"",\r\n        "typeHandlerVersion":"",\r\n        "id":"",\r\n        "name":"",\r\n        "type":"",\r\n        "location":"",\r\n        "tags":{\r\n        }\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--extensions', $('Remove the extensions value.'))
@@ -1332,7 +1332,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile2.category('extension-profile')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile2.command('add')
-  .description($('Add extension-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "extensions" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add extension-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "extensionProfile" : {\r\n    "extensions":[\r\n      {\r\n        "autoUpgradeMinorVersion":false,\r\n        "extensionType":"",\r\n        "protectedSettings":"",\r\n        "provisioningState":"",\r\n        "publisher":"",\r\n        "settings":"",\r\n        "typeHandlerVersion":"",\r\n        "id":"",\r\n        "name":"",\r\n        "type":"",\r\n        "location":"",\r\n        "tags":{\r\n        }\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -1388,7 +1388,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetExtensions0 = parametersCreateOrUpdateVirtualMachineScaleSetExtensions0.category('extensions')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetExtensions0.command('set')
-  .description($('Set extensions in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "autoUpgradeMinorVersion" : "__input_value__"\r\n  "extensionType" : "__input_value__"\r\n  "protectedSettings" : "__input_value__"\r\n  "provisioningState" : "__input_value__"\r\n  "publisher" : "__input_value__"\r\n  "settings" : "__input_value__"\r\n  "typeHandlerVersion" : "__input_value__"\r\n  "id" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "type" : "__input_value__"\r\n  "location" : "__input_value__"\r\n  "tags" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set extensions in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "extensions" : {\r\n    "autoUpgradeMinorVersion":false,\r\n    "extensionType":"",\r\n    "protectedSettings":"",\r\n    "provisioningState":"",\r\n    "publisher":"",\r\n    "settings":"",\r\n    "typeHandlerVersion":"",\r\n    "id":"",\r\n    "name":"",\r\n    "type":"",\r\n    "location":"",\r\n    "tags":{\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -1565,7 +1565,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetExtensions1 = parametersCreateOrUpdateVirtualMachineScaleSetExtensions1.category('extensions')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetExtensions1.command('remove')
-  .description($('Remove extensions in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "autoUpgradeMinorVersion" : "__input_value__"\r\n  "extensionType" : "__input_value__"\r\n  "protectedSettings" : "__input_value__"\r\n  "provisioningState" : "__input_value__"\r\n  "publisher" : "__input_value__"\r\n  "settings" : "__input_value__"\r\n  "typeHandlerVersion" : "__input_value__"\r\n  "id" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "type" : "__input_value__"\r\n  "location" : "__input_value__"\r\n  "tags" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove extensions in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "extensions" : {\r\n    "autoUpgradeMinorVersion":false,\r\n    "extensionType":"",\r\n    "protectedSettings":"",\r\n    "provisioningState":"",\r\n    "publisher":"",\r\n    "settings":"",\r\n    "typeHandlerVersion":"",\r\n    "id":"",\r\n    "name":"",\r\n    "type":"",\r\n    "location":"",\r\n    "tags":{\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
@@ -1666,7 +1666,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetExtensions2 = parametersCreateOrUpdateVirtualMachineScaleSetExtensions2.category('extensions')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetExtensions2.command('add')
-  .description($('Add extensions in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "autoUpgradeMinorVersion" : "__input_value__"\r\n  "extensionType" : "__input_value__"\r\n  "protectedSettings" : "__input_value__"\r\n  "provisioningState" : "__input_value__"\r\n  "publisher" : "__input_value__"\r\n  "settings" : "__input_value__"\r\n  "typeHandlerVersion" : "__input_value__"\r\n  "id" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "type" : "__input_value__"\r\n  "location" : "__input_value__"\r\n  "tags" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add extensions in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "extensions" : {\r\n    "autoUpgradeMinorVersion":false,\r\n    "extensionType":"",\r\n    "protectedSettings":"",\r\n    "provisioningState":"",\r\n    "publisher":"",\r\n    "settings":"",\r\n    "typeHandlerVersion":"",\r\n    "id":"",\r\n    "name":"",\r\n    "type":"",\r\n    "location":"",\r\n    "tags":{\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -1843,7 +1843,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile0.category('network-profile')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile0.command('set')
-  .description($('Set network-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "networkInterfaceConfigurations" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set network-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "networkProfile" : {\r\n    "networkInterfaceConfigurations":[\r\n      {\r\n        "iPConfigurations":[\r\n          {\r\n            "loadBalancerBackendAddressPools":[\r\n              {\r\n                "referenceUri":""\r\n              }\r\n            ],\r\n            "loadBalancerInboundNatPools":[\r\n              {\r\n                "referenceUri":""\r\n              }\r\n            ],\r\n            "name":"",\r\n            "subnet":{\r\n              "referenceUri":""\r\n            }\r\n          }\r\n        ],\r\n        "name":"",\r\n        "primary":null\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -1895,7 +1895,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile1.category('network-profile')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile1.command('remove')
-  .description($('Remove network-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "networkInterfaceConfigurations" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove network-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "networkProfile" : {\r\n    "networkInterfaceConfigurations":[\r\n      {\r\n        "iPConfigurations":[\r\n          {\r\n            "loadBalancerBackendAddressPools":[\r\n              {\r\n                "referenceUri":""\r\n              }\r\n            ],\r\n            "loadBalancerInboundNatPools":[\r\n              {\r\n                "referenceUri":""\r\n              }\r\n            ],\r\n            "name":"",\r\n            "subnet":{\r\n              "referenceUri":""\r\n            }\r\n          }\r\n        ],\r\n        "name":"",\r\n        "primary":null\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--network-interface-configurations', $('Remove the network-interface-configurations value.'))
@@ -1940,7 +1940,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile2.category('network-profile')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile2.command('add')
-  .description($('Add network-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "networkInterfaceConfigurations" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add network-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "networkProfile" : {\r\n    "networkInterfaceConfigurations":[\r\n      {\r\n        "iPConfigurations":[\r\n          {\r\n            "loadBalancerBackendAddressPools":[\r\n              {\r\n                "referenceUri":""\r\n              }\r\n            ],\r\n            "loadBalancerInboundNatPools":[\r\n              {\r\n                "referenceUri":""\r\n              }\r\n            ],\r\n            "name":"",\r\n            "subnet":{\r\n              "referenceUri":""\r\n            }\r\n          }\r\n        ],\r\n        "name":"",\r\n        "primary":null\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -1996,7 +1996,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations0 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations0.category('network-interface-configurations')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations0.command('set')
-  .description($('Set network-interface-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "ipConfigurations" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "primary" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set network-interface-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "networkInterfaceConfigurations" : {\r\n    "iPConfigurations":[\r\n      {\r\n        "loadBalancerBackendAddressPools":[\r\n          {\r\n            "referenceUri":""\r\n          }\r\n        ],\r\n        "loadBalancerInboundNatPools":[\r\n          {\r\n            "referenceUri":""\r\n          }\r\n        ],\r\n        "name":"",\r\n        "subnet":{\r\n          "referenceUri":""\r\n        }\r\n      }\r\n    ],\r\n    "name":"",\r\n    "primary":null\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -2074,7 +2074,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations1 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations1.category('network-interface-configurations')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations1.command('remove')
-  .description($('Remove network-interface-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "ipConfigurations" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "primary" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove network-interface-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "networkInterfaceConfigurations" : {\r\n    "iPConfigurations":[\r\n      {\r\n        "loadBalancerBackendAddressPools":[\r\n          {\r\n            "referenceUri":""\r\n          }\r\n        ],\r\n        "loadBalancerInboundNatPools":[\r\n          {\r\n            "referenceUri":""\r\n          }\r\n        ],\r\n        "name":"",\r\n        "subnet":{\r\n          "referenceUri":""\r\n        }\r\n      }\r\n    ],\r\n    "name":"",\r\n    "primary":null\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
@@ -2130,7 +2130,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations2 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations2.category('network-interface-configurations')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations2.command('add')
-  .description($('Add network-interface-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "ipConfigurations" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "primary" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add network-interface-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "networkInterfaceConfigurations" : {\r\n    "iPConfigurations":[\r\n      {\r\n        "loadBalancerBackendAddressPools":[\r\n          {\r\n            "referenceUri":""\r\n          }\r\n        ],\r\n        "loadBalancerInboundNatPools":[\r\n          {\r\n            "referenceUri":""\r\n          }\r\n        ],\r\n        "name":"",\r\n        "subnet":{\r\n          "referenceUri":""\r\n        }\r\n      }\r\n    ],\r\n    "name":"",\r\n    "primary":null\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -2208,7 +2208,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations0 = parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations0.category('ip-configurations')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations0.command('set')
-  .description($('Set ip-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "loadBalancerBackendAddressPools" : "__input_value__"\r\n  "loadBalancerInboundNatPools" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "subnet" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set ip-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "ipConfigurations" : {\r\n    "loadBalancerBackendAddressPools":[\r\n      {\r\n        "referenceUri":""\r\n      }\r\n    ],\r\n    "loadBalancerInboundNatPools":[\r\n      {\r\n        "referenceUri":""\r\n      }\r\n    ],\r\n    "name":"",\r\n    "subnet":{\r\n      "referenceUri":""\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -2298,7 +2298,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations1 = parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations1.category('ip-configurations')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations1.command('remove')
-  .description($('Remove ip-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "loadBalancerBackendAddressPools" : "__input_value__"\r\n  "loadBalancerInboundNatPools" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "subnet" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove ip-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "ipConfigurations" : {\r\n    "loadBalancerBackendAddressPools":[\r\n      {\r\n        "referenceUri":""\r\n      }\r\n    ],\r\n    "loadBalancerInboundNatPools":[\r\n      {\r\n        "referenceUri":""\r\n      }\r\n    ],\r\n    "name":"",\r\n    "subnet":{\r\n      "referenceUri":""\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
@@ -2360,7 +2360,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations2 = parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations2.category('ip-configurations')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations2.command('add')
-  .description($('Add ip-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "loadBalancerBackendAddressPools" : "__input_value__"\r\n  "loadBalancerInboundNatPools" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "subnet" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add ip-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "ipConfigurations" : {\r\n    "loadBalancerBackendAddressPools":[\r\n      {\r\n        "referenceUri":""\r\n      }\r\n    ],\r\n    "loadBalancerInboundNatPools":[\r\n      {\r\n        "referenceUri":""\r\n      }\r\n    ],\r\n    "name":"",\r\n    "subnet":{\r\n      "referenceUri":""\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -2449,7 +2449,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools0 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools0.category('load-balancer-backend-address-pools')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools0.command('set')
-  .description($('Set load-balancer-backend-address-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "referenceUri" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set load-balancer-backend-address-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "loadBalancerBackendAddressPools" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -2507,7 +2507,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools1 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools1.category('load-balancer-backend-address-pools')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools1.command('remove')
-  .description($('Remove load-balancer-backend-address-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "referenceUri" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove load-balancer-backend-address-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "loadBalancerBackendAddressPools" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
@@ -2555,7 +2555,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools2 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools2.category('load-balancer-backend-address-pools')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools2.command('add')
-  .description($('Add load-balancer-backend-address-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "referenceUri" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add load-balancer-backend-address-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "loadBalancerBackendAddressPools" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -2611,7 +2611,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools0 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools0.category('load-balancer-inbound-nat-pools')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools0.command('set')
-  .description($('Set load-balancer-inbound-nat-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "referenceUri" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set load-balancer-inbound-nat-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "loadBalancerInboundNatPools" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -2669,7 +2669,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools1 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools1.category('load-balancer-inbound-nat-pools')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools1.command('remove')
-  .description($('Remove load-balancer-inbound-nat-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "referenceUri" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove load-balancer-inbound-nat-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "loadBalancerInboundNatPools" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
@@ -2717,7 +2717,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools2 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools2.category('load-balancer-inbound-nat-pools')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools2.command('add')
-  .description($('Add load-balancer-inbound-nat-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "referenceUri" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add load-balancer-inbound-nat-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "loadBalancerInboundNatPools" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -2773,7 +2773,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetSubnet0 = parametersCreateOrUpdateVirtualMachineScaleSetSubnet0.category('subnet')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetSubnet0.command('set')
-  .description($('Set subnet in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "referenceUri" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set subnet in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "subnet" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -2827,7 +2827,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetSubnet1 = parametersCreateOrUpdateVirtualMachineScaleSetSubnet1.category('subnet')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetSubnet1.command('remove')
-  .description($('Remove subnet in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "referenceUri" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove subnet in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "subnet" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
@@ -2874,7 +2874,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetSubnet2 = parametersCreateOrUpdateVirtualMachineScaleSetSubnet2.category('subnet')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetSubnet2.command('add')
-  .description($('Add subnet in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "referenceUri" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add subnet in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "subnet" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -2930,7 +2930,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetOSProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetOSProfile0.category('os-profile')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetOSProfile0.command('set')
-  .description($('Set os-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "computerNamePrefix" : "__input_value__"\r\n  "adminPassword" : "__input_value__"\r\n  "adminUsername" : "__input_value__"\r\n  "customData" : "__input_value__"\r\n  "linuxConfiguration" : "__input_value__"\r\n  "secrets" : "__input_value__"\r\n  "windowsConfiguration" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set os-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "oSProfile" : {\r\n    "computerNamePrefix":"",\r\n    "adminPassword":"",\r\n    "adminUsername":"",\r\n    "customData":"",\r\n    "linuxConfiguration":{\r\n      "disablePasswordAuthentication":null,\r\n      "sshConfiguration":{\r\n        "publicKeys":[\r\n          {\r\n            "keyData":"",\r\n            "path":""\r\n          }\r\n        ]\r\n      }\r\n    },\r\n    "secrets":[\r\n      {\r\n        "sourceVault":{\r\n          "referenceUri":""\r\n        },\r\n        "vaultCertificates":[\r\n          {\r\n            "certificateStore":"",\r\n            "certificateUrl":""\r\n          }\r\n        ]\r\n      }\r\n    ],\r\n    "windowsConfiguration":{\r\n      "additionalUnattendContents":[\r\n        {\r\n          "componentName":"",\r\n          "content":"",\r\n          "passName":"",\r\n          "settingName":""\r\n        }\r\n      ],\r\n      "enableAutomaticUpdates":null,\r\n      "provisionVMAgent":null,\r\n      "timeZone":"",\r\n      "winRMConfiguration":{\r\n        "listeners":[\r\n          {\r\n            "certificateUrl":"",\r\n            "protocol":""\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -3048,7 +3048,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetOSProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetOSProfile1.category('os-profile')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetOSProfile1.command('remove')
-  .description($('Remove os-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "computerNamePrefix" : "__input_value__"\r\n  "adminPassword" : "__input_value__"\r\n  "adminUsername" : "__input_value__"\r\n  "customData" : "__input_value__"\r\n  "linuxConfiguration" : "__input_value__"\r\n  "secrets" : "__input_value__"\r\n  "windowsConfiguration" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove os-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "oSProfile" : {\r\n    "computerNamePrefix":"",\r\n    "adminPassword":"",\r\n    "adminUsername":"",\r\n    "customData":"",\r\n    "linuxConfiguration":{\r\n      "disablePasswordAuthentication":null,\r\n      "sshConfiguration":{\r\n        "publicKeys":[\r\n          {\r\n            "keyData":"",\r\n            "path":""\r\n          }\r\n        ]\r\n      }\r\n    },\r\n    "secrets":[\r\n      {\r\n        "sourceVault":{\r\n          "referenceUri":""\r\n        },\r\n        "vaultCertificates":[\r\n          {\r\n            "certificateStore":"",\r\n            "certificateUrl":""\r\n          }\r\n        ]\r\n      }\r\n    ],\r\n    "windowsConfiguration":{\r\n      "additionalUnattendContents":[\r\n        {\r\n          "componentName":"",\r\n          "content":"",\r\n          "passName":"",\r\n          "settingName":""\r\n        }\r\n      ],\r\n      "enableAutomaticUpdates":null,\r\n      "provisionVMAgent":null,\r\n      "timeZone":"",\r\n      "winRMConfiguration":{\r\n        "listeners":[\r\n          {\r\n            "certificateUrl":"",\r\n            "protocol":""\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--computer-name-prefix', $('Remove the computer-name-prefix value.'))
@@ -3123,7 +3123,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetOSProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetOSProfile2.category('os-profile')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetOSProfile2.command('add')
-  .description($('Add os-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "computerNamePrefix" : "__input_value__"\r\n  "adminPassword" : "__input_value__"\r\n  "adminUsername" : "__input_value__"\r\n  "customData" : "__input_value__"\r\n  "linuxConfiguration" : "__input_value__"\r\n  "secrets" : "__input_value__"\r\n  "windowsConfiguration" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add os-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "oSProfile" : {\r\n    "computerNamePrefix":"",\r\n    "adminPassword":"",\r\n    "adminUsername":"",\r\n    "customData":"",\r\n    "linuxConfiguration":{\r\n      "disablePasswordAuthentication":null,\r\n      "sshConfiguration":{\r\n        "publicKeys":[\r\n          {\r\n            "keyData":"",\r\n            "path":""\r\n          }\r\n        ]\r\n      }\r\n    },\r\n    "secrets":[\r\n      {\r\n        "sourceVault":{\r\n          "referenceUri":""\r\n        },\r\n        "vaultCertificates":[\r\n          {\r\n            "certificateStore":"",\r\n            "certificateUrl":""\r\n          }\r\n        ]\r\n      }\r\n    ],\r\n    "windowsConfiguration":{\r\n      "additionalUnattendContents":[\r\n        {\r\n          "componentName":"",\r\n          "content":"",\r\n          "passName":"",\r\n          "settingName":""\r\n        }\r\n      ],\r\n      "enableAutomaticUpdates":null,\r\n      "provisionVMAgent":null,\r\n      "timeZone":"",\r\n      "winRMConfiguration":{\r\n        "listeners":[\r\n          {\r\n            "certificateUrl":"",\r\n            "protocol":""\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -3245,7 +3245,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration0 = parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration0.category('linux-configuration')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration0.command('set')
-  .description($('Set linux-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "disablePasswordAuthentication" : "__input_value__"\r\n  "sshConfiguration" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set linux-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "linuxConfiguration" : {\r\n    "disablePasswordAuthentication":null,\r\n    "sshConfiguration":{\r\n      "publicKeys":[\r\n        {\r\n          "keyData":"",\r\n          "path":""\r\n        }\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -3308,7 +3308,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration1.category('linux-configuration')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration1.command('remove')
-  .description($('Remove linux-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "disablePasswordAuthentication" : "__input_value__"\r\n  "sshConfiguration" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove linux-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "linuxConfiguration" : {\r\n    "disablePasswordAuthentication":null,\r\n    "sshConfiguration":{\r\n      "publicKeys":[\r\n        {\r\n          "keyData":"",\r\n          "path":""\r\n        }\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--disable-password-authentication', $('Remove the disable-password-authentication value.'))
@@ -3358,7 +3358,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration2 = parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration2.category('linux-configuration')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration2.command('add')
-  .description($('Add linux-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "disablePasswordAuthentication" : "__input_value__"\r\n  "sshConfiguration" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add linux-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "linuxConfiguration" : {\r\n    "disablePasswordAuthentication":null,\r\n    "sshConfiguration":{\r\n      "publicKeys":[\r\n        {\r\n          "keyData":"",\r\n          "path":""\r\n        }\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -3425,7 +3425,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration0 = parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration0.category('ssh-configuration')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration0.command('set')
-  .description($('Set ssh-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "publicKeys" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set ssh-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sshConfiguration" : {\r\n    "publicKeys":[\r\n      {\r\n        "keyData":"",\r\n        "path":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -3477,7 +3477,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration1.category('ssh-configuration')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration1.command('remove')
-  .description($('Remove ssh-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "publicKeys" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove ssh-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sshConfiguration" : {\r\n    "publicKeys":[\r\n      {\r\n        "keyData":"",\r\n        "path":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--public-keys', $('Remove the public-keys value.'))
@@ -3522,7 +3522,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration2 = parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration2.category('ssh-configuration')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration2.command('add')
-  .description($('Add ssh-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "publicKeys" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add ssh-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sshConfiguration" : {\r\n    "publicKeys":[\r\n      {\r\n        "keyData":"",\r\n        "path":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -3578,7 +3578,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys0 = parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys0.category('public-keys')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys0.command('set')
-  .description($('Set public-keys in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "keyData" : "__input_value__"\r\n  "path" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set public-keys in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "publicKeys" : {\r\n    "keyData":"",\r\n    "path":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -3645,7 +3645,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys1 = parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys1.category('public-keys')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys1.command('remove')
-  .description($('Remove public-keys in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "keyData" : "__input_value__"\r\n  "path" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove public-keys in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "publicKeys" : {\r\n    "keyData":"",\r\n    "path":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
@@ -3696,7 +3696,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys2 = parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys2.category('public-keys')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys2.command('add')
-  .description($('Add public-keys in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "keyData" : "__input_value__"\r\n  "path" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add public-keys in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "publicKeys" : {\r\n    "keyData":"",\r\n    "path":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -3763,7 +3763,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetSecrets0 = parametersCreateOrUpdateVirtualMachineScaleSetSecrets0.category('secrets')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetSecrets0.command('set')
-  .description($('Set secrets in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "sourceVault" : "__input_value__"\r\n  "vaultCertificates" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set secrets in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "secrets" : {\r\n    "sourceVault":{\r\n      "referenceUri":""\r\n    },\r\n    "vaultCertificates":[\r\n      {\r\n        "certificateStore":"",\r\n        "certificateUrl":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -3830,7 +3830,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetSecrets1 = parametersCreateOrUpdateVirtualMachineScaleSetSecrets1.category('secrets')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetSecrets1.command('remove')
-  .description($('Remove secrets in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "sourceVault" : "__input_value__"\r\n  "vaultCertificates" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove secrets in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "secrets" : {\r\n    "sourceVault":{\r\n      "referenceUri":""\r\n    },\r\n    "vaultCertificates":[\r\n      {\r\n        "certificateStore":"",\r\n        "certificateUrl":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
@@ -3881,7 +3881,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetSecrets2 = parametersCreateOrUpdateVirtualMachineScaleSetSecrets2.category('secrets')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetSecrets2.command('add')
-  .description($('Add secrets in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "sourceVault" : "__input_value__"\r\n  "vaultCertificates" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add secrets in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "secrets" : {\r\n    "sourceVault":{\r\n      "referenceUri":""\r\n    },\r\n    "vaultCertificates":[\r\n      {\r\n        "certificateStore":"",\r\n        "certificateUrl":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -3948,7 +3948,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetSourceVault0 = parametersCreateOrUpdateVirtualMachineScaleSetSourceVault0.category('source-vault')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetSourceVault0.command('set')
-  .description($('Set source-vault in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "referenceUri" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set source-vault in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sourceVault" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -4001,7 +4001,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetSourceVault1 = parametersCreateOrUpdateVirtualMachineScaleSetSourceVault1.category('source-vault')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetSourceVault1.command('remove')
-  .description($('Remove source-vault in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "referenceUri" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove source-vault in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sourceVault" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
@@ -4047,7 +4047,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetSourceVault2 = parametersCreateOrUpdateVirtualMachineScaleSetSourceVault2.category('source-vault')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetSourceVault2.command('add')
-  .description($('Add source-vault in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "referenceUri" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add source-vault in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sourceVault" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -4103,7 +4103,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates0 = parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates0.category('vault-certificates')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates0.command('set')
-  .description($('Set vault-certificates in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "certificateStore" : "__input_value__"\r\n  "certificateUrl" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set vault-certificates in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "vaultCertificates" : {\r\n    "certificateStore":"",\r\n    "certificateUrl":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -4171,7 +4171,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates1 = parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates1.category('vault-certificates')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates1.command('remove')
-  .description($('Remove vault-certificates in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "certificateStore" : "__input_value__"\r\n  "certificateUrl" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove vault-certificates in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "vaultCertificates" : {\r\n    "certificateStore":"",\r\n    "certificateUrl":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
@@ -4223,7 +4223,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates2 = parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates2.category('vault-certificates')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates2.command('add')
-  .description($('Add vault-certificates in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "certificateStore" : "__input_value__"\r\n  "certificateUrl" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add vault-certificates in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "vaultCertificates" : {\r\n    "certificateStore":"",\r\n    "certificateUrl":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -4290,7 +4290,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration0 = parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration0.category('windows-configuration')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration0.command('set')
-  .description($('Set windows-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "additionalUnattendContents" : "__input_value__"\r\n  "enableAutomaticUpdates" : "__input_value__"\r\n  "provisionVMAgent" : "__input_value__"\r\n  "timeZone" : "__input_value__"\r\n  "winRMConfiguration" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set windows-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "windowsConfiguration" : {\r\n    "additionalUnattendContents":[\r\n      {\r\n        "componentName":"",\r\n        "content":"",\r\n        "passName":"",\r\n        "settingName":""\r\n      }\r\n    ],\r\n    "enableAutomaticUpdates":null,\r\n    "provisionVMAgent":null,\r\n    "timeZone":"",\r\n    "winRMConfiguration":{\r\n      "listeners":[\r\n        {\r\n          "certificateUrl":"",\r\n          "protocol":""\r\n        }\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -4386,7 +4386,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration1.category('windows-configuration')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration1.command('remove')
-  .description($('Remove windows-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "additionalUnattendContents" : "__input_value__"\r\n  "enableAutomaticUpdates" : "__input_value__"\r\n  "provisionVMAgent" : "__input_value__"\r\n  "timeZone" : "__input_value__"\r\n  "winRMConfiguration" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove windows-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "windowsConfiguration" : {\r\n    "additionalUnattendContents":[\r\n      {\r\n        "componentName":"",\r\n        "content":"",\r\n        "passName":"",\r\n        "settingName":""\r\n      }\r\n    ],\r\n    "enableAutomaticUpdates":null,\r\n    "provisionVMAgent":null,\r\n    "timeZone":"",\r\n    "winRMConfiguration":{\r\n      "listeners":[\r\n        {\r\n          "certificateUrl":"",\r\n          "protocol":""\r\n        }\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--additional-unattend-contents', $('Remove the additional-unattend-contents value.'))
@@ -4451,7 +4451,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration2 = parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration2.category('windows-configuration')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration2.command('add')
-  .description($('Add windows-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "additionalUnattendContents" : "__input_value__"\r\n  "enableAutomaticUpdates" : "__input_value__"\r\n  "provisionVMAgent" : "__input_value__"\r\n  "timeZone" : "__input_value__"\r\n  "winRMConfiguration" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add windows-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "windowsConfiguration" : {\r\n    "additionalUnattendContents":[\r\n      {\r\n        "componentName":"",\r\n        "content":"",\r\n        "passName":"",\r\n        "settingName":""\r\n      }\r\n    ],\r\n    "enableAutomaticUpdates":null,\r\n    "provisionVMAgent":null,\r\n    "timeZone":"",\r\n    "winRMConfiguration":{\r\n      "listeners":[\r\n        {\r\n          "certificateUrl":"",\r\n          "protocol":""\r\n        }\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -4551,7 +4551,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents0 = parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents0.category('additional-unattend-contents')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents0.command('set')
-  .description($('Set additional-unattend-contents in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "componentName" : "__input_value__"\r\n  "content" : "__input_value__"\r\n  "passName" : "__input_value__"\r\n  "settingName" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set additional-unattend-contents in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "additionalUnattendContents" : {\r\n    "componentName":"",\r\n    "content":"",\r\n    "passName":"",\r\n    "settingName":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -4640,7 +4640,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents1 = parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents1.category('additional-unattend-contents')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents1.command('remove')
-  .description($('Remove additional-unattend-contents in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "componentName" : "__input_value__"\r\n  "content" : "__input_value__"\r\n  "passName" : "__input_value__"\r\n  "settingName" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove additional-unattend-contents in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "additionalUnattendContents" : {\r\n    "componentName":"",\r\n    "content":"",\r\n    "passName":"",\r\n    "settingName":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
@@ -4701,7 +4701,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents2 = parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents2.category('additional-unattend-contents')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents2.command('add')
-  .description($('Add additional-unattend-contents in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "componentName" : "__input_value__"\r\n  "content" : "__input_value__"\r\n  "passName" : "__input_value__"\r\n  "settingName" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add additional-unattend-contents in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "additionalUnattendContents" : {\r\n    "componentName":"",\r\n    "content":"",\r\n    "passName":"",\r\n    "settingName":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -4790,7 +4790,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration0 = parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration0.category('win-rm-configuration')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration0.command('set')
-  .description($('Set win-rm-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "listeners" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set win-rm-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "winRMConfiguration" : {\r\n    "listeners":[\r\n      {\r\n        "certificateUrl":"",\r\n        "protocol":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -4842,7 +4842,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration1.category('win-rm-configuration')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration1.command('remove')
-  .description($('Remove win-rm-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "listeners" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove win-rm-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "winRMConfiguration" : {\r\n    "listeners":[\r\n      {\r\n        "certificateUrl":"",\r\n        "protocol":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--listeners', $('Remove the listeners value.'))
@@ -4887,7 +4887,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration2 = parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration2.category('win-rm-configuration')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration2.command('add')
-  .description($('Add win-rm-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "listeners" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add win-rm-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "winRMConfiguration" : {\r\n    "listeners":[\r\n      {\r\n        "certificateUrl":"",\r\n        "protocol":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -4943,7 +4943,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetListeners0 = parametersCreateOrUpdateVirtualMachineScaleSetListeners0.category('listeners')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetListeners0.command('set')
-  .description($('Set listeners in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "certificateUrl" : "__input_value__"\r\n  "protocol" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set listeners in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "listeners" : {\r\n    "certificateUrl":"",\r\n    "protocol":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -5010,7 +5010,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetListeners1 = parametersCreateOrUpdateVirtualMachineScaleSetListeners1.category('listeners')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetListeners1.command('remove')
-  .description($('Remove listeners in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "certificateUrl" : "__input_value__"\r\n  "protocol" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove listeners in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "listeners" : {\r\n    "certificateUrl":"",\r\n    "protocol":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
@@ -5061,7 +5061,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetListeners2 = parametersCreateOrUpdateVirtualMachineScaleSetListeners2.category('listeners')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetListeners2.command('add')
-  .description($('Add listeners in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "certificateUrl" : "__input_value__"\r\n  "protocol" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add listeners in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "listeners" : {\r\n    "certificateUrl":"",\r\n    "protocol":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -5128,7 +5128,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile0.category('storage-profile')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile0.command('set')
-  .description($('Set storage-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "imageReference" : "__input_value__"\r\n  "oSDisk" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set storage-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "storageProfile" : {\r\n    "imageReference":{\r\n      "offer":"",\r\n      "publisher":"",\r\n      "sku":"",\r\n      "version":""\r\n    },\r\n    "oSDisk":{\r\n      "caching":"",\r\n      "createOption":"",\r\n      "name":"",\r\n      "operatingSystemType":"",\r\n      "sourceImage":{\r\n        "uri":""\r\n      },\r\n      "virtualHardDiskContainers":[\r\n        ""\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -5191,7 +5191,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile1.category('storage-profile')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile1.command('remove')
-  .description($('Remove storage-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "imageReference" : "__input_value__"\r\n  "oSDisk" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove storage-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "storageProfile" : {\r\n    "imageReference":{\r\n      "offer":"",\r\n      "publisher":"",\r\n      "sku":"",\r\n      "version":""\r\n    },\r\n    "oSDisk":{\r\n      "caching":"",\r\n      "createOption":"",\r\n      "name":"",\r\n      "operatingSystemType":"",\r\n      "sourceImage":{\r\n        "uri":""\r\n      },\r\n      "virtualHardDiskContainers":[\r\n        ""\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--image-reference', $('Remove the image-reference value.'))
@@ -5241,7 +5241,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile2.category('storage-profile')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile2.command('add')
-  .description($('Add storage-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "imageReference" : "__input_value__"\r\n  "oSDisk" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add storage-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "storageProfile" : {\r\n    "imageReference":{\r\n      "offer":"",\r\n      "publisher":"",\r\n      "sku":"",\r\n      "version":""\r\n    },\r\n    "oSDisk":{\r\n      "caching":"",\r\n      "createOption":"",\r\n      "name":"",\r\n      "operatingSystemType":"",\r\n      "sourceImage":{\r\n        "uri":""\r\n      },\r\n      "virtualHardDiskContainers":[\r\n        ""\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -5308,7 +5308,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetImageReference0 = parametersCreateOrUpdateVirtualMachineScaleSetImageReference0.category('image-reference')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetImageReference0.command('set')
-  .description($('Set image-reference in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "offer" : "__input_value__"\r\n  "publisher" : "__input_value__"\r\n  "sku" : "__input_value__"\r\n  "version" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set image-reference in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "imageReference" : {\r\n    "offer":"",\r\n    "publisher":"",\r\n    "sku":"",\r\n    "version":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -5393,7 +5393,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetImageReference1 = parametersCreateOrUpdateVirtualMachineScaleSetImageReference1.category('image-reference')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetImageReference1.command('remove')
-  .description($('Remove image-reference in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "offer" : "__input_value__"\r\n  "publisher" : "__input_value__"\r\n  "sku" : "__input_value__"\r\n  "version" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove image-reference in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "imageReference" : {\r\n    "offer":"",\r\n    "publisher":"",\r\n    "sku":"",\r\n    "version":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--offer', $('Remove the offer value.'))
@@ -5453,7 +5453,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetImageReference2 = parametersCreateOrUpdateVirtualMachineScaleSetImageReference2.category('image-reference')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetImageReference2.command('add')
-  .description($('Add image-reference in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "offer" : "__input_value__"\r\n  "publisher" : "__input_value__"\r\n  "sku" : "__input_value__"\r\n  "version" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add image-reference in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "imageReference" : {\r\n    "offer":"",\r\n    "publisher":"",\r\n    "sku":"",\r\n    "version":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -5542,7 +5542,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetOSDisk0 = parametersCreateOrUpdateVirtualMachineScaleSetOSDisk0.category('os-disk')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetOSDisk0.command('set')
-  .description($('Set os-disk in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "caching" : "__input_value__"\r\n  "createOption" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "operatingSystemType" : "__input_value__"\r\n  "sourceImage" : "__input_value__"\r\n  "virtualHardDiskContainers" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set os-disk in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "oSDisk" : {\r\n    "caching":"",\r\n    "createOption":"",\r\n    "name":"",\r\n    "operatingSystemType":"",\r\n    "sourceImage":{\r\n      "uri":""\r\n    },\r\n    "virtualHardDiskContainers":[\r\n      ""\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -5649,7 +5649,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetOSDisk1 = parametersCreateOrUpdateVirtualMachineScaleSetOSDisk1.category('os-disk')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetOSDisk1.command('remove')
-  .description($('Remove os-disk in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "caching" : "__input_value__"\r\n  "createOption" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "operatingSystemType" : "__input_value__"\r\n  "sourceImage" : "__input_value__"\r\n  "virtualHardDiskContainers" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove os-disk in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "oSDisk" : {\r\n    "caching":"",\r\n    "createOption":"",\r\n    "name":"",\r\n    "operatingSystemType":"",\r\n    "sourceImage":{\r\n      "uri":""\r\n    },\r\n    "virtualHardDiskContainers":[\r\n      ""\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--caching', $('Remove the caching value.'))
@@ -5719,7 +5719,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetOSDisk2 = parametersCreateOrUpdateVirtualMachineScaleSetOSDisk2.category('os-disk')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetOSDisk2.command('add')
-  .description($('Add os-disk in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "caching" : "__input_value__"\r\n  "createOption" : "__input_value__"\r\n  "name" : "__input_value__"\r\n  "operatingSystemType" : "__input_value__"\r\n  "sourceImage" : "__input_value__"\r\n  "virtualHardDiskContainers" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add os-disk in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "oSDisk" : {\r\n    "caching":"",\r\n    "createOption":"",\r\n    "name":"",\r\n    "operatingSystemType":"",\r\n    "sourceImage":{\r\n      "uri":""\r\n    },\r\n    "virtualHardDiskContainers":[\r\n      ""\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -5830,7 +5830,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetSourceImage0 = parametersCreateOrUpdateVirtualMachineScaleSetSourceImage0.category('source-image')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetSourceImage0.command('set')
-  .description($('Set source-image in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "uri" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Set source-image in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sourceImage" : {\r\n    "uri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -5882,7 +5882,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetSourceImage1 = parametersCreateOrUpdateVirtualMachineScaleSetSourceImage1.category('source-image')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetSourceImage1.command('remove')
-  .description($('Remove source-image in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "uri" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Remove source-image in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sourceImage" : {\r\n    "uri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--uri', $('Remove the uri value.'))
@@ -5927,7 +5927,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetSourceImage2 = parametersCreateOrUpdateVirtualMachineScaleSetSourceImage2.category('source-image')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetSourceImage2.command('add')
-  .description($('Add source-image in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n  "uri" : "__input_value__"\r\n...\r\n}\r\n'))
+  .description($('Add source-image in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sourceImage" : {\r\n    "uri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -5983,7 +5983,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers0 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers0.category('virtual-hard-disk-containers')
   .description($('Commands to set parameter input file for your virtual-machine-scale-set.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers0.command('set')
-  .description($('Set virtual-hard-disk-containers in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n...\r\n}\r\n'))
+  .description($('Set virtual-hard-disk-containers in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "virtualHardDiskContainers" : ""\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--value <value>', $('The JSON value.'))
@@ -6028,7 +6028,7 @@ exports.init = function (cli) {
   var removeparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers1 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers1.category('virtual-hard-disk-containers')
   .description($('Commands to remove values in the parameter input file for your virtual-machine-scale-set.'));
   removeparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers1.command('remove')
-  .description($('Remove virtual-hard-disk-containers in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n...\r\n}\r\n'))
+  .description($('Remove virtual-hard-disk-containers in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "virtualHardDiskContainers" : ""\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
@@ -6062,7 +6062,7 @@ exports.init = function (cli) {
   var addparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers2 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers2.category('virtual-hard-disk-containers')
   .description($('Commands to add values in the parameter input file for your virtual-machine-scale-set.'));
   addparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers2.command('add')
-  .description($('Add virtual-hard-disk-containers in create-or-update-parameters string or files, e.g. \r\n{\r\n...\r\n...\r\n}\r\n'))
+  .description($('Add virtual-hard-disk-containers in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "virtualHardDiskContainers" : ""\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
