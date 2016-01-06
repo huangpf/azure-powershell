@@ -318,6 +318,13 @@ function Generate-CliFunctionCommandImpl
     # 3.3 Parameters
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {
+        [string]$optionParamName = $methodParamNameList[$index];
+        if ($allStringFieldCheck[$optionParamName])
+        {
+            # Skip all-string parameters that are already handled in the function command.
+            continue;
+        }
+
         $cli_param_name = Get-CliNormalizedName $methodParamNameList[$index];
         if ($cli_param_name -eq 'Parameters')
         {

@@ -191,21 +191,37 @@ function Get-CliShorthandName
     {
         $outName = 'n';
     }
-    elseif ($inName -eq 'vmscalesetname')
+    elseif ($inName -eq 'VMScaleSetName')
     {
         $outName = 'n';
     }
-    elseif ($inName -eq 'instanceid')
+    elseif ($inName -eq 'VirtualMachineScaleSetName')
+    {
+        $outName = 'n';
+    }
+    elseif ($inName -eq 'instanceId')
     {
         $outName = 'd';
     }
-    elseif ($inName -eq 'vminstanceids')
+    elseif ($inName -eq 'vmInstanceIDs')
     {
         $outName = 'D';
     }
     elseif ($inName -eq 'parameters')
     {
         $outName = 'p';
+    }
+    elseif ($inName -eq 'ExpandExpression')
+    {
+        $outName = 'e';
+    }
+    elseif ($inName -eq 'FilterExpression')
+    {
+        $outName = 't';
+    }
+    elseif ($inName -eq 'SelectExpression')
+    {
+        $outName = 'c';
     }
     else
     {
