@@ -335,7 +335,7 @@ function Generate-CliFunctionCommandImpl
 
             # 3.3.1 Parameter Generate Command
             $code += "  var ${params_category_var_name} = ${cliCategoryVarName}.category('${params_category_name}')" + $NEW_LINE;
-            $code += "  .description(`$('Commands to generate parameter file for your ${cliOperationDescription}.'));" + $NEW_LINE;
+            $code += "  .description(`$('Commands to generate parameter input file for your ${cliOperationDescription}.'));" + $NEW_LINE;
             $code += "  ${params_category_var_name}.command('generate')" + $NEW_LINE;
             $code += "  .description(`$('Generate ${cliCategoryVarName} parameter string or files.'))" + $NEW_LINE;
             $code += "  .usage('[options]')" + $NEW_LINE;
