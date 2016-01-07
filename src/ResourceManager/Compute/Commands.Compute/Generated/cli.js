@@ -275,7 +275,6 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-scale-set in create-or-update-parameters string or files, e.g. \r\n{\r\n  "provisioningState":"",\r\n  "sku":{\r\n    "capacity":null,\r\n    "name":"",\r\n    "tier":""\r\n  },\r\n  "upgradePolicy":{\r\n    "mode":""\r\n  },\r\n  "virtualMachineProfile":{\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "autoUpgradeMinorVersion":false,\r\n          "extensionType":"",\r\n          "protectedSettings":"",\r\n          "provisioningState":"",\r\n          "publisher":"",\r\n          "settings":"",\r\n          "typeHandlerVersion":"",\r\n          "id":"",\r\n          "name":"",\r\n          "type":"",\r\n          "location":"",\r\n          "tags":{\r\n          }\r\n        }\r\n      ]\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "iPConfigurations":[\r\n            {\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "name":"",\r\n              "subnet":{\r\n                "referenceUri":""\r\n              }\r\n            }\r\n          ],\r\n          "name":"",\r\n          "primary":null\r\n        }\r\n      ]\r\n    },\r\n    "oSProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminPassword":"",\r\n      "adminUsername":"",\r\n      "customData":"",\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "sshConfiguration":{\r\n          "publicKeys":[\r\n            {\r\n              "keyData":"",\r\n              "path":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "referenceUri":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateStore":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      ],\r\n      "windowsConfiguration":{\r\n        "additionalUnattendContents":[\r\n          {\r\n            "componentName":"",\r\n            "content":"",\r\n            "passName":"",\r\n            "settingName":""\r\n          }\r\n        ],\r\n        "enableAutomaticUpdates":null,\r\n        "provisionVMAgent":null,\r\n        "timeZone":"",\r\n        "winRMConfiguration":{\r\n          "listeners":[\r\n            {\r\n              "certificateUrl":"",\r\n              "protocol":""\r\n            }\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "offer":"",\r\n        "publisher":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "oSDisk":{\r\n        "caching":"",\r\n        "createOption":"",\r\n        "name":"",\r\n        "operatingSystemType":"",\r\n        "sourceImage":{\r\n          "uri":""\r\n        },\r\n        "virtualHardDiskContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  "id":"",\r\n  "name":"",\r\n  "type":"",\r\n  "location":"",\r\n  "tags":{\r\n  }\r\n}'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--provisioning-state <provisioningState>', $('Set the provisioning-state value.'))
   .option('--sku <sku>', $('Set the sku value.'))
@@ -289,7 +288,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -644,7 +642,6 @@ exports.init = function (cli) {
   .description($('Set sku in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sku" : {\r\n    "capacity":null,\r\n    "name":"",\r\n    "tier":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--capacity <capacity>', $('Set the capacity value.'))
   .option('--name <name>', $('Set the name value.'))
@@ -652,7 +649,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -851,13 +847,11 @@ exports.init = function (cli) {
   .description($('Set upgrade-policy in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "upgradePolicy" : {\r\n    "mode":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--mode <mode>', $('Set the mode value.'))
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -1004,7 +998,6 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "virtualMachineProfile" : {\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "autoUpgradeMinorVersion":false,\r\n          "extensionType":"",\r\n          "protectedSettings":"",\r\n          "provisioningState":"",\r\n          "publisher":"",\r\n          "settings":"",\r\n          "typeHandlerVersion":"",\r\n          "id":"",\r\n          "name":"",\r\n          "type":"",\r\n          "location":"",\r\n          "tags":{\r\n          }\r\n        }\r\n      ]\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "iPConfigurations":[\r\n            {\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "name":"",\r\n              "subnet":{\r\n                "referenceUri":""\r\n              }\r\n            }\r\n          ],\r\n          "name":"",\r\n          "primary":null\r\n        }\r\n      ]\r\n    },\r\n    "oSProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminPassword":"",\r\n      "adminUsername":"",\r\n      "customData":"",\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "sshConfiguration":{\r\n          "publicKeys":[\r\n            {\r\n              "keyData":"",\r\n              "path":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "referenceUri":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateStore":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      ],\r\n      "windowsConfiguration":{\r\n        "additionalUnattendContents":[\r\n          {\r\n            "componentName":"",\r\n            "content":"",\r\n            "passName":"",\r\n            "settingName":""\r\n          }\r\n        ],\r\n        "enableAutomaticUpdates":null,\r\n        "provisionVMAgent":null,\r\n        "timeZone":"",\r\n        "winRMConfiguration":{\r\n          "listeners":[\r\n            {\r\n              "certificateUrl":"",\r\n              "protocol":""\r\n            }\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "offer":"",\r\n        "publisher":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "oSDisk":{\r\n        "caching":"",\r\n        "createOption":"",\r\n        "name":"",\r\n        "operatingSystemType":"",\r\n        "sourceImage":{\r\n          "uri":""\r\n        },\r\n        "virtualHardDiskContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--extension-profile <extensionProfile>', $('Set the extension-profile value.'))
   .option('--network-profile <networkProfile>', $('Set the network-profile value.'))
@@ -1013,7 +1006,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -1238,13 +1230,11 @@ exports.init = function (cli) {
   .description($('Set extension-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "extensionProfile" : {\r\n    "extensions":[\r\n      {\r\n        "autoUpgradeMinorVersion":false,\r\n        "extensionType":"",\r\n        "protectedSettings":"",\r\n        "provisioningState":"",\r\n        "publisher":"",\r\n        "settings":"",\r\n        "typeHandlerVersion":"",\r\n        "id":"",\r\n        "name":"",\r\n        "type":"",\r\n        "location":"",\r\n        "tags":{\r\n        }\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--extensions <extensions>', $('Set the extensions value.'))
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -1391,7 +1381,6 @@ exports.init = function (cli) {
   .description($('Set extensions in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "extensions" : {\r\n    "autoUpgradeMinorVersion":false,\r\n    "extensionType":"",\r\n    "protectedSettings":"",\r\n    "provisioningState":"",\r\n    "publisher":"",\r\n    "settings":"",\r\n    "typeHandlerVersion":"",\r\n    "id":"",\r\n    "name":"",\r\n    "type":"",\r\n    "location":"",\r\n    "tags":{\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--auto-upgrade-minor-version <autoUpgradeMinorVersion>', $('Set the auto-upgrade-minor-version value.'))
@@ -1409,7 +1398,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -1424,9 +1412,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
     var paramPath = options.path + '/' + 'autoUpgradeMinorVersion';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
@@ -1846,13 +1831,11 @@ exports.init = function (cli) {
   .description($('Set network-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "networkProfile" : {\r\n    "networkInterfaceConfigurations":[\r\n      {\r\n        "iPConfigurations":[\r\n          {\r\n            "loadBalancerBackendAddressPools":[\r\n              {\r\n                "referenceUri":""\r\n              }\r\n            ],\r\n            "loadBalancerInboundNatPools":[\r\n              {\r\n                "referenceUri":""\r\n              }\r\n            ],\r\n            "name":"",\r\n            "subnet":{\r\n              "referenceUri":""\r\n            }\r\n          }\r\n        ],\r\n        "name":"",\r\n        "primary":null\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--network-interface-configurations <networkInterfaceConfigurations>', $('Set the network-interface-configurations value.'))
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -1999,7 +1982,6 @@ exports.init = function (cli) {
   .description($('Set network-interface-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "networkInterfaceConfigurations" : {\r\n    "iPConfigurations":[\r\n      {\r\n        "loadBalancerBackendAddressPools":[\r\n          {\r\n            "referenceUri":""\r\n          }\r\n        ],\r\n        "loadBalancerInboundNatPools":[\r\n          {\r\n            "referenceUri":""\r\n          }\r\n        ],\r\n        "name":"",\r\n        "subnet":{\r\n          "referenceUri":""\r\n        }\r\n      }\r\n    ],\r\n    "name":"",\r\n    "primary":null\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--ip-configurations <ipConfigurations>', $('Set the ip-configurations value.'))
@@ -2008,7 +1990,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -2023,9 +2004,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
     var paramPath = options.path + '/' + 'ipConfigurations';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
@@ -2211,7 +2189,6 @@ exports.init = function (cli) {
   .description($('Set ip-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "ipConfigurations" : {\r\n    "loadBalancerBackendAddressPools":[\r\n      {\r\n        "referenceUri":""\r\n      }\r\n    ],\r\n    "loadBalancerInboundNatPools":[\r\n      {\r\n        "referenceUri":""\r\n      }\r\n    ],\r\n    "name":"",\r\n    "subnet":{\r\n      "referenceUri":""\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
@@ -2222,7 +2199,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -2237,9 +2213,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
     var paramPath = options.path + '/' + 'loadBalancerBackendAddressPools';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
@@ -2452,7 +2425,6 @@ exports.init = function (cli) {
   .description($('Set load-balancer-backend-address-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "loadBalancerBackendAddressPools" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
@@ -2461,7 +2433,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -2476,9 +2447,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
     var paramPath = options.path + '/' + 'referenceUri';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
@@ -2614,7 +2582,6 @@ exports.init = function (cli) {
   .description($('Set load-balancer-inbound-nat-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "loadBalancerInboundNatPools" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
@@ -2623,7 +2590,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -2638,9 +2604,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerInboundNatPools' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
     var paramPath = options.path + '/' + 'referenceUri';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
@@ -2776,7 +2739,6 @@ exports.init = function (cli) {
   .description($('Set subnet in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "subnet" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
@@ -2784,7 +2746,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -2933,7 +2894,6 @@ exports.init = function (cli) {
   .description($('Set os-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "oSProfile" : {\r\n    "computerNamePrefix":"",\r\n    "adminPassword":"",\r\n    "adminUsername":"",\r\n    "customData":"",\r\n    "linuxConfiguration":{\r\n      "disablePasswordAuthentication":null,\r\n      "sshConfiguration":{\r\n        "publicKeys":[\r\n          {\r\n            "keyData":"",\r\n            "path":""\r\n          }\r\n        ]\r\n      }\r\n    },\r\n    "secrets":[\r\n      {\r\n        "sourceVault":{\r\n          "referenceUri":""\r\n        },\r\n        "vaultCertificates":[\r\n          {\r\n            "certificateStore":"",\r\n            "certificateUrl":""\r\n          }\r\n        ]\r\n      }\r\n    ],\r\n    "windowsConfiguration":{\r\n      "additionalUnattendContents":[\r\n        {\r\n          "componentName":"",\r\n          "content":"",\r\n          "passName":"",\r\n          "settingName":""\r\n        }\r\n      ],\r\n      "enableAutomaticUpdates":null,\r\n      "provisionVMAgent":null,\r\n      "timeZone":"",\r\n      "winRMConfiguration":{\r\n        "listeners":[\r\n          {\r\n            "certificateUrl":"",\r\n            "protocol":""\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--computer-name-prefix <computerNamePrefix>', $('Set the computer-name-prefix value.'))
   .option('--admin-password <adminPassword>', $('Set the admin-password value.'))
@@ -2945,7 +2905,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -3248,14 +3207,12 @@ exports.init = function (cli) {
   .description($('Set linux-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "linuxConfiguration" : {\r\n    "disablePasswordAuthentication":null,\r\n    "sshConfiguration":{\r\n      "publicKeys":[\r\n        {\r\n          "keyData":"",\r\n          "path":""\r\n        }\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--disable-password-authentication <disablePasswordAuthentication>', $('Set the disable-password-authentication value.'))
   .option('--ssh-configuration <sshConfiguration>', $('Set the ssh-configuration value.'))
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -3428,13 +3385,11 @@ exports.init = function (cli) {
   .description($('Set ssh-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sshConfiguration" : {\r\n    "publicKeys":[\r\n      {\r\n        "keyData":"",\r\n        "path":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--public-keys <publicKeys>', $('Set the public-keys value.'))
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -3581,7 +3536,6 @@ exports.init = function (cli) {
   .description($('Set public-keys in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "publicKeys" : {\r\n    "keyData":"",\r\n    "path":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--key-data <keyData>', $('Set the key-data value.'))
@@ -3589,7 +3543,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -3604,9 +3557,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
     var paramPath = options.path + '/' + 'keyData';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
@@ -3766,7 +3716,6 @@ exports.init = function (cli) {
   .description($('Set secrets in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "secrets" : {\r\n    "sourceVault":{\r\n      "referenceUri":""\r\n    },\r\n    "vaultCertificates":[\r\n      {\r\n        "certificateStore":"",\r\n        "certificateUrl":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--source-vault <sourceVault>', $('Set the source-vault value.'))
@@ -3774,7 +3723,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -3789,9 +3737,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/oSProfile/secrets' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
     var paramPath = options.path + '/' + 'sourceVault';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
@@ -3951,14 +3896,12 @@ exports.init = function (cli) {
   .description($('Set source-vault in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sourceVault" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
   .option('--reference-uri <referenceUri>', $('Set the reference-uri value.'))
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -4106,7 +4049,6 @@ exports.init = function (cli) {
   .description($('Set vault-certificates in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "vaultCertificates" : {\r\n    "certificateStore":"",\r\n    "certificateUrl":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
@@ -4115,7 +4057,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -4130,9 +4071,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
     var paramPath = options.path + '/' + 'certificateStore';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
@@ -4293,7 +4231,6 @@ exports.init = function (cli) {
   .description($('Set windows-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "windowsConfiguration" : {\r\n    "additionalUnattendContents":[\r\n      {\r\n        "componentName":"",\r\n        "content":"",\r\n        "passName":"",\r\n        "settingName":""\r\n      }\r\n    ],\r\n    "enableAutomaticUpdates":null,\r\n    "provisionVMAgent":null,\r\n    "timeZone":"",\r\n    "winRMConfiguration":{\r\n      "listeners":[\r\n        {\r\n          "certificateUrl":"",\r\n          "protocol":""\r\n        }\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--additional-unattend-contents <additionalUnattendContents>', $('Set the additional-unattend-contents value.'))
   .option('--enable-automatic-updates <enableAutomaticUpdates>', $('Set the enable-automatic-updates value.'))
@@ -4303,7 +4240,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -4554,7 +4490,6 @@ exports.init = function (cli) {
   .description($('Set additional-unattend-contents in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "additionalUnattendContents" : {\r\n    "componentName":"",\r\n    "content":"",\r\n    "passName":"",\r\n    "settingName":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--component-name <componentName>', $('Set the component-name value.'))
@@ -4564,7 +4499,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -4579,9 +4513,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
     var paramPath = options.path + '/' + 'componentName';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
@@ -4793,13 +4724,11 @@ exports.init = function (cli) {
   .description($('Set win-rm-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "winRMConfiguration" : {\r\n    "listeners":[\r\n      {\r\n        "certificateUrl":"",\r\n        "protocol":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--listeners <listeners>', $('Set the listeners value.'))
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -4946,7 +4875,6 @@ exports.init = function (cli) {
   .description($('Set listeners in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "listeners" : {\r\n    "certificateUrl":"",\r\n    "protocol":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--certificate-url <certificateUrl>', $('Set the certificate-url value.'))
@@ -4954,7 +4882,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -4969,9 +4896,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
     var paramPath = options.path + '/' + 'certificateUrl';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
@@ -5131,14 +5055,12 @@ exports.init = function (cli) {
   .description($('Set storage-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "storageProfile" : {\r\n    "imageReference":{\r\n      "offer":"",\r\n      "publisher":"",\r\n      "sku":"",\r\n      "version":""\r\n    },\r\n    "oSDisk":{\r\n      "caching":"",\r\n      "createOption":"",\r\n      "name":"",\r\n      "operatingSystemType":"",\r\n      "sourceImage":{\r\n        "uri":""\r\n      },\r\n      "virtualHardDiskContainers":[\r\n        ""\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--image-reference <imageReference>', $('Set the image-reference value.'))
   .option('--os-disk <oSDisk>', $('Set the os-disk value.'))
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -5311,7 +5233,6 @@ exports.init = function (cli) {
   .description($('Set image-reference in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "imageReference" : {\r\n    "offer":"",\r\n    "publisher":"",\r\n    "sku":"",\r\n    "version":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--offer <offer>', $('Set the offer value.'))
   .option('--publisher <publisher>', $('Set the publisher value.'))
@@ -5320,7 +5241,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -5545,7 +5465,6 @@ exports.init = function (cli) {
   .description($('Set os-disk in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "oSDisk" : {\r\n    "caching":"",\r\n    "createOption":"",\r\n    "name":"",\r\n    "operatingSystemType":"",\r\n    "sourceImage":{\r\n      "uri":""\r\n    },\r\n    "virtualHardDiskContainers":[\r\n      ""\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--caching <caching>', $('Set the caching value.'))
   .option('--create-option <createOption>', $('Set the create-option value.'))
@@ -5556,7 +5475,6 @@ exports.init = function (cli) {
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -5833,13 +5751,11 @@ exports.init = function (cli) {
   .description($('Set source-image in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sourceImage" : {\r\n    "uri":""\r\n  }\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--uri <uri>', $('Set the uri value.'))
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -5986,13 +5902,11 @@ exports.init = function (cli) {
   .description($('Set virtual-hard-disk-containers in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "virtualHardDiskContainers" : ""\r\n  ...\r\n}\r\n'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the JSON value to object.'))
   .option('--index <index>', $('Indexer: index.'))
   .execute(function(options, _) {
     cli.output.verbose(options, _);
     cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
     cli.output.verbose(options.parse);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
@@ -6007,9 +5921,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/storageProfile/oSDisk/virtualHardDiskContainers' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
     cli.output.verbose('JSON object (updated):');
