@@ -214,26 +214,13 @@ function Test-VirtualMachineScaleSet
             $instanceListParam += $i.ToString();
         }
 
-        $argList = New-AzureComputeArgumentList -MethodName VirtualMachineScaleSetPowerOffInstances;
-        $argList[0].Value = $rgname;
-        $argList[1].Value = $vmss.Name;
-        $argList[2].Value = $instanceListParam;
-        $args = @()
-        for ($i = 0; $i -lt $argList.Length; $i++)
-        {
-            $args += , $argList[$i].Value;
-        }
-
-        #$vmssResult = Invoke-AzureComputeMethod -MethodName VirtualMachineScaleSetPowerOffInstances -ArgumentList $args;
         $st = Stop-AzureRmVmssInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
         $st = Stop-AzureRmVmssInstancesWithDeallocation -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
         $st = Start-AzureRmVmssInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
         $st = Restart-AzureRmVmssInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
 
         # Remove
-        $instanceListParam = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetVMInstanceIDs;
-        $instanceListParam.InstanceIDs.Add(1);
-        $st = Remove-AzureRmVmssInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
+        $st = Remove-AzureRmVmssInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs 1;
         Assert-ThrowsContains { $st = Remove-AzureRmVmssVM -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -InstanceId 0 } "cannot be deleted because it is the last remaining";
         $st = Remove-AzureRmVmss -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
     }
