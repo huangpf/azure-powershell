@@ -286,10 +286,7 @@ exports.init = function (cli) {
   .option('--location <location>', $('Set the location value.'))
   .option('--tags <tags>', $('Set the tags value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -424,8 +421,7 @@ exports.init = function (cli) {
   .option('--location', $('Remove the location value.'))
   .option('--tags', $('Remove the tags value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -512,11 +508,7 @@ exports.init = function (cli) {
   .option('--location <location>', $('Add the location value.'))
   .option('--tags <tags>', $('Add the tags value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -648,10 +640,7 @@ exports.init = function (cli) {
   .option('--name <name>', $('Set the name value.'))
   .option('--tier <tier>', $('Set the tier value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -720,8 +709,7 @@ exports.init = function (cli) {
   .option('--name', $('Remove the name value.'))
   .option('--tier', $('Remove the tier value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -778,11 +766,7 @@ exports.init = function (cli) {
   .option('--name <name>', $('Add the name value.'))
   .option('--tier <tier>', $('Add the tier value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -852,10 +836,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--mode <mode>', $('Set the mode value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -902,8 +883,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--mode', $('Remove the mode value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -950,11 +930,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--mode <mode>', $('Add the mode value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -1007,10 +983,7 @@ exports.init = function (cli) {
   .option('--os-profile <oSProfile>', $('Set the os-profile value.'))
   .option('--storage-profile <storageProfile>', $('Set the storage-profile value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -1090,8 +1063,7 @@ exports.init = function (cli) {
   .option('--os-profile', $('Remove the os-profile value.'))
   .option('--storage-profile', $('Remove the storage-profile value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -1153,11 +1125,7 @@ exports.init = function (cli) {
   .option('--os-profile <oSProfile>', $('Add the os-profile value.'))
   .option('--storage-profile <storageProfile>', $('Add the storage-profile value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -1237,10 +1205,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--extensions <extensions>', $('Set the extensions value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -1287,8 +1252,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--extensions', $('Remove the extensions value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -1335,11 +1299,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--extensions <extensions>', $('Add the extensions value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -1402,10 +1362,7 @@ exports.init = function (cli) {
   .option('--location <location>', $('Set the location value.'))
   .option('--tags <tags>', $('Set the tags value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -1577,8 +1534,7 @@ exports.init = function (cli) {
   .option('--location', $('Remove the location value.'))
   .option('--tags', $('Remove the tags value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -1680,11 +1636,7 @@ exports.init = function (cli) {
   .option('--location <location>', $('Add the location value.'))
   .option('--tags <tags>', $('Add the tags value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -1844,10 +1796,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--network-interface-configurations <networkInterfaceConfigurations>', $('Set the network-interface-configurations value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -1894,8 +1843,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--network-interface-configurations', $('Remove the network-interface-configurations value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -1942,11 +1890,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--network-interface-configurations <networkInterfaceConfigurations>', $('Add the network-interface-configurations value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2000,10 +1944,7 @@ exports.init = function (cli) {
   .option('--name <name>', $('Set the name value.'))
   .option('--primary <primary>', $('Set the primary value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2076,8 +2017,7 @@ exports.init = function (cli) {
   .option('--name', $('Remove the name value.'))
   .option('--primary', $('Remove the primary value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -2134,11 +2074,7 @@ exports.init = function (cli) {
   .option('--name <name>', $('Add the name value.'))
   .option('--primary <primary>', $('Add the primary value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2214,10 +2150,7 @@ exports.init = function (cli) {
   .option('--name <name>', $('Set the name value.'))
   .option('--subnet <subnet>', $('Set the subnet value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2302,8 +2235,7 @@ exports.init = function (cli) {
   .option('--name', $('Remove the name value.'))
   .option('--subnet', $('Remove the subnet value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -2365,11 +2297,7 @@ exports.init = function (cli) {
   .option('--name <name>', $('Add the name value.'))
   .option('--subnet <subnet>', $('Add the subnet value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2453,10 +2381,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--reference-uri <referenceUri>', $('Set the reference-uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2509,8 +2434,7 @@ exports.init = function (cli) {
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
   .option('--reference-uri', $('Remove the reference-uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -2557,11 +2481,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--reference-uri <referenceUri>', $('Add the reference-uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2615,10 +2535,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--reference-uri <referenceUri>', $('Set the reference-uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2671,8 +2588,7 @@ exports.init = function (cli) {
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
   .option('--reference-uri', $('Remove the reference-uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -2719,11 +2635,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--reference-uri <referenceUri>', $('Add the reference-uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2775,10 +2687,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--reference-uri <referenceUri>', $('Set the reference-uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2827,8 +2736,7 @@ exports.init = function (cli) {
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
   .option('--reference-uri', $('Remove the reference-uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -2875,11 +2783,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--reference-uri <referenceUri>', $('Add the reference-uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2935,10 +2839,7 @@ exports.init = function (cli) {
   .option('--secrets <secrets>', $('Set the secrets value.'))
   .option('--windows-configuration <windowsConfiguration>', $('Set the windows-configuration value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3051,8 +2952,7 @@ exports.init = function (cli) {
   .option('--secrets', $('Remove the secrets value.'))
   .option('--windows-configuration', $('Remove the windows-configuration value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -3129,11 +3029,7 @@ exports.init = function (cli) {
   .option('--secrets <secrets>', $('Add the secrets value.'))
   .option('--windows-configuration <windowsConfiguration>', $('Add the windows-configuration value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3244,10 +3140,7 @@ exports.init = function (cli) {
   .option('--disable-password-authentication <disablePasswordAuthentication>', $('Set the disable-password-authentication value.'))
   .option('--ssh-configuration <sshConfiguration>', $('Set the ssh-configuration value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3305,8 +3198,7 @@ exports.init = function (cli) {
   .option('--disable-password-authentication', $('Remove the disable-password-authentication value.'))
   .option('--ssh-configuration', $('Remove the ssh-configuration value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -3358,11 +3250,7 @@ exports.init = function (cli) {
   .option('--disable-password-authentication <disablePasswordAuthentication>', $('Add the disable-password-authentication value.'))
   .option('--ssh-configuration <sshConfiguration>', $('Add the ssh-configuration value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3422,10 +3310,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--public-keys <publicKeys>', $('Set the public-keys value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3472,8 +3357,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--public-keys', $('Remove the public-keys value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -3520,11 +3404,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--public-keys <publicKeys>', $('Add the public-keys value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3577,10 +3457,7 @@ exports.init = function (cli) {
   .option('--key-data <keyData>', $('Set the key-data value.'))
   .option('--path <path>', $('Set the path value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3642,8 +3519,7 @@ exports.init = function (cli) {
   .option('--key-data', $('Remove the key-data value.'))
   .option('--path', $('Remove the path value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -3695,11 +3571,7 @@ exports.init = function (cli) {
   .option('--key-data <keyData>', $('Add the key-data value.'))
   .option('--path <path>', $('Add the path value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3762,10 +3634,7 @@ exports.init = function (cli) {
   .option('--source-vault <sourceVault>', $('Set the source-vault value.'))
   .option('--vault-certificates <vaultCertificates>', $('Set the vault-certificates value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3827,8 +3696,7 @@ exports.init = function (cli) {
   .option('--source-vault', $('Remove the source-vault value.'))
   .option('--vault-certificates', $('Remove the vault-certificates value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -3880,11 +3748,7 @@ exports.init = function (cli) {
   .option('--source-vault <sourceVault>', $('Add the source-vault value.'))
   .option('--vault-certificates <vaultCertificates>', $('Add the vault-certificates value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3945,10 +3809,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--reference-uri <referenceUri>', $('Set the reference-uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3996,8 +3857,7 @@ exports.init = function (cli) {
   .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
   .option('--reference-uri', $('Remove the reference-uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -4044,11 +3904,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--reference-uri <referenceUri>', $('Add the reference-uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4102,10 +3958,7 @@ exports.init = function (cli) {
   .option('--certificate-store <certificateStore>', $('Set the certificate-store value.'))
   .option('--certificate-url <certificateUrl>', $('Set the certificate-url value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4168,8 +4021,7 @@ exports.init = function (cli) {
   .option('--certificate-store', $('Remove the certificate-store value.'))
   .option('--certificate-url', $('Remove the certificate-url value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -4221,11 +4073,7 @@ exports.init = function (cli) {
   .option('--certificate-store <certificateStore>', $('Add the certificate-store value.'))
   .option('--certificate-url <certificateUrl>', $('Add the certificate-url value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4289,10 +4137,7 @@ exports.init = function (cli) {
   .option('--time-zone <timeZone>', $('Set the time-zone value.'))
   .option('--win-rm-configuration <winRMConfiguration>', $('Set the win-rm-configuration value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4383,8 +4228,7 @@ exports.init = function (cli) {
   .option('--time-zone', $('Remove the time-zone value.'))
   .option('--win-rm-configuration', $('Remove the win-rm-configuration value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -4451,11 +4295,7 @@ exports.init = function (cli) {
   .option('--time-zone <timeZone>', $('Add the time-zone value.'))
   .option('--win-rm-configuration <winRMConfiguration>', $('Add the win-rm-configuration value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4550,10 +4390,7 @@ exports.init = function (cli) {
   .option('--pass-name <passName>', $('Set the pass-name value.'))
   .option('--setting-name <settingName>', $('Set the setting-name value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4637,8 +4474,7 @@ exports.init = function (cli) {
   .option('--pass-name', $('Remove the pass-name value.'))
   .option('--setting-name', $('Remove the setting-name value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -4700,11 +4536,7 @@ exports.init = function (cli) {
   .option('--pass-name <passName>', $('Add the pass-name value.'))
   .option('--setting-name <settingName>', $('Add the setting-name value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4784,10 +4616,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--listeners <listeners>', $('Set the listeners value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4834,8 +4663,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--listeners', $('Remove the listeners value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -4882,11 +4710,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--listeners <listeners>', $('Add the listeners value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4939,10 +4763,7 @@ exports.init = function (cli) {
   .option('--certificate-url <certificateUrl>', $('Set the certificate-url value.'))
   .option('--protocol <protocol>', $('Set the protocol value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5004,8 +4825,7 @@ exports.init = function (cli) {
   .option('--certificate-url', $('Remove the certificate-url value.'))
   .option('--protocol', $('Remove the protocol value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -5057,11 +4877,7 @@ exports.init = function (cli) {
   .option('--certificate-url <certificateUrl>', $('Add the certificate-url value.'))
   .option('--protocol <protocol>', $('Add the protocol value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5122,10 +4938,7 @@ exports.init = function (cli) {
   .option('--image-reference <imageReference>', $('Set the image-reference value.'))
   .option('--os-disk <oSDisk>', $('Set the os-disk value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5183,8 +4996,7 @@ exports.init = function (cli) {
   .option('--image-reference', $('Remove the image-reference value.'))
   .option('--os-disk', $('Remove the os-disk value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -5236,11 +5048,7 @@ exports.init = function (cli) {
   .option('--image-reference <imageReference>', $('Add the image-reference value.'))
   .option('--os-disk <oSDisk>', $('Add the os-disk value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5303,10 +5111,7 @@ exports.init = function (cli) {
   .option('--sku <sku>', $('Set the sku value.'))
   .option('--version <version>', $('Set the version value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5386,8 +5191,7 @@ exports.init = function (cli) {
   .option('--sku', $('Remove the sku value.'))
   .option('--version', $('Remove the version value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -5449,11 +5253,7 @@ exports.init = function (cli) {
   .option('--sku <sku>', $('Add the sku value.'))
   .option('--version <version>', $('Add the version value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5538,10 +5338,7 @@ exports.init = function (cli) {
   .option('--source-image <sourceImage>', $('Set the source-image value.'))
   .option('--virtual-hard-disk-containers <virtualHardDiskContainers>', $('Set the virtual-hard-disk-containers value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5643,8 +5440,7 @@ exports.init = function (cli) {
   .option('--source-image', $('Remove the source-image value.'))
   .option('--virtual-hard-disk-containers', $('Remove the virtual-hard-disk-containers value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -5716,11 +5512,7 @@ exports.init = function (cli) {
   .option('--source-image <sourceImage>', $('Add the source-image value.'))
   .option('--virtual-hard-disk-containers <virtualHardDiskContainers>', $('Add the virtual-hard-disk-containers value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5820,10 +5612,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--uri <uri>', $('Set the uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5870,8 +5659,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--uri', $('Remove the uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -5918,11 +5706,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--uri <uri>', $('Add the uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5973,10 +5757,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The input string value for the indexed item.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -6016,8 +5797,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
+    cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -6027,6 +5807,7 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/virtualMachineProfile/storageProfile/oSDisk/virtualHardDiskContainers' + (options.index ? ('/' + options.index) : '');
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -6052,11 +5833,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .execute(function(options, _) {
-    cli.output.verbose(options, _);
-    cli.output.verbose(options.parameterFile);
-    cli.output.verbose(options.key);
-    cli.output.verbose(options.value);
-    cli.output.verbose(options.parse);
+    cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
