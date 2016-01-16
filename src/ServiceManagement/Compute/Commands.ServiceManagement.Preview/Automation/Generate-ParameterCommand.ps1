@@ -144,8 +144,6 @@ function Generate-CliParameterCommandImpl
         $code += "  .description(`$('Set ${cli_method_option_name} in ${params_category_name} string or files, e.g. \r\n${sampleJsonText}'))" + $NEW_LINE;
         $code += "  .usage('[options]')" + $NEW_LINE;
         $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
-        #$code += "  .option('--value <value>', `$('The JSON value.'))" + $NEW_LINE;
-        $code += "  .option('--parse', `$('Parse the JSON value to object.'))" + $NEW_LINE;
 
         # 1.1 For List Item
         if ($indexerParamList.Count -gt 0)
@@ -155,7 +153,13 @@ function Generate-CliParameterCommandImpl
                 $indexerOptionName = Get-CliOptionName $indexerParamName;
                 $code += "  .option('--$indexerOptionName <$indexerOptionName>', `$('Indexer: $indexerOptionName.'))" + $NEW_LINE;
             }
+            
+            if ($indexerParamList -contains 'index')
+            {
+                $code += "  .option('--value <value>', `$('The input string value for the indexed item.'))" + $NEW_LINE;
+            }
         }
+        $code += "  .option('--parse', `$('Parse the input value string to a JSON object.'))" + $NEW_LINE;
 
         # 1.2 For Each Property, Set the Option
         foreach ($propertyItem in $TreeNode.Properties)
@@ -169,7 +173,7 @@ function Generate-CliParameterCommandImpl
         $code += "  .execute(function(options, _) {" + $NEW_LINE;
         $code += "    cli.output.verbose(options, _);" + $NEW_LINE;
         $code += "    cli.output.verbose(options.parameterFile);" + $NEW_LINE;
-        #$code += "    cli.output.verbose(options.value);" + $NEW_LINE;
+        $code += "    cli.output.verbose(options.value);" + $NEW_LINE;
         $code += "    cli.output.verbose(options.parse);" + $NEW_LINE;
         $code += "    if (options.parse && options.value) {" + $NEW_LINE;
         $code += "      options.value = JSON.parse(options.value);" + $NEW_LINE;
@@ -189,9 +193,9 @@ function Generate-CliParameterCommandImpl
         # 1.3 For List Item
         if ($TreeNode.IsListItem)
         {
-            #$code += "    if (options.value) {" + $NEW_LINE;
-            #$code += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $NEW_LINE;
-            #$code += "    }" + $NEW_LINE;
+            $code += "    if (options.value) {" + $NEW_LINE;
+            $code += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path, value: options.value}]);" + $NEW_LINE;
+            $code += "    }" + $NEW_LINE;
         }
         
         # 1.4 For Each Property, Apply the Change if Any
@@ -339,7 +343,7 @@ function Generate-CliParameterCommandImpl
     $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
     $code += "  .option('--key <key>', `$('The JSON key.'))" + $NEW_LINE;
     $code += "  .option('--value <value>', `$('The JSON value.'))" + $NEW_LINE;
-    $code += "  .option('--parse', `$('Parse the JSON value to object.'))" + $NEW_LINE;
+    $code += "  .option('--parse', `$('Parse the input value string to a JSON object.'))" + $NEW_LINE;
 
     # For Each Property, Add the Option
     foreach ($propertyItem in $TreeNode.Properties)
