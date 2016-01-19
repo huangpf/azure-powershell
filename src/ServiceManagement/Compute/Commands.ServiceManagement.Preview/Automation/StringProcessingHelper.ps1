@@ -231,3 +231,34 @@ function Get-CliShorthandName
     return $outName;
 }
 
+function Get-SplitTextLines
+{
+    # Sample: 'A Very Long Text.' => @('A Very ', 'Long Text.');
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$text,
+        
+        [Parameter(Mandatory = $false)]
+        [int]$lineWidth
+    )
+
+    if ($text -eq '' -or $text -eq $null -or $text.Length -le $lineWidth)
+    {
+        return $text;
+    }
+
+    $lines = @();
+
+    while ($text.Length -gt $lineWidth)
+    {
+        $lines += $text.Substring(0, $lineWidth);
+        $text = $text.Substring($lineWidth);
+    }
+    
+    if ($text -ne '' -and $text -ne $null)
+    {
+        $lines += $text;
+    }
+
+    return $lines;
+}

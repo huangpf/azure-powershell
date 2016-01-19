@@ -37,6 +37,14 @@ $SEC_LINE = "---------------------------------------------";
 . "$PSScriptRoot\StringProcessingHelper.ps1";
 . "$PSScriptRoot\ParameterTypeHelper.ps1";
 
+$CLI_HELP_MSG = "         There are two sets of commands:\r\n" `
+              + "           1) function commands that are used to manage Azure resources in the cloud, and \r\n" `
+              + "           2) parameter commands that generate & edit input files for the other set of commands.\r\n" `
+              + "         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n" `
+              + "         virtual machine scale set, whereas \'vmss create-or-update-parameters generate/set/remove/add\' commands \r\n" `
+              + "         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n" `
+              + "         file as for the VM scale set configuration, and creates it online.";
+
 function Generate-CliFunctionCommandImpl
 {
     param(
@@ -135,7 +143,14 @@ function Generate-CliFunctionCommandImpl
         $invoke_category_code = ".category('invoke').description('${invoke_category_desc}')";
     }
     
-    $code += "  var $cliCategoryVarName = cli${invoke_category_code}.category('${cliCategoryName}').description(`$('Commands to manage your $cliOperationDescription.'));" + $NEW_LINE;
+    $code += "  var $cliCategoryVarName = cli${invoke_category_code}.category('${cliCategoryName}')" + $NEW_LINE;
+
+    # 3.2.7 Description Text
+    $desc_text = "Commands to manage your ${cliOperationDescription}.\r\n${CLI_HELP_MSG}";
+    $desc_text_lines = Get-SplitTextLines $desc_text 80;
+    $code += "  .description(`$('";
+    $code += [string]::Join("'" + $NEW_LINE + "  + '", $desc_text_lines);
+    $code += "  '));" + $NEW_LINE;
 
     # Set Required Parameters
     $requireParams = @();
@@ -177,7 +192,7 @@ function Generate-CliFunctionCommandImpl
 
 
     $code += "  ${cliCategoryVarName}.command('${cliMethodOption}${requireParamsString}')" + $NEW_LINE;
-    $code += "  .description(`$('${cliMethodOption} method to manage your $cliOperationDescription.'))" + $NEW_LINE;
+    $code += "  .description(`$('Commands to manage your $cliOperationDescription by the ${cliMethodOption} method.'))" + $NEW_LINE;
     $code += "  .usage('[options]${usageParamsString}')" + $NEW_LINE;
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {
