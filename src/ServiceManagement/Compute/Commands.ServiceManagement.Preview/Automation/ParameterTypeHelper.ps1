@@ -78,3 +78,95 @@ function Contains-OnlyStringList
         return $false;
     }
 }
+
+function Contains-OnlySimpleFields
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        [System.Type]$parameterType,
+
+        [Parameter(Mandatory = $True)]
+        [System.String]$namespace
+    )
+
+    if ($parameterType -eq $null)
+    {
+        return $false;
+    }
+
+    if ($parameterType.BaseType.IsEquivalentTo([System.Enum]))
+    {
+        return $false;
+    }
+
+    $result = $true;
+
+    foreach ($propItem in $parameterType.GetProperties())
+    {
+        if ($propItem.PropertyType.Namespace -like "*$namespace*")
+        {
+            $result = $false;
+        }
+
+        if ($propItem.PropertyType.Namespace -like "System.Collections.Generic")
+        {
+            if ($propItem.PropertyType -like "*$namespace*")
+            {
+                $result = $false;
+            }
+        }
+    }
+
+    return $result;
+}
+
+function Get-SpecificSubNode
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        $TreeNode,
+        [Parameter(Mandatory = $True)]
+        [System.String] $typeName
+    )
+
+    foreach ($subNode in $TreeNode.SubNodes)
+    {
+         if ($subNode.Name -eq $typeName)
+         {
+              return $subNode;
+         }
+    }
+
+    return $null;
+}
+
+# This function returns the first descendant without a single comlex property.
+# The returned node contains either more than one properties or single simple property.
+function Get-NonSingleComplexDescendant
+{
+     param(
+        [Parameter(Mandatory = $True)]
+        $TreeNode,
+        [Parameter(Mandatory = $True)]
+        $chainArray
+     )
+
+     if ($TreeNode.OnlySimple)
+     {
+        return @{Node = $TreeNode;Chain = $chainArray};
+     }
+
+     if ($TreeNode.Properties.Count -eq 1)
+     {
+          $subNode = Get-SpecificSubNode $TreeNode $TreeNode.Properties[0]["Name"]
+
+          $chainArray += $TreeNode.Name;
+          $result = Get-NonSingleComplexDescendant $subNode $chainArray;
+
+          return @{Node = $result["Node"];Chain = $result["Chain"]};
+     }
+     else
+     {
+         return @{Node = $TreeNode;Chain = $chainArray};
+     }
+}

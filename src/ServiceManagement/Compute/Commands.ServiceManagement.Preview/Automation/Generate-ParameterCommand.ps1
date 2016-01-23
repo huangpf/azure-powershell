@@ -31,7 +31,10 @@ param(
     [string]$ModelNameSpace = $null,
 
     [Parameter(Mandatory = $false)]
-    [string]$MethodName = $null
+    [string]$MethodName = $null,
+
+    [Parameter(Mandatory = $false)]
+    [string]$OutputFolder = $null
 )
 
 $NEW_LINE = "`r`n";
@@ -409,6 +412,253 @@ function Generate-CliParameterCommandImpl
 
     return $code;
 }
+
+function Add-HashTable
+{
+    param(
+        [Parameter(Mandatory = $true)]
+        $hashTable,
+        [Parameter(Mandatory = $true)]
+        $newKey,
+        [Parameter(Mandatory = $true)]
+        $newValue
+    )
+
+
+    if ($hashTable[$newKey] -eq $null)
+    {
+        $hashTable += @{$newKey =$newValue};
+    }
+    return $hashTable;
+}
+
+function Merge-HashTables
+{
+    param(
+        [Parameter(Mandatory = $true)]
+        $hashTable1,
+        [Parameter(Mandatory = $true)]
+        $hashTable2
+    )
+
+    foreach ($key in $hashTable2.Keys)
+    {
+        $hashTable1 = Add-HashTable $hashTable1 $key $hashTable2.$key;
+    }
+    return $hashTable1;
+}
+
+function Generate-PowershellParameterCommandImpl
+{
+    param(
+        [Parameter(Mandatory = $true)]
+        $TreeNode,
+
+        [Parameter(Mandatory = $false)]
+        [string] $fileOutputFolder = $null
+    )
+
+    if ($TreeNode -eq $null)
+    {
+        return $null;
+    }
+
+    $paramSuffix = $OperationName + $TreeNode.Name;
+    $category_name = Get-PowershellCategoryName $OperationName;
+
+    # 0. Construct Path to Node
+    $pathToTreeNode = @();
+    $pathFromRoot =@();
+
+    $parentNode = $TreeNode;
+    $indexerParamList = @();
+    $type_binding = @{};
+
+    while ($parentNode -ne $null)
+    {
+        if ($type_binding[$parentNode.Name] -eq $null)
+        {
+            if ($parentNode.IsListItem)
+            {
+                $binding_type = "Array:"+$parentNode.TypeInfo;
+            }
+            else
+            {
+                $binding_type = $parentNode.TypeInfo;
+            }
+
+            $type_binding.Add($parentNode.Name, $binding_type);
+        }
+
+        [string]$nodeName = $parentNode.Name.Trim();
+
+        if ($parentNode.Parent -ne $null)
+        {
+            $pathToTreeNode += $nodeName;
+            $rootNode = $parentNode.Parent;
+        }
+
+        $parentNode = $parentNode.Parent;
+    }
+
+    if (($rootNode.Name -ne $OperationName) -and ($TreeNode.Name -ne $OperationName))
+    {
+         Write-Verbose("No need for parameter cmdlets");
+         return;
+    }
+
+    for ($i = $pathToTreeNode.Count - 1; $i -ge 0; $i--)
+    {
+        $pathFromRoot += $pathToTreeNode[$i];
+    }
+
+    $parameters = @();
+
+    if ($ModelNameSpace -like "*.WindowsAzure.*")
+    {
+        # Use Invoke Category for RDFE APIs
+        $invoke_category_desc = "Commands to invoke service management operations.";
+        $invoke_category_code = ".category('invoke').description('${invoke_category_desc}')";
+    }
+
+    if ($TreeNode.Properties.Count -gt 0 -or ($TreeNode.IsListItem))
+    {
+        # 1. Parameter Set Command
+        $params_category_var_name = $params_category_var_name_prefix + $MethodName + $paramSuffix + "0";
+        $cat_params_category_var_name = 'cat' + $params_category_var_name;
+        $params_generate_category_name = 'set';
+        $params_generate_category_var_name = $params_generate_category_name + $params_category_var_name;
+
+        # 1.1 For List Item
+        if ($indexerParamList.Count -gt 0)
+        {
+            foreach ($indexerParamName in $indexerParamList)
+            {
+                $indexerOptionName = Get-CliOptionName $indexerParamName;
+            }
+        }
+
+        foreach ($propertyItem in $TreeNode.Properties)
+        {
+            if (-not ($propertyItem["Type"] -like "*$ModelNameSpace*"))
+            {
+                $property_type = Get-ProperTypeName $propertyItem["Type"];
+                $param = @{Name = $propertyItem["Name"]; Type = $property_type; OriginalName = $propertyItem["Name"]; Chain = $pathFromRoot};
+                $parameters += $param;
+            }
+            else
+            {
+               Write-Verbose("Skip this property: " + $propertyItem["Name"]);
+            }
+        }
+
+        foreach ($subNode in $TreeNode.SubNodes)
+        {
+            $nonSingleSubNodeResult = Get-NonSingleComplexDescendant $subNode $pathFromRoot;
+            $nonSingleSubNode = $nonSingleSubNodeResult["Node"];
+
+            if (-not $nonSingleSubNode.IsListItem)
+            {
+                foreach ($propertyItem in $nonSingleSubNode.Properties)
+                {
+                    $property_type = Get-ProperTypeName $propertyItem["Type"];
+                    $chain = $nonSingleSubNodeResult["Chain"];
+                    $chain += $nonSingleSubNode.Name;
+                    $type_binding = Add-HashTable $type_binding $nonSingleSubNode.Name $nonSingleSubNode.TypeInfo;
+
+                    if ($nonSingleSubNode.OnlySimple)
+                    {
+                        $param = @{Name = $nonSingleSubNode.Name + $propertyItem["Name"]; Type = $property_type; OriginalName = $propertyItem["Name"]; Chain = $chain};
+                        $parameters += $param;
+                    }
+                    else
+                    {
+                        if ($propertyItem["Type"] -like "*$ModelNameSpace*")
+                        {
+
+                            $subsub = Get-SpecificSubNode $nonSingleSubNode $propertyItem["Name"];
+                            $nonSingleComlexResult = Get-NonSingleComplexDescendant $subsub $chain;
+                            $realsubsub = $nonSingleComlexResult["Node"];
+                            $chain = $nonSingleComlexResult["Chain"];
+
+                            if ($realsubsub.Properties.Count -eq 1)
+                            {
+                                $parameter = $realsubsub.Properties[0];
+                                $property_type = $parameter["Type"];
+
+                                if ($realsubsub.IsListItem)
+                                {
+                                    $paramterType = "Array:" + $property_type;
+                                    $bindingType =  "Array:" + $realsubsub.TypeInfo;
+                                }
+                                else
+                                {
+                                    $paramterType = $property_type;
+                                    $bindingType =  $realsubsub.TypeInfo;
+                                }
+
+                                $chain += $realsubsub.Name;
+                                $type_binding = Add-HashTable $type_binding $realsubsub.Name $bindingType;
+
+                                $param = @{Name = $parameter["Name"]; Type = $paramterType; OriginalName = $parameter["Name"]; Chain = $chain};
+                                $parameters += $param;
+                            }
+                            else
+                            {
+                                if ($realsubsub.IsListItem)
+                                {
+                                    $property_type = Get-ProperTypeName $realsubsub.TypeInfo;
+                                    $paramterType = "Array:" + $property_type;
+                                }
+                                else
+                                {
+                                    $property_type = Get-ProperTypeName $realsubsub.TypeInfo;
+                                    $paramterType = $property_type;
+                                }
+
+                                $param = @{Name = $realsubsub.Name; Type = $paramterType; OriginalName = $realsubsub.Name; Chain = $chain};
+                                $parameters += $param;
+                                $binding = Generate-PowershellParameterCommandImpl $realsubsub $fileOutputFolder;
+                                $type_binding = Merge-HashTables $type_binding $binding;
+                            }
+                        }
+                        else
+                        {
+                            $param = @{Name = $propertyItem["Name"]; Type = $property_type; OriginalName = $propertyItem["Name"]; Chain = $chain};
+                            $parameters += $param;
+                        }
+                    }
+                }
+            }
+            elseif ($nonSingleSubNode.Properties.Count -eq 1)
+            {
+                $onlyProperty = $nonSingleSubNode.Properties[0];
+                $chain = $nonSingleSubNodeResult["Chain"];
+                $chain += $nonSingleSubNode.Name;
+                $type_info = "Array:" + $nonSingleSubNode.TypeInfo;
+                $type_binding = Add-HashTable $type_binding $nonSingleSubNode.Name $type_info;
+                $property_type = Get-ProperTypeName $onlyProperty["Type"];
+                $param = @{Name = $nonSingleSubNode.Name + $onlyProperty["Name"]; Type = "Array:" + $property_type; OriginalName = $onlyProperty["Name"]; Chain = $chain};
+                $parameters += $param;
+            }
+            else
+            {
+                $chain = $nonSingleSubNodeResult["Chain"];
+                $property_type = Get-ProperTypeName $nonSingleSubNode.TypeInfo;
+                $param = @{Name = $nonSingleSubNode.Name; Type = "Array:" + $property_type; OriginalName = $nonSingleSubNode.Name; Chain = $chain};
+                $parameters += $param;
+                $binding = Generate-PowershellParameterCommandImpl $nonSingleSubNode $fileOutputFolder;
+                $type_binding = Merge-HashTables $type_binding $binding;
+            }
+        }
+
+        (. $PSScriptRoot\Generate-PowershellParameterCmdlet.ps1 -OutputFolder $OutputFolder -TreeNode $TreeNode -Parameters $parameters -ModelNameSpace $ModelNameSpace -ObjectName $OperationName -TypeBinding $type_binding);
+    }
+
+    return $type_binding;
+}
+
+$ignore_this_output = Generate-PowershellParameterCommandImpl $CmdletTreeNode $OutputFolder;
 
 if ($ToolType -eq 'CLI')
 {
