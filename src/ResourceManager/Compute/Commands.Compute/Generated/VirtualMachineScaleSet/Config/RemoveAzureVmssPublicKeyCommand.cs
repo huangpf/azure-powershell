@@ -21,6 +21,7 @@
 
 using Microsoft.Azure.Management.Compute.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -52,14 +53,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         protected override void ProcessRecord()
         {
-
             // VirtualMachineProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
             {
                 WriteObject(this.VirtualMachineScaleSet);
                 return;
             }
-
 
             // OSProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile == null)
@@ -68,14 +67,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 return;
             }
 
-
             // LinuxConfiguration
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.LinuxConfiguration == null)
             {
                 WriteObject(this.VirtualMachineScaleSet);
                 return;
             }
-
 
             // SshConfiguration
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.LinuxConfiguration.SshConfiguration == null)
@@ -84,14 +81,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 return;
             }
 
-
             // PublicKeys
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.LinuxConfiguration.SshConfiguration.PublicKeys == null)
             {
                 WriteObject(this.VirtualMachineScaleSet);
                 return;
             }
-
             var vPublicKeys = this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.LinuxConfiguration.SshConfiguration.PublicKeys.First
                 (e =>
                     (this.KeyData == null || e.KeyData == this.KeyData)

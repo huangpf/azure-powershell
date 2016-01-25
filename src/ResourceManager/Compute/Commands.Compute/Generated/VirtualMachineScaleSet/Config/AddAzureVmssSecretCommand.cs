@@ -21,6 +21,7 @@
 
 using Microsoft.Azure.Management.Compute.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -52,13 +53,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         protected override void ProcessRecord()
         {
-
             // VirtualMachineProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
             {
                 this.VirtualMachineScaleSet.VirtualMachineProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile();
             }
-
 
             // OSProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile == null)
@@ -66,13 +65,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSProfile();
             }
 
-
             // Secrets
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.Secrets == null)
             {
                 this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.Secrets = new List<Microsoft.Azure.Management.Compute.Models.VaultSecretGroup>();
             }
-
 
             var vSecrets = new Microsoft.Azure.Management.Compute.Models.VaultSecretGroup();
 

@@ -21,6 +21,7 @@
 
 using Microsoft.Azure.Management.Compute.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -52,13 +53,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         protected override void ProcessRecord()
         {
-
             // VirtualMachineProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
             {
                 this.VirtualMachineScaleSet.VirtualMachineProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile();
             }
-
 
             // OSProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile == null)
@@ -66,13 +65,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSProfile();
             }
 
-
             // LinuxConfiguration
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.LinuxConfiguration == null)
             {
                 this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.LinuxConfiguration = new Microsoft.Azure.Management.Compute.Models.LinuxConfiguration();
             }
-
 
             // SshConfiguration
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.LinuxConfiguration.SshConfiguration == null)
@@ -80,13 +77,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.LinuxConfiguration.SshConfiguration = new Microsoft.Azure.Management.Compute.Models.SshConfiguration();
             }
 
-
             // PublicKeys
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.LinuxConfiguration.SshConfiguration.PublicKeys == null)
             {
                 this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.LinuxConfiguration.SshConfiguration.PublicKeys = new List<Microsoft.Azure.Management.Compute.Models.SshPublicKey>();
             }
-
 
             var vPublicKeys = new Microsoft.Azure.Management.Compute.Models.SshPublicKey();
 

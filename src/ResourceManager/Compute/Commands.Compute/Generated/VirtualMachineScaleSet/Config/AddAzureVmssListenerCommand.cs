@@ -21,6 +21,7 @@
 
 using Microsoft.Azure.Management.Compute.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -52,13 +53,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         protected override void ProcessRecord()
         {
-
             // VirtualMachineProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
             {
                 this.VirtualMachineScaleSet.VirtualMachineProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile();
             }
-
 
             // OSProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile == null)
@@ -66,13 +65,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSProfile();
             }
 
-
             // WindowsConfiguration
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.WindowsConfiguration == null)
             {
                 this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.WindowsConfiguration = new Microsoft.Azure.Management.Compute.Models.WindowsConfiguration();
             }
-
 
             // WinRMConfiguration
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.WindowsConfiguration.WinRMConfiguration == null)
@@ -80,13 +77,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.WindowsConfiguration.WinRMConfiguration = new Microsoft.Azure.Management.Compute.Models.WinRMConfiguration();
             }
 
-
             // Listeners
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.WindowsConfiguration.WinRMConfiguration.Listeners == null)
             {
                 this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.WindowsConfiguration.WinRMConfiguration.Listeners = new List<Microsoft.Azure.Management.Compute.Models.WinRMListener>();
             }
-
 
             var vListeners = new Microsoft.Azure.Management.Compute.Models.WinRMListener();
 

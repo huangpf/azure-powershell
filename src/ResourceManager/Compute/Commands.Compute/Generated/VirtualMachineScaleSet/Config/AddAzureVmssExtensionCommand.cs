@@ -21,6 +21,7 @@
 
 using Microsoft.Azure.Management.Compute.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -108,17 +109,15 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Mandatory = false,
             Position = 12,
             ValueFromPipelineByPropertyName = true)]
-        public IDictionary<string,string> Tags { get; set; }
+        public Hashtable Tags { get; set; }
 
         protected override void ProcessRecord()
         {
-
             // VirtualMachineProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
             {
                 this.VirtualMachineScaleSet.VirtualMachineProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile();
             }
-
 
             // ExtensionProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile == null)
@@ -126,13 +125,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtensionProfile();
             }
 
-
             // Extensions
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile.Extensions == null)
             {
                 this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile.Extensions = new List<Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtension>();
             }
-
 
             var vExtensions = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtension();
 
@@ -147,7 +144,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             vExtensions.Name = this.Name;
             vExtensions.Type = this.Type;
             vExtensions.Location = this.Location;
-            vExtensions.Tags = this.Tags;
+            vExtensions.Tags = (this.Tags == null) ? null : this.Tags.Cast<DictionaryEntry>().ToDictionary(ht => (string)ht.Key, ht => (string)ht.Value);
             this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile.Extensions.Add(vExtensions);
             WriteObject(this.VirtualMachineScaleSet);
         }

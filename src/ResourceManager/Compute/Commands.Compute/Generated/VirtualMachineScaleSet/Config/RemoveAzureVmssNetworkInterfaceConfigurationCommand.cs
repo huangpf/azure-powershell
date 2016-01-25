@@ -21,6 +21,7 @@
 
 using Microsoft.Azure.Management.Compute.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -58,14 +59,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         protected override void ProcessRecord()
         {
-
             // VirtualMachineProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
             {
                 WriteObject(this.VirtualMachineScaleSet);
                 return;
             }
-
 
             // NetworkProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.NetworkProfile == null)
@@ -74,14 +73,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 return;
             }
 
-
             // NetworkInterfaceConfigurations
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.NetworkProfile.NetworkInterfaceConfigurations == null)
             {
                 WriteObject(this.VirtualMachineScaleSet);
                 return;
             }
-
             var vNetworkInterfaceConfigurations = this.VirtualMachineScaleSet.VirtualMachineProfile.NetworkProfile.NetworkInterfaceConfigurations.First
                 (e =>
                     (this.Name == null || e.Name == this.Name)

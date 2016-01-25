@@ -21,6 +21,7 @@
 
 using Microsoft.Azure.Management.Compute.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -65,7 +66,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Mandatory = false,
             Position = 5,
             ValueFromPipelineByPropertyName = true)]
-        public IDictionary<string,string> Tags { get; set; }
+        public Hashtable Tags { get; set; }
 
         [Parameter(
             Mandatory = false,
@@ -131,7 +132,6 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
             // NetworkProfile
             vVirtualMachineProfile.NetworkProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetNetworkProfile();
-
             vSku.Capacity = this.SkuCapacity;
             vSku.Name = this.SkuName;
             vSku.Tier = this.SkuTier;
@@ -148,7 +148,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 Name = this.Name,
                 Type = this.Type,
                 Location = this.Location,
-                Tags = this.Tags,
+                Tags = (this.Tags == null) ? null : this.Tags.Cast<DictionaryEntry>().ToDictionary(ht => (string)ht.Key, ht => (string)ht.Value),
                 Sku = vSku,
                 UpgradePolicy = vUpgradePolicy,
                 VirtualMachineProfile = vVirtualMachineProfile,

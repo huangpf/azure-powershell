@@ -21,6 +21,7 @@
 
 using Microsoft.Azure.Management.Compute.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -100,13 +101,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         protected override void ProcessRecord()
         {
-
             // VirtualMachineProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
             {
                 this.VirtualMachineScaleSet.VirtualMachineProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile();
             }
-
 
             // StorageProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile == null)
@@ -114,13 +113,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetStorageProfile();
             }
 
-
             // ImageReference
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.ImageReference == null)
             {
                 this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.ImageReference = new Microsoft.Azure.Management.Compute.Models.ImageReference();
             }
-
 
             // OSDisk
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OSDisk == null)
@@ -128,13 +125,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OSDisk = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSDisk();
             }
 
-
             // SourceImage
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OSDisk.SourceImage == null)
             {
                 this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OSDisk.SourceImage = new Microsoft.Azure.Management.Compute.Models.VirtualHardDisk();
             }
-
             this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.ImageReference.Offer = this.ImageReferenceOffer;
             this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.ImageReference.Publisher = this.ImageReferencePublisher;
             this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.ImageReference.Sku = this.ImageReferenceSku;
@@ -145,7 +140,6 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OSDisk.OperatingSystemType = this.OperatingSystemType;
             this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OSDisk.SourceImage.Uri = this.Uri;
             this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OSDisk.VirtualHardDiskContainers = this.VirtualHardDiskContainers;
-
 
             WriteObject(this.VirtualMachineScaleSet);
         }

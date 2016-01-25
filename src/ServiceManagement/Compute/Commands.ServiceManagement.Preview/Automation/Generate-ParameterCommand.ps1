@@ -413,7 +413,7 @@ function Generate-CliParameterCommandImpl
     return $code;
 }
 
-function Add-HashTable
+function AddTo-HashTable
 {
     param(
         [Parameter(Mandatory = $true)]
@@ -443,7 +443,7 @@ function Merge-HashTables
 
     foreach ($key in $hashTable2.Keys)
     {
-        $hashTable1 = Add-HashTable $hashTable1 $key $hashTable2.$key;
+        $hashTable1 = AddTo-HashTable $hashTable1 $key $hashTable2.$key;
     }
     return $hashTable1;
 }
@@ -514,30 +514,8 @@ function Generate-PowershellParameterCommandImpl
 
     $parameters = @();
 
-    if ($ModelNameSpace -like "*.WindowsAzure.*")
-    {
-        # Use Invoke Category for RDFE APIs
-        $invoke_category_desc = "Commands to invoke service management operations.";
-        $invoke_category_code = ".category('invoke').description('${invoke_category_desc}')";
-    }
-
     if ($TreeNode.Properties.Count -gt 0 -or ($TreeNode.IsListItem))
     {
-        # 1. Parameter Set Command
-        $params_category_var_name = $params_category_var_name_prefix + $MethodName + $paramSuffix + "0";
-        $cat_params_category_var_name = 'cat' + $params_category_var_name;
-        $params_generate_category_name = 'set';
-        $params_generate_category_var_name = $params_generate_category_name + $params_category_var_name;
-
-        # 1.1 For List Item
-        if ($indexerParamList.Count -gt 0)
-        {
-            foreach ($indexerParamName in $indexerParamList)
-            {
-                $indexerOptionName = Get-CliOptionName $indexerParamName;
-            }
-        }
-
         foreach ($propertyItem in $TreeNode.Properties)
         {
             if (-not ($propertyItem["Type"] -like "*$ModelNameSpace*"))
@@ -564,7 +542,7 @@ function Generate-PowershellParameterCommandImpl
                     $property_type = Get-ProperTypeName $propertyItem["Type"];
                     $chain = $nonSingleSubNodeResult["Chain"];
                     $chain += $nonSingleSubNode.Name;
-                    $type_binding = Add-HashTable $type_binding $nonSingleSubNode.Name $nonSingleSubNode.TypeInfo;
+                    $type_binding = AddTo-HashTable $type_binding $nonSingleSubNode.Name $nonSingleSubNode.TypeInfo;
 
                     if ($nonSingleSubNode.OnlySimple)
                     {
@@ -598,7 +576,7 @@ function Generate-PowershellParameterCommandImpl
                                 }
 
                                 $chain += $realsubsub.Name;
-                                $type_binding = Add-HashTable $type_binding $realsubsub.Name $bindingType;
+                                $type_binding = AddTo-HashTable $type_binding $realsubsub.Name $bindingType;
 
                                 $param = @{Name = $parameter["Name"]; Type = $paramterType; OriginalName = $parameter["Name"]; Chain = $chain};
                                 $parameters += $param;
@@ -636,7 +614,7 @@ function Generate-PowershellParameterCommandImpl
                 $chain = $nonSingleSubNodeResult["Chain"];
                 $chain += $nonSingleSubNode.Name;
                 $type_info = "Array:" + $nonSingleSubNode.TypeInfo;
-                $type_binding = Add-HashTable $type_binding $nonSingleSubNode.Name $type_info;
+                $type_binding = AddTo-HashTable $type_binding $nonSingleSubNode.Name $type_info;
                 $property_type = Get-ProperTypeName $onlyProperty["Type"];
                 $param = @{Name = $nonSingleSubNode.Name + $onlyProperty["Name"]; Type = "Array:" + $property_type; OriginalName = $onlyProperty["Name"]; Chain = $chain};
                 $parameters += $param;

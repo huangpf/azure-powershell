@@ -131,6 +131,50 @@ function Is-ValueType
     return $false;
 }
 
+function Is-DictionaryType
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        [string] $type
+    )
+
+    if ($type.StartsWith("IDictionary") -or $type.StartsWith("Dictionary"))
+    {
+        $start = $type.IndexOf("<")+1;
+        $end = $type.IndexOf(">");
+        return $type.Substring($start, $end-$start);
+    }
+    return $null;
+}
+
+function Get-AssignCode
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        $parameter,
+        [Parameter(Mandatory = $false)]
+        $nullCheck = $True
+    )
+
+    $dic = Is-DictionaryType $parameter["Type"];
+    $property_name = $parameter["Name"];
+    if ($dic -eq $null)
+    {
+        $assign_code = "this." + $property_name;
+    }
+    else
+    {
+        $key_value_pair_type = $dic.Split(",");
+        $assign_code = "this.${property_name}.Cast<DictionaryEntry>().ToDictionary(ht => (" + $key_value_pair_type[0]+ ")ht.Key, ht => (" + $key_value_pair_type[1]+ ")ht.Value)";
+        if ($nullCheck)
+        {
+            $assign_code = "(this.${property_name} == null) ? null : " + $assign_code;
+        }
+    }
+    return $assign_code;
+}
+
+
 function Get-SingleType
 {
     param(
@@ -233,6 +277,11 @@ function Get-ParameterCode
     {
         $p_type += "?";
     }
+    if ((Is-DictionaryType $p_type) -ne $null)
+    {
+        $p_type = "Hashtable";
+    }
+
     $p_name = $parameter["Name"];
 
     $return_code =
@@ -312,6 +361,7 @@ function Write-PowershellCmdlet
 
     $parameter_cmdlet_usings = @(
         'System',
+        'System.Collections',
         'System.Collections.Generic',
         'System.Linq',
         'System.Management.Automation'
@@ -414,9 +464,9 @@ namespace ${ps_generated_cmdlet_namespace}
 
                 $cmdlet_new_object_code +=
 @"
+
             // ${new_obj}
             var ${var_name} = new ${type}();
-
 
 "@;
 
@@ -442,9 +492,9 @@ namespace ${ps_generated_cmdlet_namespace}
 
                     $cmdlet_new_object_code +=
 @"
+
             // ${c}
             ${var_name} = new ${type}();
-
 
 "@;
                 }
@@ -547,7 +597,6 @@ namespace ${ps_generated_cmdlet_namespace}
                 return;
             }
 
-
 "@;
                     }
 
@@ -622,7 +671,6 @@ namespace ${ps_generated_cmdlet_namespace}
                 this.${ObjectName}.${new_obj} = new ${type}();
             }
 
-
 "@;
                     }
 
@@ -661,7 +709,6 @@ namespace ${ps_generated_cmdlet_namespace}
 @"
         protected override void ProcessRecord()
         {
-
 "@;
 
         $cmdlet_code_body += $cmdlet_new_object_code;
@@ -673,10 +720,11 @@ namespace ${ps_generated_cmdlet_namespace}
                 $var_name = Get-VariableName $p["Chain"];
                 $property = $p["OriginalName"];
                 $thisProperty = $p["Name"];
+                $assign = Get-AssignCode $p;
 
                 $cmdlet_code_body +=
 @"
-            ${var_name}.${property} = this.${thisProperty};
+            ${var_name}.${property} = ${assign};
 
 "@;
             }
@@ -695,12 +743,12 @@ namespace ${ps_generated_cmdlet_namespace}
             {
                 $property = $p["OriginalName"];
                 $thisProperty = $p["Name"];
-
+                $assign = Get-AssignCode $p;
 
                 $cmdlet_code_body +=
 @"
 
-                ${property} = this.${thisProperty},
+                ${property} = ${assign},
 "@;
             }
         }
@@ -724,7 +772,6 @@ namespace ${ps_generated_cmdlet_namespace}
 @"
         protected override void ProcessRecord()
         {
-
 "@;
         $cmdlet_code_body += $cmdlet_new_object_code;
 
@@ -741,6 +788,7 @@ namespace ${ps_generated_cmdlet_namespace}
                 $thisProperty = $p["Name"];
                 $thisType = $p["Type"];
                 $array_parent = Get-ArrayParent $chain;
+                $assign = Get-AssignCode $p;
 
                 if ($thisType.ToString().StartsWith("Array:") -and ($array_parent -ne $TreeNode.Name))
                 {
@@ -770,7 +818,7 @@ namespace ${ps_generated_cmdlet_namespace}
                     $cmdlet_code_add_body +=
 @"
 
-            v${array_parent}.${property} = this.${thisProperty};
+            v${array_parent}.${property} = ${assign};
 "@;
                 }
             }
@@ -807,7 +855,6 @@ namespace ${ps_generated_cmdlet_namespace}
 @"
         protected override void ProcessRecord()
         {
-
 "@;
 
         $cmdlet_code_body += $cmdlet_new_object_code;
@@ -819,10 +866,11 @@ namespace ${ps_generated_cmdlet_namespace}
                 $var_name = Get-PropertyFromChain $p["Chain"];
                 $property = $p["OriginalName"];
                 $thisProperty = $p["Name"];
+                $assign = Get-AssignCode $p;
 
                 $cmdlet_code_body +=
 @"
-            this.${ObjectName}.${var_name}.${property} = this.${thisProperty};
+            this.${ObjectName}.${var_name}.${property} = ${assign};
 
 "@;
             }
@@ -830,7 +878,6 @@ namespace ${ps_generated_cmdlet_namespace}
 
         $cmdlet_code_body +=
 @"
-
 
             WriteObject(this.${ObjectName});
         }
@@ -845,7 +892,6 @@ namespace ${ps_generated_cmdlet_namespace}
 @"
         protected override void ProcessRecord()
         {
-
 "@;
         $cmdlet_code_body += $cmdlet_new_object_code;
 
@@ -862,6 +908,7 @@ namespace ${ps_generated_cmdlet_namespace}
                 $property = $p["OriginalName"];
                 $thisProperty = $p["Name"];
                 $array_parent = Get-ArrayParent $chain;
+                $assign = Get-AssignCode $p $false;
 
                 if ($array_parent -ne $TreeNode.Name)
                 {
@@ -872,7 +919,7 @@ namespace ${ps_generated_cmdlet_namespace}
                         $cmdlet_code_remove_body +=
 @"
 
-                    (this.${thisProperty} == null || e${middle}.${property} == this.${thisProperty})
+                    (this.${thisProperty} == null || e${middle}.${property} == ${assign})
 
 "@;
                     }
@@ -881,7 +928,7 @@ namespace ${ps_generated_cmdlet_namespace}
 
                         $cmdlet_code_remove_body +=
 @"
-                    && (this.${property} == null || e${middle}.${property} == this.${thisProperty})
+                    && (this.${thisProperty} == null || e${middle}.${property} == ${assign})
 
 "@;
                     }
@@ -893,7 +940,7 @@ namespace ${ps_generated_cmdlet_namespace}
                         $cmdlet_code_remove_body +=
 @"
 
-                    (this.${thisProperty} == null || e.${property} == this.${thisProperty})
+                    (this.${thisProperty} == null || e.${property} == ${assign})
 
 "@;
                     }
@@ -901,7 +948,7 @@ namespace ${ps_generated_cmdlet_namespace}
                     {
                         $cmdlet_code_remove_body +=
 @"
-                    && (this.${property} == null || e.${property} == this.${thisProperty})
+                    && (this.${thisProperty} == null || e.${property} == ${assign})
 
 "@;
                     }
@@ -934,7 +981,6 @@ $cmdlet_remove_object_code
 @"
         protected override void ProcessRecord()
         {
-
 "@;
         $cmdlet_code_body += $cmdlet_new_object_code;
 
@@ -947,11 +993,12 @@ $cmdlet_remove_object_code
                 $property = $p["OriginalName"];
                 $thisProperty = $p["Name"];
                 $array_parent = Get-ArrayParent $chain;
+                $assign = Get-AssignCode $p;
 
                 $cmdlet_code_add_body +=
 @"
 
-            v${array_parent}.${property} = this.${thisProperty};
+            v${array_parent}.${property} = ${assign};
 "@;
 
             }

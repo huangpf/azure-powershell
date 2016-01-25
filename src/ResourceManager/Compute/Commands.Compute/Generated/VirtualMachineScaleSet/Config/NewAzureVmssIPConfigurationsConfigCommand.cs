@@ -21,6 +21,7 @@
 
 using Microsoft.Azure.Management.Compute.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -57,7 +58,6 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         protected override void ProcessRecord()
         {
-
             var vIPConfigurations = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetIPConfiguration();
 
             // LoadBalancerBackendAddressPools

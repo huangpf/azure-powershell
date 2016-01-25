@@ -21,6 +21,7 @@
 
 using Microsoft.Azure.Management.Compute.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -52,14 +53,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         protected override void ProcessRecord()
         {
-
             // VirtualMachineProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
             {
                 WriteObject(this.VirtualMachineScaleSet);
                 return;
             }
-
 
             // OSProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile == null)
@@ -68,14 +67,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 return;
             }
 
-
             // WindowsConfiguration
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.WindowsConfiguration == null)
             {
                 WriteObject(this.VirtualMachineScaleSet);
                 return;
             }
-
 
             // WinRMConfiguration
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.WindowsConfiguration.WinRMConfiguration == null)
@@ -84,14 +81,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 return;
             }
 
-
             // Listeners
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.WindowsConfiguration.WinRMConfiguration.Listeners == null)
             {
                 WriteObject(this.VirtualMachineScaleSet);
                 return;
             }
-
             var vListeners = this.VirtualMachineScaleSet.VirtualMachineProfile.OSProfile.WindowsConfiguration.WinRMConfiguration.Listeners.First
                 (e =>
                     (this.CertificateUrl == null || e.CertificateUrl == this.CertificateUrl)

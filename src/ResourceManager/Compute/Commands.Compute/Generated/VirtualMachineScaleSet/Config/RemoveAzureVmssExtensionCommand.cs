@@ -21,6 +21,7 @@
 
 using Microsoft.Azure.Management.Compute.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -108,18 +109,16 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Mandatory = false,
             Position = 12,
             ValueFromPipelineByPropertyName = true)]
-        public IDictionary<string,string> Tags { get; set; }
+        public Hashtable Tags { get; set; }
 
         protected override void ProcessRecord()
         {
-
             // VirtualMachineProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
             {
                 WriteObject(this.VirtualMachineScaleSet);
                 return;
             }
-
 
             // ExtensionProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile == null)
@@ -128,14 +127,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 return;
             }
 
-
             // Extensions
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile.Extensions == null)
             {
                 WriteObject(this.VirtualMachineScaleSet);
                 return;
             }
-
             var vExtensions = this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile.Extensions.First
                 (e =>
                     (this.AutoUpgradeMinorVersion == null || e.AutoUpgradeMinorVersion == this.AutoUpgradeMinorVersion)
@@ -149,7 +146,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     && (this.Name == null || e.Name == this.Name)
                     && (this.Type == null || e.Type == this.Type)
                     && (this.Location == null || e.Location == this.Location)
-                    && (this.Tags == null || e.Tags == this.Tags)
+                    && (this.Tags == null || e.Tags == this.Tags.Cast<DictionaryEntry>().ToDictionary(ht => (string)ht.Key, ht => (string)ht.Value))
                 );
 
             if (vExtensions != null)
