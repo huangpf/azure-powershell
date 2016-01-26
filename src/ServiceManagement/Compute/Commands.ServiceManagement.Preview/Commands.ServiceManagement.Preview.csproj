@@ -22,6 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\Package\Debug\ServiceManagement\Azure\Compute</OutputPath>
+    <CrpDllPath>..\..\..\Package\Debug\ResourceManager\AzureResourceManager\AzureRM.Compute</CrpDllPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -382,7 +383,7 @@
     <PropertyGroup>
       <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
       <PSCodeGenScriptPath>".\Automation\RunCodeGeneration.ps1"</PSCodeGenScriptPath>
-      <PSCodeGenTargetFolder>$(OutputPath)</PSCodeGenTargetFolder>
+      <PSCodeGenTargetFolder>$(CrpDllPath)</PSCodeGenTargetFolder>
       <BaseCmdletFullName>"Microsoft.Azure.Commands.Compute.ComputeClientBaseCmdlet"</BaseCmdletFullName>
       <BaseCmdletClientName>"ComputeClient.ComputeManagementClient"</BaseCmdletClientName>
       <ARMClientLibraryNamesSpace>"Microsoft.Azure.Management.Compute"</ARMClientLibraryNamesSpace>

@@ -36,6 +36,7 @@ function New-ParameterTreeNode
     $node | Add-Member -Type NoteProperty -Name IsListItem -Value $false;
     $node | Add-Member -Type NoteProperty -Name AllStrings -Value $false;
     $node | Add-Member -Type NoteProperty -Name OneStringList -Value $false;
+    $node | Add-Member -Type NoteProperty -Name OnlySimple -Value $false;
     $node | Add-Member -Type NoteProperty -Name Properties -Value @();
     $node | Add-Member -Type NoteProperty -Name SubNodes -Value @();
     
@@ -76,6 +77,11 @@ function Create-ParameterTreeImpl
         elseif (Contains-OnlyStringList $TypeInfo)
         {
             $treeNode.OneStringList = $true;
+        }
+
+        if (Contains-OnlySimpleFields $TypeInfo $NameSpace)
+        {
+            $treeNode.OnlySimple = $true;
         }
 
         $padding = ($Depth.ToString() + (' ' * (4 * ($Depth + 1))));

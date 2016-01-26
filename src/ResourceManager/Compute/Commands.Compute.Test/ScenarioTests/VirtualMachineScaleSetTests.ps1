@@ -78,49 +78,31 @@ function Test-VirtualMachineScaleSet
         $stoaccount = Get-AzureRMStorageAccount -ResourceGroupName $rgname -Name $stoname;
 
         # New VMSS Parameters
-        $vmss = New-AzureComputeParameterObject -FullName Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSet;
-        $vmss.Name = 'vmss' + $rgname;
-        $vmss.Type = 'Microsoft.Compute/virtualMachineScaleSets';
-        $vmss.Location = $loc;
+        $vmssName = 'vmss' + $rgname;
+        $vmssType = 'Microsoft.Compute/virtualMachineScaleSets';
 
-        $vmss.VirtualMachineProfile = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetVMProfile;
-        $vmss.VirtualMachineProfile.ExtensionProfile = $null;
-        $vmss.Sku = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetSku;
-        $vmss.Sku.Capacity = 2;
-        $vmss.Sku.Name = 'Standard_A0';
-        $vmss.UpgradePolicy = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetUpgradePolicy;
-        $vmss.UpgradePolicy.Mode = 'automatic';
+        $adminUsername = 'Foo12';
+        $adminPassword = "BaR@123" + $rgname;
 
-        $vmss.VirtualMachineProfile.NetworkProfile = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetNetworkProfile;
-        $ipCfg = New-Object Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetIPConfiguration;
-        $ipcfg.Name = 'test';
-        $ipCfg.LoadBalancerBackendAddressPools = $null;
-        $ipCfg.Subnet = New-Object Microsoft.Azure.Management.Compute.Models.ApiEntityReference;
-        $ipCfg.Subnet.ReferenceUri = $subnetId;
-        $netCfg = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetNetworkConfiguration;
-        $netCfg.Name = 'test';
-        $netCfg.Primary = $true;
-        $netCfg.IPConfigurations.Add($ipCfg);
-        $vmss.VirtualMachineProfile.NetworkProfile.NetworkInterfaceConfigurations.Add($netCfg);
-
-        $vmss.VirtualMachineProfile.OSProfile = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetOSProfile;
-        $vmss.VirtualMachineProfile.OSProfile.ComputerNamePrefix = 'test';
-        $vmss.VirtualMachineProfile.OSProfile.AdminUsername = 'Foo12';
-        $vmss.VirtualMachineProfile.OSProfile.AdminPassword = "BaR@123" + $rgname;
-
-        $vmss.VirtualMachineProfile.StorageProfile = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetStorageProfile;
         $imgRef = Get-DefaultCRPImage -loc $loc;
-        $vmss.VirtualMachineProfile.StorageProfile.ImageReference = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetImageReference;
-        $vmss.VirtualMachineProfile.StorageProfile.ImageReference.Publisher = $imgRef.PublisherName;
-        $vmss.VirtualMachineProfile.StorageProfile.ImageReference.Offer = $imgRef.Offer;
-        $vmss.VirtualMachineProfile.StorageProfile.ImageReference.Sku = $imgRef.Skus;
-        $vmss.VirtualMachineProfile.StorageProfile.ImageReference.Version = $imgRef.Version;
-        $vmss.VirtualMachineProfile.StorageProfile.OSDisk = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetOSDisk;
-        $vmss.VirtualMachineProfile.StorageProfile.OSDisk.Caching = 'None';
-        $vmss.VirtualMachineProfile.StorageProfile.OSDisk.CreateOption = 'FromImage';
-        $vmss.VirtualMachineProfile.StorageProfile.OSDisk.Name = 'test';
-        $vhdContainer = "https://" + $stoname + ".blob.core.windows.net/" + $vmss.Name;
-        $vmss.VirtualMachineProfile.StorageProfile.OSDisk.VirtualHardDiskContainers.Add($vhdContainer);
+        $vhdContainer = "https://" + $stoname + ".blob.core.windows.net/" + $vmssName;
+
+        $aucComponentName="Microsoft-Windows-Shell-Setup";
+        $aucPassName ="oobeSystem";
+        $aucSetting = "AutoLogon";
+        $aucContent = "<UserAccounts><AdministratorPassword><Value>password</Value><PlainText>true</PlainText></AdministratorPassword></UserAccounts>";
+
+        $ipCfg = New-AzureVmssIPConfigurationsConfig -Name 'test' -LoadBalancerBackendAddressPoolsReferenceUri $null -SubnetReferenceUri $subnetId;
+
+        $vmss = New-AzureVmssConfig -Name $vmssName -Type $vmssType -Location $loc `
+            -SkuCapacity 2 -SkuName 'Standard_A0' -UpgradePolicyMode 'automatic' -NetworkInterfaceConfigurations $netCfg `
+            | Add-AzureVmssNetworkInterfaceConfiguration -Name 'test' -Primary $true -IPConfigurations $ipCfg `
+            | Set-AzureVmssOSProfile -ComputerNamePrefix 'test' -AdminUsername $adminUsername -AdminPassword $adminPassword `
+            | Set-AzureVmssStorageProfile -Name 'test' -CreateOption 'FromImage' -Caching 'None' `
+            -ImageReferenceOffer $imgRef.Offer -ImageReferenceSku $imgRef.Skus -ImageReferenceVersion $imgRef.Version `
+            -ImageReferencePublisher $imgRef.PublisherName -VirtualHardDiskContainers $vhdContainer `
+            | Add-AzureVmssAdditionalUnattendContent -ComponentName  $aucComponentName -Content  $aucContent -PassName  $aucPassName -SettingName  $aucSetting `
+            | Remove-AzureVmssAdditionalUnattendContent -ComponentName  $aucComponentName;
 
         $st = New-AzureRmVmss -ResourceGroupName $rgname -VirtualMachineScaleSetCreateOrUpdateParameters $vmss;
 
@@ -136,7 +118,6 @@ function Test-VirtualMachineScaleSet
 
         $argList = New-AzureComputeArgumentList -MethodName VirtualMachineScaleSetListAll;
         $args = ($argList | select -ExpandProperty Value);
-        #$vmssList = Invoke-AzureComputeMethod -MethodName VirtualMachineScaleSetListAll -ArgumentList $args;
         $vmssList = Get-AzureRmVmssAllList;
         Assert-True { ($vmssList.VirtualMachineScaleSets | select -ExpandProperty Name) -contains $vmss.Name };
         $output = $vmssList | Out-String;
@@ -165,7 +146,6 @@ function Test-VirtualMachineScaleSet
         $argList[2].Value = $rgname;
         $argList[4].Value = $vmss.Name;
         $args = ($argList | select -ExpandProperty Value);
-        #$vmListResult = Invoke-AzureComputeMethod -MethodName VirtualMachineScaleSetVMList -ArgumentList $args;
         $vmListResult = Get-AzureRmVmssVMList -ResourceGroupName $rgname -VirtualMachineScaleSetName $vmss.Name;
         $output = $vmListResult | Out-String;
         Write-Verbose ($output);
@@ -214,26 +194,13 @@ function Test-VirtualMachineScaleSet
             $instanceListParam += $i.ToString();
         }
 
-        $argList = New-AzureComputeArgumentList -MethodName VirtualMachineScaleSetPowerOffInstances;
-        $argList[0].Value = $rgname;
-        $argList[1].Value = $vmss.Name;
-        $argList[2].Value = $instanceListParam;
-        $args = @()
-        for ($i = 0; $i -lt $argList.Length; $i++)
-        {
-            $args += , $argList[$i].Value;
-        }
-
-        #$vmssResult = Invoke-AzureComputeMethod -MethodName VirtualMachineScaleSetPowerOffInstances -ArgumentList $args;
         $st = Stop-AzureRmVmssInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
         $st = Stop-AzureRmVmssInstancesWithDeallocation -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
         $st = Start-AzureRmVmssInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
         $st = Restart-AzureRmVmssInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
 
         # Remove
-        $instanceListParam = New-AzureComputeParameterObject -FriendlyName VirtualMachineScaleSetVMInstanceIDs;
-        $instanceListParam.InstanceIDs.Add(1);
-        $st = Remove-AzureRmVmssInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs $instanceListParam;
+        $st = Remove-AzureRmVmssInstances -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -VMInstanceIDs 1;
         Assert-ThrowsContains { $st = Remove-AzureRmVmssVM -ResourceGroupName $rgname -VMScaleSetName $vmss.Name -InstanceId 0 } "cannot be deleted because it is the last remaining";
         $st = Remove-AzureRmVmss -ResourceGroupName $rgname -VMScaleSetName $vmss.Name;
     }

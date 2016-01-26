@@ -1754,7 +1754,7 @@ ${cmdlet_partial_class_code}
     Write-Output $parameter_cmdlt_source_template;
 
     # CLI Function Command Code
-    Write-Output (. $PSScriptRoot\Generate-FunctionCommand.ps1 $opShortName $operation_method_info $client_model_namespace);
+    Write-Output (. $PSScriptRoot\Generate-FunctionCommand.ps1 $opShortName $operation_method_info $client_model_namespace "CLI" "Azure" $fileOutputFolder);
 }
 
 # Sample: VirtualMachineCreateParameters

@@ -19,7 +19,7 @@ namespace Microsoft.Azure.Commands.Compute.Test.ScenarioTests
 {
     public partial class VirtualMachineScaleSetTests
     {
-        [Fact(Skip = "TODO: need to re-record")]
+        [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestVirtualMachineScaleSet()
         {
