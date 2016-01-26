@@ -438,5 +438,5 @@ function Generate-CliFunctionCommandImpl
 
 if ($ToolType -eq 'CLI')
 {
-    Write-Output (Generate-CliFunctionCommandImpl $OperationName $ModelClassNameSpace $MethodInfo $fileOutputFolder);
+    Write-Output (Generate-CliFunctionCommandImpl $OperationName $MethodInfo $ModelClassNameSpace $fileOutputFolder);
 }
