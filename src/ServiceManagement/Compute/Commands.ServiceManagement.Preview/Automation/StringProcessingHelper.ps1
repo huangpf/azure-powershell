@@ -214,21 +214,37 @@ function Get-CliShorthandName
     {
         $outName = 'n';
     }
-    elseif ($inName -eq 'vmscalesetname')
+    elseif ($inName -eq 'VMScaleSetName')
     {
         $outName = 'n';
     }
-    elseif ($inName -eq 'instanceid')
+    elseif ($inName -eq 'VirtualMachineScaleSetName')
+    {
+        $outName = 'n';
+    }
+    elseif ($inName -eq 'instanceId')
     {
         $outName = 'd';
     }
-    elseif ($inName -eq 'vminstanceids')
+    elseif ($inName -eq 'vmInstanceIDs')
     {
         $outName = 'D';
     }
     elseif ($inName -eq 'parameters')
     {
         $outName = 'p';
+    }
+    elseif ($inName -eq 'ExpandExpression')
+    {
+        $outName = 'e';
+    }
+    elseif ($inName -eq 'FilterExpression')
+    {
+        $outName = 't';
+    }
+    elseif ($inName -eq 'SelectExpression')
+    {
+        $outName = 'c';
     }
     else
     {
@@ -238,3 +254,34 @@ function Get-CliShorthandName
     return $outName;
 }
 
+function Get-SplitTextLines
+{
+    # Sample: 'A Very Long Text.' => @('A Very ', 'Long Text.');
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$text,
+        
+        [Parameter(Mandatory = $false)]
+        [int]$lineWidth
+    )
+
+    if ($text -eq '' -or $text -eq $null -or $text.Length -le $lineWidth)
+    {
+        return $text;
+    }
+
+    $lines = @();
+
+    while ($text.Length -gt $lineWidth)
+    {
+        $lines += $text.Substring(0, $lineWidth);
+        $text = $text.Substring($lineWidth);
+    }
+    
+    if ($text -ne '' -and $text -ne $null)
+    {
+        $lines += $text;
+    }
+
+    return $lines;
+}
