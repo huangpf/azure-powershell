@@ -105,6 +105,30 @@ function Get-CliCategoryName
     return $outName;
 }
 
+function Get-PowershellCategoryName
+{
+    # Sample: 'VirtualMachineScaleSetVM' => 'VmssVm', 'VirtualMachineScaleSet' => 'Vmss', etc.
+    param(
+        [Parameter(Mandatory = $True)]
+        [string]$inName
+    )
+
+    if ($inName -eq 'VirtualMachineScaleSet')
+    {
+        $outName = 'Vmss';
+    }
+    elseif ($inName -eq 'VirtualMachineScaleSetVM')
+    {
+        $outName = 'VmssVm';
+    }
+    else
+    {
+        $outName = Get-CliOptionName $inName;
+    }
+
+    return $outName;
+}
+
 
 function Get-CliOptionName
 {
@@ -169,7 +193,6 @@ function Get-CliOptionName
 
     return $outName;
 }
-
 
 function Get-CliShorthandName
 {

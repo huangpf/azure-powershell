@@ -28,7 +28,10 @@ param(
     [string]$ToolType = "CLI",
     
     [Parameter(Mandatory = $false)]
-    [string]$CmdletNounPrefix = "Azure"
+    [string]$CmdletNounPrefix = "Azure",
+
+    [Parameter(Mandatory = $false)]
+    [string]$fileOutputFolder = $null
 )
 
 $NEW_LINE = "`r`n";
@@ -48,7 +51,10 @@ function Generate-CliFunctionCommandImpl
         [System.Reflection.MethodInfo]$MethodInfo,
     
         [Parameter(Mandatory = $true)]
-        [string]$ModelNameSpace
+        [string]$ModelNameSpace,
+
+        [Parameter(Mandatory = $false)]
+        [string]$fileOutputFolder = $null
     )
 
     $methodParameters = $MethodInfo.GetParameters();
@@ -86,7 +92,7 @@ function Generate-CliFunctionCommandImpl
                 $cmdlet_tree = (. $PSScriptRoot\Create-ParameterTree.ps1 -TypeInfo $paramType -NameSpace $ModelNameSpace -ParameterName $paramType.Name);
 
                 # 3.1.3 Generate the parameter command according to the parameter tree
-                $cmdlet_tree_code = (. $PSScriptRoot\Generate-ParameterCommand.ps1 -CmdletTreeNode $cmdlet_tree -Operation $opShortName -ModelNameSpace $ModelNameSpace -MethodName $methodName);
+                $cmdlet_tree_code = (. $PSScriptRoot\Generate-ParameterCommand.ps1 -CmdletTreeNode $cmdlet_tree -Operation $opShortName -ModelNameSpace $ModelNameSpace -MethodName $methodName -OutputFolder $fileOutputFolder);
             }
         }
     }
@@ -412,5 +418,5 @@ function Generate-CliFunctionCommandImpl
 
 if ($ToolType -eq 'CLI')
 {
-    Write-Output (Generate-CliFunctionCommandImpl $OperationName $MethodInfo $ModelClassNameSpace);
+    Write-Output (Generate-CliFunctionCommandImpl $OperationName $MethodInfo $ModelClassNameSpace $fileOutputFolder);
 }
