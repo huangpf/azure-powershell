@@ -40,6 +40,14 @@ $SEC_LINE = "---------------------------------------------";
 . "$PSScriptRoot\StringProcessingHelper.ps1";
 . "$PSScriptRoot\ParameterTypeHelper.ps1";
 
+$CLI_HELP_MSG = "         There are two sets of commands:\r\n" `
+              + "           1) function commands that are used to manage Azure resources in the cloud, and \r\n" `
+              + "           2) parameter commands that generate & edit input files for the other set of commands.\r\n" `
+              + "         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n" `
+              + "         virtual machine scale set, whereas \'vmss create-or-update-parameters generate/set/remove/add\' commands \r\n" `
+              + "         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n" `
+              + "         file as for the VM scale set configuration, and creates it online.";
+
 function Generate-CliFunctionCommandImpl
 {
     param(
@@ -141,7 +149,14 @@ function Generate-CliFunctionCommandImpl
         $invoke_category_code = ".category('invoke').description('${invoke_category_desc}')";
     }
     
-    $code += "  var $cliCategoryVarName = cli${invoke_category_code}.category('${cliCategoryName}').description(`$('Commands to manage your $cliOperationDescription.'));" + $NEW_LINE;
+    $code += "  var $cliCategoryVarName = cli${invoke_category_code}.category('${cliCategoryName}')" + $NEW_LINE;
+
+    # 3.2.7 Description Text
+    $desc_text = "Commands to manage your ${cliOperationDescription}.\r\n${CLI_HELP_MSG}";
+    $desc_text_lines = Get-SplitTextLines $desc_text 80;
+    $code += "  .description(`$('";
+    $code += [string]::Join("'" + $NEW_LINE + "  + '", $desc_text_lines);
+    $code += "  '));" + $NEW_LINE;
 
     # Set Required Parameters
     $requireParams = @();
@@ -183,7 +198,7 @@ function Generate-CliFunctionCommandImpl
 
 
     $code += "  ${cliCategoryVarName}.command('${cliMethodOption}${requireParamsString}')" + $NEW_LINE;
-    $code += "  .description(`$('${cliMethodOption} method to manage your $cliOperationDescription.'))" + $NEW_LINE;
+    $code += "  .description(`$('Commands to manage your $cliOperationDescription by the ${cliMethodOption} method.'))" + $NEW_LINE;
     $code += "  .usage('[options]${usageParamsString}')" + $NEW_LINE;
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {
@@ -324,20 +339,25 @@ function Generate-CliFunctionCommandImpl
     # 3.3 Parameters
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {
+        [string]$optionParamName = $methodParamNameList[$index];
+        if ($allStringFieldCheck[$optionParamName])
+        {
+            # Skip all-string parameters that are already handled in the function command.
+            continue;
+        }
+
         $cli_param_name = Get-CliNormalizedName $methodParamNameList[$index];
         if ($cli_param_name -eq 'Parameters')
         {
-            $params_category_name = 'parameters';
+            $params_category_name = $cliMethodOption + '-parameters';
             $params_category_var_name = "${cliCategoryVarName}${cliMethodName}Parameters" + $index;
             $params_generate_category_name = 'generate';
             $params_generate_category_var_name = "${cliCategoryVarName}${cliMethodName}Generate" + $index;
 
             # 3.3.1 Parameter Generate Command
             $code += "  var ${params_category_var_name} = ${cliCategoryVarName}.category('${params_category_name}')" + $NEW_LINE;
-            $code += "  .description(`$('Commands to manage parameter for your ${cliOperationDescription}.'));" + $NEW_LINE;
-            $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${params_generate_category_name}')" + $NEW_LINE;
-            $code += "  .description(`$('Commands to generate parameter file for your ${cliOperationDescription}.'));" + $NEW_LINE;
-            $code += "  ${params_generate_category_var_name}.command('${cliMethodOption}')" + $NEW_LINE;
+            $code += "  .description(`$('Commands to generate parameter input file for your ${cliOperationDescription}.'));" + $NEW_LINE;
+            $code += "  ${params_category_var_name}.command('generate')" + $NEW_LINE;
             $code += "  .description(`$('Generate ${cliCategoryVarName} parameter string or files.'))" + $NEW_LINE;
             $code += "  .usage('[options]')" + $NEW_LINE;
             $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;

@@ -20,25 +20,48 @@ param(
     [Parameter(Mandatory = $true)]
     [string]$OperationName,
 
+    [Parameter(Mandatory = $false)]
+    [string]$MethodName = $null,
+
+    [Parameter(Mandatory = $false)]
+    [string]$ModelNameSpace = $null,
+
     # CLI commands or PS cmdlets
     [Parameter(Mandatory = $false)]
     [string]$ToolType = "CLI",
 
     [Parameter(Mandatory = $false)]
-    [string]$CmdletNounPrefix = "Azure",
+    [string]$OutputFolder = $null,
 
     [Parameter(Mandatory = $false)]
-    [string]$ModelNameSpace = $null,
-
-    [Parameter(Mandatory = $false)]
-    [string]$MethodName = $null,
-
-    [Parameter(Mandatory = $false)]
-    [string]$OutputFolder = $null
+    [string]$CmdletNounPrefix = "Azure"
 )
 
 $NEW_LINE = "`r`n";
 . "$PSScriptRoot\StringProcessingHelper.ps1";
+
+function Get-ParameterCommandCategoryDescription
+{
+    param
+    (
+        # e.g. 'virtual machine scale set'
+        [Parameter(Mandatory = $true)]
+        [string]$OperationName,
+        
+        # e.g. 'create-or-update-parameters'
+        [Parameter(Mandatory = $true)]
+        [string]$FunctionParamName,
+
+        # e.g. 'os-profile'
+        [Parameter(Mandatory = $true)]
+        [string]$SubParameterName
+    )
+
+    $description = "Commands to set/remove/add ${SubParameterName} ";
+    $description += "of ${OperationName} in ${FunctionParamName} file.";
+
+    return $description;
+}
 
 function Generate-CliParameterCommandImpl
 {
@@ -56,9 +79,9 @@ function Generate-CliParameterCommandImpl
     $cli_method_option_name = Get-CliOptionName $TreeNode.Name;
     $cli_op_description = Get-CliOptionName $OperationName;
     $category_name = Get-CliCategoryName $OperationName;
-    $params_category_name = 'parameters';
+    $params_category_name = (Get-CliCategoryName $MethodName) + '-parameters';
     $params_category_var_name_prefix = 'parameters';
-    $cli_param_name = $params_category_name;
+    $cli_param_name = 'parameters';
 
     # 0. Construct Path to Node
     $pathToTreeNode = "";
@@ -110,9 +133,24 @@ function Generate-CliParameterCommandImpl
 
     if ($ModelNameSpace -like "*.WindowsAzure.*")
     {
-        # Use Invoke Category for RDFE APIs
+        # 0.1 Use Invoke Category for RDFE APIs
         $invoke_category_desc = "Commands to invoke service management operations.";
         $invoke_category_code = ".category('invoke').description('${invoke_category_desc}')";
+    }
+    
+    # 0.2 Construct Sample JSON Parameter Body for Help Messages
+    $paramObject = (. $PSScriptRoot\Create-ParameterObject.ps1 -typeInfo $TreeNode.TypeInfo);
+    $paramObjText = (. $PSScriptRoot\ConvertTo-Json.ps1 -inputObject $paramObject);
+    if ($TreeNode.Parent -eq $null)
+    {
+        $sampleJsonText = $paramObjText.Replace("`r`n", "\r\n");
+    }
+    else
+    {
+        $sampleJsonText = "{\r\n  ...\r\n";
+        $sampleJsonText += "  `"" + (Get-CliNormalizedName $TreeNode.Name) + "`" : ";
+        $sampleJsonText += ($paramObjText.Replace("`r`n", "\r\n  ")) + "\r\n";
+        $sampleJsonText += "  ...\r\n}\r\n";
     }
 
     if ($TreeNode.Properties.Count -gt 0 -or ($TreeNode.IsListItem))
@@ -126,14 +164,12 @@ function Generate-CliParameterCommandImpl
         $code += "  var ${cat_params_category_var_name} = cli${invoke_category_code}.category('${category_name}');" + $NEW_LINE;
         $code += "  var ${params_category_var_name} = ${cat_params_category_var_name}.category('${params_category_name}')" + $NEW_LINE;
         $code += "  .description(`$('Commands to manage parameter for your ${cli_op_description}.'));" + $NEW_LINE;
-        $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${params_generate_category_name}')" + $NEW_LINE;
-        $code += "  .description(`$('Commands to set parameter file for your ${cli_op_description}.'));" + $NEW_LINE;
-        $code += "  ${params_generate_category_var_name}.command('${cli_method_option_name}')" + $NEW_LINE;
-        $code += "  .description(`$('Set ${cat_params_category_var_name} parameter string or files.'))" + $NEW_LINE;
+        $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${cli_method_option_name}')" + $NEW_LINE;
+        $code += "  .description(`$('" + (Get-ParameterCommandCategoryDescription $cli_op_description $params_category_name $cli_method_option_name) +"'));" + $NEW_LINE;
+        $code += "  ${params_generate_category_var_name}.command('${params_generate_category_name}')" + $NEW_LINE;
+        $code += "  .description(`$('Set ${cli_method_option_name} in ${params_category_name} string or files, e.g. \r\n${sampleJsonText}'))" + $NEW_LINE;
         $code += "  .usage('[options]')" + $NEW_LINE;
         $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
-        $code += "  .option('--value <value>', `$('The JSON value.'))" + $NEW_LINE;
-        $code += "  .option('--parse', `$('Parse the JSON value to object.'))" + $NEW_LINE;
 
         # 1.1 For List Item
         if ($indexerParamList.Count -gt 0)
@@ -143,7 +179,13 @@ function Generate-CliParameterCommandImpl
                 $indexerOptionName = Get-CliOptionName $indexerParamName;
                 $code += "  .option('--$indexerOptionName <$indexerOptionName>', `$('Indexer: $indexerOptionName.'))" + $NEW_LINE;
             }
+            
+            if ($indexerParamList -contains 'index')
+            {
+                $code += "  .option('--value <value>', `$('The input string value for the indexed item.'))" + $NEW_LINE;
+            }
         }
+        $code += "  .option('--parse', `$('Parse the input value string to a JSON object.'))" + $NEW_LINE;
 
         # 1.2 For Each Property, Set the Option
         foreach ($propertyItem in $TreeNode.Properties)
@@ -155,10 +197,7 @@ function Generate-CliParameterCommandImpl
         }
 
         $code += "  .execute(function(options, _) {" + $NEW_LINE;
-        $code += "    cli.output.verbose(options, _);" + $NEW_LINE;
-        $code += "    cli.output.verbose(options.parameterFile);" + $NEW_LINE;
-        $code += "    cli.output.verbose(options.value);" + $NEW_LINE;
-        $code += "    cli.output.verbose(options.parse);" + $NEW_LINE;
+        $code += "    cli.output.verbose(JSON.stringify(options));" + $NEW_LINE;
         $code += "    if (options.parse && options.value) {" + $NEW_LINE;
         $code += "      options.value = JSON.parse(options.value);" + $NEW_LINE;
         $code += "    }" + $NEW_LINE;
@@ -231,11 +270,11 @@ function Generate-CliParameterCommandImpl
     $code += "  //$params_category_name ${params_generate_category_name} ${cli_method_option_name}" + $NEW_LINE;
     $code += "  var ${cat_params_category_var_name} = cli${invoke_category_code}.category('${category_name}');" + $NEW_LINE;
     $code += "  var ${params_category_var_name} = ${cat_params_category_var_name}.category('${params_category_name}')" + $NEW_LINE;
-    $code += "  .description(`$('Commands to remove parameter for your ${cli_op_description}.'));" + $NEW_LINE;
-    $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${params_generate_category_name}')" + $NEW_LINE;
-    $code += "  .description(`$('Commands to remove values in the parameter file for your ${cli_op_description}.'));" + $NEW_LINE;
-    $code += "  ${params_generate_category_var_name}.command('${cli_method_option_name}')" + $NEW_LINE;
-    $code += "  .description(`$('Remove ${cat_params_category_var_name} parameter string or files.'))" + $NEW_LINE;
+    $code += "  .description(`$('Commands to manage parameter for your ${cli_op_description}.'));" + $NEW_LINE;
+    $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${cli_method_option_name}')" + $NEW_LINE;
+    $code += "  .description(`$('" + (Get-ParameterCommandCategoryDescription $cli_op_description $params_category_name $cli_method_option_name) +"'));" + $NEW_LINE;
+    $code += "  ${params_generate_category_var_name}.command('${params_generate_category_name}')" + $NEW_LINE;
+    $code += "  .description(`$('Remove ${cli_method_option_name} in ${params_category_name} string or files, e.g. \r\n${sampleJsonText}'))" + $NEW_LINE;
     $code += "  .usage('[options]')" + $NEW_LINE;
     $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
 
@@ -259,8 +298,7 @@ function Generate-CliParameterCommandImpl
 
     # 2.3 Function Definition
     $code += "  .execute(function(options, _) {" + $NEW_LINE;
-    $code += "    cli.output.verbose(options, _);" + $NEW_LINE;
-    $code += "    cli.output.verbose(options.parameterFile);" + $NEW_LINE;
+    $code += "    cli.output.verbose(JSON.stringify(options));" + $NEW_LINE;
     $code += "    cli.output.verbose(`'=====================================`');" + $NEW_LINE;
     $code += "    cli.output.verbose(`'Reading file content from: \`"`' + options.parameterFile + `'\`"`');" + $NEW_LINE;
     $code += "    cli.output.verbose(`'=====================================`');" + $NEW_LINE;
@@ -297,6 +335,10 @@ function Generate-CliParameterCommandImpl
         $code += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path}]);" + $NEW_LINE;
         $code += "    }" + $NEW_LINE;
     }
+    elseif ($indexerParamList.Count -gt 0)
+    {
+        $code += "    jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: options.path}]);" + $NEW_LINE;
+    }
     
     $code += "    " + $NEW_LINE;
     $code += "    var updatedContent = JSON.stringify(${cli_param_name}Obj);" + $NEW_LINE;
@@ -318,16 +360,16 @@ function Generate-CliParameterCommandImpl
     $code += "  //$params_category_name ${params_generate_category_name} ${cli_method_option_name}" + $NEW_LINE;
     $code += "  var ${cat_params_category_var_name} = cli${invoke_category_code}.category('${category_name}');" + $NEW_LINE;
     $code += "  var ${params_category_var_name} = ${cat_params_category_var_name}.category('${params_category_name}')" + $NEW_LINE;
-    $code += "  .description(`$('Commands to add parameter for your ${cli_op_description}.'));" + $NEW_LINE;
-    $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${params_generate_category_name}')" + $NEW_LINE;
-    $code += "  .description(`$('Commands to add values in the parameter file for your ${cli_op_description}.'));" + $NEW_LINE;
-    $code += "  ${params_generate_category_var_name}.command('${cli_method_option_name}')" + $NEW_LINE;
-    $code += "  .description(`$('Remove ${cat_params_category_var_name} parameter string or files.'))" + $NEW_LINE;
+    $code += "  .description(`$('Commands to manage the parameter input file for your ${cli_op_description}.'));" + $NEW_LINE;
+    $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${cli_method_option_name}')" + $NEW_LINE;
+    $code += "  .description(`$('" + (Get-ParameterCommandCategoryDescription $cli_op_description $params_category_name $cli_method_option_name) +"'));" + $NEW_LINE;
+    $code += "  ${params_generate_category_var_name}.command('${params_generate_category_name}')" + $NEW_LINE;
+    $code += "  .description(`$('Add ${cli_method_option_name} in ${params_category_name} string or files, e.g. \r\n${sampleJsonText}'))" + $NEW_LINE;
     $code += "  .usage('[options]')" + $NEW_LINE;
     $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
     $code += "  .option('--key <key>', `$('The JSON key.'))" + $NEW_LINE;
     $code += "  .option('--value <value>', `$('The JSON value.'))" + $NEW_LINE;
-    $code += "  .option('--parse', `$('Parse the JSON value to object.'))" + $NEW_LINE;
+    $code += "  .option('--parse', `$('Parse the input value string to a JSON object.'))" + $NEW_LINE;
 
     # For Each Property, Add the Option
     foreach ($propertyItem in $TreeNode.Properties)
@@ -339,11 +381,7 @@ function Generate-CliParameterCommandImpl
     }
 
     $code += "  .execute(function(options, _) {" + $NEW_LINE;
-    $code += "    cli.output.verbose(options, _);" + $NEW_LINE;
-    $code += "    cli.output.verbose(options.parameterFile);" + $NEW_LINE;
-    $code += "    cli.output.verbose(options.key);" + $NEW_LINE;
-    $code += "    cli.output.verbose(options.value);" + $NEW_LINE;
-    $code += "    cli.output.verbose(options.parse);" + $NEW_LINE;
+    $code += "    cli.output.verbose(JSON.stringify(options));" + $NEW_LINE;
     $code += "    if (options.parse && options.value) {" + $NEW_LINE;
     $code += "      options.value = JSON.parse(options.value);" + $NEW_LINE;
     $code += "    }" + $NEW_LINE;
