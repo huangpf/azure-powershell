@@ -13,17 +13,17 @@
 // ----------------------------------------------------------------------------------
 
 using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Storage.DataMovement;
 
-namespace Microsoft.WindowsAzure.Commands.Storage.Common
+namespace Microsoft.Azure.Commands.StreamAnalytics.Models
 {
-    /// <summary>
-    /// Provides the interface for transfer job runners.
-    /// </summary>
-    internal interface ITransferJobRunner : IDisposable
+    public class CreatePSFunctionParameter : JobParametersBase
     {
-        Task RunTransferJob(TransferJob job, Action<double, double> progressReport, CancellationToken cancellationToken);
+        public string FunctionName { get; set; }
+
+        public string RawJsonContent { get; set; }
+
+        public bool Force { get; set; }
+
+        public Action<bool, string, string, string, Action> ConfirmAction { get; set; }
     }
 }
