@@ -28,7 +28,7 @@ namespace Microsoft.Azure.Commands.Compute
             }
         }
 
-        public IVirtualMachineScaleSetVMOperations VirtualMachineScaleSetVMClient
+        public IVirtualMachineScaleSetVMsOperations VirtualMachineScaleSetVMClient
         {
             get
             {
