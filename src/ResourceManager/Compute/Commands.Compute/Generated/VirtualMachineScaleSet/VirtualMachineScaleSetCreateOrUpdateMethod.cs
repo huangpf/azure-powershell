@@ -47,13 +47,25 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             pResourceGroupName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
 
+            var pName = new RuntimeDefinedParameter();
+            pName.Name = "Name";
+            pName.ParameterType = typeof(string);
+            pName.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 2,
+                Mandatory = true
+            });
+            pName.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("Name", pName);
+
             var pParameters = new RuntimeDefinedParameter();
             pParameters.Name = "VirtualMachineScaleSetCreateOrUpdateParameters";
             pParameters.ParameterType = typeof(VirtualMachineScaleSet);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
-                Position = 2,
+                Position = 3,
                 Mandatory = true
             });
             pParameters.Attributes.Add(new AllowNullAttribute());
@@ -65,7 +77,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 3,
+                Position = 4,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
@@ -77,9 +89,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         protected void ExecuteVirtualMachineScaleSetCreateOrUpdateMethod(object[] invokeMethodInputParameters)
         {
             string resourceGroupName = (string)ParseParameter(invokeMethodInputParameters[0]);
-            VirtualMachineScaleSet parameters = (VirtualMachineScaleSet)ParseParameter(invokeMethodInputParameters[1]);
+            string name = (string)ParseParameter(invokeMethodInputParameters[1]);
+            VirtualMachineScaleSet parameters = (VirtualMachineScaleSet)ParseParameter(invokeMethodInputParameters[2]);
 
-            var result = VirtualMachineScaleSetClient.CreateOrUpdate(resourceGroupName, parameters);
+            var result = VirtualMachineScaleSetsClient.CreateOrUpdate(resourceGroupName, name, parameters);
             WriteObject(result);
         }
     }
@@ -89,18 +102,19 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         protected PSArgument[] CreateVirtualMachineScaleSetCreateOrUpdateParameters()
         {
             string resourceGroupName = string.Empty;
+            string name = string.Empty;
             VirtualMachineScaleSet parameters = new VirtualMachineScaleSet();
 
             return ConvertFromObjectsToArguments(
-                 new string[] { "ResourceGroupName", "Parameters" },
-                 new object[] { resourceGroupName, parameters });
+                 new string[] { "ResourceGroupName", "Name", "Parameters" },
+                 new object[] { resourceGroupName, name, parameters });
         }
     }
 
-    [Cmdlet("New", "AzureRmVmss", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class NewAzureRmVMSS : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("New", "AzureRmVmsss", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class NewAzureRmVMSSs : InvokeAzureComputeMethodCmdlet
     {
-        public NewAzureRmVMSS()
+        public NewAzureRmVMSSs()
         {
             this.MethodName = "VirtualMachineScaleSetCreateOrUpdate";
         }
@@ -127,13 +141,25 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             pResourceGroupName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
 
+            var pName = new RuntimeDefinedParameter();
+            pName.Name = "Name";
+            pName.ParameterType = typeof(string);
+            pName.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 2,
+                Mandatory = true
+            });
+            pName.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("Name", pName);
+
             var pParameters = new RuntimeDefinedParameter();
             pParameters.Name = "VirtualMachineScaleSetCreateOrUpdateParameters";
             pParameters.ParameterType = typeof(VirtualMachineScaleSet);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
-                Position = 2,
+                Position = 3,
                 Mandatory = true
             });
             pParameters.Attributes.Add(new AllowNullAttribute());
@@ -145,7 +171,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 3,
+                Position = 4,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());

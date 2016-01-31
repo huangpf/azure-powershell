@@ -91,7 +91,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string serviceName = (string)ParseParameter(invokeMethodInputParameters[0]);
             string deploymentName = (string)ParseParameter(invokeMethodInputParameters[1]);
             var inputArray2 = Array.ConvertAll((object[]) ParseParameter(invokeMethodInputParameters[2]), e => e.ToString());
-            VirtualMachineStartRolesParameters parameters  = new VirtualMachineStartRolesParameters();
+            VirtualMachineStartRolesParameters parameters = new VirtualMachineStartRolesParameters();
             parameters.Roles = inputArray2.ToList();
 
             var result = VirtualMachineClient.StartRoles(serviceName, deploymentName, parameters);

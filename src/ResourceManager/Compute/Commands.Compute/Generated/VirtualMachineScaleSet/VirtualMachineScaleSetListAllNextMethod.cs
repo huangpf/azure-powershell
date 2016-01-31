@@ -32,32 +32,20 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 {
     public partial class InvokeAzureComputeMethodCmdlet : ComputeAutomationBaseCmdlet
     {
-        protected object CreateVirtualMachineScaleSetGetDynamicParameters()
+        protected object CreateVirtualMachineScaleSetListAllNextDynamicParameters()
         {
             dynamicParameters = new RuntimeDefinedParameterDictionary();
-            var pResourceGroupName = new RuntimeDefinedParameter();
-            pResourceGroupName.Name = "ResourceGroupName";
-            pResourceGroupName.ParameterType = typeof(string);
-            pResourceGroupName.Attributes.Add(new ParameterAttribute
+            var pNextPageLink = new RuntimeDefinedParameter();
+            pNextPageLink.Name = "NextPageLink";
+            pNextPageLink.ParameterType = typeof(string);
+            pNextPageLink.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
                 Mandatory = true
             });
-            pResourceGroupName.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
-
-            var pVMScaleSetName = new RuntimeDefinedParameter();
-            pVMScaleSetName.Name = "VMScaleSetName";
-            pVMScaleSetName.ParameterType = typeof(string);
-            pVMScaleSetName.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByDynamicParameters",
-                Position = 2,
-                Mandatory = true
-            });
-            pVMScaleSetName.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("VMScaleSetName", pVMScaleSetName);
+            pNextPageLink.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("NextPageLink", pNextPageLink);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
@@ -65,7 +53,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 3,
+                Position = 2,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
@@ -74,35 +62,33 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             return dynamicParameters;
         }
 
-        protected void ExecuteVirtualMachineScaleSetGetMethod(object[] invokeMethodInputParameters)
+        protected void ExecuteVirtualMachineScaleSetListAllNextMethod(object[] invokeMethodInputParameters)
         {
-            string resourceGroupName = (string)ParseParameter(invokeMethodInputParameters[0]);
-            string vmScaleSetName = (string)ParseParameter(invokeMethodInputParameters[1]);
+            string nextPageLink = (string)ParseParameter(invokeMethodInputParameters[0]);
 
-            var result = VirtualMachineScaleSetsClient.Get(resourceGroupName, vmScaleSetName);
+            var result = VirtualMachineScaleSetsClient.ListAllNext(nextPageLink);
             WriteObject(result);
         }
     }
 
     public partial class NewAzureComputeArgumentListCmdlet : ComputeAutomationBaseCmdlet
     {
-        protected PSArgument[] CreateVirtualMachineScaleSetGetParameters()
+        protected PSArgument[] CreateVirtualMachineScaleSetListAllNextParameters()
         {
-            string resourceGroupName = string.Empty;
-            string vmScaleSetName = string.Empty;
+            string nextPageLink = string.Empty;
 
             return ConvertFromObjectsToArguments(
-                 new string[] { "ResourceGroupName", "VMScaleSetName" },
-                 new object[] { resourceGroupName, vmScaleSetName });
+                 new string[] { "NextPageLink" },
+                 new object[] { nextPageLink });
         }
     }
 
-    [Cmdlet("Get", "AzureRmVmsss", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class GetAzureRmVMSSs : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Get", "AzureRmVmsssAllNextList", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class GetAzureRmVMSSsAllNextList : InvokeAzureComputeMethodCmdlet
     {
-        public GetAzureRmVMSSs()
+        public GetAzureRmVMSSsAllNextList()
         {
-            this.MethodName = "VirtualMachineScaleSetGet";
+            this.MethodName = "VirtualMachineScaleSetListAllNext";
         }
 
         public override string MethodName { get; set; }
@@ -115,29 +101,17 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         public override object GetDynamicParameters()
         {
             dynamicParameters = new RuntimeDefinedParameterDictionary();
-            var pResourceGroupName = new RuntimeDefinedParameter();
-            pResourceGroupName.Name = "ResourceGroupName";
-            pResourceGroupName.ParameterType = typeof(string);
-            pResourceGroupName.Attributes.Add(new ParameterAttribute
+            var pNextPageLink = new RuntimeDefinedParameter();
+            pNextPageLink.Name = "NextPageLink";
+            pNextPageLink.ParameterType = typeof(string);
+            pNextPageLink.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
                 Mandatory = true
             });
-            pResourceGroupName.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
-
-            var pVMScaleSetName = new RuntimeDefinedParameter();
-            pVMScaleSetName.Name = "VMScaleSetName";
-            pVMScaleSetName.ParameterType = typeof(string);
-            pVMScaleSetName.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByDynamicParameters",
-                Position = 2,
-                Mandatory = true
-            });
-            pVMScaleSetName.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("VMScaleSetName", pVMScaleSetName);
+            pNextPageLink.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("NextPageLink", pNextPageLink);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
@@ -145,7 +119,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 3,
+                Position = 2,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());

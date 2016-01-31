@@ -91,7 +91,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string serviceName = (string)ParseParameter(invokeMethodInputParameters[0]);
             string deploymentName = (string)ParseParameter(invokeMethodInputParameters[1]);
             var inputArray2 = Array.ConvertAll((object[]) ParseParameter(invokeMethodInputParameters[2]), e => e.ToString());
-            DeploymentDeleteRoleInstanceParameters roleInstanceName  = new DeploymentDeleteRoleInstanceParameters();
+            DeploymentDeleteRoleInstanceParameters roleInstanceName = new DeploymentDeleteRoleInstanceParameters();
             roleInstanceName.Name = inputArray2.ToList();
 
             var result = DeploymentClient.DeleteRoleInstanceByDeploymentName(serviceName, deploymentName, roleInstanceName);

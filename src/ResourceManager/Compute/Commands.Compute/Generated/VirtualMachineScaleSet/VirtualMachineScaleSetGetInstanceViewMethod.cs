@@ -79,7 +79,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             string resourceGroupName = (string)ParseParameter(invokeMethodInputParameters[0]);
             string vmScaleSetName = (string)ParseParameter(invokeMethodInputParameters[1]);
 
-            var result = VirtualMachineScaleSetClient.GetInstanceView(resourceGroupName, vmScaleSetName);
+            var result = VirtualMachineScaleSetsClient.GetInstanceView(resourceGroupName, vmScaleSetName);
             WriteObject(result);
         }
     }
@@ -97,10 +97,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Get", "AzureRmVmssInstanceView", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class GetAzureRmVMSSInstanceView : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Get", "AzureRmVmsssInstanceView", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class GetAzureRmVMSSsInstanceView : InvokeAzureComputeMethodCmdlet
     {
-        public GetAzureRmVMSSInstanceView()
+        public GetAzureRmVMSSsInstanceView()
         {
             this.MethodName = "VirtualMachineScaleSetGetInstanceView";
         }

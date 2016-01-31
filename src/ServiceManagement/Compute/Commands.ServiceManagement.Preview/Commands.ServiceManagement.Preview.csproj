@@ -379,7 +379,7 @@
     </PropertyGroup>
     <Exec Command="$(PowerShellExe) $(PSCodeGenScriptPath) $(PSCodeGenTargetFolder) $(MSBuildProjectDirectory) $(ClientLibraryNamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName) $(ASMCmdletFlavor) $(CliCmdletFlavor) $(OperationNameFilter)" />
   </Target>
-  <Target Name="BuildGenerateARM">
+  <Target Name="BuildGenerateARM" DependsOnTargets="BuildGenerateRDFE">
     <PropertyGroup>
       <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
       <PSCodeGenScriptPath>".\Automation\RunCodeGeneration.ps1"</PSCodeGenScriptPath>
@@ -390,7 +390,7 @@
       <ARMGeneratedPSCodeFolder>..\..\..\ResourceManager\Compute\Commands.Compute</ARMGeneratedPSCodeFolder>
       <ARMCmdletFlavor>Verb</ARMCmdletFlavor>
       <CliCmdletFlavor>Verb</CliCmdletFlavor>
-      <OperationNameFilter>"VirtualMachineScaleSet","VirtualMachineScaleSetVM"</OperationNameFilter>
+      <OperationNameFilter>"VirtualMachineScaleSets","VirtualMachineScaleSetVMs"</OperationNameFilter>
     </PropertyGroup>
     <Exec Command="$(PowerShellExe) $(PSCodeGenScriptPath) $(PSCodeGenTargetFolder) $(ARMGeneratedPSCodeFolder) $(ARMClientLibraryNamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName) $(ARMCmdletFlavor) $(CliCmdletFlavor) $(OperationNameFilter)" />
   </Target>

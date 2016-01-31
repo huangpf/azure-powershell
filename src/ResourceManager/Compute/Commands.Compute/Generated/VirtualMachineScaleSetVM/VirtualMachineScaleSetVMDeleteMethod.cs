@@ -92,8 +92,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             string vmScaleSetName = (string)ParseParameter(invokeMethodInputParameters[1]);
             string instanceId = (string)ParseParameter(invokeMethodInputParameters[2]);
 
-            var result = VirtualMachineScaleSetVMClient.Delete(resourceGroupName, vmScaleSetName, instanceId);
-            WriteObject(result);
+            VirtualMachineScaleSetVMsClient.Delete(resourceGroupName, vmScaleSetName, instanceId);
         }
     }
 
@@ -111,10 +110,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Remove", "AzureRmVmssVM", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class RemoveAzureRmVMSSVM : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Remove", "AzureRmVmssVMs", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class RemoveAzureRmVMSSVMs : InvokeAzureComputeMethodCmdlet
     {
-        public RemoveAzureRmVMSSVM()
+        public RemoveAzureRmVMSSVMs()
         {
             this.MethodName = "VirtualMachineScaleSetVMDelete";
         }

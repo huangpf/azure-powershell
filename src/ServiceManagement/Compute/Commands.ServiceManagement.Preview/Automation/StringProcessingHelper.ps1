@@ -12,7 +12,6 @@
 # limitations under the License.
 # ----------------------------------------------------------------------------------
 
-
 function Get-NormalizedName
 {
     param(

@@ -92,8 +92,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             string vmScaleSetName = (string)ParseParameter(invokeMethodInputParameters[1]);
             string instanceId = (string)ParseParameter(invokeMethodInputParameters[2]);
 
-            var result = VirtualMachineScaleSetVMClient.PowerOff(resourceGroupName, vmScaleSetName, instanceId);
-            WriteObject(result);
+            VirtualMachineScaleSetVMsClient.PowerOff(resourceGroupName, vmScaleSetName, instanceId);
         }
     }
 
@@ -111,10 +110,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Stop", "AzureRmVmssVM", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class StopAzureRmVMSSVM : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Stop", "AzureRmVmssVMs", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class StopAzureRmVMSSVMs : InvokeAzureComputeMethodCmdlet
     {
-        public StopAzureRmVMSSVM()
+        public StopAzureRmVMSSVMs()
         {
             this.MethodName = "VirtualMachineScaleSetVMPowerOff";
         }

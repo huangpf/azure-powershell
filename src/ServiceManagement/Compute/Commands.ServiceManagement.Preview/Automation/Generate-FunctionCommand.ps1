@@ -34,9 +34,6 @@ param(
     [string]$fileOutputFolder = $null
 )
 
-$NEW_LINE = "`r`n";
-$BAR_LINE = "=============================================";
-$SEC_LINE = "---------------------------------------------";
 . "$PSScriptRoot\StringProcessingHelper.ps1";
 . "$PSScriptRoot\ParameterTypeHelper.ps1";
 
@@ -77,7 +74,15 @@ function Generate-CliFunctionCommandImpl
     foreach ($paramItem in $methodParameters)
     {
         [System.Type]$paramType = $paramItem.ParameterType;
-        if (-not ($paramType.FullName.EndsWith('CancellationToken')))
+        if (($paramType.Name -like "I*Operations") -and ($paramItem.Name -eq 'operations'))
+        {
+            continue;
+        }
+        elseif ($paramType.FullName.EndsWith('CancellationToken'))
+        {
+            continue;
+        }
+        else
         {
             # Record the Normalized Parameter Name, i.e. 'vmName' => 'VMName', 'resourceGroup' => 'ResourceGroup', etc.
             $methodParamNameList += (Get-NormalizedName $paramItem.Name);
@@ -152,7 +157,7 @@ function Generate-CliFunctionCommandImpl
     $code += "  var $cliCategoryVarName = cli${invoke_category_code}.category('${cliCategoryName}')" + $NEW_LINE;
 
     # 3.2.7 Description Text
-    $desc_text = "Commands to manage your ${cliOperationDescription}.\r\n${CLI_HELP_MSG}";
+    $desc_text = "Commands to manage your ${cliOperationDescription}.";
     $desc_text_lines = Get-SplitTextLines $desc_text 80;
     $code += "  .description(`$('";
     $code += [string]::Join("'" + $NEW_LINE + "  + '", $desc_text_lines);

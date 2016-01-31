@@ -79,7 +79,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             string resourceGroupName = (string)ParseParameter(invokeMethodInputParameters[0]);
             string vmScaleSetName = (string)ParseParameter(invokeMethodInputParameters[1]);
 
-            var result = VirtualMachineScaleSetClient.ListSkus(resourceGroupName, vmScaleSetName);
+            var result = VirtualMachineScaleSetsClient.ListSkus(resourceGroupName, vmScaleSetName);
             WriteObject(result);
         }
     }
@@ -97,10 +97,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Get", "AzureRmVmssSkusList", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class GetAzureRmVMSSSkusList : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Get", "AzureRmVmsssSkusList", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class GetAzureRmVMSSsSkusList : InvokeAzureComputeMethodCmdlet
     {
-        public GetAzureRmVMSSSkusList()
+        public GetAzureRmVMSSsSkusList()
         {
             this.MethodName = "VirtualMachineScaleSetListSkus";
         }

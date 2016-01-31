@@ -92,8 +92,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             string vmScaleSetName = (string)ParseParameter(invokeMethodInputParameters[1]);
             string instanceId = (string)ParseParameter(invokeMethodInputParameters[2]);
 
-            var result = VirtualMachineScaleSetVMClient.Restart(resourceGroupName, vmScaleSetName, instanceId);
-            WriteObject(result);
+            VirtualMachineScaleSetVMsClient.Restart(resourceGroupName, vmScaleSetName, instanceId);
         }
     }
 
@@ -111,10 +110,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Restart", "AzureRmVmssVM", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class RestartAzureRmVMSSVM : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Restart", "AzureRmVmssVMs", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class RestartAzureRmVMSSVMs : InvokeAzureComputeMethodCmdlet
     {
-        public RestartAzureRmVMSSVM()
+        public RestartAzureRmVMSSVMs()
         {
             this.MethodName = "VirtualMachineScaleSetVMRestart";
         }

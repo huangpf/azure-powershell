@@ -92,8 +92,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             string vmScaleSetName = (string)ParseParameter(invokeMethodInputParameters[1]);
             string instanceId = (string)ParseParameter(invokeMethodInputParameters[2]);
 
-            var result = VirtualMachineScaleSetVMClient.Deallocate(resourceGroupName, vmScaleSetName, instanceId);
-            WriteObject(result);
+            VirtualMachineScaleSetVMsClient.Deallocate(resourceGroupName, vmScaleSetName, instanceId);
         }
     }
 
@@ -111,10 +110,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Stop", "AzureRmVmssVMWithDeallocation", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class StopAzureRmVMSSVMWithDeallocation : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Stop", "AzureRmVmssVMsWithDeallocation", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class StopAzureRmVMSSVMsWithDeallocation : InvokeAzureComputeMethodCmdlet
     {
-        public StopAzureRmVMSSVMWithDeallocation()
+        public StopAzureRmVMSSVMsWithDeallocation()
         {
             this.MethodName = "VirtualMachineScaleSetVMDeallocate";
         }

@@ -52,9 +52,8 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         protected void ExecuteVirtualMachineScaleSetListAllMethod(object[] invokeMethodInputParameters)
         {
-            ListParameters parameters = new ListParameters();
 
-            var result = VirtualMachineScaleSetClient.ListAll(parameters);
+            var result = VirtualMachineScaleSetsClient.ListAll();
             WriteObject(result);
         }
     }
@@ -67,10 +66,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Get", "AzureRmVmssAllList", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class GetAzureRmVMSSAllList : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Get", "AzureRmVmsssAllList", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class GetAzureRmVMSSsAllList : InvokeAzureComputeMethodCmdlet
     {
-        public GetAzureRmVMSSAllList()
+        public GetAzureRmVMSSsAllList()
         {
             this.MethodName = "VirtualMachineScaleSetListAll";
         }
