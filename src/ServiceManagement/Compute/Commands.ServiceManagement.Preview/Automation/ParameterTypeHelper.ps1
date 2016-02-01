@@ -24,7 +24,7 @@ function Contains-OnlyStringFields
         return $false;
     }
 
-    if ($parameterType.BaseType.IsEquivalentTo([System.Enum]))
+    if ((-not $parameterType.IsInterface) -and ($parameterType.BaseType -ne $null) -and $parameterType.BaseType.IsEquivalentTo([System.Enum]))
     {
         return $false;
     }
@@ -49,12 +49,17 @@ function Contains-OnlyStringList
         [System.Type]$parameterType
     )
 
-    if ($parameterType -eq $null -or $parameterType.BaseType -eq $null)
+    if ($parameterType -eq $null)
     {
         return $false;
     }
+    
+    if ($parameterType.IsEquivalentTo([System.Collections.Generic.IList[string]]))
+    {
+      return $true;
+    }
 
-    if ($parameterType.BaseType.IsEquivalentTo([System.Enum]))
+    if ((-not $parameterType.IsInterface) -and ($parameterType.BaseType -ne $null) -and $parameterType.BaseType.IsEquivalentTo([System.Enum]))
     {
         return $false;
     }

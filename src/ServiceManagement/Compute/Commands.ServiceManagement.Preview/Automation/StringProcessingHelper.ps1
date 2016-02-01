@@ -96,6 +96,14 @@ function Get-CliCategoryName
     {
         $outName = 'vmssvm';
     }
+    if ($inName -eq 'VirtualMachineScaleSets')
+    {
+        $outName = 'vmss';
+    }
+    elseif ($inName -eq 'VirtualMachineScaleSetVMs')
+    {
+        $outName = 'vmssvm';
+    }
     else
     {
         $outName = Get-CliOptionName $inName;

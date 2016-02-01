@@ -37,14 +37,6 @@ param(
 . "$PSScriptRoot\StringProcessingHelper.ps1";
 . "$PSScriptRoot\ParameterTypeHelper.ps1";
 
-$CLI_HELP_MSG = "         There are two sets of commands:\r\n" `
-              + "           1) function commands that are used to manage Azure resources in the cloud, and \r\n" `
-              + "           2) parameter commands that generate & edit input files for the other set of commands.\r\n" `
-              + "         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n" `
-              + "         virtual machine scale set, whereas \'vmss create-or-update-parameters generate/set/remove/add\' commands \r\n" `
-              + "         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n" `
-              + "         file as for the VM scale set configuration, and creates it online.";
-
 function Generate-CliFunctionCommandImpl
 {
     param(
@@ -286,8 +278,12 @@ function Generate-CliFunctionCommandImpl
                 {
                     $code += "      var ${cli_param_name}ValArr = ${cli_param_name}.split(',');" + $NEW_LINE;
                     $code += "      cli.output.verbose(`'${cli_param_name}ValArr : `' + ${cli_param_name}ValArr);" + $NEW_LINE;
-                    $code += "      ${cli_param_name}Obj = {};" + $NEW_LINE;
-                    $code += "      ${cli_param_name}Obj.instanceIDs = ${cli_param_name}ValArr;" + $NEW_LINE;
+                    #$code += "      ${cli_param_name}Obj = {};" + $NEW_LINE;
+                    #$code += "      ${cli_param_name}Obj.instanceIDs = ${cli_param_name}ValArr;" + $NEW_LINE;
+                    $code += "      ${cli_param_name}Obj = [];" + $NEW_LINE;
+                    $code += "      for (var item in ${cli_param_name}ValArr) {" + $NEW_LINE;
+                    $code += "        ${cli_param_name}Obj.push(item);" + $NEW_LINE;
+                    $code += "      }" + $NEW_LINE;
                 }
                 else
                 {
@@ -307,7 +303,7 @@ function Generate-CliFunctionCommandImpl
     }
     else
     {
-        $code += "    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);" + $NEW_LINE;
+        $code += "    var computeManagementClient = utils.createComputeManagementClient(subscription);" + $NEW_LINE;
     }
 
     if ($cliMethodName -eq 'delete')
@@ -319,7 +315,7 @@ function Generate-CliFunctionCommandImpl
         $cliMethodFuncName = $cliMethodName;
     }
 
-    $code += "    var result = computeManagementClient.${cliOperationName}s.${cliMethodFuncName}(";
+    $code += "    var result = computeManagementClient.${cliOperationName}.${cliMethodFuncName}(";
 
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {

@@ -39,6 +39,7 @@ function New-ParameterTreeNode
     $node | Add-Member -Type NoteProperty -Name OnlySimple -Value $false;
     $node | Add-Member -Type NoteProperty -Name Properties -Value @();
     $node | Add-Member -Type NoteProperty -Name SubNodes -Value @();
+    $node | Add-Member -Type NoteProperty -Name IsPrimitive -Value $false;
     
     return $node;
 }
@@ -65,7 +66,8 @@ function Create-ParameterTreeImpl
     }
     elseif (-not $TypeInfo.FullName.StartsWith($NameSpace + "."))
     {
-        return New-ParameterTreeNode $ParameterName $TypeInfo $Parent;
+        $node = New-ParameterTreeNode $ParameterName $TypeInfo $Parent;
+        return $node;
     }
     else
     {
@@ -131,6 +133,12 @@ function Create-ParameterTreeImpl
             }
             else
             {
+                if ($nodeProp["Type"].IsEquivalentTo([System.Nullable[long]]) -or
+                    $nodeProp["Type"].IsEquivalentTo([System.Nullable[bool]]))
+                {
+                    $nodeProp["IsPrimitive"] = $true;
+                }
+
                 # Primitive Type, e.g. int, string, Dictionary<string, string>, etc.
                 Write-Verbose ($padding + '-' + $nodeProp["Name"] + " : " + $nodeProp["Type"]);
             }
