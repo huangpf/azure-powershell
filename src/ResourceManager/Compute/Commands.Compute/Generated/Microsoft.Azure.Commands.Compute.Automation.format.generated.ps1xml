@@ -78,20 +78,6 @@
       </ListControl>
     </View>
     <View>
-      <Name>System.Void</Name>
-      <ViewSelectedBy>
-        <TypeName>System.Void</TypeName>
-      </ViewSelectedBy>
-      <ListControl>
-        <ListEntries>
-          <ListEntry>
-            <ListItems>
-            </ListItems>
-          </ListEntry>
-        </ListEntries>
-      </ListControl>
-    </View>
-    <View>
       <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetInstanceView</Name>
       <ViewSelectedBy>
         <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetInstanceView</TypeName>

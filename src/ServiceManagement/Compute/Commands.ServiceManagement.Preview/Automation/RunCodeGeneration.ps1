@@ -2047,9 +2047,12 @@ else
                 }
             }
 
-            $returnTypeResult = Process-ReturnType -rt $methodInfo.ReturnType -allrt $all_return_type_names;
-            $formatXml += $returnTypeResult[0];
-            $all_return_type_names = $returnTypeResult[1];
+            if ($methodInfo.ReturnType.FullName -ne 'System.Void')
+            {
+                $returnTypeResult = Process-ReturnType -rt $methodInfo.ReturnType -allrt $all_return_type_names;
+                $formatXml += $returnTypeResult[0];
+                $all_return_type_names = $returnTypeResult[1];
+            }
         }
 
         Write-InvokeCmdletFile $invoke_cmdlet_file_name $invoke_cmdlet_class_name $auto_base_cmdlet_name $clientClassType $filtered_types $invoke_cmdlet_method_code $dynamic_param_method_code;
