@@ -40,6 +40,14 @@ param(
 $NEW_LINE = "`r`n";
 . "$PSScriptRoot\StringProcessingHelper.ps1";
 
+$CLI_HELP_MSG = "         There are two sets of commands:\r\n" `
+              + "           1) function commands that are used to manage Azure resources in the cloud, and \r\n" `
+              + "           2) parameter commands that generate & edit input files for the other set of commands.\r\n" `
+              + "         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n" `
+              + "         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n" `
+              + "         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n" `
+              + "         file as for the VM scale set configuration, and creates it online.";
+
 function Get-ParameterCommandCategoryDescription
 {
     param
@@ -91,10 +99,11 @@ function Generate-CliParameterCommandImpl
     {
         [string]$nodeName = Get-CliNormalizedName $parentNode.Name.Trim();
         [string]$pathName = $nodeName;
-        if ($pathName.ToLower().StartsWith('ip'))
-        {
-            $pathName = 'iP' + $pathName.Substring(2);
-        }
+        # Skip this for AutoRest, as the parameter names are always matched.
+        # if ($pathName.ToLower().StartsWith('ip'))
+        # {
+        #    $pathName = 'iP' + $pathName.Substring(2);
+        # }
 
         if ($parentNode.Parent -ne $null)
         {
@@ -147,10 +156,13 @@ function Generate-CliParameterCommandImpl
     }
     else
     {
-        $sampleJsonText = "{\r\n  ...\r\n";
-        $sampleJsonText += "  `"" + (Get-CliNormalizedName $TreeNode.Name) + "`" : ";
-        $sampleJsonText += ($paramObjText.Replace("`r`n", "\r\n  ")) + "\r\n";
-        $sampleJsonText += "  ...\r\n}\r\n";
+        $padding = "         ";
+        $sampleJsonText = $padding + "{\r\n";
+        $sampleJsonText += $padding + "  ...\r\n";
+        $sampleJsonText += $padding + "  `"" + (Get-CliNormalizedName $TreeNode.Name) + "`" : ";
+        $sampleJsonText += ($paramObjText.Replace("`r`n", "\r\n" + $padding + "  ")) + "\r\n";
+        $sampleJsonText += $padding + "  ...\r\n";
+        $sampleJsonText += $padding + "}\r\n";
     }
 
     if ($TreeNode.Properties.Count -gt 0 -or ($TreeNode.IsListItem))
@@ -167,7 +179,7 @@ function Generate-CliParameterCommandImpl
         $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${cli_method_option_name}')" + $NEW_LINE;
         $code += "  .description(`$('" + (Get-ParameterCommandCategoryDescription $cli_op_description $params_category_name $cli_method_option_name) +"'));" + $NEW_LINE;
         $code += "  ${params_generate_category_var_name}.command('${params_generate_category_name}')" + $NEW_LINE;
-        $code += "  .description(`$('Set ${cli_method_option_name} in ${params_category_name} string or files, e.g. \r\n${sampleJsonText}'))" + $NEW_LINE;
+        $code += "  .description(`$('Set ${cli_method_option_name} in ${params_category_name} string or files, e.g. \r\n${sampleJsonText}\r\n" + $CLI_HELP_MSG + "'))" + $NEW_LINE;
         $code += "  .usage('[options]')" + $NEW_LINE;
         $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
 
@@ -244,6 +256,12 @@ function Generate-CliParameterCommandImpl
             $code += "      if (options.parse && options.${paramName}) {" + $NEW_LINE;
             $code += "        options.${paramName} = JSON.parse(options.${paramName});" + $NEW_LINE;
             $code += "      }" + $NEW_LINE;
+            
+            if ($propertyItem["IsPrimitive"])
+            {
+                $code += "        options.${paramName} = JSON.parse(options.${paramName});" + $NEW_LINE;
+            }
+            
             $code += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: paramPath, value: options.${paramName}}]);" + $NEW_LINE;
             $code += "    }" + $NEW_LINE;
         }
@@ -274,7 +292,7 @@ function Generate-CliParameterCommandImpl
     $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${cli_method_option_name}')" + $NEW_LINE;
     $code += "  .description(`$('" + (Get-ParameterCommandCategoryDescription $cli_op_description $params_category_name $cli_method_option_name) +"'));" + $NEW_LINE;
     $code += "  ${params_generate_category_var_name}.command('${params_generate_category_name}')" + $NEW_LINE;
-    $code += "  .description(`$('Remove ${cli_method_option_name} in ${params_category_name} string or files, e.g. \r\n${sampleJsonText}'))" + $NEW_LINE;
+    $code += "  .description(`$('Remove ${cli_method_option_name} in ${params_category_name} string or files, e.g. \r\n${sampleJsonText}\r\n" + $CLI_HELP_MSG + "'))" + $NEW_LINE;
     $code += "  .usage('[options]')" + $NEW_LINE;
     $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
 
@@ -364,7 +382,7 @@ function Generate-CliParameterCommandImpl
     $code += "  var ${params_generate_category_var_name} = ${params_category_var_name}.category('${cli_method_option_name}')" + $NEW_LINE;
     $code += "  .description(`$('" + (Get-ParameterCommandCategoryDescription $cli_op_description $params_category_name $cli_method_option_name) +"'));" + $NEW_LINE;
     $code += "  ${params_generate_category_var_name}.command('${params_generate_category_name}')" + $NEW_LINE;
-    $code += "  .description(`$('Add ${cli_method_option_name} in ${params_category_name} string or files, e.g. \r\n${sampleJsonText}'))" + $NEW_LINE;
+    $code += "  .description(`$('Add ${cli_method_option_name} in ${params_category_name} string or files, e.g. \r\n${sampleJsonText}\r\n" + $CLI_HELP_MSG + "'))" + $NEW_LINE;
     $code += "  .usage('[options]')" + $NEW_LINE;
     $code += "  .option('--parameter-file <parameter-file>', `$('The parameter file path.'))" + $NEW_LINE;
     $code += "  .option('--key <key>', `$('The JSON key.'))" + $NEW_LINE;
@@ -422,6 +440,12 @@ function Generate-CliParameterCommandImpl
         $code += "      if (options.parse && options.${paramName}) {" + $NEW_LINE;
         $code += "        options.${paramName} = JSON.parse(options.${paramName});" + $NEW_LINE;
         $code += "      }" + $NEW_LINE;
+
+        if ($propertyItem["IsPrimitive"])
+        {
+            $code += "        options.${paramName} = JSON.parse(options.${paramName});" + $NEW_LINE;
+        }
+
         $code += "      jsonpatch.apply(${cli_param_name}Obj, [{op: options.operation, path: paramPath, value: options.${paramName}}]);" + $NEW_LINE;
         $code += "    }" + $NEW_LINE;
     }
@@ -541,7 +565,7 @@ function Generate-PowershellParameterCommandImpl
 
     if (($rootNode.Name -ne $OperationName) -and ($TreeNode.Name -ne $OperationName))
     {
-         Write-Verbose("No need for parameter cmdlets");
+         # Write-Verbose("No need for parameter cmdlets");
          return;
     }
 
