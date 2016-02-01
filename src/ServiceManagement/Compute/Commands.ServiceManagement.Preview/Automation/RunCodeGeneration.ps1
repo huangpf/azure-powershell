@@ -282,6 +282,7 @@ function Write-InvokeCmdletFile
     foreach ($operation_type in $operation_type_list)
     {
         $op_short_name = Get-OperationShortName $operation_type.Name;
+        $op_short_name = $op_short_name.Replace('ScaleSets', 'ScaleSet').Replace('ScaleSetVMs', 'ScaleSetVM');
         $operation_method_info_list = Get-OperationMethods $operation_type;
 
         foreach ($method in $operation_method_info_list)
@@ -1377,7 +1378,7 @@ ${create_local_param_code_content}
     $return_vals = Get-VerbTermNameAndSuffix $methodName;
     $mapped_verb_name = $return_vals[0];
     $mapped_verb_term_suffix = $return_vals[1];
-    $shortNounName = Get-ShortNounName $opShortName;
+    $shortNounName = Get-ShortNounName $cmdlet_op_short_name;
 
     $mapped_noun_str = 'AzureRm' + $shortNounName + $mapped_verb_term_suffix;
     $verb_cmdlet_name = $mapped_verb_name + $mapped_noun_str;

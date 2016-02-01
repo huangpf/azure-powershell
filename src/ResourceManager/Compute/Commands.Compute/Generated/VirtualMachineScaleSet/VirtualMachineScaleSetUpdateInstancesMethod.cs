@@ -111,10 +111,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Update", "AzureRmVmsssInstances", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class UpdateAzureRmVMSSsInstances : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Update", "AzureRmVmssInstances", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class UpdateAzureRmVMSSInstances : InvokeAzureComputeMethodCmdlet
     {
-        public UpdateAzureRmVMSSsInstances()
+        public UpdateAzureRmVMSSInstances()
         {
             this.MethodName = "VirtualMachineScaleSetUpdateInstances";
         }
