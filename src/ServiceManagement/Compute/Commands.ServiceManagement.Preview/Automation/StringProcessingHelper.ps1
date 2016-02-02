@@ -12,7 +12,6 @@
 # limitations under the License.
 # ----------------------------------------------------------------------------------
 
-
 function Get-NormalizedName
 {
     param(
@@ -94,6 +93,14 @@ function Get-CliCategoryName
         $outName = 'vmss';
     }
     elseif ($inName -eq 'VirtualMachineScaleSetVM')
+    {
+        $outName = 'vmssvm';
+    }
+    if ($inName -eq 'VirtualMachineScaleSets')
+    {
+        $outName = 'vmss';
+    }
+    elseif ($inName -eq 'VirtualMachineScaleSetVMs')
     {
         $outName = 'vmssvm';
     }

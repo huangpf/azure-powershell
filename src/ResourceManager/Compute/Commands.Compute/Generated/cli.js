@@ -36,78 +36,54 @@ function beautify(jsonText) {
 exports.init = function (cli) {
 
 /*
-  VirtualMachineScaleSet CreateOrUpdate
+  VirtualMachineScaleSets CreateOrUpdate
   --resource-group-name
+  --name
   --parameters
 =============================================
 {
-  "provisioningState":"",
   "sku":{
-    "capacity":null,
     "name":"",
-    "tier":""
+    "tier":"",
+    "capacity":null
   },
   "upgradePolicy":{
     "mode":""
   },
   "virtualMachineProfile":{
-    "extensionProfile":{
-      "extensions":[
-        {
-          "autoUpgradeMinorVersion":false,
-          "extensionType":"",
-          "protectedSettings":"",
-          "provisioningState":"",
-          "publisher":"",
-          "settings":"",
-          "typeHandlerVersion":"",
-          "id":"",
-          "name":"",
-          "type":"",
-          "location":"",
-          "tags":{
-          }
-        }
-      ]
-    },
-    "networkProfile":{
-      "networkInterfaceConfigurations":[
-        {
-          "iPConfigurations":[
-            {
-              "loadBalancerBackendAddressPools":[
-                {
-                  "referenceUri":""
-                }
-              ],
-              "loadBalancerInboundNatPools":[
-                {
-                  "referenceUri":""
-                }
-              ],
-              "name":"",
-              "subnet":{
-                "referenceUri":""
-              }
-            }
-          ],
-          "name":"",
-          "primary":null
-        }
-      ]
-    },
-    "oSProfile":{
+    "osProfile":{
       "computerNamePrefix":"",
-      "adminPassword":"",
       "adminUsername":"",
+      "adminPassword":"",
       "customData":"",
+      "windowsConfiguration":{
+        "provisionVMAgent":null,
+        "enableAutomaticUpdates":null,
+        "timeZone":"",
+        "additionalUnattendContent":[
+          {
+            "passName":"",
+            "componentName":"",
+            "settingName":"",
+            "content":""
+          }
+        ],
+        "winRM":{
+          "listeners":[
+            {
+              "protocol":"",
+              "certificateUrl":""
+            }
+          ]
+        }
+      },
       "linuxConfiguration":{
         "disablePasswordAuthentication":null,
-        "sshConfiguration":{
+        "ssh":{
           "publicKeys":[
             {
-              "keyData":"",
-              "path":""
+              "path":"",
+              "keyData":""
             }
           ]
         }
@@ -115,86 +91,100 @@ exports.init = function (cli) {
       "secrets":[
         {
           "sourceVault":{
-            "referenceUri":""
+            "id":""
           },
           "vaultCertificates":[
             {
-              "certificateStore":"",
-              "certificateUrl":""
-            }
-          ]
-        }
-      ],
-      "windowsConfiguration":{
-        "additionalUnattendContents":[
-          {
-            "componentName":"",
-            "content":"",
-            "passName":"",
-            "settingName":""
-          }
-        ],
-        "enableAutomaticUpdates":null,
-        "provisionVMAgent":null,
-        "timeZone":"",
-        "winRMConfiguration":{
-          "listeners":[
-            {
               "certificateUrl":"",
-              "protocol":""
+              "certificateStore":""
             }
           ]
         }
-      }
+      ]
     },
     "storageProfile":{
       "imageReference":{
-        "offer":"",
         "publisher":"",
+        "offer":"",
         "sku":"",
         "version":""
       },
-      "oSDisk":{
+      "osDisk":{
+        "name":"",
         "caching":"",
         "createOption":"",
-        "name":"",
-        "operatingSystemType":"",
-        "sourceImage":{
+        "osType":"",
+        "image":{
           "uri":""
         },
-        "virtualHardDiskContainers":[
+        "vhdContainers":[
           ""
         ]
       }
+    },
+    "networkProfile":{
+      "networkInterfaceConfigurations":[
+        {
+          "name":"",
+          "primary":null,
+          "ipConfigurations":[
+            {
+              "name":"",
+              "subnet":{
+                "id":""
+              },
+              "loadBalancerBackendAddressPools":[
+                {
+                  "id":""
+                }
+              ],
+              "id":""
+            }
+          ],
+          "id":""
+        }
+      ]
+    },
+    "extensionProfile":{
+      "extensions":[
+        {
+          "name":"",
+          "publisher":"",
+          "virtualMachineScaleSetExtensionType":"",
+          "typeHandlerVersion":"",
+          "autoUpgradeMinorVersion":null,
+          "settings":{
+          },
+          "protectedSettings":{
+          },
+          "provisioningState":"",
+          "id":""
+        }
+      ]
     }
   },
-  "id":"",
-  "name":"",
-  "type":"",
+  "provisioningState":"",
+  "id":null,
+  "name":null,
+  "type":null,
   "location":"",
   "tags":{
   }
 }
 */
-  var virtualMachineScaleSetCreateOrUpdate = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetCreateOrUpdate.command('create-or-update [resource-group-name] [parameters]')
-  .description($('Commands to manage your virtual machine scale set by the create-or-update method.'))
-  .usage('[options] <resource-group-name> <parameters>')
+  var virtualMachineScaleSetsCreateOrUpdate = cli.category('vmss')
+  .description($('Commands to manage your virtual machine scale sets.  '));
+  virtualMachineScaleSetsCreateOrUpdate.command('create-or-update [resource-group-name] [name] [parameters]')
+  .description($('Commands to manage your virtual machine scale sets by the create-or-update method.'))
+  .usage('[options] <resource-group-name> <name> <parameters>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
+  .option('-n, --name <name>', $('name'))
   .option('-p, --parameters <parameters>', $('parameters'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, parameters, options, _) {
+  .execute(function(resourceGroupName, name, parameters, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
+    cli.output.verbose('name = ' + name);
     cli.output.verbose('parameters = ' + parameters);
     var parametersObj = null;
     if (options.parameterFile) {
@@ -207,30 +197,30 @@ exports.init = function (cli) {
     }
     cli.output.verbose('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.createOrUpdate(resourceGroupName, parametersObj, _);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
+    var result = computeManagementClient.virtualMachineScaleSets.createOrUpdate(resourceGroupName, name, parametersObj, _);
     cli.output.json(result);
   });
-  var virtualMachineScaleSetCreateOrUpdatecreateOrUpdateParameters1 = virtualMachineScaleSetCreateOrUpdate.category('create-or-update-parameters')
-  .description($('Commands to generate parameter input file for your virtual machine scale set.'));
-  virtualMachineScaleSetCreateOrUpdatecreateOrUpdateParameters1.command('generate')
-  .description($('Generate virtualMachineScaleSetCreateOrUpdate parameter string or files.'))
+  var virtualMachineScaleSetsCreateOrUpdatecreateOrUpdateParameters2 = virtualMachineScaleSetsCreateOrUpdate.category('create-or-update-parameters')
+  .description($('Commands to generate parameter input file for your virtual machine scale sets.'));
+  virtualMachineScaleSetsCreateOrUpdatecreateOrUpdateParameters2.command('generate')
+  .description($('Generate virtualMachineScaleSetsCreateOrUpdate parameter string or files.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .execute(function(options, _) {
-    cli.output.verbose('{\"provisioningState\":\"\",\"sku\":{\"capacity\":null,\"name\":\"\",\"tier\":\"\"},\"upgradePolicy\":{\"mode\":\"\"},\"virtualMachineProfile\":{\"extensionProfile\":{\"extensions\":[{\"autoUpgradeMinorVersion\":false,\"extensionType\":\"\",\"protectedSettings\":\"\",\"provisioningState\":\"\",\"publisher\":\"\",\"settings\":\"\",\"typeHandlerVersion\":\"\",\"id\":\"\",\"name\":\"\",\"type\":\"\",\"location\":\"\",\"tags\":{}}]},\"networkProfile\":{\"networkInterfaceConfigurations\":[{\"iPConfigurations\":[{\"loadBalancerBackendAddressPools\":[{\"referenceUri\":\"\"}],\"loadBalancerInboundNatPools\":[{\"referenceUri\":\"\"}],\"name\":\"\",\"subnet\":{\"referenceUri\":\"\"}}],\"name\":\"\",\"primary\":null}]},\"oSProfile\":{\"computerNamePrefix\":\"\",\"adminPassword\":\"\",\"adminUsername\":\"\",\"customData\":\"\",\"linuxConfiguration\":{\"disablePasswordAuthentication\":null,\"sshConfiguration\":{\"publicKeys\":[{\"keyData\":\"\",\"path\":\"\"}]}},\"secrets\":[{\"sourceVault\":{\"referenceUri\":\"\"},\"vaultCertificates\":[{\"certificateStore\":\"\",\"certificateUrl\":\"\"}]}],\"windowsConfiguration\":{\"additionalUnattendContents\":[{\"componentName\":\"\",\"content\":\"\",\"passName\":\"\",\"settingName\":\"\"}],\"enableAutomaticUpdates\":null,\"provisionVMAgent\":null,\"timeZone\":\"\",\"winRMConfiguration\":{\"listeners\":[{\"certificateUrl\":\"\",\"protocol\":\"\"}]}}},\"storageProfile\":{\"imageReference\":{\"offer\":\"\",\"publisher\":\"\",\"sku\":\"\",\"version\":\"\"},\"oSDisk\":{\"caching\":\"\",\"createOption\":\"\",\"name\":\"\",\"operatingSystemType\":\"\",\"sourceImage\":{\"uri\":\"\"},\"virtualHardDiskContainers\":[\"\"]}}},\"id\":\"\",\"name\":\"\",\"type\":\"\",\"location\":\"\",\"tags\":{}}', _);
-    var filePath = 'virtualMachineScaleSetCreateOrUpdate_createOrUpdate.json';
+    cli.output.verbose('{\"sku\":{\"name\":\"\",\"tier\":\"\",\"capacity\":null},\"upgradePolicy\":{\"mode\":\"\"},\"virtualMachineProfile\":{\"osProfile\":{\"computerNamePrefix\":\"\",\"adminUsername\":\"\",\"adminPassword\":\"\",\"customData\":\"\",\"windowsConfiguration\":{\"provisionVMAgent\":null,\"enableAutomaticUpdates\":null,\"timeZone\":\"\",\"additionalUnattendContent\":[{\"passName\":\"\",\"componentName\":\"\",\"settingName\":\"\",\"content\":\"\"}],\"winRM\":{\"listeners\":[{\"protocol\":\"\",\"certificateUrl\":\"\"}]}},\"linuxConfiguration\":{\"disablePasswordAuthentication\":null,\"ssh\":{\"publicKeys\":[{\"path\":\"\",\"keyData\":\"\"}]}},\"secrets\":[{\"sourceVault\":{\"id\":\"\"},\"vaultCertificates\":[{\"certificateUrl\":\"\",\"certificateStore\":\"\"}]}]},\"storageProfile\":{\"imageReference\":{\"publisher\":\"\",\"offer\":\"\",\"sku\":\"\",\"version\":\"\"},\"osDisk\":{\"name\":\"\",\"caching\":\"\",\"createOption\":\"\",\"osType\":\"\",\"image\":{\"uri\":\"\"},\"vhdContainers\":[\"\"]}},\"networkProfile\":{\"networkInterfaceConfigurations\":[{\"name\":\"\",\"primary\":null,\"ipConfigurations\":[{\"name\":\"\",\"subnet\":{\"id\":\"\"},\"loadBalancerBackendAddressPools\":[{\"id\":\"\"}],\"id\":\"\"}],\"id\":\"\"}]},\"extensionProfile\":{\"extensions\":[{\"name\":\"\",\"publisher\":\"\",\"virtualMachineScaleSetExtensionType\":\"\",\"typeHandlerVersion\":\"\",\"autoUpgradeMinorVersion\":null,\"settings\":{},\"protectedSettings\":{},\"provisioningState\":\"\",\"id\":\"\"}]}},\"provisioningState\":\"\",\"id\":null,\"name\":null,\"type\":null,\"location\":\"\",\"tags\":{}}', _);
+    var filePath = 'virtualMachineScaleSetsCreateOrUpdate_createOrUpdate.json';
     if (options.parameterFile) {
       filePath = options.parameterFile;
     }
-    fs.writeFileSync(filePath, beautify('{\r\n\"provisioningState\":\"\",\r\n\"sku\":{\r\n\"capacity\":null,\r\n\"name\":\"\",\r\n\"tier\":\"\"\r\n},\r\n\"upgradePolicy\":{\r\n\"mode\":\"\"\r\n},\r\n\"virtualMachineProfile\":{\r\n\"extensionProfile\":{\r\n\"extensions\":[\r\n{\r\n\"autoUpgradeMinorVersion\":false,\r\n\"extensionType\":\"\",\r\n\"protectedSettings\":\"\",\r\n\"provisioningState\":\"\",\r\n\"publisher\":\"\",\r\n\"settings\":\"\",\r\n\"typeHandlerVersion\":\"\",\r\n\"id\":\"\",\r\n\"name\":\"\",\r\n\"type\":\"\",\r\n\"location\":\"\",\r\n\"tags\":{\r\n}\r\n}\r\n]\r\n},\r\n\"networkProfile\":{\r\n\"networkInterfaceConfigurations\":[\r\n{\r\n\"iPConfigurations\":[\r\n{\r\n\"loadBalancerBackendAddressPools\":[\r\n{\r\n\"referenceUri\":\"\"\r\n}\r\n],\r\n\"loadBalancerInboundNatPools\":[\r\n{\r\n\"referenceUri\":\"\"\r\n}\r\n],\r\n\"name\":\"\",\r\n\"subnet\":{\r\n\"referenceUri\":\"\"\r\n}\r\n}\r\n],\r\n\"name\":\"\",\r\n\"primary\":null\r\n}\r\n]\r\n},\r\n\"oSProfile\":{\r\n\"computerNamePrefix\":\"\",\r\n\"adminPassword\":\"\",\r\n\"adminUsername\":\"\",\r\n\"customData\":\"\",\r\n\"linuxConfiguration\":{\r\n\"disablePasswordAuthentication\":null,\r\n\"sshConfiguration\":{\r\n\"publicKeys\":[\r\n{\r\n\"keyData\":\"\",\r\n\"path\":\"\"\r\n}\r\n]\r\n}\r\n},\r\n\"secrets\":[\r\n{\r\n\"sourceVault\":{\r\n\"referenceUri\":\"\"\r\n},\r\n\"vaultCertificates\":[\r\n{\r\n\"certificateStore\":\"\",\r\n\"certificateUrl\":\"\"\r\n}\r\n]\r\n}\r\n],\r\n\"windowsConfiguration\":{\r\n\"additionalUnattendContents\":[\r\n{\r\n\"componentName\":\"\",\r\n\"content\":\"\",\r\n\"passName\":\"\",\r\n\"settingName\":\"\"\r\n}\r\n],\r\n\"enableAutomaticUpdates\":null,\r\n\"provisionVMAgent\":null,\r\n\"timeZone\":\"\",\r\n\"winRMConfiguration\":{\r\n\"listeners\":[\r\n{\r\n\"certificateUrl\":\"\",\r\n\"protocol\":\"\"\r\n}\r\n]\r\n}\r\n}\r\n},\r\n\"storageProfile\":{\r\n\"imageReference\":{\r\n\"offer\":\"\",\r\n\"publisher\":\"\",\r\n\"sku\":\"\",\r\n\"version\":\"\"\r\n},\r\n\"oSDisk\":{\r\n\"caching\":\"\",\r\n\"createOption\":\"\",\r\n\"name\":\"\",\r\n\"operatingSystemType\":\"\",\r\n\"sourceImage\":{\r\n\"uri\":\"\"\r\n},\r\n\"virtualHardDiskContainers\":[\r\n\"\"\r\n]\r\n}\r\n}\r\n},\r\n\"id\":\"\",\r\n\"name\":\"\",\r\n\"type\":\"\",\r\n\"location\":\"\",\r\n\"tags\":{\r\n}\r\n}'));
+    fs.writeFileSync(filePath, beautify('{\r\n\"sku\":{\r\n\"name\":\"\",\r\n\"tier\":\"\",\r\n\"capacity\":null\r\n},\r\n\"upgradePolicy\":{\r\n\"mode\":\"\"\r\n},\r\n\"virtualMachineProfile\":{\r\n\"osProfile\":{\r\n\"computerNamePrefix\":\"\",\r\n\"adminUsername\":\"\",\r\n\"adminPassword\":\"\",\r\n\"customData\":\"\",\r\n\"windowsConfiguration\":{\r\n\"provisionVMAgent\":null,\r\n\"enableAutomaticUpdates\":null,\r\n\"timeZone\":\"\",\r\n\"additionalUnattendContent\":[\r\n{\r\n\"passName\":\"\",\r\n\"componentName\":\"\",\r\n\"settingName\":\"\",\r\n\"content\":\"\"\r\n}\r\n],\r\n\"winRM\":{\r\n\"listeners\":[\r\n{\r\n\"protocol\":\"\",\r\n\"certificateUrl\":\"\"\r\n}\r\n]\r\n}\r\n},\r\n\"linuxConfiguration\":{\r\n\"disablePasswordAuthentication\":null,\r\n\"ssh\":{\r\n\"publicKeys\":[\r\n{\r\n\"path\":\"\",\r\n\"keyData\":\"\"\r\n}\r\n]\r\n}\r\n},\r\n\"secrets\":[\r\n{\r\n\"sourceVault\":{\r\n\"id\":\"\"\r\n},\r\n\"vaultCertificates\":[\r\n{\r\n\"certificateUrl\":\"\",\r\n\"certificateStore\":\"\"\r\n}\r\n]\r\n}\r\n]\r\n},\r\n\"storageProfile\":{\r\n\"imageReference\":{\r\n\"publisher\":\"\",\r\n\"offer\":\"\",\r\n\"sku\":\"\",\r\n\"version\":\"\"\r\n},\r\n\"osDisk\":{\r\n\"name\":\"\",\r\n\"caching\":\"\",\r\n\"createOption\":\"\",\r\n\"osType\":\"\",\r\n\"image\":{\r\n\"uri\":\"\"\r\n},\r\n\"vhdContainers\":[\r\n\"\"\r\n]\r\n}\r\n},\r\n\"networkProfile\":{\r\n\"networkInterfaceConfigurations\":[\r\n{\r\n\"name\":\"\",\r\n\"primary\":null,\r\n\"ipConfigurations\":[\r\n{\r\n\"name\":\"\",\r\n\"subnet\":{\r\n\"id\":\"\"\r\n},\r\n\"loadBalancerBackendAddressPools\":[\r\n{\r\n\"id\":\"\"\r\n}\r\n],\r\n\"id\":\"\"\r\n}\r\n],\r\n\"id\":\"\"\r\n}\r\n]\r\n},\r\n\"extensionProfile\":{\r\n\"extensions\":[\r\n{\r\n\"name\":\"\",\r\n\"publisher\":\"\",\r\n\"virtualMachineScaleSetExtensionType\":\"\",\r\n\"typeHandlerVersion\":\"\",\r\n\"autoUpgradeMinorVersion\":null,\r\n\"settings\":{\r\n},\r\n\"protectedSettings\":{\r\n},\r\n\"provisioningState\":\"\",\r\n\"id\":\"\"\r\n}\r\n]\r\n}\r\n},\r\n\"provisioningState\":\"\",\r\n\"id\":null,\r\n\"name\":null,\r\n\"type\":null,\r\n\"location\":\"\",\r\n\"tags\":{\r\n}\r\n}'));
     cli.output.verbose('=====================================');
     cli.output.verbose('Parameter file output to: ' + filePath);
     cli.output.verbose('=====================================');
   });
 
-  virtualMachineScaleSetCreateOrUpdatecreateOrUpdateParameters1.command('patch')
-  .description($('Command to patch virtualMachineScaleSetCreateOrUpdate parameter JSON file.'))
+  virtualMachineScaleSetsCreateOrUpdatecreateOrUpdateParameters2.command('patch')
+  .description($('Command to patch virtualMachineScaleSetsCreateOrUpdate parameter JSON file.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--operation <operation>', $('The JSON patch operation: add, remove, or replace.'))
@@ -275,20 +265,20 @@ exports.init = function (cli) {
   });
 
   //create-or-update-parameters set virtual-machine-scale-set
-  var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet0 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet0 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet0.category('virtual-machine-scale-set')
-  .description($('Commands to set/remove/add virtual-machine-scale-set of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet0.command('set')
-  .description($('Set virtual-machine-scale-set in create-or-update-parameters string or files, e.g. \r\n{\r\n  "provisioningState":"",\r\n  "sku":{\r\n    "capacity":null,\r\n    "name":"",\r\n    "tier":""\r\n  },\r\n  "upgradePolicy":{\r\n    "mode":""\r\n  },\r\n  "virtualMachineProfile":{\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "autoUpgradeMinorVersion":false,\r\n          "extensionType":"",\r\n          "protectedSettings":"",\r\n          "provisioningState":"",\r\n          "publisher":"",\r\n          "settings":"",\r\n          "typeHandlerVersion":"",\r\n          "id":"",\r\n          "name":"",\r\n          "type":"",\r\n          "location":"",\r\n          "tags":{\r\n          }\r\n        }\r\n      ]\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "iPConfigurations":[\r\n            {\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "name":"",\r\n              "subnet":{\r\n                "referenceUri":""\r\n              }\r\n            }\r\n          ],\r\n          "name":"",\r\n          "primary":null\r\n        }\r\n      ]\r\n    },\r\n    "oSProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminPassword":"",\r\n      "adminUsername":"",\r\n      "customData":"",\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "sshConfiguration":{\r\n          "publicKeys":[\r\n            {\r\n              "keyData":"",\r\n              "path":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "referenceUri":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateStore":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      ],\r\n      "windowsConfiguration":{\r\n        "additionalUnattendContents":[\r\n          {\r\n            "componentName":"",\r\n            "content":"",\r\n            "passName":"",\r\n            "settingName":""\r\n          }\r\n        ],\r\n        "enableAutomaticUpdates":null,\r\n        "provisionVMAgent":null,\r\n        "timeZone":"",\r\n        "winRMConfiguration":{\r\n          "listeners":[\r\n            {\r\n              "certificateUrl":"",\r\n              "protocol":""\r\n            }\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "offer":"",\r\n        "publisher":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "oSDisk":{\r\n        "caching":"",\r\n        "createOption":"",\r\n        "name":"",\r\n        "operatingSystemType":"",\r\n        "sourceImage":{\r\n          "uri":""\r\n        },\r\n        "virtualHardDiskContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  "id":"",\r\n  "name":"",\r\n  "type":"",\r\n  "location":"",\r\n  "tags":{\r\n  }\r\n}'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet0 = catparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet0 = parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet0.category('virtual-machine-scale-set')
+  .description($('Commands to set/remove/add virtual-machine-scale-set of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet0.command('set')
+  .description($('Set virtual-machine-scale-set in create-or-update-parameters string or files, e.g. \r\n{\r\n  "sku":{\r\n    "name":"",\r\n    "tier":"",\r\n    "capacity":null\r\n  },\r\n  "upgradePolicy":{\r\n    "mode":""\r\n  },\r\n  "virtualMachineProfile":{\r\n    "osProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminUsername":"",\r\n      "adminPassword":"",\r\n      "customData":"",\r\n      "windowsConfiguration":{\r\n        "provisionVMAgent":null,\r\n        "enableAutomaticUpdates":null,\r\n        "timeZone":"",\r\n        "additionalUnattendContent":[\r\n          {\r\n            "passName":"",\r\n            "componentName":"",\r\n            "settingName":"",\r\n            "content":""\r\n          }\r\n        ],\r\n        "winRM":{\r\n          "listeners":[\r\n            {\r\n              "protocol":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "ssh":{\r\n          "publicKeys":[\r\n            {\r\n              "path":"",\r\n              "keyData":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "id":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateUrl":"",\r\n              "certificateStore":""\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "publisher":"",\r\n        "offer":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "osDisk":{\r\n        "name":"",\r\n        "caching":"",\r\n        "createOption":"",\r\n        "osType":"",\r\n        "image":{\r\n          "uri":""\r\n        },\r\n        "vhdContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "name":"",\r\n          "primary":null,\r\n          "ipConfigurations":[\r\n            {\r\n              "name":"",\r\n              "subnet":{\r\n                "id":""\r\n              },\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "id":""\r\n                }\r\n              ],\r\n              "id":""\r\n            }\r\n          ],\r\n          "id":""\r\n        }\r\n      ]\r\n    },\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "name":"",\r\n          "publisher":"",\r\n          "virtualMachineScaleSetExtensionType":"",\r\n          "typeHandlerVersion":"",\r\n          "autoUpgradeMinorVersion":null,\r\n          "settings":{\r\n          },\r\n          "protectedSettings":{\r\n          },\r\n          "provisioningState":"",\r\n          "id":""\r\n        }\r\n      ]\r\n    }\r\n  },\r\n  "provisioningState":"",\r\n  "id":null,\r\n  "name":null,\r\n  "type":null,\r\n  "location":"",\r\n  "tags":{\r\n  }\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--provisioning-state <provisioningState>', $('Set the provisioning-state value.'))
   .option('--sku <sku>', $('Set the sku value.'))
   .option('--upgrade-policy <upgradePolicy>', $('Set the upgrade-policy value.'))
   .option('--virtual-machine-profile <virtualMachineProfile>', $('Set the virtual-machine-profile value.'))
+  .option('--provisioning-state <provisioningState>', $('Set the provisioning-state value.'))
   .option('--id <id>', $('Set the id value.'))
   .option('--name <name>', $('Set the name value.'))
   .option('--type <type>', $('Set the type value.'))
@@ -309,17 +299,7 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '';
-    var paramPath = options.path + '/' + 'provisioningState';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.provisioningState) {
-      if (options.parse && options.provisioningState) {
-        options.provisioningState = JSON.parse(options.provisioningState);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisioningState}]);
-    }
-    paramPath = options.path + '/' + 'sku';
+    var paramPath = options.path + '/' + 'sku';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
@@ -348,6 +328,16 @@ exports.init = function (cli) {
         options.virtualMachineProfile = JSON.parse(options.virtualMachineProfile);
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.virtualMachineProfile}]);
+    }
+    paramPath = options.path + '/' + 'provisioningState';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.provisioningState) {
+      if (options.parse && options.provisioningState) {
+        options.provisioningState = JSON.parse(options.provisioningState);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisioningState}]);
     }
     paramPath = options.path + '/' + 'id';
     cli.output.verbose('================================================');
@@ -411,19 +401,19 @@ exports.init = function (cli) {
   });
 
   //create-or-update-parameters remove virtual-machine-scale-set
-  var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet1 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet1 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet1.category('virtual-machine-scale-set')
-  .description($('Commands to set/remove/add virtual-machine-scale-set of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet1.command('remove')
-  .description($('Remove virtual-machine-scale-set in create-or-update-parameters string or files, e.g. \r\n{\r\n  "provisioningState":"",\r\n  "sku":{\r\n    "capacity":null,\r\n    "name":"",\r\n    "tier":""\r\n  },\r\n  "upgradePolicy":{\r\n    "mode":""\r\n  },\r\n  "virtualMachineProfile":{\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "autoUpgradeMinorVersion":false,\r\n          "extensionType":"",\r\n          "protectedSettings":"",\r\n          "provisioningState":"",\r\n          "publisher":"",\r\n          "settings":"",\r\n          "typeHandlerVersion":"",\r\n          "id":"",\r\n          "name":"",\r\n          "type":"",\r\n          "location":"",\r\n          "tags":{\r\n          }\r\n        }\r\n      ]\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "iPConfigurations":[\r\n            {\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "name":"",\r\n              "subnet":{\r\n                "referenceUri":""\r\n              }\r\n            }\r\n          ],\r\n          "name":"",\r\n          "primary":null\r\n        }\r\n      ]\r\n    },\r\n    "oSProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminPassword":"",\r\n      "adminUsername":"",\r\n      "customData":"",\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "sshConfiguration":{\r\n          "publicKeys":[\r\n            {\r\n              "keyData":"",\r\n              "path":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "referenceUri":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateStore":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      ],\r\n      "windowsConfiguration":{\r\n        "additionalUnattendContents":[\r\n          {\r\n            "componentName":"",\r\n            "content":"",\r\n            "passName":"",\r\n            "settingName":""\r\n          }\r\n        ],\r\n        "enableAutomaticUpdates":null,\r\n        "provisionVMAgent":null,\r\n        "timeZone":"",\r\n        "winRMConfiguration":{\r\n          "listeners":[\r\n            {\r\n              "certificateUrl":"",\r\n              "protocol":""\r\n            }\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "offer":"",\r\n        "publisher":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "oSDisk":{\r\n        "caching":"",\r\n        "createOption":"",\r\n        "name":"",\r\n        "operatingSystemType":"",\r\n        "sourceImage":{\r\n          "uri":""\r\n        },\r\n        "virtualHardDiskContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  "id":"",\r\n  "name":"",\r\n  "type":"",\r\n  "location":"",\r\n  "tags":{\r\n  }\r\n}'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1 = catparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1 = parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1.category('virtual-machine-scale-set')
+  .description($('Commands to set/remove/add virtual-machine-scale-set of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1.command('remove')
+  .description($('Remove virtual-machine-scale-set in create-or-update-parameters string or files, e.g. \r\n{\r\n  "sku":{\r\n    "name":"",\r\n    "tier":"",\r\n    "capacity":null\r\n  },\r\n  "upgradePolicy":{\r\n    "mode":""\r\n  },\r\n  "virtualMachineProfile":{\r\n    "osProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminUsername":"",\r\n      "adminPassword":"",\r\n      "customData":"",\r\n      "windowsConfiguration":{\r\n        "provisionVMAgent":null,\r\n        "enableAutomaticUpdates":null,\r\n        "timeZone":"",\r\n        "additionalUnattendContent":[\r\n          {\r\n            "passName":"",\r\n            "componentName":"",\r\n            "settingName":"",\r\n            "content":""\r\n          }\r\n        ],\r\n        "winRM":{\r\n          "listeners":[\r\n            {\r\n              "protocol":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "ssh":{\r\n          "publicKeys":[\r\n            {\r\n              "path":"",\r\n              "keyData":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "id":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateUrl":"",\r\n              "certificateStore":""\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "publisher":"",\r\n        "offer":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "osDisk":{\r\n        "name":"",\r\n        "caching":"",\r\n        "createOption":"",\r\n        "osType":"",\r\n        "image":{\r\n          "uri":""\r\n        },\r\n        "vhdContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "name":"",\r\n          "primary":null,\r\n          "ipConfigurations":[\r\n            {\r\n              "name":"",\r\n              "subnet":{\r\n                "id":""\r\n              },\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "id":""\r\n                }\r\n              ],\r\n              "id":""\r\n            }\r\n          ],\r\n          "id":""\r\n        }\r\n      ]\r\n    },\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "name":"",\r\n          "publisher":"",\r\n          "virtualMachineScaleSetExtensionType":"",\r\n          "typeHandlerVersion":"",\r\n          "autoUpgradeMinorVersion":null,\r\n          "settings":{\r\n          },\r\n          "protectedSettings":{\r\n          },\r\n          "provisioningState":"",\r\n          "id":""\r\n        }\r\n      ]\r\n    }\r\n  },\r\n  "provisioningState":"",\r\n  "id":null,\r\n  "name":null,\r\n  "type":null,\r\n  "location":"",\r\n  "tags":{\r\n  }\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--provisioning-state', $('Remove the provisioning-state value.'))
   .option('--sku', $('Remove the sku value.'))
   .option('--upgrade-policy', $('Remove the upgrade-policy value.'))
   .option('--virtual-machine-profile', $('Remove the virtual-machine-profile value.'))
+  .option('--provisioning-state', $('Remove the provisioning-state value.'))
   .option('--id', $('Remove the id value.'))
   .option('--name', $('Remove the name value.'))
   .option('--type', $('Remove the type value.'))
@@ -440,13 +430,9 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '';
-    var anySubItem = false || options.provisioningState || options.sku || options.upgradePolicy || options.virtualMachineProfile || options.id || options.name || options.type || options.location || options.tags;
+    var anySubItem = false || options.sku || options.upgradePolicy || options.virtualMachineProfile || options.provisioningState || options.id || options.name || options.type || options.location || options.tags;
     if (anySubItem) {
       var subItemPath = null;
-      if (options.provisioningState) {
-        subItemPath = options.path + '/provisioningState';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
       if (options.sku) {
         subItemPath = options.path + '/sku';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
@@ -457,6 +443,10 @@ exports.init = function (cli) {
       }
       if (options.virtualMachineProfile) {
         subItemPath = options.path + '/virtualMachineProfile';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.provisioningState) {
+        subItemPath = options.path + '/provisioningState';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.id) {
@@ -495,22 +485,22 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
   //create-or-update-parameters add virtual-machine-scale-set
-  var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet2 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet2 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet2.category('virtual-machine-scale-set')
-  .description($('Commands to set/remove/add virtual-machine-scale-set of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineScaleSet2.command('add')
-  .description($('Add virtual-machine-scale-set in create-or-update-parameters string or files, e.g. \r\n{\r\n  "provisioningState":"",\r\n  "sku":{\r\n    "capacity":null,\r\n    "name":"",\r\n    "tier":""\r\n  },\r\n  "upgradePolicy":{\r\n    "mode":""\r\n  },\r\n  "virtualMachineProfile":{\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "autoUpgradeMinorVersion":false,\r\n          "extensionType":"",\r\n          "protectedSettings":"",\r\n          "provisioningState":"",\r\n          "publisher":"",\r\n          "settings":"",\r\n          "typeHandlerVersion":"",\r\n          "id":"",\r\n          "name":"",\r\n          "type":"",\r\n          "location":"",\r\n          "tags":{\r\n          }\r\n        }\r\n      ]\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "iPConfigurations":[\r\n            {\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "name":"",\r\n              "subnet":{\r\n                "referenceUri":""\r\n              }\r\n            }\r\n          ],\r\n          "name":"",\r\n          "primary":null\r\n        }\r\n      ]\r\n    },\r\n    "oSProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminPassword":"",\r\n      "adminUsername":"",\r\n      "customData":"",\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "sshConfiguration":{\r\n          "publicKeys":[\r\n            {\r\n              "keyData":"",\r\n              "path":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "referenceUri":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateStore":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      ],\r\n      "windowsConfiguration":{\r\n        "additionalUnattendContents":[\r\n          {\r\n            "componentName":"",\r\n            "content":"",\r\n            "passName":"",\r\n            "settingName":""\r\n          }\r\n        ],\r\n        "enableAutomaticUpdates":null,\r\n        "provisionVMAgent":null,\r\n        "timeZone":"",\r\n        "winRMConfiguration":{\r\n          "listeners":[\r\n            {\r\n              "certificateUrl":"",\r\n              "protocol":""\r\n            }\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "offer":"",\r\n        "publisher":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "oSDisk":{\r\n        "caching":"",\r\n        "createOption":"",\r\n        "name":"",\r\n        "operatingSystemType":"",\r\n        "sourceImage":{\r\n          "uri":""\r\n        },\r\n        "virtualHardDiskContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  "id":"",\r\n  "name":"",\r\n  "type":"",\r\n  "location":"",\r\n  "tags":{\r\n  }\r\n}'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet2 = catparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet2 = parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet2.category('virtual-machine-scale-set')
+  .description($('Commands to set/remove/add virtual-machine-scale-set of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet2.command('add')
+  .description($('Add virtual-machine-scale-set in create-or-update-parameters string or files, e.g. \r\n{\r\n  "sku":{\r\n    "name":"",\r\n    "tier":"",\r\n    "capacity":null\r\n  },\r\n  "upgradePolicy":{\r\n    "mode":""\r\n  },\r\n  "virtualMachineProfile":{\r\n    "osProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminUsername":"",\r\n      "adminPassword":"",\r\n      "customData":"",\r\n      "windowsConfiguration":{\r\n        "provisionVMAgent":null,\r\n        "enableAutomaticUpdates":null,\r\n        "timeZone":"",\r\n        "additionalUnattendContent":[\r\n          {\r\n            "passName":"",\r\n            "componentName":"",\r\n            "settingName":"",\r\n            "content":""\r\n          }\r\n        ],\r\n        "winRM":{\r\n          "listeners":[\r\n            {\r\n              "protocol":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "ssh":{\r\n          "publicKeys":[\r\n            {\r\n              "path":"",\r\n              "keyData":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "id":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateUrl":"",\r\n              "certificateStore":""\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "publisher":"",\r\n        "offer":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "osDisk":{\r\n        "name":"",\r\n        "caching":"",\r\n        "createOption":"",\r\n        "osType":"",\r\n        "image":{\r\n          "uri":""\r\n        },\r\n        "vhdContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "name":"",\r\n          "primary":null,\r\n          "ipConfigurations":[\r\n            {\r\n              "name":"",\r\n              "subnet":{\r\n                "id":""\r\n              },\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "id":""\r\n                }\r\n              ],\r\n              "id":""\r\n            }\r\n          ],\r\n          "id":""\r\n        }\r\n      ]\r\n    },\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "name":"",\r\n          "publisher":"",\r\n          "virtualMachineScaleSetExtensionType":"",\r\n          "typeHandlerVersion":"",\r\n          "autoUpgradeMinorVersion":null,\r\n          "settings":{\r\n          },\r\n          "protectedSettings":{\r\n          },\r\n          "provisioningState":"",\r\n          "id":""\r\n        }\r\n      ]\r\n    }\r\n  },\r\n  "provisioningState":"",\r\n  "id":null,\r\n  "name":null,\r\n  "type":null,\r\n  "location":"",\r\n  "tags":{\r\n  }\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--provisioning-state <provisioningState>', $('Add the provisioning-state value.'))
   .option('--sku <sku>', $('Add the sku value.'))
   .option('--upgrade-policy <upgradePolicy>', $('Add the upgrade-policy value.'))
   .option('--virtual-machine-profile <virtualMachineProfile>', $('Add the virtual-machine-profile value.'))
+  .option('--provisioning-state <provisioningState>', $('Add the provisioning-state value.'))
   .option('--id <id>', $('Add the id value.'))
   .option('--name <name>', $('Add the name value.'))
   .option('--type <type>', $('Add the type value.'))
@@ -533,17 +523,7 @@ exports.init = function (cli) {
     options.path = '' + '/' + options.key;
     cli.output.verbose('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '' + '/' + 'provisioningState';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.provisioningState) {
-      if (options.parse && options.provisioningState) {
-        options.provisioningState = JSON.parse(options.provisioningState);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisioningState}]);
-    }
-    paramPath = '' + '/' + 'sku';
+    var paramPath = '' + '/' + 'sku';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
@@ -572,6 +552,16 @@ exports.init = function (cli) {
         options.virtualMachineProfile = JSON.parse(options.virtualMachineProfile);
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.virtualMachineProfile}]);
+    }
+    paramPath = '' + '/' + 'provisioningState';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.provisioningState) {
+      if (options.parse && options.provisioningState) {
+        options.provisioningState = JSON.parse(options.provisioningState);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisioningState}]);
     }
     paramPath = '' + '/' + 'id';
     cli.output.verbose('================================================');
@@ -635,19 +625,19 @@ exports.init = function (cli) {
   });
 
   //create-or-update-parameters set sku
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSku0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSku0 = catparametersCreateOrUpdateVirtualMachineScaleSetSku0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetSku0 = parametersCreateOrUpdateVirtualMachineScaleSetSku0.category('sku')
-  .description($('Commands to set/remove/add sku of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetSku0.command('set')
-  .description($('Set sku in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sku" : {\r\n    "capacity":null,\r\n    "name":"",\r\n    "tier":""\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsSku0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsSku0 = catparametersCreateOrUpdateVirtualMachineScaleSetsSku0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsSku0 = parametersCreateOrUpdateVirtualMachineScaleSetsSku0.category('sku')
+  .description($('Commands to set/remove/add sku of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsSku0.command('set')
+  .description($('Set sku in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "sku" : {\r\n             "name":"",\r\n             "tier":"",\r\n             "capacity":null\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--capacity <capacity>', $('Set the capacity value.'))
   .option('--name <name>', $('Set the name value.'))
   .option('--tier <tier>', $('Set the tier value.'))
+  .option('--capacity <capacity>', $('Set the capacity value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -663,17 +653,7 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/sku';
-    var paramPath = options.path + '/' + 'capacity';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.capacity) {
-      if (options.parse && options.capacity) {
-        options.capacity = JSON.parse(options.capacity);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.capacity}]);
-    }
-    paramPath = options.path + '/' + 'name';
+    var paramPath = options.path + '/' + 'name';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
@@ -693,6 +673,17 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.tier}]);
     }
+    paramPath = options.path + '/' + 'capacity';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.capacity) {
+      if (options.parse && options.capacity) {
+        options.capacity = JSON.parse(options.capacity);
+      }
+        options.capacity = JSON.parse(options.capacity);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.capacity}]);
+    }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
     cli.output.verbose('JSON object (updated):');
@@ -705,18 +696,18 @@ exports.init = function (cli) {
   });
 
   //create-or-update-parameters remove sku
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSku1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSku1 = catparametersCreateOrUpdateVirtualMachineScaleSetSku1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetSku1 = parametersCreateOrUpdateVirtualMachineScaleSetSku1.category('sku')
-  .description($('Commands to set/remove/add sku of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetSku1.command('remove')
-  .description($('Remove sku in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sku" : {\r\n    "capacity":null,\r\n    "name":"",\r\n    "tier":""\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsSku1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsSku1 = catparametersCreateOrUpdateVirtualMachineScaleSetsSku1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsSku1 = parametersCreateOrUpdateVirtualMachineScaleSetsSku1.category('sku')
+  .description($('Commands to set/remove/add sku of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsSku1.command('remove')
+  .description($('Remove sku in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "sku" : {\r\n             "name":"",\r\n             "tier":"",\r\n             "capacity":null\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--capacity', $('Remove the capacity value.'))
   .option('--name', $('Remove the name value.'))
   .option('--tier', $('Remove the tier value.'))
+  .option('--capacity', $('Remove the capacity value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
@@ -728,19 +719,19 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/sku';
-    var anySubItem = false || options.capacity || options.name || options.tier;
+    var anySubItem = false || options.name || options.tier || options.capacity;
     if (anySubItem) {
       var subItemPath = null;
-      if (options.capacity) {
-        subItemPath = options.path + '/capacity';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
       if (options.name) {
         subItemPath = options.path + '/name';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.tier) {
         subItemPath = options.path + '/tier';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.capacity) {
+        subItemPath = options.path + '/capacity';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -759,21 +750,21 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
   //create-or-update-parameters add sku
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSku2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSku2 = catparametersCreateOrUpdateVirtualMachineScaleSetSku2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetSku2 = parametersCreateOrUpdateVirtualMachineScaleSetSku2.category('sku')
-  .description($('Commands to set/remove/add sku of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetSku2.command('add')
-  .description($('Add sku in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sku" : {\r\n    "capacity":null,\r\n    "name":"",\r\n    "tier":""\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsSku2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsSku2 = catparametersCreateOrUpdateVirtualMachineScaleSetsSku2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsSku2 = parametersCreateOrUpdateVirtualMachineScaleSetsSku2.category('sku')
+  .description($('Commands to set/remove/add sku of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsSku2.command('add')
+  .description($('Add sku in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "sku" : {\r\n             "name":"",\r\n             "tier":"",\r\n             "capacity":null\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--capacity <capacity>', $('Add the capacity value.'))
   .option('--name <name>', $('Add the name value.'))
   .option('--tier <tier>', $('Add the tier value.'))
+  .option('--capacity <capacity>', $('Add the capacity value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -791,17 +782,7 @@ exports.init = function (cli) {
     options.path = '/sku' + '/' + options.key;
     cli.output.verbose('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/sku' + '/' + 'capacity';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.capacity) {
-      if (options.parse && options.capacity) {
-        options.capacity = JSON.parse(options.capacity);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.capacity}]);
-    }
-    paramPath = '/sku' + '/' + 'name';
+    var paramPath = '/sku' + '/' + 'name';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
@@ -821,6 +802,17 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.tier}]);
     }
+    paramPath = '/sku' + '/' + 'capacity';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.capacity) {
+      if (options.parse && options.capacity) {
+        options.capacity = JSON.parse(options.capacity);
+      }
+        options.capacity = JSON.parse(options.capacity);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.capacity}]);
+    }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
     cli.output.verbose('JSON object (updated):');
@@ -833,13 +825,13 @@ exports.init = function (cli) {
   });
 
   //create-or-update-parameters set upgrade-policy
-  var catparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy0 = catparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy0 = parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy0.category('upgrade-policy')
-  .description($('Commands to set/remove/add upgrade-policy of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy0.command('set')
-  .description($('Set upgrade-policy in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "upgradePolicy" : {\r\n    "mode":""\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy0 = catparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy0 = parametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy0.category('upgrade-policy')
+  .description($('Commands to set/remove/add upgrade-policy of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy0.command('set')
+  .description($('Set upgrade-policy in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "upgradePolicy" : {\r\n             "mode":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
@@ -881,13 +873,13 @@ exports.init = function (cli) {
   });
 
   //create-or-update-parameters remove upgrade-policy
-  var catparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy1 = catparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy1 = parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy1.category('upgrade-policy')
-  .description($('Commands to set/remove/add upgrade-policy of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy1.command('remove')
-  .description($('Remove upgrade-policy in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "upgradePolicy" : {\r\n    "mode":""\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy1 = catparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy1 = parametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy1.category('upgrade-policy')
+  .description($('Commands to set/remove/add upgrade-policy of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy1.command('remove')
+  .description($('Remove upgrade-policy in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "upgradePolicy" : {\r\n             "mode":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--mode', $('Remove the mode value.'))
@@ -925,13 +917,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
   //create-or-update-parameters add upgrade-policy
-  var catparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy2 = catparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy2 = parametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy2.category('upgrade-policy')
-  .description($('Commands to set/remove/add upgrade-policy of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetUpgradePolicy2.command('add')
-  .description($('Add upgrade-policy in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "upgradePolicy" : {\r\n    "mode":""\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy2 = catparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy2 = parametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy2.category('upgrade-policy')
+  .description($('Commands to set/remove/add upgrade-policy of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy2.command('add')
+  .description($('Add upgrade-policy in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "upgradePolicy" : {\r\n             "mode":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -977,20 +969,20 @@ exports.init = function (cli) {
   });
 
   //create-or-update-parameters set virtual-machine-profile
-  var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile0.category('virtual-machine-profile')
-  .description($('Commands to set/remove/add virtual-machine-profile of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile0.command('set')
-  .description($('Set virtual-machine-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "virtualMachineProfile" : {\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "autoUpgradeMinorVersion":false,\r\n          "extensionType":"",\r\n          "protectedSettings":"",\r\n          "provisioningState":"",\r\n          "publisher":"",\r\n          "settings":"",\r\n          "typeHandlerVersion":"",\r\n          "id":"",\r\n          "name":"",\r\n          "type":"",\r\n          "location":"",\r\n          "tags":{\r\n          }\r\n        }\r\n      ]\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "iPConfigurations":[\r\n            {\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "name":"",\r\n              "subnet":{\r\n                "referenceUri":""\r\n              }\r\n            }\r\n          ],\r\n          "name":"",\r\n          "primary":null\r\n        }\r\n      ]\r\n    },\r\n    "oSProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminPassword":"",\r\n      "adminUsername":"",\r\n      "customData":"",\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "sshConfiguration":{\r\n          "publicKeys":[\r\n            {\r\n              "keyData":"",\r\n              "path":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "referenceUri":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateStore":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      ],\r\n      "windowsConfiguration":{\r\n        "additionalUnattendContents":[\r\n          {\r\n            "componentName":"",\r\n            "content":"",\r\n            "passName":"",\r\n            "settingName":""\r\n          }\r\n        ],\r\n        "enableAutomaticUpdates":null,\r\n        "provisionVMAgent":null,\r\n        "timeZone":"",\r\n        "winRMConfiguration":{\r\n          "listeners":[\r\n            {\r\n              "certificateUrl":"",\r\n              "protocol":""\r\n            }\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "offer":"",\r\n        "publisher":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "oSDisk":{\r\n        "caching":"",\r\n        "createOption":"",\r\n        "name":"",\r\n        "operatingSystemType":"",\r\n        "sourceImage":{\r\n          "uri":""\r\n        },\r\n        "virtualHardDiskContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile0.category('virtual-machine-profile')
+  .description($('Commands to set/remove/add virtual-machine-profile of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile0.command('set')
+  .description($('Set virtual-machine-profile in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "virtualMachineProfile" : {\r\n             "osProfile":{\r\n               "computerNamePrefix":"",\r\n               "adminUsername":"",\r\n               "adminPassword":"",\r\n               "customData":"",\r\n               "windowsConfiguration":{\r\n                 "provisionVMAgent":null,\r\n                 "enableAutomaticUpdates":null,\r\n                 "timeZone":"",\r\n                 "additionalUnattendContent":[\r\n                   {\r\n                     "passName":"",\r\n                     "componentName":"",\r\n                     "settingName":"",\r\n                     "content":""\r\n                   }\r\n                 ],\r\n                 "winRM":{\r\n                   "listeners":[\r\n                     {\r\n                       "protocol":"",\r\n                       "certificateUrl":""\r\n                     }\r\n                   ]\r\n                 }\r\n               },\r\n               "linuxConfiguration":{\r\n                 "disablePasswordAuthentication":null,\r\n                 "ssh":{\r\n                   "publicKeys":[\r\n                     {\r\n                       "path":"",\r\n                       "keyData":""\r\n                     }\r\n                   ]\r\n                 }\r\n               },\r\n               "secrets":[\r\n                 {\r\n                   "sourceVault":{\r\n                     "id":""\r\n                   },\r\n                   "vaultCertificates":[\r\n                     {\r\n                       "certificateUrl":"",\r\n                       "certificateStore":""\r\n                     }\r\n                   ]\r\n                 }\r\n               ]\r\n             },\r\n             "storageProfile":{\r\n               "imageReference":{\r\n                 "publisher":"",\r\n                 "offer":"",\r\n                 "sku":"",\r\n                 "version":""\r\n               },\r\n               "osDisk":{\r\n                 "name":"",\r\n                 "caching":"",\r\n                 "createOption":"",\r\n                 "osType":"",\r\n                 "image":{\r\n                   "uri":""\r\n                 },\r\n                 "vhdContainers":[\r\n                   ""\r\n                 ]\r\n               }\r\n             },\r\n             "networkProfile":{\r\n               "networkInterfaceConfigurations":[\r\n                 {\r\n                   "name":"",\r\n                   "primary":null,\r\n                   "ipConfigurations":[\r\n                     {\r\n                       "name":"",\r\n                       "subnet":{\r\n                         "id":""\r\n                       },\r\n                       "loadBalancerBackendAddressPools":[\r\n                         {\r\n                           "id":""\r\n                         }\r\n                       ],\r\n                       "id":""\r\n                     }\r\n                   ],\r\n                   "id":""\r\n                 }\r\n               ]\r\n             },\r\n             "extensionProfile":{\r\n               "extensions":[\r\n                 {\r\n                   "name":"",\r\n                   "publisher":"",\r\n                   "virtualMachineScaleSetExtensionType":"",\r\n                   "typeHandlerVersion":"",\r\n                   "autoUpgradeMinorVersion":null,\r\n                   "settings":{\r\n                   },\r\n                   "protectedSettings":{\r\n                   },\r\n                   "provisioningState":"",\r\n                   "id":""\r\n                 }\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--extension-profile <extensionProfile>', $('Set the extension-profile value.'))
-  .option('--network-profile <networkProfile>', $('Set the network-profile value.'))
-  .option('--os-profile <oSProfile>', $('Set the os-profile value.'))
+  .option('--os-profile <osProfile>', $('Set the os-profile value.'))
   .option('--storage-profile <storageProfile>', $('Set the storage-profile value.'))
+  .option('--network-profile <networkProfile>', $('Set the network-profile value.'))
+  .option('--extension-profile <extensionProfile>', $('Set the extension-profile value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -1006,15 +998,25 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile';
-    var paramPath = options.path + '/' + 'extensionProfile';
+    var paramPath = options.path + '/' + 'osProfile';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.extensionProfile) {
-      if (options.parse && options.extensionProfile) {
-        options.extensionProfile = JSON.parse(options.extensionProfile);
+    if (options.osProfile) {
+      if (options.parse && options.osProfile) {
+        options.osProfile = JSON.parse(options.osProfile);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.extensionProfile}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.osProfile}]);
+    }
+    paramPath = options.path + '/' + 'storageProfile';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.storageProfile) {
+      if (options.parse && options.storageProfile) {
+        options.storageProfile = JSON.parse(options.storageProfile);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.storageProfile}]);
     }
     paramPath = options.path + '/' + 'networkProfile';
     cli.output.verbose('================================================');
@@ -1026,25 +1028,15 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.networkProfile}]);
     }
-    paramPath = options.path + '/' + 'oSProfile';
+    paramPath = options.path + '/' + 'extensionProfile';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.oSProfile) {
-      if (options.parse && options.oSProfile) {
-        options.oSProfile = JSON.parse(options.oSProfile);
+    if (options.extensionProfile) {
+      if (options.parse && options.extensionProfile) {
+        options.extensionProfile = JSON.parse(options.extensionProfile);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.oSProfile}]);
-    }
-    paramPath = options.path + '/' + 'storageProfile';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.storageProfile) {
-      if (options.parse && options.storageProfile) {
-        options.storageProfile = JSON.parse(options.storageProfile);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.storageProfile}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.extensionProfile}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -1058,19 +1050,19 @@ exports.init = function (cli) {
   });
 
   //create-or-update-parameters remove virtual-machine-profile
-  var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile1.category('virtual-machine-profile')
-  .description($('Commands to set/remove/add virtual-machine-profile of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile1.command('remove')
-  .description($('Remove virtual-machine-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "virtualMachineProfile" : {\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "autoUpgradeMinorVersion":false,\r\n          "extensionType":"",\r\n          "protectedSettings":"",\r\n          "provisioningState":"",\r\n          "publisher":"",\r\n          "settings":"",\r\n          "typeHandlerVersion":"",\r\n          "id":"",\r\n          "name":"",\r\n          "type":"",\r\n          "location":"",\r\n          "tags":{\r\n          }\r\n        }\r\n      ]\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "iPConfigurations":[\r\n            {\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "name":"",\r\n              "subnet":{\r\n                "referenceUri":""\r\n              }\r\n            }\r\n          ],\r\n          "name":"",\r\n          "primary":null\r\n        }\r\n      ]\r\n    },\r\n    "oSProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminPassword":"",\r\n      "adminUsername":"",\r\n      "customData":"",\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "sshConfiguration":{\r\n          "publicKeys":[\r\n            {\r\n              "keyData":"",\r\n              "path":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "referenceUri":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateStore":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      ],\r\n      "windowsConfiguration":{\r\n        "additionalUnattendContents":[\r\n          {\r\n            "componentName":"",\r\n            "content":"",\r\n            "passName":"",\r\n            "settingName":""\r\n          }\r\n        ],\r\n        "enableAutomaticUpdates":null,\r\n        "provisionVMAgent":null,\r\n        "timeZone":"",\r\n        "winRMConfiguration":{\r\n          "listeners":[\r\n            {\r\n              "certificateUrl":"",\r\n              "protocol":""\r\n            }\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "offer":"",\r\n        "publisher":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "oSDisk":{\r\n        "caching":"",\r\n        "createOption":"",\r\n        "name":"",\r\n        "operatingSystemType":"",\r\n        "sourceImage":{\r\n          "uri":""\r\n        },\r\n        "virtualHardDiskContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1.category('virtual-machine-profile')
+  .description($('Commands to set/remove/add virtual-machine-profile of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1.command('remove')
+  .description($('Remove virtual-machine-profile in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "virtualMachineProfile" : {\r\n             "osProfile":{\r\n               "computerNamePrefix":"",\r\n               "adminUsername":"",\r\n               "adminPassword":"",\r\n               "customData":"",\r\n               "windowsConfiguration":{\r\n                 "provisionVMAgent":null,\r\n                 "enableAutomaticUpdates":null,\r\n                 "timeZone":"",\r\n                 "additionalUnattendContent":[\r\n                   {\r\n                     "passName":"",\r\n                     "componentName":"",\r\n                     "settingName":"",\r\n                     "content":""\r\n                   }\r\n                 ],\r\n                 "winRM":{\r\n                   "listeners":[\r\n                     {\r\n                       "protocol":"",\r\n                       "certificateUrl":""\r\n                     }\r\n                   ]\r\n                 }\r\n               },\r\n               "linuxConfiguration":{\r\n                 "disablePasswordAuthentication":null,\r\n                 "ssh":{\r\n                   "publicKeys":[\r\n                     {\r\n                       "path":"",\r\n                       "keyData":""\r\n                     }\r\n                   ]\r\n                 }\r\n               },\r\n               "secrets":[\r\n                 {\r\n                   "sourceVault":{\r\n                     "id":""\r\n                   },\r\n                   "vaultCertificates":[\r\n                     {\r\n                       "certificateUrl":"",\r\n                       "certificateStore":""\r\n                     }\r\n                   ]\r\n                 }\r\n               ]\r\n             },\r\n             "storageProfile":{\r\n               "imageReference":{\r\n                 "publisher":"",\r\n                 "offer":"",\r\n                 "sku":"",\r\n                 "version":""\r\n               },\r\n               "osDisk":{\r\n                 "name":"",\r\n                 "caching":"",\r\n                 "createOption":"",\r\n                 "osType":"",\r\n                 "image":{\r\n                   "uri":""\r\n                 },\r\n                 "vhdContainers":[\r\n                   ""\r\n                 ]\r\n               }\r\n             },\r\n             "networkProfile":{\r\n               "networkInterfaceConfigurations":[\r\n                 {\r\n                   "name":"",\r\n                   "primary":null,\r\n                   "ipConfigurations":[\r\n                     {\r\n                       "name":"",\r\n                       "subnet":{\r\n                         "id":""\r\n                       },\r\n                       "loadBalancerBackendAddressPools":[\r\n                         {\r\n                           "id":""\r\n                         }\r\n                       ],\r\n                       "id":""\r\n                     }\r\n                   ],\r\n                   "id":""\r\n                 }\r\n               ]\r\n             },\r\n             "extensionProfile":{\r\n               "extensions":[\r\n                 {\r\n                   "name":"",\r\n                   "publisher":"",\r\n                   "virtualMachineScaleSetExtensionType":"",\r\n                   "typeHandlerVersion":"",\r\n                   "autoUpgradeMinorVersion":null,\r\n                   "settings":{\r\n                   },\r\n                   "protectedSettings":{\r\n                   },\r\n                   "provisioningState":"",\r\n                   "id":""\r\n                 }\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--extension-profile', $('Remove the extension-profile value.'))
-  .option('--network-profile', $('Remove the network-profile value.'))
   .option('--os-profile', $('Remove the os-profile value.'))
   .option('--storage-profile', $('Remove the storage-profile value.'))
+  .option('--network-profile', $('Remove the network-profile value.'))
+  .option('--extension-profile', $('Remove the extension-profile value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
@@ -1082,23 +1074,23 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/virtualMachineProfile';
-    var anySubItem = false || options.extensionProfile || options.networkProfile || options.oSProfile || options.storageProfile;
+    var anySubItem = false || options.osProfile || options.storageProfile || options.networkProfile || options.extensionProfile;
     if (anySubItem) {
       var subItemPath = null;
-      if (options.extensionProfile) {
-        subItemPath = options.path + '/extensionProfile';
+      if (options.osProfile) {
+        subItemPath = options.path + '/osProfile';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.storageProfile) {
+        subItemPath = options.path + '/storageProfile';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.networkProfile) {
         subItemPath = options.path + '/networkProfile';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
-      if (options.oSProfile) {
-        subItemPath = options.path + '/oSProfile';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.storageProfile) {
-        subItemPath = options.path + '/storageProfile';
+      if (options.extensionProfile) {
+        subItemPath = options.path + '/extensionProfile';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -1117,22 +1109,22 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
   //create-or-update-parameters add virtual-machine-profile
-  var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile2.category('virtual-machine-profile')
-  .description($('Commands to set/remove/add virtual-machine-profile of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetVirtualMachineProfile2.command('add')
-  .description($('Add virtual-machine-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "virtualMachineProfile" : {\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "autoUpgradeMinorVersion":false,\r\n          "extensionType":"",\r\n          "protectedSettings":"",\r\n          "provisioningState":"",\r\n          "publisher":"",\r\n          "settings":"",\r\n          "typeHandlerVersion":"",\r\n          "id":"",\r\n          "name":"",\r\n          "type":"",\r\n          "location":"",\r\n          "tags":{\r\n          }\r\n        }\r\n      ]\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "iPConfigurations":[\r\n            {\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "referenceUri":""\r\n                }\r\n              ],\r\n              "name":"",\r\n              "subnet":{\r\n                "referenceUri":""\r\n              }\r\n            }\r\n          ],\r\n          "name":"",\r\n          "primary":null\r\n        }\r\n      ]\r\n    },\r\n    "oSProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminPassword":"",\r\n      "adminUsername":"",\r\n      "customData":"",\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "sshConfiguration":{\r\n          "publicKeys":[\r\n            {\r\n              "keyData":"",\r\n              "path":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "referenceUri":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateStore":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      ],\r\n      "windowsConfiguration":{\r\n        "additionalUnattendContents":[\r\n          {\r\n            "componentName":"",\r\n            "content":"",\r\n            "passName":"",\r\n            "settingName":""\r\n          }\r\n        ],\r\n        "enableAutomaticUpdates":null,\r\n        "provisionVMAgent":null,\r\n        "timeZone":"",\r\n        "winRMConfiguration":{\r\n          "listeners":[\r\n            {\r\n              "certificateUrl":"",\r\n              "protocol":""\r\n            }\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "offer":"",\r\n        "publisher":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "oSDisk":{\r\n        "caching":"",\r\n        "createOption":"",\r\n        "name":"",\r\n        "operatingSystemType":"",\r\n        "sourceImage":{\r\n          "uri":""\r\n        },\r\n        "virtualHardDiskContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile2.category('virtual-machine-profile')
+  .description($('Commands to set/remove/add virtual-machine-profile of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile2.command('add')
+  .description($('Add virtual-machine-profile in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "virtualMachineProfile" : {\r\n             "osProfile":{\r\n               "computerNamePrefix":"",\r\n               "adminUsername":"",\r\n               "adminPassword":"",\r\n               "customData":"",\r\n               "windowsConfiguration":{\r\n                 "provisionVMAgent":null,\r\n                 "enableAutomaticUpdates":null,\r\n                 "timeZone":"",\r\n                 "additionalUnattendContent":[\r\n                   {\r\n                     "passName":"",\r\n                     "componentName":"",\r\n                     "settingName":"",\r\n                     "content":""\r\n                   }\r\n                 ],\r\n                 "winRM":{\r\n                   "listeners":[\r\n                     {\r\n                       "protocol":"",\r\n                       "certificateUrl":""\r\n                     }\r\n                   ]\r\n                 }\r\n               },\r\n               "linuxConfiguration":{\r\n                 "disablePasswordAuthentication":null,\r\n                 "ssh":{\r\n                   "publicKeys":[\r\n                     {\r\n                       "path":"",\r\n                       "keyData":""\r\n                     }\r\n                   ]\r\n                 }\r\n               },\r\n               "secrets":[\r\n                 {\r\n                   "sourceVault":{\r\n                     "id":""\r\n                   },\r\n                   "vaultCertificates":[\r\n                     {\r\n                       "certificateUrl":"",\r\n                       "certificateStore":""\r\n                     }\r\n                   ]\r\n                 }\r\n               ]\r\n             },\r\n             "storageProfile":{\r\n               "imageReference":{\r\n                 "publisher":"",\r\n                 "offer":"",\r\n                 "sku":"",\r\n                 "version":""\r\n               },\r\n               "osDisk":{\r\n                 "name":"",\r\n                 "caching":"",\r\n                 "createOption":"",\r\n                 "osType":"",\r\n                 "image":{\r\n                   "uri":""\r\n                 },\r\n                 "vhdContainers":[\r\n                   ""\r\n                 ]\r\n               }\r\n             },\r\n             "networkProfile":{\r\n               "networkInterfaceConfigurations":[\r\n                 {\r\n                   "name":"",\r\n                   "primary":null,\r\n                   "ipConfigurations":[\r\n                     {\r\n                       "name":"",\r\n                       "subnet":{\r\n                         "id":""\r\n                       },\r\n                       "loadBalancerBackendAddressPools":[\r\n                         {\r\n                           "id":""\r\n                         }\r\n                       ],\r\n                       "id":""\r\n                     }\r\n                   ],\r\n                   "id":""\r\n                 }\r\n               ]\r\n             },\r\n             "extensionProfile":{\r\n               "extensions":[\r\n                 {\r\n                   "name":"",\r\n                   "publisher":"",\r\n                   "virtualMachineScaleSetExtensionType":"",\r\n                   "typeHandlerVersion":"",\r\n                   "autoUpgradeMinorVersion":null,\r\n                   "settings":{\r\n                   },\r\n                   "protectedSettings":{\r\n                   },\r\n                   "provisioningState":"",\r\n                   "id":""\r\n                 }\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--extension-profile <extensionProfile>', $('Add the extension-profile value.'))
-  .option('--network-profile <networkProfile>', $('Add the network-profile value.'))
-  .option('--os-profile <oSProfile>', $('Add the os-profile value.'))
+  .option('--os-profile <osProfile>', $('Add the os-profile value.'))
   .option('--storage-profile <storageProfile>', $('Add the storage-profile value.'))
+  .option('--network-profile <networkProfile>', $('Add the network-profile value.'))
+  .option('--extension-profile <extensionProfile>', $('Add the extension-profile value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -1150,35 +1142,15 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile' + '/' + options.key;
     cli.output.verbose('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile' + '/' + 'extensionProfile';
+    var paramPath = '/virtualMachineProfile' + '/' + 'osProfile';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.extensionProfile) {
-      if (options.parse && options.extensionProfile) {
-        options.extensionProfile = JSON.parse(options.extensionProfile);
+    if (options.osProfile) {
+      if (options.parse && options.osProfile) {
+        options.osProfile = JSON.parse(options.osProfile);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.extensionProfile}]);
-    }
-    paramPath = '/virtualMachineProfile' + '/' + 'networkProfile';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.networkProfile) {
-      if (options.parse && options.networkProfile) {
-        options.networkProfile = JSON.parse(options.networkProfile);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.networkProfile}]);
-    }
-    paramPath = '/virtualMachineProfile' + '/' + 'oSProfile';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.oSProfile) {
-      if (options.parse && options.oSProfile) {
-        options.oSProfile = JSON.parse(options.oSProfile);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.oSProfile}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.osProfile}]);
     }
     paramPath = '/virtualMachineProfile' + '/' + 'storageProfile';
     cli.output.verbose('================================================');
@@ -1190,6 +1162,26 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.storageProfile}]);
     }
+    paramPath = '/virtualMachineProfile' + '/' + 'networkProfile';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.networkProfile) {
+      if (options.parse && options.networkProfile) {
+        options.networkProfile = JSON.parse(options.networkProfile);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.networkProfile}]);
+    }
+    paramPath = '/virtualMachineProfile' + '/' + 'extensionProfile';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.extensionProfile) {
+      if (options.parse && options.extensionProfile) {
+        options.extensionProfile = JSON.parse(options.extensionProfile);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.extensionProfile}]);
+    }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
     cli.output.verbose('JSON object (updated):');
@@ -1201,18 +1193,24 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //create-or-update-parameters set extension-profile
-  var catparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile0.category('extension-profile')
-  .description($('Commands to set/remove/add extension-profile of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile0.command('set')
-  .description($('Set extension-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "extensionProfile" : {\r\n    "extensions":[\r\n      {\r\n        "autoUpgradeMinorVersion":false,\r\n        "extensionType":"",\r\n        "protectedSettings":"",\r\n        "provisioningState":"",\r\n        "publisher":"",\r\n        "settings":"",\r\n        "typeHandlerVersion":"",\r\n        "id":"",\r\n        "name":"",\r\n        "type":"",\r\n        "location":"",\r\n        "tags":{\r\n        }\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
+  //create-or-update-parameters set os-profile
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsOsProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetsOsProfile0.category('os-profile')
+  .description($('Commands to set/remove/add os-profile of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile0.command('set')
+  .description($('Set os-profile in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "osProfile" : {\r\n             "computerNamePrefix":"",\r\n             "adminUsername":"",\r\n             "adminPassword":"",\r\n             "customData":"",\r\n             "windowsConfiguration":{\r\n               "provisionVMAgent":null,\r\n               "enableAutomaticUpdates":null,\r\n               "timeZone":"",\r\n               "additionalUnattendContent":[\r\n                 {\r\n                   "passName":"",\r\n                   "componentName":"",\r\n                   "settingName":"",\r\n                   "content":""\r\n                 }\r\n               ],\r\n               "winRM":{\r\n                 "listeners":[\r\n                   {\r\n                     "protocol":"",\r\n                     "certificateUrl":""\r\n                   }\r\n                 ]\r\n               }\r\n             },\r\n             "linuxConfiguration":{\r\n               "disablePasswordAuthentication":null,\r\n               "ssh":{\r\n                 "publicKeys":[\r\n                   {\r\n                     "path":"",\r\n                     "keyData":""\r\n                   }\r\n                 ]\r\n               }\r\n             },\r\n             "secrets":[\r\n               {\r\n                 "sourceVault":{\r\n                   "id":""\r\n                 },\r\n                 "vaultCertificates":[\r\n                   {\r\n                     "certificateUrl":"",\r\n                     "certificateStore":""\r\n                   }\r\n                 ]\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--extensions <extensions>', $('Set the extensions value.'))
+  .option('--computer-name-prefix <computerNamePrefix>', $('Set the computer-name-prefix value.'))
+  .option('--admin-username <adminUsername>', $('Set the admin-username value.'))
+  .option('--admin-password <adminPassword>', $('Set the admin-password value.'))
+  .option('--custom-data <customData>', $('Set the custom-data value.'))
+  .option('--windows-configuration <windowsConfiguration>', $('Set the windows-configuration value.'))
+  .option('--linux-configuration <linuxConfiguration>', $('Set the linux-configuration value.'))
+  .option('--secrets <secrets>', $('Set the secrets value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -1227,16 +1225,76 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
-    options.path = '/virtualMachineProfile/extensionProfile';
-    var paramPath = options.path + '/' + 'extensions';
+    options.path = '/virtualMachineProfile/osProfile';
+    var paramPath = options.path + '/' + 'computerNamePrefix';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.extensions) {
-      if (options.parse && options.extensions) {
-        options.extensions = JSON.parse(options.extensions);
+    if (options.computerNamePrefix) {
+      if (options.parse && options.computerNamePrefix) {
+        options.computerNamePrefix = JSON.parse(options.computerNamePrefix);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.extensions}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.computerNamePrefix}]);
+    }
+    paramPath = options.path + '/' + 'adminUsername';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.adminUsername) {
+      if (options.parse && options.adminUsername) {
+        options.adminUsername = JSON.parse(options.adminUsername);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.adminUsername}]);
+    }
+    paramPath = options.path + '/' + 'adminPassword';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.adminPassword) {
+      if (options.parse && options.adminPassword) {
+        options.adminPassword = JSON.parse(options.adminPassword);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.adminPassword}]);
+    }
+    paramPath = options.path + '/' + 'customData';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.customData) {
+      if (options.parse && options.customData) {
+        options.customData = JSON.parse(options.customData);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.customData}]);
+    }
+    paramPath = options.path + '/' + 'windowsConfiguration';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.windowsConfiguration) {
+      if (options.parse && options.windowsConfiguration) {
+        options.windowsConfiguration = JSON.parse(options.windowsConfiguration);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.windowsConfiguration}]);
+    }
+    paramPath = options.path + '/' + 'linuxConfiguration';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.linuxConfiguration) {
+      if (options.parse && options.linuxConfiguration) {
+        options.linuxConfiguration = JSON.parse(options.linuxConfiguration);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.linuxConfiguration}]);
+    }
+    paramPath = options.path + '/' + 'secrets';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.secrets) {
+      if (options.parse && options.secrets) {
+        options.secrets = JSON.parse(options.secrets);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.secrets}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -1249,17 +1307,23 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //create-or-update-parameters remove extension-profile
-  var catparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile1.category('extension-profile')
-  .description($('Commands to set/remove/add extension-profile of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile1.command('remove')
-  .description($('Remove extension-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "extensionProfile" : {\r\n    "extensions":[\r\n      {\r\n        "autoUpgradeMinorVersion":false,\r\n        "extensionType":"",\r\n        "protectedSettings":"",\r\n        "provisioningState":"",\r\n        "publisher":"",\r\n        "settings":"",\r\n        "typeHandlerVersion":"",\r\n        "id":"",\r\n        "name":"",\r\n        "type":"",\r\n        "location":"",\r\n        "tags":{\r\n        }\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
+  //create-or-update-parameters remove os-profile
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsOsProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetsOsProfile1.category('os-profile')
+  .description($('Commands to set/remove/add os-profile of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile1.command('remove')
+  .description($('Remove os-profile in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "osProfile" : {\r\n             "computerNamePrefix":"",\r\n             "adminUsername":"",\r\n             "adminPassword":"",\r\n             "customData":"",\r\n             "windowsConfiguration":{\r\n               "provisionVMAgent":null,\r\n               "enableAutomaticUpdates":null,\r\n               "timeZone":"",\r\n               "additionalUnattendContent":[\r\n                 {\r\n                   "passName":"",\r\n                   "componentName":"",\r\n                   "settingName":"",\r\n                   "content":""\r\n                 }\r\n               ],\r\n               "winRM":{\r\n                 "listeners":[\r\n                   {\r\n                     "protocol":"",\r\n                     "certificateUrl":""\r\n                   }\r\n                 ]\r\n               }\r\n             },\r\n             "linuxConfiguration":{\r\n               "disablePasswordAuthentication":null,\r\n               "ssh":{\r\n                 "publicKeys":[\r\n                   {\r\n                     "path":"",\r\n                     "keyData":""\r\n                   }\r\n                 ]\r\n               }\r\n             },\r\n             "secrets":[\r\n               {\r\n                 "sourceVault":{\r\n                   "id":""\r\n                 },\r\n                 "vaultCertificates":[\r\n                   {\r\n                     "certificateUrl":"",\r\n                     "certificateStore":""\r\n                   }\r\n                 ]\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--extensions', $('Remove the extensions value.'))
+  .option('--computer-name-prefix', $('Remove the computer-name-prefix value.'))
+  .option('--admin-username', $('Remove the admin-username value.'))
+  .option('--admin-password', $('Remove the admin-password value.'))
+  .option('--custom-data', $('Remove the custom-data value.'))
+  .option('--windows-configuration', $('Remove the windows-configuration value.'))
+  .option('--linux-configuration', $('Remove the linux-configuration value.'))
+  .option('--secrets', $('Remove the secrets value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
@@ -1270,12 +1334,36 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'remove';
-    options.path = '/virtualMachineProfile/extensionProfile';
-    var anySubItem = false || options.extensions;
+    options.path = '/virtualMachineProfile/osProfile';
+    var anySubItem = false || options.computerNamePrefix || options.adminUsername || options.adminPassword || options.customData || options.windowsConfiguration || options.linuxConfiguration || options.secrets;
     if (anySubItem) {
       var subItemPath = null;
-      if (options.extensions) {
-        subItemPath = options.path + '/extensions';
+      if (options.computerNamePrefix) {
+        subItemPath = options.path + '/computerNamePrefix';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.adminUsername) {
+        subItemPath = options.path + '/adminUsername';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.adminPassword) {
+        subItemPath = options.path + '/adminPassword';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.customData) {
+        subItemPath = options.path + '/customData';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.windowsConfiguration) {
+        subItemPath = options.path + '/windowsConfiguration';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.linuxConfiguration) {
+        subItemPath = options.path + '/linuxConfiguration';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.secrets) {
+        subItemPath = options.path + '/secrets';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -1293,20 +1381,26 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //create-or-update-parameters add extension-profile
-  var catparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile2.category('extension-profile')
-  .description($('Commands to set/remove/add extension-profile of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetExtensionProfile2.command('add')
-  .description($('Add extension-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "extensionProfile" : {\r\n    "extensions":[\r\n      {\r\n        "autoUpgradeMinorVersion":false,\r\n        "extensionType":"",\r\n        "protectedSettings":"",\r\n        "provisioningState":"",\r\n        "publisher":"",\r\n        "settings":"",\r\n        "typeHandlerVersion":"",\r\n        "id":"",\r\n        "name":"",\r\n        "type":"",\r\n        "location":"",\r\n        "tags":{\r\n        }\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
+  //create-or-update-parameters add os-profile
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsOsProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetsOsProfile2.category('os-profile')
+  .description($('Commands to set/remove/add os-profile of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile2.command('add')
+  .description($('Add os-profile in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "osProfile" : {\r\n             "computerNamePrefix":"",\r\n             "adminUsername":"",\r\n             "adminPassword":"",\r\n             "customData":"",\r\n             "windowsConfiguration":{\r\n               "provisionVMAgent":null,\r\n               "enableAutomaticUpdates":null,\r\n               "timeZone":"",\r\n               "additionalUnattendContent":[\r\n                 {\r\n                   "passName":"",\r\n                   "componentName":"",\r\n                   "settingName":"",\r\n                   "content":""\r\n                 }\r\n               ],\r\n               "winRM":{\r\n                 "listeners":[\r\n                   {\r\n                     "protocol":"",\r\n                     "certificateUrl":""\r\n                   }\r\n                 ]\r\n               }\r\n             },\r\n             "linuxConfiguration":{\r\n               "disablePasswordAuthentication":null,\r\n               "ssh":{\r\n                 "publicKeys":[\r\n                   {\r\n                     "path":"",\r\n                     "keyData":""\r\n                   }\r\n                 ]\r\n               }\r\n             },\r\n             "secrets":[\r\n               {\r\n                 "sourceVault":{\r\n                   "id":""\r\n                 },\r\n                 "vaultCertificates":[\r\n                   {\r\n                     "certificateUrl":"",\r\n                     "certificateStore":""\r\n                   }\r\n                 ]\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--extensions <extensions>', $('Add the extensions value.'))
+  .option('--computer-name-prefix <computerNamePrefix>', $('Add the computer-name-prefix value.'))
+  .option('--admin-username <adminUsername>', $('Add the admin-username value.'))
+  .option('--admin-password <adminPassword>', $('Add the admin-password value.'))
+  .option('--custom-data <customData>', $('Add the custom-data value.'))
+  .option('--windows-configuration <windowsConfiguration>', $('Add the windows-configuration value.'))
+  .option('--linux-configuration <linuxConfiguration>', $('Add the linux-configuration value.'))
+  .option('--secrets <secrets>', $('Add the secrets value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -1321,18 +1415,78 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'add';
-    options.path = '/virtualMachineProfile/extensionProfile' + '/' + options.key;
+    options.path = '/virtualMachineProfile/osProfile' + '/' + options.key;
     cli.output.verbose('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/extensionProfile' + '/' + 'extensions';
+    var paramPath = '/virtualMachineProfile/osProfile' + '/' + 'computerNamePrefix';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.extensions) {
-      if (options.parse && options.extensions) {
-        options.extensions = JSON.parse(options.extensions);
+    if (options.computerNamePrefix) {
+      if (options.parse && options.computerNamePrefix) {
+        options.computerNamePrefix = JSON.parse(options.computerNamePrefix);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.extensions}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.computerNamePrefix}]);
+    }
+    paramPath = '/virtualMachineProfile/osProfile' + '/' + 'adminUsername';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.adminUsername) {
+      if (options.parse && options.adminUsername) {
+        options.adminUsername = JSON.parse(options.adminUsername);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.adminUsername}]);
+    }
+    paramPath = '/virtualMachineProfile/osProfile' + '/' + 'adminPassword';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.adminPassword) {
+      if (options.parse && options.adminPassword) {
+        options.adminPassword = JSON.parse(options.adminPassword);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.adminPassword}]);
+    }
+    paramPath = '/virtualMachineProfile/osProfile' + '/' + 'customData';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.customData) {
+      if (options.parse && options.customData) {
+        options.customData = JSON.parse(options.customData);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.customData}]);
+    }
+    paramPath = '/virtualMachineProfile/osProfile' + '/' + 'windowsConfiguration';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.windowsConfiguration) {
+      if (options.parse && options.windowsConfiguration) {
+        options.windowsConfiguration = JSON.parse(options.windowsConfiguration);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.windowsConfiguration}]);
+    }
+    paramPath = '/virtualMachineProfile/osProfile' + '/' + 'linuxConfiguration';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.linuxConfiguration) {
+      if (options.parse && options.linuxConfiguration) {
+        options.linuxConfiguration = JSON.parse(options.linuxConfiguration);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.linuxConfiguration}]);
+    }
+    paramPath = '/virtualMachineProfile/osProfile' + '/' + 'secrets';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.secrets) {
+      if (options.parse && options.secrets) {
+        options.secrets = JSON.parse(options.secrets);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.secrets}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -1345,31 +1499,279 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //create-or-update-parameters set extensions
-  var catparametersCreateOrUpdateVirtualMachineScaleSetExtensions0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetExtensions0 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensions0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetExtensions0 = parametersCreateOrUpdateVirtualMachineScaleSetExtensions0.category('extensions')
-  .description($('Commands to set/remove/add extensions of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetExtensions0.command('set')
-  .description($('Set extensions in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "extensions" : {\r\n    "autoUpgradeMinorVersion":false,\r\n    "extensionType":"",\r\n    "protectedSettings":"",\r\n    "provisioningState":"",\r\n    "publisher":"",\r\n    "settings":"",\r\n    "typeHandlerVersion":"",\r\n    "id":"",\r\n    "name":"",\r\n    "type":"",\r\n    "location":"",\r\n    "tags":{\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
+  //create-or-update-parameters set windows-configuration
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration0 = catparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration0 = parametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration0.category('windows-configuration')
+  .description($('Commands to set/remove/add windows-configuration of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration0.command('set')
+  .description($('Set windows-configuration in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "windowsConfiguration" : {\r\n             "provisionVMAgent":null,\r\n             "enableAutomaticUpdates":null,\r\n             "timeZone":"",\r\n             "additionalUnattendContent":[\r\n               {\r\n                 "passName":"",\r\n                 "componentName":"",\r\n                 "settingName":"",\r\n                 "content":""\r\n               }\r\n             ],\r\n             "winRM":{\r\n               "listeners":[\r\n                 {\r\n                   "protocol":"",\r\n                   "certificateUrl":""\r\n                 }\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--provision-vm-agent <provisionVMAgent>', $('Set the provision-vm-agent value.'))
+  .option('--enable-automatic-updates <enableAutomaticUpdates>', $('Set the enable-automatic-updates value.'))
+  .option('--time-zone <timeZone>', $('Set the time-zone value.'))
+  .option('--additional-unattend-content <additionalUnattendContent>', $('Set the additional-unattend-content value.'))
+  .option('--win-rm <winRM>', $('Set the win-rm value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'replace';
+    options.path = '/virtualMachineProfile/osProfile/windowsConfiguration';
+    var paramPath = options.path + '/' + 'provisionVMAgent';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.provisionVMAgent) {
+      if (options.parse && options.provisionVMAgent) {
+        options.provisionVMAgent = JSON.parse(options.provisionVMAgent);
+      }
+        options.provisionVMAgent = JSON.parse(options.provisionVMAgent);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisionVMAgent}]);
+    }
+    paramPath = options.path + '/' + 'enableAutomaticUpdates';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.enableAutomaticUpdates) {
+      if (options.parse && options.enableAutomaticUpdates) {
+        options.enableAutomaticUpdates = JSON.parse(options.enableAutomaticUpdates);
+      }
+        options.enableAutomaticUpdates = JSON.parse(options.enableAutomaticUpdates);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.enableAutomaticUpdates}]);
+    }
+    paramPath = options.path + '/' + 'timeZone';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.timeZone) {
+      if (options.parse && options.timeZone) {
+        options.timeZone = JSON.parse(options.timeZone);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.timeZone}]);
+    }
+    paramPath = options.path + '/' + 'additionalUnattendContent';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.additionalUnattendContent) {
+      if (options.parse && options.additionalUnattendContent) {
+        options.additionalUnattendContent = JSON.parse(options.additionalUnattendContent);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.additionalUnattendContent}]);
+    }
+    paramPath = options.path + '/' + 'winRM';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.winRM) {
+      if (options.parse && options.winRM) {
+        options.winRM = JSON.parse(options.winRM);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.winRM}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters remove windows-configuration
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration1 = catparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration1.category('windows-configuration')
+  .description($('Commands to set/remove/add windows-configuration of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration1.command('remove')
+  .description($('Remove windows-configuration in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "windowsConfiguration" : {\r\n             "provisionVMAgent":null,\r\n             "enableAutomaticUpdates":null,\r\n             "timeZone":"",\r\n             "additionalUnattendContent":[\r\n               {\r\n                 "passName":"",\r\n                 "componentName":"",\r\n                 "settingName":"",\r\n                 "content":""\r\n               }\r\n             ],\r\n             "winRM":{\r\n               "listeners":[\r\n                 {\r\n                   "protocol":"",\r\n                   "certificateUrl":""\r\n                 }\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--provision-vm-agent', $('Remove the provision-vm-agent value.'))
+  .option('--enable-automatic-updates', $('Remove the enable-automatic-updates value.'))
+  .option('--time-zone', $('Remove the time-zone value.'))
+  .option('--additional-unattend-content', $('Remove the additional-unattend-content value.'))
+  .option('--win-rm', $('Remove the win-rm value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = '/virtualMachineProfile/osProfile/windowsConfiguration';
+    var anySubItem = false || options.provisionVMAgent || options.enableAutomaticUpdates || options.timeZone || options.additionalUnattendContent || options.winRM;
+    if (anySubItem) {
+      var subItemPath = null;
+      if (options.provisionVMAgent) {
+        subItemPath = options.path + '/provisionVMAgent';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.enableAutomaticUpdates) {
+        subItemPath = options.path + '/enableAutomaticUpdates';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.timeZone) {
+        subItemPath = options.path + '/timeZone';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.additionalUnattendContent) {
+        subItemPath = options.path + '/additionalUnattendContent';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.winRM) {
+        subItemPath = options.path + '/winRM';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+  //create-or-update-parameters add windows-configuration
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration2 = catparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration2 = parametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration2.category('windows-configuration')
+  .description($('Commands to set/remove/add windows-configuration of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration2.command('add')
+  .description($('Add windows-configuration in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "windowsConfiguration" : {\r\n             "provisionVMAgent":null,\r\n             "enableAutomaticUpdates":null,\r\n             "timeZone":"",\r\n             "additionalUnattendContent":[\r\n               {\r\n                 "passName":"",\r\n                 "componentName":"",\r\n                 "settingName":"",\r\n                 "content":""\r\n               }\r\n             ],\r\n             "winRM":{\r\n               "listeners":[\r\n                 {\r\n                   "protocol":"",\r\n                   "certificateUrl":""\r\n                 }\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--key <key>', $('The JSON key.'))
+  .option('--value <value>', $('The JSON value.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--provision-vm-agent <provisionVMAgent>', $('Add the provision-vm-agent value.'))
+  .option('--enable-automatic-updates <enableAutomaticUpdates>', $('Add the enable-automatic-updates value.'))
+  .option('--time-zone <timeZone>', $('Add the time-zone value.'))
+  .option('--additional-unattend-content <additionalUnattendContent>', $('Add the additional-unattend-content value.'))
+  .option('--win-rm <winRM>', $('Add the win-rm value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'add';
+    options.path = '/virtualMachineProfile/osProfile/windowsConfiguration' + '/' + options.key;
+    cli.output.verbose('options.path = ' + options.path);
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    var paramPath = '/virtualMachineProfile/osProfile/windowsConfiguration' + '/' + 'provisionVMAgent';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.provisionVMAgent) {
+      if (options.parse && options.provisionVMAgent) {
+        options.provisionVMAgent = JSON.parse(options.provisionVMAgent);
+      }
+        options.provisionVMAgent = JSON.parse(options.provisionVMAgent);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisionVMAgent}]);
+    }
+    paramPath = '/virtualMachineProfile/osProfile/windowsConfiguration' + '/' + 'enableAutomaticUpdates';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.enableAutomaticUpdates) {
+      if (options.parse && options.enableAutomaticUpdates) {
+        options.enableAutomaticUpdates = JSON.parse(options.enableAutomaticUpdates);
+      }
+        options.enableAutomaticUpdates = JSON.parse(options.enableAutomaticUpdates);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.enableAutomaticUpdates}]);
+    }
+    paramPath = '/virtualMachineProfile/osProfile/windowsConfiguration' + '/' + 'timeZone';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.timeZone) {
+      if (options.parse && options.timeZone) {
+        options.timeZone = JSON.parse(options.timeZone);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.timeZone}]);
+    }
+    paramPath = '/virtualMachineProfile/osProfile/windowsConfiguration' + '/' + 'additionalUnattendContent';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.additionalUnattendContent) {
+      if (options.parse && options.additionalUnattendContent) {
+        options.additionalUnattendContent = JSON.parse(options.additionalUnattendContent);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.additionalUnattendContent}]);
+    }
+    paramPath = '/virtualMachineProfile/osProfile/windowsConfiguration' + '/' + 'winRM';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.winRM) {
+      if (options.parse && options.winRM) {
+        options.winRM = JSON.parse(options.winRM);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.winRM}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters set additional-unattend-content
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent0 = catparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent0 = parametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent0.category('additional-unattend-content')
+  .description($('Commands to set/remove/add additional-unattend-content of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent0.command('set')
+  .description($('Set additional-unattend-content in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "additionalUnattendContent" : {\r\n             "passName":"",\r\n             "componentName":"",\r\n             "settingName":"",\r\n             "content":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--auto-upgrade-minor-version <autoUpgradeMinorVersion>', $('Set the auto-upgrade-minor-version value.'))
-  .option('--extension-type <extensionType>', $('Set the extension-type value.'))
-  .option('--protected-settings <protectedSettings>', $('Set the protected-settings value.'))
-  .option('--provisioning-state <provisioningState>', $('Set the provisioning-state value.'))
-  .option('--publisher <publisher>', $('Set the publisher value.'))
-  .option('--settings <settings>', $('Set the settings value.'))
-  .option('--type-handler-version <typeHandlerVersion>', $('Set the type-handler-version value.'))
-  .option('--id <id>', $('Set the id value.'))
-  .option('--name <name>', $('Set the name value.'))
-  .option('--type <type>', $('Set the type value.'))
-  .option('--location <location>', $('Set the location value.'))
-  .option('--tags <tags>', $('Set the tags value.'))
+  .option('--pass-name <passName>', $('Set the pass-name value.'))
+  .option('--component-name <componentName>', $('Set the component-name value.'))
+  .option('--setting-name <settingName>', $('Set the setting-name value.'))
+  .option('--content <content>', $('Set the content value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -1384,129 +1786,49 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
-    options.path = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '');
+    options.path = '/virtualMachineProfile/osProfile/windowsConfiguration/additionalUnattendContent' + (options.index ? ('/' + options.index) : '');
     if (options.value) {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
     }
-    var paramPath = options.path + '/' + 'autoUpgradeMinorVersion';
+    var paramPath = options.path + '/' + 'passName';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.autoUpgradeMinorVersion) {
-      if (options.parse && options.autoUpgradeMinorVersion) {
-        options.autoUpgradeMinorVersion = JSON.parse(options.autoUpgradeMinorVersion);
+    if (options.passName) {
+      if (options.parse && options.passName) {
+        options.passName = JSON.parse(options.passName);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.autoUpgradeMinorVersion}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.passName}]);
     }
-    paramPath = options.path + '/' + 'extensionType';
+    paramPath = options.path + '/' + 'componentName';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.extensionType) {
-      if (options.parse && options.extensionType) {
-        options.extensionType = JSON.parse(options.extensionType);
+    if (options.componentName) {
+      if (options.parse && options.componentName) {
+        options.componentName = JSON.parse(options.componentName);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.extensionType}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.componentName}]);
     }
-    paramPath = options.path + '/' + 'protectedSettings';
+    paramPath = options.path + '/' + 'settingName';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.protectedSettings) {
-      if (options.parse && options.protectedSettings) {
-        options.protectedSettings = JSON.parse(options.protectedSettings);
+    if (options.settingName) {
+      if (options.parse && options.settingName) {
+        options.settingName = JSON.parse(options.settingName);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protectedSettings}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.settingName}]);
     }
-    paramPath = options.path + '/' + 'provisioningState';
+    paramPath = options.path + '/' + 'content';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.provisioningState) {
-      if (options.parse && options.provisioningState) {
-        options.provisioningState = JSON.parse(options.provisioningState);
+    if (options.content) {
+      if (options.parse && options.content) {
+        options.content = JSON.parse(options.content);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisioningState}]);
-    }
-    paramPath = options.path + '/' + 'publisher';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.publisher) {
-      if (options.parse && options.publisher) {
-        options.publisher = JSON.parse(options.publisher);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.publisher}]);
-    }
-    paramPath = options.path + '/' + 'settings';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.settings) {
-      if (options.parse && options.settings) {
-        options.settings = JSON.parse(options.settings);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.settings}]);
-    }
-    paramPath = options.path + '/' + 'typeHandlerVersion';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.typeHandlerVersion) {
-      if (options.parse && options.typeHandlerVersion) {
-        options.typeHandlerVersion = JSON.parse(options.typeHandlerVersion);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.typeHandlerVersion}]);
-    }
-    paramPath = options.path + '/' + 'id';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.id) {
-      if (options.parse && options.id) {
-        options.id = JSON.parse(options.id);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
-    }
-    paramPath = options.path + '/' + 'name';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.name) {
-      if (options.parse && options.name) {
-        options.name = JSON.parse(options.name);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
-    }
-    paramPath = options.path + '/' + 'type';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.type) {
-      if (options.parse && options.type) {
-        options.type = JSON.parse(options.type);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.type}]);
-    }
-    paramPath = options.path + '/' + 'location';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.location) {
-      if (options.parse && options.location) {
-        options.location = JSON.parse(options.location);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.location}]);
-    }
-    paramPath = options.path + '/' + 'tags';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.tags) {
-      if (options.parse && options.tags) {
-        options.tags = JSON.parse(options.tags);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.tags}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.content}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -1519,29 +1841,21 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //create-or-update-parameters remove extensions
-  var catparametersCreateOrUpdateVirtualMachineScaleSetExtensions1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetExtensions1 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensions1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetExtensions1 = parametersCreateOrUpdateVirtualMachineScaleSetExtensions1.category('extensions')
-  .description($('Commands to set/remove/add extensions of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetExtensions1.command('remove')
-  .description($('Remove extensions in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "extensions" : {\r\n    "autoUpgradeMinorVersion":false,\r\n    "extensionType":"",\r\n    "protectedSettings":"",\r\n    "provisioningState":"",\r\n    "publisher":"",\r\n    "settings":"",\r\n    "typeHandlerVersion":"",\r\n    "id":"",\r\n    "name":"",\r\n    "type":"",\r\n    "location":"",\r\n    "tags":{\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
+  //create-or-update-parameters remove additional-unattend-content
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent1 = catparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent1 = parametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent1.category('additional-unattend-content')
+  .description($('Commands to set/remove/add additional-unattend-content of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent1.command('remove')
+  .description($('Remove additional-unattend-content in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "additionalUnattendContent" : {\r\n             "passName":"",\r\n             "componentName":"",\r\n             "settingName":"",\r\n             "content":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
-  .option('--auto-upgrade-minor-version', $('Remove the auto-upgrade-minor-version value.'))
-  .option('--extension-type', $('Remove the extension-type value.'))
-  .option('--protected-settings', $('Remove the protected-settings value.'))
-  .option('--provisioning-state', $('Remove the provisioning-state value.'))
-  .option('--publisher', $('Remove the publisher value.'))
-  .option('--settings', $('Remove the settings value.'))
-  .option('--type-handler-version', $('Remove the type-handler-version value.'))
-  .option('--id', $('Remove the id value.'))
-  .option('--name', $('Remove the name value.'))
-  .option('--type', $('Remove the type value.'))
-  .option('--location', $('Remove the location value.'))
-  .option('--tags', $('Remove the tags value.'))
+  .option('--pass-name', $('Remove the pass-name value.'))
+  .option('--component-name', $('Remove the component-name value.'))
+  .option('--setting-name', $('Remove the setting-name value.'))
+  .option('--content', $('Remove the content value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
@@ -1552,56 +1866,24 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'remove';
-    options.path = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false || options.autoUpgradeMinorVersion || options.extensionType || options.protectedSettings || options.provisioningState || options.publisher || options.settings || options.typeHandlerVersion || options.id || options.name || options.type || options.location || options.tags;
+    options.path = '/virtualMachineProfile/osProfile/windowsConfiguration/additionalUnattendContent' + (options.index ? ('/' + options.index) : '');
+    var anySubItem = false || options.passName || options.componentName || options.settingName || options.content;
     if (anySubItem) {
       var subItemPath = null;
-      if (options.autoUpgradeMinorVersion) {
-        subItemPath = options.path + '/autoUpgradeMinorVersion';
+      if (options.passName) {
+        subItemPath = options.path + '/passName';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
-      if (options.extensionType) {
-        subItemPath = options.path + '/extensionType';
+      if (options.componentName) {
+        subItemPath = options.path + '/componentName';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
-      if (options.protectedSettings) {
-        subItemPath = options.path + '/protectedSettings';
+      if (options.settingName) {
+        subItemPath = options.path + '/settingName';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
-      if (options.provisioningState) {
-        subItemPath = options.path + '/provisioningState';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.publisher) {
-        subItemPath = options.path + '/publisher';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.settings) {
-        subItemPath = options.path + '/settings';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.typeHandlerVersion) {
-        subItemPath = options.path + '/typeHandlerVersion';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.id) {
-        subItemPath = options.path + '/id';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.name) {
-        subItemPath = options.path + '/name';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.type) {
-        subItemPath = options.path + '/type';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.location) {
-        subItemPath = options.path + '/location';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.tags) {
-        subItemPath = options.path + '/tags';
+      if (options.content) {
+        subItemPath = options.path + '/content';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -1619,31 +1901,23 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //create-or-update-parameters add extensions
-  var catparametersCreateOrUpdateVirtualMachineScaleSetExtensions2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetExtensions2 = catparametersCreateOrUpdateVirtualMachineScaleSetExtensions2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetExtensions2 = parametersCreateOrUpdateVirtualMachineScaleSetExtensions2.category('extensions')
-  .description($('Commands to set/remove/add extensions of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetExtensions2.command('add')
-  .description($('Add extensions in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "extensions" : {\r\n    "autoUpgradeMinorVersion":false,\r\n    "extensionType":"",\r\n    "protectedSettings":"",\r\n    "provisioningState":"",\r\n    "publisher":"",\r\n    "settings":"",\r\n    "typeHandlerVersion":"",\r\n    "id":"",\r\n    "name":"",\r\n    "type":"",\r\n    "location":"",\r\n    "tags":{\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
+  //create-or-update-parameters add additional-unattend-content
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent2 = catparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent2 = parametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent2.category('additional-unattend-content')
+  .description($('Commands to set/remove/add additional-unattend-content of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent2.command('add')
+  .description($('Add additional-unattend-content in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "additionalUnattendContent" : {\r\n             "passName":"",\r\n             "componentName":"",\r\n             "settingName":"",\r\n             "content":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--auto-upgrade-minor-version <autoUpgradeMinorVersion>', $('Add the auto-upgrade-minor-version value.'))
-  .option('--extension-type <extensionType>', $('Add the extension-type value.'))
-  .option('--protected-settings <protectedSettings>', $('Add the protected-settings value.'))
-  .option('--provisioning-state <provisioningState>', $('Add the provisioning-state value.'))
-  .option('--publisher <publisher>', $('Add the publisher value.'))
-  .option('--settings <settings>', $('Add the settings value.'))
-  .option('--type-handler-version <typeHandlerVersion>', $('Add the type-handler-version value.'))
-  .option('--id <id>', $('Add the id value.'))
-  .option('--name <name>', $('Add the name value.'))
-  .option('--type <type>', $('Add the type value.'))
-  .option('--location <location>', $('Add the location value.'))
-  .option('--tags <tags>', $('Add the tags value.'))
+  .option('--pass-name <passName>', $('Add the pass-name value.'))
+  .option('--component-name <componentName>', $('Add the component-name value.'))
+  .option('--setting-name <settingName>', $('Add the setting-name value.'))
+  .option('--content <content>', $('Add the content value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -1658,80 +1932,1081 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'add';
-    options.path = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
+    options.path = '/virtualMachineProfile/osProfile/windowsConfiguration/additionalUnattendContent' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.verbose('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'autoUpgradeMinorVersion';
+    var paramPath = '/virtualMachineProfile/osProfile/windowsConfiguration/additionalUnattendContent' + (options.index ? ('/' + options.index) : '') + '/' + 'passName';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.autoUpgradeMinorVersion) {
-      if (options.parse && options.autoUpgradeMinorVersion) {
-        options.autoUpgradeMinorVersion = JSON.parse(options.autoUpgradeMinorVersion);
+    if (options.passName) {
+      if (options.parse && options.passName) {
+        options.passName = JSON.parse(options.passName);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.autoUpgradeMinorVersion}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.passName}]);
     }
-    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'extensionType';
+    paramPath = '/virtualMachineProfile/osProfile/windowsConfiguration/additionalUnattendContent' + (options.index ? ('/' + options.index) : '') + '/' + 'componentName';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.extensionType) {
-      if (options.parse && options.extensionType) {
-        options.extensionType = JSON.parse(options.extensionType);
+    if (options.componentName) {
+      if (options.parse && options.componentName) {
+        options.componentName = JSON.parse(options.componentName);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.extensionType}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.componentName}]);
     }
-    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'protectedSettings';
+    paramPath = '/virtualMachineProfile/osProfile/windowsConfiguration/additionalUnattendContent' + (options.index ? ('/' + options.index) : '') + '/' + 'settingName';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.protectedSettings) {
-      if (options.parse && options.protectedSettings) {
-        options.protectedSettings = JSON.parse(options.protectedSettings);
+    if (options.settingName) {
+      if (options.parse && options.settingName) {
+        options.settingName = JSON.parse(options.settingName);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protectedSettings}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.settingName}]);
     }
-    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'provisioningState';
+    paramPath = '/virtualMachineProfile/osProfile/windowsConfiguration/additionalUnattendContent' + (options.index ? ('/' + options.index) : '') + '/' + 'content';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.provisioningState) {
-      if (options.parse && options.provisioningState) {
-        options.provisioningState = JSON.parse(options.provisioningState);
+    if (options.content) {
+      if (options.parse && options.content) {
+        options.content = JSON.parse(options.content);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisioningState}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.content}]);
     }
-    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'publisher';
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters set win-rm
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsWinRM0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsWinRM0 = catparametersCreateOrUpdateVirtualMachineScaleSetsWinRM0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsWinRM0 = parametersCreateOrUpdateVirtualMachineScaleSetsWinRM0.category('win-rm')
+  .description($('Commands to set/remove/add win-rm of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsWinRM0.command('set')
+  .description($('Set win-rm in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "winRM" : {\r\n             "listeners":[\r\n               {\r\n                 "protocol":"",\r\n                 "certificateUrl":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--listeners <listeners>', $('Set the listeners value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'replace';
+    options.path = '/virtualMachineProfile/osProfile/windowsConfiguration/winRM';
+    var paramPath = options.path + '/' + 'listeners';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.publisher) {
-      if (options.parse && options.publisher) {
-        options.publisher = JSON.parse(options.publisher);
+    if (options.listeners) {
+      if (options.parse && options.listeners) {
+        options.listeners = JSON.parse(options.listeners);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.publisher}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.listeners}]);
     }
-    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'settings';
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters remove win-rm
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsWinRM1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsWinRM1 = catparametersCreateOrUpdateVirtualMachineScaleSetsWinRM1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsWinRM1 = parametersCreateOrUpdateVirtualMachineScaleSetsWinRM1.category('win-rm')
+  .description($('Commands to set/remove/add win-rm of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsWinRM1.command('remove')
+  .description($('Remove win-rm in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "winRM" : {\r\n             "listeners":[\r\n               {\r\n                 "protocol":"",\r\n                 "certificateUrl":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--listeners', $('Remove the listeners value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = '/virtualMachineProfile/osProfile/windowsConfiguration/winRM';
+    var anySubItem = false || options.listeners;
+    if (anySubItem) {
+      var subItemPath = null;
+      if (options.listeners) {
+        subItemPath = options.path + '/listeners';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+  //create-or-update-parameters add win-rm
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsWinRM2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsWinRM2 = catparametersCreateOrUpdateVirtualMachineScaleSetsWinRM2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsWinRM2 = parametersCreateOrUpdateVirtualMachineScaleSetsWinRM2.category('win-rm')
+  .description($('Commands to set/remove/add win-rm of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsWinRM2.command('add')
+  .description($('Add win-rm in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "winRM" : {\r\n             "listeners":[\r\n               {\r\n                 "protocol":"",\r\n                 "certificateUrl":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--key <key>', $('The JSON key.'))
+  .option('--value <value>', $('The JSON value.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--listeners <listeners>', $('Add the listeners value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'add';
+    options.path = '/virtualMachineProfile/osProfile/windowsConfiguration/winRM' + '/' + options.key;
+    cli.output.verbose('options.path = ' + options.path);
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    var paramPath = '/virtualMachineProfile/osProfile/windowsConfiguration/winRM' + '/' + 'listeners';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.settings) {
-      if (options.parse && options.settings) {
-        options.settings = JSON.parse(options.settings);
+    if (options.listeners) {
+      if (options.parse && options.listeners) {
+        options.listeners = JSON.parse(options.listeners);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.settings}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.listeners}]);
     }
-    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'typeHandlerVersion';
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters set listeners
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsListeners0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsListeners0 = catparametersCreateOrUpdateVirtualMachineScaleSetsListeners0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsListeners0 = parametersCreateOrUpdateVirtualMachineScaleSetsListeners0.category('listeners')
+  .description($('Commands to set/remove/add listeners of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsListeners0.command('set')
+  .description($('Set listeners in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "listeners" : {\r\n             "protocol":"",\r\n             "certificateUrl":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .option('--value <value>', $('The input string value for the indexed item.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--protocol <protocol>', $('Set the protocol value.'))
+  .option('--certificate-url <certificateUrl>', $('Set the certificate-url value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'replace';
+    options.path = '/virtualMachineProfile/osProfile/windowsConfiguration/winRM/listeners' + (options.index ? ('/' + options.index) : '');
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
+    var paramPath = options.path + '/' + 'protocol';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.typeHandlerVersion) {
-      if (options.parse && options.typeHandlerVersion) {
-        options.typeHandlerVersion = JSON.parse(options.typeHandlerVersion);
+    if (options.protocol) {
+      if (options.parse && options.protocol) {
+        options.protocol = JSON.parse(options.protocol);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.typeHandlerVersion}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protocol}]);
     }
-    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'id';
+    paramPath = options.path + '/' + 'certificateUrl';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.certificateUrl) {
+      if (options.parse && options.certificateUrl) {
+        options.certificateUrl = JSON.parse(options.certificateUrl);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateUrl}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters remove listeners
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsListeners1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsListeners1 = catparametersCreateOrUpdateVirtualMachineScaleSetsListeners1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsListeners1 = parametersCreateOrUpdateVirtualMachineScaleSetsListeners1.category('listeners')
+  .description($('Commands to set/remove/add listeners of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsListeners1.command('remove')
+  .description($('Remove listeners in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "listeners" : {\r\n             "protocol":"",\r\n             "certificateUrl":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .option('--protocol', $('Remove the protocol value.'))
+  .option('--certificate-url', $('Remove the certificate-url value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = '/virtualMachineProfile/osProfile/windowsConfiguration/winRM/listeners' + (options.index ? ('/' + options.index) : '');
+    var anySubItem = false || options.protocol || options.certificateUrl;
+    if (anySubItem) {
+      var subItemPath = null;
+      if (options.protocol) {
+        subItemPath = options.path + '/protocol';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.certificateUrl) {
+        subItemPath = options.path + '/certificateUrl';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+  //create-or-update-parameters add listeners
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsListeners2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsListeners2 = catparametersCreateOrUpdateVirtualMachineScaleSetsListeners2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsListeners2 = parametersCreateOrUpdateVirtualMachineScaleSetsListeners2.category('listeners')
+  .description($('Commands to set/remove/add listeners of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsListeners2.command('add')
+  .description($('Add listeners in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "listeners" : {\r\n             "protocol":"",\r\n             "certificateUrl":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--key <key>', $('The JSON key.'))
+  .option('--value <value>', $('The JSON value.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--protocol <protocol>', $('Add the protocol value.'))
+  .option('--certificate-url <certificateUrl>', $('Add the certificate-url value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'add';
+    options.path = '/virtualMachineProfile/osProfile/windowsConfiguration/winRM/listeners' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
+    cli.output.verbose('options.path = ' + options.path);
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    var paramPath = '/virtualMachineProfile/osProfile/windowsConfiguration/winRM/listeners' + (options.index ? ('/' + options.index) : '') + '/' + 'protocol';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.protocol) {
+      if (options.parse && options.protocol) {
+        options.protocol = JSON.parse(options.protocol);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protocol}]);
+    }
+    paramPath = '/virtualMachineProfile/osProfile/windowsConfiguration/winRM/listeners' + (options.index ? ('/' + options.index) : '') + '/' + 'certificateUrl';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.certificateUrl) {
+      if (options.parse && options.certificateUrl) {
+        options.certificateUrl = JSON.parse(options.certificateUrl);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateUrl}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters set linux-configuration
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration0 = catparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration0 = parametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration0.category('linux-configuration')
+  .description($('Commands to set/remove/add linux-configuration of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration0.command('set')
+  .description($('Set linux-configuration in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "linuxConfiguration" : {\r\n             "disablePasswordAuthentication":null,\r\n             "ssh":{\r\n               "publicKeys":[\r\n                 {\r\n                   "path":"",\r\n                   "keyData":""\r\n                 }\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--disable-password-authentication <disablePasswordAuthentication>', $('Set the disable-password-authentication value.'))
+  .option('--ssh <ssh>', $('Set the ssh value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'replace';
+    options.path = '/virtualMachineProfile/osProfile/linuxConfiguration';
+    var paramPath = options.path + '/' + 'disablePasswordAuthentication';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.disablePasswordAuthentication) {
+      if (options.parse && options.disablePasswordAuthentication) {
+        options.disablePasswordAuthentication = JSON.parse(options.disablePasswordAuthentication);
+      }
+        options.disablePasswordAuthentication = JSON.parse(options.disablePasswordAuthentication);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.disablePasswordAuthentication}]);
+    }
+    paramPath = options.path + '/' + 'ssh';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.ssh) {
+      if (options.parse && options.ssh) {
+        options.ssh = JSON.parse(options.ssh);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.ssh}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters remove linux-configuration
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration1 = catparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration1.category('linux-configuration')
+  .description($('Commands to set/remove/add linux-configuration of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration1.command('remove')
+  .description($('Remove linux-configuration in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "linuxConfiguration" : {\r\n             "disablePasswordAuthentication":null,\r\n             "ssh":{\r\n               "publicKeys":[\r\n                 {\r\n                   "path":"",\r\n                   "keyData":""\r\n                 }\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--disable-password-authentication', $('Remove the disable-password-authentication value.'))
+  .option('--ssh', $('Remove the ssh value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = '/virtualMachineProfile/osProfile/linuxConfiguration';
+    var anySubItem = false || options.disablePasswordAuthentication || options.ssh;
+    if (anySubItem) {
+      var subItemPath = null;
+      if (options.disablePasswordAuthentication) {
+        subItemPath = options.path + '/disablePasswordAuthentication';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.ssh) {
+        subItemPath = options.path + '/ssh';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+  //create-or-update-parameters add linux-configuration
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration2 = catparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration2 = parametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration2.category('linux-configuration')
+  .description($('Commands to set/remove/add linux-configuration of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration2.command('add')
+  .description($('Add linux-configuration in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "linuxConfiguration" : {\r\n             "disablePasswordAuthentication":null,\r\n             "ssh":{\r\n               "publicKeys":[\r\n                 {\r\n                   "path":"",\r\n                   "keyData":""\r\n                 }\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--key <key>', $('The JSON key.'))
+  .option('--value <value>', $('The JSON value.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--disable-password-authentication <disablePasswordAuthentication>', $('Add the disable-password-authentication value.'))
+  .option('--ssh <ssh>', $('Add the ssh value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'add';
+    options.path = '/virtualMachineProfile/osProfile/linuxConfiguration' + '/' + options.key;
+    cli.output.verbose('options.path = ' + options.path);
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    var paramPath = '/virtualMachineProfile/osProfile/linuxConfiguration' + '/' + 'disablePasswordAuthentication';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.disablePasswordAuthentication) {
+      if (options.parse && options.disablePasswordAuthentication) {
+        options.disablePasswordAuthentication = JSON.parse(options.disablePasswordAuthentication);
+      }
+        options.disablePasswordAuthentication = JSON.parse(options.disablePasswordAuthentication);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.disablePasswordAuthentication}]);
+    }
+    paramPath = '/virtualMachineProfile/osProfile/linuxConfiguration' + '/' + 'ssh';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.ssh) {
+      if (options.parse && options.ssh) {
+        options.ssh = JSON.parse(options.ssh);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.ssh}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters set ssh
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsSsh0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsSsh0 = catparametersCreateOrUpdateVirtualMachineScaleSetsSsh0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsSsh0 = parametersCreateOrUpdateVirtualMachineScaleSetsSsh0.category('ssh')
+  .description($('Commands to set/remove/add ssh of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsSsh0.command('set')
+  .description($('Set ssh in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "ssh" : {\r\n             "publicKeys":[\r\n               {\r\n                 "path":"",\r\n                 "keyData":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--public-keys <publicKeys>', $('Set the public-keys value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'replace';
+    options.path = '/virtualMachineProfile/osProfile/linuxConfiguration/ssh';
+    var paramPath = options.path + '/' + 'publicKeys';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.publicKeys) {
+      if (options.parse && options.publicKeys) {
+        options.publicKeys = JSON.parse(options.publicKeys);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.publicKeys}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters remove ssh
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsSsh1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsSsh1 = catparametersCreateOrUpdateVirtualMachineScaleSetsSsh1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsSsh1 = parametersCreateOrUpdateVirtualMachineScaleSetsSsh1.category('ssh')
+  .description($('Commands to set/remove/add ssh of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsSsh1.command('remove')
+  .description($('Remove ssh in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "ssh" : {\r\n             "publicKeys":[\r\n               {\r\n                 "path":"",\r\n                 "keyData":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--public-keys', $('Remove the public-keys value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = '/virtualMachineProfile/osProfile/linuxConfiguration/ssh';
+    var anySubItem = false || options.publicKeys;
+    if (anySubItem) {
+      var subItemPath = null;
+      if (options.publicKeys) {
+        subItemPath = options.path + '/publicKeys';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+  //create-or-update-parameters add ssh
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsSsh2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsSsh2 = catparametersCreateOrUpdateVirtualMachineScaleSetsSsh2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsSsh2 = parametersCreateOrUpdateVirtualMachineScaleSetsSsh2.category('ssh')
+  .description($('Commands to set/remove/add ssh of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsSsh2.command('add')
+  .description($('Add ssh in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "ssh" : {\r\n             "publicKeys":[\r\n               {\r\n                 "path":"",\r\n                 "keyData":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--key <key>', $('The JSON key.'))
+  .option('--value <value>', $('The JSON value.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--public-keys <publicKeys>', $('Add the public-keys value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'add';
+    options.path = '/virtualMachineProfile/osProfile/linuxConfiguration/ssh' + '/' + options.key;
+    cli.output.verbose('options.path = ' + options.path);
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    var paramPath = '/virtualMachineProfile/osProfile/linuxConfiguration/ssh' + '/' + 'publicKeys';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.publicKeys) {
+      if (options.parse && options.publicKeys) {
+        options.publicKeys = JSON.parse(options.publicKeys);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.publicKeys}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters set public-keys
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys0 = catparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys0 = parametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys0.category('public-keys')
+  .description($('Commands to set/remove/add public-keys of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys0.command('set')
+  .description($('Set public-keys in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "publicKeys" : {\r\n             "path":"",\r\n             "keyData":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .option('--value <value>', $('The input string value for the indexed item.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--path <path>', $('Set the path value.'))
+  .option('--key-data <keyData>', $('Set the key-data value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'replace';
+    options.path = '/virtualMachineProfile/osProfile/linuxConfiguration/ssh/publicKeys' + (options.index ? ('/' + options.index) : '');
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
+    var paramPath = options.path + '/' + 'path';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.path) {
+      if (options.parse && options.path) {
+        options.path = JSON.parse(options.path);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.path}]);
+    }
+    paramPath = options.path + '/' + 'keyData';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.keyData) {
+      if (options.parse && options.keyData) {
+        options.keyData = JSON.parse(options.keyData);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.keyData}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters remove public-keys
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys1 = catparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys1 = parametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys1.category('public-keys')
+  .description($('Commands to set/remove/add public-keys of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys1.command('remove')
+  .description($('Remove public-keys in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "publicKeys" : {\r\n             "path":"",\r\n             "keyData":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .option('--path', $('Remove the path value.'))
+  .option('--key-data', $('Remove the key-data value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = '/virtualMachineProfile/osProfile/linuxConfiguration/ssh/publicKeys' + (options.index ? ('/' + options.index) : '');
+    var anySubItem = false || options.path || options.keyData;
+    if (anySubItem) {
+      var subItemPath = null;
+      if (options.path) {
+        subItemPath = options.path + '/path';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.keyData) {
+        subItemPath = options.path + '/keyData';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+  //create-or-update-parameters add public-keys
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys2 = catparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys2 = parametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys2.category('public-keys')
+  .description($('Commands to set/remove/add public-keys of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys2.command('add')
+  .description($('Add public-keys in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "publicKeys" : {\r\n             "path":"",\r\n             "keyData":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--key <key>', $('The JSON key.'))
+  .option('--value <value>', $('The JSON value.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--path <path>', $('Add the path value.'))
+  .option('--key-data <keyData>', $('Add the key-data value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'add';
+    options.path = '/virtualMachineProfile/osProfile/linuxConfiguration/ssh/publicKeys' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
+    cli.output.verbose('options.path = ' + options.path);
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    var paramPath = '/virtualMachineProfile/osProfile/linuxConfiguration/ssh/publicKeys' + (options.index ? ('/' + options.index) : '') + '/' + 'path';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.path) {
+      if (options.parse && options.path) {
+        options.path = JSON.parse(options.path);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.path}]);
+    }
+    paramPath = '/virtualMachineProfile/osProfile/linuxConfiguration/ssh/publicKeys' + (options.index ? ('/' + options.index) : '') + '/' + 'keyData';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.keyData) {
+      if (options.parse && options.keyData) {
+        options.keyData = JSON.parse(options.keyData);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.keyData}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters set secrets
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsSecrets0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsSecrets0 = catparametersCreateOrUpdateVirtualMachineScaleSetsSecrets0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsSecrets0 = parametersCreateOrUpdateVirtualMachineScaleSetsSecrets0.category('secrets')
+  .description($('Commands to set/remove/add secrets of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsSecrets0.command('set')
+  .description($('Set secrets in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "secrets" : {\r\n             "sourceVault":{\r\n               "id":""\r\n             },\r\n             "vaultCertificates":[\r\n               {\r\n                 "certificateUrl":"",\r\n                 "certificateStore":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .option('--value <value>', $('The input string value for the indexed item.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--source-vault <sourceVault>', $('Set the source-vault value.'))
+  .option('--vault-certificates <vaultCertificates>', $('Set the vault-certificates value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'replace';
+    options.path = '/virtualMachineProfile/osProfile/secrets' + (options.index ? ('/' + options.index) : '');
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
+    var paramPath = options.path + '/' + 'sourceVault';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.sourceVault) {
+      if (options.parse && options.sourceVault) {
+        options.sourceVault = JSON.parse(options.sourceVault);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sourceVault}]);
+    }
+    paramPath = options.path + '/' + 'vaultCertificates';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.vaultCertificates) {
+      if (options.parse && options.vaultCertificates) {
+        options.vaultCertificates = JSON.parse(options.vaultCertificates);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.vaultCertificates}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters remove secrets
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsSecrets1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsSecrets1 = catparametersCreateOrUpdateVirtualMachineScaleSetsSecrets1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsSecrets1 = parametersCreateOrUpdateVirtualMachineScaleSetsSecrets1.category('secrets')
+  .description($('Commands to set/remove/add secrets of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsSecrets1.command('remove')
+  .description($('Remove secrets in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "secrets" : {\r\n             "sourceVault":{\r\n               "id":""\r\n             },\r\n             "vaultCertificates":[\r\n               {\r\n                 "certificateUrl":"",\r\n                 "certificateStore":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .option('--source-vault', $('Remove the source-vault value.'))
+  .option('--vault-certificates', $('Remove the vault-certificates value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = '/virtualMachineProfile/osProfile/secrets' + (options.index ? ('/' + options.index) : '');
+    var anySubItem = false || options.sourceVault || options.vaultCertificates;
+    if (anySubItem) {
+      var subItemPath = null;
+      if (options.sourceVault) {
+        subItemPath = options.path + '/sourceVault';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.vaultCertificates) {
+        subItemPath = options.path + '/vaultCertificates';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+  //create-or-update-parameters add secrets
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsSecrets2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsSecrets2 = catparametersCreateOrUpdateVirtualMachineScaleSetsSecrets2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsSecrets2 = parametersCreateOrUpdateVirtualMachineScaleSetsSecrets2.category('secrets')
+  .description($('Commands to set/remove/add secrets of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsSecrets2.command('add')
+  .description($('Add secrets in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "secrets" : {\r\n             "sourceVault":{\r\n               "id":""\r\n             },\r\n             "vaultCertificates":[\r\n               {\r\n                 "certificateUrl":"",\r\n                 "certificateStore":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--key <key>', $('The JSON key.'))
+  .option('--value <value>', $('The JSON value.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--source-vault <sourceVault>', $('Add the source-vault value.'))
+  .option('--vault-certificates <vaultCertificates>', $('Add the vault-certificates value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'add';
+    options.path = '/virtualMachineProfile/osProfile/secrets' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
+    cli.output.verbose('options.path = ' + options.path);
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    var paramPath = '/virtualMachineProfile/osProfile/secrets' + (options.index ? ('/' + options.index) : '') + '/' + 'sourceVault';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.sourceVault) {
+      if (options.parse && options.sourceVault) {
+        options.sourceVault = JSON.parse(options.sourceVault);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sourceVault}]);
+    }
+    paramPath = '/virtualMachineProfile/osProfile/secrets' + (options.index ? ('/' + options.index) : '') + '/' + 'vaultCertificates';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.vaultCertificates) {
+      if (options.parse && options.vaultCertificates) {
+        options.vaultCertificates = JSON.parse(options.vaultCertificates);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.vaultCertificates}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters set source-vault
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsSourceVault0 = catparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault0 = parametersCreateOrUpdateVirtualMachineScaleSetsSourceVault0.category('source-vault')
+  .description($('Commands to set/remove/add source-vault of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault0.command('set')
+  .description($('Set source-vault in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "sourceVault" : {\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--id <id>', $('Set the id value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'replace';
+    options.path = '/virtualMachineProfile/osProfile/secrets/' + options.secretsIndex + '/sourceVault';
+    var paramPath = options.path + '/' + 'id';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
@@ -1741,7 +3016,722 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
     }
-    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'name';
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters remove source-vault
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsSourceVault1 = catparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault1 = parametersCreateOrUpdateVirtualMachineScaleSetsSourceVault1.category('source-vault')
+  .description($('Commands to set/remove/add source-vault of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault1.command('remove')
+  .description($('Remove source-vault in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "sourceVault" : {\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
+  .option('--id', $('Remove the id value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = '/virtualMachineProfile/osProfile/secrets/' + options.secretsIndex + '/sourceVault';
+    var anySubItem = false || options.id;
+    if (anySubItem) {
+      var subItemPath = null;
+      if (options.id) {
+        subItemPath = options.path + '/id';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+  //create-or-update-parameters add source-vault
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsSourceVault2 = catparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault2 = parametersCreateOrUpdateVirtualMachineScaleSetsSourceVault2.category('source-vault')
+  .description($('Commands to set/remove/add source-vault of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault2.command('add')
+  .description($('Add source-vault in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "sourceVault" : {\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--key <key>', $('The JSON key.'))
+  .option('--value <value>', $('The JSON value.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--id <id>', $('Add the id value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'add';
+    options.path = '/virtualMachineProfile/osProfile/secrets/' + options.secretsIndex + '/sourceVault' + '/' + options.key;
+    cli.output.verbose('options.path = ' + options.path);
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    var paramPath = '/virtualMachineProfile/osProfile/secrets/' + options.secretsIndex + '/sourceVault' + '/' + 'id';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.id) {
+      if (options.parse && options.id) {
+        options.id = JSON.parse(options.id);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters set vault-certificates
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates0 = catparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates0 = parametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates0.category('vault-certificates')
+  .description($('Commands to set/remove/add vault-certificates of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates0.command('set')
+  .description($('Set vault-certificates in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "vaultCertificates" : {\r\n             "certificateUrl":"",\r\n             "certificateStore":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
+  .option('--value <value>', $('The input string value for the indexed item.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--certificate-url <certificateUrl>', $('Set the certificate-url value.'))
+  .option('--certificate-store <certificateStore>', $('Set the certificate-store value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'replace';
+    options.path = '/virtualMachineProfile/osProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '');
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
+    var paramPath = options.path + '/' + 'certificateUrl';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.certificateUrl) {
+      if (options.parse && options.certificateUrl) {
+        options.certificateUrl = JSON.parse(options.certificateUrl);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateUrl}]);
+    }
+    paramPath = options.path + '/' + 'certificateStore';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.certificateStore) {
+      if (options.parse && options.certificateStore) {
+        options.certificateStore = JSON.parse(options.certificateStore);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateStore}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters remove vault-certificates
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates1 = catparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates1 = parametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates1.category('vault-certificates')
+  .description($('Commands to set/remove/add vault-certificates of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates1.command('remove')
+  .description($('Remove vault-certificates in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "vaultCertificates" : {\r\n             "certificateUrl":"",\r\n             "certificateStore":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
+  .option('--certificate-url', $('Remove the certificate-url value.'))
+  .option('--certificate-store', $('Remove the certificate-store value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = '/virtualMachineProfile/osProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '');
+    var anySubItem = false || options.certificateUrl || options.certificateStore;
+    if (anySubItem) {
+      var subItemPath = null;
+      if (options.certificateUrl) {
+        subItemPath = options.path + '/certificateUrl';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.certificateStore) {
+        subItemPath = options.path + '/certificateStore';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+  //create-or-update-parameters add vault-certificates
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates2 = catparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates2 = parametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates2.category('vault-certificates')
+  .description($('Commands to set/remove/add vault-certificates of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates2.command('add')
+  .description($('Add vault-certificates in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "vaultCertificates" : {\r\n             "certificateUrl":"",\r\n             "certificateStore":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--key <key>', $('The JSON key.'))
+  .option('--value <value>', $('The JSON value.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--certificate-url <certificateUrl>', $('Add the certificate-url value.'))
+  .option('--certificate-store <certificateStore>', $('Add the certificate-store value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'add';
+    options.path = '/virtualMachineProfile/osProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
+    cli.output.verbose('options.path = ' + options.path);
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    var paramPath = '/virtualMachineProfile/osProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '') + '/' + 'certificateUrl';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.certificateUrl) {
+      if (options.parse && options.certificateUrl) {
+        options.certificateUrl = JSON.parse(options.certificateUrl);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateUrl}]);
+    }
+    paramPath = '/virtualMachineProfile/osProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '') + '/' + 'certificateStore';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.certificateStore) {
+      if (options.parse && options.certificateStore) {
+        options.certificateStore = JSON.parse(options.certificateStore);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateStore}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters set storage-profile
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile0.category('storage-profile')
+  .description($('Commands to set/remove/add storage-profile of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile0.command('set')
+  .description($('Set storage-profile in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "storageProfile" : {\r\n             "imageReference":{\r\n               "publisher":"",\r\n               "offer":"",\r\n               "sku":"",\r\n               "version":""\r\n             },\r\n             "osDisk":{\r\n               "name":"",\r\n               "caching":"",\r\n               "createOption":"",\r\n               "osType":"",\r\n               "image":{\r\n                 "uri":""\r\n               },\r\n               "vhdContainers":[\r\n                 ""\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--image-reference <imageReference>', $('Set the image-reference value.'))
+  .option('--os-disk <osDisk>', $('Set the os-disk value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'replace';
+    options.path = '/virtualMachineProfile/storageProfile';
+    var paramPath = options.path + '/' + 'imageReference';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.imageReference) {
+      if (options.parse && options.imageReference) {
+        options.imageReference = JSON.parse(options.imageReference);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.imageReference}]);
+    }
+    paramPath = options.path + '/' + 'osDisk';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.osDisk) {
+      if (options.parse && options.osDisk) {
+        options.osDisk = JSON.parse(options.osDisk);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.osDisk}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters remove storage-profile
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1.category('storage-profile')
+  .description($('Commands to set/remove/add storage-profile of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1.command('remove')
+  .description($('Remove storage-profile in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "storageProfile" : {\r\n             "imageReference":{\r\n               "publisher":"",\r\n               "offer":"",\r\n               "sku":"",\r\n               "version":""\r\n             },\r\n             "osDisk":{\r\n               "name":"",\r\n               "caching":"",\r\n               "createOption":"",\r\n               "osType":"",\r\n               "image":{\r\n                 "uri":""\r\n               },\r\n               "vhdContainers":[\r\n                 ""\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--image-reference', $('Remove the image-reference value.'))
+  .option('--os-disk', $('Remove the os-disk value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = '/virtualMachineProfile/storageProfile';
+    var anySubItem = false || options.imageReference || options.osDisk;
+    if (anySubItem) {
+      var subItemPath = null;
+      if (options.imageReference) {
+        subItemPath = options.path + '/imageReference';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.osDisk) {
+        subItemPath = options.path + '/osDisk';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+  //create-or-update-parameters add storage-profile
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile2.category('storage-profile')
+  .description($('Commands to set/remove/add storage-profile of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile2.command('add')
+  .description($('Add storage-profile in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "storageProfile" : {\r\n             "imageReference":{\r\n               "publisher":"",\r\n               "offer":"",\r\n               "sku":"",\r\n               "version":""\r\n             },\r\n             "osDisk":{\r\n               "name":"",\r\n               "caching":"",\r\n               "createOption":"",\r\n               "osType":"",\r\n               "image":{\r\n                 "uri":""\r\n               },\r\n               "vhdContainers":[\r\n                 ""\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--key <key>', $('The JSON key.'))
+  .option('--value <value>', $('The JSON value.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--image-reference <imageReference>', $('Add the image-reference value.'))
+  .option('--os-disk <osDisk>', $('Add the os-disk value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'add';
+    options.path = '/virtualMachineProfile/storageProfile' + '/' + options.key;
+    cli.output.verbose('options.path = ' + options.path);
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    var paramPath = '/virtualMachineProfile/storageProfile' + '/' + 'imageReference';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.imageReference) {
+      if (options.parse && options.imageReference) {
+        options.imageReference = JSON.parse(options.imageReference);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.imageReference}]);
+    }
+    paramPath = '/virtualMachineProfile/storageProfile' + '/' + 'osDisk';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.osDisk) {
+      if (options.parse && options.osDisk) {
+        options.osDisk = JSON.parse(options.osDisk);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.osDisk}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters set image-reference
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsImageReference0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsImageReference0 = catparametersCreateOrUpdateVirtualMachineScaleSetsImageReference0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsImageReference0 = parametersCreateOrUpdateVirtualMachineScaleSetsImageReference0.category('image-reference')
+  .description($('Commands to set/remove/add image-reference of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsImageReference0.command('set')
+  .description($('Set image-reference in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "imageReference" : {\r\n             "publisher":"",\r\n             "offer":"",\r\n             "sku":"",\r\n             "version":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--publisher <publisher>', $('Set the publisher value.'))
+  .option('--offer <offer>', $('Set the offer value.'))
+  .option('--sku <sku>', $('Set the sku value.'))
+  .option('--version <version>', $('Set the version value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'replace';
+    options.path = '/virtualMachineProfile/storageProfile/imageReference';
+    var paramPath = options.path + '/' + 'publisher';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.publisher) {
+      if (options.parse && options.publisher) {
+        options.publisher = JSON.parse(options.publisher);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.publisher}]);
+    }
+    paramPath = options.path + '/' + 'offer';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.offer) {
+      if (options.parse && options.offer) {
+        options.offer = JSON.parse(options.offer);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.offer}]);
+    }
+    paramPath = options.path + '/' + 'sku';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.sku) {
+      if (options.parse && options.sku) {
+        options.sku = JSON.parse(options.sku);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sku}]);
+    }
+    paramPath = options.path + '/' + 'version';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.version) {
+      if (options.parse && options.version) {
+        options.version = JSON.parse(options.version);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.version}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters remove image-reference
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsImageReference1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsImageReference1 = catparametersCreateOrUpdateVirtualMachineScaleSetsImageReference1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsImageReference1 = parametersCreateOrUpdateVirtualMachineScaleSetsImageReference1.category('image-reference')
+  .description($('Commands to set/remove/add image-reference of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsImageReference1.command('remove')
+  .description($('Remove image-reference in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "imageReference" : {\r\n             "publisher":"",\r\n             "offer":"",\r\n             "sku":"",\r\n             "version":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--publisher', $('Remove the publisher value.'))
+  .option('--offer', $('Remove the offer value.'))
+  .option('--sku', $('Remove the sku value.'))
+  .option('--version', $('Remove the version value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = '/virtualMachineProfile/storageProfile/imageReference';
+    var anySubItem = false || options.publisher || options.offer || options.sku || options.version;
+    if (anySubItem) {
+      var subItemPath = null;
+      if (options.publisher) {
+        subItemPath = options.path + '/publisher';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.offer) {
+        subItemPath = options.path + '/offer';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.sku) {
+        subItemPath = options.path + '/sku';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.version) {
+        subItemPath = options.path + '/version';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+  //create-or-update-parameters add image-reference
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsImageReference2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsImageReference2 = catparametersCreateOrUpdateVirtualMachineScaleSetsImageReference2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsImageReference2 = parametersCreateOrUpdateVirtualMachineScaleSetsImageReference2.category('image-reference')
+  .description($('Commands to set/remove/add image-reference of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsImageReference2.command('add')
+  .description($('Add image-reference in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "imageReference" : {\r\n             "publisher":"",\r\n             "offer":"",\r\n             "sku":"",\r\n             "version":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--key <key>', $('The JSON key.'))
+  .option('--value <value>', $('The JSON value.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--publisher <publisher>', $('Add the publisher value.'))
+  .option('--offer <offer>', $('Add the offer value.'))
+  .option('--sku <sku>', $('Add the sku value.'))
+  .option('--version <version>', $('Add the version value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'add';
+    options.path = '/virtualMachineProfile/storageProfile/imageReference' + '/' + options.key;
+    cli.output.verbose('options.path = ' + options.path);
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    var paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'publisher';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.publisher) {
+      if (options.parse && options.publisher) {
+        options.publisher = JSON.parse(options.publisher);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.publisher}]);
+    }
+    paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'offer';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.offer) {
+      if (options.parse && options.offer) {
+        options.offer = JSON.parse(options.offer);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.offer}]);
+    }
+    paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'sku';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.sku) {
+      if (options.parse && options.sku) {
+        options.sku = JSON.parse(options.sku);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sku}]);
+    }
+    paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'version';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.version) {
+      if (options.parse && options.version) {
+        options.version = JSON.parse(options.version);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.version}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters set os-disk
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsOsDisk0 = catparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk0 = parametersCreateOrUpdateVirtualMachineScaleSetsOsDisk0.category('os-disk')
+  .description($('Commands to set/remove/add os-disk of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk0.command('set')
+  .description($('Set os-disk in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "osDisk" : {\r\n             "name":"",\r\n             "caching":"",\r\n             "createOption":"",\r\n             "osType":"",\r\n             "image":{\r\n               "uri":""\r\n             },\r\n             "vhdContainers":[\r\n               ""\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--name <name>', $('Set the name value.'))
+  .option('--caching <caching>', $('Set the caching value.'))
+  .option('--create-option <createOption>', $('Set the create-option value.'))
+  .option('--os-type <osType>', $('Set the os-type value.'))
+  .option('--image <image>', $('Set the image value.'))
+  .option('--vhd-containers <vhdContainers>', $('Set the vhd-containers value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'replace';
+    options.path = '/virtualMachineProfile/storageProfile/osDisk';
+    var paramPath = options.path + '/' + 'name';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
@@ -1751,36 +3741,493 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
-    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'type';
+    paramPath = options.path + '/' + 'caching';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.type) {
-      if (options.parse && options.type) {
-        options.type = JSON.parse(options.type);
+    if (options.caching) {
+      if (options.parse && options.caching) {
+        options.caching = JSON.parse(options.caching);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.type}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.caching}]);
     }
-    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'location';
+    paramPath = options.path + '/' + 'createOption';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.location) {
-      if (options.parse && options.location) {
-        options.location = JSON.parse(options.location);
+    if (options.createOption) {
+      if (options.parse && options.createOption) {
+        options.createOption = JSON.parse(options.createOption);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.location}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.createOption}]);
     }
-    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'tags';
+    paramPath = options.path + '/' + 'osType';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.tags) {
-      if (options.parse && options.tags) {
-        options.tags = JSON.parse(options.tags);
+    if (options.osType) {
+      if (options.parse && options.osType) {
+        options.osType = JSON.parse(options.osType);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.tags}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.osType}]);
     }
+    paramPath = options.path + '/' + 'image';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.image) {
+      if (options.parse && options.image) {
+        options.image = JSON.parse(options.image);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.image}]);
+    }
+    paramPath = options.path + '/' + 'vhdContainers';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.vhdContainers) {
+      if (options.parse && options.vhdContainers) {
+        options.vhdContainers = JSON.parse(options.vhdContainers);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.vhdContainers}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters remove os-disk
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1 = catparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1 = parametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1.category('os-disk')
+  .description($('Commands to set/remove/add os-disk of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1.command('remove')
+  .description($('Remove os-disk in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "osDisk" : {\r\n             "name":"",\r\n             "caching":"",\r\n             "createOption":"",\r\n             "osType":"",\r\n             "image":{\r\n               "uri":""\r\n             },\r\n             "vhdContainers":[\r\n               ""\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--name', $('Remove the name value.'))
+  .option('--caching', $('Remove the caching value.'))
+  .option('--create-option', $('Remove the create-option value.'))
+  .option('--os-type', $('Remove the os-type value.'))
+  .option('--image', $('Remove the image value.'))
+  .option('--vhd-containers', $('Remove the vhd-containers value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = '/virtualMachineProfile/storageProfile/osDisk';
+    var anySubItem = false || options.name || options.caching || options.createOption || options.osType || options.image || options.vhdContainers;
+    if (anySubItem) {
+      var subItemPath = null;
+      if (options.name) {
+        subItemPath = options.path + '/name';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.caching) {
+        subItemPath = options.path + '/caching';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.createOption) {
+        subItemPath = options.path + '/createOption';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.osType) {
+        subItemPath = options.path + '/osType';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.image) {
+        subItemPath = options.path + '/image';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.vhdContainers) {
+        subItemPath = options.path + '/vhdContainers';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+  //create-or-update-parameters add os-disk
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsOsDisk2 = catparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk2 = parametersCreateOrUpdateVirtualMachineScaleSetsOsDisk2.category('os-disk')
+  .description($('Commands to set/remove/add os-disk of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk2.command('add')
+  .description($('Add os-disk in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "osDisk" : {\r\n             "name":"",\r\n             "caching":"",\r\n             "createOption":"",\r\n             "osType":"",\r\n             "image":{\r\n               "uri":""\r\n             },\r\n             "vhdContainers":[\r\n               ""\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--key <key>', $('The JSON key.'))
+  .option('--value <value>', $('The JSON value.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--name <name>', $('Add the name value.'))
+  .option('--caching <caching>', $('Add the caching value.'))
+  .option('--create-option <createOption>', $('Add the create-option value.'))
+  .option('--os-type <osType>', $('Add the os-type value.'))
+  .option('--image <image>', $('Add the image value.'))
+  .option('--vhd-containers <vhdContainers>', $('Add the vhd-containers value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'add';
+    options.path = '/virtualMachineProfile/storageProfile/osDisk' + '/' + options.key;
+    cli.output.verbose('options.path = ' + options.path);
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    var paramPath = '/virtualMachineProfile/storageProfile/osDisk' + '/' + 'name';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.name) {
+      if (options.parse && options.name) {
+        options.name = JSON.parse(options.name);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
+    }
+    paramPath = '/virtualMachineProfile/storageProfile/osDisk' + '/' + 'caching';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.caching) {
+      if (options.parse && options.caching) {
+        options.caching = JSON.parse(options.caching);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.caching}]);
+    }
+    paramPath = '/virtualMachineProfile/storageProfile/osDisk' + '/' + 'createOption';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.createOption) {
+      if (options.parse && options.createOption) {
+        options.createOption = JSON.parse(options.createOption);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.createOption}]);
+    }
+    paramPath = '/virtualMachineProfile/storageProfile/osDisk' + '/' + 'osType';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.osType) {
+      if (options.parse && options.osType) {
+        options.osType = JSON.parse(options.osType);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.osType}]);
+    }
+    paramPath = '/virtualMachineProfile/storageProfile/osDisk' + '/' + 'image';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.image) {
+      if (options.parse && options.image) {
+        options.image = JSON.parse(options.image);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.image}]);
+    }
+    paramPath = '/virtualMachineProfile/storageProfile/osDisk' + '/' + 'vhdContainers';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.vhdContainers) {
+      if (options.parse && options.vhdContainers) {
+        options.vhdContainers = JSON.parse(options.vhdContainers);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.vhdContainers}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters set image
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsImage0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsImage0 = catparametersCreateOrUpdateVirtualMachineScaleSetsImage0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsImage0 = parametersCreateOrUpdateVirtualMachineScaleSetsImage0.category('image')
+  .description($('Commands to set/remove/add image of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsImage0.command('set')
+  .description($('Set image in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "image" : {\r\n             "uri":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--uri <uri>', $('Set the uri value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'replace';
+    options.path = '/virtualMachineProfile/storageProfile/osDisk/image';
+    var paramPath = options.path + '/' + 'uri';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.uri) {
+      if (options.parse && options.uri) {
+        options.uri = JSON.parse(options.uri);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.uri}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters remove image
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsImage1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsImage1 = catparametersCreateOrUpdateVirtualMachineScaleSetsImage1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsImage1 = parametersCreateOrUpdateVirtualMachineScaleSetsImage1.category('image')
+  .description($('Commands to set/remove/add image of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsImage1.command('remove')
+  .description($('Remove image in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "image" : {\r\n             "uri":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--uri', $('Remove the uri value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = '/virtualMachineProfile/storageProfile/osDisk/image';
+    var anySubItem = false || options.uri;
+    if (anySubItem) {
+      var subItemPath = null;
+      if (options.uri) {
+        subItemPath = options.path + '/uri';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+    }
+    else {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    }
+    
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+  //create-or-update-parameters add image
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsImage2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsImage2 = catparametersCreateOrUpdateVirtualMachineScaleSetsImage2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsImage2 = parametersCreateOrUpdateVirtualMachineScaleSetsImage2.category('image')
+  .description($('Commands to set/remove/add image of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsImage2.command('add')
+  .description($('Add image in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "image" : {\r\n             "uri":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--key <key>', $('The JSON key.'))
+  .option('--value <value>', $('The JSON value.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--uri <uri>', $('Add the uri value.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'add';
+    options.path = '/virtualMachineProfile/storageProfile/osDisk/image' + '/' + options.key;
+    cli.output.verbose('options.path = ' + options.path);
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    var paramPath = '/virtualMachineProfile/storageProfile/osDisk/image' + '/' + 'uri';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.uri) {
+      if (options.parse && options.uri) {
+        options.uri = JSON.parse(options.uri);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.uri}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters set vhd-containers
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers0 = catparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers0 = parametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers0.category('vhd-containers')
+  .description($('Commands to set/remove/add vhd-containers of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers0.command('set')
+  .description($('Set vhd-containers in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "vhdContainers" : ""\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .option('--value <value>', $('The input string value for the indexed item.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'replace';
+    options.path = '/virtualMachineProfile/storageProfile/osDisk/vhdContainers' + (options.index ? ('/' + options.index) : '');
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+
+  //create-or-update-parameters remove vhd-containers
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers1 = catparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers1 = parametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers1.category('vhd-containers')
+  .description($('Commands to set/remove/add vhd-containers of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers1.command('remove')
+  .description($('Remove vhd-containers in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "vhdContainers" : ""\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'remove';
+    options.path = '/virtualMachineProfile/storageProfile/osDisk/vhdContainers' + (options.index ? ('/' + options.index) : '');
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
+    
+    var updatedContent = JSON.stringify(parametersObj);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('JSON object (updated):');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    cli.output.verbose('=====================================');
+    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
+    cli.output.verbose('=====================================');
+  });
+  //create-or-update-parameters add vhd-containers
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers2 = catparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers2 = parametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers2.category('vhd-containers')
+  .description($('Commands to set/remove/add vhd-containers of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers2.command('add')
+  .description($('Add vhd-containers in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "vhdContainers" : ""\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .usage('[options]')
+  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--key <key>', $('The JSON key.'))
+  .option('--value <value>', $('The JSON value.'))
+  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .execute(function(options, _) {
+    cli.output.verbose(JSON.stringify(options));
+    if (options.parse && options.value) {
+      options.value = JSON.parse(options.value);
+    }
+    cli.output.verbose(options.value);
+    cli.output.verbose('=====================================');
+    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+    cli.output.verbose('=====================================');
+    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
+    var parametersObj = JSON.parse(fileContent);
+    cli.output.verbose('JSON object:');
+    cli.output.verbose(JSON.stringify(parametersObj));
+    options.operation = 'add';
+    options.path = '/virtualMachineProfile/storageProfile/osDisk/vhdContainers' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
+    cli.output.verbose('options.path = ' + options.path);
+    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
     cli.output.verbose('JSON object (updated):');
@@ -1793,13 +4240,13 @@ exports.init = function (cli) {
   });
 
   //create-or-update-parameters set network-profile
-  var catparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile0.category('network-profile')
-  .description($('Commands to set/remove/add network-profile of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile0.command('set')
-  .description($('Set network-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "networkProfile" : {\r\n    "networkInterfaceConfigurations":[\r\n      {\r\n        "iPConfigurations":[\r\n          {\r\n            "loadBalancerBackendAddressPools":[\r\n              {\r\n                "referenceUri":""\r\n              }\r\n            ],\r\n            "loadBalancerInboundNatPools":[\r\n              {\r\n                "referenceUri":""\r\n              }\r\n            ],\r\n            "name":"",\r\n            "subnet":{\r\n              "referenceUri":""\r\n            }\r\n          }\r\n        ],\r\n        "name":"",\r\n        "primary":null\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile0.category('network-profile')
+  .description($('Commands to set/remove/add network-profile of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile0.command('set')
+  .description($('Set network-profile in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "networkProfile" : {\r\n             "networkInterfaceConfigurations":[\r\n               {\r\n                 "name":"",\r\n                 "primary":null,\r\n                 "ipConfigurations":[\r\n                   {\r\n                     "name":"",\r\n                     "subnet":{\r\n                       "id":""\r\n                     },\r\n                     "loadBalancerBackendAddressPools":[\r\n                       {\r\n                         "id":""\r\n                       }\r\n                     ],\r\n                     "id":""\r\n                   }\r\n                 ],\r\n                 "id":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
@@ -1841,13 +4288,13 @@ exports.init = function (cli) {
   });
 
   //create-or-update-parameters remove network-profile
-  var catparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile1.category('network-profile')
-  .description($('Commands to set/remove/add network-profile of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile1.command('remove')
-  .description($('Remove network-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "networkProfile" : {\r\n    "networkInterfaceConfigurations":[\r\n      {\r\n        "iPConfigurations":[\r\n          {\r\n            "loadBalancerBackendAddressPools":[\r\n              {\r\n                "referenceUri":""\r\n              }\r\n            ],\r\n            "loadBalancerInboundNatPools":[\r\n              {\r\n                "referenceUri":""\r\n              }\r\n            ],\r\n            "name":"",\r\n            "subnet":{\r\n              "referenceUri":""\r\n            }\r\n          }\r\n        ],\r\n        "name":"",\r\n        "primary":null\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile1.category('network-profile')
+  .description($('Commands to set/remove/add network-profile of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile1.command('remove')
+  .description($('Remove network-profile in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "networkProfile" : {\r\n             "networkInterfaceConfigurations":[\r\n               {\r\n                 "name":"",\r\n                 "primary":null,\r\n                 "ipConfigurations":[\r\n                   {\r\n                     "name":"",\r\n                     "subnet":{\r\n                       "id":""\r\n                     },\r\n                     "loadBalancerBackendAddressPools":[\r\n                       {\r\n                         "id":""\r\n                       }\r\n                     ],\r\n                     "id":""\r\n                   }\r\n                 ],\r\n                 "id":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--network-interface-configurations', $('Remove the network-interface-configurations value.'))
@@ -1885,13 +4332,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
   //create-or-update-parameters add network-profile
-  var catparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile2.category('network-profile')
-  .description($('Commands to set/remove/add network-profile of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetNetworkProfile2.command('add')
-  .description($('Add network-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "networkProfile" : {\r\n    "networkInterfaceConfigurations":[\r\n      {\r\n        "iPConfigurations":[\r\n          {\r\n            "loadBalancerBackendAddressPools":[\r\n              {\r\n                "referenceUri":""\r\n              }\r\n            ],\r\n            "loadBalancerInboundNatPools":[\r\n              {\r\n                "referenceUri":""\r\n              }\r\n            ],\r\n            "name":"",\r\n            "subnet":{\r\n              "referenceUri":""\r\n            }\r\n          }\r\n        ],\r\n        "name":"",\r\n        "primary":null\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile2.category('network-profile')
+  .description($('Commands to set/remove/add network-profile of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile2.command('add')
+  .description($('Add network-profile in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "networkProfile" : {\r\n             "networkInterfaceConfigurations":[\r\n               {\r\n                 "name":"",\r\n                 "primary":null,\r\n                 "ipConfigurations":[\r\n                   {\r\n                     "name":"",\r\n                     "subnet":{\r\n                       "id":""\r\n                     },\r\n                     "loadBalancerBackendAddressPools":[\r\n                       {\r\n                         "id":""\r\n                       }\r\n                     ],\r\n                     "id":""\r\n                   }\r\n                 ],\r\n                 "id":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
@@ -1937,21 +4384,22 @@ exports.init = function (cli) {
   });
 
   //create-or-update-parameters set network-interface-configurations
-  var catparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations0 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations0 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations0.category('network-interface-configurations')
-  .description($('Commands to set/remove/add network-interface-configurations of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations0.command('set')
-  .description($('Set network-interface-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "networkInterfaceConfigurations" : {\r\n    "iPConfigurations":[\r\n      {\r\n        "loadBalancerBackendAddressPools":[\r\n          {\r\n            "referenceUri":""\r\n          }\r\n        ],\r\n        "loadBalancerInboundNatPools":[\r\n          {\r\n            "referenceUri":""\r\n          }\r\n        ],\r\n        "name":"",\r\n        "subnet":{\r\n          "referenceUri":""\r\n        }\r\n      }\r\n    ],\r\n    "name":"",\r\n    "primary":null\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations0 = catparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations0 = parametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations0.category('network-interface-configurations')
+  .description($('Commands to set/remove/add network-interface-configurations of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations0.command('set')
+  .description($('Set network-interface-configurations in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "networkInterfaceConfigurations" : {\r\n             "name":"",\r\n             "primary":null,\r\n             "ipConfigurations":[\r\n               {\r\n                 "name":"",\r\n                 "subnet":{\r\n                   "id":""\r\n                 },\r\n                 "loadBalancerBackendAddressPools":[\r\n                   {\r\n                     "id":""\r\n                   }\r\n                 ],\r\n                 "id":""\r\n               }\r\n             ],\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--ip-configurations <ipConfigurations>', $('Set the ip-configurations value.'))
   .option('--name <name>', $('Set the name value.'))
   .option('--primary <primary>', $('Set the primary value.'))
+  .option('--ip-configurations <ipConfigurations>', $('Set the ip-configurations value.'))
+  .option('--id <id>', $('Set the id value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -1970,17 +4418,7 @@ exports.init = function (cli) {
     if (options.value) {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
     }
-    var paramPath = options.path + '/' + 'ipConfigurations';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.ipConfigurations) {
-      if (options.parse && options.ipConfigurations) {
-        options.ipConfigurations = JSON.parse(options.ipConfigurations);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.ipConfigurations}]);
-    }
-    paramPath = options.path + '/' + 'name';
+    var paramPath = options.path + '/' + 'name';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
@@ -1998,7 +4436,28 @@ exports.init = function (cli) {
       if (options.parse && options.primary) {
         options.primary = JSON.parse(options.primary);
       }
+        options.primary = JSON.parse(options.primary);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.primary}]);
+    }
+    paramPath = options.path + '/' + 'ipConfigurations';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.ipConfigurations) {
+      if (options.parse && options.ipConfigurations) {
+        options.ipConfigurations = JSON.parse(options.ipConfigurations);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.ipConfigurations}]);
+    }
+    paramPath = options.path + '/' + 'id';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.id) {
+      if (options.parse && options.id) {
+        options.id = JSON.parse(options.id);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -2012,19 +4471,20 @@ exports.init = function (cli) {
   });
 
   //create-or-update-parameters remove network-interface-configurations
-  var catparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations1 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations1 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations1.category('network-interface-configurations')
-  .description($('Commands to set/remove/add network-interface-configurations of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations1.command('remove')
-  .description($('Remove network-interface-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "networkInterfaceConfigurations" : {\r\n    "iPConfigurations":[\r\n      {\r\n        "loadBalancerBackendAddressPools":[\r\n          {\r\n            "referenceUri":""\r\n          }\r\n        ],\r\n        "loadBalancerInboundNatPools":[\r\n          {\r\n            "referenceUri":""\r\n          }\r\n        ],\r\n        "name":"",\r\n        "subnet":{\r\n          "referenceUri":""\r\n        }\r\n      }\r\n    ],\r\n    "name":"",\r\n    "primary":null\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations1 = catparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations1 = parametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations1.category('network-interface-configurations')
+  .description($('Commands to set/remove/add network-interface-configurations of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations1.command('remove')
+  .description($('Remove network-interface-configurations in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "networkInterfaceConfigurations" : {\r\n             "name":"",\r\n             "primary":null,\r\n             "ipConfigurations":[\r\n               {\r\n                 "name":"",\r\n                 "subnet":{\r\n                   "id":""\r\n                 },\r\n                 "loadBalancerBackendAddressPools":[\r\n                   {\r\n                     "id":""\r\n                   }\r\n                 ],\r\n                 "id":""\r\n               }\r\n             ],\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
-  .option('--ip-configurations', $('Remove the ip-configurations value.'))
   .option('--name', $('Remove the name value.'))
   .option('--primary', $('Remove the primary value.'))
+  .option('--ip-configurations', $('Remove the ip-configurations value.'))
+  .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
@@ -2036,19 +4496,23 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'remove';
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false || options.ipConfigurations || options.name || options.primary;
+    var anySubItem = false || options.name || options.primary || options.ipConfigurations || options.id;
     if (anySubItem) {
       var subItemPath = null;
-      if (options.ipConfigurations) {
-        subItemPath = options.path + '/ipConfigurations';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
       if (options.name) {
         subItemPath = options.path + '/name';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.primary) {
         subItemPath = options.path + '/primary';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.ipConfigurations) {
+        subItemPath = options.path + '/ipConfigurations';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.id) {
+        subItemPath = options.path + '/id';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -2067,21 +4531,22 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
   //create-or-update-parameters add network-interface-configurations
-  var catparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations2 = catparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations2 = parametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations2.category('network-interface-configurations')
-  .description($('Commands to set/remove/add network-interface-configurations of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetNetworkInterfaceConfigurations2.command('add')
-  .description($('Add network-interface-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "networkInterfaceConfigurations" : {\r\n    "iPConfigurations":[\r\n      {\r\n        "loadBalancerBackendAddressPools":[\r\n          {\r\n            "referenceUri":""\r\n          }\r\n        ],\r\n        "loadBalancerInboundNatPools":[\r\n          {\r\n            "referenceUri":""\r\n          }\r\n        ],\r\n        "name":"",\r\n        "subnet":{\r\n          "referenceUri":""\r\n        }\r\n      }\r\n    ],\r\n    "name":"",\r\n    "primary":null\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations2 = catparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations2 = parametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations2.category('network-interface-configurations')
+  .description($('Commands to set/remove/add network-interface-configurations of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations2.command('add')
+  .description($('Add network-interface-configurations in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "networkInterfaceConfigurations" : {\r\n             "name":"",\r\n             "primary":null,\r\n             "ipConfigurations":[\r\n               {\r\n                 "name":"",\r\n                 "subnet":{\r\n                   "id":""\r\n                 },\r\n                 "loadBalancerBackendAddressPools":[\r\n                   {\r\n                     "id":""\r\n                   }\r\n                 ],\r\n                 "id":""\r\n               }\r\n             ],\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--ip-configurations <ipConfigurations>', $('Add the ip-configurations value.'))
   .option('--name <name>', $('Add the name value.'))
   .option('--primary <primary>', $('Add the primary value.'))
+  .option('--ip-configurations <ipConfigurations>', $('Add the ip-configurations value.'))
+  .option('--id <id>', $('Add the id value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -2099,17 +4564,7 @@ exports.init = function (cli) {
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.verbose('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'ipConfigurations';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.ipConfigurations) {
-      if (options.parse && options.ipConfigurations) {
-        options.ipConfigurations = JSON.parse(options.ipConfigurations);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.ipConfigurations}]);
-    }
-    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'name';
+    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'name';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
@@ -2127,7 +4582,28 @@ exports.init = function (cli) {
       if (options.parse && options.primary) {
         options.primary = JSON.parse(options.primary);
       }
+        options.primary = JSON.parse(options.primary);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.primary}]);
+    }
+    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'ipConfigurations';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.ipConfigurations) {
+      if (options.parse && options.ipConfigurations) {
+        options.ipConfigurations = JSON.parse(options.ipConfigurations);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.ipConfigurations}]);
+    }
+    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'id';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.id) {
+      if (options.parse && options.id) {
+        options.id = JSON.parse(options.id);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -2141,23 +4617,23 @@ exports.init = function (cli) {
   });
 
   //create-or-update-parameters set ip-configurations
-  var catparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations0 = catparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations0 = parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations0.category('ip-configurations')
-  .description($('Commands to set/remove/add ip-configurations of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations0.command('set')
-  .description($('Set ip-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "ipConfigurations" : {\r\n    "loadBalancerBackendAddressPools":[\r\n      {\r\n        "referenceUri":""\r\n      }\r\n    ],\r\n    "loadBalancerInboundNatPools":[\r\n      {\r\n        "referenceUri":""\r\n      }\r\n    ],\r\n    "name":"",\r\n    "subnet":{\r\n      "referenceUri":""\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations0 = catparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations0 = parametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations0.category('ip-configurations')
+  .description($('Commands to set/remove/add ip-configurations of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations0.command('set')
+  .description($('Set ip-configurations in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "ipConfigurations" : {\r\n             "name":"",\r\n             "subnet":{\r\n               "id":""\r\n             },\r\n             "loadBalancerBackendAddressPools":[\r\n               {\r\n                 "id":""\r\n               }\r\n             ],\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--load-balancer-backend-address-pools <loadBalancerBackendAddressPools>', $('Set the load-balancer-backend-address-pools value.'))
-  .option('--load-balancer-inbound-nat-pools <loadBalancerInboundNatPools>', $('Set the load-balancer-inbound-nat-pools value.'))
   .option('--name <name>', $('Set the name value.'))
   .option('--subnet <subnet>', $('Set the subnet value.'))
+  .option('--load-balancer-backend-address-pools <loadBalancerBackendAddressPools>', $('Set the load-balancer-backend-address-pools value.'))
+  .option('--id <id>', $('Set the id value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -2172,31 +4648,11 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
-    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '');
+    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations' + (options.index ? ('/' + options.index) : '');
     if (options.value) {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
     }
-    var paramPath = options.path + '/' + 'loadBalancerBackendAddressPools';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.loadBalancerBackendAddressPools) {
-      if (options.parse && options.loadBalancerBackendAddressPools) {
-        options.loadBalancerBackendAddressPools = JSON.parse(options.loadBalancerBackendAddressPools);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.loadBalancerBackendAddressPools}]);
-    }
-    paramPath = options.path + '/' + 'loadBalancerInboundNatPools';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.loadBalancerInboundNatPools) {
-      if (options.parse && options.loadBalancerInboundNatPools) {
-        options.loadBalancerInboundNatPools = JSON.parse(options.loadBalancerInboundNatPools);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.loadBalancerInboundNatPools}]);
-    }
-    paramPath = options.path + '/' + 'name';
+    var paramPath = options.path + '/' + 'name';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
@@ -2216,6 +4672,26 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.subnet}]);
     }
+    paramPath = options.path + '/' + 'loadBalancerBackendAddressPools';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.loadBalancerBackendAddressPools) {
+      if (options.parse && options.loadBalancerBackendAddressPools) {
+        options.loadBalancerBackendAddressPools = JSON.parse(options.loadBalancerBackendAddressPools);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.loadBalancerBackendAddressPools}]);
+    }
+    paramPath = options.path + '/' + 'id';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.id) {
+      if (options.parse && options.id) {
+        options.id = JSON.parse(options.id);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
+    }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
     cli.output.verbose('JSON object (updated):');
@@ -2228,21 +4704,21 @@ exports.init = function (cli) {
   });
 
   //create-or-update-parameters remove ip-configurations
-  var catparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations1 = catparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations1 = parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations1.category('ip-configurations')
-  .description($('Commands to set/remove/add ip-configurations of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations1.command('remove')
-  .description($('Remove ip-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "ipConfigurations" : {\r\n    "loadBalancerBackendAddressPools":[\r\n      {\r\n        "referenceUri":""\r\n      }\r\n    ],\r\n    "loadBalancerInboundNatPools":[\r\n      {\r\n        "referenceUri":""\r\n      }\r\n    ],\r\n    "name":"",\r\n    "subnet":{\r\n      "referenceUri":""\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations1 = catparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations1 = parametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations1.category('ip-configurations')
+  .description($('Commands to set/remove/add ip-configurations of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations1.command('remove')
+  .description($('Remove ip-configurations in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "ipConfigurations" : {\r\n             "name":"",\r\n             "subnet":{\r\n               "id":""\r\n             },\r\n             "loadBalancerBackendAddressPools":[\r\n               {\r\n                 "id":""\r\n               }\r\n             ],\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
-  .option('--load-balancer-backend-address-pools', $('Remove the load-balancer-backend-address-pools value.'))
-  .option('--load-balancer-inbound-nat-pools', $('Remove the load-balancer-inbound-nat-pools value.'))
   .option('--name', $('Remove the name value.'))
   .option('--subnet', $('Remove the subnet value.'))
+  .option('--load-balancer-backend-address-pools', $('Remove the load-balancer-backend-address-pools value.'))
+  .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
@@ -2253,24 +4729,24 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'remove';
-    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false || options.loadBalancerBackendAddressPools || options.loadBalancerInboundNatPools || options.name || options.subnet;
+    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations' + (options.index ? ('/' + options.index) : '');
+    var anySubItem = false || options.name || options.subnet || options.loadBalancerBackendAddressPools || options.id;
     if (anySubItem) {
       var subItemPath = null;
-      if (options.loadBalancerBackendAddressPools) {
-        subItemPath = options.path + '/loadBalancerBackendAddressPools';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.loadBalancerInboundNatPools) {
-        subItemPath = options.path + '/loadBalancerInboundNatPools';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
       if (options.name) {
         subItemPath = options.path + '/name';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.subnet) {
         subItemPath = options.path + '/subnet';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.loadBalancerBackendAddressPools) {
+        subItemPath = options.path + '/loadBalancerBackendAddressPools';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.id) {
+        subItemPath = options.path + '/id';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -2289,22 +4765,22 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
   //create-or-update-parameters add ip-configurations
-  var catparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations2 = catparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations2 = parametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations2.category('ip-configurations')
-  .description($('Commands to set/remove/add ip-configurations of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetIPConfigurations2.command('add')
-  .description($('Add ip-configurations in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "ipConfigurations" : {\r\n    "loadBalancerBackendAddressPools":[\r\n      {\r\n        "referenceUri":""\r\n      }\r\n    ],\r\n    "loadBalancerInboundNatPools":[\r\n      {\r\n        "referenceUri":""\r\n      }\r\n    ],\r\n    "name":"",\r\n    "subnet":{\r\n      "referenceUri":""\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations2 = catparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations2 = parametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations2.category('ip-configurations')
+  .description($('Commands to set/remove/add ip-configurations of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations2.command('add')
+  .description($('Add ip-configurations in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "ipConfigurations" : {\r\n             "name":"",\r\n             "subnet":{\r\n               "id":""\r\n             },\r\n             "loadBalancerBackendAddressPools":[\r\n               {\r\n                 "id":""\r\n               }\r\n             ],\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--load-balancer-backend-address-pools <loadBalancerBackendAddressPools>', $('Add the load-balancer-backend-address-pools value.'))
-  .option('--load-balancer-inbound-nat-pools <loadBalancerInboundNatPools>', $('Add the load-balancer-inbound-nat-pools value.'))
   .option('--name <name>', $('Add the name value.'))
   .option('--subnet <subnet>', $('Add the subnet value.'))
+  .option('--load-balancer-backend-address-pools <loadBalancerBackendAddressPools>', $('Add the load-balancer-backend-address-pools value.'))
+  .option('--id <id>', $('Add the id value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -2319,30 +4795,10 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'add';
-    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
+    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.verbose('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'loadBalancerBackendAddressPools';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.loadBalancerBackendAddressPools) {
-      if (options.parse && options.loadBalancerBackendAddressPools) {
-        options.loadBalancerBackendAddressPools = JSON.parse(options.loadBalancerBackendAddressPools);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.loadBalancerBackendAddressPools}]);
-    }
-    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'loadBalancerInboundNatPools';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.loadBalancerInboundNatPools) {
-      if (options.parse && options.loadBalancerInboundNatPools) {
-        options.loadBalancerInboundNatPools = JSON.parse(options.loadBalancerInboundNatPools);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.loadBalancerInboundNatPools}]);
-    }
-    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'name';
+    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'name';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
@@ -2352,7 +4808,7 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
-    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'subnet';
+    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'subnet';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
@@ -2362,313 +4818,25 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.subnet}]);
     }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters set load-balancer-backend-address-pools
-  var catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools0 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools0 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools0.category('load-balancer-backend-address-pools')
-  .description($('Commands to set/remove/add load-balancer-backend-address-pools of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools0.command('set')
-  .description($('Set load-balancer-backend-address-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "loadBalancerBackendAddressPools" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--index <index>', $('Indexer: index.'))
-  .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
-  .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
-  .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--reference-uri <referenceUri>', $('Set the reference-uri value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'replace';
-    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
-    var paramPath = options.path + '/' + 'referenceUri';
+    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'loadBalancerBackendAddressPools';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.referenceUri) {
-      if (options.parse && options.referenceUri) {
-        options.referenceUri = JSON.parse(options.referenceUri);
+    if (options.loadBalancerBackendAddressPools) {
+      if (options.parse && options.loadBalancerBackendAddressPools) {
+        options.loadBalancerBackendAddressPools = JSON.parse(options.loadBalancerBackendAddressPools);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.referenceUri}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.loadBalancerBackendAddressPools}]);
     }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters remove load-balancer-backend-address-pools
-  var catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools1 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools1 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools1.category('load-balancer-backend-address-pools')
-  .description($('Commands to set/remove/add load-balancer-backend-address-pools of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools1.command('remove')
-  .description($('Remove load-balancer-backend-address-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "loadBalancerBackendAddressPools" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--index <index>', $('Indexer: index.'))
-  .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
-  .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
-  .option('--reference-uri', $('Remove the reference-uri value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false || options.referenceUri;
-    if (anySubItem) {
-      var subItemPath = null;
-      if (options.referenceUri) {
-        subItemPath = options.path + '/referenceUri';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-    }
-    else {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-or-update-parameters add load-balancer-backend-address-pools
-  var catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools2 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools2 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools2.category('load-balancer-backend-address-pools')
-  .description($('Commands to set/remove/add load-balancer-backend-address-pools of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerBackendAddressPools2.command('add')
-  .description($('Add load-balancer-backend-address-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "loadBalancerBackendAddressPools" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--key <key>', $('The JSON key.'))
-  .option('--value <value>', $('The JSON value.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--reference-uri <referenceUri>', $('Add the reference-uri value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'add';
-    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
-    cli.output.verbose('options.path = ' + options.path);
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '') + '/' + 'referenceUri';
+    paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations' + (options.index ? ('/' + options.index) : '') + '/' + 'id';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.referenceUri) {
-      if (options.parse && options.referenceUri) {
-        options.referenceUri = JSON.parse(options.referenceUri);
+    if (options.id) {
+      if (options.parse && options.id) {
+        options.id = JSON.parse(options.id);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.referenceUri}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters set load-balancer-inbound-nat-pools
-  var catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools0 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools0 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools0.category('load-balancer-inbound-nat-pools')
-  .description($('Commands to set/remove/add load-balancer-inbound-nat-pools of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools0.command('set')
-  .description($('Set load-balancer-inbound-nat-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "loadBalancerInboundNatPools" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--index <index>', $('Indexer: index.'))
-  .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
-  .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
-  .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--reference-uri <referenceUri>', $('Set the reference-uri value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'replace';
-    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerInboundNatPools' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
-    var paramPath = options.path + '/' + 'referenceUri';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.referenceUri) {
-      if (options.parse && options.referenceUri) {
-        options.referenceUri = JSON.parse(options.referenceUri);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.referenceUri}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters remove load-balancer-inbound-nat-pools
-  var catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools1 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools1 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools1.category('load-balancer-inbound-nat-pools')
-  .description($('Commands to set/remove/add load-balancer-inbound-nat-pools of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools1.command('remove')
-  .description($('Remove load-balancer-inbound-nat-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "loadBalancerInboundNatPools" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--index <index>', $('Indexer: index.'))
-  .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
-  .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
-  .option('--reference-uri', $('Remove the reference-uri value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerInboundNatPools' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false || options.referenceUri;
-    if (anySubItem) {
-      var subItemPath = null;
-      if (options.referenceUri) {
-        subItemPath = options.path + '/referenceUri';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-    }
-    else {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-or-update-parameters add load-balancer-inbound-nat-pools
-  var catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools2 = catparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools2 = parametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools2.category('load-balancer-inbound-nat-pools')
-  .description($('Commands to set/remove/add load-balancer-inbound-nat-pools of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetLoadBalancerInboundNatPools2.command('add')
-  .description($('Add load-balancer-inbound-nat-pools in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "loadBalancerInboundNatPools" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--key <key>', $('The JSON key.'))
-  .option('--value <value>', $('The JSON value.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--reference-uri <referenceUri>', $('Add the reference-uri value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'add';
-    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerInboundNatPools' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
-    cli.output.verbose('options.path = ' + options.path);
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerInboundNatPools' + (options.index ? ('/' + options.index) : '') + '/' + 'referenceUri';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.referenceUri) {
-      if (options.parse && options.referenceUri) {
-        options.referenceUri = JSON.parse(options.referenceUri);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.referenceUri}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -2682,19 +4850,19 @@ exports.init = function (cli) {
   });
 
   //create-or-update-parameters set subnet
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSubnet0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSubnet0 = catparametersCreateOrUpdateVirtualMachineScaleSetSubnet0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetSubnet0 = parametersCreateOrUpdateVirtualMachineScaleSetSubnet0.category('subnet')
-  .description($('Commands to set/remove/add subnet of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetSubnet0.command('set')
-  .description($('Set subnet in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "subnet" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsSubnet0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsSubnet0 = catparametersCreateOrUpdateVirtualMachineScaleSetsSubnet0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsSubnet0 = parametersCreateOrUpdateVirtualMachineScaleSetsSubnet0.category('subnet')
+  .description($('Commands to set/remove/add subnet of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsSubnet0.command('set')
+  .description($('Set subnet in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "subnet" : {\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--reference-uri <referenceUri>', $('Set the reference-uri value.'))
+  .option('--id <id>', $('Set the id value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -2709,16 +4877,16 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
-    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/subnet';
-    var paramPath = options.path + '/' + 'referenceUri';
+    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations/' + options.ipConfigurationsIndex + '/subnet';
+    var paramPath = options.path + '/' + 'id';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.referenceUri) {
-      if (options.parse && options.referenceUri) {
-        options.referenceUri = JSON.parse(options.referenceUri);
+    if (options.id) {
+      if (options.parse && options.id) {
+        options.id = JSON.parse(options.id);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.referenceUri}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -2732,18 +4900,18 @@ exports.init = function (cli) {
   });
 
   //create-or-update-parameters remove subnet
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSubnet1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSubnet1 = catparametersCreateOrUpdateVirtualMachineScaleSetSubnet1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetSubnet1 = parametersCreateOrUpdateVirtualMachineScaleSetSubnet1.category('subnet')
-  .description($('Commands to set/remove/add subnet of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetSubnet1.command('remove')
-  .description($('Remove subnet in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "subnet" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsSubnet1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsSubnet1 = catparametersCreateOrUpdateVirtualMachineScaleSetsSubnet1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsSubnet1 = parametersCreateOrUpdateVirtualMachineScaleSetsSubnet1.category('subnet')
+  .description($('Commands to set/remove/add subnet of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsSubnet1.command('remove')
+  .description($('Remove subnet in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "subnet" : {\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
-  .option('--reference-uri', $('Remove the reference-uri value.'))
+  .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
@@ -2754,12 +4922,12 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'remove';
-    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/subnet';
-    var anySubItem = false || options.referenceUri;
+    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations/' + options.ipConfigurationsIndex + '/subnet';
+    var anySubItem = false || options.id;
     if (anySubItem) {
       var subItemPath = null;
-      if (options.referenceUri) {
-        subItemPath = options.path + '/referenceUri';
+      if (options.id) {
+        subItemPath = options.path + '/id';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -2778,19 +4946,19 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
   //create-or-update-parameters add subnet
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSubnet2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSubnet2 = catparametersCreateOrUpdateVirtualMachineScaleSetSubnet2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetSubnet2 = parametersCreateOrUpdateVirtualMachineScaleSetSubnet2.category('subnet')
-  .description($('Commands to set/remove/add subnet of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetSubnet2.command('add')
-  .description($('Add subnet in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "subnet" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsSubnet2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsSubnet2 = catparametersCreateOrUpdateVirtualMachineScaleSetsSubnet2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsSubnet2 = parametersCreateOrUpdateVirtualMachineScaleSetsSubnet2.category('subnet')
+  .description($('Commands to set/remove/add subnet of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsSubnet2.command('add')
+  .description($('Add subnet in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "subnet" : {\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--reference-uri <referenceUri>', $('Add the reference-uri value.'))
+  .option('--id <id>', $('Add the id value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -2805,18 +4973,18 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'add';
-    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/subnet' + '/' + options.key;
+    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations/' + options.ipConfigurationsIndex + '/subnet' + '/' + options.key;
     cli.output.verbose('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/iPConfigurations/' + options.ipConfigurationsIndex + '/subnet' + '/' + 'referenceUri';
+    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations/' + options.ipConfigurationsIndex + '/subnet' + '/' + 'id';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.referenceUri) {
-      if (options.parse && options.referenceUri) {
-        options.referenceUri = JSON.parse(options.referenceUri);
+    if (options.id) {
+      if (options.parse && options.id) {
+        options.id = JSON.parse(options.id);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.referenceUri}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -2829,24 +4997,22 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //create-or-update-parameters set os-profile
-  var catparametersCreateOrUpdateVirtualMachineScaleSetOSProfile0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetOSProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetOSProfile0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetOSProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetOSProfile0.category('os-profile')
-  .description($('Commands to set/remove/add os-profile of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetOSProfile0.command('set')
-  .description($('Set os-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "oSProfile" : {\r\n    "computerNamePrefix":"",\r\n    "adminPassword":"",\r\n    "adminUsername":"",\r\n    "customData":"",\r\n    "linuxConfiguration":{\r\n      "disablePasswordAuthentication":null,\r\n      "sshConfiguration":{\r\n        "publicKeys":[\r\n          {\r\n            "keyData":"",\r\n            "path":""\r\n          }\r\n        ]\r\n      }\r\n    },\r\n    "secrets":[\r\n      {\r\n        "sourceVault":{\r\n          "referenceUri":""\r\n        },\r\n        "vaultCertificates":[\r\n          {\r\n            "certificateStore":"",\r\n            "certificateUrl":""\r\n          }\r\n        ]\r\n      }\r\n    ],\r\n    "windowsConfiguration":{\r\n      "additionalUnattendContents":[\r\n        {\r\n          "componentName":"",\r\n          "content":"",\r\n          "passName":"",\r\n          "settingName":""\r\n        }\r\n      ],\r\n      "enableAutomaticUpdates":null,\r\n      "provisionVMAgent":null,\r\n      "timeZone":"",\r\n      "winRMConfiguration":{\r\n        "listeners":[\r\n          {\r\n            "certificateUrl":"",\r\n            "protocol":""\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
+  //create-or-update-parameters set load-balancer-backend-address-pools
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools0 = catparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools0 = parametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools0.category('load-balancer-backend-address-pools')
+  .description($('Commands to set/remove/add load-balancer-backend-address-pools of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools0.command('set')
+  .description($('Set load-balancer-backend-address-pools in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "loadBalancerBackendAddressPools" : {\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
+  .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
+  .option('--value <value>', $('The input string value for the indexed item.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--computer-name-prefix <computerNamePrefix>', $('Set the computer-name-prefix value.'))
-  .option('--admin-password <adminPassword>', $('Set the admin-password value.'))
-  .option('--admin-username <adminUsername>', $('Set the admin-username value.'))
-  .option('--custom-data <customData>', $('Set the custom-data value.'))
-  .option('--linux-configuration <linuxConfiguration>', $('Set the linux-configuration value.'))
-  .option('--secrets <secrets>', $('Set the secrets value.'))
-  .option('--windows-configuration <windowsConfiguration>', $('Set the windows-configuration value.'))
+  .option('--id <id>', $('Set the id value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -2861,76 +5027,19 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
-    options.path = '/virtualMachineProfile/oSProfile';
-    var paramPath = options.path + '/' + 'computerNamePrefix';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.computerNamePrefix) {
-      if (options.parse && options.computerNamePrefix) {
-        options.computerNamePrefix = JSON.parse(options.computerNamePrefix);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.computerNamePrefix}]);
+    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '');
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
     }
-    paramPath = options.path + '/' + 'adminPassword';
+    var paramPath = options.path + '/' + 'id';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.adminPassword) {
-      if (options.parse && options.adminPassword) {
-        options.adminPassword = JSON.parse(options.adminPassword);
+    if (options.id) {
+      if (options.parse && options.id) {
+        options.id = JSON.parse(options.id);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.adminPassword}]);
-    }
-    paramPath = options.path + '/' + 'adminUsername';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.adminUsername) {
-      if (options.parse && options.adminUsername) {
-        options.adminUsername = JSON.parse(options.adminUsername);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.adminUsername}]);
-    }
-    paramPath = options.path + '/' + 'customData';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.customData) {
-      if (options.parse && options.customData) {
-        options.customData = JSON.parse(options.customData);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.customData}]);
-    }
-    paramPath = options.path + '/' + 'linuxConfiguration';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.linuxConfiguration) {
-      if (options.parse && options.linuxConfiguration) {
-        options.linuxConfiguration = JSON.parse(options.linuxConfiguration);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.linuxConfiguration}]);
-    }
-    paramPath = options.path + '/' + 'secrets';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.secrets) {
-      if (options.parse && options.secrets) {
-        options.secrets = JSON.parse(options.secrets);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.secrets}]);
-    }
-    paramPath = options.path + '/' + 'windowsConfiguration';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.windowsConfiguration) {
-      if (options.parse && options.windowsConfiguration) {
-        options.windowsConfiguration = JSON.parse(options.windowsConfiguration);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.windowsConfiguration}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -2943,23 +5052,20 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //create-or-update-parameters remove os-profile
-  var catparametersCreateOrUpdateVirtualMachineScaleSetOSProfile1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetOSProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetOSProfile1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetOSProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetOSProfile1.category('os-profile')
-  .description($('Commands to set/remove/add os-profile of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetOSProfile1.command('remove')
-  .description($('Remove os-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "oSProfile" : {\r\n    "computerNamePrefix":"",\r\n    "adminPassword":"",\r\n    "adminUsername":"",\r\n    "customData":"",\r\n    "linuxConfiguration":{\r\n      "disablePasswordAuthentication":null,\r\n      "sshConfiguration":{\r\n        "publicKeys":[\r\n          {\r\n            "keyData":"",\r\n            "path":""\r\n          }\r\n        ]\r\n      }\r\n    },\r\n    "secrets":[\r\n      {\r\n        "sourceVault":{\r\n          "referenceUri":""\r\n        },\r\n        "vaultCertificates":[\r\n          {\r\n            "certificateStore":"",\r\n            "certificateUrl":""\r\n          }\r\n        ]\r\n      }\r\n    ],\r\n    "windowsConfiguration":{\r\n      "additionalUnattendContents":[\r\n        {\r\n          "componentName":"",\r\n          "content":"",\r\n          "passName":"",\r\n          "settingName":""\r\n        }\r\n      ],\r\n      "enableAutomaticUpdates":null,\r\n      "provisionVMAgent":null,\r\n      "timeZone":"",\r\n      "winRMConfiguration":{\r\n        "listeners":[\r\n          {\r\n            "certificateUrl":"",\r\n            "protocol":""\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
+  //create-or-update-parameters remove load-balancer-backend-address-pools
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools1 = catparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools1 = parametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools1.category('load-balancer-backend-address-pools')
+  .description($('Commands to set/remove/add load-balancer-backend-address-pools of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools1.command('remove')
+  .description($('Remove load-balancer-backend-address-pools in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "loadBalancerBackendAddressPools" : {\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--computer-name-prefix', $('Remove the computer-name-prefix value.'))
-  .option('--admin-password', $('Remove the admin-password value.'))
-  .option('--admin-username', $('Remove the admin-username value.'))
-  .option('--custom-data', $('Remove the custom-data value.'))
-  .option('--linux-configuration', $('Remove the linux-configuration value.'))
-  .option('--secrets', $('Remove the secrets value.'))
-  .option('--windows-configuration', $('Remove the windows-configuration value.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .option('--ip-configurations-index <ip-configurations-index>', $('Indexer: ip-configurations-index.'))
+  .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
+  .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
@@ -2970,36 +5076,12 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'remove';
-    options.path = '/virtualMachineProfile/oSProfile';
-    var anySubItem = false || options.computerNamePrefix || options.adminPassword || options.adminUsername || options.customData || options.linuxConfiguration || options.secrets || options.windowsConfiguration;
+    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '');
+    var anySubItem = false || options.id;
     if (anySubItem) {
       var subItemPath = null;
-      if (options.computerNamePrefix) {
-        subItemPath = options.path + '/computerNamePrefix';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.adminPassword) {
-        subItemPath = options.path + '/adminPassword';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.adminUsername) {
-        subItemPath = options.path + '/adminUsername';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.customData) {
-        subItemPath = options.path + '/customData';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.linuxConfiguration) {
-        subItemPath = options.path + '/linuxConfiguration';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.secrets) {
-        subItemPath = options.path + '/secrets';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.windowsConfiguration) {
-        subItemPath = options.path + '/windowsConfiguration';
+      if (options.id) {
+        subItemPath = options.path + '/id';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -3017,26 +5099,20 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //create-or-update-parameters add os-profile
-  var catparametersCreateOrUpdateVirtualMachineScaleSetOSProfile2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetOSProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetOSProfile2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetOSProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetOSProfile2.category('os-profile')
-  .description($('Commands to set/remove/add os-profile of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetOSProfile2.command('add')
-  .description($('Add os-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "oSProfile" : {\r\n    "computerNamePrefix":"",\r\n    "adminPassword":"",\r\n    "adminUsername":"",\r\n    "customData":"",\r\n    "linuxConfiguration":{\r\n      "disablePasswordAuthentication":null,\r\n      "sshConfiguration":{\r\n        "publicKeys":[\r\n          {\r\n            "keyData":"",\r\n            "path":""\r\n          }\r\n        ]\r\n      }\r\n    },\r\n    "secrets":[\r\n      {\r\n        "sourceVault":{\r\n          "referenceUri":""\r\n        },\r\n        "vaultCertificates":[\r\n          {\r\n            "certificateStore":"",\r\n            "certificateUrl":""\r\n          }\r\n        ]\r\n      }\r\n    ],\r\n    "windowsConfiguration":{\r\n      "additionalUnattendContents":[\r\n        {\r\n          "componentName":"",\r\n          "content":"",\r\n          "passName":"",\r\n          "settingName":""\r\n        }\r\n      ],\r\n      "enableAutomaticUpdates":null,\r\n      "provisionVMAgent":null,\r\n      "timeZone":"",\r\n      "winRMConfiguration":{\r\n        "listeners":[\r\n          {\r\n            "certificateUrl":"",\r\n            "protocol":""\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
+  //create-or-update-parameters add load-balancer-backend-address-pools
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools2 = catparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools2 = parametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools2.category('load-balancer-backend-address-pools')
+  .description($('Commands to set/remove/add load-balancer-backend-address-pools of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools2.command('add')
+  .description($('Add load-balancer-backend-address-pools in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "loadBalancerBackendAddressPools" : {\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--computer-name-prefix <computerNamePrefix>', $('Add the computer-name-prefix value.'))
-  .option('--admin-password <adminPassword>', $('Add the admin-password value.'))
-  .option('--admin-username <adminUsername>', $('Add the admin-username value.'))
-  .option('--custom-data <customData>', $('Add the custom-data value.'))
-  .option('--linux-configuration <linuxConfiguration>', $('Add the linux-configuration value.'))
-  .option('--secrets <secrets>', $('Add the secrets value.'))
-  .option('--windows-configuration <windowsConfiguration>', $('Add the windows-configuration value.'))
+  .option('--id <id>', $('Add the id value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -3051,78 +5127,18 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'add';
-    options.path = '/virtualMachineProfile/oSProfile' + '/' + options.key;
+    options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.verbose('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'computerNamePrefix';
+    var paramPath = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '') + '/' + 'id';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.computerNamePrefix) {
-      if (options.parse && options.computerNamePrefix) {
-        options.computerNamePrefix = JSON.parse(options.computerNamePrefix);
+    if (options.id) {
+      if (options.parse && options.id) {
+        options.id = JSON.parse(options.id);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.computerNamePrefix}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'adminPassword';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.adminPassword) {
-      if (options.parse && options.adminPassword) {
-        options.adminPassword = JSON.parse(options.adminPassword);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.adminPassword}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'adminUsername';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.adminUsername) {
-      if (options.parse && options.adminUsername) {
-        options.adminUsername = JSON.parse(options.adminUsername);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.adminUsername}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'customData';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.customData) {
-      if (options.parse && options.customData) {
-        options.customData = JSON.parse(options.customData);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.customData}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'linuxConfiguration';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.linuxConfiguration) {
-      if (options.parse && options.linuxConfiguration) {
-        options.linuxConfiguration = JSON.parse(options.linuxConfiguration);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.linuxConfiguration}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'secrets';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.secrets) {
-      if (options.parse && options.secrets) {
-        options.secrets = JSON.parse(options.secrets);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.secrets}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile' + '/' + 'windowsConfiguration';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.windowsConfiguration) {
-      if (options.parse && options.windowsConfiguration) {
-        options.windowsConfiguration = JSON.parse(options.windowsConfiguration);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.windowsConfiguration}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -3135,19 +5151,18 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //create-or-update-parameters set linux-configuration
-  var catparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration0 = catparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration0 = parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration0.category('linux-configuration')
-  .description($('Commands to set/remove/add linux-configuration of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration0.command('set')
-  .description($('Set linux-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "linuxConfiguration" : {\r\n    "disablePasswordAuthentication":null,\r\n    "sshConfiguration":{\r\n      "publicKeys":[\r\n        {\r\n          "keyData":"",\r\n          "path":""\r\n        }\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
+  //create-or-update-parameters set extension-profile
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile0.category('extension-profile')
+  .description($('Commands to set/remove/add extension-profile of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile0.command('set')
+  .description($('Set extension-profile in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "extensionProfile" : {\r\n             "extensions":[\r\n               {\r\n                 "name":"",\r\n                 "publisher":"",\r\n                 "virtualMachineScaleSetExtensionType":"",\r\n                 "typeHandlerVersion":"",\r\n                 "autoUpgradeMinorVersion":null,\r\n                 "settings":{\r\n                 },\r\n                 "protectedSettings":{\r\n                 },\r\n                 "provisioningState":"",\r\n                 "id":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--disable-password-authentication <disablePasswordAuthentication>', $('Set the disable-password-authentication value.'))
-  .option('--ssh-configuration <sshConfiguration>', $('Set the ssh-configuration value.'))
+  .option('--extensions <extensions>', $('Set the extensions value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -3162,26 +5177,16 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
-    options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration';
-    var paramPath = options.path + '/' + 'disablePasswordAuthentication';
+    options.path = '/virtualMachineProfile/extensionProfile';
+    var paramPath = options.path + '/' + 'extensions';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.disablePasswordAuthentication) {
-      if (options.parse && options.disablePasswordAuthentication) {
-        options.disablePasswordAuthentication = JSON.parse(options.disablePasswordAuthentication);
+    if (options.extensions) {
+      if (options.parse && options.extensions) {
+        options.extensions = JSON.parse(options.extensions);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.disablePasswordAuthentication}]);
-    }
-    paramPath = options.path + '/' + 'sshConfiguration';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.sshConfiguration) {
-      if (options.parse && options.sshConfiguration) {
-        options.sshConfiguration = JSON.parse(options.sshConfiguration);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sshConfiguration}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.extensions}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -3194,18 +5199,17 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //create-or-update-parameters remove linux-configuration
-  var catparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration1 = catparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration1.category('linux-configuration')
-  .description($('Commands to set/remove/add linux-configuration of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration1.command('remove')
-  .description($('Remove linux-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "linuxConfiguration" : {\r\n    "disablePasswordAuthentication":null,\r\n    "sshConfiguration":{\r\n      "publicKeys":[\r\n        {\r\n          "keyData":"",\r\n          "path":""\r\n        }\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
+  //create-or-update-parameters remove extension-profile
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile1.category('extension-profile')
+  .description($('Commands to set/remove/add extension-profile of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile1.command('remove')
+  .description($('Remove extension-profile in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "extensionProfile" : {\r\n             "extensions":[\r\n               {\r\n                 "name":"",\r\n                 "publisher":"",\r\n                 "virtualMachineScaleSetExtensionType":"",\r\n                 "typeHandlerVersion":"",\r\n                 "autoUpgradeMinorVersion":null,\r\n                 "settings":{\r\n                 },\r\n                 "protectedSettings":{\r\n                 },\r\n                 "provisioningState":"",\r\n                 "id":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--disable-password-authentication', $('Remove the disable-password-authentication value.'))
-  .option('--ssh-configuration', $('Remove the ssh-configuration value.'))
+  .option('--extensions', $('Remove the extensions value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
@@ -3216,16 +5220,12 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'remove';
-    options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration';
-    var anySubItem = false || options.disablePasswordAuthentication || options.sshConfiguration;
+    options.path = '/virtualMachineProfile/extensionProfile';
+    var anySubItem = false || options.extensions;
     if (anySubItem) {
       var subItemPath = null;
-      if (options.disablePasswordAuthentication) {
-        subItemPath = options.path + '/disablePasswordAuthentication';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.sshConfiguration) {
-        subItemPath = options.path + '/sshConfiguration';
+      if (options.extensions) {
+        subItemPath = options.path + '/extensions';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -3243,21 +5243,20 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //create-or-update-parameters add linux-configuration
-  var catparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration2 = catparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration2 = parametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration2.category('linux-configuration')
-  .description($('Commands to set/remove/add linux-configuration of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetLinuxConfiguration2.command('add')
-  .description($('Add linux-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "linuxConfiguration" : {\r\n    "disablePasswordAuthentication":null,\r\n    "sshConfiguration":{\r\n      "publicKeys":[\r\n        {\r\n          "keyData":"",\r\n          "path":""\r\n        }\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
+  //create-or-update-parameters add extension-profile
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile2.category('extension-profile')
+  .description($('Commands to set/remove/add extension-profile of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile2.command('add')
+  .description($('Add extension-profile in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "extensionProfile" : {\r\n             "extensions":[\r\n               {\r\n                 "name":"",\r\n                 "publisher":"",\r\n                 "virtualMachineScaleSetExtensionType":"",\r\n                 "typeHandlerVersion":"",\r\n                 "autoUpgradeMinorVersion":null,\r\n                 "settings":{\r\n                 },\r\n                 "protectedSettings":{\r\n                 },\r\n                 "provisioningState":"",\r\n                 "id":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--disable-password-authentication <disablePasswordAuthentication>', $('Add the disable-password-authentication value.'))
-  .option('--ssh-configuration <sshConfiguration>', $('Add the ssh-configuration value.'))
+  .option('--extensions <extensions>', $('Add the extensions value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -3272,28 +5271,18 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'add';
-    options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration' + '/' + options.key;
+    options.path = '/virtualMachineProfile/extensionProfile' + '/' + options.key;
     cli.output.verbose('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration' + '/' + 'disablePasswordAuthentication';
+    var paramPath = '/virtualMachineProfile/extensionProfile' + '/' + 'extensions';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.disablePasswordAuthentication) {
-      if (options.parse && options.disablePasswordAuthentication) {
-        options.disablePasswordAuthentication = JSON.parse(options.disablePasswordAuthentication);
+    if (options.extensions) {
+      if (options.parse && options.extensions) {
+        options.extensions = JSON.parse(options.extensions);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.disablePasswordAuthentication}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration' + '/' + 'sshConfiguration';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.sshConfiguration) {
-      if (options.parse && options.sshConfiguration) {
-        options.sshConfiguration = JSON.parse(options.sshConfiguration);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sshConfiguration}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.extensions}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -3306,1819 +5295,28 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //create-or-update-parameters set ssh-configuration
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration0 = catparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration0 = parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration0.category('ssh-configuration')
-  .description($('Commands to set/remove/add ssh-configuration of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration0.command('set')
-  .description($('Set ssh-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sshConfiguration" : {\r\n    "publicKeys":[\r\n      {\r\n        "keyData":"",\r\n        "path":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--public-keys <publicKeys>', $('Set the public-keys value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'replace';
-    options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration';
-    var paramPath = options.path + '/' + 'publicKeys';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.publicKeys) {
-      if (options.parse && options.publicKeys) {
-        options.publicKeys = JSON.parse(options.publicKeys);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.publicKeys}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters remove ssh-configuration
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration1 = catparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration1.category('ssh-configuration')
-  .description($('Commands to set/remove/add ssh-configuration of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration1.command('remove')
-  .description($('Remove ssh-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sshConfiguration" : {\r\n    "publicKeys":[\r\n      {\r\n        "keyData":"",\r\n        "path":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--public-keys', $('Remove the public-keys value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration';
-    var anySubItem = false || options.publicKeys;
-    if (anySubItem) {
-      var subItemPath = null;
-      if (options.publicKeys) {
-        subItemPath = options.path + '/publicKeys';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-    }
-    else {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-or-update-parameters add ssh-configuration
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration2 = catparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration2 = parametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration2.category('ssh-configuration')
-  .description($('Commands to set/remove/add ssh-configuration of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetSshConfiguration2.command('add')
-  .description($('Add ssh-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sshConfiguration" : {\r\n    "publicKeys":[\r\n      {\r\n        "keyData":"",\r\n        "path":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--key <key>', $('The JSON key.'))
-  .option('--value <value>', $('The JSON value.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--public-keys <publicKeys>', $('Add the public-keys value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'add';
-    options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration' + '/' + options.key;
-    cli.output.verbose('options.path = ' + options.path);
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration' + '/' + 'publicKeys';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.publicKeys) {
-      if (options.parse && options.publicKeys) {
-        options.publicKeys = JSON.parse(options.publicKeys);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.publicKeys}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters set public-keys
-  var catparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys0 = catparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys0 = parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys0.category('public-keys')
-  .description($('Commands to set/remove/add public-keys of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys0.command('set')
-  .description($('Set public-keys in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "publicKeys" : {\r\n    "keyData":"",\r\n    "path":""\r\n  }\r\n  ...\r\n}\r\n'))
+  //create-or-update-parameters set extensions
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsExtensions0 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsExtensions0 = catparametersCreateOrUpdateVirtualMachineScaleSetsExtensions0.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var setparametersCreateOrUpdateVirtualMachineScaleSetsExtensions0 = parametersCreateOrUpdateVirtualMachineScaleSetsExtensions0.category('extensions')
+  .description($('Commands to set/remove/add extensions of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  setparametersCreateOrUpdateVirtualMachineScaleSetsExtensions0.command('set')
+  .description($('Set extensions in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "extensions" : {\r\n             "name":"",\r\n             "publisher":"",\r\n             "virtualMachineScaleSetExtensionType":"",\r\n             "typeHandlerVersion":"",\r\n             "autoUpgradeMinorVersion":null,\r\n             "settings":{\r\n             },\r\n             "protectedSettings":{\r\n             },\r\n             "provisioningState":"",\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--key-data <keyData>', $('Set the key-data value.'))
-  .option('--path <path>', $('Set the path value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'replace';
-    options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
-    var paramPath = options.path + '/' + 'keyData';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.keyData) {
-      if (options.parse && options.keyData) {
-        options.keyData = JSON.parse(options.keyData);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.keyData}]);
-    }
-    paramPath = options.path + '/' + 'path';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.path) {
-      if (options.parse && options.path) {
-        options.path = JSON.parse(options.path);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.path}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters remove public-keys
-  var catparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys1 = catparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys1 = parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys1.category('public-keys')
-  .description($('Commands to set/remove/add public-keys of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys1.command('remove')
-  .description($('Remove public-keys in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "publicKeys" : {\r\n    "keyData":"",\r\n    "path":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--index <index>', $('Indexer: index.'))
-  .option('--key-data', $('Remove the key-data value.'))
-  .option('--path', $('Remove the path value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false || options.keyData || options.path;
-    if (anySubItem) {
-      var subItemPath = null;
-      if (options.keyData) {
-        subItemPath = options.path + '/keyData';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.path) {
-        subItemPath = options.path + '/path';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-    }
-    else {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-or-update-parameters add public-keys
-  var catparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys2 = catparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys2 = parametersCreateOrUpdateVirtualMachineScaleSetPublicKeys2.category('public-keys')
-  .description($('Commands to set/remove/add public-keys of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetPublicKeys2.command('add')
-  .description($('Add public-keys in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "publicKeys" : {\r\n    "keyData":"",\r\n    "path":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--key <key>', $('The JSON key.'))
-  .option('--value <value>', $('The JSON value.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--key-data <keyData>', $('Add the key-data value.'))
-  .option('--path <path>', $('Add the path value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'add';
-    options.path = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
-    cli.output.verbose('options.path = ' + options.path);
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys' + (options.index ? ('/' + options.index) : '') + '/' + 'keyData';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.keyData) {
-      if (options.parse && options.keyData) {
-        options.keyData = JSON.parse(options.keyData);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.keyData}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile/linuxConfiguration/sshConfiguration/publicKeys' + (options.index ? ('/' + options.index) : '') + '/' + 'path';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.path) {
-      if (options.parse && options.path) {
-        options.path = JSON.parse(options.path);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.path}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters set secrets
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSecrets0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSecrets0 = catparametersCreateOrUpdateVirtualMachineScaleSetSecrets0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetSecrets0 = parametersCreateOrUpdateVirtualMachineScaleSetSecrets0.category('secrets')
-  .description($('Commands to set/remove/add secrets of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetSecrets0.command('set')
-  .description($('Set secrets in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "secrets" : {\r\n    "sourceVault":{\r\n      "referenceUri":""\r\n    },\r\n    "vaultCertificates":[\r\n      {\r\n        "certificateStore":"",\r\n        "certificateUrl":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--index <index>', $('Indexer: index.'))
-  .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--source-vault <sourceVault>', $('Set the source-vault value.'))
-  .option('--vault-certificates <vaultCertificates>', $('Set the vault-certificates value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'replace';
-    options.path = '/virtualMachineProfile/oSProfile/secrets' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
-    var paramPath = options.path + '/' + 'sourceVault';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.sourceVault) {
-      if (options.parse && options.sourceVault) {
-        options.sourceVault = JSON.parse(options.sourceVault);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sourceVault}]);
-    }
-    paramPath = options.path + '/' + 'vaultCertificates';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.vaultCertificates) {
-      if (options.parse && options.vaultCertificates) {
-        options.vaultCertificates = JSON.parse(options.vaultCertificates);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.vaultCertificates}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters remove secrets
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSecrets1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSecrets1 = catparametersCreateOrUpdateVirtualMachineScaleSetSecrets1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetSecrets1 = parametersCreateOrUpdateVirtualMachineScaleSetSecrets1.category('secrets')
-  .description($('Commands to set/remove/add secrets of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetSecrets1.command('remove')
-  .description($('Remove secrets in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "secrets" : {\r\n    "sourceVault":{\r\n      "referenceUri":""\r\n    },\r\n    "vaultCertificates":[\r\n      {\r\n        "certificateStore":"",\r\n        "certificateUrl":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--index <index>', $('Indexer: index.'))
-  .option('--source-vault', $('Remove the source-vault value.'))
-  .option('--vault-certificates', $('Remove the vault-certificates value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/virtualMachineProfile/oSProfile/secrets' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false || options.sourceVault || options.vaultCertificates;
-    if (anySubItem) {
-      var subItemPath = null;
-      if (options.sourceVault) {
-        subItemPath = options.path + '/sourceVault';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.vaultCertificates) {
-        subItemPath = options.path + '/vaultCertificates';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-    }
-    else {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-or-update-parameters add secrets
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSecrets2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSecrets2 = catparametersCreateOrUpdateVirtualMachineScaleSetSecrets2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetSecrets2 = parametersCreateOrUpdateVirtualMachineScaleSetSecrets2.category('secrets')
-  .description($('Commands to set/remove/add secrets of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetSecrets2.command('add')
-  .description($('Add secrets in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "secrets" : {\r\n    "sourceVault":{\r\n      "referenceUri":""\r\n    },\r\n    "vaultCertificates":[\r\n      {\r\n        "certificateStore":"",\r\n        "certificateUrl":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--key <key>', $('The JSON key.'))
-  .option('--value <value>', $('The JSON value.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--source-vault <sourceVault>', $('Add the source-vault value.'))
-  .option('--vault-certificates <vaultCertificates>', $('Add the vault-certificates value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'add';
-    options.path = '/virtualMachineProfile/oSProfile/secrets' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
-    cli.output.verbose('options.path = ' + options.path);
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/secrets' + (options.index ? ('/' + options.index) : '') + '/' + 'sourceVault';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.sourceVault) {
-      if (options.parse && options.sourceVault) {
-        options.sourceVault = JSON.parse(options.sourceVault);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sourceVault}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile/secrets' + (options.index ? ('/' + options.index) : '') + '/' + 'vaultCertificates';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.vaultCertificates) {
-      if (options.parse && options.vaultCertificates) {
-        options.vaultCertificates = JSON.parse(options.vaultCertificates);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.vaultCertificates}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters set source-vault
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSourceVault0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSourceVault0 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceVault0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetSourceVault0 = parametersCreateOrUpdateVirtualMachineScaleSetSourceVault0.category('source-vault')
-  .description($('Commands to set/remove/add source-vault of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetSourceVault0.command('set')
-  .description($('Set source-vault in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sourceVault" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--reference-uri <referenceUri>', $('Set the reference-uri value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'replace';
-    options.path = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/sourceVault';
-    var paramPath = options.path + '/' + 'referenceUri';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.referenceUri) {
-      if (options.parse && options.referenceUri) {
-        options.referenceUri = JSON.parse(options.referenceUri);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.referenceUri}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters remove source-vault
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSourceVault1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSourceVault1 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceVault1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetSourceVault1 = parametersCreateOrUpdateVirtualMachineScaleSetSourceVault1.category('source-vault')
-  .description($('Commands to set/remove/add source-vault of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetSourceVault1.command('remove')
-  .description($('Remove source-vault in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sourceVault" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
-  .option('--reference-uri', $('Remove the reference-uri value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/sourceVault';
-    var anySubItem = false || options.referenceUri;
-    if (anySubItem) {
-      var subItemPath = null;
-      if (options.referenceUri) {
-        subItemPath = options.path + '/referenceUri';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-    }
-    else {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-or-update-parameters add source-vault
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSourceVault2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSourceVault2 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceVault2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetSourceVault2 = parametersCreateOrUpdateVirtualMachineScaleSetSourceVault2.category('source-vault')
-  .description($('Commands to set/remove/add source-vault of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetSourceVault2.command('add')
-  .description($('Add source-vault in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sourceVault" : {\r\n    "referenceUri":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--key <key>', $('The JSON key.'))
-  .option('--value <value>', $('The JSON value.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--reference-uri <referenceUri>', $('Add the reference-uri value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'add';
-    options.path = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/sourceVault' + '/' + options.key;
-    cli.output.verbose('options.path = ' + options.path);
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/sourceVault' + '/' + 'referenceUri';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.referenceUri) {
-      if (options.parse && options.referenceUri) {
-        options.referenceUri = JSON.parse(options.referenceUri);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.referenceUri}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters set vault-certificates
-  var catparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates0 = catparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates0 = parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates0.category('vault-certificates')
-  .description($('Commands to set/remove/add vault-certificates of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates0.command('set')
-  .description($('Set vault-certificates in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "vaultCertificates" : {\r\n    "certificateStore":"",\r\n    "certificateUrl":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--index <index>', $('Indexer: index.'))
-  .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
-  .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--certificate-store <certificateStore>', $('Set the certificate-store value.'))
-  .option('--certificate-url <certificateUrl>', $('Set the certificate-url value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'replace';
-    options.path = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
-    var paramPath = options.path + '/' + 'certificateStore';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.certificateStore) {
-      if (options.parse && options.certificateStore) {
-        options.certificateStore = JSON.parse(options.certificateStore);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateStore}]);
-    }
-    paramPath = options.path + '/' + 'certificateUrl';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.certificateUrl) {
-      if (options.parse && options.certificateUrl) {
-        options.certificateUrl = JSON.parse(options.certificateUrl);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateUrl}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters remove vault-certificates
-  var catparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates1 = catparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates1 = parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates1.category('vault-certificates')
-  .description($('Commands to set/remove/add vault-certificates of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates1.command('remove')
-  .description($('Remove vault-certificates in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "vaultCertificates" : {\r\n    "certificateStore":"",\r\n    "certificateUrl":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--index <index>', $('Indexer: index.'))
-  .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
-  .option('--certificate-store', $('Remove the certificate-store value.'))
-  .option('--certificate-url', $('Remove the certificate-url value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false || options.certificateStore || options.certificateUrl;
-    if (anySubItem) {
-      var subItemPath = null;
-      if (options.certificateStore) {
-        subItemPath = options.path + '/certificateStore';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.certificateUrl) {
-        subItemPath = options.path + '/certificateUrl';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-    }
-    else {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-or-update-parameters add vault-certificates
-  var catparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates2 = catparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates2 = parametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates2.category('vault-certificates')
-  .description($('Commands to set/remove/add vault-certificates of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetVaultCertificates2.command('add')
-  .description($('Add vault-certificates in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "vaultCertificates" : {\r\n    "certificateStore":"",\r\n    "certificateUrl":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--key <key>', $('The JSON key.'))
-  .option('--value <value>', $('The JSON value.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--certificate-store <certificateStore>', $('Add the certificate-store value.'))
-  .option('--certificate-url <certificateUrl>', $('Add the certificate-url value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'add';
-    options.path = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
-    cli.output.verbose('options.path = ' + options.path);
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '') + '/' + 'certificateStore';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.certificateStore) {
-      if (options.parse && options.certificateStore) {
-        options.certificateStore = JSON.parse(options.certificateStore);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateStore}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '') + '/' + 'certificateUrl';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.certificateUrl) {
-      if (options.parse && options.certificateUrl) {
-        options.certificateUrl = JSON.parse(options.certificateUrl);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateUrl}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters set windows-configuration
-  var catparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration0 = catparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration0 = parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration0.category('windows-configuration')
-  .description($('Commands to set/remove/add windows-configuration of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration0.command('set')
-  .description($('Set windows-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "windowsConfiguration" : {\r\n    "additionalUnattendContents":[\r\n      {\r\n        "componentName":"",\r\n        "content":"",\r\n        "passName":"",\r\n        "settingName":""\r\n      }\r\n    ],\r\n    "enableAutomaticUpdates":null,\r\n    "provisionVMAgent":null,\r\n    "timeZone":"",\r\n    "winRMConfiguration":{\r\n      "listeners":[\r\n        {\r\n          "certificateUrl":"",\r\n          "protocol":""\r\n        }\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--additional-unattend-contents <additionalUnattendContents>', $('Set the additional-unattend-contents value.'))
-  .option('--enable-automatic-updates <enableAutomaticUpdates>', $('Set the enable-automatic-updates value.'))
-  .option('--provision-vm-agent <provisionVMAgent>', $('Set the provision-vm-agent value.'))
-  .option('--time-zone <timeZone>', $('Set the time-zone value.'))
-  .option('--win-rm-configuration <winRMConfiguration>', $('Set the win-rm-configuration value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'replace';
-    options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration';
-    var paramPath = options.path + '/' + 'additionalUnattendContents';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.additionalUnattendContents) {
-      if (options.parse && options.additionalUnattendContents) {
-        options.additionalUnattendContents = JSON.parse(options.additionalUnattendContents);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.additionalUnattendContents}]);
-    }
-    paramPath = options.path + '/' + 'enableAutomaticUpdates';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.enableAutomaticUpdates) {
-      if (options.parse && options.enableAutomaticUpdates) {
-        options.enableAutomaticUpdates = JSON.parse(options.enableAutomaticUpdates);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.enableAutomaticUpdates}]);
-    }
-    paramPath = options.path + '/' + 'provisionVMAgent';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.provisionVMAgent) {
-      if (options.parse && options.provisionVMAgent) {
-        options.provisionVMAgent = JSON.parse(options.provisionVMAgent);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisionVMAgent}]);
-    }
-    paramPath = options.path + '/' + 'timeZone';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.timeZone) {
-      if (options.parse && options.timeZone) {
-        options.timeZone = JSON.parse(options.timeZone);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.timeZone}]);
-    }
-    paramPath = options.path + '/' + 'winRMConfiguration';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.winRMConfiguration) {
-      if (options.parse && options.winRMConfiguration) {
-        options.winRMConfiguration = JSON.parse(options.winRMConfiguration);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.winRMConfiguration}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters remove windows-configuration
-  var catparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration1 = catparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration1.category('windows-configuration')
-  .description($('Commands to set/remove/add windows-configuration of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration1.command('remove')
-  .description($('Remove windows-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "windowsConfiguration" : {\r\n    "additionalUnattendContents":[\r\n      {\r\n        "componentName":"",\r\n        "content":"",\r\n        "passName":"",\r\n        "settingName":""\r\n      }\r\n    ],\r\n    "enableAutomaticUpdates":null,\r\n    "provisionVMAgent":null,\r\n    "timeZone":"",\r\n    "winRMConfiguration":{\r\n      "listeners":[\r\n        {\r\n          "certificateUrl":"",\r\n          "protocol":""\r\n        }\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--additional-unattend-contents', $('Remove the additional-unattend-contents value.'))
-  .option('--enable-automatic-updates', $('Remove the enable-automatic-updates value.'))
-  .option('--provision-vm-agent', $('Remove the provision-vm-agent value.'))
-  .option('--time-zone', $('Remove the time-zone value.'))
-  .option('--win-rm-configuration', $('Remove the win-rm-configuration value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration';
-    var anySubItem = false || options.additionalUnattendContents || options.enableAutomaticUpdates || options.provisionVMAgent || options.timeZone || options.winRMConfiguration;
-    if (anySubItem) {
-      var subItemPath = null;
-      if (options.additionalUnattendContents) {
-        subItemPath = options.path + '/additionalUnattendContents';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.enableAutomaticUpdates) {
-        subItemPath = options.path + '/enableAutomaticUpdates';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.provisionVMAgent) {
-        subItemPath = options.path + '/provisionVMAgent';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.timeZone) {
-        subItemPath = options.path + '/timeZone';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.winRMConfiguration) {
-        subItemPath = options.path + '/winRMConfiguration';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-    }
-    else {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-or-update-parameters add windows-configuration
-  var catparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration2 = catparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration2 = parametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration2.category('windows-configuration')
-  .description($('Commands to set/remove/add windows-configuration of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetWindowsConfiguration2.command('add')
-  .description($('Add windows-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "windowsConfiguration" : {\r\n    "additionalUnattendContents":[\r\n      {\r\n        "componentName":"",\r\n        "content":"",\r\n        "passName":"",\r\n        "settingName":""\r\n      }\r\n    ],\r\n    "enableAutomaticUpdates":null,\r\n    "provisionVMAgent":null,\r\n    "timeZone":"",\r\n    "winRMConfiguration":{\r\n      "listeners":[\r\n        {\r\n          "certificateUrl":"",\r\n          "protocol":""\r\n        }\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--key <key>', $('The JSON key.'))
-  .option('--value <value>', $('The JSON value.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--additional-unattend-contents <additionalUnattendContents>', $('Add the additional-unattend-contents value.'))
-  .option('--enable-automatic-updates <enableAutomaticUpdates>', $('Add the enable-automatic-updates value.'))
-  .option('--provision-vm-agent <provisionVMAgent>', $('Add the provision-vm-agent value.'))
-  .option('--time-zone <timeZone>', $('Add the time-zone value.'))
-  .option('--win-rm-configuration <winRMConfiguration>', $('Add the win-rm-configuration value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'add';
-    options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + options.key;
-    cli.output.verbose('options.path = ' + options.path);
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + 'additionalUnattendContents';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.additionalUnattendContents) {
-      if (options.parse && options.additionalUnattendContents) {
-        options.additionalUnattendContents = JSON.parse(options.additionalUnattendContents);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.additionalUnattendContents}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + 'enableAutomaticUpdates';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.enableAutomaticUpdates) {
-      if (options.parse && options.enableAutomaticUpdates) {
-        options.enableAutomaticUpdates = JSON.parse(options.enableAutomaticUpdates);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.enableAutomaticUpdates}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + 'provisionVMAgent';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.provisionVMAgent) {
-      if (options.parse && options.provisionVMAgent) {
-        options.provisionVMAgent = JSON.parse(options.provisionVMAgent);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisionVMAgent}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + 'timeZone';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.timeZone) {
-      if (options.parse && options.timeZone) {
-        options.timeZone = JSON.parse(options.timeZone);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.timeZone}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration' + '/' + 'winRMConfiguration';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.winRMConfiguration) {
-      if (options.parse && options.winRMConfiguration) {
-        options.winRMConfiguration = JSON.parse(options.winRMConfiguration);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.winRMConfiguration}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters set additional-unattend-contents
-  var catparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents0 = catparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents0 = parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents0.category('additional-unattend-contents')
-  .description($('Commands to set/remove/add additional-unattend-contents of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents0.command('set')
-  .description($('Set additional-unattend-contents in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "additionalUnattendContents" : {\r\n    "componentName":"",\r\n    "content":"",\r\n    "passName":"",\r\n    "settingName":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--index <index>', $('Indexer: index.'))
-  .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--component-name <componentName>', $('Set the component-name value.'))
-  .option('--content <content>', $('Set the content value.'))
-  .option('--pass-name <passName>', $('Set the pass-name value.'))
-  .option('--setting-name <settingName>', $('Set the setting-name value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'replace';
-    options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
-    var paramPath = options.path + '/' + 'componentName';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.componentName) {
-      if (options.parse && options.componentName) {
-        options.componentName = JSON.parse(options.componentName);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.componentName}]);
-    }
-    paramPath = options.path + '/' + 'content';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.content) {
-      if (options.parse && options.content) {
-        options.content = JSON.parse(options.content);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.content}]);
-    }
-    paramPath = options.path + '/' + 'passName';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.passName) {
-      if (options.parse && options.passName) {
-        options.passName = JSON.parse(options.passName);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.passName}]);
-    }
-    paramPath = options.path + '/' + 'settingName';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.settingName) {
-      if (options.parse && options.settingName) {
-        options.settingName = JSON.parse(options.settingName);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.settingName}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters remove additional-unattend-contents
-  var catparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents1 = catparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents1 = parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents1.category('additional-unattend-contents')
-  .description($('Commands to set/remove/add additional-unattend-contents of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents1.command('remove')
-  .description($('Remove additional-unattend-contents in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "additionalUnattendContents" : {\r\n    "componentName":"",\r\n    "content":"",\r\n    "passName":"",\r\n    "settingName":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--index <index>', $('Indexer: index.'))
-  .option('--component-name', $('Remove the component-name value.'))
-  .option('--content', $('Remove the content value.'))
-  .option('--pass-name', $('Remove the pass-name value.'))
-  .option('--setting-name', $('Remove the setting-name value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false || options.componentName || options.content || options.passName || options.settingName;
-    if (anySubItem) {
-      var subItemPath = null;
-      if (options.componentName) {
-        subItemPath = options.path + '/componentName';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.content) {
-        subItemPath = options.path + '/content';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.passName) {
-        subItemPath = options.path + '/passName';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.settingName) {
-        subItemPath = options.path + '/settingName';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-    }
-    else {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-or-update-parameters add additional-unattend-contents
-  var catparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents2 = catparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents2 = parametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents2.category('additional-unattend-contents')
-  .description($('Commands to set/remove/add additional-unattend-contents of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetAdditionalUnattendContents2.command('add')
-  .description($('Add additional-unattend-contents in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "additionalUnattendContents" : {\r\n    "componentName":"",\r\n    "content":"",\r\n    "passName":"",\r\n    "settingName":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--key <key>', $('The JSON key.'))
-  .option('--value <value>', $('The JSON value.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--component-name <componentName>', $('Add the component-name value.'))
-  .option('--content <content>', $('Add the content value.'))
-  .option('--pass-name <passName>', $('Add the pass-name value.'))
-  .option('--setting-name <settingName>', $('Add the setting-name value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'add';
-    options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
-    cli.output.verbose('options.path = ' + options.path);
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '') + '/' + 'componentName';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.componentName) {
-      if (options.parse && options.componentName) {
-        options.componentName = JSON.parse(options.componentName);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.componentName}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '') + '/' + 'content';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.content) {
-      if (options.parse && options.content) {
-        options.content = JSON.parse(options.content);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.content}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '') + '/' + 'passName';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.passName) {
-      if (options.parse && options.passName) {
-        options.passName = JSON.parse(options.passName);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.passName}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/additionalUnattendContents' + (options.index ? ('/' + options.index) : '') + '/' + 'settingName';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.settingName) {
-      if (options.parse && options.settingName) {
-        options.settingName = JSON.parse(options.settingName);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.settingName}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters set win-rm-configuration
-  var catparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration0 = catparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration0 = parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration0.category('win-rm-configuration')
-  .description($('Commands to set/remove/add win-rm-configuration of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration0.command('set')
-  .description($('Set win-rm-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "winRMConfiguration" : {\r\n    "listeners":[\r\n      {\r\n        "certificateUrl":"",\r\n        "protocol":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--listeners <listeners>', $('Set the listeners value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'replace';
-    options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration';
-    var paramPath = options.path + '/' + 'listeners';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.listeners) {
-      if (options.parse && options.listeners) {
-        options.listeners = JSON.parse(options.listeners);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.listeners}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters remove win-rm-configuration
-  var catparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration1 = catparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration1.category('win-rm-configuration')
-  .description($('Commands to set/remove/add win-rm-configuration of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration1.command('remove')
-  .description($('Remove win-rm-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "winRMConfiguration" : {\r\n    "listeners":[\r\n      {\r\n        "certificateUrl":"",\r\n        "protocol":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--listeners', $('Remove the listeners value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration';
-    var anySubItem = false || options.listeners;
-    if (anySubItem) {
-      var subItemPath = null;
-      if (options.listeners) {
-        subItemPath = options.path + '/listeners';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-    }
-    else {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-or-update-parameters add win-rm-configuration
-  var catparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration2 = catparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration2 = parametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration2.category('win-rm-configuration')
-  .description($('Commands to set/remove/add win-rm-configuration of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetWinRMConfiguration2.command('add')
-  .description($('Add win-rm-configuration in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "winRMConfiguration" : {\r\n    "listeners":[\r\n      {\r\n        "certificateUrl":"",\r\n        "protocol":""\r\n      }\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--key <key>', $('The JSON key.'))
-  .option('--value <value>', $('The JSON value.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--listeners <listeners>', $('Add the listeners value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'add';
-    options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration' + '/' + options.key;
-    cli.output.verbose('options.path = ' + options.path);
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration' + '/' + 'listeners';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.listeners) {
-      if (options.parse && options.listeners) {
-        options.listeners = JSON.parse(options.listeners);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.listeners}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters set listeners
-  var catparametersCreateOrUpdateVirtualMachineScaleSetListeners0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetListeners0 = catparametersCreateOrUpdateVirtualMachineScaleSetListeners0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetListeners0 = parametersCreateOrUpdateVirtualMachineScaleSetListeners0.category('listeners')
-  .description($('Commands to set/remove/add listeners of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetListeners0.command('set')
-  .description($('Set listeners in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "listeners" : {\r\n    "certificateUrl":"",\r\n    "protocol":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--index <index>', $('Indexer: index.'))
-  .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--certificate-url <certificateUrl>', $('Set the certificate-url value.'))
-  .option('--protocol <protocol>', $('Set the protocol value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'replace';
-    options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
-    var paramPath = options.path + '/' + 'certificateUrl';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.certificateUrl) {
-      if (options.parse && options.certificateUrl) {
-        options.certificateUrl = JSON.parse(options.certificateUrl);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateUrl}]);
-    }
-    paramPath = options.path + '/' + 'protocol';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.protocol) {
-      if (options.parse && options.protocol) {
-        options.protocol = JSON.parse(options.protocol);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protocol}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters remove listeners
-  var catparametersCreateOrUpdateVirtualMachineScaleSetListeners1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetListeners1 = catparametersCreateOrUpdateVirtualMachineScaleSetListeners1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetListeners1 = parametersCreateOrUpdateVirtualMachineScaleSetListeners1.category('listeners')
-  .description($('Commands to set/remove/add listeners of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetListeners1.command('remove')
-  .description($('Remove listeners in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "listeners" : {\r\n    "certificateUrl":"",\r\n    "protocol":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--index <index>', $('Indexer: index.'))
-  .option('--certificate-url', $('Remove the certificate-url value.'))
-  .option('--protocol', $('Remove the protocol value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners' + (options.index ? ('/' + options.index) : '');
-    var anySubItem = false || options.certificateUrl || options.protocol;
-    if (anySubItem) {
-      var subItemPath = null;
-      if (options.certificateUrl) {
-        subItemPath = options.path + '/certificateUrl';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.protocol) {
-        subItemPath = options.path + '/protocol';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-    }
-    else {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-or-update-parameters add listeners
-  var catparametersCreateOrUpdateVirtualMachineScaleSetListeners2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetListeners2 = catparametersCreateOrUpdateVirtualMachineScaleSetListeners2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetListeners2 = parametersCreateOrUpdateVirtualMachineScaleSetListeners2.category('listeners')
-  .description($('Commands to set/remove/add listeners of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetListeners2.command('add')
-  .description($('Add listeners in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "listeners" : {\r\n    "certificateUrl":"",\r\n    "protocol":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--key <key>', $('The JSON key.'))
-  .option('--value <value>', $('The JSON value.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--certificate-url <certificateUrl>', $('Add the certificate-url value.'))
-  .option('--protocol <protocol>', $('Add the protocol value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'add';
-    options.path = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
-    cli.output.verbose('options.path = ' + options.path);
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners' + (options.index ? ('/' + options.index) : '') + '/' + 'certificateUrl';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.certificateUrl) {
-      if (options.parse && options.certificateUrl) {
-        options.certificateUrl = JSON.parse(options.certificateUrl);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateUrl}]);
-    }
-    paramPath = '/virtualMachineProfile/oSProfile/windowsConfiguration/winRMConfiguration/listeners' + (options.index ? ('/' + options.index) : '') + '/' + 'protocol';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.protocol) {
-      if (options.parse && options.protocol) {
-        options.protocol = JSON.parse(options.protocol);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protocol}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters set storage-profile
-  var catparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile0 = catparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile0.category('storage-profile')
-  .description($('Commands to set/remove/add storage-profile of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile0.command('set')
-  .description($('Set storage-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "storageProfile" : {\r\n    "imageReference":{\r\n      "offer":"",\r\n      "publisher":"",\r\n      "sku":"",\r\n      "version":""\r\n    },\r\n    "oSDisk":{\r\n      "caching":"",\r\n      "createOption":"",\r\n      "name":"",\r\n      "operatingSystemType":"",\r\n      "sourceImage":{\r\n        "uri":""\r\n      },\r\n      "virtualHardDiskContainers":[\r\n        ""\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--image-reference <imageReference>', $('Set the image-reference value.'))
-  .option('--os-disk <oSDisk>', $('Set the os-disk value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'replace';
-    options.path = '/virtualMachineProfile/storageProfile';
-    var paramPath = options.path + '/' + 'imageReference';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.imageReference) {
-      if (options.parse && options.imageReference) {
-        options.imageReference = JSON.parse(options.imageReference);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.imageReference}]);
-    }
-    paramPath = options.path + '/' + 'oSDisk';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.oSDisk) {
-      if (options.parse && options.oSDisk) {
-        options.oSDisk = JSON.parse(options.oSDisk);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.oSDisk}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters remove storage-profile
-  var catparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile1.category('storage-profile')
-  .description($('Commands to set/remove/add storage-profile of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile1.command('remove')
-  .description($('Remove storage-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "storageProfile" : {\r\n    "imageReference":{\r\n      "offer":"",\r\n      "publisher":"",\r\n      "sku":"",\r\n      "version":""\r\n    },\r\n    "oSDisk":{\r\n      "caching":"",\r\n      "createOption":"",\r\n      "name":"",\r\n      "operatingSystemType":"",\r\n      "sourceImage":{\r\n        "uri":""\r\n      },\r\n      "virtualHardDiskContainers":[\r\n        ""\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--image-reference', $('Remove the image-reference value.'))
-  .option('--os-disk', $('Remove the os-disk value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/virtualMachineProfile/storageProfile';
-    var anySubItem = false || options.imageReference || options.oSDisk;
-    if (anySubItem) {
-      var subItemPath = null;
-      if (options.imageReference) {
-        subItemPath = options.path + '/imageReference';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.oSDisk) {
-        subItemPath = options.path + '/oSDisk';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-    }
-    else {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-or-update-parameters add storage-profile
-  var catparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile2 = catparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile2 = parametersCreateOrUpdateVirtualMachineScaleSetStorageProfile2.category('storage-profile')
-  .description($('Commands to set/remove/add storage-profile of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetStorageProfile2.command('add')
-  .description($('Add storage-profile in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "storageProfile" : {\r\n    "imageReference":{\r\n      "offer":"",\r\n      "publisher":"",\r\n      "sku":"",\r\n      "version":""\r\n    },\r\n    "oSDisk":{\r\n      "caching":"",\r\n      "createOption":"",\r\n      "name":"",\r\n      "operatingSystemType":"",\r\n      "sourceImage":{\r\n        "uri":""\r\n      },\r\n      "virtualHardDiskContainers":[\r\n        ""\r\n      ]\r\n    }\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--key <key>', $('The JSON key.'))
-  .option('--value <value>', $('The JSON value.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--image-reference <imageReference>', $('Add the image-reference value.'))
-  .option('--os-disk <oSDisk>', $('Add the os-disk value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'add';
-    options.path = '/virtualMachineProfile/storageProfile' + '/' + options.key;
-    cli.output.verbose('options.path = ' + options.path);
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/storageProfile' + '/' + 'imageReference';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.imageReference) {
-      if (options.parse && options.imageReference) {
-        options.imageReference = JSON.parse(options.imageReference);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.imageReference}]);
-    }
-    paramPath = '/virtualMachineProfile/storageProfile' + '/' + 'oSDisk';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.oSDisk) {
-      if (options.parse && options.oSDisk) {
-        options.oSDisk = JSON.parse(options.oSDisk);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.oSDisk}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters set image-reference
-  var catparametersCreateOrUpdateVirtualMachineScaleSetImageReference0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetImageReference0 = catparametersCreateOrUpdateVirtualMachineScaleSetImageReference0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetImageReference0 = parametersCreateOrUpdateVirtualMachineScaleSetImageReference0.category('image-reference')
-  .description($('Commands to set/remove/add image-reference of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetImageReference0.command('set')
-  .description($('Set image-reference in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "imageReference" : {\r\n    "offer":"",\r\n    "publisher":"",\r\n    "sku":"",\r\n    "version":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--offer <offer>', $('Set the offer value.'))
+  .option('--name <name>', $('Set the name value.'))
   .option('--publisher <publisher>', $('Set the publisher value.'))
-  .option('--sku <sku>', $('Set the sku value.'))
-  .option('--version <version>', $('Set the version value.'))
+  .option('--virtual-machine-scale-set-extension-type <virtualMachineScaleSetExtensionType>', $('Set the virtual-machine-scale-set-extension-type value.'))
+  .option('--type-handler-version <typeHandlerVersion>', $('Set the type-handler-version value.'))
+  .option('--auto-upgrade-minor-version <autoUpgradeMinorVersion>', $('Set the auto-upgrade-minor-version value.'))
+  .option('--settings <settings>', $('Set the settings value.'))
+  .option('--protected-settings <protectedSettings>', $('Set the protected-settings value.'))
+  .option('--provisioning-state <provisioningState>', $('Set the provisioning-state value.'))
+  .option('--id <id>', $('Set the id value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -5133,16 +5331,19 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
-    options.path = '/virtualMachineProfile/storageProfile/imageReference';
-    var paramPath = options.path + '/' + 'offer';
+    options.path = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '');
+    if (options.value) {
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
+    }
+    var paramPath = options.path + '/' + 'name';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.offer) {
-      if (options.parse && options.offer) {
-        options.offer = JSON.parse(options.offer);
+    if (options.name) {
+      if (options.parse && options.name) {
+        options.name = JSON.parse(options.name);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.offer}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
     paramPath = options.path + '/' + 'publisher';
     cli.output.verbose('================================================');
@@ -5154,25 +5355,76 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.publisher}]);
     }
-    paramPath = options.path + '/' + 'sku';
+    paramPath = options.path + '/' + 'virtualMachineScaleSetExtensionType';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.sku) {
-      if (options.parse && options.sku) {
-        options.sku = JSON.parse(options.sku);
+    if (options.virtualMachineScaleSetExtensionType) {
+      if (options.parse && options.virtualMachineScaleSetExtensionType) {
+        options.virtualMachineScaleSetExtensionType = JSON.parse(options.virtualMachineScaleSetExtensionType);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sku}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.virtualMachineScaleSetExtensionType}]);
     }
-    paramPath = options.path + '/' + 'version';
+    paramPath = options.path + '/' + 'typeHandlerVersion';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.version) {
-      if (options.parse && options.version) {
-        options.version = JSON.parse(options.version);
+    if (options.typeHandlerVersion) {
+      if (options.parse && options.typeHandlerVersion) {
+        options.typeHandlerVersion = JSON.parse(options.typeHandlerVersion);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.version}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.typeHandlerVersion}]);
+    }
+    paramPath = options.path + '/' + 'autoUpgradeMinorVersion';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.autoUpgradeMinorVersion) {
+      if (options.parse && options.autoUpgradeMinorVersion) {
+        options.autoUpgradeMinorVersion = JSON.parse(options.autoUpgradeMinorVersion);
+      }
+        options.autoUpgradeMinorVersion = JSON.parse(options.autoUpgradeMinorVersion);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.autoUpgradeMinorVersion}]);
+    }
+    paramPath = options.path + '/' + 'settings';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.settings) {
+      if (options.parse && options.settings) {
+        options.settings = JSON.parse(options.settings);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.settings}]);
+    }
+    paramPath = options.path + '/' + 'protectedSettings';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.protectedSettings) {
+      if (options.parse && options.protectedSettings) {
+        options.protectedSettings = JSON.parse(options.protectedSettings);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protectedSettings}]);
+    }
+    paramPath = options.path + '/' + 'provisioningState';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.provisioningState) {
+      if (options.parse && options.provisioningState) {
+        options.provisioningState = JSON.parse(options.provisioningState);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisioningState}]);
+    }
+    paramPath = options.path + '/' + 'id';
+    cli.output.verbose('================================================');
+    cli.output.verbose('JSON Parameters Path:' + paramPath);
+    cli.output.verbose('================================================');
+    if (options.id) {
+      if (options.parse && options.id) {
+        options.id = JSON.parse(options.id);
+      }
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -5185,20 +5437,26 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //create-or-update-parameters remove image-reference
-  var catparametersCreateOrUpdateVirtualMachineScaleSetImageReference1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetImageReference1 = catparametersCreateOrUpdateVirtualMachineScaleSetImageReference1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetImageReference1 = parametersCreateOrUpdateVirtualMachineScaleSetImageReference1.category('image-reference')
-  .description($('Commands to set/remove/add image-reference of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetImageReference1.command('remove')
-  .description($('Remove image-reference in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "imageReference" : {\r\n    "offer":"",\r\n    "publisher":"",\r\n    "sku":"",\r\n    "version":""\r\n  }\r\n  ...\r\n}\r\n'))
+  //create-or-update-parameters remove extensions
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsExtensions1 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsExtensions1 = catparametersCreateOrUpdateVirtualMachineScaleSetsExtensions1.category('create-or-update-parameters')
+  .description($('Commands to manage parameter for your virtual-machine-scale-sets.'));
+  var removeparametersCreateOrUpdateVirtualMachineScaleSetsExtensions1 = parametersCreateOrUpdateVirtualMachineScaleSetsExtensions1.category('extensions')
+  .description($('Commands to set/remove/add extensions of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  removeparametersCreateOrUpdateVirtualMachineScaleSetsExtensions1.command('remove')
+  .description($('Remove extensions in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "extensions" : {\r\n             "name":"",\r\n             "publisher":"",\r\n             "virtualMachineScaleSetExtensionType":"",\r\n             "typeHandlerVersion":"",\r\n             "autoUpgradeMinorVersion":null,\r\n             "settings":{\r\n             },\r\n             "protectedSettings":{\r\n             },\r\n             "provisioningState":"",\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--offer', $('Remove the offer value.'))
+  .option('--index <index>', $('Indexer: index.'))
+  .option('--name', $('Remove the name value.'))
   .option('--publisher', $('Remove the publisher value.'))
-  .option('--sku', $('Remove the sku value.'))
-  .option('--version', $('Remove the version value.'))
+  .option('--virtual-machine-scale-set-extension-type', $('Remove the virtual-machine-scale-set-extension-type value.'))
+  .option('--type-handler-version', $('Remove the type-handler-version value.'))
+  .option('--auto-upgrade-minor-version', $('Remove the auto-upgrade-minor-version value.'))
+  .option('--settings', $('Remove the settings value.'))
+  .option('--protected-settings', $('Remove the protected-settings value.'))
+  .option('--provisioning-state', $('Remove the provisioning-state value.'))
+  .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     cli.output.verbose('=====================================');
@@ -5209,24 +5467,44 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'remove';
-    options.path = '/virtualMachineProfile/storageProfile/imageReference';
-    var anySubItem = false || options.offer || options.publisher || options.sku || options.version;
+    options.path = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '');
+    var anySubItem = false || options.name || options.publisher || options.virtualMachineScaleSetExtensionType || options.typeHandlerVersion || options.autoUpgradeMinorVersion || options.settings || options.protectedSettings || options.provisioningState || options.id;
     if (anySubItem) {
       var subItemPath = null;
-      if (options.offer) {
-        subItemPath = options.path + '/offer';
+      if (options.name) {
+        subItemPath = options.path + '/name';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
       if (options.publisher) {
         subItemPath = options.path + '/publisher';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
-      if (options.sku) {
-        subItemPath = options.path + '/sku';
+      if (options.virtualMachineScaleSetExtensionType) {
+        subItemPath = options.path + '/virtualMachineScaleSetExtensionType';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
-      if (options.version) {
-        subItemPath = options.path + '/version';
+      if (options.typeHandlerVersion) {
+        subItemPath = options.path + '/typeHandlerVersion';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.autoUpgradeMinorVersion) {
+        subItemPath = options.path + '/autoUpgradeMinorVersion';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.settings) {
+        subItemPath = options.path + '/settings';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.protectedSettings) {
+        subItemPath = options.path + '/protectedSettings';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.provisioningState) {
+        subItemPath = options.path + '/provisioningState';
+        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
+      }
+      if (options.id) {
+        subItemPath = options.path + '/id';
         jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
       }
     }
@@ -5244,23 +5522,28 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //create-or-update-parameters add image-reference
-  var catparametersCreateOrUpdateVirtualMachineScaleSetImageReference2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetImageReference2 = catparametersCreateOrUpdateVirtualMachineScaleSetImageReference2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetImageReference2 = parametersCreateOrUpdateVirtualMachineScaleSetImageReference2.category('image-reference')
-  .description($('Commands to set/remove/add image-reference of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetImageReference2.command('add')
-  .description($('Add image-reference in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "imageReference" : {\r\n    "offer":"",\r\n    "publisher":"",\r\n    "sku":"",\r\n    "version":""\r\n  }\r\n  ...\r\n}\r\n'))
+  //create-or-update-parameters add extensions
+  var catparametersCreateOrUpdateVirtualMachineScaleSetsExtensions2 = cli.category('vmss');
+  var parametersCreateOrUpdateVirtualMachineScaleSetsExtensions2 = catparametersCreateOrUpdateVirtualMachineScaleSetsExtensions2.category('create-or-update-parameters')
+  .description($('Commands to manage the parameter input file for your virtual-machine-scale-sets.'));
+  var addparametersCreateOrUpdateVirtualMachineScaleSetsExtensions2 = parametersCreateOrUpdateVirtualMachineScaleSetsExtensions2.category('extensions')
+  .description($('Commands to set/remove/add extensions of virtual-machine-scale-sets in create-or-update-parameters file.'));
+  addparametersCreateOrUpdateVirtualMachineScaleSetsExtensions2.command('add')
+  .description($('Add extensions in create-or-update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "extensions" : {\r\n             "name":"",\r\n             "publisher":"",\r\n             "virtualMachineScaleSetExtensionType":"",\r\n             "typeHandlerVersion":"",\r\n             "autoUpgradeMinorVersion":null,\r\n             "settings":{\r\n             },\r\n             "protectedSettings":{\r\n             },\r\n             "provisioningState":"",\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss create-or-update-parameters * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--key <key>', $('The JSON key.'))
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--offer <offer>', $('Add the offer value.'))
+  .option('--name <name>', $('Add the name value.'))
   .option('--publisher <publisher>', $('Add the publisher value.'))
-  .option('--sku <sku>', $('Add the sku value.'))
-  .option('--version <version>', $('Add the version value.'))
+  .option('--virtual-machine-scale-set-extension-type <virtualMachineScaleSetExtensionType>', $('Add the virtual-machine-scale-set-extension-type value.'))
+  .option('--type-handler-version <typeHandlerVersion>', $('Add the type-handler-version value.'))
+  .option('--auto-upgrade-minor-version <autoUpgradeMinorVersion>', $('Add the auto-upgrade-minor-version value.'))
+  .option('--settings <settings>', $('Add the settings value.'))
+  .option('--protected-settings <protectedSettings>', $('Add the protected-settings value.'))
+  .option('--provisioning-state <provisioningState>', $('Add the provisioning-state value.'))
+  .option('--id <id>', $('Add the id value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options));
     if (options.parse && options.value) {
@@ -5275,20 +5558,20 @@ exports.init = function (cli) {
     cli.output.verbose('JSON object:');
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'add';
-    options.path = '/virtualMachineProfile/storageProfile/imageReference' + '/' + options.key;
+    options.path = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
     cli.output.verbose('options.path = ' + options.path);
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'offer';
+    var paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'name';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.offer) {
-      if (options.parse && options.offer) {
-        options.offer = JSON.parse(options.offer);
+    if (options.name) {
+      if (options.parse && options.name) {
+        options.name = JSON.parse(options.name);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.offer}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
     }
-    paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'publisher';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'publisher';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
@@ -5298,566 +5581,77 @@ exports.init = function (cli) {
       }
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.publisher}]);
     }
-    paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'sku';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'virtualMachineScaleSetExtensionType';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.sku) {
-      if (options.parse && options.sku) {
-        options.sku = JSON.parse(options.sku);
+    if (options.virtualMachineScaleSetExtensionType) {
+      if (options.parse && options.virtualMachineScaleSetExtensionType) {
+        options.virtualMachineScaleSetExtensionType = JSON.parse(options.virtualMachineScaleSetExtensionType);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sku}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.virtualMachineScaleSetExtensionType}]);
     }
-    paramPath = '/virtualMachineProfile/storageProfile/imageReference' + '/' + 'version';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'typeHandlerVersion';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.version) {
-      if (options.parse && options.version) {
-        options.version = JSON.parse(options.version);
+    if (options.typeHandlerVersion) {
+      if (options.parse && options.typeHandlerVersion) {
+        options.typeHandlerVersion = JSON.parse(options.typeHandlerVersion);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.version}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.typeHandlerVersion}]);
     }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters set os-disk
-  var catparametersCreateOrUpdateVirtualMachineScaleSetOSDisk0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetOSDisk0 = catparametersCreateOrUpdateVirtualMachineScaleSetOSDisk0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetOSDisk0 = parametersCreateOrUpdateVirtualMachineScaleSetOSDisk0.category('os-disk')
-  .description($('Commands to set/remove/add os-disk of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetOSDisk0.command('set')
-  .description($('Set os-disk in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "oSDisk" : {\r\n    "caching":"",\r\n    "createOption":"",\r\n    "name":"",\r\n    "operatingSystemType":"",\r\n    "sourceImage":{\r\n      "uri":""\r\n    },\r\n    "virtualHardDiskContainers":[\r\n      ""\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--caching <caching>', $('Set the caching value.'))
-  .option('--create-option <createOption>', $('Set the create-option value.'))
-  .option('--name <name>', $('Set the name value.'))
-  .option('--operating-system-type <operatingSystemType>', $('Set the operating-system-type value.'))
-  .option('--source-image <sourceImage>', $('Set the source-image value.'))
-  .option('--virtual-hard-disk-containers <virtualHardDiskContainers>', $('Set the virtual-hard-disk-containers value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'replace';
-    options.path = '/virtualMachineProfile/storageProfile/oSDisk';
-    var paramPath = options.path + '/' + 'caching';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'autoUpgradeMinorVersion';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.caching) {
-      if (options.parse && options.caching) {
-        options.caching = JSON.parse(options.caching);
+    if (options.autoUpgradeMinorVersion) {
+      if (options.parse && options.autoUpgradeMinorVersion) {
+        options.autoUpgradeMinorVersion = JSON.parse(options.autoUpgradeMinorVersion);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.caching}]);
+        options.autoUpgradeMinorVersion = JSON.parse(options.autoUpgradeMinorVersion);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.autoUpgradeMinorVersion}]);
     }
-    paramPath = options.path + '/' + 'createOption';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'settings';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.createOption) {
-      if (options.parse && options.createOption) {
-        options.createOption = JSON.parse(options.createOption);
+    if (options.settings) {
+      if (options.parse && options.settings) {
+        options.settings = JSON.parse(options.settings);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.createOption}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.settings}]);
     }
-    paramPath = options.path + '/' + 'name';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'protectedSettings';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.name) {
-      if (options.parse && options.name) {
-        options.name = JSON.parse(options.name);
+    if (options.protectedSettings) {
+      if (options.parse && options.protectedSettings) {
+        options.protectedSettings = JSON.parse(options.protectedSettings);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protectedSettings}]);
     }
-    paramPath = options.path + '/' + 'operatingSystemType';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'provisioningState';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.operatingSystemType) {
-      if (options.parse && options.operatingSystemType) {
-        options.operatingSystemType = JSON.parse(options.operatingSystemType);
+    if (options.provisioningState) {
+      if (options.parse && options.provisioningState) {
+        options.provisioningState = JSON.parse(options.provisioningState);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.operatingSystemType}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.provisioningState}]);
     }
-    paramPath = options.path + '/' + 'sourceImage';
+    paramPath = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '') + '/' + 'id';
     cli.output.verbose('================================================');
     cli.output.verbose('JSON Parameters Path:' + paramPath);
     cli.output.verbose('================================================');
-    if (options.sourceImage) {
-      if (options.parse && options.sourceImage) {
-        options.sourceImage = JSON.parse(options.sourceImage);
+    if (options.id) {
+      if (options.parse && options.id) {
+        options.id = JSON.parse(options.id);
       }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sourceImage}]);
+      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.id}]);
     }
-    paramPath = options.path + '/' + 'virtualHardDiskContainers';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.virtualHardDiskContainers) {
-      if (options.parse && options.virtualHardDiskContainers) {
-        options.virtualHardDiskContainers = JSON.parse(options.virtualHardDiskContainers);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.virtualHardDiskContainers}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters remove os-disk
-  var catparametersCreateOrUpdateVirtualMachineScaleSetOSDisk1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetOSDisk1 = catparametersCreateOrUpdateVirtualMachineScaleSetOSDisk1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetOSDisk1 = parametersCreateOrUpdateVirtualMachineScaleSetOSDisk1.category('os-disk')
-  .description($('Commands to set/remove/add os-disk of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetOSDisk1.command('remove')
-  .description($('Remove os-disk in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "oSDisk" : {\r\n    "caching":"",\r\n    "createOption":"",\r\n    "name":"",\r\n    "operatingSystemType":"",\r\n    "sourceImage":{\r\n      "uri":""\r\n    },\r\n    "virtualHardDiskContainers":[\r\n      ""\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--caching', $('Remove the caching value.'))
-  .option('--create-option', $('Remove the create-option value.'))
-  .option('--name', $('Remove the name value.'))
-  .option('--operating-system-type', $('Remove the operating-system-type value.'))
-  .option('--source-image', $('Remove the source-image value.'))
-  .option('--virtual-hard-disk-containers', $('Remove the virtual-hard-disk-containers value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/virtualMachineProfile/storageProfile/oSDisk';
-    var anySubItem = false || options.caching || options.createOption || options.name || options.operatingSystemType || options.sourceImage || options.virtualHardDiskContainers;
-    if (anySubItem) {
-      var subItemPath = null;
-      if (options.caching) {
-        subItemPath = options.path + '/caching';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.createOption) {
-        subItemPath = options.path + '/createOption';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.name) {
-        subItemPath = options.path + '/name';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.operatingSystemType) {
-        subItemPath = options.path + '/operatingSystemType';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.sourceImage) {
-        subItemPath = options.path + '/sourceImage';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-      if (options.virtualHardDiskContainers) {
-        subItemPath = options.path + '/virtualHardDiskContainers';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-    }
-    else {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-or-update-parameters add os-disk
-  var catparametersCreateOrUpdateVirtualMachineScaleSetOSDisk2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetOSDisk2 = catparametersCreateOrUpdateVirtualMachineScaleSetOSDisk2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetOSDisk2 = parametersCreateOrUpdateVirtualMachineScaleSetOSDisk2.category('os-disk')
-  .description($('Commands to set/remove/add os-disk of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetOSDisk2.command('add')
-  .description($('Add os-disk in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "oSDisk" : {\r\n    "caching":"",\r\n    "createOption":"",\r\n    "name":"",\r\n    "operatingSystemType":"",\r\n    "sourceImage":{\r\n      "uri":""\r\n    },\r\n    "virtualHardDiskContainers":[\r\n      ""\r\n    ]\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--key <key>', $('The JSON key.'))
-  .option('--value <value>', $('The JSON value.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--caching <caching>', $('Add the caching value.'))
-  .option('--create-option <createOption>', $('Add the create-option value.'))
-  .option('--name <name>', $('Add the name value.'))
-  .option('--operating-system-type <operatingSystemType>', $('Add the operating-system-type value.'))
-  .option('--source-image <sourceImage>', $('Add the source-image value.'))
-  .option('--virtual-hard-disk-containers <virtualHardDiskContainers>', $('Add the virtual-hard-disk-containers value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'add';
-    options.path = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + options.key;
-    cli.output.verbose('options.path = ' + options.path);
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'caching';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.caching) {
-      if (options.parse && options.caching) {
-        options.caching = JSON.parse(options.caching);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.caching}]);
-    }
-    paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'createOption';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.createOption) {
-      if (options.parse && options.createOption) {
-        options.createOption = JSON.parse(options.createOption);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.createOption}]);
-    }
-    paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'name';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.name) {
-      if (options.parse && options.name) {
-        options.name = JSON.parse(options.name);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.name}]);
-    }
-    paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'operatingSystemType';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.operatingSystemType) {
-      if (options.parse && options.operatingSystemType) {
-        options.operatingSystemType = JSON.parse(options.operatingSystemType);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.operatingSystemType}]);
-    }
-    paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'sourceImage';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.sourceImage) {
-      if (options.parse && options.sourceImage) {
-        options.sourceImage = JSON.parse(options.sourceImage);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.sourceImage}]);
-    }
-    paramPath = '/virtualMachineProfile/storageProfile/oSDisk' + '/' + 'virtualHardDiskContainers';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.virtualHardDiskContainers) {
-      if (options.parse && options.virtualHardDiskContainers) {
-        options.virtualHardDiskContainers = JSON.parse(options.virtualHardDiskContainers);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.virtualHardDiskContainers}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters set source-image
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSourceImage0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSourceImage0 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceImage0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetSourceImage0 = parametersCreateOrUpdateVirtualMachineScaleSetSourceImage0.category('source-image')
-  .description($('Commands to set/remove/add source-image of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetSourceImage0.command('set')
-  .description($('Set source-image in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sourceImage" : {\r\n    "uri":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--uri <uri>', $('Set the uri value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'replace';
-    options.path = '/virtualMachineProfile/storageProfile/oSDisk/sourceImage';
-    var paramPath = options.path + '/' + 'uri';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.uri) {
-      if (options.parse && options.uri) {
-        options.uri = JSON.parse(options.uri);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.uri}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters remove source-image
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSourceImage1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSourceImage1 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceImage1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetSourceImage1 = parametersCreateOrUpdateVirtualMachineScaleSetSourceImage1.category('source-image')
-  .description($('Commands to set/remove/add source-image of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetSourceImage1.command('remove')
-  .description($('Remove source-image in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sourceImage" : {\r\n    "uri":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--uri', $('Remove the uri value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/virtualMachineProfile/storageProfile/oSDisk/sourceImage';
-    var anySubItem = false || options.uri;
-    if (anySubItem) {
-      var subItemPath = null;
-      if (options.uri) {
-        subItemPath = options.path + '/uri';
-        jsonpatch.apply(parametersObj, [{op: options.operation, path: subItemPath}]);
-      }
-    }
-    else {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-or-update-parameters add source-image
-  var catparametersCreateOrUpdateVirtualMachineScaleSetSourceImage2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetSourceImage2 = catparametersCreateOrUpdateVirtualMachineScaleSetSourceImage2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetSourceImage2 = parametersCreateOrUpdateVirtualMachineScaleSetSourceImage2.category('source-image')
-  .description($('Commands to set/remove/add source-image of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetSourceImage2.command('add')
-  .description($('Add source-image in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "sourceImage" : {\r\n    "uri":""\r\n  }\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--key <key>', $('The JSON key.'))
-  .option('--value <value>', $('The JSON value.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .option('--uri <uri>', $('Add the uri value.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'add';
-    options.path = '/virtualMachineProfile/storageProfile/oSDisk/sourceImage' + '/' + options.key;
-    cli.output.verbose('options.path = ' + options.path);
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    var paramPath = '/virtualMachineProfile/storageProfile/oSDisk/sourceImage' + '/' + 'uri';
-    cli.output.verbose('================================================');
-    cli.output.verbose('JSON Parameters Path:' + paramPath);
-    cli.output.verbose('================================================');
-    if (options.uri) {
-      if (options.parse && options.uri) {
-        options.uri = JSON.parse(options.uri);
-      }
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.uri}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters set virtual-hard-disk-containers
-  var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers0 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers0 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers0.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var setparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers0 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers0.category('virtual-hard-disk-containers')
-  .description($('Commands to set/remove/add virtual-hard-disk-containers of virtual-machine-scale-set in create-or-update-parameters file.'));
-  setparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers0.command('set')
-  .description($('Set virtual-hard-disk-containers in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "virtualHardDiskContainers" : ""\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--index <index>', $('Indexer: index.'))
-  .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'replace';
-    options.path = '/virtualMachineProfile/storageProfile/oSDisk/virtualHardDiskContainers' + (options.index ? ('/' + options.index) : '');
-    if (options.value) {
-      jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
-    }
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-
-  //create-or-update-parameters remove virtual-hard-disk-containers
-  var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers1 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers1 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers1.category('create-or-update-parameters')
-  .description($('Commands to manage parameter for your virtual-machine-scale-set.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers1 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers1.category('virtual-hard-disk-containers')
-  .description($('Commands to set/remove/add virtual-hard-disk-containers of virtual-machine-scale-set in create-or-update-parameters file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers1.command('remove')
-  .description($('Remove virtual-hard-disk-containers in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "virtualHardDiskContainers" : ""\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--index <index>', $('Indexer: index.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/virtualMachineProfile/storageProfile/oSDisk/virtualHardDiskContainers' + (options.index ? ('/' + options.index) : '');
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-or-update-parameters add virtual-hard-disk-containers
-  var catparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers2 = cli.category('vmss');
-  var parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers2 = catparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers2.category('create-or-update-parameters')
-  .description($('Commands to manage the parameter input file for your virtual-machine-scale-set.'));
-  var addparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers2 = parametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers2.category('virtual-hard-disk-containers')
-  .description($('Commands to set/remove/add virtual-hard-disk-containers of virtual-machine-scale-set in create-or-update-parameters file.'));
-  addparametersCreateOrUpdateVirtualMachineScaleSetVirtualHardDiskContainers2.command('add')
-  .description($('Add virtual-hard-disk-containers in create-or-update-parameters string or files, e.g. \r\n{\r\n  ...\r\n  "virtualHardDiskContainers" : ""\r\n  ...\r\n}\r\n'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--key <key>', $('The JSON key.'))
-  .option('--value <value>', $('The JSON value.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options));
-    if (options.parse && options.value) {
-      options.value = JSON.parse(options.value);
-    }
-    cli.output.verbose(options.value);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'add';
-    options.path = '/virtualMachineProfile/storageProfile/oSDisk/virtualHardDiskContainers' + (options.index ? ('/' + options.index) : '') + '/' + options.key;
-    cli.output.verbose('options.path = ' + options.path);
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
     cli.output.verbose('JSON object (updated):');
@@ -5871,104 +5665,54 @@ exports.init = function (cli) {
 
 
 /*
-  VirtualMachineScaleSet Deallocate
+  VirtualMachineScaleSets Deallocate
   --resource-group-name
   --vm-scale-set-name
+  --instance-ids
 */
-  var virtualMachineScaleSetDeallocate = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetDeallocate.command('deallocate [resource-group-name] [vm-scale-set-name]')
-  .description($('Commands to manage your virtual machine scale set by the deallocate method.'))
-  .usage('[options] <resource-group-name> <vm-scale-set-name>')
+  var virtualMachineScaleSetsDeallocate = cli.category('vmss')
+  .description($('Commands to manage your virtual machine scale sets.  '));
+  virtualMachineScaleSetsDeallocate.command('deallocate [resource-group-name] [vm-scale-set-name] [instance-ids]')
+  .description($('Commands to manage your virtual machine scale sets by the deallocate method.'))
+  .usage('[options] <resource-group-name> <vm-scale-set-name> <instance-ids>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
+  .option('--instance-ids <instance-ids>', $('instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, options, _) {
+  .execute(function(resourceGroupName, vmScaleSetName, instanceIds, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
-    var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.deallocate(resourceGroupName, vmScaleSetName, _);
-    cli.output.json(result);
-  });
-/*
-  VirtualMachineScaleSet DeallocateInstances
-  --resource-group-name
-  --vm-scale-set-name
-  --vm-instance-ids
-=============================================
-{
-  "instanceIDs":[
-    ""
-  ]
-}
-*/
-  var virtualMachineScaleSetDeallocateInstances = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetDeallocateInstances.command('deallocate-instances [resource-group-name] [vm-scale-set-name] [vm-instance-ids]')
-  .description($('Commands to manage your virtual machine scale set by the deallocate-instances method.'))
-  .usage('[options] <resource-group-name> <vm-scale-set-name> <vm-instance-ids>')
-  .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
-  .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
-  .option('-D, --vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
-  .option('--parameter-file <parameter-file>', $('the input parameter file'))
-  .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
-    cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
-    cli.output.verbose('vmInstanceIds = ' + vmInstanceIds);
-    var vmInstanceIdsObj = null;
+    cli.output.verbose('instanceIds = ' + instanceIds);
+    var instanceIdsObj = null;
     if (options.parameterFile) {
       cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      vmInstanceIdsObj = JSON.parse(fileContent);
+      instanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsValArr = vmInstanceIds.split(',');
-      cli.output.verbose('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
-      vmInstanceIdsObj = {};
-      vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
+      var instanceIdsValArr = instanceIds.split(',');
+      cli.output.verbose('instanceIdsValArr : ' + instanceIdsValArr);
+      instanceIdsObj = [];
+      for (var item in instanceIdsValArr) {
+        instanceIdsObj.push(item);
+      }
     }
-    cli.output.verbose('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
+    cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.deallocateInstances(resourceGroupName, vmScaleSetName, vmInstanceIdsObj, _);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
+    var result = computeManagementClient.virtualMachineScaleSets.deallocate(resourceGroupName, vmScaleSetName, instanceIdsObj, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSet Delete
+  VirtualMachineScaleSets Delete
   --resource-group-name
   --vm-scale-set-name
 */
-  var virtualMachineScaleSetDelete = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetDelete.command('delete [resource-group-name] [vm-scale-set-name]')
-  .description($('Commands to manage your virtual machine scale set by the delete method.'))
+  var virtualMachineScaleSetsDelete = cli.category('vmss')
+  .description($('Commands to manage your virtual machine scale sets.  '));
+  virtualMachineScaleSetsDelete.command('delete [resource-group-name] [vm-scale-set-name]')
+  .description($('Commands to manage your virtual machine scale sets by the delete method.'))
   .usage('[options] <resource-group-name> <vm-scale-set-name>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -5978,79 +5722,59 @@ exports.init = function (cli) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSets.deleteMethod(resourceGroupName, vmScaleSetName, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSet DeleteInstances
+  VirtualMachineScaleSets DeleteInstances
   --resource-group-name
   --vm-scale-set-name
-  --vm-instance-ids
-=============================================
-{
-  "instanceIDs":[
-    ""
-  ]
-}
+  --instance-ids
 */
-  var virtualMachineScaleSetDeleteInstances = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetDeleteInstances.command('delete-instances [resource-group-name] [vm-scale-set-name] [vm-instance-ids]')
-  .description($('Commands to manage your virtual machine scale set by the delete-instances method.'))
-  .usage('[options] <resource-group-name> <vm-scale-set-name> <vm-instance-ids>')
+  var virtualMachineScaleSetsDeleteInstances = cli.category('vmss')
+  .description($('Commands to manage your virtual machine scale sets.  '));
+  virtualMachineScaleSetsDeleteInstances.command('delete-instances [resource-group-name] [vm-scale-set-name] [instance-ids]')
+  .description($('Commands to manage your virtual machine scale sets by the delete-instances method.'))
+  .usage('[options] <resource-group-name> <vm-scale-set-name> <instance-ids>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
-  .option('-D, --vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
+  .option('--instance-ids <instance-ids>', $('instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
+  .execute(function(resourceGroupName, vmScaleSetName, instanceIds, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
-    cli.output.verbose('vmInstanceIds = ' + vmInstanceIds);
-    var vmInstanceIdsObj = null;
+    cli.output.verbose('instanceIds = ' + instanceIds);
+    var instanceIdsObj = null;
     if (options.parameterFile) {
       cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      vmInstanceIdsObj = JSON.parse(fileContent);
+      instanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsValArr = vmInstanceIds.split(',');
-      cli.output.verbose('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
-      vmInstanceIdsObj = {};
-      vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
+      var instanceIdsValArr = instanceIds.split(',');
+      cli.output.verbose('instanceIdsValArr : ' + instanceIdsValArr);
+      instanceIdsObj = [];
+      for (var item in instanceIdsValArr) {
+        instanceIdsObj.push(item);
+      }
     }
-    cli.output.verbose('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
+    cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.deleteInstances(resourceGroupName, vmScaleSetName, vmInstanceIdsObj, _);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
+    var result = computeManagementClient.virtualMachineScaleSets.deleteInstances(resourceGroupName, vmScaleSetName, instanceIdsObj, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSet Get
+  VirtualMachineScaleSets Get
   --resource-group-name
   --vm-scale-set-name
 */
-  var virtualMachineScaleSetGet = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetGet.command('get [resource-group-name] [vm-scale-set-name]')
-  .description($('Commands to manage your virtual machine scale set by the get method.'))
+  var virtualMachineScaleSetsGet = cli.category('vmss')
+  .description($('Commands to manage your virtual machine scale sets.  '));
+  virtualMachineScaleSetsGet.command('get [resource-group-name] [vm-scale-set-name]')
+  .description($('Commands to manage your virtual machine scale sets by the get method.'))
   .usage('[options] <resource-group-name> <vm-scale-set-name>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -6060,27 +5784,19 @@ exports.init = function (cli) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSets.get(resourceGroupName, vmScaleSetName, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSet GetInstanceView
+  VirtualMachineScaleSets GetInstanceView
   --resource-group-name
   --vm-scale-set-name
 */
-  var virtualMachineScaleSetGetInstanceView = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetGetInstanceView.command('get-instance-view [resource-group-name] [vm-scale-set-name]')
-  .description($('Commands to manage your virtual machine scale set by the get-instance-view method.'))
+  var virtualMachineScaleSetsGetInstanceView = cli.category('vmss')
+  .description($('Commands to manage your virtual machine scale sets.  '));
+  virtualMachineScaleSetsGetInstanceView.command('get-instance-view [resource-group-name] [vm-scale-set-name]')
+  .description($('Commands to manage your virtual machine scale sets by the get-instance-view method.'))
   .usage('[options] <resource-group-name> <vm-scale-set-name>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -6090,26 +5806,18 @@ exports.init = function (cli) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSets.getInstanceView(resourceGroupName, vmScaleSetName, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSet List
+  VirtualMachineScaleSets List
   --resource-group-name
 */
-  var virtualMachineScaleSetList = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetList.command('list [resource-group-name]')
-  .description($('Commands to manage your virtual machine scale set by the list method.'))
+  var virtualMachineScaleSetsList = cli.category('vmss')
+  .description($('Commands to manage your virtual machine scale sets.  '));
+  virtualMachineScaleSetsList.command('list [resource-group-name]')
+  .description($('Commands to manage your virtual machine scale sets by the list method.'))
   .usage('[options] <resource-group-name>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
@@ -6117,92 +5825,73 @@ exports.init = function (cli) {
   .execute(function(resourceGroupName, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSets.list(resourceGroupName, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSet ListAll
-  --parameters
-=============================================
-{
-}
+  VirtualMachineScaleSets ListAll
 */
-  var virtualMachineScaleSetListAll = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetListAll.command('list-all')
-  .description($('Commands to manage your virtual machine scale set by the list-all method.'))
+  var virtualMachineScaleSetsListAll = cli.category('vmss')
+  .description($('Commands to manage your virtual machine scale sets.  '));
+  virtualMachineScaleSetsListAll.command('list-all')
+  .description($('Commands to manage your virtual machine scale sets by the list-all method.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(options, _) {
-    var parametersObj = null;
-    if (options.parameterFile) {
-      cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-      var parametersFileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      parametersObj = JSON.parse(parametersFileContent);
-    }
-    else {
-      parametersObj = {};
-    }
-    cli.output.verbose('parametersObj = ' + JSON.stringify(parametersObj));
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.listAll(parametersObj, _);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
+    var result = computeManagementClient.virtualMachineScaleSets.listAll(_);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSet ListNext
-  --next-link
+  VirtualMachineScaleSets ListAllNext
+  --next-page-link
 */
-  var virtualMachineScaleSetListNext = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetListNext.command('list-next [next-link]')
-  .description($('Commands to manage your virtual machine scale set by the list-next method.'))
-  .usage('[options] <next-link>')
-  .option('--next-link <next-link>', $('next-link'))
+  var virtualMachineScaleSetsListAllNext = cli.category('vmss')
+  .description($('Commands to manage your virtual machine scale sets.  '));
+  virtualMachineScaleSetsListAllNext.command('list-all-next [next-page-link]')
+  .description($('Commands to manage your virtual machine scale sets by the list-all-next method.'))
+  .usage('[options] <next-page-link>')
+  .option('--next-page-link <next-page-link>', $('next-page-link'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(nextLink, options, _) {
-    cli.output.verbose('nextLink = ' + nextLink);
+  .execute(function(nextPageLink, options, _) {
+    cli.output.verbose('nextPageLink = ' + nextPageLink);
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.listNext(nextLink, _);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
+    var result = computeManagementClient.virtualMachineScaleSets.listAllNext(nextPageLink, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSet ListSkus
+  VirtualMachineScaleSets ListNext
+  --next-page-link
+*/
+  var virtualMachineScaleSetsListNext = cli.category('vmss')
+  .description($('Commands to manage your virtual machine scale sets.  '));
+  virtualMachineScaleSetsListNext.command('list-next [next-page-link]')
+  .description($('Commands to manage your virtual machine scale sets by the list-next method.'))
+  .usage('[options] <next-page-link>')
+  .option('--next-page-link <next-page-link>', $('next-page-link'))
+  .option('--parameter-file <parameter-file>', $('the input parameter file'))
+  .option('-s, --subscription <subscription>', $('the subscription identifier'))
+  .execute(function(nextPageLink, options, _) {
+    cli.output.verbose('nextPageLink = ' + nextPageLink);
+    var subscription = profile.current.getSubscription(options.subscription);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
+    var result = computeManagementClient.virtualMachineScaleSets.listNext(nextPageLink, _);
+    cli.output.json(result);
+  });
+/*
+  VirtualMachineScaleSets ListSkus
   --resource-group-name
   --vm-scale-set-name
 */
-  var virtualMachineScaleSetListSkus = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetListSkus.command('list-skus [resource-group-name] [vm-scale-set-name]')
-  .description($('Commands to manage your virtual machine scale set by the list-skus method.'))
+  var virtualMachineScaleSetsListSkus = cli.category('vmss')
+  .description($('Commands to manage your virtual machine scale sets.  '));
+  virtualMachineScaleSetsListSkus.command('list-skus [resource-group-name] [vm-scale-set-name]')
+  .description($('Commands to manage your virtual machine scale sets by the list-skus method.'))
   .usage('[options] <resource-group-name> <vm-scale-set-name>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
@@ -6212,326 +5901,198 @@ exports.init = function (cli) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSets.listSkus(resourceGroupName, vmScaleSetName, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSet PowerOff
-  --resource-group-name
-  --vm-scale-set-name
+  VirtualMachineScaleSets ListSkusNext
+  --next-page-link
 */
-  var virtualMachineScaleSetPowerOff = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetPowerOff.command('power-off [resource-group-name] [vm-scale-set-name]')
-  .description($('Commands to manage your virtual machine scale set by the power-off method.'))
-  .usage('[options] <resource-group-name> <vm-scale-set-name>')
-  .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
-  .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
+  var virtualMachineScaleSetsListSkusNext = cli.category('vmss')
+  .description($('Commands to manage your virtual machine scale sets.  '));
+  virtualMachineScaleSetsListSkusNext.command('list-skus-next [next-page-link]')
+  .description($('Commands to manage your virtual machine scale sets by the list-skus-next method.'))
+  .usage('[options] <next-page-link>')
+  .option('--next-page-link <next-page-link>', $('next-page-link'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, options, _) {
-    cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+  .execute(function(nextPageLink, options, _) {
+    cli.output.verbose('nextPageLink = ' + nextPageLink);
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.powerOff(resourceGroupName, vmScaleSetName, _);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
+    var result = computeManagementClient.virtualMachineScaleSets.listSkusNext(nextPageLink, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSet PowerOffInstances
+  VirtualMachineScaleSets PowerOff
   --resource-group-name
   --vm-scale-set-name
-  --vm-instance-ids
-=============================================
-{
-  "instanceIDs":[
-    ""
-  ]
-}
+  --instance-ids
 */
-  var virtualMachineScaleSetPowerOffInstances = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetPowerOffInstances.command('power-off-instances [resource-group-name] [vm-scale-set-name] [vm-instance-ids]')
-  .description($('Commands to manage your virtual machine scale set by the power-off-instances method.'))
-  .usage('[options] <resource-group-name> <vm-scale-set-name> <vm-instance-ids>')
+  var virtualMachineScaleSetsPowerOff = cli.category('vmss')
+  .description($('Commands to manage your virtual machine scale sets.  '));
+  virtualMachineScaleSetsPowerOff.command('power-off [resource-group-name] [vm-scale-set-name] [instance-ids]')
+  .description($('Commands to manage your virtual machine scale sets by the power-off method.'))
+  .usage('[options] <resource-group-name> <vm-scale-set-name> <instance-ids>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
-  .option('-D, --vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
+  .option('--instance-ids <instance-ids>', $('instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
+  .execute(function(resourceGroupName, vmScaleSetName, instanceIds, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
-    cli.output.verbose('vmInstanceIds = ' + vmInstanceIds);
-    var vmInstanceIdsObj = null;
+    cli.output.verbose('instanceIds = ' + instanceIds);
+    var instanceIdsObj = null;
     if (options.parameterFile) {
       cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      vmInstanceIdsObj = JSON.parse(fileContent);
+      instanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsValArr = vmInstanceIds.split(',');
-      cli.output.verbose('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
-      vmInstanceIdsObj = {};
-      vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
+      var instanceIdsValArr = instanceIds.split(',');
+      cli.output.verbose('instanceIdsValArr : ' + instanceIdsValArr);
+      instanceIdsObj = [];
+      for (var item in instanceIdsValArr) {
+        instanceIdsObj.push(item);
+      }
     }
-    cli.output.verbose('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
+    cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.powerOffInstances(resourceGroupName, vmScaleSetName, vmInstanceIdsObj, _);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
+    var result = computeManagementClient.virtualMachineScaleSets.powerOff(resourceGroupName, vmScaleSetName, instanceIdsObj, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSet Restart
+  VirtualMachineScaleSets Restart
   --resource-group-name
   --vm-scale-set-name
+  --instance-ids
 */
-  var virtualMachineScaleSetRestart = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetRestart.command('restart [resource-group-name] [vm-scale-set-name]')
-  .description($('Commands to manage your virtual machine scale set by the restart method.'))
-  .usage('[options] <resource-group-name> <vm-scale-set-name>')
+  var virtualMachineScaleSetsRestart = cli.category('vmss')
+  .description($('Commands to manage your virtual machine scale sets.  '));
+  virtualMachineScaleSetsRestart.command('restart [resource-group-name] [vm-scale-set-name] [instance-ids]')
+  .description($('Commands to manage your virtual machine scale sets by the restart method.'))
+  .usage('[options] <resource-group-name> <vm-scale-set-name> <instance-ids>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
+  .option('--instance-ids <instance-ids>', $('instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, options, _) {
+  .execute(function(resourceGroupName, vmScaleSetName, instanceIds, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
-    var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.restart(resourceGroupName, vmScaleSetName, _);
-    cli.output.json(result);
-  });
-/*
-  VirtualMachineScaleSet RestartInstances
-  --resource-group-name
-  --vm-scale-set-name
-  --vm-instance-ids
-=============================================
-{
-  "instanceIDs":[
-    ""
-  ]
-}
-*/
-  var virtualMachineScaleSetRestartInstances = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetRestartInstances.command('restart-instances [resource-group-name] [vm-scale-set-name] [vm-instance-ids]')
-  .description($('Commands to manage your virtual machine scale set by the restart-instances method.'))
-  .usage('[options] <resource-group-name> <vm-scale-set-name> <vm-instance-ids>')
-  .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
-  .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
-  .option('-D, --vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
-  .option('--parameter-file <parameter-file>', $('the input parameter file'))
-  .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
-    cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
-    cli.output.verbose('vmInstanceIds = ' + vmInstanceIds);
-    var vmInstanceIdsObj = null;
+    cli.output.verbose('instanceIds = ' + instanceIds);
+    var instanceIdsObj = null;
     if (options.parameterFile) {
       cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      vmInstanceIdsObj = JSON.parse(fileContent);
+      instanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsValArr = vmInstanceIds.split(',');
-      cli.output.verbose('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
-      vmInstanceIdsObj = {};
-      vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
+      var instanceIdsValArr = instanceIds.split(',');
+      cli.output.verbose('instanceIdsValArr : ' + instanceIdsValArr);
+      instanceIdsObj = [];
+      for (var item in instanceIdsValArr) {
+        instanceIdsObj.push(item);
+      }
     }
-    cli.output.verbose('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
+    cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.restartInstances(resourceGroupName, vmScaleSetName, vmInstanceIdsObj, _);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
+    var result = computeManagementClient.virtualMachineScaleSets.restart(resourceGroupName, vmScaleSetName, instanceIdsObj, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSet Start
+  VirtualMachineScaleSets Start
   --resource-group-name
   --vm-scale-set-name
+  --instance-ids
 */
-  var virtualMachineScaleSetStart = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetStart.command('start [resource-group-name] [vm-scale-set-name]')
-  .description($('Commands to manage your virtual machine scale set by the start method.'))
-  .usage('[options] <resource-group-name> <vm-scale-set-name>')
+  var virtualMachineScaleSetsStart = cli.category('vmss')
+  .description($('Commands to manage your virtual machine scale sets.  '));
+  virtualMachineScaleSetsStart.command('start [resource-group-name] [vm-scale-set-name] [instance-ids]')
+  .description($('Commands to manage your virtual machine scale sets by the start method.'))
+  .usage('[options] <resource-group-name> <vm-scale-set-name> <instance-ids>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
+  .option('--instance-ids <instance-ids>', $('instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, options, _) {
+  .execute(function(resourceGroupName, vmScaleSetName, instanceIds, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
-    var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.start(resourceGroupName, vmScaleSetName, _);
-    cli.output.json(result);
-  });
-/*
-  VirtualMachineScaleSet StartInstances
-  --resource-group-name
-  --vm-scale-set-name
-  --vm-instance-ids
-=============================================
-{
-  "instanceIDs":[
-    ""
-  ]
-}
-*/
-  var virtualMachineScaleSetStartInstances = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetStartInstances.command('start-instances [resource-group-name] [vm-scale-set-name] [vm-instance-ids]')
-  .description($('Commands to manage your virtual machine scale set by the start-instances method.'))
-  .usage('[options] <resource-group-name> <vm-scale-set-name> <vm-instance-ids>')
-  .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
-  .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
-  .option('-D, --vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
-  .option('--parameter-file <parameter-file>', $('the input parameter file'))
-  .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
-    cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
-    cli.output.verbose('vmInstanceIds = ' + vmInstanceIds);
-    var vmInstanceIdsObj = null;
+    cli.output.verbose('instanceIds = ' + instanceIds);
+    var instanceIdsObj = null;
     if (options.parameterFile) {
       cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      vmInstanceIdsObj = JSON.parse(fileContent);
+      instanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsValArr = vmInstanceIds.split(',');
-      cli.output.verbose('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
-      vmInstanceIdsObj = {};
-      vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
+      var instanceIdsValArr = instanceIds.split(',');
+      cli.output.verbose('instanceIdsValArr : ' + instanceIdsValArr);
+      instanceIdsObj = [];
+      for (var item in instanceIdsValArr) {
+        instanceIdsObj.push(item);
+      }
     }
-    cli.output.verbose('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
+    cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.startInstances(resourceGroupName, vmScaleSetName, vmInstanceIdsObj, _);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
+    var result = computeManagementClient.virtualMachineScaleSets.start(resourceGroupName, vmScaleSetName, instanceIdsObj, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSet UpdateInstances
+  VirtualMachineScaleSets UpdateInstances
   --resource-group-name
   --vm-scale-set-name
-  --vm-instance-ids
-=============================================
-{
-  "instanceIDs":[
-    ""
-  ]
-}
+  --instance-ids
 */
-  var virtualMachineScaleSetUpdateInstances = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale set.\r\n         There are two set'
-  + 's of commands:\r\n           1) function commands that are used to manage Azure '
-  + 'resources in the cloud, and \r\n           2) parameter commands that generate &'
-  + ' edit input files for the other set of commands.\r\n         For example, \'vmss'
-  + ' get/list/stop\' are the function commands that call get, list and stop operatio'
-  + 'ns of \r\n         virtual machine scale set, whereas \'vmss create-or-update-pa'
-  + 'rameters generate/set/remove/add\' commands \r\n         are used to configure t'
-  + 'he input parameter file. The \'vmss create-or-update\' command takes a parameter'
-  + ' \r\n         file as for the VM scale set configuration, and creates it online.  '));
-  virtualMachineScaleSetUpdateInstances.command('update-instances [resource-group-name] [vm-scale-set-name] [vm-instance-ids]')
-  .description($('Commands to manage your virtual machine scale set by the update-instances method.'))
-  .usage('[options] <resource-group-name> <vm-scale-set-name> <vm-instance-ids>')
+  var virtualMachineScaleSetsUpdateInstances = cli.category('vmss')
+  .description($('Commands to manage your virtual machine scale sets.  '));
+  virtualMachineScaleSetsUpdateInstances.command('update-instances [resource-group-name] [vm-scale-set-name] [instance-ids]')
+  .description($('Commands to manage your virtual machine scale sets by the update-instances method.'))
+  .usage('[options] <resource-group-name> <vm-scale-set-name> <instance-ids>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
-  .option('-D, --vm-instance-ids <vm-instance-ids>', $('vm-instance-ids'))
+  .option('--instance-ids <instance-ids>', $('instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, vmInstanceIds, options, _) {
+  .execute(function(resourceGroupName, vmScaleSetName, instanceIds, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
-    cli.output.verbose('vmInstanceIds = ' + vmInstanceIds);
-    var vmInstanceIdsObj = null;
+    cli.output.verbose('instanceIds = ' + instanceIds);
+    var instanceIdsObj = null;
     if (options.parameterFile) {
       cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
       var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      vmInstanceIdsObj = JSON.parse(fileContent);
+      instanceIdsObj = JSON.parse(fileContent);
     }
     else {
-      var vmInstanceIdsValArr = vmInstanceIds.split(',');
-      cli.output.verbose('vmInstanceIdsValArr : ' + vmInstanceIdsValArr);
-      vmInstanceIdsObj = {};
-      vmInstanceIdsObj.instanceIDs = vmInstanceIdsValArr;
+      var instanceIdsValArr = instanceIds.split(',');
+      cli.output.verbose('instanceIdsValArr : ' + instanceIdsValArr);
+      instanceIdsObj = [];
+      for (var item in instanceIdsValArr) {
+        instanceIdsObj.push(item);
+      }
     }
-    cli.output.verbose('vmInstanceIdsObj = ' + JSON.stringify(vmInstanceIdsObj));
+    cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.updateInstances(resourceGroupName, vmScaleSetName, vmInstanceIdsObj, _);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
+    var result = computeManagementClient.virtualMachineScaleSets.updateInstances(resourceGroupName, vmScaleSetName, instanceIdsObj, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSetVM Deallocate
+  VirtualMachineScaleSetVMs Deallocate
   --resource-group-name
   --vm-scale-set-name
   --instance-id
 */
-  var virtualMachineScaleSetVMDeallocate = cli.category('vmssvm')
-  .description($('Commands to manage your virtual machine scale set vm.\r\n         There are two '
-  + 'sets of commands:\r\n           1) function commands that are used to manage Azu'
-  + 're resources in the cloud, and \r\n           2) parameter commands that generat'
-  + 'e & edit input files for the other set of commands.\r\n         For example, \'v'
-  + 'mss get/list/stop\' are the function commands that call get, list and stop opera'
-  + 'tions of \r\n         virtual machine scale set, whereas \'vmss create-or-update'
-  + '-parameters generate/set/remove/add\' commands \r\n         are used to configur'
-  + 'e the input parameter file. The \'vmss create-or-update\' command takes a parame'
-  + 'ter \r\n         file as for the VM scale set configuration, and creates it onli'
-  + 'ne.  '));
-  virtualMachineScaleSetVMDeallocate.command('deallocate [resource-group-name] [vm-scale-set-name] [instance-id]')
+  var virtualMachineScaleSetVMsDeallocate = cli.category('vmssvm')
+  .description($('Commands to manage your virtual machine scale set vm.  '));
+  virtualMachineScaleSetVMsDeallocate.command('deallocate [resource-group-name] [vm-scale-set-name] [instance-id]')
   .description($('Commands to manage your virtual machine scale set vm by the deallocate method.'))
   .usage('[options] <resource-group-name> <vm-scale-set-name> <instance-id>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
@@ -6544,28 +6105,19 @@ exports.init = function (cli) {
     cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
     cli.output.verbose('instanceId = ' + instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSetVMs.deallocate(resourceGroupName, vmScaleSetName, instanceId, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSetVM Delete
+  VirtualMachineScaleSetVMs Delete
   --resource-group-name
   --vm-scale-set-name
   --instance-id
 */
-  var virtualMachineScaleSetVMDelete = cli.category('vmssvm')
-  .description($('Commands to manage your virtual machine scale set vm.\r\n         There are two '
-  + 'sets of commands:\r\n           1) function commands that are used to manage Azu'
-  + 're resources in the cloud, and \r\n           2) parameter commands that generat'
-  + 'e & edit input files for the other set of commands.\r\n         For example, \'v'
-  + 'mss get/list/stop\' are the function commands that call get, list and stop opera'
-  + 'tions of \r\n         virtual machine scale set, whereas \'vmss create-or-update'
-  + '-parameters generate/set/remove/add\' commands \r\n         are used to configur'
-  + 'e the input parameter file. The \'vmss create-or-update\' command takes a parame'
-  + 'ter \r\n         file as for the VM scale set configuration, and creates it onli'
-  + 'ne.  '));
-  virtualMachineScaleSetVMDelete.command('delete [resource-group-name] [vm-scale-set-name] [instance-id]')
+  var virtualMachineScaleSetVMsDelete = cli.category('vmssvm')
+  .description($('Commands to manage your virtual machine scale set vm.  '));
+  virtualMachineScaleSetVMsDelete.command('delete [resource-group-name] [vm-scale-set-name] [instance-id]')
   .description($('Commands to manage your virtual machine scale set vm by the delete method.'))
   .usage('[options] <resource-group-name> <vm-scale-set-name> <instance-id>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
@@ -6578,28 +6130,19 @@ exports.init = function (cli) {
     cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
     cli.output.verbose('instanceId = ' + instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSetVMs.deleteMethod(resourceGroupName, vmScaleSetName, instanceId, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSetVM Get
+  VirtualMachineScaleSetVMs Get
   --resource-group-name
   --vm-scale-set-name
   --instance-id
 */
-  var virtualMachineScaleSetVMGet = cli.category('vmssvm')
-  .description($('Commands to manage your virtual machine scale set vm.\r\n         There are two '
-  + 'sets of commands:\r\n           1) function commands that are used to manage Azu'
-  + 're resources in the cloud, and \r\n           2) parameter commands that generat'
-  + 'e & edit input files for the other set of commands.\r\n         For example, \'v'
-  + 'mss get/list/stop\' are the function commands that call get, list and stop opera'
-  + 'tions of \r\n         virtual machine scale set, whereas \'vmss create-or-update'
-  + '-parameters generate/set/remove/add\' commands \r\n         are used to configur'
-  + 'e the input parameter file. The \'vmss create-or-update\' command takes a parame'
-  + 'ter \r\n         file as for the VM scale set configuration, and creates it onli'
-  + 'ne.  '));
-  virtualMachineScaleSetVMGet.command('get [resource-group-name] [vm-scale-set-name] [instance-id]')
+  var virtualMachineScaleSetVMsGet = cli.category('vmssvm')
+  .description($('Commands to manage your virtual machine scale set vm.  '));
+  virtualMachineScaleSetVMsGet.command('get [resource-group-name] [vm-scale-set-name] [instance-id]')
   .description($('Commands to manage your virtual machine scale set vm by the get method.'))
   .usage('[options] <resource-group-name> <vm-scale-set-name> <instance-id>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
@@ -6612,28 +6155,19 @@ exports.init = function (cli) {
     cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
     cli.output.verbose('instanceId = ' + instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSetVMs.get(resourceGroupName, vmScaleSetName, instanceId, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSetVM GetInstanceView
+  VirtualMachineScaleSetVMs GetInstanceView
   --resource-group-name
   --vm-scale-set-name
   --instance-id
 */
-  var virtualMachineScaleSetVMGetInstanceView = cli.category('vmssvm')
-  .description($('Commands to manage your virtual machine scale set vm.\r\n         There are two '
-  + 'sets of commands:\r\n           1) function commands that are used to manage Azu'
-  + 're resources in the cloud, and \r\n           2) parameter commands that generat'
-  + 'e & edit input files for the other set of commands.\r\n         For example, \'v'
-  + 'mss get/list/stop\' are the function commands that call get, list and stop opera'
-  + 'tions of \r\n         virtual machine scale set, whereas \'vmss create-or-update'
-  + '-parameters generate/set/remove/add\' commands \r\n         are used to configur'
-  + 'e the input parameter file. The \'vmss create-or-update\' command takes a parame'
-  + 'ter \r\n         file as for the VM scale set configuration, and creates it onli'
-  + 'ne.  '));
-  virtualMachineScaleSetVMGetInstanceView.command('get-instance-view [resource-group-name] [vm-scale-set-name] [instance-id]')
+  var virtualMachineScaleSetVMsGetInstanceView = cli.category('vmssvm')
+  .description($('Commands to manage your virtual machine scale set vm.  '));
+  virtualMachineScaleSetVMsGetInstanceView.command('get-instance-view [resource-group-name] [vm-scale-set-name] [instance-id]')
   .description($('Commands to manage your virtual machine scale set vm by the get-instance-view method.'))
   .usage('[options] <resource-group-name> <vm-scale-set-name> <instance-id>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
@@ -6646,87 +6180,66 @@ exports.init = function (cli) {
     cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
     cli.output.verbose('instanceId = ' + instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSetVMs.getInstanceView(resourceGroupName, vmScaleSetName, instanceId, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSetVM List
-  --parameters
-=============================================
-{
-  "expandExpression":"",
-  "filterExpression":"",
-  "resourceGroupName":"",
-  "selectExpression":"",
-  "virtualMachineScaleSetName":""
-}
+  VirtualMachineScaleSetVMs List
+  --resource-group-name
+  --virtual-machine-scale-set-name
+  --odata-query
+  --select
 */
-  var virtualMachineScaleSetVMList = cli.category('vmssvm')
-  .description($('Commands to manage your virtual machine scale set vm.\r\n         There are two '
-  + 'sets of commands:\r\n           1) function commands that are used to manage Azu'
-  + 're resources in the cloud, and \r\n           2) parameter commands that generat'
-  + 'e & edit input files for the other set of commands.\r\n         For example, \'v'
-  + 'mss get/list/stop\' are the function commands that call get, list and stop opera'
-  + 'tions of \r\n         virtual machine scale set, whereas \'vmss create-or-update'
-  + '-parameters generate/set/remove/add\' commands \r\n         are used to configur'
-  + 'e the input parameter file. The \'vmss create-or-update\' command takes a parame'
-  + 'ter \r\n         file as for the VM scale set configuration, and creates it onli'
-  + 'ne.  '));
-  virtualMachineScaleSetVMList.command('list [expand-expression] [filter-expression] [resource-group-name] [select-expression] [virtual-machine-scale-set-name]')
+  var virtualMachineScaleSetVMsList = cli.category('vmssvm')
+  .description($('Commands to manage your virtual machine scale set vm.  '));
+  virtualMachineScaleSetVMsList.command('list [resource-group-name] [virtual-machine-scale-set-name] [odata-query] [select]')
   .description($('Commands to manage your virtual machine scale set vm by the list method.'))
-  .usage('[options] <expand-expression> <filter-expression> <resource-group-name> <select-expression> <virtual-machine-scale-set-name>')
-  .option('-e, --expand-expression <expand-expression>', $('expand-expression'))
-  .option('-t, --filter-expression <filter-expression>', $('filter-expression'))
+  .usage('[options] <resource-group-name> <virtual-machine-scale-set-name> <odata-query> <select>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
-  .option('-c, --select-expression <select-expression>', $('select-expression'))
   .option('-n, --virtual-machine-scale-set-name <virtual-machine-scale-set-name>', $('virtual-machine-scale-set-name'))
+  .option('--odata-query <odata-query>', $('odata-query'))
+  .option('--select <select>', $('select'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(expandExpression, filterExpression, resourceGroupName, selectExpression, virtualMachineScaleSetName, options, _) {
-    var parametersObj = null;
-    if (options.parameterFile) {
-      cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-      var parametersFileContent = fs.readFileSync(options.parameterFile, 'utf8');
-      parametersObj = JSON.parse(parametersFileContent);
-    }
-    else {
-      parametersObj = {};
-      cli.output.verbose('expandExpression = ' + expandExpression);
-      parametersObj.expandExpression = expandExpression;
-      cli.output.verbose('filterExpression = ' + filterExpression);
-      parametersObj.filterExpression = filterExpression;
-      cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-      parametersObj.resourceGroupName = resourceGroupName;
-      cli.output.verbose('selectExpression = ' + selectExpression);
-      parametersObj.selectExpression = selectExpression;
-      cli.output.verbose('virtualMachineScaleSetName = ' + virtualMachineScaleSetName);
-      parametersObj.virtualMachineScaleSetName = virtualMachineScaleSetName;
-    }
-    cli.output.verbose('parametersObj = ' + JSON.stringify(parametersObj));
+  .execute(function(resourceGroupName, virtualMachineScaleSetName, odataQuery, select, options, _) {
+    cli.output.verbose('resourceGroupName = ' + resourceGroupName);
+    cli.output.verbose('virtualMachineScaleSetName = ' + virtualMachineScaleSetName);
+    cli.output.verbose('odataQuery = ' + odataQuery);
+    cli.output.verbose('select = ' + select);
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSetVMs.list(parametersObj, _);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
+    var result = computeManagementClient.virtualMachineScaleSetVMs.list(resourceGroupName, virtualMachineScaleSetName, odataQuery, select, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSetVM PowerOff
+  VirtualMachineScaleSetVMs ListNext
+  --next-page-link
+*/
+  var virtualMachineScaleSetVMsListNext = cli.category('vmssvm')
+  .description($('Commands to manage your virtual machine scale set vm.  '));
+  virtualMachineScaleSetVMsListNext.command('list-next [next-page-link]')
+  .description($('Commands to manage your virtual machine scale set vm by the list-next method.'))
+  .usage('[options] <next-page-link>')
+  .option('--next-page-link <next-page-link>', $('next-page-link'))
+  .option('--parameter-file <parameter-file>', $('the input parameter file'))
+  .option('-s, --subscription <subscription>', $('the subscription identifier'))
+  .execute(function(nextPageLink, options, _) {
+    cli.output.verbose('nextPageLink = ' + nextPageLink);
+    var subscription = profile.current.getSubscription(options.subscription);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
+    var result = computeManagementClient.virtualMachineScaleSetVMs.listNext(nextPageLink, _);
+    cli.output.json(result);
+  });
+/*
+  VirtualMachineScaleSetVMs PowerOff
   --resource-group-name
   --vm-scale-set-name
   --instance-id
 */
-  var virtualMachineScaleSetVMPowerOff = cli.category('vmssvm')
-  .description($('Commands to manage your virtual machine scale set vm.\r\n         There are two '
-  + 'sets of commands:\r\n           1) function commands that are used to manage Azu'
-  + 're resources in the cloud, and \r\n           2) parameter commands that generat'
-  + 'e & edit input files for the other set of commands.\r\n         For example, \'v'
-  + 'mss get/list/stop\' are the function commands that call get, list and stop opera'
-  + 'tions of \r\n         virtual machine scale set, whereas \'vmss create-or-update'
-  + '-parameters generate/set/remove/add\' commands \r\n         are used to configur'
-  + 'e the input parameter file. The \'vmss create-or-update\' command takes a parame'
-  + 'ter \r\n         file as for the VM scale set configuration, and creates it onli'
-  + 'ne.  '));
-  virtualMachineScaleSetVMPowerOff.command('power-off [resource-group-name] [vm-scale-set-name] [instance-id]')
+  var virtualMachineScaleSetVMsPowerOff = cli.category('vmssvm')
+  .description($('Commands to manage your virtual machine scale set vm.  '));
+  virtualMachineScaleSetVMsPowerOff.command('power-off [resource-group-name] [vm-scale-set-name] [instance-id]')
   .description($('Commands to manage your virtual machine scale set vm by the power-off method.'))
   .usage('[options] <resource-group-name> <vm-scale-set-name> <instance-id>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
@@ -6739,28 +6252,19 @@ exports.init = function (cli) {
     cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
     cli.output.verbose('instanceId = ' + instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSetVMs.powerOff(resourceGroupName, vmScaleSetName, instanceId, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSetVM Restart
+  VirtualMachineScaleSetVMs Restart
   --resource-group-name
   --vm-scale-set-name
   --instance-id
 */
-  var virtualMachineScaleSetVMRestart = cli.category('vmssvm')
-  .description($('Commands to manage your virtual machine scale set vm.\r\n         There are two '
-  + 'sets of commands:\r\n           1) function commands that are used to manage Azu'
-  + 're resources in the cloud, and \r\n           2) parameter commands that generat'
-  + 'e & edit input files for the other set of commands.\r\n         For example, \'v'
-  + 'mss get/list/stop\' are the function commands that call get, list and stop opera'
-  + 'tions of \r\n         virtual machine scale set, whereas \'vmss create-or-update'
-  + '-parameters generate/set/remove/add\' commands \r\n         are used to configur'
-  + 'e the input parameter file. The \'vmss create-or-update\' command takes a parame'
-  + 'ter \r\n         file as for the VM scale set configuration, and creates it onli'
-  + 'ne.  '));
-  virtualMachineScaleSetVMRestart.command('restart [resource-group-name] [vm-scale-set-name] [instance-id]')
+  var virtualMachineScaleSetVMsRestart = cli.category('vmssvm')
+  .description($('Commands to manage your virtual machine scale set vm.  '));
+  virtualMachineScaleSetVMsRestart.command('restart [resource-group-name] [vm-scale-set-name] [instance-id]')
   .description($('Commands to manage your virtual machine scale set vm by the restart method.'))
   .usage('[options] <resource-group-name> <vm-scale-set-name> <instance-id>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
@@ -6773,28 +6277,19 @@ exports.init = function (cli) {
     cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
     cli.output.verbose('instanceId = ' + instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSetVMs.restart(resourceGroupName, vmScaleSetName, instanceId, _);
     cli.output.json(result);
   });
 /*
-  VirtualMachineScaleSetVM Start
+  VirtualMachineScaleSetVMs Start
   --resource-group-name
   --vm-scale-set-name
   --instance-id
 */
-  var virtualMachineScaleSetVMStart = cli.category('vmssvm')
-  .description($('Commands to manage your virtual machine scale set vm.\r\n         There are two '
-  + 'sets of commands:\r\n           1) function commands that are used to manage Azu'
-  + 're resources in the cloud, and \r\n           2) parameter commands that generat'
-  + 'e & edit input files for the other set of commands.\r\n         For example, \'v'
-  + 'mss get/list/stop\' are the function commands that call get, list and stop opera'
-  + 'tions of \r\n         virtual machine scale set, whereas \'vmss create-or-update'
-  + '-parameters generate/set/remove/add\' commands \r\n         are used to configur'
-  + 'e the input parameter file. The \'vmss create-or-update\' command takes a parame'
-  + 'ter \r\n         file as for the VM scale set configuration, and creates it onli'
-  + 'ne.  '));
-  virtualMachineScaleSetVMStart.command('start [resource-group-name] [vm-scale-set-name] [instance-id]')
+  var virtualMachineScaleSetVMsStart = cli.category('vmssvm')
+  .description($('Commands to manage your virtual machine scale set vm.  '));
+  virtualMachineScaleSetVMsStart.command('start [resource-group-name] [vm-scale-set-name] [instance-id]')
   .description($('Commands to manage your virtual machine scale set vm by the start method.'))
   .usage('[options] <resource-group-name> <vm-scale-set-name> <instance-id>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
@@ -6807,7 +6302,7 @@ exports.init = function (cli) {
     cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
     cli.output.verbose('instanceId = ' + instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSetVMs.start(resourceGroupName, vmScaleSetName, instanceId, _);
     cli.output.json(result);
   });

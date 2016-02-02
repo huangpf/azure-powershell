@@ -18,7 +18,9 @@ namespace Microsoft.Azure.Commands.Compute
 {
     public abstract class VirtualMachineBaseCmdlet : ComputeClientBaseCmdlet
     {
-        public IVirtualMachineOperations VirtualMachineClient
+        protected const string InstanceViewExpand = "instanceView";
+
+        public IVirtualMachinesOperations VirtualMachineClient
         {
             get
             {
@@ -26,7 +28,7 @@ namespace Microsoft.Azure.Commands.Compute
             }
         }
 
-        public IVirtualMachineScaleSetVMOperations VirtualMachineScaleSetVMClient
+        public IVirtualMachineScaleSetVMsOperations VirtualMachineScaleSetVMClient
         {
             get
             {

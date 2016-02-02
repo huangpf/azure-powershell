@@ -19,12 +19,12 @@ function Contains-OnlyStringFields
         [System.Type]$parameterType
     )
 
-    if ($parameterType -eq $null)
+    if ($parameterType -eq $null -or $parameterType.BaseType -eq $null)
     {
         return $false;
     }
 
-    if ($parameterType.BaseType.IsEquivalentTo([System.Enum]))
+    if ((-not $parameterType.IsInterface) -and ($parameterType.BaseType -ne $null) -and $parameterType.BaseType.IsEquivalentTo([System.Enum]))
     {
         return $false;
     }
@@ -53,8 +53,13 @@ function Contains-OnlyStringList
     {
         return $false;
     }
+    
+    if ($parameterType.IsEquivalentTo([System.Collections.Generic.IList[string]]))
+    {
+      return $true;
+    }
 
-    if ($parameterType.BaseType.IsEquivalentTo([System.Enum]))
+    if ((-not $parameterType.IsInterface) -and ($parameterType.BaseType -ne $null) -and $parameterType.BaseType.IsEquivalentTo([System.Enum]))
     {
         return $false;
     }
@@ -169,4 +174,283 @@ function Get-NonSingleComplexDescendant
      {
          return @{Node = $TreeNode;Chain = $chainArray};
      }
+}
+
+
+function Get-NormalizedTypeName
+{
+    param(
+        # Sample: 'System.String' => 'string', 'System.Boolean' => bool, etc.
+        [Parameter(Mandatory = $true)]
+        [System.Reflection.TypeInfo]$parameter_type
+    )
+
+    if ($parameter_type.IsGenericType -and $parameter_type.GenericTypeArguments.Count -eq 1)
+    {
+        $generic_item_type = $parameter_type.GenericTypeArguments[0];
+        if (($generic_item_type.FullName -eq 'System.String') -or ($generic_item_type.Name -eq 'string'))
+        {
+            return 'System.Collections.Generic.IList<string>';
+        }
+    }
+
+    [string]$inputName = $parameter_type.FullName;
+    
+    if ([string]::IsNullOrEmpty($inputName))
+    {
+        return $inputName;
+    }
+
+    $outputName = $inputName;
+    $client_model_namespace_prefix = $client_model_namespace + '.';
+
+    if ($inputName -eq 'System.String')
+    {
+        $outputName = 'string';
+    }
+    elseif ($inputName -eq 'System.Boolean')
+    {
+        $outputName = 'bool';
+    }
+    elseif ($inputName -eq 'System.DateTime')
+    {
+        return 'DateTime';
+    }
+    elseif ($inputName -eq 'System.Int32')
+    {
+        return 'int';
+    }
+    elseif ($inputName -eq 'System.UInt32')
+    {
+        return 'uint';
+    }
+    elseif ($inputName -eq 'System.Char')
+    {
+        return 'char';
+    }
+    elseif ($inputName.StartsWith($client_model_namespace_prefix))
+    {
+        $outputName = $inputName.Substring($client_model_namespace_prefix.Length);
+    }
+
+    $outputName = $outputName.Replace('+', '.');
+
+    return $outputName;
+}
+
+function Is-ListStringType
+{
+    # This function returns $true if the given property info contains only a list of strings.
+    param(
+        [Parameter(Mandatory = $true)]
+        [System.Reflection.TypeInfo]$parameter_type
+    )
+
+    if ($parameter_type.IsGenericType -and $parameter_type.GenericTypeArguments.Count -eq 1)
+    {
+        $generic_item_type = $parameter_type.GenericTypeArguments[0];
+        if ($generic_item_type.FullName -eq 'System.String')
+        {
+            return $true;
+        }
+        elseif ($generic_item_type.Name -eq 'string')
+        {
+            return $true;
+        }
+    }
+    
+    [System.Reflection.PropertyInfo[]]$property_info_array = $parameter_type.GetProperties();
+    if ($property_info_array.Count -eq 1)
+    {
+        if ($property_info_array[0].PropertyType.FullName -like '*List*System.String*')
+        {
+          return $true;
+        }
+        elseif ($property_info_array[0].PropertyType.FullName -eq 'System.String')
+        {
+          return $true;
+        }
+        
+    }
+
+    return $false;
+}
+
+function Get-StringTypes
+{
+    # This function returns an array of string types, if a given property info array contains only string types.
+    # It returns $null, otherwise.
+    param(
+        [Parameter(Mandatory = $True)]
+        [System.Reflection.TypeInfo]$parameter_type
+    )
+    
+    if ($parameter_type.IsGenericType)
+    {
+        return $null;
+    }
+
+    [System.Reflection.PropertyInfo[]]$property_info_array = $parameter_type.GetProperties();
+    $return_string_array = @();
+    foreach ($prop in $property_info_array)
+    {
+         if ($prop.PropertyType.FullName -eq "System.String")
+         {
+              $return_string_array += $prop.Name;
+         }
+         else
+         {
+              return $null;
+         }
+    }
+
+    return $return_string_array;
+}
+
+
+function Get-ConstructorCodeByNormalizedTypeName
+{
+    param(
+        # Sample: 'string' => 'string.Empty', 'HostedServiceCreateParameters' => 'new HostedServiceCreateParameters()', etc.
+        [Parameter(Mandatory = $True)]
+        [string]$inputName
+    )
+
+    if ([string]::IsNullOrEmpty($inputName))
+    {
+        return 'null';
+    }
+
+    if ($inputName -eq 'string')
+    {
+        $outputName = 'string.Empty';
+    }
+    else
+    {
+        if ($inputName.StartsWith($client_model_namespace + "."))
+        {
+            $inputName = $inputName.Replace($client_model_namespace + ".", '');
+        }
+        elseif ($inputName.StartsWith('System.Collections.Generic.'))
+        {
+            $inputName = $inputName.Replace('System.Collections.Generic.', '');
+        }
+
+        $outputName = 'new ' + $inputName + "()";
+    }
+
+    return $outputName;
+}
+
+# Sample: ServiceName, DeploymentName
+function Is-PipingPropertyName
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        [string]$parameterName
+    )
+
+    if ($parameterName.ToLower() -eq 'servicename')
+    {
+        return $true;
+    }
+    elseif ($parameterName.ToLower() -eq 'deploymentname')
+    {
+        return $true;
+    }
+    elseif ($parameterName.ToLower() -eq 'rolename')
+    {
+        return $true;
+    }
+    elseif ($parameterName.ToLower() -eq 'roleinstancename')
+    {
+        return $true;
+    }
+    elseif ($parameterName.ToLower() -eq 'vmimagename')
+    {
+        return $true;
+    }
+    elseif ($parameterName.ToLower() -eq 'imagename')
+    {
+        return $true;
+    }
+    elseif ($parameterName.ToLower() -eq 'diskname')
+    {
+        return $true;
+    }
+
+    return $false;
+}
+
+function Is-PipingPropertyTypeName
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        [string]$parameterTypeName
+    )
+    
+    if ($parameterTypeName.ToLower() -eq 'string')
+    {
+        return $true;
+    }
+    elseif ($parameterTypeName.ToLower() -eq 'system.string')
+    {
+        return $true;
+    }
+
+    return $false;
+}
+
+function Get-VerbTermNameAndSuffix
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        [string]$MethodName
+    )
+
+    $verb = $MethodName;
+    $suffix = $null;
+
+    foreach ($key in $common_verb_mapping.Keys)
+    {
+        if ($MethodName.StartsWith($key))
+        {
+            $verb = $common_verb_mapping[$key];
+            $suffix = $MethodName.Substring($key.Length);
+
+            if ($MethodName.StartsWith('List'))
+            {
+                $suffix += 'List';
+            }
+            elseif ($MethodName.StartsWith('Deallocate'))
+            {
+                $suffix += "WithDeallocation";
+            }
+
+            break;
+        }
+    }
+
+    Write-Output $verb;
+    Write-Output $suffix;
+}
+
+function Get-ShortNounName
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        [string]$inputNoun
+    )
+
+    $noun = $inputNoun;
+
+    foreach ($key in $common_noun_mapping.Keys)
+    {
+        if ($noun -like ("*${key}*"))
+        {
+            $noun = $noun.Replace($key, $common_noun_mapping[$key]);
+        }
+    }
+
+    Write-Output $noun;
 }
