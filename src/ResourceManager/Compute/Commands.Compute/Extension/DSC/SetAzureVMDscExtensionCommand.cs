@@ -10,10 +10,12 @@ using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Management.Automation;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace Microsoft.Azure.Commands.Compute.Extension.DSC
 {
@@ -22,7 +24,7 @@ namespace Microsoft.Azure.Commands.Compute.Extension.DSC
         ProfileNouns.VirtualMachineDscExtension,
         SupportsShouldProcess = true,
         DefaultParameterSetName = AzureBlobDscExtensionParamSet)]
-    [OutputType(typeof(PSComputeLongRunningOperation))]
+    [OutputType(typeof(PSAzureOperationResponse))]
     public class SetAzureVMDscExtensionCommand : VirtualMachineExtensionBaseCmdlet
     {
         protected const string AzureBlobDscExtensionParamSet = "AzureBlobDscExtension";
@@ -206,6 +208,17 @@ namespace Microsoft.Azure.Commands.Compute.Extension.DSC
         [ValidateSetAttribute(new[] { "4.0", "latest", "5.0PP" })]
         public string WmfVersion { get; set; }
 
+        /// <summary>
+        /// The Extension Data Collection state
+        /// </summary>
+        [Parameter(ValueFromPipelineByPropertyName = true, 
+            HelpMessage = "Enables or Disables Data Collection in the extension.  It is enabled if it is not specified.  " + 
+            "The value is persisted in the extension between calls.")
+        ]
+        [ValidateSet("Enable", "Disable")]
+        [AllowNull]
+        public string DataCollection { get; set; }
+        
         //Private Variables
         private const string VersionRegexExpr = @"^(([0-9])\.)\d+$";
 
@@ -308,6 +321,11 @@ namespace Microsoft.Azure.Commands.Compute.Extension.DSC
 
                 publicSettings.SasToken = configurationUris.SasToken;
                 publicSettings.ModulesUrl = configurationUris.ModulesUrl;
+
+                Hashtable privacySetting = new Hashtable();
+                privacySetting.Add("DataCollection", DataCollection);
+                publicSettings.Privacy = privacySetting;
+
                 publicSettings.ConfigurationFunction = string.Format(
                     CultureInfo.InvariantCulture,
                     "{0}\\{1}",
@@ -334,38 +352,45 @@ namespace Microsoft.Azure.Commands.Compute.Extension.DSC
             var parameters = new VirtualMachineExtension
             {
                 Location = this.Location,
-                Name = Name ?? DscExtensionCmdletConstants.ExtensionPublishedNamespace + "." + DscExtensionCmdletConstants.ExtensionPublishedName,
-                Type = VirtualMachineExtensionType,
                 Publisher = DscExtensionCmdletConstants.ExtensionPublishedNamespace,
-                ExtensionType = DscExtensionCmdletConstants.ExtensionPublishedName,
+                VirtualMachineExtensionType = DscExtensionCmdletConstants.ExtensionPublishedName,
                 TypeHandlerVersion = Version,
                 // Define the public and private property bags that will be passed to the extension.
-                Settings = DscExtensionSettingsSerializer.SerializePublicSettings(publicSettings),
+                Settings = publicSettings,
                 //PrivateConfuguration contains sensitive data in a plain text
-                ProtectedSettings = DscExtensionSettingsSerializer.SerializePrivateSettings(privateSettings),
+                ProtectedSettings = privateSettings,
                 AutoUpgradeMinorVersion = AutoUpdate.IsPresent
             };
 
             //Add retry logic due to CRP service restart known issue CRP bug: 3564713
             var count = 1;
-            ComputeLongRunningOperationResponse op = null;
+            Rest.Azure.AzureOperationResponse<VirtualMachineExtension> op = null;
             while (count <= 2)
             {
-                op = VirtualMachineExtensionClient.CreateOrUpdate(
+                try
+                {
+                    op = VirtualMachineExtensionClient.CreateOrUpdateWithHttpMessagesAsync(
                         ResourceGroupName,
                         VMName,
-                        parameters);
-
-                if (ComputeOperationStatus.Failed.Equals(op.Status) && op.Error != null && "InternalExecutionError".Equals(op.Error.Code))
-                {
-                    count++;
+                        Name ?? DscExtensionCmdletConstants.ExtensionPublishedNamespace + "." + DscExtensionCmdletConstants.ExtensionPublishedName,
+                        parameters).GetAwaiter().GetResult();
                 }
-                else
+                catch (Rest.Azure.CloudException ex)
                 {
-                    break;    
+                    var errorReturned = JsonConvert.DeserializeObject<ComputeLongRunningOperationError>(ex.Response.Content.ReadAsStringAsync().Result);
+
+                    if (ComputeOperationStatus.Failed.Equals(errorReturned.Status)
+                        && errorReturned.Error != null && "InternalExecutionError".Equals(errorReturned.Error.Code))
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
-            var result = Mapper.Map<PSComputeLongRunningOperation>(op);
+            var result = Mapper.Map<PSAzureOperationResponse>(op);
             WriteObject(result);
         }
 

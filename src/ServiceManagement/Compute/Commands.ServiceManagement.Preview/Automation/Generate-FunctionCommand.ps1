@@ -34,19 +34,8 @@ param(
     [string]$fileOutputFolder = $null
 )
 
-$NEW_LINE = "`r`n";
-$BAR_LINE = "=============================================";
-$SEC_LINE = "---------------------------------------------";
 . "$PSScriptRoot\StringProcessingHelper.ps1";
 . "$PSScriptRoot\ParameterTypeHelper.ps1";
-
-$CLI_HELP_MSG = "         There are two sets of commands:\r\n" `
-              + "           1) function commands that are used to manage Azure resources in the cloud, and \r\n" `
-              + "           2) parameter commands that generate & edit input files for the other set of commands.\r\n" `
-              + "         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n" `
-              + "         virtual machine scale set, whereas \'vmss create-or-update-parameters generate/set/remove/add\' commands \r\n" `
-              + "         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n" `
-              + "         file as for the VM scale set configuration, and creates it online.";
 
 function Generate-CliFunctionCommandImpl
 {
@@ -77,7 +66,15 @@ function Generate-CliFunctionCommandImpl
     foreach ($paramItem in $methodParameters)
     {
         [System.Type]$paramType = $paramItem.ParameterType;
-        if (-not ($paramType.FullName.EndsWith('CancellationToken')))
+        if (($paramType.Name -like "I*Operations") -and ($paramItem.Name -eq 'operations'))
+        {
+            continue;
+        }
+        elseif ($paramType.FullName.EndsWith('CancellationToken'))
+        {
+            continue;
+        }
+        else
         {
             # Record the Normalized Parameter Name, i.e. 'vmName' => 'VMName', 'resourceGroup' => 'ResourceGroup', etc.
             $methodParamNameList += (Get-NormalizedName $paramItem.Name);
@@ -152,7 +149,7 @@ function Generate-CliFunctionCommandImpl
     $code += "  var $cliCategoryVarName = cli${invoke_category_code}.category('${cliCategoryName}')" + $NEW_LINE;
 
     # 3.2.7 Description Text
-    $desc_text = "Commands to manage your ${cliOperationDescription}.\r\n${CLI_HELP_MSG}";
+    $desc_text = "Commands to manage your ${cliOperationDescription}.";
     $desc_text_lines = Get-SplitTextLines $desc_text 80;
     $code += "  .description(`$('";
     $code += [string]::Join("'" + $NEW_LINE + "  + '", $desc_text_lines);
@@ -281,8 +278,12 @@ function Generate-CliFunctionCommandImpl
                 {
                     $code += "      var ${cli_param_name}ValArr = ${cli_param_name}.split(',');" + $NEW_LINE;
                     $code += "      cli.output.verbose(`'${cli_param_name}ValArr : `' + ${cli_param_name}ValArr);" + $NEW_LINE;
-                    $code += "      ${cli_param_name}Obj = {};" + $NEW_LINE;
-                    $code += "      ${cli_param_name}Obj.instanceIDs = ${cli_param_name}ValArr;" + $NEW_LINE;
+                    #$code += "      ${cli_param_name}Obj = {};" + $NEW_LINE;
+                    #$code += "      ${cli_param_name}Obj.instanceIDs = ${cli_param_name}ValArr;" + $NEW_LINE;
+                    $code += "      ${cli_param_name}Obj = [];" + $NEW_LINE;
+                    $code += "      for (var item in ${cli_param_name}ValArr) {" + $NEW_LINE;
+                    $code += "        ${cli_param_name}Obj.push(item);" + $NEW_LINE;
+                    $code += "      }" + $NEW_LINE;
                 }
                 else
                 {
@@ -302,7 +303,7 @@ function Generate-CliFunctionCommandImpl
     }
     else
     {
-        $code += "    var computeManagementClient = utils.createComputeResourceProviderClient(subscription);" + $NEW_LINE;
+        $code += "    var computeManagementClient = utils.createComputeManagementClient(subscription);" + $NEW_LINE;
     }
 
     if ($cliMethodName -eq 'delete')
@@ -314,7 +315,7 @@ function Generate-CliFunctionCommandImpl
         $cliMethodFuncName = $cliMethodName;
     }
 
-    $code += "    var result = computeManagementClient.${cliOperationName}s.${cliMethodFuncName}(";
+    $code += "    var result = computeManagementClient.${cliOperationName}.${cliMethodFuncName}(";
 
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {

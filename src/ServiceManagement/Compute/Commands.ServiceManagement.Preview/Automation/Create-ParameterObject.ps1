@@ -81,6 +81,11 @@ function Create-ParameterObjectImpl
         {
             $prop = [System.Reflection.PropertyInfo]$item;
 
+            if (-not ($prop.CanWrite))
+            {
+                continue;
+            }
+
             if ($prop.PropertyType.IsGenericType -and $prop.PropertyType.FullName -like 'System.Collections.Generic.*List*')
             {
                 [System.Type]$itemType = $prop.PropertyType.GetGenericArguments()[0];

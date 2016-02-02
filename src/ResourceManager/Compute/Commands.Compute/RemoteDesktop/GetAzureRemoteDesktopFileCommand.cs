@@ -147,7 +147,7 @@ namespace Microsoft.Azure.Commands.Compute
                     // Get standalone Azure VM
                     var vmResponse = this.VirtualMachineClient.Get(this.ResourceGroupName, this.Name);
 
-                    var nicId = vmResponse.VirtualMachine.NetworkProfile.NetworkInterfaces.First().ReferenceUri;
+                    var nicId = vmResponse.NetworkProfile.NetworkInterfaces.First().Id;
 
                     // Get the NIC
                     var nicResourceGroupName = this.GetResourceGroupName(nicId);
@@ -162,7 +162,7 @@ namespace Microsoft.Azure.Commands.Compute
                 {
                     var vmResponse = this.VirtualMachineScaleSetVMClient.Get(this.ResourceGroupName, this.VirtualMachineScaleSetName, this.InstanceId);
 
-                    var nicId = vmResponse.VirtualMachineScaleSetVM.NetworkProfile.NetworkInterfaces.First().ReferenceUri;
+                    var nicId = vmResponse.NetworkProfile.NetworkInterfaces.First().Id;
 
                     // Get the NIC
                     var nicResourceGroupName = this.GetResourceGroupName(nicId);
