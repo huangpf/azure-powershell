@@ -42,7 +42,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pServiceName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ServiceName", pServiceName);
@@ -54,7 +54,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = true
+                Mandatory = false
             });
             pDeploymentName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("DeploymentName", pDeploymentName);
@@ -66,7 +66,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 3,
-                Mandatory = true
+                Mandatory = false
             });
             pRoleInstanceName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("RoleInstanceName", pRoleInstanceName);
@@ -90,9 +90,13 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         {
             string serviceName = (string)ParseParameter(invokeMethodInputParameters[0]);
             string deploymentName = (string)ParseParameter(invokeMethodInputParameters[1]);
-            var inputArray2 = Array.ConvertAll((object[]) ParseParameter(invokeMethodInputParameters[2]), e => e.ToString());
-            DeploymentDeleteRoleInstanceParameters roleInstanceName = new DeploymentDeleteRoleInstanceParameters();
-            roleInstanceName.Name = inputArray2.ToList();
+            DeploymentDeleteRoleInstanceParameters roleInstanceName = null;
+            if (invokeMethodInputParameters[2] != null)
+            {
+                var inputArray2 = Array.ConvertAll((object[]) ParseParameter(invokeMethodInputParameters[2]), e => e.ToString());
+                roleInstanceName = new DeploymentDeleteRoleInstanceParameters();
+                roleInstanceName.Name = inputArray2.ToList();
+            }
 
             var result = DeploymentClient.DeleteRoleInstanceByDeploymentName(serviceName, deploymentName, roleInstanceName);
             WriteObject(result);

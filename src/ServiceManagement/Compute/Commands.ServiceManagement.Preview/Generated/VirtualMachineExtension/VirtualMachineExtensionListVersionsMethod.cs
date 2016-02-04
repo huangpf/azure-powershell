@@ -42,7 +42,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pPublisherName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("PublisherName", pPublisherName);
@@ -54,7 +54,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = true
+                Mandatory = false
             });
             pExtensionName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ExtensionName", pExtensionName);

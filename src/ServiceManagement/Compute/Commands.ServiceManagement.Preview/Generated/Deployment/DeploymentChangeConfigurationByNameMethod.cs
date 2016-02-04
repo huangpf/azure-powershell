@@ -42,7 +42,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pServiceName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ServiceName", pServiceName);
@@ -54,22 +54,22 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = true
+                Mandatory = false
             });
             pDeploymentName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("DeploymentName", pDeploymentName);
 
             var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "DeploymentChangeConfigurationByNameParameters";
+            pParameters.Name = "DeploymentChangeConfigurationByNameParameter";
             pParameters.ParameterType = typeof(DeploymentChangeConfigurationParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 3,
-                Mandatory = true
+                Mandatory = false
             });
             pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("DeploymentChangeConfigurationByNameParameters", pParameters);
+            dynamicParameters.Add("DeploymentChangeConfigurationByNameParameter", pParameters);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";

@@ -42,7 +42,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pServiceName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ServiceName", pServiceName);
@@ -54,7 +54,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = true
+                Mandatory = false
             });
             pDeploymentName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("DeploymentName", pDeploymentName);
@@ -66,22 +66,22 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 3,
-                Mandatory = true
+                Mandatory = false
             });
             pDnsServerName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("DnsServerName", pDnsServerName);
 
-            var pAddress = new RuntimeDefinedParameter();
-            pAddress.Name = "Address";
-            pAddress.ParameterType = typeof(string);
-            pAddress.Attributes.Add(new ParameterAttribute
+            var pAddres = new RuntimeDefinedParameter();
+            pAddres.Name = "Addres";
+            pAddres.ParameterType = typeof(string);
+            pAddres.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 4,
                 Mandatory = false
             });
-            pAddress.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("Address", pAddress);
+            pAddres.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("Addres", pAddres);
 
             var pName = new RuntimeDefinedParameter();
             pName.Name = "Name";

@@ -42,7 +42,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pServiceName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ServiceName", pServiceName);
@@ -54,7 +54,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = true
+                Mandatory = false
             });
             pDeploymentName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("DeploymentName", pDeploymentName);
@@ -66,22 +66,22 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 3,
-                Mandatory = true
+                Mandatory = false
             });
             pRoleName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("RoleName", pRoleName);
 
             var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "VirtualMachineDiskUpdateDataDiskParameters";
+            pParameters.Name = "VirtualMachineDiskUpdateDataDiskParameter";
             pParameters.ParameterType = typeof(VirtualMachineDataDiskUpdateParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 4,
-                Mandatory = true
+                Mandatory = false
             });
             pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("VirtualMachineDiskUpdateDataDiskParameters", pParameters);
+            dynamicParameters.Add("VirtualMachineDiskUpdateDataDiskParameter", pParameters);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";

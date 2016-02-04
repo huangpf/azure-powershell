@@ -42,22 +42,22 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pServiceName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ServiceName", pServiceName);
 
             var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "DeploymentUpdateStatusByDeploymentSlotParameters";
+            pParameters.Name = "DeploymentUpdateStatusByDeploymentSlotParameter";
             pParameters.ParameterType = typeof(DeploymentUpdateStatusParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = true
+                Mandatory = false
             });
             pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("DeploymentUpdateStatusByDeploymentSlotParameters", pParameters);
+            dynamicParameters.Add("DeploymentUpdateStatusByDeploymentSlotParameter", pParameters);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";

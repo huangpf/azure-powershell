@@ -42,22 +42,22 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pImageName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ImageName", pImageName);
 
             var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "VirtualMachineOSImageReplicateParameters";
+            pParameters.Name = "VirtualMachineOSImageReplicateParameter";
             pParameters.ParameterType = typeof(VirtualMachineOSImageReplicateParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = true
+                Mandatory = false
             });
             pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("VirtualMachineOSImageReplicateParameters", pParameters);
+            dynamicParameters.Add("VirtualMachineOSImageReplicateParameter", pParameters);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";

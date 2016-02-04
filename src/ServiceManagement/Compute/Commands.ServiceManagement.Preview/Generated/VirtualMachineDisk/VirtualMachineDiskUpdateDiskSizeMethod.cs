@@ -42,22 +42,22 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("Name", pName);
 
             var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "VirtualMachineDiskUpdateDiskSizeParameters";
+            pParameters.Name = "VirtualMachineDiskUpdateDiskSizeParameter";
             pParameters.ParameterType = typeof(VirtualMachineDiskUpdateParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = true
+                Mandatory = false
             });
             pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("VirtualMachineDiskUpdateDiskSizeParameters", pParameters);
+            dynamicParameters.Add("VirtualMachineDiskUpdateDiskSizeParameter", pParameters);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";

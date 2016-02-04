@@ -42,7 +42,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pServiceName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ServiceName", pServiceName);
@@ -54,22 +54,22 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = true
+                Mandatory = false
             });
             pDeploymentName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("DeploymentName", pDeploymentName);
 
             var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "VirtualMachineStartRolesParameters";
+            pParameters.Name = "VirtualMachineStartRolesParameter";
             pParameters.ParameterType = typeof(string[]);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 3,
-                Mandatory = true
+                Mandatory = false
             });
             pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("VirtualMachineStartRolesParameters", pParameters);
+            dynamicParameters.Add("VirtualMachineStartRolesParameter", pParameters);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
@@ -90,9 +90,13 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         {
             string serviceName = (string)ParseParameter(invokeMethodInputParameters[0]);
             string deploymentName = (string)ParseParameter(invokeMethodInputParameters[1]);
-            var inputArray2 = Array.ConvertAll((object[]) ParseParameter(invokeMethodInputParameters[2]), e => e.ToString());
-            VirtualMachineStartRolesParameters parameters = new VirtualMachineStartRolesParameters();
-            parameters.Roles = inputArray2.ToList();
+            VirtualMachineStartRolesParameters parameters = null;
+            if (invokeMethodInputParameters[2] != null)
+            {
+                var inputArray2 = Array.ConvertAll((object[]) ParseParameter(invokeMethodInputParameters[2]), e => e.ToString());
+                parameters = new VirtualMachineStartRolesParameters();
+                parameters.Roles = inputArray2.ToList();
+            }
 
             var result = VirtualMachineClient.StartRoles(serviceName, deploymentName, parameters);
             WriteObject(result);

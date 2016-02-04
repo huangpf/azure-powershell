@@ -42,7 +42,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pImageName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ImageName", pImageName);

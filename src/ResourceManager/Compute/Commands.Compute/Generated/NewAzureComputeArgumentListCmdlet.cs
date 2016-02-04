@@ -73,31 +73,31 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 {
                     switch (MethodName)
                     {
-                        case "VirtualMachineScaleSetCreateOrUpdate" : WriteObject(CreateVirtualMachineScaleSetCreateOrUpdateParameters(), true); break;
-                        case "VirtualMachineScaleSetDeallocate" : WriteObject(CreateVirtualMachineScaleSetDeallocateParameters(), true); break;
-                        case "VirtualMachineScaleSetDelete" : WriteObject(CreateVirtualMachineScaleSetDeleteParameters(), true); break;
-                        case "VirtualMachineScaleSetDeleteInstances" : WriteObject(CreateVirtualMachineScaleSetDeleteInstancesParameters(), true); break;
-                        case "VirtualMachineScaleSetGet" : WriteObject(CreateVirtualMachineScaleSetGetParameters(), true); break;
-                        case "VirtualMachineScaleSetGetInstanceView" : WriteObject(CreateVirtualMachineScaleSetGetInstanceViewParameters(), true); break;
-                        case "VirtualMachineScaleSetList" : WriteObject(CreateVirtualMachineScaleSetListParameters(), true); break;
-                        case "VirtualMachineScaleSetListAll" : WriteObject(CreateVirtualMachineScaleSetListAllParameters(), true); break;
-                        case "VirtualMachineScaleSetListAllNext" : WriteObject(CreateVirtualMachineScaleSetListAllNextParameters(), true); break;
-                        case "VirtualMachineScaleSetListNext" : WriteObject(CreateVirtualMachineScaleSetListNextParameters(), true); break;
-                        case "VirtualMachineScaleSetListSkus" : WriteObject(CreateVirtualMachineScaleSetListSkusParameters(), true); break;
-                        case "VirtualMachineScaleSetListSkusNext" : WriteObject(CreateVirtualMachineScaleSetListSkusNextParameters(), true); break;
-                        case "VirtualMachineScaleSetPowerOff" : WriteObject(CreateVirtualMachineScaleSetPowerOffParameters(), true); break;
-                        case "VirtualMachineScaleSetRestart" : WriteObject(CreateVirtualMachineScaleSetRestartParameters(), true); break;
-                        case "VirtualMachineScaleSetStart" : WriteObject(CreateVirtualMachineScaleSetStartParameters(), true); break;
-                        case "VirtualMachineScaleSetUpdateInstances" : WriteObject(CreateVirtualMachineScaleSetUpdateInstancesParameters(), true); break;
-                        case "VirtualMachineScaleSetVMDeallocate" : WriteObject(CreateVirtualMachineScaleSetVMDeallocateParameters(), true); break;
-                        case "VirtualMachineScaleSetVMDelete" : WriteObject(CreateVirtualMachineScaleSetVMDeleteParameters(), true); break;
-                        case "VirtualMachineScaleSetVMGet" : WriteObject(CreateVirtualMachineScaleSetVMGetParameters(), true); break;
-                        case "VirtualMachineScaleSetVMGetInstanceView" : WriteObject(CreateVirtualMachineScaleSetVMGetInstanceViewParameters(), true); break;
-                        case "VirtualMachineScaleSetVMList" : WriteObject(CreateVirtualMachineScaleSetVMListParameters(), true); break;
-                        case "VirtualMachineScaleSetVMListNext" : WriteObject(CreateVirtualMachineScaleSetVMListNextParameters(), true); break;
-                        case "VirtualMachineScaleSetVMPowerOff" : WriteObject(CreateVirtualMachineScaleSetVMPowerOffParameters(), true); break;
-                        case "VirtualMachineScaleSetVMRestart" : WriteObject(CreateVirtualMachineScaleSetVMRestartParameters(), true); break;
-                        case "VirtualMachineScaleSetVMStart" : WriteObject(CreateVirtualMachineScaleSetVMStartParameters(), true); break;
+                        case "VirtualMachineScaleSetsCreateOrUpdate" : WriteObject(CreateVirtualMachineScaleSetCreateOrUpdateParameters(), true); break;
+                        case "VirtualMachineScaleSetsDeallocate" : WriteObject(CreateVirtualMachineScaleSetDeallocateParameters(), true); break;
+                        case "VirtualMachineScaleSetsDelete" : WriteObject(CreateVirtualMachineScaleSetDeleteParameters(), true); break;
+                        case "VirtualMachineScaleSetsDeleteInstances" : WriteObject(CreateVirtualMachineScaleSetDeleteInstancesParameters(), true); break;
+                        case "VirtualMachineScaleSetsGet" : WriteObject(CreateVirtualMachineScaleSetGetParameters(), true); break;
+                        case "VirtualMachineScaleSetsGetInstanceView" : WriteObject(CreateVirtualMachineScaleSetGetInstanceViewParameters(), true); break;
+                        case "VirtualMachineScaleSetsList" : WriteObject(CreateVirtualMachineScaleSetListParameters(), true); break;
+                        case "VirtualMachineScaleSetsListAll" : WriteObject(CreateVirtualMachineScaleSetListAllParameters(), true); break;
+                        case "VirtualMachineScaleSetsListAllNext" : WriteObject(CreateVirtualMachineScaleSetListAllNextParameters(), true); break;
+                        case "VirtualMachineScaleSetsListNext" : WriteObject(CreateVirtualMachineScaleSetListNextParameters(), true); break;
+                        case "VirtualMachineScaleSetsListSkus" : WriteObject(CreateVirtualMachineScaleSetListSkusParameters(), true); break;
+                        case "VirtualMachineScaleSetsListSkusNext" : WriteObject(CreateVirtualMachineScaleSetListSkusNextParameters(), true); break;
+                        case "VirtualMachineScaleSetsPowerOff" : WriteObject(CreateVirtualMachineScaleSetPowerOffParameters(), true); break;
+                        case "VirtualMachineScaleSetsRestart" : WriteObject(CreateVirtualMachineScaleSetRestartParameters(), true); break;
+                        case "VirtualMachineScaleSetsStart" : WriteObject(CreateVirtualMachineScaleSetStartParameters(), true); break;
+                        case "VirtualMachineScaleSetsUpdateInstances" : WriteObject(CreateVirtualMachineScaleSetUpdateInstancesParameters(), true); break;
+                        case "VirtualMachineScaleSetVMsDeallocate" : WriteObject(CreateVirtualMachineScaleSetVMDeallocateParameters(), true); break;
+                        case "VirtualMachineScaleSetVMsDelete" : WriteObject(CreateVirtualMachineScaleSetVMDeleteParameters(), true); break;
+                        case "VirtualMachineScaleSetVMsGet" : WriteObject(CreateVirtualMachineScaleSetVMGetParameters(), true); break;
+                        case "VirtualMachineScaleSetVMsGetInstanceView" : WriteObject(CreateVirtualMachineScaleSetVMGetInstanceViewParameters(), true); break;
+                        case "VirtualMachineScaleSetVMsList" : WriteObject(CreateVirtualMachineScaleSetVMListParameters(), true); break;
+                        case "VirtualMachineScaleSetVMsListNext" : WriteObject(CreateVirtualMachineScaleSetVMListNextParameters(), true); break;
+                        case "VirtualMachineScaleSetVMsPowerOff" : WriteObject(CreateVirtualMachineScaleSetVMPowerOffParameters(), true); break;
+                        case "VirtualMachineScaleSetVMsRestart" : WriteObject(CreateVirtualMachineScaleSetVMRestartParameters(), true); break;
+                        case "VirtualMachineScaleSetVMsStart" : WriteObject(CreateVirtualMachineScaleSetVMStartParameters(), true); break;
                         default : WriteWarning("Cannot find the method by name = '" + MethodName + "'."); break;
                     }
                 }

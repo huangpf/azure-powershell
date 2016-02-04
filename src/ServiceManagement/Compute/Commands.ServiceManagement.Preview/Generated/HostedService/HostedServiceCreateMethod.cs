@@ -36,16 +36,16 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         {
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "HostedServiceCreateParameters";
+            pParameters.Name = "HostedServiceCreateParameter";
             pParameters.ParameterType = typeof(HostedServiceCreateParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("HostedServiceCreateParameters", pParameters);
+            dynamicParameters.Add("HostedServiceCreateParameter", pParameters);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";

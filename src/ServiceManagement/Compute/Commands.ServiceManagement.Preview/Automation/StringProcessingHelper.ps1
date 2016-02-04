@@ -292,3 +292,25 @@ function Get-SplitTextLines
 
     return $lines;
 }
+
+function Get-SingleNoun
+{
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$noun
+    )
+
+    if ($noun -eq $null)
+    {
+        return $noun;
+    }
+
+    if ($noun.EndsWith("s"))
+    {
+        return $noun.Substring(0, $noun.Length - 1);
+    }
+    else
+    {
+        return $noun;
+    }
+}
