@@ -293,7 +293,7 @@ function Get-SplitTextLines
     return $lines;
 }
 
-function Get-SingleNoun
+function Get-SingularNoun
 {
     param(
         [Parameter(Mandatory = $true)]
@@ -301,6 +301,11 @@ function Get-SingleNoun
     )
 
     if ($noun -eq $null)
+    {
+        return $noun;
+    }
+
+    if ($noun.ToLower().EndsWith("address"))
     {
         return $noun;
     }

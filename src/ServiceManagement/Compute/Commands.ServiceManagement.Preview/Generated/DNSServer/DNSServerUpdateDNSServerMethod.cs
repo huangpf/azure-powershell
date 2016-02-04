@@ -71,17 +71,17 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             pDnsServerName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("DnsServerName", pDnsServerName);
 
-            var pAddres = new RuntimeDefinedParameter();
-            pAddres.Name = "Addres";
-            pAddres.ParameterType = typeof(string);
-            pAddres.Attributes.Add(new ParameterAttribute
+            var pAddress = new RuntimeDefinedParameter();
+            pAddress.Name = "Address";
+            pAddress.ParameterType = typeof(string);
+            pAddress.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 4,
                 Mandatory = false
             });
-            pAddres.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("Addres", pAddres);
+            pAddress.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("Address", pAddress);
 
             var pName = new RuntimeDefinedParameter();
             pName.Name = "Name";

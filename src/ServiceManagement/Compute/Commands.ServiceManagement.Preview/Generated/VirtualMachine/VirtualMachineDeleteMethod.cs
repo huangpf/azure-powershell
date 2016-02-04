@@ -71,13 +71,25 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             pVirtualMachineName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("VirtualMachineName", pVirtualMachineName);
 
+            var pDeleteFromStorage = new RuntimeDefinedParameter();
+            pDeleteFromStorage.Name = "DeleteFromStorage";
+            pDeleteFromStorage.ParameterType = typeof(bool);
+            pDeleteFromStorage.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 4,
+                Mandatory = false
+            });
+            pDeleteFromStorage.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("DeleteFromStorage", pDeleteFromStorage);
+
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
             pArgumentList.ParameterType = typeof(object[]);
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 4,
+                Position = 5,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
@@ -91,7 +103,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string serviceName = (string)ParseParameter(invokeMethodInputParameters[0]);
             string deploymentName = (string)ParseParameter(invokeMethodInputParameters[1]);
             string virtualMachineName = (string)ParseParameter(invokeMethodInputParameters[2]);
-            bool deleteFromStorage = new bool();
+            bool deleteFromStorage = (bool)ParseParameter(invokeMethodInputParameters[3]);
 
             var result = VirtualMachineClient.Delete(serviceName, deploymentName, virtualMachineName, deleteFromStorage);
             WriteObject(result);
@@ -102,7 +114,14 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
     {
         protected PSArgument[] CreateVirtualMachineDeleteParameters()
         {
-            return ConvertFromObjectsToArguments(new string[0], new object[0]);
+            string serviceName = string.Empty;
+            string deploymentName = string.Empty;
+            string virtualMachineName = string.Empty;
+            bool deleteFromStorage = new bool();
+
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ServiceName", "DeploymentName", "VirtualMachineName", "DeleteFromStorage" },
+                 new object[] { serviceName, deploymentName, virtualMachineName, deleteFromStorage });
         }
     }
 }

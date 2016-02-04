@@ -71,13 +71,25 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             pRoleName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("RoleName", pRoleName);
 
+            var pLogicalUnitNumber = new RuntimeDefinedParameter();
+            pLogicalUnitNumber.Name = "LogicalUnitNumber";
+            pLogicalUnitNumber.ParameterType = typeof(int);
+            pLogicalUnitNumber.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 4,
+                Mandatory = false
+            });
+            pLogicalUnitNumber.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("LogicalUnitNumber", pLogicalUnitNumber);
+
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
             pArgumentList.ParameterType = typeof(object[]);
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 4,
+                Position = 5,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
@@ -91,7 +103,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             string serviceName = (string)ParseParameter(invokeMethodInputParameters[0]);
             string deploymentName = (string)ParseParameter(invokeMethodInputParameters[1]);
             string roleName = (string)ParseParameter(invokeMethodInputParameters[2]);
-            int logicalUnitNumber = new int();
+            int logicalUnitNumber = (int)ParseParameter(invokeMethodInputParameters[3]);
 
             var result = VirtualMachineDiskClient.GetDataDisk(serviceName, deploymentName, roleName, logicalUnitNumber);
             WriteObject(result);
@@ -102,7 +114,14 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
     {
         protected PSArgument[] CreateVirtualMachineDiskGetDataDiskParameters()
         {
-            return ConvertFromObjectsToArguments(new string[0], new object[0]);
+            string serviceName = string.Empty;
+            string deploymentName = string.Empty;
+            string roleName = string.Empty;
+            int logicalUnitNumber = new int();
+
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ServiceName", "DeploymentName", "RoleName", "LogicalUnitNumber" },
+                 new object[] { serviceName, deploymentName, roleName, logicalUnitNumber });
         }
     }
 }

@@ -520,7 +520,7 @@ function Generate-PowershellParameterCommandImpl
         [string] $fileOutputFolder = $null
     )
 
-    $powershell_object_name = Get-SingleNoun $OperationName;
+    $powershell_object_name = Get-SingularNoun $OperationName;
 
     if ($TreeNode -eq $null)
     {
@@ -586,7 +586,7 @@ function Generate-PowershellParameterCommandImpl
                 $property_type = Get-ProperTypeName $propertyItem["Type"];
                 if ($propertyItem["CanWrite"])
                 {
-                    $param_name = Get-SingleNoun $propertyItem["Name"];
+                    $param_name = Get-SingularNoun $propertyItem["Name"];
                     $param = @{Name = $param_name; Type = $property_type; OriginalName = $propertyItem["Name"]; Chain = $pathFromRoot};
                     $parameters += $param;
                 }
@@ -615,7 +615,7 @@ function Generate-PowershellParameterCommandImpl
 
                         if ($nonSingleSubNode.OnlySimple)
                         {
-                            $param_name = Get-SingleNoun ($nonSingleSubNode.Name + $propertyItem["Name"]);
+                            $param_name = Get-SingularNoun ($nonSingleSubNode.Name + $propertyItem["Name"]);
                             $param = @{Name = $param_name; Type = $property_type; OriginalName = $propertyItem["Name"]; Chain = $chain};
                             $parameters += $param;
                         }
@@ -650,7 +650,7 @@ function Generate-PowershellParameterCommandImpl
 
                                     if ($propertyItem["CanWrite"])
                                     {
-                                        $param_name = Get-SingleNoun $propertyItem["Name"];
+                                        $param_name = Get-SingularNoun $propertyItem["Name"];
                                         $param = @{Name = $param_name; Type = $paramterType; OriginalName = $parameter["Name"]; Chain = $chain};
                                         $parameters += $param;
                                     }
@@ -667,7 +667,7 @@ function Generate-PowershellParameterCommandImpl
                                         $property_type = Get-ProperTypeName $realsubsub.TypeInfo;
                                         $paramterType = $property_type;
                                     }
-                                    $param_name = Get-SingleNoun $realsubsub.Name;
+                                    $param_name = Get-SingularNoun $realsubsub.Name;
                                     $param = @{Name = $param_name; Type = $paramterType; OriginalName = $realsubsub.Name; Chain = $chain};
                                     $parameters += $param;
 
@@ -677,7 +677,7 @@ function Generate-PowershellParameterCommandImpl
                             }
                             else
                             {
-                                $param_name = Get-SingleNoun $propertyItem["Name"];
+                                $param_name = Get-SingularNoun $propertyItem["Name"];
                                 $param = @{Name = $param_name; Type = $property_type; OriginalName = $propertyItem["Name"]; Chain = $chain};
                                 $parameters += $param;
                             }
@@ -695,7 +695,7 @@ function Generate-PowershellParameterCommandImpl
                 $property_type = Get-ProperTypeName $onlyProperty["Type"];
                 if ($onlyProperty["CanWrite"])
                 {
-                    $param_name = Get-SingleNoun ($nonSingleSubNode.Name + $onlyProperty["Name"]);
+                    $param_name = Get-SingularNoun ($nonSingleSubNode.Name + $onlyProperty["Name"]);
                     $param = @{Name = $param_name; Type = "Array:" + $property_type; OriginalName = $onlyProperty["Name"]; Chain = $chain};
                     $parameters += $param;
                 }
@@ -705,7 +705,7 @@ function Generate-PowershellParameterCommandImpl
                 $chain = $nonSingleSubNodeResult["Chain"];
                 $property_type = Get-ProperTypeName $nonSingleSubNode.TypeInfo;
 
-                $param_name = Get-SingleNoun $nonSingleSubNode.Name;
+                $param_name = Get-SingularNoun $nonSingleSubNode.Name;
                 $param = @{Name = $param_name; Type = "Array:" + $property_type; OriginalName = $nonSingleSubNode.Name; Chain = $chain};
                 $parameters += $param;
                 $binding = Generate-PowershellParameterCommandImpl $nonSingleSubNode $fileOutputFolder;

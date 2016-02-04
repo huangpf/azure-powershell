@@ -409,7 +409,7 @@ function Write-PowershellCmdlet
 
     if ($TreeNode.Name -ne ${ObjectName})
     {
-        $cmdlet_noun += Get-SingleNoun $TreeNode.Name;
+        $cmdlet_noun += Get-SingularNoun $TreeNode.Name;
     }
 
     if ($cmdlet_verb.Equals("New"))
