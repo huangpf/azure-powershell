@@ -73,6 +73,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "ServiceCertificateCreateParameters",
             "ServiceCertificateDeleteParameters",
             "ServiceCertificateGetParameters",
+            "VirtualMachineAdditionalUnattendContentSettings",
             "VirtualMachineCaptureOSImageParameters",
             "VirtualMachineCaptureVMImageParameters",
             "VirtualMachineConfigurationSet",
@@ -123,6 +124,8 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "VirtualMachineStartRolesParameters",
             "VirtualMachineStoredCertificateSettings",
             "VirtualMachineStoredCertificateSettingsList",
+            "VirtualMachineUnattendPassSettings",
+            "VirtualMachineUnattendPassSettingsList",
             "VirtualMachineUpdateLoadBalancedSetParameters",
             "VirtualMachineUpdateParameters",
             "VirtualMachineVMImageComputeImageAttributes",
@@ -146,6 +149,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
         [Parameter(ParameterSetName = "CreateParameterObjectByFullName", Mandatory = true, Position = 0)]
         [ValidateSet(
+            "Microsoft.WindowsAzure.Management.Compute.Models.AdditionalUnattendContentSettings",
             "Microsoft.WindowsAzure.Management.Compute.Models.ComputeImageAttributes",
             "Microsoft.WindowsAzure.Management.Compute.Models.ConfigurationSet",
             "Microsoft.WindowsAzure.Management.Compute.Models.ConfigurationSet.PublicIP",
@@ -204,6 +208,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "Microsoft.WindowsAzure.Management.Compute.Models.SshSettingPublicKey",
             "Microsoft.WindowsAzure.Management.Compute.Models.SshSettings",
             "Microsoft.WindowsAzure.Management.Compute.Models.StoredCertificateSettings",
+            "Microsoft.WindowsAzure.Management.Compute.Models.UnattendPassSettings",
             "Microsoft.WindowsAzure.Management.Compute.Models.VirtualMachineCaptureOSImageParameters",
             "Microsoft.WindowsAzure.Management.Compute.Models.VirtualMachineCaptureVMImageParameters",
             "Microsoft.WindowsAzure.Management.Compute.Models.VirtualMachineCreateDeploymentParameters",
@@ -248,6 +253,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "System.Collections.Generic.List<SshSettingKeyPair>",
             "System.Collections.Generic.List<SshSettingPublicKey>",
             "System.Collections.Generic.List<StoredCertificateSettings>",
+            "System.Collections.Generic.List<UnattendPassSettings>",
             "System.Collections.Generic.List<VirtualMachineUpdateLoadBalancedSetParameters.InputEndpoint>",
             "System.Collections.Generic.List<WindowsRemoteManagementListener>"
         )]
@@ -299,6 +305,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                         case "ServiceCertificateCreateParameters" : WriteObject(new ServiceCertificateCreateParameters()); break;
                         case "ServiceCertificateDeleteParameters" : WriteObject(new ServiceCertificateDeleteParameters()); break;
                         case "ServiceCertificateGetParameters" : WriteObject(new ServiceCertificateGetParameters()); break;
+                        case "VirtualMachineAdditionalUnattendContentSettings" : WriteObject(new AdditionalUnattendContentSettings()); break;
                         case "VirtualMachineCaptureOSImageParameters" : WriteObject(new VirtualMachineCaptureOSImageParameters()); break;
                         case "VirtualMachineCaptureVMImageParameters" : WriteObject(new VirtualMachineCaptureVMImageParameters()); break;
                         case "VirtualMachineConfigurationSet" : WriteObject(new ConfigurationSet()); break;
@@ -349,6 +356,8 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                         case "VirtualMachineStartRolesParameters" : WriteObject(new VirtualMachineStartRolesParameters()); break;
                         case "VirtualMachineStoredCertificateSettings" : WriteObject(new StoredCertificateSettings()); break;
                         case "VirtualMachineStoredCertificateSettingsList" : WriteObject(new List<StoredCertificateSettings>()); break;
+                        case "VirtualMachineUnattendPassSettings" : WriteObject(new UnattendPassSettings()); break;
+                        case "VirtualMachineUnattendPassSettingsList" : WriteObject(new List<UnattendPassSettings>()); break;
                         case "VirtualMachineUpdateLoadBalancedSetParameters" : WriteObject(new VirtualMachineUpdateLoadBalancedSetParameters()); break;
                         case "VirtualMachineUpdateParameters" : WriteObject(new VirtualMachineUpdateParameters()); break;
                         case "VirtualMachineVMImageComputeImageAttributes" : WriteObject(new ComputeImageAttributes()); break;
@@ -374,6 +383,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                 {
                     switch (FullName)
                     {
+                        case "Microsoft.WindowsAzure.Management.Compute.Models.AdditionalUnattendContentSettings" : WriteObject(new AdditionalUnattendContentSettings()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.ComputeImageAttributes" : WriteObject(new ComputeImageAttributes()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.ConfigurationSet" : WriteObject(new ConfigurationSet()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.ConfigurationSet.PublicIP" : WriteObject(new ConfigurationSet.PublicIP()); break;
@@ -432,6 +442,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                         case "Microsoft.WindowsAzure.Management.Compute.Models.SshSettingPublicKey" : WriteObject(new SshSettingPublicKey()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.SshSettings" : WriteObject(new SshSettings()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.StoredCertificateSettings" : WriteObject(new StoredCertificateSettings()); break;
+                        case "Microsoft.WindowsAzure.Management.Compute.Models.UnattendPassSettings" : WriteObject(new UnattendPassSettings()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.VirtualMachineCaptureOSImageParameters" : WriteObject(new VirtualMachineCaptureOSImageParameters()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.VirtualMachineCaptureVMImageParameters" : WriteObject(new VirtualMachineCaptureVMImageParameters()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.VirtualMachineCreateDeploymentParameters" : WriteObject(new VirtualMachineCreateDeploymentParameters()); break;
@@ -476,6 +487,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                         case "System.Collections.Generic.List<SshSettingKeyPair>" : WriteObject(new List<SshSettingKeyPair>()); break;
                         case "System.Collections.Generic.List<SshSettingPublicKey>" : WriteObject(new List<SshSettingPublicKey>()); break;
                         case "System.Collections.Generic.List<StoredCertificateSettings>" : WriteObject(new List<StoredCertificateSettings>()); break;
+                        case "System.Collections.Generic.List<UnattendPassSettings>" : WriteObject(new List<UnattendPassSettings>()); break;
                         case "System.Collections.Generic.List<VirtualMachineUpdateLoadBalancedSetParameters.InputEndpoint>" : WriteObject(new List<VirtualMachineUpdateLoadBalancedSetParameters.InputEndpoint>()); break;
                         case "System.Collections.Generic.List<WindowsRemoteManagementListener>" : WriteObject(new List<WindowsRemoteManagementListener>()); break;
                         default : WriteWarning("Cannot find the type by FullName = '" + FullName + "'."); break;

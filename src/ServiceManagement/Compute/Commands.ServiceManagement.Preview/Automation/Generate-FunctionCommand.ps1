@@ -61,6 +61,9 @@ function Generate-CliFunctionCommandImpl
     $allStringFieldCheck = @{};
     $oneStringListCheck = @{};
 
+    $component_name = Get-ComponentName $ModelClassNameSpace;
+    $component_name_lowercase = $component_name.ToLower();
+
     # 3. CLI Code
     # 3.1 Types
     foreach ($paramItem in $methodParameters)
@@ -299,11 +302,11 @@ function Generate-CliFunctionCommandImpl
 
     if ($ModelNameSpace.Contains(".WindowsAzure."))
     {
-        $code += "    var computeManagementClient = utils.createComputeClient(subscription);" + $NEW_LINE;
+        $code += "    var ${component_name_lowercase}ManagementClient = utils.create${component_name}Client(subscription);" + $NEW_LINE;
     }
     else
     {
-        $code += "    var computeManagementClient = utils.createComputeManagementClient(subscription);" + $NEW_LINE;
+        $code += "    var ${component_name_lowercase}ManagementClient = utils.create${component_name}ManagementClient(subscription);" + $NEW_LINE;
     }
 
     if ($cliMethodName -eq 'delete')
@@ -315,7 +318,7 @@ function Generate-CliFunctionCommandImpl
         $cliMethodFuncName = $cliMethodName;
     }
 
-    $code += "    var result = computeManagementClient.${cliOperationName}.${cliMethodFuncName}(";
+    $code += "    var result = ${component_name_lowercase}ManagementClient.${cliOperationName}.${cliMethodFuncName}(";
 
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {

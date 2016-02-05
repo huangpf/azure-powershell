@@ -21,12 +21,20 @@ function Create-ParameterObjectImpl
 {
     param(
         [Parameter(Mandatory = $True)]
-        [System.Type]$typeInfo
+        [System.Type]$typeInfo,
+        
+        [Parameter(Mandatory = $True)]
+        [System.Collections.Hashtable]$typeList
     )
 
-    if ([string]::IsNullOrEmpty($typeInfo.FullName))
+    if ([string]::IsNullOrEmpty($typeInfo.FullName) -or $typeList.ContainsKey($typeInfo.FullName))
     {
         return $null;
+    }
+
+    if ($typeInfo.FullName -like "Microsoft.*Azure.Management.*.*" -and (-not ($typeInfo.FullName -like "Microsoft.*Azure.Management.*.SubResource")))
+    {
+        $typeList.Add($typeInfo.FullName, $typeInfo);
     }
 
     if ($typeInfo.FullName -eq 'System.String' -or $typeInfo.FullName -eq 'string')
@@ -56,7 +64,7 @@ function Create-ParameterObjectImpl
     elseif ($typeInfo.FullName -like 'System.Collections.Generic.IList*' -or $typeInfo.FullName -like 'System.Collections.Generic.List*')
     {
         [System.Type]$itemType = $typeInfo.GetGenericArguments()[0];
-        $itemObj = Create-ParameterObjectImpl $itemType;
+        $itemObj = Create-ParameterObjectImpl $itemType $typeList;
 
         $typeName = "System.Collections.Generic.List[" + $itemType.FullName + "]";
         $listObj = New-Object -TypeName $typeName;
@@ -89,7 +97,7 @@ function Create-ParameterObjectImpl
             if ($prop.PropertyType.IsGenericType -and $prop.PropertyType.FullName -like 'System.Collections.Generic.*List*')
             {
                 [System.Type]$itemType = $prop.PropertyType.GetGenericArguments()[0];
-                $itemObj = Create-ParameterObjectImpl $itemType;
+                $itemObj = Create-ParameterObjectImpl $itemType $typeList;
                 $listTypeName = "System.Collections.Generic.List[" + $itemType.FullName + "]";
 
                 $propObjList = New-Object -TypeName $listTypeName;
@@ -99,7 +107,7 @@ function Create-ParameterObjectImpl
             }
             else
             {
-                $propObj = Create-ParameterObjectImpl $prop.PropertyType;
+                $propObj = Create-ParameterObjectImpl $prop.PropertyType $typeList;
                 $prop.SetValue($obj, $propObj);
             }
         }
@@ -108,4 +116,4 @@ function Create-ParameterObjectImpl
     return $obj;
 }
 
-Write-Output (Create-ParameterObjectImpl $typeInfo);
+Write-Output (Create-ParameterObjectImpl $typeInfo @{});
