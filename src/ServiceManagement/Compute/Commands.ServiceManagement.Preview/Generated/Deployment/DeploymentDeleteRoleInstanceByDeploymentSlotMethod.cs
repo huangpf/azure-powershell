@@ -42,7 +42,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pServiceName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ServiceName", pServiceName);
@@ -54,22 +54,22 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = true
+                Mandatory = false
             });
             pDeploymentSlot.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("DeploymentSlot", pDeploymentSlot);
 
             var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "DeploymentDeleteRoleInstanceByDeploymentSlotParameters";
+            pParameters.Name = "DeploymentDeleteRoleInstanceByDeploymentSlotParameter";
             pParameters.ParameterType = typeof(string[]);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 3,
-                Mandatory = true
+                Mandatory = false
             });
             pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("DeploymentDeleteRoleInstanceByDeploymentSlotParameters", pParameters);
+            dynamicParameters.Add("DeploymentDeleteRoleInstanceByDeploymentSlotParameter", pParameters);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
@@ -90,9 +90,13 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         {
             string serviceName = (string)ParseParameter(invokeMethodInputParameters[0]);
             string deploymentSlot = (string)ParseParameter(invokeMethodInputParameters[1]);
-            var inputArray2 = Array.ConvertAll((object[]) ParseParameter(invokeMethodInputParameters[2]), e => e.ToString());
-            DeploymentDeleteRoleInstanceParameters parameters = new DeploymentDeleteRoleInstanceParameters();
-            parameters.Name = inputArray2.ToList();
+            DeploymentDeleteRoleInstanceParameters parameters = null;
+            if (invokeMethodInputParameters[2] != null)
+            {
+                var inputArray2 = Array.ConvertAll((object[]) ParseParameter(invokeMethodInputParameters[2]), e => e.ToString());
+                parameters = new DeploymentDeleteRoleInstanceParameters();
+                parameters.Name = inputArray2.ToList();
+            }
 
             var result = DeploymentClient.DeleteRoleInstanceByDeploymentSlot(serviceName, deploymentSlot, parameters);
             WriteObject(result);

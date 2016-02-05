@@ -1461,7 +1461,7 @@ function Test-VirtualMachineTags
         $tags = @{Name = "test1"; Value = "testval1"}, @{ Name = "test2"; Value = "testval2" };
         $st = New-AzureRmVM -ResourceGroupName $rgname -Location $loc -VM $p -Tags $tags;
         #Assert-NotNull $st.RequestId;
-        Assert-NotNull $st.Status;
+        Assert-NotNull $st.StatusCode;
         $vm = Get-AzureRmVM -ResourceGroupName $rgname -Name $vmname;
         #Assert-NotNull $vm.RequestId;
         Assert-NotNull $vm.StatusCode;

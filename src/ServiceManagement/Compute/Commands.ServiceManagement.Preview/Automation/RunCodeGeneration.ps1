@@ -611,16 +611,20 @@ $validate_all_method_names_code
     {
         if ($method_name.Contains("ScaleSets"))
         {
-            $method_name = $method_name.Replace("ScaleSets", "ScaleSet");
+            $singular_method_name = $method_name.Replace("ScaleSets", "ScaleSet");
         }
         elseif ($method_name.Contains("ScaleSetVMs"))
         {
-            $method_name = $method_name.Replace("ScaleSetVMs", "ScaleSetVM");
+            $singular_method_name = $method_name.Replace("ScaleSetVMs", "ScaleSetVM");
+        }
+        else
+        {
+            $singular_method_name = $method_name;
         }
         
         $operation_code_template =
 @"
-                        case `"${method_name}`" : WriteObject(Create${method_name}Parameters(), true); break;
+                        case `"${method_name}`" : WriteObject(Create${singular_method_name}Parameters(), true); break;
 "@;
         $operations_code += $operation_code_template + $NEW_LINE;
     }
@@ -993,9 +997,7 @@ function Write-OperationCmdletFile
     $indents = " " * 8;
     $get_set_block = '{ get; set; }';
     $invoke_input_params_name = 'invokeMethodInputParameters';
-    
     $cmdlet_generated_code = '';
-    # $cmdlet_generated_code += $indents + '// ' + $operation_method_info + $NEW_LINE;
 
     $method_param_list = $operation_method_info.GetParameters();
     $method_return_type = $operation_method_info.ReturnType;
@@ -1006,6 +1008,7 @@ function Write-OperationCmdletFile
     [System.Collections.ArrayList]$create_local_param_names = @();
     [System.Collections.ArrayList]$cli_command_param_names = @();
     $position_index = 1;
+    $has_properties = $false;
     foreach ($pt in $method_param_list)
     {
         if (($pt.ParameterType.Name -like "I*Operations") -and ($pt.Name -eq 'operations'))
@@ -1026,30 +1029,10 @@ function Write-OperationCmdletFile
             $paramTypeNormalizedName = Get-NormalizedTypeName $pt.ParameterType;
             $param_constructor_code = Get-ConstructorCodeByNormalizedTypeName -inputName $paramTypeNormalizedName;
 
-            $is_special_type = $paramTypeFullName.StartsWith($client_model_namespace_prefix);
             $has_properties = $true;
-            if ($is_special_type)
-            {
-                $properties_of_special_type = $pt.ParameterType.GetProperties();
-                if ($properties_of_special_type.Count -eq 0)
-                {
-                     $has_properties = $false;
-                }
-            }
-
-            $is_string_list = $false;
-            $does_contain_only_strings = $null;
-            if ($has_properties)
-            {
-                $is_string_list = Is-ListStringType $pt.ParameterType;
-                $does_contain_only_strings = Get-StringTypes $pt.ParameterType;
-            }
-
-            $only_strings = $true;
-            if (($does_contain_only_strings -eq $null) -or ($does_contain_only_strings.Count -eq 0))
-            {
-                 $only_strings = $false;
-            }
+            $is_string_list = Is-ListStringType $pt.ParameterType;
+            $does_contain_only_strings = Get-StringTypes $pt.ParameterType;
+            $only_strings = (($does_contain_only_strings -ne $null) -and ($does_contain_only_strings.Count -ne 0));
 
             $param_attributes = $indents + "[Parameter(Mandatory = true";
             $invoke_param_attributes = $indents + "[Parameter(ParameterSetName = `"${invoke_param_set_name}`", Position = ${position_index}, Mandatory = true";
@@ -1078,39 +1061,39 @@ function Write-OperationCmdletFile
                       $position_index += 1;
                  }
             }
-            elseif ($has_properties -and $is_string_list)
+            elseif ($is_string_list)
             {
                 # Case 2: the parameter type contains only a list of strings.
                 $list_of_strings_property = ($pt.ParameterType.GetProperties())[0].Name;
-                $invoke_local_param_definition = $indents + (' ' * 4) + "var inputArray${param_index} = Array.ConvertAll((object[]) ParseParameter(${invoke_input_params_name}[${param_index}]), e => e.ToString());" + $NEW_LINE;
+
+                $invoke_local_param_definition = $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = null;"+ $NEW_LINE;
+                $invoke_local_param_definition += $indents + (' ' * 4) + "if (${invoke_input_params_name}[${param_index}] != null)" + $NEW_LINE;
+                $invoke_local_param_definition += $indents + (' ' * 4) + "{" + $NEW_LINE;
+                $invoke_local_param_definition += $indents + (' ' * 8) + "var inputArray${param_index} = Array.ConvertAll((object[]) ParseParameter(${invoke_input_params_name}[${param_index}]), e => e.ToString());" + $NEW_LINE;                
                 if ($paramTypeNormalizedName -like 'System.Collections.Generic.IList*')
                 {
-                    $invoke_local_param_definition += $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = inputArray${param_index}.ToList();" + $NEW_LINE;
+                    $invoke_local_param_definition += $indents + (' ' * 8) + $pt.Name + " = inputArray${param_index}.ToList();" + $NEW_LINE;
                 }
                 else
                 {
-                    $invoke_local_param_definition += $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = new ${paramTypeNormalizedName}();" + $NEW_LINE;
-                    $invoke_local_param_definition += $indents + (' ' * 4) + $pt.Name + ".${list_of_strings_property} = inputArray${param_index}.ToList();" + $NEW_LINE;
+                    $invoke_local_param_definition += $indents + (' ' * 8) + $pt.Name + " = new ${paramTypeNormalizedName}();" + $NEW_LINE;
+                    $invoke_local_param_definition += $indents + (' ' * 8) + $pt.Name + ".${list_of_strings_property} = inputArray${param_index}.ToList();" + $NEW_LINE;
                 }
+                $invoke_local_param_definition += $indents + (' ' * 4) + "}" + $NEW_LINE;
             }
-            elseif ($has_properties)
+            else
             {
                 # Case 3: this is the most general case.
                 if ($normalized_param_name -eq 'ODataQuery')
                 {
-                    $invoke_local_param_definition = $indents + (' ' * 4) + "string " + $pt.Name + " = null;" + $NEW_LINE;
+                    $paramTypeNormalizedName = "Microsoft.Rest.Azure.OData.ODataQuery<VirtualMachineScaleSetVM>";
+                    $invoke_local_param_definition = $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = (${paramTypeNormalizedName})ParseParameter(${invoke_input_params_name}[${param_index}]);" + $NEW_LINE;
                 }
                 else
                 {
                     $invoke_local_param_definition = $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = (${paramTypeNormalizedName})ParseParameter(${invoke_input_params_name}[${param_index}]);" + $NEW_LINE;
                 }
             }
-            else
-            {
-                 # Case 4: the parameter does not contain anything.
-                 $invoke_local_param_definition = $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = new ${paramTypeNormalizedName}();" + $NEW_LINE;
-            }
-
 
             if ($only_strings)
             {
@@ -1133,7 +1116,8 @@ function Write-OperationCmdletFile
             elseif ($normalized_param_name -eq 'ODataQuery')
             {
                  # Case 4: Odata, skip for now.
-                 $create_local_param_definition = $indents + (' ' * 4) + "string " + $pt.Name + " = null;" + $NEW_LINE;
+                 $paramTypeNormalizedName = "Microsoft.Rest.Azure.OData.ODataQuery<VirtualMachineScaleSetVM>";
+                 $create_local_param_definition = $indents + (' ' * 4) + "$paramTypeNormalizedName " + $pt.Name + " = new ${paramTypeNormalizedName}();" + $NEW_LINE;
             }
             else
             {
@@ -1164,7 +1148,7 @@ function Write-OperationCmdletFile
             $st = $invoke_param_names.Add($pt.Name);
 
             $position_index += 1;
-            if ($has_properties -and (-not ($normalized_param_name -eq 'ODataQuery')))
+            if (-not ($normalized_param_name -eq 'ODataQuery'))
             {
                  $pruned_params.Add($pt);
             }
@@ -1237,6 +1221,8 @@ function Write-OperationCmdletFile
             $expose_param_name = $invoke_param_set_name + $expose_param_name;
         }
 
+        $expose_param_name = Get-SingularNoun $expose_param_name;
+
         if (($does_contain_only_strings -eq $null) -or ($does_contain_only_strings.Count -eq 0))
         {
              $dynamic_param_assignment_code_lines +=
@@ -1260,7 +1246,7 @@ function Write-OperationCmdletFile
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = $param_index,
-                Mandatory = true
+                Mandatory = false
             });
             p${param_name}.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add(`"${expose_param_name}`", p${param_name});
@@ -1272,6 +1258,7 @@ function Write-OperationCmdletFile
         {
              foreach ($s in $does_contain_only_strings)
              {
+                  $s = Get-SingularNoun $s;
                   $dynamic_param_assignment_code_lines +=
 @"
             var p${s} = new RuntimeDefinedParameter();

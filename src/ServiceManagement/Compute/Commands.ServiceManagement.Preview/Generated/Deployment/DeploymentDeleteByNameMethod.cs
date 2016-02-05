@@ -42,7 +42,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pServiceName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ServiceName", pServiceName);
@@ -54,10 +54,22 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = true
+                Mandatory = false
             });
             pDeploymentName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("DeploymentName", pDeploymentName);
+
+            var pDeleteFromStorage = new RuntimeDefinedParameter();
+            pDeleteFromStorage.Name = "DeleteFromStorage";
+            pDeleteFromStorage.ParameterType = typeof(bool);
+            pDeleteFromStorage.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 3,
+                Mandatory = false
+            });
+            pDeleteFromStorage.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("DeleteFromStorage", pDeleteFromStorage);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
@@ -65,7 +77,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             pArgumentList.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByStaticParameters",
-                Position = 3,
+                Position = 4,
                 Mandatory = true
             });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
@@ -78,7 +90,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         {
             string serviceName = (string)ParseParameter(invokeMethodInputParameters[0]);
             string deploymentName = (string)ParseParameter(invokeMethodInputParameters[1]);
-            bool deleteFromStorage = new bool();
+            bool deleteFromStorage = (bool)ParseParameter(invokeMethodInputParameters[2]);
 
             var result = DeploymentClient.DeleteByName(serviceName, deploymentName, deleteFromStorage);
             WriteObject(result);
@@ -89,7 +101,13 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
     {
         protected PSArgument[] CreateDeploymentDeleteByNameParameters()
         {
-            return ConvertFromObjectsToArguments(new string[0], new object[0]);
+            string serviceName = string.Empty;
+            string deploymentName = string.Empty;
+            bool deleteFromStorage = new bool();
+
+            return ConvertFromObjectsToArguments(
+                 new string[] { "ServiceName", "DeploymentName", "DeleteFromStorage" },
+                 new object[] { serviceName, deploymentName, deleteFromStorage });
         }
     }
 }
