@@ -28,9 +28,9 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Compute.Automation
 {
-    [Cmdlet("Remove", "AzureVmssListener")]
+    [Cmdlet("Remove", "AzureRmVmssAdditionalUnattendContent")]
     [OutputType(typeof(VirtualMachineScaleSet))]
-    public class RemoveAzureVmssListenerCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
+    public class RemoveAzureRmVmssAdditionalUnattendContentCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
     {
         [Parameter(
             Mandatory = false,
@@ -43,13 +43,25 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Mandatory = false,
             Position = 1,
             ValueFromPipelineByPropertyName = true)]
-        public string Protocol { get; set; }
+        public string PassName { get; set; }
 
         [Parameter(
             Mandatory = false,
             Position = 2,
             ValueFromPipelineByPropertyName = true)]
-        public string CertificateUrl { get; set; }
+        public string ComponentName { get; set; }
+
+        [Parameter(
+            Mandatory = false,
+            Position = 3,
+            ValueFromPipelineByPropertyName = true)]
+        public string SettingName { get; set; }
+
+        [Parameter(
+            Mandatory = false,
+            Position = 4,
+            ValueFromPipelineByPropertyName = true)]
+        public string Content { get; set; }
 
         protected override void ProcessRecord()
         {
@@ -74,33 +86,28 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 return;
             }
 
-            // WinRM
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.WinRM == null)
+            // AdditionalUnattendContent
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.AdditionalUnattendContent == null)
             {
                 WriteObject(this.VirtualMachineScaleSet);
                 return;
             }
-
-            // Listeners
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.WinRM.Listeners == null)
-            {
-                WriteObject(this.VirtualMachineScaleSet);
-                return;
-            }
-            var vListeners = this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.WinRM.Listeners.First
+            var vAdditionalUnattendContent = this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.AdditionalUnattendContent.First
                 (e =>
-                    (this.Protocol == null || e.Protocol == this.Protocol)
-                    && (this.CertificateUrl == null || e.CertificateUrl == this.CertificateUrl)
+                    (this.PassName == null || e.PassName == this.PassName)
+                    && (this.ComponentName == null || e.ComponentName == this.ComponentName)
+                    && (this.SettingName == null || e.SettingName == this.SettingName)
+                    && (this.Content == null || e.Content == this.Content)
                 );
 
-            if (vListeners != null)
+            if (vAdditionalUnattendContent != null)
             {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.WinRM.Listeners.Remove(vListeners);
+                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.AdditionalUnattendContent.Remove(vAdditionalUnattendContent);
             }
 
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.WinRM.Listeners.Count == 0)
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.AdditionalUnattendContent.Count == 0)
             {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.WinRM.Listeners = null;
+                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.AdditionalUnattendContent = null;
             }
             WriteObject(this.VirtualMachineScaleSet);
         }

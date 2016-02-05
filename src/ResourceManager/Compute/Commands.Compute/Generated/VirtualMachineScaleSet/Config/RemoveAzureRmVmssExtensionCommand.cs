@@ -28,9 +28,9 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Compute.Automation
 {
-    [Cmdlet("Remove", "AzureVmssNetworkInterfaceConfiguration")]
+    [Cmdlet("Remove", "AzureRmVmssExtension")]
     [OutputType(typeof(VirtualMachineScaleSet))]
-    public class RemoveAzureVmssNetworkInterfaceConfigurationCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
+    public class RemoveAzureRmVmssExtensionCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
     {
         [Parameter(
             Mandatory = false,
@@ -49,19 +49,43 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Mandatory = false,
             Position = 2,
             ValueFromPipelineByPropertyName = true)]
-        public bool? Primary { get; set; }
+        public string Publisher { get; set; }
 
         [Parameter(
             Mandatory = false,
             Position = 3,
             ValueFromPipelineByPropertyName = true)]
-        public string Id { get; set; }
+        public string VirtualMachineScaleSetExtensionType { get; set; }
 
         [Parameter(
             Mandatory = false,
             Position = 4,
             ValueFromPipelineByPropertyName = true)]
-        public VirtualMachineScaleSetIPConfiguration [] IpConfiguration { get; set; }
+        public string TypeHandlerVersion { get; set; }
+
+        [Parameter(
+            Mandatory = false,
+            Position = 5,
+            ValueFromPipelineByPropertyName = true)]
+        public bool? AutoUpgradeMinorVersion { get; set; }
+
+        [Parameter(
+            Mandatory = false,
+            Position = 6,
+            ValueFromPipelineByPropertyName = true)]
+        public Object Setting { get; set; }
+
+        [Parameter(
+            Mandatory = false,
+            Position = 7,
+            ValueFromPipelineByPropertyName = true)]
+        public Object ProtectedSetting { get; set; }
+
+        [Parameter(
+            Mandatory = false,
+            Position = 8,
+            ValueFromPipelineByPropertyName = true)]
+        public string Id { get; set; }
 
         protected override void ProcessRecord()
         {
@@ -72,35 +96,39 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 return;
             }
 
-            // NetworkProfile
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.NetworkProfile == null)
+            // ExtensionProfile
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile == null)
             {
                 WriteObject(this.VirtualMachineScaleSet);
                 return;
             }
 
-            // NetworkInterfaceConfigurations
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.NetworkProfile.NetworkInterfaceConfigurations == null)
+            // Extensions
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile.Extensions == null)
             {
                 WriteObject(this.VirtualMachineScaleSet);
                 return;
             }
-            var vNetworkInterfaceConfigurations = this.VirtualMachineScaleSet.VirtualMachineProfile.NetworkProfile.NetworkInterfaceConfigurations.First
+            var vExtensions = this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile.Extensions.First
                 (e =>
                     (this.Name == null || e.Name == this.Name)
-                    && (this.Primary == null || e.Primary == this.Primary)
+                    && (this.Publisher == null || e.Publisher == this.Publisher)
+                    && (this.VirtualMachineScaleSetExtensionType == null || e.VirtualMachineScaleSetExtensionType == this.VirtualMachineScaleSetExtensionType)
+                    && (this.TypeHandlerVersion == null || e.TypeHandlerVersion == this.TypeHandlerVersion)
+                    && (this.AutoUpgradeMinorVersion == null || e.AutoUpgradeMinorVersion == this.AutoUpgradeMinorVersion)
+                    && (this.Setting == null || e.Settings == this.Setting)
+                    && (this.ProtectedSetting == null || e.ProtectedSettings == this.ProtectedSetting)
                     && (this.Id == null || e.Id == this.Id)
-                    && (this.IpConfiguration == null || e.IpConfigurations == this.IpConfiguration)
                 );
 
-            if (vNetworkInterfaceConfigurations != null)
+            if (vExtensions != null)
             {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.NetworkProfile.NetworkInterfaceConfigurations.Remove(vNetworkInterfaceConfigurations);
+                this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile.Extensions.Remove(vExtensions);
             }
 
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.NetworkProfile.NetworkInterfaceConfigurations.Count == 0)
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile.Extensions.Count == 0)
             {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.NetworkProfile.NetworkInterfaceConfigurations = null;
+                this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile.Extensions = null;
             }
             WriteObject(this.VirtualMachineScaleSet);
         }

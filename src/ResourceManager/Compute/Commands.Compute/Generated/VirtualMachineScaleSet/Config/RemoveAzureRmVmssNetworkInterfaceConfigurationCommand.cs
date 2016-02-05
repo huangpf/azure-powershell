@@ -28,9 +28,9 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Compute.Automation
 {
-    [Cmdlet("Remove", "AzureVmssAdditionalUnattendContent")]
+    [Cmdlet("Remove", "AzureRmVmssNetworkInterfaceConfiguration")]
     [OutputType(typeof(VirtualMachineScaleSet))]
-    public class RemoveAzureVmssAdditionalUnattendContentCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
+    public class RemoveAzureRmVmssNetworkInterfaceConfigurationCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
     {
         [Parameter(
             Mandatory = false,
@@ -43,25 +43,25 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Mandatory = false,
             Position = 1,
             ValueFromPipelineByPropertyName = true)]
-        public string PassName { get; set; }
+        public string Name { get; set; }
 
         [Parameter(
             Mandatory = false,
             Position = 2,
             ValueFromPipelineByPropertyName = true)]
-        public string ComponentName { get; set; }
+        public bool? Primary { get; set; }
 
         [Parameter(
             Mandatory = false,
             Position = 3,
             ValueFromPipelineByPropertyName = true)]
-        public string SettingName { get; set; }
+        public string Id { get; set; }
 
         [Parameter(
             Mandatory = false,
             Position = 4,
             ValueFromPipelineByPropertyName = true)]
-        public string Content { get; set; }
+        public VirtualMachineScaleSetIPConfiguration [] IpConfiguration { get; set; }
 
         protected override void ProcessRecord()
         {
@@ -72,42 +72,35 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 return;
             }
 
-            // OsProfile
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile == null)
+            // NetworkProfile
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.NetworkProfile == null)
             {
                 WriteObject(this.VirtualMachineScaleSet);
                 return;
             }
 
-            // WindowsConfiguration
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration == null)
+            // NetworkInterfaceConfigurations
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.NetworkProfile.NetworkInterfaceConfigurations == null)
             {
                 WriteObject(this.VirtualMachineScaleSet);
                 return;
             }
-
-            // AdditionalUnattendContent
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.AdditionalUnattendContent == null)
-            {
-                WriteObject(this.VirtualMachineScaleSet);
-                return;
-            }
-            var vAdditionalUnattendContent = this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.AdditionalUnattendContent.First
+            var vNetworkInterfaceConfigurations = this.VirtualMachineScaleSet.VirtualMachineProfile.NetworkProfile.NetworkInterfaceConfigurations.First
                 (e =>
-                    (this.PassName == null || e.PassName == this.PassName)
-                    && (this.ComponentName == null || e.ComponentName == this.ComponentName)
-                    && (this.SettingName == null || e.SettingName == this.SettingName)
-                    && (this.Content == null || e.Content == this.Content)
+                    (this.Name == null || e.Name == this.Name)
+                    && (this.Primary == null || e.Primary == this.Primary)
+                    && (this.Id == null || e.Id == this.Id)
+                    && (this.IpConfiguration == null || e.IpConfigurations == this.IpConfiguration)
                 );
 
-            if (vAdditionalUnattendContent != null)
+            if (vNetworkInterfaceConfigurations != null)
             {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.AdditionalUnattendContent.Remove(vAdditionalUnattendContent);
+                this.VirtualMachineScaleSet.VirtualMachineProfile.NetworkProfile.NetworkInterfaceConfigurations.Remove(vNetworkInterfaceConfigurations);
             }
 
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.AdditionalUnattendContent.Count == 0)
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.NetworkProfile.NetworkInterfaceConfigurations.Count == 0)
             {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.AdditionalUnattendContent = null;
+                this.VirtualMachineScaleSet.VirtualMachineProfile.NetworkProfile.NetworkInterfaceConfigurations = null;
             }
             WriteObject(this.VirtualMachineScaleSet);
         }

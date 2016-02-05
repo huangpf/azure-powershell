@@ -28,9 +28,9 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Compute.Automation
 {
-    [Cmdlet("Add", "AzureVmssSecret")]
+    [Cmdlet("Remove", "AzureRmVmssSecret")]
     [OutputType(typeof(VirtualMachineScaleSet))]
-    public class AddAzureVmssSecretCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
+    public class RemoveAzureRmVmssSecretCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
     {
         [Parameter(
             Mandatory = false,
@@ -56,29 +56,38 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             // VirtualMachineProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
             {
-                this.VirtualMachineScaleSet.VirtualMachineProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile();
+                WriteObject(this.VirtualMachineScaleSet);
+                return;
             }
 
             // OsProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile == null)
             {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSProfile();
+                WriteObject(this.VirtualMachineScaleSet);
+                return;
             }
 
             // Secrets
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.Secrets == null)
             {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.Secrets = new List<Microsoft.Azure.Management.Compute.Models.VaultSecretGroup>();
+                WriteObject(this.VirtualMachineScaleSet);
+                return;
+            }
+            var vSecrets = this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.Secrets.First
+                (e =>
+                    (this.SourceVaultId == null || e.SourceVault.Id == this.SourceVaultId)
+                    && (this.VaultCertificate == null || e.VaultCertificates == this.VaultCertificate)
+                );
+
+            if (vSecrets != null)
+            {
+                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.Secrets.Remove(vSecrets);
             }
 
-            var vSecrets = new Microsoft.Azure.Management.Compute.Models.VaultSecretGroup();
-
-            // SourceVault
-            vSecrets.SourceVault = new Microsoft.Azure.Management.Compute.Models.SubResource();
-
-            vSecrets.SourceVault.Id = this.SourceVaultId;
-            vSecrets.VaultCertificates = this.VaultCertificate;
-            this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.Secrets.Add(vSecrets);
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.Secrets.Count == 0)
+            {
+                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.Secrets = null;
+            }
             WriteObject(this.VirtualMachineScaleSet);
         }
     }

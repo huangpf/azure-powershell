@@ -28,9 +28,9 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Compute.Automation
 {
-    [Cmdlet("Remove", "AzureVmssSecret")]
+    [Cmdlet("Add", "AzureRmVmssPublicKey")]
     [OutputType(typeof(VirtualMachineScaleSet))]
-    public class RemoveAzureVmssSecretCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
+    public class AddAzureRmVmssPublicKeyCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
     {
         [Parameter(
             Mandatory = false,
@@ -43,51 +43,51 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Mandatory = false,
             Position = 1,
             ValueFromPipelineByPropertyName = true)]
-        public string SourceVaultId { get; set; }
+        public string Path { get; set; }
 
         [Parameter(
             Mandatory = false,
             Position = 2,
             ValueFromPipelineByPropertyName = true)]
-        public VaultCertificate [] VaultCertificate { get; set; }
+        public string KeyData { get; set; }
 
         protected override void ProcessRecord()
         {
             // VirtualMachineProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
             {
-                WriteObject(this.VirtualMachineScaleSet);
-                return;
+                this.VirtualMachineScaleSet.VirtualMachineProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile();
             }
 
             // OsProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile == null)
             {
-                WriteObject(this.VirtualMachineScaleSet);
-                return;
+                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSProfile();
             }
 
-            // Secrets
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.Secrets == null)
+            // LinuxConfiguration
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration == null)
             {
-                WriteObject(this.VirtualMachineScaleSet);
-                return;
-            }
-            var vSecrets = this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.Secrets.First
-                (e =>
-                    (this.SourceVaultId == null || e.SourceVault.Id == this.SourceVaultId)
-                    && (this.VaultCertificate == null || e.VaultCertificates == this.VaultCertificate)
-                );
-
-            if (vSecrets != null)
-            {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.Secrets.Remove(vSecrets);
+                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration = new Microsoft.Azure.Management.Compute.Models.LinuxConfiguration();
             }
 
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.Secrets.Count == 0)
+            // Ssh
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.Ssh == null)
             {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.Secrets = null;
+                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.Ssh = new Microsoft.Azure.Management.Compute.Models.SshConfiguration();
             }
+
+            // PublicKeys
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.Ssh.PublicKeys == null)
+            {
+                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.Ssh.PublicKeys = new List<Microsoft.Azure.Management.Compute.Models.SshPublicKey>();
+            }
+
+            var vPublicKeys = new Microsoft.Azure.Management.Compute.Models.SshPublicKey();
+
+            vPublicKeys.Path = this.Path;
+            vPublicKeys.KeyData = this.KeyData;
+            this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.Ssh.PublicKeys.Add(vPublicKeys);
             WriteObject(this.VirtualMachineScaleSet);
         }
     }

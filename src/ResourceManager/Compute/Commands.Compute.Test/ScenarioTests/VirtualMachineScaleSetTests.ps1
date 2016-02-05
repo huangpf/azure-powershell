@@ -92,15 +92,15 @@ function Test-VirtualMachineScaleSet
         $aucSetting = "AutoLogon";
         $aucContent = "<UserAccounts><AdministratorPassword><Value>password</Value><PlainText>true</PlainText></AdministratorPassword></UserAccounts>";
 
-        $ipCfg = New-AzureVmssIPConfigurationConfig -Name 'test' -LoadBalancerBackendAddressPoolsId $null -SubnetId $subnetId;
-        $vmss = New-AzureVmssConfig -Location $loc -SkuCapacity 2 -SkuName 'Standard_A0' -UpgradePolicyMode 'automatic' -NetworkInterfaceConfiguration $netCfg `
-            | Add-AzureVmssNetworkInterfaceConfiguration -Name 'test' -Primary $true -IPConfiguration $ipCfg `
-            | Set-AzureVmssOSProfile -ComputerNamePrefix 'test' -AdminUsername $adminUsername -AdminPassword $adminPassword `
-            | Set-AzureVmssStorageProfile -Name 'test' -CreateOption 'FromImage' -Caching 'None' `
+        $ipCfg = New-AzureRmVmssIPConfigurationConfig -Name 'test' -LoadBalancerBackendAddressPoolsId $null -SubnetId $subnetId;
+        $vmss = New-AzureRmVmssConfig -Location $loc -SkuCapacity 2 -SkuName 'Standard_A0' -UpgradePolicyMode 'automatic' -NetworkInterfaceConfiguration $netCfg `
+            | Add-AzureRmVmssNetworkInterfaceConfiguration -Name 'test' -Primary $true -IPConfiguration $ipCfg `
+            | Set-AzureRmVmssOSProfile -ComputerNamePrefix 'test' -AdminUsername $adminUsername -AdminPassword $adminPassword `
+            | Set-AzureRmVmssStorageProfile -Name 'test' -CreateOption 'FromImage' -Caching 'None' `
             -ImageReferenceOffer $imgRef.Offer -ImageReferenceSku $imgRef.Skus -ImageReferenceVersion $imgRef.Version `
             -ImageReferencePublisher $imgRef.PublisherName -VhdContainer $vhdContainer `
-            | Add-AzureVmssAdditionalUnattendContent -ComponentName  $aucComponentName -Content  $aucContent -PassName  $aucPassName -SettingName  $aucSetting `
-            | Remove-AzureVmssAdditionalUnattendContent -ComponentName  $aucComponentName;
+            | Add-AzureRmVmssAdditionalUnattendContent -ComponentName  $aucComponentName -Content  $aucContent -PassName  $aucPassName -SettingName  $aucSetting `
+            | Remove-AzureRmVmssAdditionalUnattendContent -ComponentName  $aucComponentName;
 
         $st = New-AzureRmVmss -ResourceGroupName $rgname -Name $vmssName -VirtualMachineScaleSetCreateOrUpdateParameter $vmss;
 
