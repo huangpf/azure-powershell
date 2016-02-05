@@ -59,17 +59,17 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             pVMScaleSetName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("VMScaleSetName", pVMScaleSetName);
 
-            var pInstanceIds = new RuntimeDefinedParameter();
-            pInstanceIds.Name = "InstanceIds";
-            pInstanceIds.ParameterType = typeof(string[]);
-            pInstanceIds.Attributes.Add(new ParameterAttribute
+            var pVMInstanceIDs = new RuntimeDefinedParameter();
+            pVMInstanceIDs.Name = "VMInstanceIDs";
+            pVMInstanceIDs.ParameterType = typeof(string[]);
+            pVMInstanceIDs.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 3,
                 Mandatory = true
             });
-            pInstanceIds.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("InstanceIds", pInstanceIds);
+            pVMInstanceIDs.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("VMInstanceIDs", pVMInstanceIDs);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
@@ -91,9 +91,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             string resourceGroupName = (string)ParseParameter(invokeMethodInputParameters[0]);
             string vmScaleSetName = (string)ParseParameter(invokeMethodInputParameters[1]);
             var inputArray2 = Array.ConvertAll((object[]) ParseParameter(invokeMethodInputParameters[2]), e => e.ToString());
-            System.Collections.Generic.IList<string> instanceIds = inputArray2.ToList();
+            VirtualMachineScaleSetVMInstanceIDs vmInstanceIDs = new VirtualMachineScaleSetVMInstanceIDs();
+            vmInstanceIDs.InstanceIDs = inputArray2.ToList();
 
-            VirtualMachineScaleSetsClient.DeleteInstances(resourceGroupName, vmScaleSetName, instanceIds);
+            var result = VirtualMachineScaleSetClient.DeleteInstances(resourceGroupName, vmScaleSetName, vmInstanceIDs);
+            WriteObject(result);
         }
     }
 
@@ -103,11 +105,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         {
             string resourceGroupName = string.Empty;
             string vmScaleSetName = string.Empty;
-            var instanceIds = new string[0];
+            var vmInstanceIDs = new string[0];
 
             return ConvertFromObjectsToArguments(
-                 new string[] { "ResourceGroupName", "VMScaleSetName", "InstanceIds" },
-                 new object[] { resourceGroupName, vmScaleSetName, instanceIds });
+                 new string[] { "ResourceGroupName", "VMScaleSetName", "VMInstanceIDs" },
+                 new object[] { resourceGroupName, vmScaleSetName, vmInstanceIDs });
         }
     }
 
@@ -153,17 +155,17 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             pVMScaleSetName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("VMScaleSetName", pVMScaleSetName);
 
-            var pInstanceIds = new RuntimeDefinedParameter();
-            pInstanceIds.Name = "InstanceIds";
-            pInstanceIds.ParameterType = typeof(string[]);
-            pInstanceIds.Attributes.Add(new ParameterAttribute
+            var pVMInstanceIDs = new RuntimeDefinedParameter();
+            pVMInstanceIDs.Name = "VMInstanceIDs";
+            pVMInstanceIDs.ParameterType = typeof(string[]);
+            pVMInstanceIDs.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 3,
                 Mandatory = true
             });
-            pInstanceIds.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("InstanceIds", pInstanceIds);
+            pVMInstanceIDs.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("VMInstanceIDs", pVMInstanceIDs);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";

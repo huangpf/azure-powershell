@@ -277,8 +277,23 @@
       <ARMGeneratedPSCodeFolder>..\..\..\ResourceManager\Compute\Commands.Compute</ARMGeneratedPSCodeFolder>
       <ARMCmdletFlavor>Verb</ARMCmdletFlavor>
       <CliCmdletFlavor>Verb</CliCmdletFlavor>
-      <OperationNameFilter>"VirtualMachineScaleSets","VirtualMachineScaleSetVMs"</OperationNameFilter>
+      <OperationNameFilter>VirtualMachineScaleSet,VirtualMachineScaleSetVM</OperationNameFilter>
     </PropertyGroup>
     <Exec Command="$(PowerShellExe) $(PSCodeGenScriptPath) $(PSCodeGenTargetFolder) $(ARMGeneratedPSCodeFolder) $(ARMClientLibraryNamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName) $(ARMCmdletFlavor) $(CliCmdletFlavor) $(OperationNameFilter)" />
+  </Target>
+  <Target Name="BuildGenerateNRP" DependsOnTargets="BuildGenerateARM">
+    <PropertyGroup>
+      <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
+      <GenScript>".\Automation\RunCodeGeneration.ps1"</GenScript>
+      <GenTarget>$(CrpDllPath)</GenTarget>
+      <GenFolder>..\..\..\ResourceManager\Compute\Commands.Network</GenFolder>
+      <BaseCmdlet>"Microsoft.Azure.Commands.Network.NetworkClientBaseCmdlet"</BaseCmdlet>
+      <BaseClient>"NetworkClient.NetworkManagementClient"</BaseClient>
+      <Namespace>"Microsoft.Azure.Management.Network"</Namespace>
+      <PSFlavor>Verb</PSFlavor>
+      <CliFlavor>Verb</CliFlavor>
+      <Filter>VirtualNetworkGatewayConnections,VirtualNetworks</Filter>
+    </PropertyGroup>
+    <Exec Command="$(PowerShellExe) $(GenScript) $(GenTarget) $(GenFolder) $(Namespace) $(BaseCmdlet) $(BaseClient) $(PSFlavor) $(CliFlavor) $(Filter)" />
   </Target>
 </Project>

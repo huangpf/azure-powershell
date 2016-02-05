@@ -52,8 +52,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         protected void ExecuteVirtualMachineScaleSetListAllMethod(object[] invokeMethodInputParameters)
         {
+            ListParameters parameters = new ListParameters();
 
-            var result = VirtualMachineScaleSetsClient.ListAll();
+            var result = VirtualMachineScaleSetClient.ListAll(parameters);
             WriteObject(result);
         }
     }

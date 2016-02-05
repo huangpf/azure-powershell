@@ -65,6 +65,7 @@ param(
 
 $client_model_namespace = $client_library_namespace + '.Models';
 $is_hyak_mode = $client_library_namespace -like "Microsoft.WindowsAzure.*.*";
+$component_name = $client_library_namespace.Substring($client_library_namespace.LastIndexOf('.') + 1);
 
 $all_return_type_names = @();
 
@@ -74,6 +75,7 @@ Write-Verbose "DLL Folder            = $dllFolder";
 Write-Verbose "Out Folder            = $outFolder";
 Write-Verbose "Client NameSpace      = $client_library_namespace";
 Write-Verbose "Model NameSpace       = $client_model_namespace";
+Write-Verbose "Component Name        = $component_name";
 Write-Verbose "Base Cmdlet Full Name = $baseCmdletFullName";
 Write-Verbose "Base Client Name      = $base_class_client_field";
 Write-Verbose "Cmdlet Flavor         = $cmdletFlavor";
@@ -186,7 +188,7 @@ $code_using_strs
 
 namespace ${code_common_namespace}
 {
-    public abstract class ComputeAutomationBaseCmdlet : $baseCmdletFullName
+    public abstract class ${component_name}AutomationBaseCmdlet : $baseCmdletFullName
     {
         protected static PSArgument[] ConvertFromObjectsToArguments(string[] names, object[] objects)
         {
@@ -1386,14 +1388,14 @@ ${create_local_param_code_content}
     # Construct the Individual Cmdlet Code Content
     $cmdlet_partial_class_code =
 @"
-    public partial class ${invoke_cmdlet_class_name} : ComputeAutomationBaseCmdlet
+    public partial class ${invoke_cmdlet_class_name} : ${component_name}AutomationBaseCmdlet
     {
 $dynamic_param_source_template
 
 $invoke_cmdlt_source_template
     }
 
-    public partial class ${parameter_cmdlet_class_name} : ComputeAutomationBaseCmdlet
+    public partial class ${parameter_cmdlet_class_name} : ${component_name}AutomationBaseCmdlet
     {
 $parameter_cmdlt_source_template
     }
@@ -1442,7 +1444,7 @@ namespace ${code_common_namespace}
 {
     [Cmdlet(${cmdlet_verb_code}, `"${cmdlet_noun}`")]
     [OutputType(typeof(${normalized_output_type_name}))]
-    public class ${cmdlet_class_name} : ComputeAutomationBaseCmdlet
+    public class ${cmdlet_class_name} : ${component_name}AutomationBaseCmdlet
     {
 ${cmdlet_generated_code}
     }
@@ -1699,7 +1701,7 @@ function Process-ReturnType
 
     $allrt += $rt.Name;
 
-    if ($rt.Name -like '*LongRunning*' -or $rt.Name -like '*computeoperationresponse*' -or $rt.Name -like '*AzureOperationResponse*')
+    if ($rt.Name -like '*LongRunning*' -or $rt.Name -like ('*' + $component_name + 'OperationResponse*') -or $rt.Name -like '*AzureOperationResponse*')
     {
         return @($result, $allrt);
     }
@@ -1902,9 +1904,9 @@ else
         return -1;
     }
 
-    $auto_base_cmdlet_name = 'ComputeAutomationBaseCmdlet';
+    $auto_base_cmdlet_name = $component_name + 'AutomationBaseCmdlet';
     $baseCmdletFileFullName = $outFolder + '\' + "$auto_base_cmdlet_name.cs";
-    $clientClassType = $types | where { $_.Namespace -eq $dllname -and $_.Name -eq 'IComputeManagementClient' };
+    $clientClassType = $types | where { $_.Namespace -eq $dllname -and $_.Name -eq ('I' + $component_name + 'ManagementClient') };
     Write-BaseCmdletFile $baseCmdletFileFullName $opNameList $clientClassType;
 
     # PSArgument File
@@ -1917,11 +1919,11 @@ else
     $psargument_model_class_file_path = $model_class_out_folder + '\PSArgument.cs';
     Write-PSArgumentFile $psargument_model_class_file_path;
 
-    $invoke_cmdlet_class_name = 'InvokeAzureComputeMethodCmdlet';
+    $invoke_cmdlet_class_name = 'InvokeAzure' + $component_name + 'MethodCmdlet';
     $invoke_cmdlet_file_name = $outFolder + '\' + "$invoke_cmdlet_class_name.cs";
-    $parameter_cmdlet_class_name = 'NewAzureComputeArgumentListCmdlet';
+    $parameter_cmdlet_class_name = 'NewAzure' + $component_name + 'ArgumentListCmdlet';
     $parameter_cmdlet_file_name = $outFolder + '\' + "$parameter_cmdlet_class_name.cs";
-    $new_object_cmdlet_class_name = 'NewAzureComputeParameterObjectCmdlet';
+    $new_object_cmdlet_class_name = 'NewAzure' + $component_name + 'ParameterObjectCmdlet';
     $new_object_cmdlet_file_name = $outFolder + '\' + "$new_object_cmdlet_class_name.cs";
 
     [System.Reflection.ParameterInfo[]]$parameter_type_info_list = @();

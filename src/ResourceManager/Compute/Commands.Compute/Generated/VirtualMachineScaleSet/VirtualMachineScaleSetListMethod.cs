@@ -66,7 +66,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         {
             string resourceGroupName = (string)ParseParameter(invokeMethodInputParameters[0]);
 
-            var result = VirtualMachineScaleSetsClient.List(resourceGroupName);
+            var result = VirtualMachineScaleSetClient.List(resourceGroupName);
             WriteObject(result);
         }
     }

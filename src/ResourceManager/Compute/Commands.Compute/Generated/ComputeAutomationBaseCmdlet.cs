@@ -73,7 +73,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             return objects;
         }
 
-        public IVirtualMachineScaleSetsOperations VirtualMachineScaleSetsClient
+        public IVirtualMachineScaleSetOperations VirtualMachineScaleSetClient
         {
             get
             {
@@ -81,7 +81,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             }
         }
 
-        public IVirtualMachineScaleSetVMsOperations VirtualMachineScaleSetVMsClient
+        public IVirtualMachineScaleSetVMOperations VirtualMachineScaleSetVMClient
         {
             get
             {

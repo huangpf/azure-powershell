@@ -40,6 +40,7 @@ function New-ParameterTreeNode
     $node | Add-Member -Type NoteProperty -Name Properties -Value @();
     $node | Add-Member -Type NoteProperty -Name SubNodes -Value @();
     $node | Add-Member -Type NoteProperty -Name IsPrimitive -Value $false;
+    $node | Add-Member -Type NoteProperty -Name IsReference -Value $false;
     
     return $node;
 }
@@ -53,6 +54,9 @@ function Create-ParameterTreeImpl
         [Parameter(Mandatory = $true)]
         [System.Type]$TypeInfo,
 
+        [Parameter(Mandatory = $true)]
+        [System.Collections.Hashtable]$TypeList,
+        
         [Parameter(Mandatory = $false)]
         $Parent = $null,
 
@@ -64,88 +68,109 @@ function Create-ParameterTreeImpl
     {
         return $null;
     }
-    elseif (-not $TypeInfo.FullName.StartsWith($NameSpace + "."))
+
+    if (-not $TypeInfo.FullName.StartsWith($NameSpace + "."))
     {
         $node = New-ParameterTreeNode $ParameterName $TypeInfo $Parent;
         return $node;
     }
     else
     {
-        $treeNode = New-ParameterTreeNode $ParameterName $TypeInfo $Parent;
-        if (Contains-OnlyStringFields $TypeInfo)
+        if ($TypeList.ContainsKey($TypeInfo.FullName))
         {
-            $treeNode.AllStrings = $true;
+            $treeNode = New-ParameterTreeNode $ParameterName $TypeInfo $Parent;
+            $treeNode.IsReference = $true;
+            return $treeNode;
         }
-        elseif (Contains-OnlyStringList $TypeInfo)
+        else
         {
-            $treeNode.OneStringList = $true;
-        }
-
-        if (Contains-OnlySimpleFields $TypeInfo $NameSpace)
-        {
-            $treeNode.OnlySimple = $true;
-        }
-
-        $padding = ($Depth.ToString() + (' ' * (4 * ($Depth + 1))));
-        if ($Depth -gt 0)
-        {
-            Write-Verbose ($padding + "-----------------------------------------------------------");
-        }
-
-        if ($treeNode.AllStrings)
-        {
-            $annotation = " *";
-        }
-        elseif ($treeNode.OneStringList)
-        {
-            $annotation = " ^";
-        }
-
-        Write-Verbose ($padding + "[ Node ] " + $treeNode.Name + $annotation);
-        Write-Verbose ($padding + "[Parent] " + $Parent.Name);
-
-        foreach ($item in $TypeInfo.GetProperties())
-        {
-            $itemProp = [System.Reflection.PropertyInfo]$item;
-            $nodeProp = @{ Name = $itemProp.Name; Type = $itemProp.PropertyType };
-            $treeNode.Properties += $nodeProp;
-
-            if ($itemProp.PropertyType.FullName.StartsWith($NameSpace + "."))
+            if ($TypeInfo.FullName -like "Microsoft.*Azure.Management.*.*")
             {
-                # Model Class Type - Recursive Call
-                $subTreeNode = Create-ParameterTreeImpl $itemProp.Name $itemProp.PropertyType $treeNode ($Depth + 1);
-                if ($subTreeNode -ne $null)
+                $TypeList.Add($TypeInfo.FullName, $TypeInfo);
+            }
+        
+            $treeNode = New-ParameterTreeNode $ParameterName $TypeInfo $Parent;
+            if (Contains-OnlyStringFields $TypeInfo)
+            {
+                $treeNode.AllStrings = $true;
+            }
+            elseif (Contains-OnlyStringList $TypeInfo)
+            {
+                $treeNode.OneStringList = $true;
+            }
+
+            if (Contains-OnlySimpleFields $TypeInfo $NameSpace)
+            {
+                $treeNode.OnlySimple = $true;
+            }
+
+            $padding = ($Depth.ToString() + (' ' * (4 * ($Depth + 1))));
+            if ($Depth -gt 0)
+            {
+                Write-Verbose ($padding + "-----------------------------------------------------------");
+            }
+
+            if ($treeNode.AllStrings)
+            {
+                $annotation = " *";
+            }
+            elseif ($treeNode.OneStringList)
+            {
+                $annotation = " ^";
+            }
+
+            Write-Verbose ($padding + "[ Node ] " + $treeNode.Name + $annotation);
+            Write-Verbose ($padding + "[Parent] " + $Parent.Name);
+
+            foreach ($item in $TypeInfo.GetProperties())
+            {
+                $itemProp = [System.Reflection.PropertyInfo]$item;
+                $nodeProp = @{ Name = $itemProp.Name; Type = $itemProp.PropertyType };
+                $treeNode.Properties += $nodeProp;
+
+                if ($itemProp.PropertyType.FullName.StartsWith($NameSpace + "."))
                 {
-                    $treeNode.SubNodes += $subTreeNode;
+                    # Model Class Type - Recursive Call
+                    $subTreeNode = Create-ParameterTreeImpl $itemProp.Name $itemProp.PropertyType $TypeList $treeNode ($Depth + 1);
+                    if ($subTreeNode -ne $null)
+                    {
+                        $treeNode.SubNodes += $subTreeNode;
+                    }
+                }
+                elseif ($itemProp.PropertyType.FullName.StartsWith("System.Collections.Generic.IList"))
+                {
+                    # List Type
+                    $listItemType = $itemProp.PropertyType.GenericTypeArguments[0];
+                    if ($TypeList.ContainsKey($listItemType.FullName))
+                    {
+                      $refSuffix = "`'";
+                    }
+                    Write-Verbose ($padding + '-' + $itemProp.Name + ' : [List] ' + $listItemType.Name + $refSuffix);
+
+                    # ListItem is Model Class Type - Recursive Call
+                    $subTreeNode = Create-ParameterTreeImpl $itemProp.Name $listItemType $TypeList $treeNode ($Depth + 1)
+                    if ($subTreeNode -ne $null)
+                    {
+                        $subTreeNode.IsListItem = $true;
+                        $treeNode.SubNodes += $subTreeNode;
+                    }
+                }
+                else
+                {
+                    if ($nodeProp["Type"].IsEquivalentTo([System.Nullable[long]]) -or
+                        $nodeProp["Type"].IsEquivalentTo([System.Nullable[bool]]))
+                    {
+                        $nodeProp["IsPrimitive"] = $true;
+                    }
+
+                    # Primitive Type, e.g. int, string, Dictionary<string, string>, etc.
+                    Write-Verbose ($padding + '-' + $nodeProp["Name"] + " : " + $nodeProp["Type"]);
                 }
             }
-            elseif ($itemProp.PropertyType.FullName.StartsWith("System.Collections.Generic.IList"))
-            {
-                # List Type
-                $listItemType = $itemProp.PropertyType.GenericTypeArguments[0];
-            
-                Write-Verbose ($padding + '-' + $itemProp.Name + ' : [List] ' + $listItemType.Name + "");
 
-                # ListItem is Model Class Type - Recursive Call
-                $subTreeNode = Create-ParameterTreeImpl $itemProp.Name $listItemType $treeNode ($Depth + 1)
-                $subTreeNode.IsListItem = $true;
-                $treeNode.SubNodes += $subTreeNode;
-            }
-            else
-            {
-                if ($nodeProp["Type"].IsEquivalentTo([System.Nullable[long]]) -or
-                    $nodeProp["Type"].IsEquivalentTo([System.Nullable[bool]]))
-                {
-                    $nodeProp["IsPrimitive"] = $true;
-                }
-
-                # Primitive Type, e.g. int, string, Dictionary<string, string>, etc.
-                Write-Verbose ($padding + '-' + $nodeProp["Name"] + " : " + $nodeProp["Type"]);
-            }
+            return $treeNode;
         }
-
-        return $treeNode;
     }
 }
 
-Write-Output (Create-ParameterTreeImpl $ParameterName $TypeInfo);
+Write-Output (Create-ParameterTreeImpl $ParameterName $TypeInfo @{});

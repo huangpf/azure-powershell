@@ -24,6 +24,134 @@
 <Configuration>
   <ViewDefinitions>
     <View>
+      <Name>Microsoft.Azure.Management.Compute.Models.DeleteOperationResponse</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Azure.Management.Compute.Models.DeleteOperationResponse</TypeName>
+      </ViewSelectedBy>
+      <ListControl>
+        <ListEntries>
+          <ListEntry>
+            <ListItems>
+              <ListItem>
+                <Label>EndTime</Label>
+                <PropertyName>EndTime</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Error</Label>
+                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.Error,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>StartTime</Label>
+                <PropertyName>StartTime</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Status</Label>
+                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.Status,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>TrackingOperationId</Label>
+                <PropertyName>TrackingOperationId</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>AzureAsyncOperation</Label>
+                <PropertyName>AzureAsyncOperation</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>RequestId</Label>
+                <PropertyName>RequestId</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>StatusCode</Label>
+                <PropertyName>StatusCode</PropertyName>
+              </ListItem>
+            </ListItems>
+          </ListEntry>
+        </ListEntries>
+      </ListControl>
+    </View>
+    <View>
+      <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetGetResponse</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetGetResponse</TypeName>
+      </ViewSelectedBy>
+      <ListControl>
+        <ListEntries>
+          <ListEntry>
+            <ListItems>
+              <ListItem>
+                <Label>VirtualMachineScaleSet</Label>
+                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.VirtualMachineScaleSet,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>RequestId</Label>
+                <PropertyName>RequestId</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>StatusCode</Label>
+                <PropertyName>StatusCode</PropertyName>
+              </ListItem>
+            </ListItems>
+          </ListEntry>
+        </ListEntries>
+      </ListControl>
+    </View>
+    <View>
+      <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetGetInstanceViewResponse</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetGetInstanceViewResponse</TypeName>
+      </ViewSelectedBy>
+      <ListControl>
+        <ListEntries>
+          <ListEntry>
+            <ListItems>
+              <ListItem>
+                <Label>VirtualMachineScaleSetInstanceView</Label>
+                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.VirtualMachineScaleSetInstanceView,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>RequestId</Label>
+                <PropertyName>RequestId</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>StatusCode</Label>
+                <PropertyName>StatusCode</PropertyName>
+              </ListItem>
+            </ListItems>
+          </ListEntry>
+        </ListEntries>
+      </ListControl>
+    </View>
+    <View>
+      <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetListResponse</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetListResponse</TypeName>
+      </ViewSelectedBy>
+      <ListControl>
+        <ListEntries>
+          <ListEntry>
+            <ListItems>
+              <ListItem>
+                <Label>VirtualMachineScaleSets.Count</Label>
+                <ScriptBlock> if ($_.VirtualMachineScaleSets -eq $null) { 0 } else { $_.VirtualMachineScaleSets.Count }</ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>VirtualMachineScaleSets</Label>
+                <ScriptBlock> foreach ($item in $_.VirtualMachineScaleSets) { [Newtonsoft.Json.JsonConvert]::SerializeObject($item,  [Newtonsoft.Json.Formatting]::Indented) } </ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>RequestId</Label>
+                <PropertyName>RequestId</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>StatusCode</Label>
+                <PropertyName>StatusCode</PropertyName>
+              </ListItem>
+            </ListItems>
+          </ListEntry>
+        </ListEntries>
+      </ListControl>
+    </View>
+    <View>
       <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSet</Name>
       <ViewSelectedBy>
         <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSet</TypeName>
@@ -33,95 +161,7 @@
           <ListEntry>
             <ListItems>
               <ListItem>
-                <Label>Sku</Label>
-                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.Sku,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>UpgradePolicy</Label>
-                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.UpgradePolicy,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>VirtualMachineProfile</Label>
-                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.VirtualMachineProfile,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>ProvisioningState</Label>
-                <PropertyName>ProvisioningState</PropertyName>
-              </ListItem>
-              <ListItem>
-                <Label>Id</Label>
-                <PropertyName>Id</PropertyName>
-              </ListItem>
-              <ListItem>
-                <Label>Name</Label>
-                <PropertyName>Name</PropertyName>
-              </ListItem>
-              <ListItem>
-                <Label>Type</Label>
-                <PropertyName>Type</PropertyName>
-              </ListItem>
-              <ListItem>
-                <Label>Location</Label>
-                <PropertyName>Location</PropertyName>
-              </ListItem>
-              <ListItem>
-                <Label>Tags.Count</Label>
-                <ScriptBlock> if ($_.Tags -eq $null) { 0 } else { $_.Tags.Count }</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>Tags</Label>
-                <ScriptBlock> foreach ($item in $_.Tags) { [Newtonsoft.Json.JsonConvert]::SerializeObject($item,  [Newtonsoft.Json.Formatting]::Indented) } </ScriptBlock>
-              </ListItem>
-            </ListItems>
-          </ListEntry>
-        </ListEntries>
-      </ListControl>
-    </View>
-    <View>
-      <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetInstanceView</Name>
-      <ViewSelectedBy>
-        <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetInstanceView</TypeName>
-      </ViewSelectedBy>
-      <ListControl>
-        <ListEntries>
-          <ListEntry>
-            <ListItems>
-              <ListItem>
-                <Label>VirtualMachine</Label>
-                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.VirtualMachine,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>Extensions.Count</Label>
-                <ScriptBlock> if ($_.Extensions -eq $null) { 0 } else { $_.Extensions.Count }</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>Extensions</Label>
-                <ScriptBlock> foreach ($item in $_.Extensions) { [Newtonsoft.Json.JsonConvert]::SerializeObject($item,  [Newtonsoft.Json.Formatting]::Indented) } </ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>Statuses.Count</Label>
-                <ScriptBlock> if ($_.Statuses -eq $null) { 0 } else { $_.Statuses.Count }</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>Statuses</Label>
-                <ScriptBlock> foreach ($item in $_.Statuses) { [Newtonsoft.Json.JsonConvert]::SerializeObject($item,  [Newtonsoft.Json.Formatting]::Indented) } </ScriptBlock>
-              </ListItem>
-            </ListItems>
-          </ListEntry>
-        </ListEntries>
-      </ListControl>
-    </View>
-    <View>
-      <Name>Microsoft.Azure.Management.Compute.Models.InstanceViewStatus</Name>
-      <ViewSelectedBy>
-        <TypeName>Microsoft.Azure.Management.Compute.Models.InstanceViewStatus</TypeName>
-      </ViewSelectedBy>
-      <ListControl>
-        <ListEntries>
-          <ListEntry>
-            <ListItems>
-              <ListItem>
-                <Label>InstanceViewStatus</Label>
+                <Label>VirtualMachineScaleSet</Label>
                 <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
               </ListItem>
             </ListItems>
@@ -130,17 +170,163 @@
       </ListControl>
     </View>
     <View>
-      <Name>Microsoft.Rest.Azure.IPage`1[[Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSet, Microsoft.Azure.Management.Compute, Version=10.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]]</Name>
+      <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetListWithLinkResponse</Name>
       <ViewSelectedBy>
-        <TypeName>Microsoft.Rest.Azure.IPage`1[[Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSet, Microsoft.Azure.Management.Compute, Version=10.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]]</TypeName>
+        <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetListWithLinkResponse</TypeName>
       </ViewSelectedBy>
       <ListControl>
         <ListEntries>
           <ListEntry>
             <ListItems>
               <ListItem>
-                <Label>NextPageLink</Label>
-                <PropertyName>NextPageLink</PropertyName>
+                <Label>NextLink</Label>
+                <PropertyName>NextLink</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>VirtualMachineScaleSets.Count</Label>
+                <ScriptBlock> if ($_.VirtualMachineScaleSets -eq $null) { 0 } else { $_.VirtualMachineScaleSets.Count }</ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>VirtualMachineScaleSets</Label>
+                <ScriptBlock> foreach ($item in $_.VirtualMachineScaleSets) { [Newtonsoft.Json.JsonConvert]::SerializeObject($item,  [Newtonsoft.Json.Formatting]::Indented) } </ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>RequestId</Label>
+                <PropertyName>RequestId</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>StatusCode</Label>
+                <PropertyName>StatusCode</PropertyName>
+              </ListItem>
+            </ListItems>
+          </ListEntry>
+        </ListEntries>
+      </ListControl>
+    </View>
+    <View>
+      <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetListSkusResponse</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetListSkusResponse</TypeName>
+      </ViewSelectedBy>
+      <ListControl>
+        <ListEntries>
+          <ListEntry>
+            <ListItems>
+              <ListItem>
+                <Label>VirtualMachineScaleSetAvailableSkus.Count</Label>
+                <ScriptBlock> if ($_.VirtualMachineScaleSetAvailableSkus -eq $null) { 0 } else { $_.VirtualMachineScaleSetAvailableSkus.Count }</ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>VirtualMachineScaleSetAvailableSkus</Label>
+                <ScriptBlock> foreach ($item in $_.VirtualMachineScaleSetAvailableSkus) { [Newtonsoft.Json.JsonConvert]::SerializeObject($item,  [Newtonsoft.Json.Formatting]::Indented) } </ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>RequestId</Label>
+                <PropertyName>RequestId</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>StatusCode</Label>
+                <PropertyName>StatusCode</PropertyName>
+              </ListItem>
+            </ListItems>
+          </ListEntry>
+        </ListEntries>
+      </ListControl>
+    </View>
+    <View>
+      <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetSku</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetSku</TypeName>
+      </ViewSelectedBy>
+      <ListControl>
+        <ListEntries>
+          <ListEntry>
+            <ListItems>
+              <ListItem>
+                <Label>VirtualMachineScaleSetSku</Label>
+                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
+              </ListItem>
+            </ListItems>
+          </ListEntry>
+        </ListEntries>
+      </ListControl>
+    </View>
+    <View>
+      <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMGetResponse</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMGetResponse</TypeName>
+      </ViewSelectedBy>
+      <ListControl>
+        <ListEntries>
+          <ListEntry>
+            <ListItems>
+              <ListItem>
+                <Label>VirtualMachineScaleSetVM</Label>
+                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.VirtualMachineScaleSetVM,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>RequestId</Label>
+                <PropertyName>RequestId</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>StatusCode</Label>
+                <PropertyName>StatusCode</PropertyName>
+              </ListItem>
+            </ListItems>
+          </ListEntry>
+        </ListEntries>
+      </ListControl>
+    </View>
+    <View>
+      <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMGetInstanceViewResponse</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMGetInstanceViewResponse</TypeName>
+      </ViewSelectedBy>
+      <ListControl>
+        <ListEntries>
+          <ListEntry>
+            <ListItems>
+              <ListItem>
+                <Label>VirtualMachineScaleSetVMInstanceView</Label>
+                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.VirtualMachineScaleSetVMInstanceView,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>RequestId</Label>
+                <PropertyName>RequestId</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>StatusCode</Label>
+                <PropertyName>StatusCode</PropertyName>
+              </ListItem>
+            </ListItems>
+          </ListEntry>
+        </ListEntries>
+      </ListControl>
+    </View>
+    <View>
+      <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMListResponse</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMListResponse</TypeName>
+      </ViewSelectedBy>
+      <ListControl>
+        <ListEntries>
+          <ListEntry>
+            <ListItems>
+              <ListItem>
+                <Label>VirtualMachineScaleSetVMs.Count</Label>
+                <ScriptBlock> if ($_.VirtualMachineScaleSetVMs -eq $null) { 0 } else { $_.VirtualMachineScaleSetVMs.Count }</ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>VirtualMachineScaleSetVMs</Label>
+                <ScriptBlock> foreach ($item in $_.VirtualMachineScaleSetVMs) { [Newtonsoft.Json.JsonConvert]::SerializeObject($item,  [Newtonsoft.Json.Formatting]::Indented) } </ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>RequestId</Label>
+                <PropertyName>RequestId</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>StatusCode</Label>
+                <PropertyName>StatusCode</PropertyName>
               </ListItem>
             </ListItems>
           </ListEntry>
@@ -157,177 +343,7 @@
           <ListEntry>
             <ListItems>
               <ListItem>
-                <Label>InstanceId</Label>
-                <PropertyName>InstanceId</PropertyName>
-              </ListItem>
-              <ListItem>
-                <Label>Sku</Label>
-                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.Sku,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>Plan</Label>
-                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.Plan,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>Resources.Count</Label>
-                <ScriptBlock> if ($_.Resources -eq $null) { 0 } else { $_.Resources.Count }</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>Resources</Label>
-                <ScriptBlock> foreach ($item in $_.Resources) { [Newtonsoft.Json.JsonConvert]::SerializeObject($item,  [Newtonsoft.Json.Formatting]::Indented) } </ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>LatestModelApplied</Label>
-                <PropertyName>LatestModelApplied</PropertyName>
-              </ListItem>
-              <ListItem>
-                <Label>InstanceView</Label>
-                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.InstanceView,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>HardwareProfile</Label>
-                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.HardwareProfile,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>StorageProfile</Label>
-                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.StorageProfile,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>OsProfile</Label>
-                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.OsProfile,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>NetworkProfile</Label>
-                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.NetworkProfile,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>DiagnosticsProfile</Label>
-                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.DiagnosticsProfile,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>AvailabilitySet</Label>
-                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.AvailabilitySet,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>ProvisioningState</Label>
-                <PropertyName>ProvisioningState</PropertyName>
-              </ListItem>
-              <ListItem>
-                <Label>Id</Label>
-                <PropertyName>Id</PropertyName>
-              </ListItem>
-              <ListItem>
-                <Label>Name</Label>
-                <PropertyName>Name</PropertyName>
-              </ListItem>
-              <ListItem>
-                <Label>Type</Label>
-                <PropertyName>Type</PropertyName>
-              </ListItem>
-              <ListItem>
-                <Label>Location</Label>
-                <PropertyName>Location</PropertyName>
-              </ListItem>
-              <ListItem>
-                <Label>Tags.Count</Label>
-                <ScriptBlock> if ($_.Tags -eq $null) { 0 } else { $_.Tags.Count }</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>Tags</Label>
-                <ScriptBlock> foreach ($item in $_.Tags) { [Newtonsoft.Json.JsonConvert]::SerializeObject($item,  [Newtonsoft.Json.Formatting]::Indented) } </ScriptBlock>
-              </ListItem>
-            </ListItems>
-          </ListEntry>
-        </ListEntries>
-      </ListControl>
-    </View>
-    <View>
-      <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineExtension</Name>
-      <ViewSelectedBy>
-        <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineExtension</TypeName>
-      </ViewSelectedBy>
-      <ListControl>
-        <ListEntries>
-          <ListEntry>
-            <ListItems>
-              <ListItem>
-                <Label>VirtualMachineExtension</Label>
-                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
-              </ListItem>
-            </ListItems>
-          </ListEntry>
-        </ListEntries>
-      </ListControl>
-    </View>
-    <View>
-      <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceView</Name>
-      <ViewSelectedBy>
-        <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceView</TypeName>
-      </ViewSelectedBy>
-      <ListControl>
-        <ListEntries>
-          <ListEntry>
-            <ListItems>
-              <ListItem>
-                <Label>PlatformUpdateDomain</Label>
-                <PropertyName>PlatformUpdateDomain</PropertyName>
-              </ListItem>
-              <ListItem>
-                <Label>PlatformFaultDomain</Label>
-                <PropertyName>PlatformFaultDomain</PropertyName>
-              </ListItem>
-              <ListItem>
-                <Label>RdpThumbPrint</Label>
-                <PropertyName>RdpThumbPrint</PropertyName>
-              </ListItem>
-              <ListItem>
-                <Label>VmAgent</Label>
-                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.VmAgent,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>Disks.Count</Label>
-                <ScriptBlock> if ($_.Disks -eq $null) { 0 } else { $_.Disks.Count }</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>Disks</Label>
-                <ScriptBlock> foreach ($item in $_.Disks) { [Newtonsoft.Json.JsonConvert]::SerializeObject($item,  [Newtonsoft.Json.Formatting]::Indented) } </ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>Extensions.Count</Label>
-                <ScriptBlock> if ($_.Extensions -eq $null) { 0 } else { $_.Extensions.Count }</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>Extensions</Label>
-                <ScriptBlock> foreach ($item in $_.Extensions) { [Newtonsoft.Json.JsonConvert]::SerializeObject($item,  [Newtonsoft.Json.Formatting]::Indented) } </ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>BootDiagnostics</Label>
-                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.BootDiagnostics,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>Statuses.Count</Label>
-                <ScriptBlock> if ($_.Statuses -eq $null) { 0 } else { $_.Statuses.Count }</ScriptBlock>
-              </ListItem>
-              <ListItem>
-                <Label>Statuses</Label>
-                <ScriptBlock> foreach ($item in $_.Statuses) { [Newtonsoft.Json.JsonConvert]::SerializeObject($item,  [Newtonsoft.Json.Formatting]::Indented) } </ScriptBlock>
-              </ListItem>
-            </ListItems>
-          </ListEntry>
-        </ListEntries>
-      </ListControl>
-    </View>
-    <View>
-      <Name>Microsoft.Azure.Management.Compute.Models.VirtualMachineExtensionInstanceView</Name>
-      <ViewSelectedBy>
-        <TypeName>Microsoft.Azure.Management.Compute.Models.VirtualMachineExtensionInstanceView</TypeName>
-      </ViewSelectedBy>
-      <ListControl>
-        <ListEntries>
-          <ListEntry>
-            <ListItems>
-              <ListItem>
-                <Label>VirtualMachineExtensionInstanceView</Label>
+                <Label>VirtualMachineScaleSetVM</Label>
                 <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
               </ListItem>
             </ListItems>

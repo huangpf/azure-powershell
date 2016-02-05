@@ -20,19 +20,19 @@
 // code is regenerated.
 
 using Microsoft.Azure;
-using Microsoft.Azure.Commands.Compute.Automation.Models;
-using Microsoft.Azure.Management.Compute;
-using Microsoft.Azure.Management.Compute.Models;
+using Microsoft.Azure.Commands.Network.Automation.Models;
+using Microsoft.Azure.Management.Network;
+using Microsoft.Azure.Management.Network.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 
-namespace Microsoft.Azure.Commands.Compute.Automation
+namespace Microsoft.Azure.Commands.Network.Automation
 {
-    public partial class InvokeAzureComputeMethodCmdlet : ComputeAutomationBaseCmdlet
+    public partial class InvokeAzureNetworkMethodCmdlet : NetworkAutomationBaseCmdlet
     {
-        protected object CreateVirtualMachineScaleSetListAllNextDynamicParameters()
+        protected object CreateVirtualNetworksListNextDynamicParameters()
         {
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pNextPageLink = new RuntimeDefinedParameter();
@@ -62,18 +62,18 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             return dynamicParameters;
         }
 
-        protected void ExecuteVirtualMachineScaleSetListAllNextMethod(object[] invokeMethodInputParameters)
+        protected void ExecuteVirtualNetworksListNextMethod(object[] invokeMethodInputParameters)
         {
             string nextPageLink = (string)ParseParameter(invokeMethodInputParameters[0]);
 
-            var result = VirtualMachineScaleSetsClient.ListAllNext(nextPageLink);
+            var result = VirtualNetworksClient.ListNext(nextPageLink);
             WriteObject(result);
         }
     }
 
-    public partial class NewAzureComputeArgumentListCmdlet : ComputeAutomationBaseCmdlet
+    public partial class NewAzureNetworkArgumentListCmdlet : NetworkAutomationBaseCmdlet
     {
-        protected PSArgument[] CreateVirtualMachineScaleSetListAllNextParameters()
+        protected PSArgument[] CreateVirtualNetworksListNextParameters()
         {
             string nextPageLink = string.Empty;
 
@@ -83,12 +83,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Get", "AzureRmVmssAllNextList", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class GetAzureRmVMSSAllNextList : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Get", "AzureRmVirtualNetworksNextList", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class GetAzureRmVirtualNetworksNextList : InvokeAzureNetworkMethodCmdlet
     {
-        public GetAzureRmVMSSAllNextList()
+        public GetAzureRmVirtualNetworksNextList()
         {
-            this.MethodName = "VirtualMachineScaleSetListAllNext";
+            this.MethodName = "VirtualNetworksListNext";
         }
 
         public override string MethodName { get; set; }

@@ -36,33 +36,36 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     {
         [Parameter(ParameterSetName = "CreateParameterObjectByFriendlyName", Mandatory = true, Position = 0)]
         [ValidateSet(
-            "VirtualMachineScaleSetsAdditionalUnattendContent",
-            "VirtualMachineScaleSetsAdditionalUnattendContentList",
-            "VirtualMachineScaleSetsImageReference",
-            "VirtualMachineScaleSetsLinuxConfiguration",
-            "VirtualMachineScaleSetsSku",
-            "VirtualMachineScaleSetsSshConfiguration",
-            "VirtualMachineScaleSetsSshPublicKey",
-            "VirtualMachineScaleSetsSshPublicKeyList",
-            "VirtualMachineScaleSetstorageProfile",
-            "VirtualMachineScaleSetsUpgradePolicy",
-            "VirtualMachineScaleSetsVaultSecretGroup",
-            "VirtualMachineScaleSetsVaultSecretGroupList",
-            "VirtualMachineScaleSetsVirtualHardDisk",
-            "VirtualMachineScaleSetsVirtualMachineScaleSet",
-            "VirtualMachineScaleSetsVirtualMachineScaleSetExtension",
-            "VirtualMachineScaleSetsVirtualMachineScaleSetExtensionList",
-            "VirtualMachineScaleSetsVirtualMachineScaleSetExtensionProfile",
-            "VirtualMachineScaleSetsVirtualMachineScaleSetNetworkConfiguration",
-            "VirtualMachineScaleSetsVirtualMachineScaleSetNetworkConfigurationList",
-            "VirtualMachineScaleSetsVirtualMachineScaleSetNetworkProfile",
-            "VirtualMachineScaleSetsVirtualMachineScaleSetOSDisk",
-            "VirtualMachineScaleSetsVirtualMachineScaleSetOSProfile",
-            "VirtualMachineScaleSetsVirtualMachineScaleSetVMProfile",
-            "VirtualMachineScaleSetsWindowsConfiguration",
-            "VirtualMachineScaleSetsWinRMConfiguration",
-            "VirtualMachineScaleSetsWinRMListener",
-            "VirtualMachineScaleSetsWinRMListenerList"
+            "VirtualMachineScaleSetAdditionalUnattendContent",
+            "VirtualMachineScaleSetAdditionalUnattendContentList",
+            "VirtualMachineScaleSetExtension",
+            "VirtualMachineScaleSetExtensionList",
+            "VirtualMachineScaleSetExtensionProfile",
+            "VirtualMachineScaleSetImageReference",
+            "VirtualMachineScaleSetLinuxConfiguration",
+            "VirtualMachineScaleSetListParameters",
+            "VirtualMachineScaleSetNetworkConfiguration",
+            "VirtualMachineScaleSetNetworkConfigurationList",
+            "VirtualMachineScaleSetNetworkProfile",
+            "VirtualMachineScaleSetOSDisk",
+            "VirtualMachineScaleSetOSProfile",
+            "VirtualMachineScaleSetSku",
+            "VirtualMachineScaleSetSshConfiguration",
+            "VirtualMachineScaleSetSshPublicKey",
+            "VirtualMachineScaleSetSshPublicKeyList",
+            "VirtualMachineScaleSetStorageProfile",
+            "VirtualMachineScaleSetUpgradePolicy",
+            "VirtualMachineScaleSetVaultSecretGroup",
+            "VirtualMachineScaleSetVaultSecretGroupList",
+            "VirtualMachineScaleSetVirtualHardDisk",
+            "VirtualMachineScaleSetVirtualMachineScaleSet",
+            "VirtualMachineScaleSetVMInstanceIDs",
+            "VirtualMachineScaleSetVMListParameters",
+            "VirtualMachineScaleSetVMProfile",
+            "VirtualMachineScaleSetWindowsConfiguration",
+            "VirtualMachineScaleSetWinRMConfiguration",
+            "VirtualMachineScaleSetWinRMListener",
+            "VirtualMachineScaleSetWinRMListenerList"
         )]
         public string FriendlyName { get; set; }
 
@@ -71,6 +74,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "Microsoft.Azure.Management.Compute.Models.AdditionalUnattendContent",
             "Microsoft.Azure.Management.Compute.Models.ImageReference",
             "Microsoft.Azure.Management.Compute.Models.LinuxConfiguration",
+            "Microsoft.Azure.Management.Compute.Models.ListParameters",
             "Microsoft.Azure.Management.Compute.Models.Sku",
             "Microsoft.Azure.Management.Compute.Models.SshConfiguration",
             "Microsoft.Azure.Management.Compute.Models.SshPublicKey",
@@ -85,6 +89,8 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSDisk",
             "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSProfile",
             "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetStorageProfile",
+            "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceIDs",
+            "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMListParameters",
             "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile",
             "Microsoft.Azure.Management.Compute.Models.WindowsConfiguration",
             "Microsoft.Azure.Management.Compute.Models.WinRMConfiguration",
@@ -107,33 +113,36 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 {
                     switch (FriendlyName)
                     {
-                        case "VirtualMachineScaleSetsAdditionalUnattendContent" : WriteObject(new AdditionalUnattendContent()); break;
-                        case "VirtualMachineScaleSetsAdditionalUnattendContentList" : WriteObject(new List<AdditionalUnattendContent>()); break;
-                        case "VirtualMachineScaleSetsImageReference" : WriteObject(new ImageReference()); break;
-                        case "VirtualMachineScaleSetsLinuxConfiguration" : WriteObject(new LinuxConfiguration()); break;
-                        case "VirtualMachineScaleSetsSku" : WriteObject(new Sku()); break;
-                        case "VirtualMachineScaleSetsSshConfiguration" : WriteObject(new SshConfiguration()); break;
-                        case "VirtualMachineScaleSetsSshPublicKey" : WriteObject(new SshPublicKey()); break;
-                        case "VirtualMachineScaleSetsSshPublicKeyList" : WriteObject(new List<SshPublicKey>()); break;
-                        case "VirtualMachineScaleSetstorageProfile" : WriteObject(new VirtualMachineScaleSetStorageProfile()); break;
-                        case "VirtualMachineScaleSetsUpgradePolicy" : WriteObject(new UpgradePolicy()); break;
-                        case "VirtualMachineScaleSetsVaultSecretGroup" : WriteObject(new VaultSecretGroup()); break;
-                        case "VirtualMachineScaleSetsVaultSecretGroupList" : WriteObject(new List<VaultSecretGroup>()); break;
-                        case "VirtualMachineScaleSetsVirtualHardDisk" : WriteObject(new VirtualHardDisk()); break;
-                        case "VirtualMachineScaleSetsVirtualMachineScaleSet" : WriteObject(new VirtualMachineScaleSet()); break;
-                        case "VirtualMachineScaleSetsVirtualMachineScaleSetExtension" : WriteObject(new VirtualMachineScaleSetExtension()); break;
-                        case "VirtualMachineScaleSetsVirtualMachineScaleSetExtensionList" : WriteObject(new List<VirtualMachineScaleSetExtension>()); break;
-                        case "VirtualMachineScaleSetsVirtualMachineScaleSetExtensionProfile" : WriteObject(new VirtualMachineScaleSetExtensionProfile()); break;
-                        case "VirtualMachineScaleSetsVirtualMachineScaleSetNetworkConfiguration" : WriteObject(new VirtualMachineScaleSetNetworkConfiguration()); break;
-                        case "VirtualMachineScaleSetsVirtualMachineScaleSetNetworkConfigurationList" : WriteObject(new List<VirtualMachineScaleSetNetworkConfiguration>()); break;
-                        case "VirtualMachineScaleSetsVirtualMachineScaleSetNetworkProfile" : WriteObject(new VirtualMachineScaleSetNetworkProfile()); break;
-                        case "VirtualMachineScaleSetsVirtualMachineScaleSetOSDisk" : WriteObject(new VirtualMachineScaleSetOSDisk()); break;
-                        case "VirtualMachineScaleSetsVirtualMachineScaleSetOSProfile" : WriteObject(new VirtualMachineScaleSetOSProfile()); break;
-                        case "VirtualMachineScaleSetsVirtualMachineScaleSetVMProfile" : WriteObject(new VirtualMachineScaleSetVMProfile()); break;
-                        case "VirtualMachineScaleSetsWindowsConfiguration" : WriteObject(new WindowsConfiguration()); break;
-                        case "VirtualMachineScaleSetsWinRMConfiguration" : WriteObject(new WinRMConfiguration()); break;
-                        case "VirtualMachineScaleSetsWinRMListener" : WriteObject(new WinRMListener()); break;
-                        case "VirtualMachineScaleSetsWinRMListenerList" : WriteObject(new List<WinRMListener>()); break;
+                        case "VirtualMachineScaleSetAdditionalUnattendContent" : WriteObject(new AdditionalUnattendContent()); break;
+                        case "VirtualMachineScaleSetAdditionalUnattendContentList" : WriteObject(new List<AdditionalUnattendContent>()); break;
+                        case "VirtualMachineScaleSetExtension" : WriteObject(new VirtualMachineScaleSetExtension()); break;
+                        case "VirtualMachineScaleSetExtensionList" : WriteObject(new List<VirtualMachineScaleSetExtension>()); break;
+                        case "VirtualMachineScaleSetExtensionProfile" : WriteObject(new VirtualMachineScaleSetExtensionProfile()); break;
+                        case "VirtualMachineScaleSetImageReference" : WriteObject(new ImageReference()); break;
+                        case "VirtualMachineScaleSetLinuxConfiguration" : WriteObject(new LinuxConfiguration()); break;
+                        case "VirtualMachineScaleSetListParameters" : WriteObject(new ListParameters()); break;
+                        case "VirtualMachineScaleSetNetworkConfiguration" : WriteObject(new VirtualMachineScaleSetNetworkConfiguration()); break;
+                        case "VirtualMachineScaleSetNetworkConfigurationList" : WriteObject(new List<VirtualMachineScaleSetNetworkConfiguration>()); break;
+                        case "VirtualMachineScaleSetNetworkProfile" : WriteObject(new VirtualMachineScaleSetNetworkProfile()); break;
+                        case "VirtualMachineScaleSetOSDisk" : WriteObject(new VirtualMachineScaleSetOSDisk()); break;
+                        case "VirtualMachineScaleSetOSProfile" : WriteObject(new VirtualMachineScaleSetOSProfile()); break;
+                        case "VirtualMachineScaleSetSku" : WriteObject(new Sku()); break;
+                        case "VirtualMachineScaleSetSshConfiguration" : WriteObject(new SshConfiguration()); break;
+                        case "VirtualMachineScaleSetSshPublicKey" : WriteObject(new SshPublicKey()); break;
+                        case "VirtualMachineScaleSetSshPublicKeyList" : WriteObject(new List<SshPublicKey>()); break;
+                        case "VirtualMachineScaleSetStorageProfile" : WriteObject(new VirtualMachineScaleSetStorageProfile()); break;
+                        case "VirtualMachineScaleSetUpgradePolicy" : WriteObject(new UpgradePolicy()); break;
+                        case "VirtualMachineScaleSetVaultSecretGroup" : WriteObject(new VaultSecretGroup()); break;
+                        case "VirtualMachineScaleSetVaultSecretGroupList" : WriteObject(new List<VaultSecretGroup>()); break;
+                        case "VirtualMachineScaleSetVirtualHardDisk" : WriteObject(new VirtualHardDisk()); break;
+                        case "VirtualMachineScaleSetVirtualMachineScaleSet" : WriteObject(new VirtualMachineScaleSet()); break;
+                        case "VirtualMachineScaleSetVMInstanceIDs" : WriteObject(new VirtualMachineScaleSetVMInstanceIDs()); break;
+                        case "VirtualMachineScaleSetVMListParameters" : WriteObject(new VirtualMachineScaleSetVMListParameters()); break;
+                        case "VirtualMachineScaleSetVMProfile" : WriteObject(new VirtualMachineScaleSetVMProfile()); break;
+                        case "VirtualMachineScaleSetWindowsConfiguration" : WriteObject(new WindowsConfiguration()); break;
+                        case "VirtualMachineScaleSetWinRMConfiguration" : WriteObject(new WinRMConfiguration()); break;
+                        case "VirtualMachineScaleSetWinRMListener" : WriteObject(new WinRMListener()); break;
+                        case "VirtualMachineScaleSetWinRMListenerList" : WriteObject(new List<WinRMListener>()); break;
                         default : WriteWarning("Cannot find the type by FriendlyName = '" + FriendlyName + "'."); break;
                     }
                 }
@@ -144,6 +153,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                         case "Microsoft.Azure.Management.Compute.Models.AdditionalUnattendContent" : WriteObject(new AdditionalUnattendContent()); break;
                         case "Microsoft.Azure.Management.Compute.Models.ImageReference" : WriteObject(new ImageReference()); break;
                         case "Microsoft.Azure.Management.Compute.Models.LinuxConfiguration" : WriteObject(new LinuxConfiguration()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.ListParameters" : WriteObject(new ListParameters()); break;
                         case "Microsoft.Azure.Management.Compute.Models.Sku" : WriteObject(new Sku()); break;
                         case "Microsoft.Azure.Management.Compute.Models.SshConfiguration" : WriteObject(new SshConfiguration()); break;
                         case "Microsoft.Azure.Management.Compute.Models.SshPublicKey" : WriteObject(new SshPublicKey()); break;
@@ -158,6 +168,8 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                         case "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSDisk" : WriteObject(new VirtualMachineScaleSetOSDisk()); break;
                         case "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSProfile" : WriteObject(new VirtualMachineScaleSetOSProfile()); break;
                         case "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetStorageProfile" : WriteObject(new VirtualMachineScaleSetStorageProfile()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMInstanceIDs" : WriteObject(new VirtualMachineScaleSetVMInstanceIDs()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMListParameters" : WriteObject(new VirtualMachineScaleSetVMListParameters()); break;
                         case "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile" : WriteObject(new VirtualMachineScaleSetVMProfile()); break;
                         case "Microsoft.Azure.Management.Compute.Models.WindowsConfiguration" : WriteObject(new WindowsConfiguration()); break;
                         case "Microsoft.Azure.Management.Compute.Models.WinRMConfiguration" : WriteObject(new WinRMConfiguration()); break;

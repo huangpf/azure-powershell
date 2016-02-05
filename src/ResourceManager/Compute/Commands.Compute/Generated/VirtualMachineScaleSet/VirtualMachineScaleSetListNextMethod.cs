@@ -35,17 +35,17 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         protected object CreateVirtualMachineScaleSetListNextDynamicParameters()
         {
             dynamicParameters = new RuntimeDefinedParameterDictionary();
-            var pNextPageLink = new RuntimeDefinedParameter();
-            pNextPageLink.Name = "NextPageLink";
-            pNextPageLink.ParameterType = typeof(string);
-            pNextPageLink.Attributes.Add(new ParameterAttribute
+            var pNextLink = new RuntimeDefinedParameter();
+            pNextLink.Name = "NextLink";
+            pNextLink.ParameterType = typeof(string);
+            pNextLink.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
                 Mandatory = true
             });
-            pNextPageLink.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("NextPageLink", pNextPageLink);
+            pNextLink.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("NextLink", pNextLink);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
@@ -64,9 +64,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         protected void ExecuteVirtualMachineScaleSetListNextMethod(object[] invokeMethodInputParameters)
         {
-            string nextPageLink = (string)ParseParameter(invokeMethodInputParameters[0]);
+            string nextLink = (string)ParseParameter(invokeMethodInputParameters[0]);
 
-            var result = VirtualMachineScaleSetsClient.ListNext(nextPageLink);
+            var result = VirtualMachineScaleSetClient.ListNext(nextLink);
             WriteObject(result);
         }
     }
@@ -75,11 +75,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     {
         protected PSArgument[] CreateVirtualMachineScaleSetListNextParameters()
         {
-            string nextPageLink = string.Empty;
+            string nextLink = string.Empty;
 
             return ConvertFromObjectsToArguments(
-                 new string[] { "NextPageLink" },
-                 new object[] { nextPageLink });
+                 new string[] { "NextLink" },
+                 new object[] { nextLink });
         }
     }
 
@@ -101,17 +101,17 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         public override object GetDynamicParameters()
         {
             dynamicParameters = new RuntimeDefinedParameterDictionary();
-            var pNextPageLink = new RuntimeDefinedParameter();
-            pNextPageLink.Name = "NextPageLink";
-            pNextPageLink.ParameterType = typeof(string);
-            pNextPageLink.Attributes.Add(new ParameterAttribute
+            var pNextLink = new RuntimeDefinedParameter();
+            pNextLink.Name = "NextLink";
+            pNextLink.ParameterType = typeof(string);
+            pNextLink.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
                 Mandatory = true
             });
-            pNextPageLink.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("NextPageLink", pNextPageLink);
+            pNextLink.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("NextLink", pNextLink);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";

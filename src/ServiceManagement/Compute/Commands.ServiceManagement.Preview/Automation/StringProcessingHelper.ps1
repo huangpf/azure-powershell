@@ -292,3 +292,20 @@ function Get-SplitTextLines
 
     return $lines;
 }
+
+function Get-ComponentName
+{
+    # Sample: "Microsoft.Azure.Management.Compute";
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]$clientNS
+    )
+    
+    if ($clientNS.EndsWith('.Model') -or $clientNS.EndsWith('.Models'))
+    {
+        $clientNS = $clientNS.Substring(0, $clientNS.LastIndexOf('.'));
+    }
+    
+    return $clientNS.Substring($clientNS.LastIndexOf('.') + 1);
+}

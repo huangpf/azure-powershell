@@ -20,32 +20,32 @@
 // code is regenerated.
 
 using Microsoft.Azure;
-using Microsoft.Azure.Commands.Compute.Automation.Models;
-using Microsoft.Azure.Management.Compute;
-using Microsoft.Azure.Management.Compute.Models;
+using Microsoft.Azure.Commands.Network.Automation.Models;
+using Microsoft.Azure.Management.Network;
+using Microsoft.Azure.Management.Network.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 
-namespace Microsoft.Azure.Commands.Compute.Automation
+namespace Microsoft.Azure.Commands.Network.Automation
 {
-    public partial class InvokeAzureComputeMethodCmdlet : ComputeAutomationBaseCmdlet
+    public partial class InvokeAzureNetworkMethodCmdlet : NetworkAutomationBaseCmdlet
     {
-        protected object CreateVirtualMachineScaleSetVMListNextDynamicParameters()
+        protected object CreateVirtualNetworkGatewayConnectionsListDynamicParameters()
         {
             dynamicParameters = new RuntimeDefinedParameterDictionary();
-            var pNextPageLink = new RuntimeDefinedParameter();
-            pNextPageLink.Name = "NextPageLink";
-            pNextPageLink.ParameterType = typeof(string);
-            pNextPageLink.Attributes.Add(new ParameterAttribute
+            var pResourceGroupName = new RuntimeDefinedParameter();
+            pResourceGroupName.Name = "ResourceGroupName";
+            pResourceGroupName.ParameterType = typeof(string);
+            pResourceGroupName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
                 Mandatory = true
             });
-            pNextPageLink.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("NextPageLink", pNextPageLink);
+            pResourceGroupName.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
@@ -62,33 +62,33 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             return dynamicParameters;
         }
 
-        protected void ExecuteVirtualMachineScaleSetVMListNextMethod(object[] invokeMethodInputParameters)
+        protected void ExecuteVirtualNetworkGatewayConnectionsListMethod(object[] invokeMethodInputParameters)
         {
-            string nextPageLink = (string)ParseParameter(invokeMethodInputParameters[0]);
+            string resourceGroupName = (string)ParseParameter(invokeMethodInputParameters[0]);
 
-            var result = VirtualMachineScaleSetVMsClient.ListNext(nextPageLink);
+            var result = VirtualNetworkGatewayConnectionsClient.List(resourceGroupName);
             WriteObject(result);
         }
     }
 
-    public partial class NewAzureComputeArgumentListCmdlet : ComputeAutomationBaseCmdlet
+    public partial class NewAzureNetworkArgumentListCmdlet : NetworkAutomationBaseCmdlet
     {
-        protected PSArgument[] CreateVirtualMachineScaleSetVMListNextParameters()
+        protected PSArgument[] CreateVirtualNetworkGatewayConnectionsListParameters()
         {
-            string nextPageLink = string.Empty;
+            string resourceGroupName = string.Empty;
 
             return ConvertFromObjectsToArguments(
-                 new string[] { "NextPageLink" },
-                 new object[] { nextPageLink });
+                 new string[] { "ResourceGroupName" },
+                 new object[] { resourceGroupName });
         }
     }
 
-    [Cmdlet("Get", "AzureRmVmssVMNextList", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class GetAzureRmVMSSVMNextList : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Get", "AzureRmVirtualNetworkGatewayConnectionsList", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class GetAzureRmVirtualNetworkGatewayConnectionsList : InvokeAzureNetworkMethodCmdlet
     {
-        public GetAzureRmVMSSVMNextList()
+        public GetAzureRmVirtualNetworkGatewayConnectionsList()
         {
-            this.MethodName = "VirtualMachineScaleSetVMListNext";
+            this.MethodName = "VirtualNetworkGatewayConnectionsList";
         }
 
         public override string MethodName { get; set; }
@@ -101,17 +101,17 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         public override object GetDynamicParameters()
         {
             dynamicParameters = new RuntimeDefinedParameterDictionary();
-            var pNextPageLink = new RuntimeDefinedParameter();
-            pNextPageLink.Name = "NextPageLink";
-            pNextPageLink.ParameterType = typeof(string);
-            pNextPageLink.Attributes.Add(new ParameterAttribute
+            var pResourceGroupName = new RuntimeDefinedParameter();
+            pResourceGroupName.Name = "ResourceGroupName";
+            pResourceGroupName.ParameterType = typeof(string);
+            pResourceGroupName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
                 Mandatory = true
             });
-            pNextPageLink.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("NextPageLink", pNextPageLink);
+            pResourceGroupName.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
