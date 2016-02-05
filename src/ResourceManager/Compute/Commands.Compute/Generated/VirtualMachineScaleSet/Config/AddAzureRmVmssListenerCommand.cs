@@ -28,9 +28,9 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Compute.Automation
 {
-    [Cmdlet("Remove", "AzureVmssPublicKey")]
+    [Cmdlet("Add", "AzureRmVmssListener")]
     [OutputType(typeof(VirtualMachineScaleSet))]
-    public class RemoveAzureVmssPublicKeyCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
+    public class AddAzureRmVmssListenerCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
     {
         [Parameter(
             Mandatory = false,
@@ -43,65 +43,51 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Mandatory = false,
             Position = 1,
             ValueFromPipelineByPropertyName = true)]
-        public string Path { get; set; }
+        public string Protocol { get; set; }
 
         [Parameter(
             Mandatory = false,
             Position = 2,
             ValueFromPipelineByPropertyName = true)]
-        public string KeyData { get; set; }
+        public string CertificateUrl { get; set; }
 
         protected override void ProcessRecord()
         {
             // VirtualMachineProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
             {
-                WriteObject(this.VirtualMachineScaleSet);
-                return;
+                this.VirtualMachineScaleSet.VirtualMachineProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile();
             }
 
             // OsProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile == null)
             {
-                WriteObject(this.VirtualMachineScaleSet);
-                return;
+                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSProfile();
             }
 
-            // LinuxConfiguration
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration == null)
+            // WindowsConfiguration
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration == null)
             {
-                WriteObject(this.VirtualMachineScaleSet);
-                return;
+                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration = new Microsoft.Azure.Management.Compute.Models.WindowsConfiguration();
             }
 
-            // Ssh
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.Ssh == null)
+            // WinRM
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.WinRM == null)
             {
-                WriteObject(this.VirtualMachineScaleSet);
-                return;
+                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.WinRM = new Microsoft.Azure.Management.Compute.Models.WinRMConfiguration();
             }
 
-            // PublicKeys
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.Ssh.PublicKeys == null)
+            // Listeners
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.WinRM.Listeners == null)
             {
-                WriteObject(this.VirtualMachineScaleSet);
-                return;
-            }
-            var vPublicKeys = this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.Ssh.PublicKeys.First
-                (e =>
-                    (this.Path == null || e.Path == this.Path)
-                    && (this.KeyData == null || e.KeyData == this.KeyData)
-                );
-
-            if (vPublicKeys != null)
-            {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.Ssh.PublicKeys.Remove(vPublicKeys);
+                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.WinRM.Listeners = new List<Microsoft.Azure.Management.Compute.Models.WinRMListener>();
             }
 
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.Ssh.PublicKeys.Count == 0)
-            {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.Ssh.PublicKeys = null;
-            }
+            var vListeners = new Microsoft.Azure.Management.Compute.Models.WinRMListener();
+
+            vListeners.Protocol = this.Protocol;
+            vListeners.CertificateUrl = this.CertificateUrl;
+            this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.WinRM.Listeners.Add(vListeners);
             WriteObject(this.VirtualMachineScaleSet);
         }
     }

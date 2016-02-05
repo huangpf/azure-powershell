@@ -28,9 +28,9 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Compute.Automation
 {
-    [Cmdlet("Set", "AzureVmssOsProfile")]
+    [Cmdlet("Set", "AzureRmVmssOsProfile")]
     [OutputType(typeof(VirtualMachineScaleSet))]
-    public class SetAzureVmssOsProfileCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
+    public class SetAzureRmVmssOsProfileCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
     {
         [Parameter(
             Mandatory = false,

@@ -404,7 +404,7 @@ function Write-PowershellCmdlet
 
     $parameter_cmdlet_usings += $ModelNameSpace;
 
-    $cmdlet_noun = "Azure";
+    $cmdlet_noun = "AzureRm";
     $cmdlet_noun += Get-SimpleNoun $ObjectName;
 
     if ($TreeNode.Name -ne ${ObjectName})

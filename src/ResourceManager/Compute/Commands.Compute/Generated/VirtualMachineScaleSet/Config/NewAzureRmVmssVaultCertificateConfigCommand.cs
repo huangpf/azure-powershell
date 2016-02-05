@@ -28,9 +28,9 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Compute.Automation
 {
-    [Cmdlet("New", "AzureVmssVaultCertificateConfig")]
+    [Cmdlet("New", "AzureRmVmssVaultCertificateConfig")]
     [OutputType(typeof(VirtualMachineScaleSet))]
-    public class NewAzureVmssVaultCertificateConfigCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
+    public class NewAzureRmVmssVaultCertificateConfigCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
     {
         [Parameter(
             Mandatory = false,

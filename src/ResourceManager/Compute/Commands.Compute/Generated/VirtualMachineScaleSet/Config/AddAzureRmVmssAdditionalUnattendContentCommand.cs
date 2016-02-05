@@ -28,9 +28,9 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Compute.Automation
 {
-    [Cmdlet("Add", "AzureVmssListener")]
+    [Cmdlet("Add", "AzureRmVmssAdditionalUnattendContent")]
     [OutputType(typeof(VirtualMachineScaleSet))]
-    public class AddAzureVmssListenerCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
+    public class AddAzureRmVmssAdditionalUnattendContentCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
     {
         [Parameter(
             Mandatory = false,
@@ -43,13 +43,25 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Mandatory = false,
             Position = 1,
             ValueFromPipelineByPropertyName = true)]
-        public string Protocol { get; set; }
+        public string PassName { get; set; }
 
         [Parameter(
             Mandatory = false,
             Position = 2,
             ValueFromPipelineByPropertyName = true)]
-        public string CertificateUrl { get; set; }
+        public string ComponentName { get; set; }
+
+        [Parameter(
+            Mandatory = false,
+            Position = 3,
+            ValueFromPipelineByPropertyName = true)]
+        public string SettingName { get; set; }
+
+        [Parameter(
+            Mandatory = false,
+            Position = 4,
+            ValueFromPipelineByPropertyName = true)]
+        public string Content { get; set; }
 
         protected override void ProcessRecord()
         {
@@ -71,23 +83,19 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration = new Microsoft.Azure.Management.Compute.Models.WindowsConfiguration();
             }
 
-            // WinRM
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.WinRM == null)
+            // AdditionalUnattendContent
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.AdditionalUnattendContent == null)
             {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.WinRM = new Microsoft.Azure.Management.Compute.Models.WinRMConfiguration();
+                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.AdditionalUnattendContent = new List<Microsoft.Azure.Management.Compute.Models.AdditionalUnattendContent>();
             }
 
-            // Listeners
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.WinRM.Listeners == null)
-            {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.WinRM.Listeners = new List<Microsoft.Azure.Management.Compute.Models.WinRMListener>();
-            }
+            var vAdditionalUnattendContent = new Microsoft.Azure.Management.Compute.Models.AdditionalUnattendContent();
 
-            var vListeners = new Microsoft.Azure.Management.Compute.Models.WinRMListener();
-
-            vListeners.Protocol = this.Protocol;
-            vListeners.CertificateUrl = this.CertificateUrl;
-            this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.WinRM.Listeners.Add(vListeners);
+            vAdditionalUnattendContent.PassName = this.PassName;
+            vAdditionalUnattendContent.ComponentName = this.ComponentName;
+            vAdditionalUnattendContent.SettingName = this.SettingName;
+            vAdditionalUnattendContent.Content = this.Content;
+            this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.AdditionalUnattendContent.Add(vAdditionalUnattendContent);
             WriteObject(this.VirtualMachineScaleSet);
         }
     }

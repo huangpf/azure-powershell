@@ -28,9 +28,9 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Compute.Automation
 {
-    [Cmdlet("Add", "AzureVmssPublicKey")]
+    [Cmdlet("Add", "AzureRmVmssSecret")]
     [OutputType(typeof(VirtualMachineScaleSet))]
-    public class AddAzureVmssPublicKeyCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
+    public class AddAzureRmVmssSecretCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
     {
         [Parameter(
             Mandatory = false,
@@ -43,13 +43,13 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Mandatory = false,
             Position = 1,
             ValueFromPipelineByPropertyName = true)]
-        public string Path { get; set; }
+        public string SourceVaultId { get; set; }
 
         [Parameter(
             Mandatory = false,
             Position = 2,
             ValueFromPipelineByPropertyName = true)]
-        public string KeyData { get; set; }
+        public VaultCertificate [] VaultCertificate { get; set; }
 
         protected override void ProcessRecord()
         {
@@ -65,29 +65,20 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSProfile();
             }
 
-            // LinuxConfiguration
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration == null)
+            // Secrets
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.Secrets == null)
             {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration = new Microsoft.Azure.Management.Compute.Models.LinuxConfiguration();
+                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.Secrets = new List<Microsoft.Azure.Management.Compute.Models.VaultSecretGroup>();
             }
 
-            // Ssh
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.Ssh == null)
-            {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.Ssh = new Microsoft.Azure.Management.Compute.Models.SshConfiguration();
-            }
+            var vSecrets = new Microsoft.Azure.Management.Compute.Models.VaultSecretGroup();
 
-            // PublicKeys
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.Ssh.PublicKeys == null)
-            {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.Ssh.PublicKeys = new List<Microsoft.Azure.Management.Compute.Models.SshPublicKey>();
-            }
+            // SourceVault
+            vSecrets.SourceVault = new Microsoft.Azure.Management.Compute.Models.SubResource();
 
-            var vPublicKeys = new Microsoft.Azure.Management.Compute.Models.SshPublicKey();
-
-            vPublicKeys.Path = this.Path;
-            vPublicKeys.KeyData = this.KeyData;
-            this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.Ssh.PublicKeys.Add(vPublicKeys);
+            vSecrets.SourceVault.Id = this.SourceVaultId;
+            vSecrets.VaultCertificates = this.VaultCertificate;
+            this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.Secrets.Add(vSecrets);
             WriteObject(this.VirtualMachineScaleSet);
         }
     }

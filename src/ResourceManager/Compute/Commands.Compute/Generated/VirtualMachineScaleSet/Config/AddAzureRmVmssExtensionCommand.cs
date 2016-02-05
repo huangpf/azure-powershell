@@ -28,9 +28,9 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Compute.Automation
 {
-    [Cmdlet("Remove", "AzureVmssExtension")]
+    [Cmdlet("Add", "AzureRmVmssExtension")]
     [OutputType(typeof(VirtualMachineScaleSet))]
-    public class RemoveAzureVmssExtensionCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
+    public class AddAzureRmVmssExtensionCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
     {
         [Parameter(
             Mandatory = false,
@@ -92,44 +92,32 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             // VirtualMachineProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
             {
-                WriteObject(this.VirtualMachineScaleSet);
-                return;
+                this.VirtualMachineScaleSet.VirtualMachineProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile();
             }
 
             // ExtensionProfile
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile == null)
             {
-                WriteObject(this.VirtualMachineScaleSet);
-                return;
+                this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtensionProfile();
             }
 
             // Extensions
             if (this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile.Extensions == null)
             {
-                WriteObject(this.VirtualMachineScaleSet);
-                return;
-            }
-            var vExtensions = this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile.Extensions.First
-                (e =>
-                    (this.Name == null || e.Name == this.Name)
-                    && (this.Publisher == null || e.Publisher == this.Publisher)
-                    && (this.VirtualMachineScaleSetExtensionType == null || e.VirtualMachineScaleSetExtensionType == this.VirtualMachineScaleSetExtensionType)
-                    && (this.TypeHandlerVersion == null || e.TypeHandlerVersion == this.TypeHandlerVersion)
-                    && (this.AutoUpgradeMinorVersion == null || e.AutoUpgradeMinorVersion == this.AutoUpgradeMinorVersion)
-                    && (this.Setting == null || e.Settings == this.Setting)
-                    && (this.ProtectedSetting == null || e.ProtectedSettings == this.ProtectedSetting)
-                    && (this.Id == null || e.Id == this.Id)
-                );
-
-            if (vExtensions != null)
-            {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile.Extensions.Remove(vExtensions);
+                this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile.Extensions = new List<Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtension>();
             }
 
-            if (this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile.Extensions.Count == 0)
-            {
-                this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile.Extensions = null;
-            }
+            var vExtensions = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtension();
+
+            vExtensions.Name = this.Name;
+            vExtensions.Publisher = this.Publisher;
+            vExtensions.VirtualMachineScaleSetExtensionType = this.VirtualMachineScaleSetExtensionType;
+            vExtensions.TypeHandlerVersion = this.TypeHandlerVersion;
+            vExtensions.AutoUpgradeMinorVersion = this.AutoUpgradeMinorVersion;
+            vExtensions.Settings = this.Setting;
+            vExtensions.ProtectedSettings = this.ProtectedSetting;
+            vExtensions.Id = this.Id;
+            this.VirtualMachineScaleSet.VirtualMachineProfile.ExtensionProfile.Extensions.Add(vExtensions);
             WriteObject(this.VirtualMachineScaleSet);
         }
     }
