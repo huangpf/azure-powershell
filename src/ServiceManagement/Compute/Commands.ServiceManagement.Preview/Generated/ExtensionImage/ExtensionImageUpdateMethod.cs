@@ -36,16 +36,16 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         {
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "ExtensionImageUpdateParameters";
+            pParameters.Name = "ExtensionImageUpdateParameter";
             pParameters.ParameterType = typeof(ExtensionImageUpdateParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("ExtensionImageUpdateParameters", pParameters);
+            dynamicParameters.Add("ExtensionImageUpdateParameter", pParameters);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";

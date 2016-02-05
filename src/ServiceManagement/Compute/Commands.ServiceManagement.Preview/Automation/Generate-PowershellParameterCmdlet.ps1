@@ -326,6 +326,39 @@ function Get-VariableName
     return $result;
 }
 
+function Get-NewObjectCode
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        $chain,
+
+        [Parameter(Mandatory = $false)]
+        [int] $left_space  = 0
+    )
+
+    $return_string = "`r`n";
+    $new_obj = ${ObjectName};
+
+    for ($i = 0; $i -lt $chain.Count; $i++)
+    {
+        $c = $chain[$i];
+        $new_obj += "." + $c;
+        $single_type = Get-SingleType $TypeBinding[$c];
+        $type = Get-ListType $TypeBinding[$c];
+
+        $left_pad = " " * $left_space;
+        $left_deep_pad = " " * ($left_space + 4);
+        $right_pad = "`r`n";
+
+        $return_string += $left_pad + "// ${c}" + $right_pad;
+        $return_string += $left_pad + "if (this.${new_obj} == null)" + $right_pad;
+        $return_string += $left_pad + "{" + $right_pad;
+        $return_string += $left_deep_pad + "this.${new_obj} = new ${type}();" + $right_pad;
+        $return_string += $left_pad + "}" + $right_pad;
+    }
+    return $return_string;
+}
+
 function Write-PowershellCmdlet
 {
     param(
@@ -352,6 +385,8 @@ function Write-PowershellCmdlet
     $TypeBinding
     )
 
+
+
     $library_namespace = $ModelNameSpace.Substring(0, $ModelNameSpace.LastIndexOf('.'));
 
     $ps_cmdlet_namespace = ($library_namespace.Replace('.Management.', '.Commands.'));
@@ -374,7 +409,7 @@ function Write-PowershellCmdlet
 
     if ($TreeNode.Name -ne ${ObjectName})
     {
-        $cmdlet_noun += $TreeNode.Name;
+        $cmdlet_noun += Get-SingularNoun $TreeNode.Name;
     }
 
     if ($cmdlet_verb.Equals("New"))
@@ -620,6 +655,10 @@ namespace ${ps_generated_cmdlet_namespace}
                 this.${ObjectName}.${new_obj}.Remove(v${c});
             }
 
+            if (this.${ObjectName}.${new_obj}.Count == 0)
+            {
+                this.${ObjectName}.${new_obj} = null;
+            }
 "@;
                         $remove_object = $c;
                     }
@@ -627,8 +666,9 @@ namespace ${ps_generated_cmdlet_namespace}
             }
         }
     }
-    else
+    elseif ($cmdlet_verb.Equals("Add"))
     {
+    # Set,Add
         foreach($chain in $chain_set)
         {
             $new_obj = $chain[0];
@@ -793,7 +833,6 @@ namespace ${ps_generated_cmdlet_namespace}
                 if ($thisType.ToString().StartsWith("Array:") -and ($array_parent -ne $TreeNode.Name))
                 {
                     $new_code = $cmdlet_new_single_object_code[$array_parent];
-                    $add_code = $cmdlet_add_single_object_code[$array_parent];
                     $cmdlet_new_single_object_code.Remove($array_parent);
                     $cmdlet_add_single_object_code.Remove($array_parent);
 
@@ -807,7 +846,6 @@ namespace ${ps_generated_cmdlet_namespace}
                 {
                     ${new_code}
                     v${array_parent}.${property} = element;
-                    ${add_code}
                 }
             }
 
@@ -863,14 +901,25 @@ namespace ${ps_generated_cmdlet_namespace}
         {
             if (-not [System.String]::IsNullOrEmpty($p["Chain"]))
             {
-                $var_name = Get-PropertyFromChain $p["Chain"];
+                $my_chain = $p["Chain"];
+                $var_name = Get-PropertyFromChain $my_chain;
                 $property = $p["OriginalName"];
-                $thisProperty = $p["Name"];
                 $assign = Get-AssignCode $p;
+
+                $create_object_code = Get-NewObjectCode $my_chain 16;
+                $cmdlet_code_body +=
+@"
+
+            if (${assign} != null)
+            {
+"@
+
+                $cmdlet_code_body += ${create_object_code};
 
                 $cmdlet_code_body +=
 @"
-            this.${ObjectName}.${var_name}.${property} = ${assign};
+                this.${ObjectName}.${var_name}.${property} = ${assign};
+            }
 
 "@;
             }

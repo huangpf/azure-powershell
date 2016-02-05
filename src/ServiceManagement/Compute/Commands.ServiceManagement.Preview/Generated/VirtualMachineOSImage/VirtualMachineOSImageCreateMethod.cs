@@ -36,16 +36,16 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         {
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "VirtualMachineOSImageCreateParameters";
+            pParameters.Name = "VirtualMachineOSImageCreateParameter";
             pParameters.ParameterType = typeof(VirtualMachineOSImageCreateParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("VirtualMachineOSImageCreateParameters", pParameters);
+            dynamicParameters.Add("VirtualMachineOSImageCreateParameter", pParameters);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";

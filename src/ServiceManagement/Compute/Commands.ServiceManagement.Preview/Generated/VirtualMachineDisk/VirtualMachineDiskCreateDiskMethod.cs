@@ -36,16 +36,16 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         {
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "VirtualMachineDiskCreateDiskParameters";
+            pParameters.Name = "VirtualMachineDiskCreateDiskParameter";
             pParameters.ParameterType = typeof(VirtualMachineDiskCreateParameters);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("VirtualMachineDiskCreateDiskParameters", pParameters);
+            dynamicParameters.Add("VirtualMachineDiskCreateDiskParameter", pParameters);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";

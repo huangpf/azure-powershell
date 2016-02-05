@@ -42,7 +42,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pResourceGroupName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
@@ -54,7 +54,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = true
+                Mandatory = false
             });
             pVirtualMachineScaleSetName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("VirtualMachineScaleSetName", pVirtualMachineScaleSetName);
@@ -66,7 +66,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 3,
-                Mandatory = true
+                Mandatory = false
             });
             pSelect.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("Select", pSelect);
@@ -90,7 +90,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         {
             string resourceGroupName = (string)ParseParameter(invokeMethodInputParameters[0]);
             string virtualMachineScaleSetName = (string)ParseParameter(invokeMethodInputParameters[1]);
-            string odataQuery = null;
+            Microsoft.Rest.Azure.OData.ODataQuery<VirtualMachineScaleSetVM> odataQuery = (Microsoft.Rest.Azure.OData.ODataQuery<VirtualMachineScaleSetVM>)ParseParameter(invokeMethodInputParameters[2]);
             string select = (string)ParseParameter(invokeMethodInputParameters[3]);
 
             var result = VirtualMachineScaleSetVMsClient.List(resourceGroupName, virtualMachineScaleSetName, odataQuery, select);
@@ -104,7 +104,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         {
             string resourceGroupName = string.Empty;
             string virtualMachineScaleSetName = string.Empty;
-            string odataQuery = null;
+            Microsoft.Rest.Azure.OData.ODataQuery<VirtualMachineScaleSetVM> odataQuery = new Microsoft.Rest.Azure.OData.ODataQuery<VirtualMachineScaleSetVM>();
             string select = string.Empty;
 
             return ConvertFromObjectsToArguments(
@@ -138,7 +138,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pResourceGroupName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
@@ -150,7 +150,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = true
+                Mandatory = false
             });
             pVirtualMachineScaleSetName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("VirtualMachineScaleSetName", pVirtualMachineScaleSetName);
@@ -162,7 +162,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 3,
-                Mandatory = true
+                Mandatory = false
             });
             pSelect.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("Select", pSelect);

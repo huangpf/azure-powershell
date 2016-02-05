@@ -42,7 +42,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pVMImageName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("VMImageName", pVMImageName);
@@ -54,7 +54,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = true
+                Mandatory = false
             });
             pPermission.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("Permission", pPermission);

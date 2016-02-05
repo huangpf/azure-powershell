@@ -107,7 +107,8 @@ function Create-ParameterTreeImpl
         foreach ($item in $TypeInfo.GetProperties())
         {
             $itemProp = [System.Reflection.PropertyInfo]$item;
-            $nodeProp = @{ Name = $itemProp.Name; Type = $itemProp.PropertyType };
+            $can_write = ($itemProp.GetSetMethod() -ne $null) -and $itemProp.CanWrite;
+            $nodeProp = @{ Name = $itemProp.Name; Type = $itemProp.PropertyType; CanWrite = $can_write};
             $treeNode.Properties += $nodeProp;
 
             if ($itemProp.PropertyType.FullName.StartsWith($NameSpace + "."))
@@ -143,7 +144,6 @@ function Create-ParameterTreeImpl
                 Write-Verbose ($padding + '-' + $nodeProp["Name"] + " : " + $nodeProp["Type"]);
             }
         }
-
         return $treeNode;
     }
 }
