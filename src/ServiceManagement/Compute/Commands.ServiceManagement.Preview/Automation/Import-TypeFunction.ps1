@@ -454,3 +454,247 @@ function Get-ShortNounName
 
     Write-Output $noun;
 }
+
+
+function Get-ParameterTypeShortName
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        $parameter_type_info,
+
+        [Parameter(Mandatory = $false)]
+        $is_list_type = $false
+    )
+    
+    if (-not $is_list_type)
+    {
+        $param_type_full_name = $parameter_type_info.FullName;
+        $param_type_full_name = $param_type_full_name.Replace('+', '.');
+
+        $param_type_short_name = $parameter_type_info.Name;
+        $param_type_short_name = $param_type_short_name.Replace('+', '.');
+    }
+    else
+    {
+        $itemType = $parameter_type_info.GetGenericArguments()[0];
+        $itemTypeShortName = $itemType.Name;
+        $itemTypeFullName = $itemType.FullName;
+        $itemTypeNormalizedShortName = Get-NormalizedTypeName $itemType;;
+
+        $param_type_full_name = "System.Collections.Generic.List<${itemTypeNormalizedShortName}>";
+        $param_type_full_name = $param_type_full_name.Replace('+', '.');
+
+        $param_type_short_name = "${itemTypeShortName}List";
+        $param_type_short_name = $param_type_short_name.Replace('+', '.');
+    }
+
+    return $param_type_short_name;
+}
+
+function Get-ParameterTypeFullName
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        $parameter_type_info,
+
+        [Parameter(Mandatory = $false)]
+        $is_list_type = $false
+    )
+    
+    if (-not $is_list_type)
+    {
+        $param_type_full_name = $parameter_type_info.FullName;
+        $param_type_full_name = $param_type_full_name.Replace('+', '.');
+    }
+    else
+    {
+        $itemType = $parameter_type_info.GetGenericArguments()[0];
+        $itemTypeShortName = $itemType.Name;
+        $itemTypeFullName = $itemType.FullName;
+        $itemTypeNormalizedShortName = Get-NormalizedTypeName $itemType;
+
+        $param_type_full_name = "System.Collections.Generic.List<${itemTypeNormalizedShortName}>";
+        $param_type_full_name = $param_type_full_name.Replace('+', '.');
+    }
+
+    return $param_type_full_name;
+}
+
+
+# Sample: VirtualMachineCreateParameters
+function Is-ClientComplexType
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        $type_info
+    )
+
+    return ($type_info.Namespace -like "${client_name_space}.Model?") -and (-not $type_info.IsEnum);
+}
+
+# Sample: IList<ConfigurationSet>
+function Is-ListComplexType
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        $type_info
+    )
+
+    if ($type_info.IsGenericType)
+    {
+        $args = $list_item_type = $type_info.GetGenericArguments();
+
+        if ($args.Count -eq 1)
+        {
+            $list_item_type = $type_info.GetGenericArguments()[0];
+
+            if (Is-ClientComplexType $list_item_type)
+            {
+                return $true;
+            }
+        }
+    }
+
+    return $false;
+}
+
+# Sample: IList<ConfigurationSet> => ConfigurationSet
+function Get-ListComplexItemType
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        $type_info
+    )
+
+    if ($type_info.IsGenericType)
+    {
+        $args = $list_item_type = $type_info.GetGenericArguments();
+
+        if ($args.Count -eq 1)
+        {
+            $list_item_type = $type_info.GetGenericArguments()[0];
+
+            if (Is-ClientComplexType $list_item_type)
+            {
+                return $list_item_type;
+            }
+        }
+    }
+
+    return $null;
+}
+
+# Sample: VirtualMachines.Create(...) => VirtualMachineCreateParameters
+function Get-MethodComplexParameter
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        [System.Reflection.MethodInfo]$op_method_info,
+
+        [Parameter(Mandatory = $True)]
+        [string]$client_name_space
+    )
+
+    $method_param_list = $op_method_info.GetParameters();
+    $paramsWithoutEnums = $method_param_list | where { -not $_.ParameterType.IsEnum };
+
+    # Assume that each operation method has only one complext parameter type
+    $param_info = $paramsWithoutEnums | where { $_.ParameterType.Namespace -like "${client_name_space}.Model?" } | select -First 1;
+
+    return $param_info;
+}
+
+# Sample: VirtualMachineCreateParameters => ConfigurationSet, VMImageInput, ...
+function Get-SubComplexParameterListFromType
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        $type_info,
+
+        [Parameter(Mandatory = $True)]
+        [string]$client_name_space
+    )
+
+    $subParamTypeList = @();
+
+    if (-not (Is-ClientComplexType $type_info))
+    {
+        return $subParamTypeList;
+    }
+
+    $paramProps = $type_info.GetProperties();
+    foreach ($pp in $paramProps)
+    {
+        $isClientType = $false;
+        if (Is-ClientComplexType $pp.PropertyType)
+        {
+            $subParamTypeList += $pp.PropertyType;
+            $isClientType = $true;
+        }
+        elseif (Is-ListComplexType $pp.PropertyType)
+        {
+            $subParamTypeList += $pp.PropertyType;
+            $subParamTypeList += Get-ListComplexItemType $pp.PropertyType;
+            $isClientType = $true;
+        }
+
+        if ($isClientType)
+        {
+            $recursiveSubParamTypeList = Get-SubComplexParameterListFromType $pp.PropertyType $client_name_space;
+            foreach ($rsType in $recursiveSubParamTypeList)
+            {
+                $subParamTypeList += $rsType;
+            }
+        }
+    }
+
+    return $subParamTypeList;
+}
+
+# Sample: VirtualMachineCreateParameters => ConfigurationSet, VMImageInput, ...
+function Get-SubComplexParameterList
+{
+    param(
+        [Parameter(Mandatory = $True)]
+        [System.Reflection.ParameterInfo]$param_info,
+
+        [Parameter(Mandatory = $True)]
+        [string]$client_name_space
+    )
+
+    return Get-SubComplexParameterListFromType $param_info.ParameterType $client_name_space;
+}
+
+# Get proper type name
+function Get-ProperTypeName
+{
+    param([System.Type] $itemType)
+
+    if ($itemType.IsGenericType -and ($itemType.Name.StartsWith('IList') -or $itemType.Name.StartsWith('List')))
+    {
+        $typeStr = 'IList<' + $itemType.GenericTypeArguments[0].Name + '>';
+    }
+    elseif ($itemType.IsGenericType -and ($itemType.Name.StartsWith('IDictionary') -or $itemType.Name.StartsWith('Dictionary')))
+    {
+        $typeStr = 'IDictionary<' + $itemType.GenericTypeArguments[0].Name + ',' + $itemType.GenericTypeArguments[1].Name + '>';
+    }
+    elseif ($itemType.IsGenericType -and $itemType.Name.StartsWith('Nullable'))
+    {
+        $typeStr = $itemType.GenericTypeArguments[0].Name + '?';
+    }
+    else
+    {
+        $typeStr = $itemType.Name;
+    }
+
+    $typeStr = $typeStr.Replace("System.String", "string");
+    $typeStr = $typeStr.Replace("String", "string");
+    $typeStr = $typeStr.Replace("System.Boolean", "bool");
+    $typeStr = $typeStr.Replace("Boolean", "bool");
+    $typeStr = $typeStr.Replace("System.UInt32", "uint");
+    $typeStr = $typeStr.Replace("UInt32", "uint");
+    $typeStr = $typeStr.Replace("System.Int32", "int");
+    $typeStr = $typeStr.Replace("Int32", "int");
+
+    return $typeStr;
+}
