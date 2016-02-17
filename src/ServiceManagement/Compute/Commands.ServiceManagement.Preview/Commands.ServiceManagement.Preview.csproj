@@ -188,7 +188,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Automation\Generate-FunctionCommand.ps1" />
-    <None Include="Automation\ParameterTypeHelper.ps1" />
+    <None Include="Automation\Import-TypeFunction.ps1" />
     <None Include="Automation\StringProcessingHelper.ps1" />
     <None Include="Automation\Generate-ParameterCommand.ps1" />
     <None Include="Automation\Create-ParameterTree.ps1" />

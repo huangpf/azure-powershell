@@ -35,7 +35,7 @@ param(
 )
 
 . "$PSScriptRoot\StringProcessingHelper.ps1";
-. "$PSScriptRoot\ParameterTypeHelper.ps1";
+. "$PSScriptRoot\Import-TypeFunction.ps1";
 
 function Generate-CliFunctionCommandImpl
 {

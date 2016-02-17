@@ -23,7 +23,7 @@ param(
     [string]$ParameterName = $null
 )
 
-. "$PSScriptRoot\ParameterTypeHelper.ps1";
+. "$PSScriptRoot\Import-TypeFunction.ps1";
 
 function New-ParameterTreeNode
 {
