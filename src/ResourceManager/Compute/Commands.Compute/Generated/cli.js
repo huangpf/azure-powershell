@@ -5680,9 +5680,9 @@ exports.init = function (cli) {
   .option('--instance-ids <instance-ids>', $('instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, instanceIds, options, _) {
+  .execute(function(resourceGroupName, vMScaleSetName, instanceIds, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+    cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     cli.output.verbose('instanceIds = ' + instanceIds);
     var instanceIdsObj = null;
     if (options.parameterFile) {
@@ -5701,7 +5701,7 @@ exports.init = function (cli) {
     cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.deallocate(resourceGroupName, vmScaleSetName, instanceIdsObj, _);
+    var result = computeManagementClient.virtualMachineScaleSets.deallocate(resourceGroupName, vMScaleSetName, instanceIdsObj, _);
     cli.output.json(result);
   });
 /*
@@ -5718,12 +5718,12 @@ exports.init = function (cli) {
   .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, options, _) {
+  .execute(function(resourceGroupName, vMScaleSetName, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+    cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.deleteMethod(resourceGroupName, vmScaleSetName, _);
+    var result = computeManagementClient.virtualMachineScaleSets.deleteMethod(resourceGroupName, vMScaleSetName, _);
     cli.output.json(result);
   });
 /*
@@ -5742,9 +5742,9 @@ exports.init = function (cli) {
   .option('--instance-ids <instance-ids>', $('instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, instanceIds, options, _) {
+  .execute(function(resourceGroupName, vMScaleSetName, instanceIds, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+    cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     cli.output.verbose('instanceIds = ' + instanceIds);
     var instanceIdsObj = null;
     if (options.parameterFile) {
@@ -5763,7 +5763,7 @@ exports.init = function (cli) {
     cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.deleteInstances(resourceGroupName, vmScaleSetName, instanceIdsObj, _);
+    var result = computeManagementClient.virtualMachineScaleSets.deleteInstances(resourceGroupName, vMScaleSetName, instanceIdsObj, _);
     cli.output.json(result);
   });
 /*
@@ -5780,12 +5780,12 @@ exports.init = function (cli) {
   .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, options, _) {
+  .execute(function(resourceGroupName, vMScaleSetName, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+    cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.get(resourceGroupName, vmScaleSetName, _);
+    var result = computeManagementClient.virtualMachineScaleSets.get(resourceGroupName, vMScaleSetName, _);
     cli.output.json(result);
   });
 /*
@@ -5802,12 +5802,12 @@ exports.init = function (cli) {
   .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, options, _) {
+  .execute(function(resourceGroupName, vMScaleSetName, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+    cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.getInstanceView(resourceGroupName, vmScaleSetName, _);
+    var result = computeManagementClient.virtualMachineScaleSets.getInstanceView(resourceGroupName, vMScaleSetName, _);
     cli.output.json(result);
   });
 /*
@@ -5897,12 +5897,12 @@ exports.init = function (cli) {
   .option('-n, --vm-scale-set-name <vm-scale-set-name>', $('vm-scale-set-name'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, options, _) {
+  .execute(function(resourceGroupName, vMScaleSetName, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+    cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.listSkus(resourceGroupName, vmScaleSetName, _);
+    var result = computeManagementClient.virtualMachineScaleSets.listSkus(resourceGroupName, vMScaleSetName, _);
     cli.output.json(result);
   });
 /*
@@ -5940,9 +5940,9 @@ exports.init = function (cli) {
   .option('--instance-ids <instance-ids>', $('instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, instanceIds, options, _) {
+  .execute(function(resourceGroupName, vMScaleSetName, instanceIds, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+    cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     cli.output.verbose('instanceIds = ' + instanceIds);
     var instanceIdsObj = null;
     if (options.parameterFile) {
@@ -5961,7 +5961,7 @@ exports.init = function (cli) {
     cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.powerOff(resourceGroupName, vmScaleSetName, instanceIdsObj, _);
+    var result = computeManagementClient.virtualMachineScaleSets.powerOff(resourceGroupName, vMScaleSetName, instanceIdsObj, _);
     cli.output.json(result);
   });
 /*
@@ -5980,9 +5980,9 @@ exports.init = function (cli) {
   .option('--instance-ids <instance-ids>', $('instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, instanceIds, options, _) {
+  .execute(function(resourceGroupName, vMScaleSetName, instanceIds, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+    cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     cli.output.verbose('instanceIds = ' + instanceIds);
     var instanceIdsObj = null;
     if (options.parameterFile) {
@@ -6001,7 +6001,7 @@ exports.init = function (cli) {
     cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.restart(resourceGroupName, vmScaleSetName, instanceIdsObj, _);
+    var result = computeManagementClient.virtualMachineScaleSets.restart(resourceGroupName, vMScaleSetName, instanceIdsObj, _);
     cli.output.json(result);
   });
 /*
@@ -6020,9 +6020,9 @@ exports.init = function (cli) {
   .option('--instance-ids <instance-ids>', $('instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, instanceIds, options, _) {
+  .execute(function(resourceGroupName, vMScaleSetName, instanceIds, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+    cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     cli.output.verbose('instanceIds = ' + instanceIds);
     var instanceIdsObj = null;
     if (options.parameterFile) {
@@ -6041,7 +6041,7 @@ exports.init = function (cli) {
     cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.start(resourceGroupName, vmScaleSetName, instanceIdsObj, _);
+    var result = computeManagementClient.virtualMachineScaleSets.start(resourceGroupName, vMScaleSetName, instanceIdsObj, _);
     cli.output.json(result);
   });
 /*
@@ -6060,9 +6060,9 @@ exports.init = function (cli) {
   .option('--instance-ids <instance-ids>', $('instance-ids'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, instanceIds, options, _) {
+  .execute(function(resourceGroupName, vMScaleSetName, instanceIds, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+    cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     cli.output.verbose('instanceIds = ' + instanceIds);
     var instanceIdsObj = null;
     if (options.parameterFile) {
@@ -6081,7 +6081,7 @@ exports.init = function (cli) {
     cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.updateInstances(resourceGroupName, vmScaleSetName, instanceIdsObj, _);
+    var result = computeManagementClient.virtualMachineScaleSets.updateInstances(resourceGroupName, vMScaleSetName, instanceIdsObj, _);
     cli.output.json(result);
   });
 /*
@@ -6100,13 +6100,13 @@ exports.init = function (cli) {
   .option('-d, --instance-id <instance-id>', $('instance-id'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, instanceId, options, _) {
+  .execute(function(resourceGroupName, vMScaleSetName, instanceId, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+    cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     cli.output.verbose('instanceId = ' + instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSetVMs.deallocate(resourceGroupName, vmScaleSetName, instanceId, _);
+    var result = computeManagementClient.virtualMachineScaleSetVMs.deallocate(resourceGroupName, vMScaleSetName, instanceId, _);
     cli.output.json(result);
   });
 /*
@@ -6125,13 +6125,13 @@ exports.init = function (cli) {
   .option('-d, --instance-id <instance-id>', $('instance-id'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, instanceId, options, _) {
+  .execute(function(resourceGroupName, vMScaleSetName, instanceId, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+    cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     cli.output.verbose('instanceId = ' + instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSetVMs.deleteMethod(resourceGroupName, vmScaleSetName, instanceId, _);
+    var result = computeManagementClient.virtualMachineScaleSetVMs.deleteMethod(resourceGroupName, vMScaleSetName, instanceId, _);
     cli.output.json(result);
   });
 /*
@@ -6150,13 +6150,13 @@ exports.init = function (cli) {
   .option('-d, --instance-id <instance-id>', $('instance-id'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, instanceId, options, _) {
+  .execute(function(resourceGroupName, vMScaleSetName, instanceId, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+    cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     cli.output.verbose('instanceId = ' + instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSetVMs.get(resourceGroupName, vmScaleSetName, instanceId, _);
+    var result = computeManagementClient.virtualMachineScaleSetVMs.get(resourceGroupName, vMScaleSetName, instanceId, _);
     cli.output.json(result);
   });
 /*
@@ -6175,13 +6175,13 @@ exports.init = function (cli) {
   .option('-d, --instance-id <instance-id>', $('instance-id'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, instanceId, options, _) {
+  .execute(function(resourceGroupName, vMScaleSetName, instanceId, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+    cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     cli.output.verbose('instanceId = ' + instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSetVMs.getInstanceView(resourceGroupName, vmScaleSetName, instanceId, _);
+    var result = computeManagementClient.virtualMachineScaleSetVMs.getInstanceView(resourceGroupName, vMScaleSetName, instanceId, _);
     cli.output.json(result);
   });
 /*
@@ -6247,13 +6247,13 @@ exports.init = function (cli) {
   .option('-d, --instance-id <instance-id>', $('instance-id'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, instanceId, options, _) {
+  .execute(function(resourceGroupName, vMScaleSetName, instanceId, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+    cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     cli.output.verbose('instanceId = ' + instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSetVMs.powerOff(resourceGroupName, vmScaleSetName, instanceId, _);
+    var result = computeManagementClient.virtualMachineScaleSetVMs.powerOff(resourceGroupName, vMScaleSetName, instanceId, _);
     cli.output.json(result);
   });
 /*
@@ -6272,13 +6272,13 @@ exports.init = function (cli) {
   .option('-d, --instance-id <instance-id>', $('instance-id'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, instanceId, options, _) {
+  .execute(function(resourceGroupName, vMScaleSetName, instanceId, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+    cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     cli.output.verbose('instanceId = ' + instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSetVMs.restart(resourceGroupName, vmScaleSetName, instanceId, _);
+    var result = computeManagementClient.virtualMachineScaleSetVMs.restart(resourceGroupName, vMScaleSetName, instanceId, _);
     cli.output.json(result);
   });
 /*
@@ -6297,13 +6297,13 @@ exports.init = function (cli) {
   .option('-d, --instance-id <instance-id>', $('instance-id'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vmScaleSetName, instanceId, options, _) {
+  .execute(function(resourceGroupName, vMScaleSetName, instanceId, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    cli.output.verbose('vmScaleSetName = ' + vmScaleSetName);
+    cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     cli.output.verbose('instanceId = ' + instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSetVMs.start(resourceGroupName, vmScaleSetName, instanceId, _);
+    var result = computeManagementClient.virtualMachineScaleSetVMs.start(resourceGroupName, vMScaleSetName, instanceId, _);
     cli.output.json(result);
   });
 

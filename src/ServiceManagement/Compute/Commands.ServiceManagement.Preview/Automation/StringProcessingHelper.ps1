@@ -12,12 +12,16 @@
 # limitations under the License.
 # ----------------------------------------------------------------------------------
 
-function Get-NormalizedName
+function Get-CamelCaseName
 {
-    param(
+    param
+    (
         # Sample: 'vmName' => 'VMName', 'resourceGroup' => 'ResourceGroup', etc.
-        [Parameter(Mandatory = $True)]
-        [string]$inputName
+        [Parameter(Mandatory = $true)]
+        [string]$inputName,
+
+        [Parameter(Mandatory = $false)]
+        [bool]$upperCase = $true
     )
 
     if ([string]::IsNullOrEmpty($inputName))
@@ -25,51 +29,57 @@ function Get-NormalizedName
         return $inputName;
     }
 
+    $prefix = '';
+    $suffix = '';
+
     if ($inputName.StartsWith('vm'))
     {
-        $outputName = 'VM' + $inputName.Substring(2);
+        $prefix = 'vm';
+        $suffix = $inputName.Substring($prefix.Length);
+    }
+    elseif ($inputName.StartsWith('IP'))
+    {
+        $prefix = 'ip';
+        $suffix = $inputName.Substring($prefix.Length);
+    }
+    elseif ($inputName.StartsWith('DNS'))
+    {
+        $prefix = 'dns';
+        $suffix = $inputName.Substring($prefix.Length);
     }
     else
     {
-        [char]$firstChar = $inputName[0];
-        $firstChar = [System.Char]::ToUpper($firstChar);
-        $outputName = $firstChar + $inputName.Substring(1);
+        $prefix = $inputName.Substring(0, 1);
+        $suffix = $inputName.Substring(1);
     }
+
+    if ($upperCase)
+    {
+        $prefix = $prefix.ToUpper();
+    }
+    else
+    {
+        $prefix = $prefix.ToLower();
+    }
+
+    $outputName = $prefix + $suffix;
 
     return $outputName;
 }
 
 function Get-CliNormalizedName
 {
-    # Sample: 'VMName' to 'vmName', 'VirtualMachine' => 'virtualMachine', 'ResourceGroup' => 'resourceGroup', etc.
-    param(
+    # Samples: 'VMName' to 'vmName', 
+    #          'VirtualMachine' => 'virtualMachine',
+    #          'InstanceIDs' => 'instanceIds',
+    #          'ResourceGroup' => 'resourceGroup', etc.
+    param
+    (
         [Parameter(Mandatory = $True)]
         [string]$inName
     )
 
-    if ([string]::IsNullOrEmpty($inName))
-    {
-        return $inName;
-    }
-
-    if ($inName.StartsWith('VM'))
-    {
-        $outName = 'vm' + $inName.Substring(2);
-    }
-    elseif ($inName.StartsWith('IP'))
-    {
-        $outName = 'ip' + $inName.Substring(2);
-    }
-    elseif ($inName.StartsWith('DNS'))
-    {
-        $outName = 'dns' + $inName.Substring(3);
-    }
-    else
-    {
-        [char]$firstChar = $inName[0];
-        $firstChar = [System.Char]::ToLower($firstChar);
-        $outName = $firstChar + $inName.Substring(1);
-    }
+    $outName = Get-CamelCaseName $inName $false;
 
     if ($outName.EndsWith('IDs'))
     {
@@ -322,7 +332,7 @@ function Get-SingularNoun
 
 function Get-ComponentName
 {
-    # Sample: "Microsoft.Azure.Management.Compute";
+    # Sample: "Microsoft.Azure.Management.Compute" => "Compute";
     param
     (
         [Parameter(Mandatory = $true)]

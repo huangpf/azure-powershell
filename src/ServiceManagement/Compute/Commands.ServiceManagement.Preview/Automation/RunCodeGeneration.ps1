@@ -1024,7 +1024,7 @@ function Write-OperationCmdletFile
         else
         {
             $paramTypeFullName = $pt.ParameterType.FullName;
-            $normalized_param_name = Get-NormalizedName $pt.Name;
+            $normalized_param_name = Get-CamelCaseName $pt.Name;
 
             #Write-Verbose ('    ' + $paramTypeFullName + ' ' + $normalized_param_name);
 
@@ -1213,7 +1213,7 @@ function Write-OperationCmdletFile
         $is_string_list = Is-ListStringType $pt.ParameterType;
         $does_contain_only_strings = Get-StringTypes $pt.ParameterType;
 
-        $param_name = Get-NormalizedName $pt.Name;
+        $param_name = Get-CamelCaseName $pt.Name;
         $expose_param_name = $param_name;
 
         $param_type_full_name = Get-NormalizedTypeName $pt.ParameterType;

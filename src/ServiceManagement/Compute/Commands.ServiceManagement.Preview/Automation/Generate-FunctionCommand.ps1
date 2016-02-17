@@ -80,7 +80,7 @@ function Generate-CliFunctionCommandImpl
         else
         {
             # Record the Normalized Parameter Name, i.e. 'vmName' => 'VMName', 'resourceGroup' => 'ResourceGroup', etc.
-            $methodParamNameList += (Get-NormalizedName $paramItem.Name);
+            $methodParamNameList += (Get-CamelCaseName $paramItem.Name);
             $methodParamTypeDict.Add($paramItem.Name, $paramType);
             $allStringFields = Contains-OnlyStringFields $paramType;
             $allStringFieldCheck.Add($paramItem.Name, $allStringFields);
