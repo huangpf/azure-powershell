@@ -34,7 +34,7 @@ param(
     [string]$fileOutputFolder = $null
 )
 
-. "$PSScriptRoot\StringProcessingHelper.ps1";
+. "$PSScriptRoot\Import-StringFunction.ps1";
 . "$PSScriptRoot\Import-TypeFunction.ps1";
 
 function Generate-CliFunctionCommandImpl

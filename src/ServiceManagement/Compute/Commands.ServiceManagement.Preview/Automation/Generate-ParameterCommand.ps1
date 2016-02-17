@@ -38,7 +38,7 @@ param(
 )
 
 $NEW_LINE = "`r`n";
-. "$PSScriptRoot\StringProcessingHelper.ps1";
+. "$PSScriptRoot\Import-StringFunction.ps1";
 
 $CLI_HELP_MSG = "         There are two sets of commands:\r\n" `
               + "           1) function commands that are used to manage Azure resources in the cloud, and \r\n" `

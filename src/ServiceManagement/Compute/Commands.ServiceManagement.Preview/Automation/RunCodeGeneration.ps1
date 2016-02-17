@@ -96,7 +96,7 @@ function Get-SortedUsingsCode
 
 $code_using_strs = Get-SortedUsingsCode;
 
-. "$PSScriptRoot\StringProcessingHelper.ps1";
+. "$PSScriptRoot\Import-StringFunction.ps1";
 . "$PSScriptRoot\Import-TypeFunction.ps1";
 . "$PSScriptRoot\OperationTypeHelper.ps1";
 
