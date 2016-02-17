@@ -213,6 +213,10 @@
                 <PropertyName>ProvisioningState</PropertyName>
               </ListItem>
               <ListItem>
+                <Label>LicenseType</Label>
+                <PropertyName>LicenseType</PropertyName>
+              </ListItem>
+              <ListItem>
                 <Label>Id</Label>
                 <PropertyName>Id</PropertyName>
               </ListItem>
