@@ -61,44 +61,11 @@ param(
     [string[]]$operationNameFilter = $null
 )
 
-. "$PSScriptRoot\Common.ps1";
-
-$client_model_namespace = $client_library_namespace + '.Models';
-$is_hyak_mode = $client_library_namespace -like "Microsoft.WindowsAzure.*.*";
-$component_name = $client_library_namespace.Substring($client_library_namespace.LastIndexOf('.') + 1);
-
-$all_return_type_names = @();
-
-Write-Verbose $BAR_LINE;
-Write-Verbose "Input Parameters:";
-Write-Verbose "DLL Folder            = $dllFolder";
-Write-Verbose "Out Folder            = $outFolder";
-Write-Verbose "Client NameSpace      = $client_library_namespace";
-Write-Verbose "Model NameSpace       = $client_model_namespace";
-Write-Verbose "Component Name        = $component_name";
-Write-Verbose "Base Cmdlet Full Name = $baseCmdletFullName";
-Write-Verbose "Base Client Name      = $base_class_client_field";
-Write-Verbose "Cmdlet Flavor         = $cmdletFlavor";
-Write-Verbose "Operation Name Filter = $operationNameFilter";
-Write-Verbose $BAR_LINE;
-Write-Verbose "${new_line_str}";
-
-$code_common_namespace = ($client_library_namespace.Replace('.Management.', '.Commands.')) + '.Automation';
-$code_model_namespace = ($client_library_namespace.Replace('.Management.', '.Commands.')) + '.Automation.Models';
-
-function Get-SortedUsingsCode
-{
-    $list_of_usings = @() + $code_common_usings + $client_library_namespace + $client_model_namespace + $code_model_namespace;
-    $sorted_usings = $list_of_usings | Sort-Object -Unique | foreach { "using ${_};" };
-    $text = [string]::Join($NEW_LINE, $sorted_usings);
-    return $text;
-}
-
-$code_using_strs = Get-SortedUsingsCode;
-
+. "$PSScriptRoot\Import-CommonVariables.ps1";
+. "$PSScriptRoot\Import-AssemblyFunction.ps1";
 . "$PSScriptRoot\Import-StringFunction.ps1";
 . "$PSScriptRoot\Import-TypeFunction.ps1";
-. "$PSScriptRoot\OperationTypeHelper.ps1";
+. "$PSScriptRoot\Import-OperationFunction.ps1";
 
 function Write-PSArgumentFile
 {
@@ -1876,8 +1843,7 @@ if (-not (Test-Path -Path $dllFileFullPath))
 }
 else
 {
-    $assembly = [System.Reflection.Assembly]::LoadFrom($dllFileFullPath);
-    [System.Reflection.Assembly]::LoadWithPartialName("System.Collections.Generic");
+    $assembly = Load-AssemblyFile $dllFileFullPath;
     
     # All original types
     $types = $assembly.GetTypes();
