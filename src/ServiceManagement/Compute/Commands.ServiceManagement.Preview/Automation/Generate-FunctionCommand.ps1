@@ -24,9 +24,6 @@ param(
     [string]$ModelClassNameSpace,
 
     [Parameter(Mandatory = $false)]
-    [string]$CmdletNounPrefix = "Azure",
-
-    [Parameter(Mandatory = $false)]
     [string]$FileOutputFolder = $null
 )
 
@@ -38,21 +35,19 @@ param(
 function Generate-PsFunctionCommandImpl
 {
     param(
-        [Parameter(Mandatory = $True)]
-        [string]$fileOutputFolder,
+        [Parameter(Mandatory = $true)]
+        [string]$opShortName,
 
-        [Parameter(Mandatory = $True)]
-        $opShortName,
-
-        [Parameter(Mandatory = $True)]
+        [Parameter(Mandatory = $true)]
         [System.Reflection.MethodInfo]$operation_method_info,
 
-        [Parameter(Mandatory = $True)]
-        [string]$invoke_cmdlet_class_name,
-
-        [Parameter(Mandatory = $True)]
-        [string]$parameter_cmdlet_class_name
+        [Parameter(Mandatory = $true)]
+        [string]$fileOutputFolder
     )
+
+    $componentName = Get-ComponentName $ModelClassNameSpace;
+    $invoke_cmdlet_class_name = 'InvokeAzure' + $componentName + 'MethodCmdlet';
+    $parameter_cmdlet_class_name = 'NewAzure' + $componentName + 'ArgumentListCmdlet';
 
     $methodName = ($operation_method_info.Name.Replace('Async', ''));
     $return_type_info = $operation_method_info.ReturnType;
@@ -950,14 +945,7 @@ function Generate-CliFunctionCommandImpl
     return $code;
 }
 
-$componentName = Get-ComponentName $ModelClassNameSpace;
-$invoke_cmdlet_class_name = 'InvokeAzure' + $componentName + 'MethodCmdlet';
-$parameter_cmdlet_class_name = 'NewAzure' + $componentName + 'ArgumentListCmdlet';
-Generate-PsFunctionCommandImpl -fileOutputFolder $FileOutputFolder `
-                               -opShortName $OperationName `
-                               -operation_method_info $MethodInfo `
-                               -invoke_cmdlet_class_name $invoke_cmdlet_class_name `
-                               -parameter_cmdlet_class_name $parameter_cmdlet_class_name;
+Generate-PsFunctionCommandImpl $OperationName $MethodInfo $FileOutputFolder;
 
 # CLI Function Command Code
-Write-Output (Generate-CliFunctionCommandImpl $OperationName $MethodInfo $ModelClassNameSpace $FileOutputFolder);
+Generate-CliFunctionCommandImpl $OperationName $MethodInfo $ModelClassNameSpace $FileOutputFolder;
