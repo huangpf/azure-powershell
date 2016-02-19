@@ -408,9 +408,7 @@ function Get-VerbTermNameAndSuffix
         [string]$MethodName
     )
 
-    $verb = $MethodName;
-    $suffix = $null;
-
+    $found = $false;
     foreach ($key in $common_verb_mapping.Keys)
     {
         if ($MethodName.StartsWith($key))
@@ -426,9 +424,15 @@ function Get-VerbTermNameAndSuffix
             {
                 $suffix += "WithDeallocation";
             }
-
+            $found = $true;
             break;
         }
+    }
+
+    if (-not $found)
+    {
+        $verb = "Invoke";
+        $suffix = $MethodName;
     }
 
     Write-Output $verb;
@@ -697,4 +701,45 @@ function Get-ProperTypeName
     $typeStr = $typeStr.Replace("Int32", "int");
 
     return $typeStr;
+}
+
+# Check if 2 methods have the same parameter list
+function CheckIf-SameParameterList
+{
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [System.Reflection.MethodInfo]$methodInfo,
+        
+        [Parameter(Mandatory = $true)]
+        [System.Reflection.MethodInfo]$friendMethodInfo
+    )
+
+    if ($methodInfo -eq $null -or $friendMethodInfo -eq $null)
+    {
+        return $false;
+    }
+
+    $myParams = $methodInfo.GetParameters();
+    $friendParams = $friendMethodInfo.GetParameters();
+    if ($myParams.Count -ne $friendParams.Count)
+    {
+        return $false;
+    }
+
+    for ($i = 0; $i -lt $myParams.Count -and $i -lt $friendParams.Count; $i++)
+    {
+        [System.Reflection.ParameterInfo]$paramInfo = $myParams[$i];
+        [System.Reflection.ParameterInfo]$friendInfo = $friendParams[$i];
+        if ($paramInfo.Name -ne $friendInfo.Name)
+        {
+            return $false;
+        }
+        elseif (-not $paramInfo.ParameterType.IsEquivalentTo($friendInfo.ParameterType))
+        {
+            return $false;
+        }
+    }
+
+    return $true;
 }

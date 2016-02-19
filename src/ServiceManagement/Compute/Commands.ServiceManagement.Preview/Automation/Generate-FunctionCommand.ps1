@@ -22,9 +22,12 @@ param(
     
     [Parameter(Mandatory = $true)]
     [string]$ModelClassNameSpace,
+    
+    [Parameter(Mandatory = $true)]
+    [string]$FileOutputFolder,
 
     [Parameter(Mandatory = $false)]
-    [string]$FileOutputFolder = $null
+    [System.Reflection.MethodInfo]$FriendMethodInfo
 )
 
 . "$PSScriptRoot\Import-StringFunction.ps1";

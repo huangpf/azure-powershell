@@ -1172,6 +1172,7 @@ else
 
         $qualified_methods = @();
         $total_method_count = 0;
+        $friendMethodDict = @{};
         foreach ($mtItem in $methods)
         {
             [System.Reflection.MethodInfo]$methodInfo = $mtItem;
@@ -1190,6 +1191,23 @@ else
 
             $qualified_methods += $mtItem;
             $total_method_count++;
+
+            # Handle Friend Methods
+            if ($mtItem.Name -eq 'Deallocate' -and (-not $friendMethodDict.ContainsKey($mtItem.Name)))
+            {
+                $methods2 = Get-OperationMethods $operation_type;
+                foreach ($friendMethodInfo in $methods2)
+                {
+                    if ($friendMethodInfo.Name -eq 'PowerOff')
+                    {
+                        if (CheckIf-SameParameterList $methodInfo $friendMethodInfo)
+                        {
+                            $friendMethodDict.Add($mtItem.Name, $friendMethodInfo);
+                            break;
+                        }
+                    }
+                }
+            }
         }
         
         $method_count = 0;
@@ -1218,10 +1236,12 @@ else
             }
             Write-Verbose $SEC_LINE;
 
+            $friendMethodInfo = $friendMethodDict[$methodInfo.Name];
             $outputs = (. $PSScriptRoot\Generate-FunctionCommand.ps1 -OperationName $opShortName `
                                                                      -MethodInfo $methodInfo `
                                                                      -ModelClassNameSpace $client_model_namespace `
-                                                                     -FileOutputFolder $opOutFolder);
+                                                                     -FileOutputFolder $opOutFolder `
+                                                                     -FriendMethodInfo $friendMethodInfo);
 
             if ($outputs.Count -ne $null)
             {
