@@ -12,7 +12,8 @@
 # limitations under the License.
 # ----------------------------------------------------------------------------------
 
-param(
+param
+(
     # VirtualMachine, VirtualMachineScaleSet, etc.
     [Parameter(Mandatory = $true)]
     [string]$OperationName,
@@ -27,7 +28,7 @@ param(
     [string]$FileOutputFolder,
 
     [Parameter(Mandatory = $false)]
-    [System.Reflection.MethodInfo]$FriendMethodInfo
+    [System.Reflection.MethodInfo]$FriendMethodInfo = $null
 )
 
 . "$PSScriptRoot\Import-StringFunction.ps1";
@@ -37,7 +38,8 @@ param(
 # Sample: VirtualMachineGetMethod.cs
 function Generate-PsFunctionCommandImpl
 {
-    param(
+    param
+    (
         [Parameter(Mandatory = $true)]
         [string]$opShortName,
 
@@ -45,7 +47,10 @@ function Generate-PsFunctionCommandImpl
         [System.Reflection.MethodInfo]$operation_method_info,
 
         [Parameter(Mandatory = $true)]
-        [string]$fileOutputFolder
+        [string]$fileOutputFolder,
+
+        [Parameter(Mandatory = $false)]
+        [System.Reflection.MethodInfo]$FriendMethodInfo = $null
     )
 
     $componentName = Get-ComponentName $ModelClassNameSpace;
@@ -53,6 +58,7 @@ function Generate-PsFunctionCommandImpl
     $parameter_cmdlet_class_name = 'NewAzure' + $componentName + 'ArgumentListCmdlet';
 
     $methodName = ($operation_method_info.Name.Replace('Async', ''));
+
     $return_type_info = $operation_method_info.ReturnType;
     $normalized_output_type_name = Get-NormalizedTypeName $return_type_info;
     $cmdlet_verb = "Invoke";
@@ -72,6 +78,13 @@ function Generate-PsFunctionCommandImpl
     $cmdlet_class_name = $cmdlet_verb + $cmdlet_noun;
 
     $invoke_param_set_name = $cmdlet_op_short_name + $methodName;
+
+    # Process Friend Parameter Set and Method Names
+    if ($FriendMethodInfo -ne $null -and $FriendMethodInfo.Name -ne $null)
+    {
+        $friendMethodName = ($FriendMethodInfo.Name.Replace('Async', ''));
+        $friend_param_set_name = $cmdlet_op_short_name + $friendMethodName;
+    }
 
     $file_full_path = $fileOutputFolder + '/' + $cmdlet_class_name + '.cs';
     if (Test-Path $file_full_path)
@@ -547,7 +560,8 @@ ${cmdlet_partial_class_code}
 # azure vm get
 function Generate-CliFunctionCommandImpl
 {
-    param(
+    param
+    (
         # VirtualMachine, VirtualMachineScaleSet, etc.
         [Parameter(Mandatory = $true)]
         [string]$OperationName,
@@ -948,7 +962,7 @@ function Generate-CliFunctionCommandImpl
     return $code;
 }
 
-Generate-PsFunctionCommandImpl $OperationName $MethodInfo $FileOutputFolder;
+Generate-PsFunctionCommandImpl $OperationName $MethodInfo $FileOutputFolder $FriendMethodInfo;
 
 # CLI Function Command Code
 Generate-CliFunctionCommandImpl $OperationName $MethodInfo $ModelClassNameSpace $FileOutputFolder;

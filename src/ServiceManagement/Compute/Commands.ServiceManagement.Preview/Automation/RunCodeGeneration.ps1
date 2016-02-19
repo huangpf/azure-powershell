@@ -1172,7 +1172,7 @@ else
 
         $qualified_methods = @();
         $total_method_count = 0;
-        $friendMethodDict = @{};
+        [System.Collections.Hashtable]$friendMethodDict = @{};
         foreach ($mtItem in $methods)
         {
             [System.Reflection.MethodInfo]$methodInfo = $mtItem;
@@ -1215,11 +1215,24 @@ else
         {
             [System.Reflection.MethodInfo]$methodInfo = $mtItem;
             $method_count++;
+            
+            # Get Friend Method (if any)
+            $friendMethodInfo = $null;
+            if ($friendMethodDict.ContainsKey($methodInfo.Name))
+            {
+                $friendMethodInfo = $friendMethodDict[$methodInfo.Name];
+            }
+            
+            $friendMethodMessage = '';
+            if ($friendMethodInfo -ne $null -and $friendMethodInfo.Name -ne $null)
+            {
+                $friendMethodMessage = '(Friend: ' + ($friendMethodInfo.Name.Replace('Async', '')) + ')';
+            }
 
             # Output Info for Method Signature
             Write-Verbose "";
             Write-Verbose $SEC_LINE;
-            Write-Verbose ("[${operation_type_count}] ${method_count}/${total_method_count} " + $methodInfo.Name.Replace('Async', ''));
+            Write-Verbose ("[${operation_type_count}] ${method_count}/${total_method_count} " + $methodInfo.Name.Replace('Async', '') + ' ' + $friendMethodMessage);
             foreach ($paramInfoItem in $methodInfo.GetParameters())
             {
                 [System.Reflection.ParameterInfo]$paramInfo = $paramInfoItem;
@@ -1236,7 +1249,6 @@ else
             }
             Write-Verbose $SEC_LINE;
 
-            $friendMethodInfo = $friendMethodDict[$methodInfo.Name];
             $outputs = (. $PSScriptRoot\Generate-FunctionCommand.ps1 -OperationName $opShortName `
                                                                      -MethodInfo $methodInfo `
                                                                      -ModelClassNameSpace $client_model_namespace `
