@@ -1221,7 +1221,6 @@ else
             $outputs = (. $PSScriptRoot\Generate-FunctionCommand.ps1 -OperationName $opShortName `
                                                                      -MethodInfo $methodInfo `
                                                                      -ModelClassNameSpace $client_model_namespace `
-                                                                     -ToolType 'PS' `
                                                                      -CmdletNounPrefix 'Azure' `
                                                                      -FileOutputFolder $opOutFolder);
 

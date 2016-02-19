@@ -23,10 +23,6 @@ param(
     [Parameter(Mandatory = $true)]
     [string]$ModelClassNameSpace,
 
-    # CLI commands or PS cmdlets
-    [Parameter(Mandatory = $false)]
-    [string]$ToolType = "CLI",
-    
     [Parameter(Mandatory = $false)]
     [string]$CmdletNounPrefix = "Azure",
 
@@ -954,21 +950,14 @@ function Generate-CliFunctionCommandImpl
     return $code;
 }
 
-if ($ToolType -eq 'CLI')
-{
-    Write-Output (Generate-CliFunctionCommandImpl $OperationName $MethodInfo $ModelClassNameSpace $FileOutputFolder);
-}
-else
-{
-    $componentName = Get-ComponentName $ModelClassNameSpace;
-    $invoke_cmdlet_class_name = 'InvokeAzure' + $componentName + 'MethodCmdlet';
-    $parameter_cmdlet_class_name = 'NewAzure' + $componentName + 'ArgumentListCmdlet';
-    Generate-PsFunctionCommandImpl -fileOutputFolder $FileOutputFolder `
-                                   -opShortName $OperationName `
-                                   -operation_method_info $MethodInfo `
-                                   -invoke_cmdlet_class_name $invoke_cmdlet_class_name `
-                                   -parameter_cmdlet_class_name $parameter_cmdlet_class_name;
-    
-    # CLI Function Command Code
-    Write-Output (. $PSScriptRoot\Generate-FunctionCommand.ps1 $OperationName $MethodInfo $ModelClassNameSpace "CLI" "Azure" $FileOutputFolder);
-}
+$componentName = Get-ComponentName $ModelClassNameSpace;
+$invoke_cmdlet_class_name = 'InvokeAzure' + $componentName + 'MethodCmdlet';
+$parameter_cmdlet_class_name = 'NewAzure' + $componentName + 'ArgumentListCmdlet';
+Generate-PsFunctionCommandImpl -fileOutputFolder $FileOutputFolder `
+                               -opShortName $OperationName `
+                               -operation_method_info $MethodInfo `
+                               -invoke_cmdlet_class_name $invoke_cmdlet_class_name `
+                               -parameter_cmdlet_class_name $parameter_cmdlet_class_name;
+
+# CLI Function Command Code
+Write-Output (Generate-CliFunctionCommandImpl $OperationName $MethodInfo $ModelClassNameSpace $FileOutputFolder);
