@@ -104,17 +104,29 @@ function Generate-PsFunctionCommandImpl
         $paramName = Get-CamelCaseName $methodParam.Name;
         $paramTypeName = Get-NormalizedTypeName $methodParam.ParameterType;
         $paramCtorCode = Get-ConstructorCode -InputName $paramTypeName;
-
     }
-
+    
     # Construct Code
     $code = '';
-    $code += Get-InvokeMethodCmdletCode -ComponentName $componentName -OperationName $OperationName -MethodInfo $MethodInfo;
+    $part1 = Get-InvokeMethodCmdletCode -ComponentName $componentName -OperationName $OperationName -MethodInfo $MethodInfo;
+    $part2 = Get-ArgumentListCmdletCode -ComponentName $componentName -OperationName $OperationName -MethodInfo $MethodInfo;
+    
+    $code += $part1;
     $code += $NEW_LINE;
-    $code += Get-ArgumentListCmdletCode -ComponentName $componentName -OperationName $OperationName -MethodInfo $MethodInfo;
+    $code += $part2;
+    
+    if ($cmdletFlavor -eq 'Verb')
+    {
+        # If the Cmdlet Flavor is 'Verb', generate the Verb-based cmdlet code
+        $part3 = Get-VerbNounCmdletCode -ComponentName $componentName -OperationName $OperationName -MethodInfo $MethodInfo;
+        $code += $part3;
+    }
 
     # Write Code to File
     Write-CmdletCodeFile $fileFullPath $code;
+    Write-Output $part1;
+    Write-Output $part2;
+    Write-Output $part3;
 }
 
 # Get Partial Code for Invoke Method
@@ -151,6 +163,7 @@ function Get-InvokeMethodCmdletCode
     $methodParamList = $MethodInfo.GetParameters();
     $paramNameList = @();
     $paramLocalNameList = @();
+    [System.Collections.ArrayList]$pruned_params = @();
     foreach ($methodParam in $methodParamList)
     {
         # Filter Out Helper Parameters
@@ -168,415 +181,17 @@ function Get-InvokeMethodCmdletCode
         # Save the parameter's camel name (in upper case) and local name (in lower case).
         $paramNameList += $paramName;
         $paramLocalNameList += $methodParam.Name;
+        
+        # Update Pruned Parameter List
+        if (-not ($paramName -eq 'ODataQuery'))
+        {
+            $st = $pruned_params.Add($methodParam);
+        }
     }
 
     $invoke_params_join_str = [string]::Join(', ', $paramLocalNameList);
-
-    # 2.1
-    $dynamic_param_source_template =
-@"
-        protected object Create${invoke_param_set_name}DynamicParameters()
-        {
-            dynamicParameters = new RuntimeDefinedParameterDictionary();
-$dynamic_param_assignment_code
-            return dynamicParameters;
-        }
-"@;
-
-    $code += $dynamic_param_source_template + $NEW_LINE;
-
-    # 2.2
-    $invoke_cmdlt_source_template = '';
-    if ($method_return_type.FullName -eq 'System.Void')
-    {
-        $invoke_cmdlt_source_template =
-@"
-        protected void Execute${invoke_param_set_name}Method(object[] ${invoke_input_params_name})
-        {
-${invoke_local_param_code_content}
-            ${OperationName}Client.${methodName}(${invoke_params_join_str});
-        }
-"@;
-    }
-    else
-    {
-        $invoke_cmdlt_source_template =
-@"
-        protected void Execute${invoke_param_set_name}Method(object[] ${invoke_input_params_name})
-        {
-${invoke_local_param_code_content}
-            var result = ${OperationName}Client.${methodName}(${invoke_params_join_str});
-            WriteObject(result);
-        }
-"@;
-    }
-
-    $code += $invoke_cmdlt_source_template + $NEW_LINE;
-
-    # End
-    $code += "    }" + $NEW_LINE;
-
-    return $code;
-}
-
-# Get Partial Code for Creating New Argument List
-function Get-ArgumentListCmdletCode
-{
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [string]$ComponentName,
-        
-        [Parameter(Mandatory = $true)]
-        [string]$OperationName,
-
-        [Parameter(Mandatory = $true)]
-        [System.Reflection.MethodInfo]$MethodInfo
-    )
     
-    # e.g. CreateOrUpdate, Get, ...
-    $methodName = ($MethodInfo.Name.Replace('Async', ''));
-    # e.g. VirtualMachines => VirtualMachine
-    $opSingularName = Get-SingularNoun $OperationName;
-    
-    # 1. Construct Code - Starting
-    $code = "";
-    $code += "    public partial class NewAzure${ComponentName}ArgumentListCmdlet : ${ComponentName}AutomationBaseCmdlet" + $NEW_LINE;
-    $code += "    {" + $NEW_LINE;
-    $code += "        protected PSArgument[] Create" + $opSingularName + $methodName + "Parameters()" + $NEW_LINE;
-    $code += "        {" + $NEW_LINE;
-
-    # 2. Iterate through Param List
-    $methodParamList = $MethodInfo.GetParameters();
-    $paramNameList = @();
-    $paramLocalNameList = @();
-    foreach ($methodParam in $methodParamList)
-    {
-        # Filter Out Helper Parameters
-        if (($methodParam.ParameterType.Name -like "I*Operations") -and ($methodParam.Name -eq 'operations'))
-        {
-            continue;
-        }
-        elseif ($methodParam.ParameterType.Name.EndsWith('CancellationToken'))
-        {
-            continue;
-        }
-        
-        # e.g. vmName => VMName, resourceGroup => ResourceGroup, etc.
-        $paramName = Get-CamelCaseName $methodParam.Name;
-        # Save the parameter's camel name (in upper case) and local name (in lower case).
-        $paramNameList += $paramName;
-        $paramLocalNameList += $methodParam.Name;
-
-        # i.e. System.Int32 => int, Microsoft.Azure.Management.Compute.VirtualMachine => VirtualMachine
-        $paramTypeName = Get-NormalizedTypeName $methodParam.ParameterType;
-        $paramCtorCode = Get-ConstructorCode -InputName $paramTypeName;
-
-        $isStringList = Is-ListStringType $methodParam.ParameterType;
-        $strTypeList = Get-StringTypes $methodParam.ParameterType;
-        $containsOnlyStrings = ($strTypeList -ne $null) -and ($strTypeList.Count -ne 0);
-        
-        # 2.1 Construct Code - Local Constructor Initialization
-        if ($containsOnlyStrings)
-        {
-            # Case 2.1.1: the parameter type contains only string types.
-            foreach ($param in $strTypeList)
-            {
-                $code += $indents + (' ' * 4) + "var p${param} = string.Empty;" + $NEW_LINE;
-                $param_index += 1;
-                $position_index += 1;
-                $param_names += ${param};
-                $invoke_local_param_names += "p${param}";
-            }
-        }
-        elseif ($isStringList)
-        {
-            # Case 2.1.2: the parameter type contains only a list of strings.
-            $code += "            var " + $methodParam.Name + " = new string[0];" + $NEW_LINE;
-        }
-        elseif ($paramName -eq 'ODataQuery')
-        {
-            # Case 2.1.3: ODataQuery.
-            $paramTypeName = "Microsoft.Rest.Azure.OData.ODataQuery<${opSingularName}>";
-            $code += "            ${paramTypeName} " + $methodParam.Name + " = new ${paramTypeName}();" + $NEW_LINE;
-        }
-        else
-        {
-            # Case 2.1.4: Most General Constructor Case
-            $code += "            ${paramTypeName} " + $methodParam.Name + " = ${paramCtorCode};" + $NEW_LINE;
-        }
-    }
-        
-    # Construct Code - 2.2 Return Argument List
-    $code += $NEW_LINE;
-    $code += "            return ConvertFromObjectsToArguments(" + $NEW_LINE;
-    $code += "                 new string[] { `"" + ([string]::Join("`", `"", $paramNameList)) + "`" }," + $NEW_LINE;
-    $code += "                 new object[] { " + ([string]::Join(", ", $paramLocalNameList)) + " });" + $NEW_LINE;
-
-    # Construct Code - Ending
-    $code += "        }" + $NEW_LINE;
-    $code += "    }" + $NEW_LINE;
-
-    return $code;
-}
-
-# Sample: VirtualMachineGetMethod.cs
-function Generate-PsFunctionVerbCommandImpl
-{
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [string]$opShortName,
-
-        [Parameter(Mandatory = $true)]
-        [System.Reflection.MethodInfo]$operation_method_info,
-
-        [Parameter(Mandatory = $true)]
-        [string]$fileOutputFolder,
-
-        [Parameter(Mandatory = $false)]
-        [System.Reflection.MethodInfo]$FriendMethodInfo = $null
-    )
-
-    $componentName = Get-ComponentName $ModelClassNameSpace;
-    $invoke_cmdlet_class_name = 'InvokeAzure' + $componentName + 'MethodCmdlet';
-    $parameter_cmdlet_class_name = 'NewAzure' + $componentName + 'ArgumentListCmdlet';
-
-    $methodName = ($operation_method_info.Name.Replace('Async', ''));
-
-    $return_type_info = $operation_method_info.ReturnType;
-    $normalized_output_type_name = Get-NormalizedTypeName $return_type_info;
-    $cmdlet_verb = "Invoke";
-    $cmdlet_verb_code = $verbs_lifecycle_invoke;
-    $cmdlet_noun_prefix = 'Azure';
-    $cmdlet_noun_suffix = 'Method';
-    $cmdlet_op_short_name = $opShortName;
-    if ($cmdlet_op_short_name.EndsWith("ScaleSets"))
-    {
-        $cmdlet_op_short_name = $cmdlet_op_short_name.Replace("ScaleSets", "ScaleSet");
-    }
-    elseif ($cmdlet_op_short_name.EndsWith("ScaleSetVMs"))
-    {
-        $cmdlet_op_short_name = $cmdlet_op_short_name.Replace("ScaleSetVMs", "ScaleSetVM");
-    }
-    $cmdlet_noun = $cmdlet_noun_prefix + $cmdlet_op_short_name + $methodName + $cmdlet_noun_suffix;
-    $cmdlet_class_name = $cmdlet_verb + $cmdlet_noun;
-
-    $invoke_param_set_name = $cmdlet_op_short_name + $methodName;
-
-    # Process Friend Parameter Set and Method Names
-    if ($FriendMethodInfo -ne $null -and $FriendMethodInfo.Name -ne $null)
-    {
-        $friendMethodName = ($FriendMethodInfo.Name.Replace('Async', ''));
-        $friend_param_set_name = $cmdlet_op_short_name + $friendMethodName;
-    }
-
-    $file_full_path = $fileOutputFolder + '/' + $cmdlet_class_name + '.cs';
-    if (Test-Path $file_full_path)
-    {
-        return;
-    }
-
-    $indents = " " * 8;
-    $get_set_block = '{ get; set; }';
-    $invoke_input_params_name = 'invokeMethodInputParameters';
-    $cmdlet_generated_code = '';
-
-    $method_param_list = $operation_method_info.GetParameters();
-    $method_return_type = $operation_method_info.ReturnType;
-    [System.Collections.ArrayList]$param_names = @();
-    [System.Collections.ArrayList]$pruned_params = @();
-    [System.Collections.ArrayList]$invoke_param_names = @();
-    [System.Collections.ArrayList]$invoke_local_param_names = @();
-    [System.Collections.ArrayList]$create_local_param_names = @();
-    [System.Collections.ArrayList]$cli_command_param_names = @();
-    $position_index = 1;
-    $has_properties = $false;
-    foreach ($pt in $method_param_list)
-    {
-        if (($pt.ParameterType.Name -like "I*Operations") -and ($pt.Name -eq 'operations'))
-        {
-            continue;
-        }
-        elseif ($pt.ParameterType.Name.EndsWith('CancellationToken'))
-        {
-            continue;
-        }
-        else
-        {
-            $paramTypeFullName = $pt.ParameterType.FullName;
-            $normalized_param_name = Get-CamelCaseName $pt.Name;
-
-            #Write-Verbose ('    ' + $paramTypeFullName + ' ' + $normalized_param_name);
-
-            $paramTypeNormalizedName = Get-NormalizedTypeName $pt.ParameterType;
-            $param_constructor_code = Get-ConstructorCode -inputName $paramTypeNormalizedName;
-
-            $has_properties = $true;
-            $is_string_list = Is-ListStringType $pt.ParameterType;
-            $does_contain_only_strings = Get-StringTypes $pt.ParameterType;
-            $only_strings = (($does_contain_only_strings -ne $null) -and ($does_contain_only_strings.Count -ne 0));
-
-            $param_attributes = $indents + "[Parameter(Mandatory = true";
-            $invoke_param_attributes = $indents + "[Parameter(ParameterSetName = `"${invoke_param_set_name}`", Position = ${position_index}, Mandatory = true";
-            if ((Is-PipingPropertyName $normalized_param_name) -and (Is-PipingPropertyTypeName $paramTypeNormalizedName))
-            {
-                $piping_from_property_name_code = ", ValueFromPipelineByPropertyName = true";
-                $param_attributes += $piping_from_property_name_code;
-
-                $invoke_param_attributes += $piping_from_property_name_code;
-            }
-            $param_attributes += ")]" + $NEW_LINE;
-            $invoke_param_attributes += ")]" + $NEW_LINE;
-            $param_definition = $indents + "public ${paramTypeNormalizedName} ${normalized_param_name} " + $get_set_block + $NEW_LINE;
-            $invoke_param_definition = $indents + "public ${paramTypeNormalizedName} ${invoke_param_set_name}${normalized_param_name} " + $get_set_block + $NEW_LINE;
-            $param_index = $position_index - 1;
-            if ($only_strings)
-            {
-                 # Case 1: the parameter type contains only string types.
-                 $invoke_local_param_definition = $indents + (' ' * 4) + "var " + $pt.Name + " = new ${paramTypeNormalizedName}();" + $NEW_LINE;
-
-                 foreach ($param in $does_contain_only_strings)
-                 {
-                      $invoke_local_param_definition += $indents + (' ' * 4) + "var p${param} = (string) ParseParameter(${invoke_input_params_name}[${param_index}]);" + $NEW_LINE;
-                      $invoke_local_param_definition += $indents + (' ' * 4) + $pt.Name + ".${param} = string.IsNullOrEmpty(p${param}) ? null : p${param};" + $NEW_LINE;
-                      $param_index += 1;
-                      $position_index += 1;
-                 }
-            }
-            elseif ($is_string_list)
-            {
-                # Case 2: the parameter type contains only a list of strings.
-                $list_of_strings_property = ($pt.ParameterType.GetProperties())[0].Name;
-
-                $invoke_local_param_definition = $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = null;"+ $NEW_LINE;
-                $invoke_local_param_definition += $indents + (' ' * 4) + "if (${invoke_input_params_name}[${param_index}] != null)" + $NEW_LINE;
-                $invoke_local_param_definition += $indents + (' ' * 4) + "{" + $NEW_LINE;
-                $invoke_local_param_definition += $indents + (' ' * 8) + "var inputArray${param_index} = Array.ConvertAll((object[]) ParseParameter(${invoke_input_params_name}[${param_index}]), e => e.ToString());" + $NEW_LINE;                
-                if ($paramTypeNormalizedName -like 'System.Collections.Generic.IList*')
-                {
-                    $invoke_local_param_definition += $indents + (' ' * 8) + $pt.Name + " = inputArray${param_index}.ToList();" + $NEW_LINE;
-                }
-                else
-                {
-                    $invoke_local_param_definition += $indents + (' ' * 8) + $pt.Name + " = new ${paramTypeNormalizedName}();" + $NEW_LINE;
-                    $invoke_local_param_definition += $indents + (' ' * 8) + $pt.Name + ".${list_of_strings_property} = inputArray${param_index}.ToList();" + $NEW_LINE;
-                }
-                $invoke_local_param_definition += $indents + (' ' * 4) + "}" + $NEW_LINE;
-            }
-            else
-            {
-                # Case 3: this is the most general case.
-                if ($normalized_param_name -eq 'ODataQuery')
-                {
-                    $paramTypeNormalizedName = "Microsoft.Rest.Azure.OData.ODataQuery<VirtualMachineScaleSetVM>";
-                    $invoke_local_param_definition = $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = (${paramTypeNormalizedName})ParseParameter(${invoke_input_params_name}[${param_index}]);" + $NEW_LINE;
-                }
-                else
-                {
-                    $invoke_local_param_definition = $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = (${paramTypeNormalizedName})ParseParameter(${invoke_input_params_name}[${param_index}]);" + $NEW_LINE;
-                }
-            }
-
-            if ($only_strings)
-            {
-                 $create_local_param_definition = "";
-                 # Case 1: the parameter type contains only string types.
-                 foreach ($param in $does_contain_only_strings)
-                 {
-                      $create_local_param_definition += $indents + (' ' * 4) + "var p${param} = string.Empty;" + $NEW_LINE;
-                      $param_index += 1;
-                      $position_index += 1;
-                      $param_names += ${param};
-                      $invoke_local_param_names += "p${param}";
-                 }
-            }
-            elseif ($is_string_list)
-            {
-                 # Case 2: the parameter type contains only a list of strings.
-                 $create_local_param_definition = $indents + (' ' * 4) + "var " + $pt.Name + " = new string[0];" + $NEW_LINE;
-            }
-            elseif ($normalized_param_name -eq 'ODataQuery')
-            {
-                 # Case 4: Odata, skip for now.
-                 $paramTypeNormalizedName = "Microsoft.Rest.Azure.OData.ODataQuery<VirtualMachineScaleSetVM>";
-                 $create_local_param_definition = $indents + (' ' * 4) + "$paramTypeNormalizedName " + $pt.Name + " = new ${paramTypeNormalizedName}();" + $NEW_LINE;
-            }
-            else
-            {
-                 # Case 4: this is the most general case.
-                 $create_local_param_definition = $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = ${param_constructor_code};" + $NEW_LINE;
-            }
-
-            $param_code_content = $param_attributes + $param_definition;
-
-            # For Invoke Method
-            $invoke_param_definition = $indents + "public ${paramTypeNormalizedName} ${invoke_param_set_name}${normalized_param_name} " + $get_set_block + $NEW_LINE;
-            $invoke_param_code_content += $invoke_param_attributes + $invoke_param_definition + $NEW_LINE;
-            $invoke_local_param_code_content += $invoke_local_param_definition;
-            $create_local_param_code_content += $create_local_param_definition;
-
-            $cmdlet_generated_code += $param_code_content + $NEW_LINE;
-            
-            if ($normalized_param_name -eq 'ODataQuery')
-            {
-                 $st = $param_names.Add($normalized_param_name);
-                 $st = $invoke_local_param_names.Add($pt.Name);
-            }
-            elseif (-not $only_strings)
-            {
-                 $st = $param_names.Add($normalized_param_name);
-                 $st = $invoke_local_param_names.Add($pt.Name);
-            }
-            $st = $invoke_param_names.Add($pt.Name);
-
-            $position_index += 1;
-            if (-not ($normalized_param_name -eq 'ODataQuery'))
-            {
-                 $pruned_params.Add($pt);
-            }
-        }
-    }
-
-    $params_join_str = [string]::Join(', ', $param_names.ToArray());
-    $invoke_params_join_str = [string]::Join(', ', $invoke_param_names.ToArray());
-    $invoke_local_params_join_str = [string]::Join(', ', $invoke_local_param_names.ToArray());
-
-    $invoke_local_param_names_join_str = "`"" + [string]::Join('", "', $param_names.ToArray()) + "`"";
-
-    $cmdlet_client_call_template = '';
-    if ($method_return_type.FullName -eq 'System.Void')
-    {
-      $cmdlet_client_call_template =
-@"
-        protected override void ProcessRecord()
-        {
-            base.ProcessRecord();
-            ExecuteClientAction(() =>
-            {
-                ${opShortName}Client.${methodName}(${params_join_str});
-            });
-        }
-"@;
-    }
-    else
-    {
-      $cmdlet_client_call_template =
-@"
-        protected override void ProcessRecord()
-        {
-            base.ProcessRecord();
-            ExecuteClientAction(() =>
-            {
-                var result = ${opShortName}Client.${methodName}(${params_join_str});
-                WriteObject(result);
-            });
-        }
-"@;
-    }
-    
-    $cmdlet_generated_code += $cmdlet_client_call_template;
-
+    # 2.1 Dynamic Parameter Assignment
     $dynamic_param_assignment_code_lines = @();
     $param_index = 1;
     foreach ($pt in $pruned_params)
@@ -684,6 +299,7 @@ function Generate-PsFunctionVerbCommandImpl
 
     $dynamic_param_assignment_code = [string]::Join($NEW_LINE, $dynamic_param_assignment_code_lines);
 
+    # 2.2 Create Dynamic Parameter Function
     $dynamic_param_source_template =
 @"
         protected object Create${invoke_param_set_name}DynamicParameters()
@@ -694,6 +310,80 @@ $dynamic_param_assignment_code
         }
 "@;
 
+    $code += $dynamic_param_source_template + $NEW_LINE;
+
+    # 2.3 Execute Method
+    $position_index = 1;
+    $indents = ' ' * 8;
+    $has_properties = $false;
+    foreach ($pt in $methodParamList)
+    {
+        # Filter Out Helper Parameters
+        if (($pt.ParameterType.Name -like "I*Operations") -and ($pt.Name -eq 'operations'))
+        {
+            continue;
+        }
+        elseif ($pt.ParameterType.Name.EndsWith('CancellationToken'))
+        {
+            continue;
+        }
+        
+        $paramTypeNormalizedName = Get-NormalizedTypeName $pt.ParameterType;
+        $normalized_param_name = Get-CamelCaseName $pt.Name;
+        
+        $has_properties = $true;
+        $is_string_list = Is-ListStringType $pt.ParameterType;
+        $does_contain_only_strings = Get-StringTypes $pt.ParameterType;
+        $only_strings = (($does_contain_only_strings -ne $null) -and ($does_contain_only_strings.Count -ne 0));
+
+        $param_index = $position_index - 1;
+        if ($only_strings)
+        {
+                # Case 1: the parameter type contains only string types.
+                $invoke_local_param_definition = $indents + (' ' * 4) + "var " + $pt.Name + " = new ${paramTypeNormalizedName}();" + $NEW_LINE;
+
+                foreach ($param in $does_contain_only_strings)
+                {
+                    $invoke_local_param_definition += $indents + (' ' * 4) + "var p${param} = (string) ParseParameter(${invoke_input_params_name}[${param_index}]);" + $NEW_LINE;
+                    $invoke_local_param_definition += $indents + (' ' * 4) + $pt.Name + ".${param} = string.IsNullOrEmpty(p${param}) ? null : p${param};" + $NEW_LINE;
+                    $param_index += 1;
+                    $position_index += 1;
+                }
+        }
+        elseif ($is_string_list)
+        {
+            # Case 2: the parameter type contains only a list of strings.
+            $list_of_strings_property = ($pt.ParameterType.GetProperties())[0].Name;
+
+            $invoke_local_param_definition = $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = null;"+ $NEW_LINE;
+            $invoke_local_param_definition += $indents + (' ' * 4) + "if (${invoke_input_params_name}[${param_index}] != null)" + $NEW_LINE;
+            $invoke_local_param_definition += $indents + (' ' * 4) + "{" + $NEW_LINE;
+            $invoke_local_param_definition += $indents + (' ' * 8) + "var inputArray${param_index} = Array.ConvertAll((object[]) ParseParameter(${invoke_input_params_name}[${param_index}]), e => e.ToString());" + $NEW_LINE;                
+            if ($paramTypeNormalizedName -like 'System.Collections.Generic.IList*')
+            {
+                $invoke_local_param_definition += $indents + (' ' * 8) + $pt.Name + " = inputArray${param_index}.ToList();" + $NEW_LINE;
+            }
+            else
+            {
+                $invoke_local_param_definition += $indents + (' ' * 8) + $pt.Name + " = new ${paramTypeNormalizedName}();" + $NEW_LINE;
+                $invoke_local_param_definition += $indents + (' ' * 8) + $pt.Name + ".${list_of_strings_property} = inputArray${param_index}.ToList();" + $NEW_LINE;
+            }
+            $invoke_local_param_definition += $indents + (' ' * 4) + "}" + $NEW_LINE;
+        }
+        else
+        {
+            # Case 3: this is the most general case.
+            if ($normalized_param_name -eq 'ODataQuery')
+            {
+                $paramTypeNormalizedName = "Microsoft.Rest.Azure.OData.ODataQuery<${opSingularName}>";
+            }
+            $invoke_local_param_definition = $indents + (' ' * 4) + "${paramTypeNormalizedName} " + $pt.Name + " = (${paramTypeNormalizedName})ParseParameter(${invoke_input_params_name}[${param_index}]);" + $NEW_LINE;
+        }
+        
+        $invoke_local_param_code_content += $invoke_local_param_definition;
+        $position_index += 1;
+    }
+
     $invoke_cmdlt_source_template = '';
     if ($method_return_type.FullName -eq 'System.Void')
     {
@@ -702,7 +392,7 @@ $dynamic_param_assignment_code
         protected void Execute${invoke_param_set_name}Method(object[] ${invoke_input_params_name})
         {
 ${invoke_local_param_code_content}
-            ${opShortName}Client.${methodName}(${invoke_params_join_str});
+            ${OperationName}Client.${methodName}(${invoke_params_join_str});
         }
 "@;
     }
@@ -713,69 +403,314 @@ ${invoke_local_param_code_content}
         protected void Execute${invoke_param_set_name}Method(object[] ${invoke_input_params_name})
         {
 ${invoke_local_param_code_content}
-            var result = ${opShortName}Client.${methodName}(${invoke_params_join_str});
+            var result = ${OperationName}Client.${methodName}(${invoke_params_join_str});
             WriteObject(result);
         }
 "@;
     }
 
+    $code += $NEW_LINE;
+    $code += $invoke_cmdlt_source_template + $NEW_LINE;
+
+    # End
+    $code += "    }" + $NEW_LINE;
+
+    return $code;
+}
+
+# Get Partial Code for Creating New Argument List
+function Get-ArgumentListCmdletCode
+{
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]$ComponentName,
+        
+        [Parameter(Mandatory = $true)]
+        [string]$OperationName,
+
+        [Parameter(Mandatory = $true)]
+        [System.Reflection.MethodInfo]$MethodInfo
+    )
+    
+    # e.g. CreateOrUpdate, Get, ...
+    $methodName = ($MethodInfo.Name.Replace('Async', ''));
+    # e.g. VirtualMachines => VirtualMachine
+    $opSingularName = Get-SingularNoun $OperationName;
+    $indents = ' ' * 8;
+    
+    # 1. Construct Code - Starting
+    $code = "";
+    $code += "    public partial class NewAzure${ComponentName}ArgumentListCmdlet : ${ComponentName}AutomationBaseCmdlet" + $NEW_LINE;
+    $code += "    {" + $NEW_LINE;
+    $code += "        protected PSArgument[] Create" + $opSingularName + $methodName + "Parameters()" + $NEW_LINE;
+    $code += "        {" + $NEW_LINE;
+
+    # 2. Iterate through Param List
+    $methodParamList = $MethodInfo.GetParameters();
+    $paramNameList = @();
+    $paramLocalNameList = @();
+    $has_properties = $false;
+    foreach ($methodParam in $methodParamList)
+    {
+        # Filter Out Helper Parameters
+        if (($methodParam.ParameterType.Name -like "I*Operations") -and ($methodParam.Name -eq 'operations'))
+        {
+            continue;
+        }
+        elseif ($methodParam.ParameterType.Name.EndsWith('CancellationToken'))
+        {
+            continue;
+        }
+        
+        $has_properties = $true;
+        
+        # e.g. vmName => VMName, resourceGroup => ResourceGroup, etc.
+        $paramName = Get-CamelCaseName $methodParam.Name;
+
+        # i.e. System.Int32 => int, Microsoft.Azure.Management.Compute.VirtualMachine => VirtualMachine
+        $paramTypeName = Get-NormalizedTypeName $methodParam.ParameterType;
+        $paramCtorCode = Get-ConstructorCode -InputName $paramTypeName;
+
+        $isStringList = Is-ListStringType $methodParam.ParameterType;
+        $strTypeList = Get-StringTypes $methodParam.ParameterType;
+        $containsOnlyStrings = ($strTypeList -ne $null) -and ($strTypeList.Count -ne 0);
+        
+        # Save the parameter's camel name (in upper case) and local name (in lower case).
+        if (-not $containsOnlyStrings)
+        {
+            $paramNameList += $paramName;
+            $paramLocalNameList += $methodParam.Name;
+        }
+        
+        # 2.1 Construct Code - Local Constructor Initialization
+        if ($containsOnlyStrings)
+        {
+            # Case 2.1.1: the parameter type contains only string types.
+            foreach ($param in $strTypeList)
+            {
+                $code += $indents + (' ' * 4) + "var p${param} = string.Empty;" + $NEW_LINE;
+                $param_index += 1;
+                $position_index += 1;
+                $paramNameList += ${param};
+                $paramLocalNameList += "p${param}";
+            }
+        }
+        elseif ($isStringList)
+        {
+            # Case 2.1.2: the parameter type contains only a list of strings.
+            $code += "            var " + $methodParam.Name + " = new string[0];" + $NEW_LINE;
+        }
+        elseif ($paramName -eq 'ODataQuery')
+        {
+            # Case 2.1.3: ODataQuery.
+            $paramTypeName = "Microsoft.Rest.Azure.OData.ODataQuery<${opSingularName}>";
+            $code += "            ${paramTypeName} " + $methodParam.Name + " = new ${paramTypeName}();" + $NEW_LINE;
+        }
+        else
+        {
+            # Case 2.1.4: Most General Constructor Case
+            $code += "            ${paramTypeName} " + $methodParam.Name + " = ${paramCtorCode};" + $NEW_LINE;
+        }
+    }
+        
+    # Construct Code - 2.2 Return Argument List
     if ($has_properties)
     {
-         $parameter_cmdlt_source_template =
-@"
-        protected PSArgument[] Create${invoke_param_set_name}Parameters()
-        {
-${create_local_param_code_content}
-            return ConvertFromObjectsToArguments(
-                 new string[] { $invoke_local_param_names_join_str },
-                 new object[] { ${invoke_local_params_join_str} });
-        }
-"@;
+        $code += $NEW_LINE;
+        $code += "            return ConvertFromObjectsToArguments(" + $NEW_LINE;
+        $code += "                 new string[] { `"" + ([string]::Join("`", `"", $paramNameList)) + "`" }," + $NEW_LINE;
+        $code += "                 new object[] { " + ([string]::Join(", ", $paramLocalNameList)) + " });" + $NEW_LINE;
     }
     else
     {
-         $parameter_cmdlt_source_template =
-@"
-        protected PSArgument[] Create${invoke_param_set_name}Parameters()
-        {
-            return ConvertFromObjectsToArguments(new string[0], new object[0]);
-        }
-"@;
+        $code += "            return ConvertFromObjectsToArguments(new string[0], new object[0]);" + $NEW_LINE;
     }
 
+    # Construct Code - Ending
+    $code += "        }" + $NEW_LINE;
+    $code += "    }";
 
-    # 1. Invoke Cmdlet Partial Code
-    # 2. Param Cmdlet Partial Code
-    # 3. Verb Cmdlet Partial Code
+    return $code;
+}
+
+# Get Partial Code for Verb-Noun Cmdlet
+function Get-VerbNounCmdletCode
+{
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]$ComponentName,
+        
+        [Parameter(Mandatory = $true)]
+        [string]$OperationName,
+
+        [Parameter(Mandatory = $true)]
+        [System.Reflection.MethodInfo]$MethodInfo
+    )
+    
+    # e.g. CreateOrUpdate, Get, ...
+    $methodName = ($MethodInfo.Name.Replace('Async', ''));
+    # e.g. VirtualMachines => VirtualMachine
+    $opSingularName = Get-SingularNoun $OperationName;
+    $invoke_param_set_name = $opSingularName + $methodName;
+
+    # Variables
     $return_vals = Get-VerbTermNameAndSuffix $methodName;
     $mapped_verb_name = $return_vals[0];
     $mapped_verb_term_suffix = $return_vals[1];
-    $shortNounName = Get-ShortNounName $cmdlet_op_short_name;
+    $shortNounName = Get-ShortNounName $opSingularName;
 
     $mapped_noun_str = 'AzureRm' + $shortNounName + $mapped_verb_term_suffix;
     $verb_cmdlet_name = $mapped_verb_name + $mapped_noun_str;
 
-    # Construct the Individual Cmdlet Code Content
-    $cmdlet_partial_class_code =
+    # 1. Start
+    $code = "";
+    
+    # 2. Body
+    $mapped_noun_str = $mapped_noun_str.Replace("VMSS", "Vmss");
+    
+    # Iterate through Param List
+    $methodParamList = $MethodInfo.GetParameters();
+    $paramNameList = @();
+    $paramLocalNameList = @();
+    [System.Collections.ArrayList]$pruned_params = @();
+    foreach ($methodParam in $methodParamList)
+    {
+        # Filter Out Helper Parameters
+        if (($methodParam.ParameterType.Name -like "I*Operations") -and ($methodParam.Name -eq 'operations'))
+        {
+            continue;
+        }
+        elseif ($methodParam.ParameterType.Name.EndsWith('CancellationToken'))
+        {
+            continue;
+        }
+        
+        # e.g. vmName => VMName, resourceGroup => ResourceGroup, etc.
+        $paramName = Get-CamelCaseName $methodParam.Name;
+        # Save the parameter's camel name (in upper case) and local name (in lower case).
+        $paramNameList += $paramName;
+        $paramLocalNameList += $methodParam.Name;
+        
+        # Update Pruned Parameter List
+        if (-not ($paramName -eq 'ODataQuery'))
+        {
+            $st = $pruned_params.Add($methodParam);
+        }
+    }
+
+    $invoke_params_join_str = [string]::Join(', ', $paramLocalNameList);
+
+    # 2.1 Dynamic Parameter Assignment
+    $dynamic_param_assignment_code_lines = @();
+    $param_index = 1;
+    foreach ($pt in $pruned_params)
+    {
+        $param_type_full_name = $pt.ParameterType.FullName;
+        if (($param_type_full_name -like "I*Operations") -and ($param_type_full_name -eq 'operations'))
+        {
+            continue;
+        }
+        elseif ($param_type_full_name.EndsWith('CancellationToken'))
+        {
+            continue;
+        }
+
+        $is_string_list = Is-ListStringType $pt.ParameterType;
+        $does_contain_only_strings = Get-StringTypes $pt.ParameterType;
+
+        $param_name = Get-CamelCaseName $pt.Name;
+        $expose_param_name = $param_name;
+
+        $param_type_full_name = Get-NormalizedTypeName $pt.ParameterType;
+
+        if ($expose_param_name -like '*Parameters')
+        {
+            $expose_param_name = $invoke_param_set_name + $expose_param_name;
+        }
+
+        $expose_param_name = Get-SingularNoun $expose_param_name;
+
+        if (($does_contain_only_strings -eq $null) -or ($does_contain_only_strings.Count -eq 0))
+        {
+            # Complex Class Parameters
+             $dynamic_param_assignment_code_lines +=
 @"
-    public partial class ${invoke_cmdlet_class_name} : ${component_name}AutomationBaseCmdlet
-    {
-$dynamic_param_source_template
-
-$invoke_cmdlt_source_template
-    }
-
-    public partial class ${parameter_cmdlet_class_name} : ${component_name}AutomationBaseCmdlet
-    {
-$parameter_cmdlt_source_template
-    }
+            var p${param_name} = new RuntimeDefinedParameter();
+            p${param_name}.Name = `"${expose_param_name}`";
 "@;
 
-    if ($cmdletFlavor -eq 'Verb')
-    {
-        # If the Cmdlet Flavor is 'Verb', generate the Verb-based cmdlet code
-        $mapped_noun_str = $mapped_noun_str.Replace("VMSS", "Vmss");
-        $cmdlet_partial_class_code +=
+             if ($is_string_list)
+             {
+                  $dynamic_param_assignment_code_lines += "            p${param_name}.ParameterType = typeof(string[]);";
+             }
+             else
+             {
+                  $dynamic_param_assignment_code_lines += "            p${param_name}.ParameterType = typeof($param_type_full_name);";
+             }
+
+             $dynamic_param_assignment_code_lines +=
+@"
+            p${param_name}.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = $param_index,
+                Mandatory = false
+            });
+            p${param_name}.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add(`"${expose_param_name}`", p${param_name});
+
+"@;
+            $param_index += 1;
+        }
+        else
+        {
+            # String Parameters
+             foreach ($s in $does_contain_only_strings)
+             {
+                  $s = Get-SingularNoun $s;
+                  $dynamic_param_assignment_code_lines +=
+@"
+            var p${s} = new RuntimeDefinedParameter();
+            p${s}.Name = `"${s}`";
+            p${s}.ParameterType = typeof(string);
+            p${s}.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = $param_index,
+                Mandatory = false
+            });
+            p${s}.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add(`"${s}`", p${s});
+
+"@;
+                  $param_index += 1;
+             }
+        }
+    }
+
+    $param_name = $expose_param_name = 'ArgumentList';
+    $param_type_full_name = 'object[]';
+    $dynamic_param_assignment_code_lines +=
+@"
+            var p${param_name} = new RuntimeDefinedParameter();
+            p${param_name}.Name = `"${expose_param_name}`";
+            p${param_name}.ParameterType = typeof($param_type_full_name);
+            p${param_name}.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByStaticParameters",
+                Position = $param_index,
+                Mandatory = true
+            });
+            p${param_name}.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add(`"${expose_param_name}`", p${param_name});
+
+"@;
+
+    $dynamic_param_assignment_code = [string]::Join($NEW_LINE, $dynamic_param_assignment_code_lines);
+
+    $code +=
 @"
 
 
@@ -802,46 +737,11 @@ $dynamic_param_assignment_code
         }
     }
 "@;
-    }
 
-    $cmdlt_source_template =
-@"
-${code_common_header}
+    # 3. End
+    $code += "";
 
-$code_using_strs
-
-namespace ${code_common_namespace}
-{
-    [Cmdlet(${cmdlet_verb_code}, `"${cmdlet_noun}`")]
-    [OutputType(typeof(${normalized_output_type_name}))]
-    public class ${cmdlet_class_name} : ${component_name}AutomationBaseCmdlet
-    {
-${cmdlet_generated_code}
-    }
-
-${cmdlet_partial_class_code}
-}
-"@;
-
-    $cmdlt_partial_class_source_template =
-@"
-${code_common_header}
-
-$code_using_strs
-
-namespace ${code_common_namespace}
-{
-${cmdlet_partial_class_code}
-}
-"@;
-
-    #$st = Set-Content -Path $file_full_path -Value $cmdlt_source_template -Force;
-    $partial_class_file_path = ($file_full_path.Replace('InvokeAzure', ''));
-    $st = Set-Content -Path $partial_class_file_path -Value $cmdlt_partial_class_source_template -Force;
-
-    Write-Output $dynamic_param_source_template;
-    Write-Output $invoke_cmdlt_source_template;
-    Write-Output $parameter_cmdlt_source_template;
+    return $code;
 }
 
 # azure vm get
