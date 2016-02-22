@@ -191,6 +191,7 @@
     <None Include="Automation\Generate-FunctionCommand.ps1" />
     <None Include="Automation\Generate-PowershellParameterCmdlet.ps1" />
     <None Include="Automation\Import-AssemblyFunction.ps1" />
+    <None Include="Automation\Import-WriterFunction.ps1" />
     <None Include="Automation\Import-TypeFunction.ps1" />
     <None Include="Automation\Import-StringFunction.ps1" />
     <None Include="Automation\Generate-ParameterCommand.ps1" />

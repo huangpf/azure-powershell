@@ -308,35 +308,35 @@ function Get-StringTypes
 }
 
 
-function Get-ConstructorCodeByNormalizedTypeName
+function Get-ConstructorCode
 {
     param(
         # Sample: 'string' => 'string.Empty', 'HostedServiceCreateParameters' => 'new HostedServiceCreateParameters()', etc.
         [Parameter(Mandatory = $True)]
-        [string]$inputName
+        [string]$InputName
     )
 
-    if ([string]::IsNullOrEmpty($inputName))
+    if ([string]::IsNullOrEmpty($InputName))
     {
         return 'null';
     }
 
-    if ($inputName -eq 'string')
+    if ($InputName -eq 'string')
     {
         $outputName = 'string.Empty';
     }
     else
     {
-        if ($inputName.StartsWith($client_model_namespace + "."))
+        if ($InputName.StartsWith($client_model_namespace + "."))
         {
-            $inputName = $inputName.Replace($client_model_namespace + ".", '');
+            $InputName = $InputName.Replace($client_model_namespace + ".", '');
         }
-        elseif ($inputName.StartsWith('System.Collections.Generic.'))
+        elseif ($InputName.StartsWith('System.Collections.Generic.'))
         {
-            $inputName = $inputName.Replace('System.Collections.Generic.', '');
+            $InputName = $InputName.Replace('System.Collections.Generic.', '');
         }
 
-        $outputName = 'new ' + $inputName + "()";
+        $outputName = 'new ' + $InputName + "()";
     }
 
     return $outputName;

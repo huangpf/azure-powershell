@@ -484,7 +484,7 @@ function Write-InvokeParameterCmdletFile
                     $all_param_type_names += $parameter_type_short_name;
                     if (-not $constructor_code_hashmap.ContainsKey($parameter_type_short_name))
                     {
-                        $st = $constructor_code_hashmap.Add($parameter_type_short_name, (Get-ConstructorCodeByNormalizedTypeName $parameter_type_full_name));
+                        $st = $constructor_code_hashmap.Add($parameter_type_short_name, (Get-ConstructorCode $parameter_type_full_name));
                     }
                 }
             }
@@ -656,7 +656,7 @@ function Write-NewParameterObjectCmdletFile
                     $all_param_type_names += $parameter_type_short_name;
                     if (-not $constructor_code_hashmap.ContainsKey($parameter_type_short_name))
                     {
-                        $st = $constructor_code_hashmap.Add($parameter_type_short_name, (Get-ConstructorCodeByNormalizedTypeName $parameter_type_full_name));
+                        $st = $constructor_code_hashmap.Add($parameter_type_short_name, (Get-ConstructorCode $parameter_type_full_name));
                     }
                 }
 
@@ -665,7 +665,7 @@ function Write-NewParameterObjectCmdletFile
                     $all_param_full_type_names += $parameter_type_full_name;
                     if (-not $constructor_code_hashmap.ContainsKey($parameter_type_full_name))
                     {
-                        $st = $constructor_code_hashmap.Add($parameter_type_full_name, (Get-ConstructorCodeByNormalizedTypeName $parameter_type_full_name));
+                        $st = $constructor_code_hashmap.Add($parameter_type_full_name, (Get-ConstructorCode $parameter_type_full_name));
                     }
                 }
 
@@ -689,12 +689,12 @@ function Write-NewParameterObjectCmdletFile
                             $parameter_type_full_name = Get-ParameterTypeFullName $sp;
                             if (-not $constructor_code_hashmap.ContainsKey($parameter_type_short_name))
                             {
-                                $st = $constructor_code_hashmap.Add($parameter_type_short_name, (Get-ConstructorCodeByNormalizedTypeName $parameter_type_full_name));
+                                $st = $constructor_code_hashmap.Add($parameter_type_short_name, (Get-ConstructorCode $parameter_type_full_name));
                             }
 
                             if (-not $constructor_code_hashmap.ContainsKey($parameter_type_full_name))
                             {
-                                $st = $constructor_code_hashmap.Add($parameter_type_full_name, (Get-ConstructorCodeByNormalizedTypeName $parameter_type_full_name));
+                                $st = $constructor_code_hashmap.Add($parameter_type_full_name, (Get-ConstructorCode $parameter_type_full_name));
                             }
                         }
                         else
@@ -710,12 +710,12 @@ function Write-NewParameterObjectCmdletFile
                             $parameter_type_full_name = Get-ParameterTypeFullName $sp $true;
                             if (-not $constructor_code_hashmap.ContainsKey($parameter_type_short_name))
                             {
-                                $st = $constructor_code_hashmap.Add($parameter_type_short_name, (Get-ConstructorCodeByNormalizedTypeName $parameter_type_full_name));
+                                $st = $constructor_code_hashmap.Add($parameter_type_short_name, (Get-ConstructorCode $parameter_type_full_name));
                             }
 
                             if (-not $constructor_code_hashmap.ContainsKey($parameter_type_full_name))
                             {
-                                $st = $constructor_code_hashmap.Add($parameter_type_full_name, (Get-ConstructorCodeByNormalizedTypeName $parameter_type_full_name));
+                                $st = $constructor_code_hashmap.Add($parameter_type_full_name, (Get-ConstructorCode $parameter_type_full_name));
                             }
                         }
 
