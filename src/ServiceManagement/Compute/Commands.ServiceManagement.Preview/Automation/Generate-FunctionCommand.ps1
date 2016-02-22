@@ -994,7 +994,7 @@ function Generate-CliFunctionCommandImpl
                     #$code += "      ${cli_param_name}Obj.instanceIDs = ${cli_param_name}ValArr;" + $NEW_LINE;
                     $code += "      ${cli_param_name}Obj = [];" + $NEW_LINE;
                     $code += "      for (var item in ${cli_param_name}ValArr) {" + $NEW_LINE;
-                    $code += "        ${cli_param_name}Obj.push(item);" + $NEW_LINE;
+                    $code += "        ${cli_param_name}Obj.push(${cli_param_name}ValArr[item]);" + $NEW_LINE;
                     $code += "      }" + $NEW_LINE;
                 }
                 else

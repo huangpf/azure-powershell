@@ -5695,7 +5695,7 @@ exports.init = function (cli) {
       cli.output.verbose('instanceIdsValArr : ' + instanceIdsValArr);
       instanceIdsObj = [];
       for (var item in instanceIdsValArr) {
-        instanceIdsObj.push(item);
+        instanceIdsObj.push(instanceIdsValArr[item]);
       }
     }
     cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
@@ -5757,7 +5757,7 @@ exports.init = function (cli) {
       cli.output.verbose('instanceIdsValArr : ' + instanceIdsValArr);
       instanceIdsObj = [];
       for (var item in instanceIdsValArr) {
-        instanceIdsObj.push(item);
+        instanceIdsObj.push(instanceIdsValArr[item]);
       }
     }
     cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
@@ -5955,7 +5955,7 @@ exports.init = function (cli) {
       cli.output.verbose('instanceIdsValArr : ' + instanceIdsValArr);
       instanceIdsObj = [];
       for (var item in instanceIdsValArr) {
-        instanceIdsObj.push(item);
+        instanceIdsObj.push(instanceIdsValArr[item]);
       }
     }
     cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
@@ -5995,7 +5995,7 @@ exports.init = function (cli) {
       cli.output.verbose('instanceIdsValArr : ' + instanceIdsValArr);
       instanceIdsObj = [];
       for (var item in instanceIdsValArr) {
-        instanceIdsObj.push(item);
+        instanceIdsObj.push(instanceIdsValArr[item]);
       }
     }
     cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
@@ -6035,7 +6035,7 @@ exports.init = function (cli) {
       cli.output.verbose('instanceIdsValArr : ' + instanceIdsValArr);
       instanceIdsObj = [];
       for (var item in instanceIdsValArr) {
-        instanceIdsObj.push(item);
+        instanceIdsObj.push(instanceIdsValArr[item]);
       }
     }
     cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
@@ -6075,7 +6075,7 @@ exports.init = function (cli) {
       cli.output.verbose('instanceIdsValArr : ' + instanceIdsValArr);
       instanceIdsObj = [];
       for (var item in instanceIdsValArr) {
-        instanceIdsObj.push(item);
+        instanceIdsObj.push(instanceIdsValArr[item]);
       }
     }
     cli.output.verbose('instanceIdsObj = ' + JSON.stringify(instanceIdsObj));
