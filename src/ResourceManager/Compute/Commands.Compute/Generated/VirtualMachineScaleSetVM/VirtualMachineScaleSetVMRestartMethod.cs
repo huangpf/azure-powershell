@@ -115,13 +115,13 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     {
         public RestartAzureRmVMSSVM()
         {
-            this.MethodName = "VirtualMachineScaleSetVMRestart";
         }
 
         public override string MethodName { get; set; }
 
         protected override void ProcessRecord()
         {
+            this.MethodName = "VirtualMachineScaleSetVMRestart";
             base.ProcessRecord();
         }
 

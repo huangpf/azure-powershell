@@ -115,13 +115,13 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     {
         public RemoveAzureRmVMSSVM()
         {
-            this.MethodName = "VirtualMachineScaleSetVMDelete";
         }
 
         public override string MethodName { get; set; }
 
         protected override void ProcessRecord()
         {
+            this.MethodName = "VirtualMachineScaleSetVMDelete";
             base.ProcessRecord();
         }
 

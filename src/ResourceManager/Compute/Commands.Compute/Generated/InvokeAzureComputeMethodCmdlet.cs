@@ -97,7 +97,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             base.ProcessRecord();
             ExecuteClientAction(() =>
             {
-                if (ParameterSetName == "InvokeByDynamicParameters")
+                if (ParameterSetName == "InvokeByDynamicParameters" || ParameterSetName == "InvokeByDynamicParametersForFriendMethod")
                 {
                     argumentList = ConvertDynamicParameters(dynamicParameters);
                 }

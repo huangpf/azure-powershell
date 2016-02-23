@@ -88,13 +88,13 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     {
         public GetAzureRmVMSSVMNextList()
         {
-            this.MethodName = "VirtualMachineScaleSetVMListNext";
         }
 
         public override string MethodName { get; set; }
 
         protected override void ProcessRecord()
         {
+            this.MethodName = "VirtualMachineScaleSetVMListNext";
             base.ProcessRecord();
         }
 

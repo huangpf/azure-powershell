@@ -118,13 +118,13 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     {
         public GetAzureRmVMSSVMList()
         {
-            this.MethodName = "VirtualMachineScaleSetVMList";
         }
 
         public override string MethodName { get; set; }
 
         protected override void ProcessRecord()
         {
+            this.MethodName = "VirtualMachineScaleSetVMList";
             base.ProcessRecord();
         }
 

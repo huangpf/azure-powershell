@@ -120,13 +120,13 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     {
         public RemoveAzureRmVMSSInstances()
         {
-            this.MethodName = "VirtualMachineScaleSetDeleteInstances";
         }
 
         public override string MethodName { get; set; }
 
         protected override void ProcessRecord()
         {
+            this.MethodName = "VirtualMachineScaleSetDeleteInstances";
             base.ProcessRecord();
         }
 

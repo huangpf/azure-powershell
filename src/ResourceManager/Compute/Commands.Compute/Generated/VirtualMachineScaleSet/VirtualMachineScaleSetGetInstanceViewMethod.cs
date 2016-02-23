@@ -102,13 +102,13 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     {
         public GetAzureRmVMSSInstanceView()
         {
-            this.MethodName = "VirtualMachineScaleSetGetInstanceView";
         }
 
         public override string MethodName { get; set; }
 
         protected override void ProcessRecord()
         {
+            this.MethodName = "VirtualMachineScaleSetGetInstanceView";
             base.ProcessRecord();
         }
 

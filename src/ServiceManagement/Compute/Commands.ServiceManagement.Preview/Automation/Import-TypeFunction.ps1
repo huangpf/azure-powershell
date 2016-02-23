@@ -420,9 +420,9 @@ function Get-VerbTermNameAndSuffix
             {
                 $suffix += 'List';
             }
-            elseif ($MethodName.StartsWith('Deallocate'))
+            elseif ($MethodName.StartsWith('PowerOff'))
             {
-                $suffix += "WithDeallocation";
+                $suffix += "WithPowerOff";
             }
             $found = $true;
             break;

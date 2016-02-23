@@ -102,13 +102,13 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     {
         public GetAzureRmVMSSSkusList()
         {
-            this.MethodName = "VirtualMachineScaleSetListSkus";
         }
 
         public override string MethodName { get; set; }
 
         protected override void ProcessRecord()
         {
+            this.MethodName = "VirtualMachineScaleSetListSkus";
             base.ProcessRecord();
         }
 

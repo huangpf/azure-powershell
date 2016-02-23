@@ -16,37 +16,51 @@
 .SYNOPSIS
 Test Virtual Machine Scalet Set
 
-PS C:\> Get-Command *VMSS*
+PS C:\> Get-Command *VMSS* | ft Name,Version,ModuleName
 
-CommandType     Name                                               Version    Source
------------     ----                                               -------    ------
-Cmdlet          Add-AzureRmVMSshPublicKey                          0.10.1     AzureRM.Compute
-Cmdlet          Get-AzureRmVmss                                    0.10.1     AzureRM.Compute
-Cmdlet          Get-AzureRmVmssAllList                             0.10.1     AzureRM.Compute
-Cmdlet          Get-AzureRmVmssInstanceView                        0.10.1     AzureRM.Compute
-Cmdlet          Get-AzureRmVmssList                                0.10.1     AzureRM.Compute
-Cmdlet          Get-AzureRmVmssNextList                            0.10.1     AzureRM.Compute
-Cmdlet          Get-AzureRmVmssSkusList                            0.10.1     AzureRM.Compute
-Cmdlet          Get-AzureRmVmssVM                                  0.10.1     AzureRM.Compute
-Cmdlet          Get-AzureRmVmssVMInstanceView                      0.10.1     AzureRM.Compute
-Cmdlet          Get-AzureRmVmssVMList                              0.10.1     AzureRM.Compute
-Cmdlet          New-AzureRmVmss                                    0.10.1     AzureRM.Compute
-Cmdlet          Remove-AzureRmVmss                                 0.10.1     AzureRM.Compute
-Cmdlet          Remove-AzureRmVmssInstances                        0.10.1     AzureRM.Compute
-Cmdlet          Remove-AzureRmVmssVM                               0.10.1     AzureRM.Compute
-Cmdlet          Restart-AzureRmVmss                                0.10.1     AzureRM.Compute
-Cmdlet          Restart-AzureRmVmssInstances                       0.10.1     AzureRM.Compute
-Cmdlet          Restart-AzureRmVmssVM                              0.10.1     AzureRM.Compute
-Cmdlet          Start-AzureRmVmss                                  0.10.1     AzureRM.Compute
-Cmdlet          Start-AzureRmVmssInstances                         0.10.1     AzureRM.Compute
-Cmdlet          Start-AzureRmVmssVM                                0.10.1     AzureRM.Compute
-Cmdlet          Stop-AzureRmVmss                                   0.10.1     AzureRM.Compute
-Cmdlet          Stop-AzureRmVmssInstances                          0.10.1     AzureRM.Compute
-Cmdlet          Stop-AzureRmVmssInstancesWithDeallocation          0.10.1     AzureRM.Compute
-Cmdlet          Stop-AzureRmVmssVM                                 0.10.1     AzureRM.Compute
-Cmdlet          Stop-AzureRmVmssVMWithDeallocation                 0.10.1     AzureRM.Compute
-Cmdlet          Stop-AzureRmVmssWithDeallocation                   0.10.1     AzureRM.Compute
-Cmdlet          Update-AzureRmVmssInstances                        0.10.1     AzureRM.Compute
+Name                                            Version ModuleName
+----                                            ------- ----------
+Add-AzureRmVmssAdditionalUnattendContent        1.2.3   AzureRM.Compute
+Add-AzureRmVmssExtension                        1.2.3   AzureRM.Compute
+Add-AzureRmVMSshPublicKey                       1.2.3   AzureRM.Compute
+Add-AzureRmVmssListener                         1.2.3   AzureRM.Compute
+Add-AzureRmVmssNetworkInterfaceConfiguration    1.2.3   AzureRM.Compute
+Add-AzureRmVmssPublicKey                        1.2.3   AzureRM.Compute
+Add-AzureRmVmssSecret                           1.2.3   AzureRM.Compute
+Get-AzureRmVmss                                 1.2.3   AzureRM.Compute
+Get-AzureRmVmssAllList                          1.2.3   AzureRM.Compute
+Get-AzureRmVmssAllNextList                      1.2.3   AzureRM.Compute
+Get-AzureRmVmssInstanceView                     1.2.3   AzureRM.Compute
+Get-AzureRmVmssList                             1.2.3   AzureRM.Compute
+Get-AzureRmVmssNextList                         1.2.3   AzureRM.Compute
+Get-AzureRmVmssSkusList                         1.2.3   AzureRM.Compute
+Get-AzureRmVmssSkusNextList                     1.2.3   AzureRM.Compute
+Get-AzureRmVmssVM                               1.2.3   AzureRM.Compute
+Get-AzureRmVmssVMInstanceView                   1.2.3   AzureRM.Compute
+Get-AzureRmVmssVMList                           1.2.3   AzureRM.Compute
+Get-AzureRmVmssVMNextList                       1.2.3   AzureRM.Compute
+New-AzureRmVmss                                 1.2.3   AzureRM.Compute
+New-AzureRmVmssConfig                           1.2.3   AzureRM.Compute
+New-AzureRmVmssIpConfigurationConfig            1.2.3   AzureRM.Compute
+New-AzureRmVmssVaultCertificateConfig           1.2.3   AzureRM.Compute
+Remove-AzureRmVmss                              1.2.3   AzureRM.Compute
+Remove-AzureRmVmssAdditionalUnattendContent     1.2.3   AzureRM.Compute
+Remove-AzureRmVmssExtension                     1.2.3   AzureRM.Compute
+Remove-AzureRmVmssInstances                     1.2.3   AzureRM.Compute
+Remove-AzureRmVmssListener                      1.2.3   AzureRM.Compute
+Remove-AzureRmVmssNetworkInterfaceConfiguration 1.2.3   AzureRM.Compute
+Remove-AzureRmVmssPublicKey                     1.2.3   AzureRM.Compute
+Remove-AzureRmVmssSecret                        1.2.3   AzureRM.Compute
+Remove-AzureRmVmssVM                            1.2.3   AzureRM.Compute
+Restart-AzureRmVmss                             1.2.3   AzureRM.Compute
+Restart-AzureRmVmssVM                           1.2.3   AzureRM.Compute
+Set-AzureRmVmssOsProfile                        1.2.3   AzureRM.Compute
+Set-AzureRmVmssStorageProfile                   1.2.3   AzureRM.Compute
+Start-AzureRmVmss                               1.2.3   AzureRM.Compute
+Start-AzureRmVmssVM                             1.2.3   AzureRM.Compute
+Stop-AzureRmVmss                                1.2.3   AzureRM.Compute
+Stop-AzureRmVmssVM                              1.2.3   AzureRM.Compute
+Update-AzureRmVmssInstances                     1.2.3   AzureRM.Compute
 #>
 function Test-VirtualMachineScaleSet
 {
@@ -173,25 +187,25 @@ function Test-VirtualMachineScaleSet
         # Stop/Start/Restart Operation
         for ($i = 0; $i -lt 2; $i++)
         {
+            $st = Stop-AzureRmVmssVM -StayProvision -ResourceGroupName $rgname -VMScaleSetName $vmssName -InstanceId $i;
             $st = Stop-AzureRmVmssVM -ResourceGroupName $rgname -VMScaleSetName $vmssName -InstanceId $i;
-            $st = Stop-AzureRmVmssVMWithDeallocation -ResourceGroupName $rgname -VMScaleSetName $vmssName -InstanceId $i;
             $st = Start-AzureRmVmssVM -ResourceGroupName $rgname -VMScaleSetName $vmssName -InstanceId $i;
             $st = Restart-AzureRmVmssVM -ResourceGroupName $rgname -VMScaleSetName $vmssName -InstanceId $i;
         }
 
+        $st = Stop-AzureRmVmss -StayProvision -ResourceGroupName $rgname -VMScaleSetName $vmssName;
         $st = Stop-AzureRmVmss -ResourceGroupName $rgname -VMScaleSetName $vmssName;
-        $st = Stop-AzureRmVmssWithDeallocation -ResourceGroupName $rgname -VMScaleSetName $vmssName;
         $st = Start-AzureRmVmss -ResourceGroupName $rgname -VMScaleSetName $vmssName;
         $st = Restart-AzureRmVmss -ResourceGroupName $rgname -VMScaleSetName $vmssName;
 
         $instanceListParam = @();
-		for ($i = 0; $i -lt 2; $i++)
+        for ($i = 0; $i -lt 2; $i++)
         {
             $instanceListParam += $i.ToString();
         }
 
+        $st = Stop-AzureRmVmss -StayProvision -ResourceGroupName $rgname -VMScaleSetName $vmssName -InstanceID $instanceListParam;
         $st = Stop-AzureRmVmss -ResourceGroupName $rgname -VMScaleSetName $vmssName -InstanceID $instanceListParam;
-        $st = Stop-AzureRmVmssWithDeallocation -ResourceGroupName $rgname -VMScaleSetName $vmssName -InstanceID $instanceListParam;
         $st = Start-AzureRmVmss -ResourceGroupName $rgname -VMScaleSetName $vmssName -InstanceID $instanceListParam;
         $st = Restart-AzureRmVmss -ResourceGroupName $rgname -VMScaleSetName $vmssName -InstanceID $instanceListParam;
 

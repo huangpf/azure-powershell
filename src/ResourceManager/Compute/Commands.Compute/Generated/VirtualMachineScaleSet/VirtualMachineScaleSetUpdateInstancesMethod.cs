@@ -120,13 +120,13 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     {
         public UpdateAzureRmVMSSInstances()
         {
-            this.MethodName = "VirtualMachineScaleSetUpdateInstances";
         }
 
         public override string MethodName { get; set; }
 
         protected override void ProcessRecord()
         {
+            this.MethodName = "VirtualMachineScaleSetUpdateInstances";
             base.ProcessRecord();
         }
 

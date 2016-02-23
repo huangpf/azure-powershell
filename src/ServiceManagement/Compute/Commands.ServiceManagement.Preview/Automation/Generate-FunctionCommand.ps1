@@ -554,6 +554,11 @@ function Get-VerbNounCmdletCode
     # e.g. VirtualMachines => VirtualMachine
     $opSingularName = Get-SingularNoun $OperationName;
     $invoke_param_set_name = $opSingularName + $methodName;
+    if ($FriendMethodInfo -ne $null)
+    {
+        $friendMethodName = ($FriendMethodInfo.Name.Replace('Async', ''));
+        $invoke_param_set_name_for_friend = $opSingularName + $friendMethodName;
+    }
 
     # Variables
     $return_vals = Get-VerbTermNameAndSuffix $methodName;
@@ -635,22 +640,22 @@ function Get-VerbNounCmdletCode
         if (($does_contain_only_strings -eq $null) -or ($does_contain_only_strings.Count -eq 0))
         {
             # Complex Class Parameters
-             $dynamic_param_assignment_code_lines +=
+            $dynamic_param_assignment_code_lines +=
 @"
             var p${param_name} = new RuntimeDefinedParameter();
             p${param_name}.Name = `"${expose_param_name}`";
 "@;
 
-             if ($is_string_list)
-             {
-                  $dynamic_param_assignment_code_lines += "            p${param_name}.ParameterType = typeof(string[]);";
-             }
-             else
-             {
-                  $dynamic_param_assignment_code_lines += "            p${param_name}.ParameterType = typeof($param_type_full_name);";
-             }
+            if ($is_string_list)
+            {
+                 $dynamic_param_assignment_code_lines += "            p${param_name}.ParameterType = typeof(string[]);";
+            }
+            else
+            {
+                 $dynamic_param_assignment_code_lines += "            p${param_name}.ParameterType = typeof($param_type_full_name);";
+            }
 
-             $dynamic_param_assignment_code_lines +=
+            $dynamic_param_assignment_code_lines +=
 @"
             p${param_name}.Attributes.Add(new ParameterAttribute
             {
@@ -658,6 +663,22 @@ function Get-VerbNounCmdletCode
                 Position = $param_index,
                 Mandatory = false
             });
+"@;
+            if ($FriendMethodInfo -ne $null)
+            {
+                $dynamic_param_assignment_code_lines +=
+@"
+            p${param_name}.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParametersForFriendMethod",
+                Position = $param_index,
+                Mandatory = false
+            });
+"@;
+            }
+
+            $dynamic_param_assignment_code_lines +=
+@"
             p${param_name}.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add(`"${expose_param_name}`", p${param_name});
 
@@ -681,6 +702,21 @@ function Get-VerbNounCmdletCode
                 Position = $param_index,
                 Mandatory = false
             });
+"@;
+                  if ($FriendMethodInfo -ne $null)
+                  {
+                      $dynamic_param_assignment_code_lines +=
+@"
+            p${s}.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParametersForFriendMethod",
+                Position = $param_index,
+                Mandatory = false
+            });
+"@;
+                  }
+                  $dynamic_param_assignment_code_lines +=
+@"
             p${s}.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add(`"${s}`", p${s});
 
@@ -703,12 +739,68 @@ function Get-VerbNounCmdletCode
                 Position = $param_index,
                 Mandatory = true
             });
+"@;
+    if ($FriendMethodInfo -ne $null)
+    {
+        $dynamic_param_assignment_code_lines +=
+@"
+            p${param_name}.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByStaticParametersForFriendMethod",
+                Position = $param_index,
+                Mandatory = true
+            });
+"@;
+    }
+
+    $dynamic_param_assignment_code_lines +=
+@"
             p${param_name}.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add(`"${expose_param_name}`", p${param_name});
 
 "@;
 
     $dynamic_param_assignment_code = [string]::Join($NEW_LINE, $dynamic_param_assignment_code_lines);
+    
+    if ($FriendMethodInfo -ne $null)
+    {
+        $friend_code = "";
+        if ($FriendMethodInfo.Name -eq 'PowerOff')
+        {
+            $param_name = $expose_param_name = 'StayProvision';
+        }
+        else
+        {
+            $param_name = $expose_param_name = 'Friend';
+        }
+        
+        $param_type_full_name = 'SwitchParameter';
+        $static_param_index = $param_index + 1;
+        $friend_code +=
+@"
+            var p${param_name} = new RuntimeDefinedParameter();
+            p${param_name}.Name = `"${expose_param_name}`";
+            p${param_name}.ParameterType = typeof($param_type_full_name);
+            p${param_name}.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParametersForFriendMethod",
+                Position = $param_index,
+                Mandatory = true
+            });
+            p${param_name}.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByStaticParametersForFriendMethod",
+                Position = ${static_param_index},
+                Mandatory = true
+            });
+            p${param_name}.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add(`"${expose_param_name}`", p${param_name});
+
+"@;
+        
+        $dynamic_param_assignment_code += $NEW_LINE;
+        $dynamic_param_assignment_code += $friend_code;
+    }
 
     $code +=
 @"
@@ -719,13 +811,33 @@ function Get-VerbNounCmdletCode
     {
         public $verb_cmdlet_name()
         {
-            this.MethodName = `"$invoke_param_set_name`";
         }
 
         public override string MethodName { get; set; }
 
         protected override void ProcessRecord()
         {
+"@;
+    if ($FriendMethodInfo -ne $null)
+    {
+        $code += $NEW_LINE;
+        $code += "            if (this.ParameterSetName == `"InvokeByDynamicParameters`")" + $NEW_LINE;
+        $code += "            {" + $NEW_LINE;
+        $code += "                this.MethodName = `"$invoke_param_set_name`";" + $NEW_LINE;
+        $code += "            }" + $NEW_LINE;
+        $code += "            else" + $NEW_LINE;
+        $code += "            {" + $NEW_LINE;
+        $code += "                this.MethodName = `"$invoke_param_set_name_for_friend`";" + $NEW_LINE;
+        $code += "            }" + $NEW_LINE;
+    }
+    else
+    {
+        $code += $NEW_LINE;
+        $code += "            this.MethodName = `"$invoke_param_set_name`";" + $NEW_LINE;
+    }
+
+    $code +=
+@"
             base.ProcessRecord();
         }
 

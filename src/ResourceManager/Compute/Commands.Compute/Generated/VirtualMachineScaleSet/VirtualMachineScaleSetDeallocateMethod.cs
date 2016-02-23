@@ -115,18 +115,25 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Stop", "AzureRmVmssWithDeallocation", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class StopAzureRmVMSSWithDeallocation : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Stop", "AzureRmVmss", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class StopAzureRmVMSS : InvokeAzureComputeMethodCmdlet
     {
-        public StopAzureRmVMSSWithDeallocation()
+        public StopAzureRmVMSS()
         {
-            this.MethodName = "VirtualMachineScaleSetDeallocate";
         }
 
         public override string MethodName { get; set; }
 
         protected override void ProcessRecord()
         {
+            if (this.ParameterSetName == "InvokeByDynamicParameters")
+            {
+                this.MethodName = "VirtualMachineScaleSetDeallocate";
+            }
+            else
+            {
+                this.MethodName = "VirtualMachineScaleSetPowerOff";
+            }
             base.ProcessRecord();
         }
 
@@ -142,6 +149,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 Position = 1,
                 Mandatory = false
             });
+            pResourceGroupName.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParametersForFriendMethod",
+                Position = 1,
+                Mandatory = false
+            });
             pResourceGroupName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
 
@@ -151,6 +164,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             pVMScaleSetName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
+                Position = 2,
+                Mandatory = false
+            });
+            pVMScaleSetName.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParametersForFriendMethod",
                 Position = 2,
                 Mandatory = false
             });
@@ -166,6 +185,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 Position = 3,
                 Mandatory = false
             });
+            pInstanceIds.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParametersForFriendMethod",
+                Position = 3,
+                Mandatory = false
+            });
             pInstanceIds.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("InstanceId", pInstanceIds);
 
@@ -178,8 +203,32 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 Position = 4,
                 Mandatory = true
             });
+            pArgumentList.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByStaticParametersForFriendMethod",
+                Position = 4,
+                Mandatory = true
+            });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ArgumentList", pArgumentList);
+
+            var pStayProvision = new RuntimeDefinedParameter();
+            pStayProvision.Name = "StayProvision";
+            pStayProvision.ParameterType = typeof(SwitchParameter);
+            pStayProvision.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParametersForFriendMethod",
+                Position = 4,
+                Mandatory = true
+            });
+            pStayProvision.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByStaticParametersForFriendMethod",
+                Position = 5,
+                Mandatory = true
+            });
+            pStayProvision.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("StayProvision", pStayProvision);
 
             return dynamicParameters;
         }
