@@ -115,7 +115,7 @@ function Generate-PsFunctionCommandImpl
     $code += $NEW_LINE;
     $code += $part2;
     
-    if ($cmdletFlavor -eq 'Verb')
+    if ($cmdletFlavor -eq 'Verb' -and (-not ($methodName -eq 'PowerOff')))
     {
         # If the Cmdlet Flavor is 'Verb', generate the Verb-based cmdlet code
         $part3 = Get-VerbNounCmdletCode -ComponentName $componentName -OperationName $OperationName -MethodInfo $MethodInfo;
