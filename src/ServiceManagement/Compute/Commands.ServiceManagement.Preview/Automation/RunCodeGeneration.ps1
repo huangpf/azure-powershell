@@ -1196,34 +1196,27 @@ else
             # Handle Friend Methods
             if (-not $friendMethodDict.ContainsKey($mtItem.Name))
             {
+                $searchName = $null;
                 if ($mtItem.Name -eq 'Deallocate')
                 {
-                    $methods2 = Get-OperationMethods $operation_type;
-                    foreach ($friendMethodInfo in $methods2)
-                    {
-                        if ($friendMethodInfo.Name -eq 'PowerOff')
-                        {
-                            if (CheckIf-SameParameterList $methodInfo $friendMethodInfo)
-                            {
-                                $friendMethodDict.Add($mtItem.Name, $friendMethodInfo);
-                                break;
-                            }
-                        }
-                    }
+                    $searchName = 'PowerOff';
                 }
                 elseif ($mtItem.Name -eq 'Get')
                 {
+                    $searchName = 'GetInstanceView';
+                }
+                elseif ($mtItem.Name -eq 'List')
+                {
+                    $searchName = 'ListAll';
+                }
+             
+                if ($searchName -ne $null)
+                {
                     $methods2 = Get-OperationMethods $operation_type;
-                    foreach ($friendMethodInfo in $methods2)
+                    $foundMethod = Find-MatchedMethod $searchName $methods2 $methodInfo;
+                    if ($foundMethod -ne $null)
                     {
-                        if ($friendMethodInfo.Name -eq 'GetInstanceView')
-                        {
-                            if (CheckIf-SameParameterList $methodInfo $friendMethodInfo)
-                            {
-                                $friendMethodDict.Add($mtItem.Name, $friendMethodInfo);
-                                break;
-                            }
-                        }
+                        $friendMethodDict.Add($mtItem.Name, $foundMethod);
                     }
                 }
             }
@@ -1232,17 +1225,8 @@ else
             if ($mtItem.Name -like 'List*' -and (-not $pageMethodDict.ContainsKey($mtItem.Name)))
             {
                 $methods2 = Get-OperationMethods $operation_type;
-                foreach ($pageMethodInfo in $methods2)
-                {
-                    if ($pageMethodInfo.Name -eq ($mtItem.Name + 'Next'))
-                    {
-                        if (CheckIf-ListAndPageMethods $methodInfo $pageMethodInfo)
-                        {
-                            $pageMethodDict.Add($mtItem.Name, $pageMethodInfo);
-                            break;
-                        }
-                    }
-                }
+                $foundMethod = Find-MatchedMethod ($mtItem.Name + 'Next') $methods2;
+                $pageMethodDict.Add($mtItem.Name, $foundMethod);
             }
         }
         

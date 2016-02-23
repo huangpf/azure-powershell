@@ -782,3 +782,36 @@ function CheckIf-ListAndPageMethods
 
     return $false;
 }
+
+# Function Friend Finder
+function Find-MatchedMethod
+{
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]$searchName,
+        
+        [Parameter(Mandatory = $true)]
+        [System.Reflection.MethodInfo[]]$methodList,
+        
+        [Parameter(Mandatory = $false)]
+        [System.Reflection.MethodInfo]$paramMatchedMethodInfo
+    )
+
+    foreach ($methodInfo in $methodList)
+    {
+        if ($methodInfo.Name -eq $searchName)
+        {
+            if ($paramMatchedMethodInfo -eq $null)
+            {
+                return $methodInfo;
+            }
+            elseif (CheckIf-SameParameterList $methodInfo $paramMatchedMethodInfo)
+            {
+                return $methodInfo;
+            }
+        }
+    }
+    
+    return $null;
+}
