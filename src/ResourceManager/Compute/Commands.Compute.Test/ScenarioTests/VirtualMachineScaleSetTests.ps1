@@ -29,11 +29,9 @@ Add-AzureRmVmssPublicKey                        1.2.3   AzureRM.Compute
 Add-AzureRmVmssSecret                           1.2.3   AzureRM.Compute
 Get-AzureRmVmss                                 1.2.3   AzureRM.Compute
 Get-AzureRmVmssAllList                          1.2.3   AzureRM.Compute
-Get-AzureRmVmssInstanceView                     1.2.3   AzureRM.Compute
 Get-AzureRmVmssList                             1.2.3   AzureRM.Compute
 Get-AzureRmVmssSkusList                         1.2.3   AzureRM.Compute
 Get-AzureRmVmssVM                               1.2.3   AzureRM.Compute
-Get-AzureRmVmssVMInstanceView                   1.2.3   AzureRM.Compute
 Get-AzureRmVmssVMList                           1.2.3   AzureRM.Compute
 New-AzureRmVmss                                 1.2.3   AzureRM.Compute
 New-AzureRmVmssConfig                           1.2.3   AzureRM.Compute
@@ -169,8 +167,8 @@ function Test-VirtualMachineScaleSet
             Write-Verbose ($output);
             Assert-True { $output.Contains("StorageProfile") };
 
-            Write-Verbose ('Running Command : ' + 'Get-AzureRmVmssVMInstanceView');
-            $vmInstance = Get-AzureRmVmssVMInstanceView  -ResourceGroupName $rgname  -VMScaleSetName $vmssName -InstanceId $i;
+            Write-Verbose ('Running Command : ' + 'Get-AzureRmVmssVM -InstanceView');
+            $vmInstance = Get-AzureRmVmssVM -InstanceView  -ResourceGroupName $rgname  -VMScaleSetName $vmssName -InstanceId $i;
             Assert-NotNull $vmInstance;
             $output = $vmInstance | Out-String;
             Write-Verbose($output);

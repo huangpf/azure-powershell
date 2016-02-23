@@ -79,7 +79,7 @@ $component_name = $client_library_namespace.Substring($client_library_namespace.
 
 $all_return_type_names = @();
 
-$SKIP_METHOD_NAME_LIST = @('PowerOff', 'ListNext', 'ListAllNext', 'ListSkusNext');
+$SKIP_VERB_NOUN_CMDLET_LIST = @('PowerOff', 'ListNext', 'ListAllNext', 'ListSkusNext', 'GetInstanceView');
 
 Write-Verbose $BAR_LINE;
 Write-Verbose "Input Parameters:";

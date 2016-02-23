@@ -108,7 +108,14 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         protected override void ProcessRecord()
         {
-            this.MethodName = "VirtualMachineScaleSetGet";
+            if (this.ParameterSetName == "InvokeByDynamicParameters")
+            {
+                this.MethodName = "VirtualMachineScaleSetGet";
+            }
+            else
+            {
+                this.MethodName = "VirtualMachineScaleSetGetInstanceView";
+            }
             base.ProcessRecord();
         }
 
@@ -124,6 +131,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 Position = 1,
                 Mandatory = false
             });
+            pResourceGroupName.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParametersForFriendMethod",
+                Position = 1,
+                Mandatory = false
+            });
             pResourceGroupName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
 
@@ -133,6 +146,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             pVMScaleSetName.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
+                Position = 2,
+                Mandatory = false
+            });
+            pVMScaleSetName.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParametersForFriendMethod",
                 Position = 2,
                 Mandatory = false
             });
@@ -148,8 +167,32 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 Position = 3,
                 Mandatory = true
             });
+            pArgumentList.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByStaticParametersForFriendMethod",
+                Position = 3,
+                Mandatory = true
+            });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ArgumentList", pArgumentList);
+
+            var pInstanceView = new RuntimeDefinedParameter();
+            pInstanceView.Name = "InstanceView";
+            pInstanceView.ParameterType = typeof(SwitchParameter);
+            pInstanceView.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParametersForFriendMethod",
+                Position = 3,
+                Mandatory = true
+            });
+            pInstanceView.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByStaticParametersForFriendMethod",
+                Position = 4,
+                Mandatory = true
+            });
+            pInstanceView.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("InstanceView", pInstanceView);
 
             return dynamicParameters;
         }

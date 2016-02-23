@@ -1194,17 +1194,35 @@ else
             $total_method_count++;
 
             # Handle Friend Methods
-            if ($mtItem.Name -eq 'Deallocate' -and (-not $friendMethodDict.ContainsKey($mtItem.Name)))
+            if (-not $friendMethodDict.ContainsKey($mtItem.Name))
             {
-                $methods2 = Get-OperationMethods $operation_type;
-                foreach ($friendMethodInfo in $methods2)
+                if ($mtItem.Name -eq 'Deallocate')
                 {
-                    if ($friendMethodInfo.Name -eq 'PowerOff')
+                    $methods2 = Get-OperationMethods $operation_type;
+                    foreach ($friendMethodInfo in $methods2)
                     {
-                        if (CheckIf-SameParameterList $methodInfo $friendMethodInfo)
+                        if ($friendMethodInfo.Name -eq 'PowerOff')
                         {
-                            $friendMethodDict.Add($mtItem.Name, $friendMethodInfo);
-                            break;
+                            if (CheckIf-SameParameterList $methodInfo $friendMethodInfo)
+                            {
+                                $friendMethodDict.Add($mtItem.Name, $friendMethodInfo);
+                                break;
+                            }
+                        }
+                    }
+                }
+                elseif ($mtItem.Name -eq 'Get')
+                {
+                    $methods2 = Get-OperationMethods $operation_type;
+                    foreach ($friendMethodInfo in $methods2)
+                    {
+                        if ($friendMethodInfo.Name -eq 'GetInstanceView')
+                        {
+                            if (CheckIf-SameParameterList $methodInfo $friendMethodInfo)
+                            {
+                                $friendMethodDict.Add($mtItem.Name, $friendMethodInfo);
+                                break;
+                            }
                         }
                     }
                 }
@@ -1293,7 +1311,7 @@ else
             Write-Verbose $SEC_LINE;
 
             $opCmdletFlavor = $cmdletFlavor;
-            if ($SKIP_METHOD_NAME_LIST -contains $methodInfo.Name)
+            if ($SKIP_VERB_NOUN_CMDLET_LIST -contains $methodInfo.Name)
             {
                 #Overwrite and skip these method's 'Verb' cmdlet flavor
                 $opCmdletFlavor = 'None';

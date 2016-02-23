@@ -800,7 +800,7 @@ function Get-VerbNounCmdletCode
         }
         else
         {
-            $param_name = $expose_param_name = 'Friend';
+            $param_name = $expose_param_name = $FriendMethodInfo.Name.Replace($methodName, '');
         }
         
         $param_type_full_name = 'SwitchParameter';
