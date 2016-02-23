@@ -76,38 +76,4 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             return ConvertFromObjectsToArguments(new string[0], new object[0]);
         }
     }
-
-    [Cmdlet("Get", "AzureRmVmssAllList", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class GetAzureRmVMSSAllList : InvokeAzureComputeMethodCmdlet
-    {
-        public GetAzureRmVMSSAllList()
-        {
-        }
-
-        public override string MethodName { get; set; }
-
-        protected override void ProcessRecord()
-        {
-            this.MethodName = "VirtualMachineScaleSetListAll";
-            base.ProcessRecord();
-        }
-
-        public override object GetDynamicParameters()
-        {
-            dynamicParameters = new RuntimeDefinedParameterDictionary();
-            var pArgumentList = new RuntimeDefinedParameter();
-            pArgumentList.Name = "ArgumentList";
-            pArgumentList.ParameterType = typeof(object[]);
-            pArgumentList.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByStaticParameters",
-                Position = 1,
-                Mandatory = true
-            });
-            pArgumentList.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("ArgumentList", pArgumentList);
-
-            return dynamicParameters;
-        }
-    }
 }

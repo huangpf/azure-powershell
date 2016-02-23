@@ -28,7 +28,6 @@ Add-AzureRmVmssNetworkInterfaceConfiguration    1.2.3   AzureRM.Compute
 Add-AzureRmVmssPublicKey                        1.2.3   AzureRM.Compute
 Add-AzureRmVmssSecret                           1.2.3   AzureRM.Compute
 Get-AzureRmVmss                                 1.2.3   AzureRM.Compute
-Get-AzureRmVmssAllList                          1.2.3   AzureRM.Compute
 Get-AzureRmVmssList                             1.2.3   AzureRM.Compute
 Get-AzureRmVmssSkusList                         1.2.3   AzureRM.Compute
 Get-AzureRmVmssVM                               1.2.3   AzureRM.Compute
@@ -124,7 +123,7 @@ function Test-VirtualMachineScaleSet
 
         $argList = New-AzureComputeArgumentList -MethodName VirtualMachineScaleSetsListAll;
         $args = ($argList | select -ExpandProperty Value);
-        $vmssList = Get-AzureRmVmssAllList;
+        $vmssList = Get-AzureRmVmssList -All;
         Assert-True { ($vmssList | select -ExpandProperty Name) -contains $vmssName };
         $output = $vmssList | Out-String;
         Write-Verbose ($output);

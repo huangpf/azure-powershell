@@ -1197,13 +1197,16 @@ else
             if (-not $friendMethodDict.ContainsKey($mtItem.Name))
             {
                 $searchName = $null;
+                $matchedMethodInfo = $null;
                 if ($mtItem.Name -eq 'Deallocate')
                 {
                     $searchName = 'PowerOff';
+                    $matchedMethodInfo = $methodInfo;
                 }
                 elseif ($mtItem.Name -eq 'Get')
                 {
                     $searchName = 'GetInstanceView';
+                    $matchedMethodInfo = $methodInfo;
                 }
                 elseif ($mtItem.Name -eq 'List')
                 {
@@ -1213,7 +1216,7 @@ else
                 if ($searchName -ne $null)
                 {
                     $methods2 = Get-OperationMethods $operation_type;
-                    $foundMethod = Find-MatchedMethod $searchName $methods2 $methodInfo;
+                    $foundMethod = Find-MatchedMethod $searchName $methods2 $matchedMethodInfo;
                     if ($foundMethod -ne $null)
                     {
                         $friendMethodDict.Add($mtItem.Name, $foundMethod);

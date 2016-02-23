@@ -105,7 +105,14 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         protected override void ProcessRecord()
         {
-            this.MethodName = "VirtualMachineScaleSetList";
+            if (this.ParameterSetName == "InvokeByDynamicParameters")
+            {
+                this.MethodName = "VirtualMachineScaleSetList";
+            }
+            else
+            {
+                this.MethodName = "VirtualMachineScaleSetListAll";
+            }
             base.ProcessRecord();
         }
 
@@ -121,6 +128,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 Position = 1,
                 Mandatory = false
             });
+            pResourceGroupName.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParametersForFriendMethod",
+                Position = 1,
+                Mandatory = false
+            });
             pResourceGroupName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
 
@@ -133,8 +146,32 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 Position = 2,
                 Mandatory = true
             });
+            pArgumentList.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByStaticParametersForFriendMethod",
+                Position = 2,
+                Mandatory = true
+            });
             pArgumentList.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ArgumentList", pArgumentList);
+
+            var pAll = new RuntimeDefinedParameter();
+            pAll.Name = "All";
+            pAll.ParameterType = typeof(SwitchParameter);
+            pAll.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParametersForFriendMethod",
+                Position = 2,
+                Mandatory = true
+            });
+            pAll.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByStaticParametersForFriendMethod",
+                Position = 3,
+                Mandatory = true
+            });
+            pAll.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("All", pAll);
 
             return dynamicParameters;
         }
