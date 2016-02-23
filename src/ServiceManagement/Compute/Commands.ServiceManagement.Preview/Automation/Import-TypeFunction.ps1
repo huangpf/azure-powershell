@@ -743,3 +743,42 @@ function CheckIf-SameParameterList
 
     return $true;
 }
+
+# Check if 2 methods are list-page relation
+function CheckIf-ListAndPageMethods
+{
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [System.Reflection.MethodInfo]$listMethodInfo,
+        
+        [Parameter(Mandatory = $true)]
+        [System.Reflection.MethodInfo]$pageMethodInfo
+    )
+
+    if ($listMethodInfo -eq $null -or $pageMethodInfo -eq $null)
+    {
+        return $false;
+    }
+    
+    if (-not (($listMethodInfo.Name.Replace('Async', '') + 'Next') -eq $pageMethodInfo.Name.Replace('Async', '')))
+    {
+        return $false;
+    }
+
+    $pageParams = $pageMethodInfo.GetParameters();
+    Write-Verbose ('pageParams = ' + $pageParams);
+    # Skip the 1st 'operations' parameter, e.g.
+    # 1. Microsoft.Azure.Management.Compute.IVirtualMachineScaleSetVMsOperations operations
+    # 2. System.String nextPageLink
+    if ($pageParams.Count -eq 2)
+    {
+        $paramInfo = $pageParams[1];
+        if ($paramInfo.ParameterType.IsEquivalentTo([string]) -and $paramInfo.Name -eq 'nextPageLink')
+        {
+            return $true;
+        }
+    }
+
+    return $false;
+}

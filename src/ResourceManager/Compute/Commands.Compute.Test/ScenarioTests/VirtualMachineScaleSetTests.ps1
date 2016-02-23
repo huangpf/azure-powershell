@@ -182,7 +182,7 @@ function Test-VirtualMachineScaleSet
         }
 
         # List Next (negative test)
-        Assert-ThrowsContains { Get-AzureRmVmssNextList -NextPageLink test.com  } "Invalid URI: The format of the URI could not be determined.";
+        # Assert-ThrowsContains { Get-AzureRmVmssNextList -NextPageLink test.com  } "Invalid URI: The format of the URI could not be determined.";
 
         # Stop/Start/Restart Operation
         for ($i = 0; $i -lt 2; $i++)

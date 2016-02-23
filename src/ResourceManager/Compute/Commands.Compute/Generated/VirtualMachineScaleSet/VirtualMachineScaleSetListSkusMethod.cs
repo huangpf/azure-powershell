@@ -80,7 +80,18 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             string vmScaleSetName = (string)ParseParameter(invokeMethodInputParameters[1]);
 
             var result = VirtualMachineScaleSetsClient.ListSkus(resourceGroupName, vmScaleSetName);
-            WriteObject(result);
+            var resultList = result.ToList();
+            var nextPageLink = result.NextPageLink;
+            while (!string.IsNullOrEmpty(nextPageLink))
+            {
+                var pageResult = VirtualMachineScaleSetsClient.ListSkusNext(nextPageLink);
+                foreach (var pageItem in pageResult)
+                {
+                    resultList.Add(pageItem);
+                }
+                nextPageLink = pageResult.NextPageLink;
+            }
+            WriteObject(resultList, true);
         }
     }
 

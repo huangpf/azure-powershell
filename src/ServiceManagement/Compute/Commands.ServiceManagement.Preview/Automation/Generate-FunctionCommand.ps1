@@ -28,7 +28,13 @@ param
     [string]$FileOutputFolder,
 
     [Parameter(Mandatory = $false)]
-    [System.Reflection.MethodInfo]$FriendMethodInfo = $null
+    [string]$FunctionCmdletFlavor = 'None',
+
+    [Parameter(Mandatory = $false)]
+    [System.Reflection.MethodInfo]$FriendMethodInfo = $null,
+    
+    [Parameter(Mandatory = $false)]
+    [System.Reflection.MethodInfo]$PageMethodInfo = $null
 )
 
 . "$PSScriptRoot\Import-StringFunction.ps1";
@@ -115,7 +121,7 @@ function Generate-PsFunctionCommandImpl
     $code += $NEW_LINE;
     $code += $part2;
     
-    if ($cmdletFlavor -eq 'Verb' -and (-not ($methodName -eq 'PowerOff')))
+    if ($FunctionCmdletFlavor -eq 'Verb')
     {
         # If the Cmdlet Flavor is 'Verb', generate the Verb-based cmdlet code
         $part3 = Get-VerbNounCmdletCode -ComponentName $componentName -OperationName $OperationName -MethodInfo $MethodInfo;
@@ -393,6 +399,29 @@ $dynamic_param_assignment_code
         {
 ${invoke_local_param_code_content}
             ${OperationName}Client.${methodName}(${invoke_params_join_str});
+        }
+"@;
+    }
+    elseif ($PageMethodInfo -ne $null)
+    {
+        $invoke_cmdlt_source_template =
+@"
+        protected void Execute${invoke_param_set_name}Method(object[] ${invoke_input_params_name})
+        {
+${invoke_local_param_code_content}
+            var result = ${OperationName}Client.${methodName}(${invoke_params_join_str});
+            var resultList = result.ToList();
+            var nextPageLink = result.NextPageLink;
+            while (!string.IsNullOrEmpty(nextPageLink))
+            {
+                var pageResult = ${OperationName}Client.${methodName}Next(nextPageLink);
+                foreach (var pageItem in pageResult)
+                {
+                    resultList.Add(pageItem);
+                }
+                nextPageLink = pageResult.NextPageLink;
+            }
+            WriteObject(resultList, true);
         }
 "@;
     }

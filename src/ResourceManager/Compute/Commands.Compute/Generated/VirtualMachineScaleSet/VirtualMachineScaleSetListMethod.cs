@@ -67,7 +67,18 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             string resourceGroupName = (string)ParseParameter(invokeMethodInputParameters[0]);
 
             var result = VirtualMachineScaleSetsClient.List(resourceGroupName);
-            WriteObject(result);
+            var resultList = result.ToList();
+            var nextPageLink = result.NextPageLink;
+            while (!string.IsNullOrEmpty(nextPageLink))
+            {
+                var pageResult = VirtualMachineScaleSetsClient.ListNext(nextPageLink);
+                foreach (var pageItem in pageResult)
+                {
+                    resultList.Add(pageItem);
+                }
+                nextPageLink = pageResult.NextPageLink;
+            }
+            WriteObject(resultList, true);
         }
     }
 

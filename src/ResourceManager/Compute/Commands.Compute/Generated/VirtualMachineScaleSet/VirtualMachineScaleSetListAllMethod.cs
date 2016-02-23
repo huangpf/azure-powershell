@@ -54,7 +54,18 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         {
 
             var result = VirtualMachineScaleSetsClient.ListAll();
-            WriteObject(result);
+            var resultList = result.ToList();
+            var nextPageLink = result.NextPageLink;
+            while (!string.IsNullOrEmpty(nextPageLink))
+            {
+                var pageResult = VirtualMachineScaleSetsClient.ListAllNext(nextPageLink);
+                foreach (var pageItem in pageResult)
+                {
+                    resultList.Add(pageItem);
+                }
+                nextPageLink = pageResult.NextPageLink;
+            }
+            WriteObject(resultList, true);
         }
     }
 

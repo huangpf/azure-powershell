@@ -79,6 +79,8 @@ $component_name = $client_library_namespace.Substring($client_library_namespace.
 
 $all_return_type_names = @();
 
+$SKIP_METHOD_NAME_LIST = @('PowerOff', 'ListNext', 'ListAllNext', 'ListSkusNext');
+
 Write-Verbose $BAR_LINE;
 Write-Verbose "Input Parameters:";
 Write-Verbose "DLL Folder            = $dllFolder";

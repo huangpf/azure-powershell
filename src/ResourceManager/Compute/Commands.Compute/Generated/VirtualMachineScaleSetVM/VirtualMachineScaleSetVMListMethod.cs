@@ -94,7 +94,18 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             string select = (string)ParseParameter(invokeMethodInputParameters[3]);
 
             var result = VirtualMachineScaleSetVMsClient.List(resourceGroupName, virtualMachineScaleSetName, odataQuery, select);
-            WriteObject(result);
+            var resultList = result.ToList();
+            var nextPageLink = result.NextPageLink;
+            while (!string.IsNullOrEmpty(nextPageLink))
+            {
+                var pageResult = VirtualMachineScaleSetVMsClient.ListNext(nextPageLink);
+                foreach (var pageItem in pageResult)
+                {
+                    resultList.Add(pageItem);
+                }
+                nextPageLink = pageResult.NextPageLink;
+            }
+            WriteObject(resultList, true);
         }
     }
 

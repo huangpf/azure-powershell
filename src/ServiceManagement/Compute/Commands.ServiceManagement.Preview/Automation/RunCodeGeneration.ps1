@@ -1173,6 +1173,7 @@ else
         $qualified_methods = @();
         $total_method_count = 0;
         [System.Collections.Hashtable]$friendMethodDict = @{};
+        [System.Collections.Hashtable]$pageMethodDict = @{};
         foreach ($mtItem in $methods)
         {
             [System.Reflection.MethodInfo]$methodInfo = $mtItem;
@@ -1208,6 +1209,23 @@ else
                     }
                 }
             }
+            
+            # Handle Page Methods
+            if ($mtItem.Name -like 'List*' -and (-not $pageMethodDict.ContainsKey($mtItem.Name)))
+            {
+                $methods2 = Get-OperationMethods $operation_type;
+                foreach ($pageMethodInfo in $methods2)
+                {
+                    if ($pageMethodInfo.Name -eq ($mtItem.Name + 'Next'))
+                    {
+                        if (CheckIf-ListAndPageMethods $methodInfo $pageMethodInfo)
+                        {
+                            $pageMethodDict.Add($mtItem.Name, $pageMethodInfo);
+                            break;
+                        }
+                    }
+                }
+            }
         }
         
         $method_count = 0;
@@ -1215,7 +1233,7 @@ else
         {
             [System.Reflection.MethodInfo]$methodInfo = $mtItem;
             $method_count++;
-            
+
             # Get Friend Method (if any)
             $friendMethodInfo = $null;
             if ($friendMethodDict.ContainsKey($methodInfo.Name))
@@ -1226,13 +1244,38 @@ else
             $friendMethodMessage = '';
             if ($friendMethodInfo -ne $null -and $friendMethodInfo.Name -ne $null)
             {
-                $friendMethodMessage = '(Friend: ' + ($friendMethodInfo.Name.Replace('Async', '')) + ')';
+                $friendMethodMessage = 'Friend=' + ($friendMethodInfo.Name.Replace('Async', '')) + '';
+            }
+            
+            # Get Page Method (if any)
+            $pageMethodInfo = $null;
+            if ($pageMethodDict.ContainsKey($methodInfo.Name))
+            {
+                $pageMethodInfo = $pageMethodDict[$methodInfo.Name];
+            }
+            
+            $pageMethodMessage = '';
+            if ($pageMethodInfo -ne $null -and $pageMethodInfo.Name -ne $null)
+            {
+                $pageMethodMessage = 'Page=' + ($pageMethodInfo.Name.Replace('Async', '')) + '';
             }
 
             # Output Info for Method Signature
             Write-Verbose "";
             Write-Verbose $SEC_LINE;
-            Write-Verbose ("[${operation_type_count}] ${method_count}/${total_method_count} " + $methodInfo.Name.Replace('Async', '') + ' ' + $friendMethodMessage);
+            $methodMessage = "[${operation_type_count}] ${method_count}/${total_method_count} " + $methodInfo.Name.Replace('Async', '');
+            if (($friendMethodMessage -ne '') -or ($pageMethodMessage -ne ''))
+            {
+                $methodMessage += ' {' + $friendMethodMessage;
+                if ($friendMethodMessage -ne '' -and $pageMethodMessage -ne '')
+                {
+                    $methodMessage += ', ';
+                }
+                $methodMessage += $pageMethodMessage;
+                $methodMessage += '}';
+            }
+            
+            Write-Verbose $methodMessage;
             foreach ($paramInfoItem in $methodInfo.GetParameters())
             {
                 [System.Reflection.ParameterInfo]$paramInfo = $paramInfoItem;
@@ -1249,11 +1292,20 @@ else
             }
             Write-Verbose $SEC_LINE;
 
+            $opCmdletFlavor = $cmdletFlavor;
+            if ($SKIP_METHOD_NAME_LIST -contains $methodInfo.Name)
+            {
+                #Overwrite and skip these method's 'Verb' cmdlet flavor
+                $opCmdletFlavor = 'None';
+            }
+            
             $outputs = (. $PSScriptRoot\Generate-FunctionCommand.ps1 -OperationName $opShortName `
                                                                      -MethodInfo $methodInfo `
                                                                      -ModelClassNameSpace $client_model_namespace `
                                                                      -FileOutputFolder $opOutFolder `
-                                                                     -FriendMethodInfo $friendMethodInfo);
+                                                                     -FunctionCmdletFlavor $opCmdletFlavor `
+                                                                     -FriendMethodInfo $friendMethodInfo `
+                                                                     -PageMethodInfo $pageMethodInfo);
 
             if ($outputs.Count -ne $null)
             {
