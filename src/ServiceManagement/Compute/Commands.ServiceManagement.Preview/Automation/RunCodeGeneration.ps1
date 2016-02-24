@@ -1264,6 +1264,26 @@ else
             {
                 $pageMethodMessage = 'Page=' + ($pageMethodInfo.Name.Replace('Async', '')) + '';
             }
+            
+            # Combine Get and List/ListAll Methods (if any)
+            $combineGetAndList = $false;
+            $combineGetAndListAll = $false;
+            if ($mtItem.Name -eq 'Get')
+            {
+                $methods3 = Get-OperationMethods $operation_type;
+                $foundMethod1 = Find-MatchedMethod 'List' $methods3;
+                $foundMethod2 = Find-MatchedMethod 'ListAll' $methods3;
+                
+                if ($foundMethod1 -ne $null)
+                {
+                    $combineGetAndList = $true;
+                }
+                
+                if ($foundMethod2 -ne $null)
+                {
+                    $combineGetAndListAll = $true;
+                }
+            }
 
             # Output Info for Method Signature
             Write-Verbose "";
@@ -1310,7 +1330,9 @@ else
                                                                      -FileOutputFolder $opOutFolder `
                                                                      -FunctionCmdletFlavor $opCmdletFlavor `
                                                                      -FriendMethodInfo $friendMethodInfo `
-                                                                     -PageMethodInfo $pageMethodInfo);
+                                                                     -PageMethodInfo $pageMethodInfo `
+                                                                     -CombineGetAndList $combineGetAndList `
+                                                                     -CombineGetAndListAll $combineGetAndListAll );
 
             if ($outputs.Count -ne $null)
             {

@@ -28,10 +28,8 @@ Add-AzureRmVmssNetworkInterfaceConfiguration    1.2.3   AzureRM.Compute
 Add-AzureRmVmssPublicKey                        1.2.3   AzureRM.Compute
 Add-AzureRmVmssSecret                           1.2.3   AzureRM.Compute
 Get-AzureRmVmss                                 1.2.3   AzureRM.Compute
-Get-AzureRmVmssList                             1.2.3   AzureRM.Compute
 Get-AzureRmVmssSkusList                         1.2.3   AzureRM.Compute
 Get-AzureRmVmssVM                               1.2.3   AzureRM.Compute
-Get-AzureRmVmssVMList                           1.2.3   AzureRM.Compute
 New-AzureRmVmss                                 1.2.3   AzureRM.Compute
 New-AzureRmVmssConfig                           1.2.3   AzureRM.Compute
 New-AzureRmVmssIpConfigurationConfig            1.2.3   AzureRM.Compute
@@ -123,15 +121,15 @@ function Test-VirtualMachineScaleSet
 
         $argList = New-AzureComputeArgumentList -MethodName VirtualMachineScaleSetsListAll;
         $args = ($argList | select -ExpandProperty Value);
-        $vmssList = Get-AzureRmVmssList -All;
+        $vmssList = Get-AzureRmVmss;
         Assert-True { ($vmssList | select -ExpandProperty Name) -contains $vmssName };
         $output = $vmssList | Out-String;
         Write-Verbose ($output);
         Assert-True { $output.Contains("VirtualMachineProfile") };
 
         # List from RG
-        Write-Verbose ('Running Command : ' + 'Get-AzureRmVmssList');
-        $vmssList = Get-AzureRmVmssList -ResourceGroupName $rgname;
+        Write-Verbose ('Running Command : ' + 'Get-AzureRmVmss List');
+        $vmssList = Get-AzureRmVmss -ResourceGroupName $rgname;
         Assert-True { ($vmssList | select -ExpandProperty Name) -contains $vmssName };
         $output = $vmssList | Out-String;
         Write-Verbose ($output);
@@ -145,13 +143,13 @@ function Test-VirtualMachineScaleSet
         Assert-True { $output.Contains("Sku") };
 
         # List All VMs
-        Write-Verbose ('Running Command : ' + 'Get-AzureRmVmssVMList');
+        Write-Verbose ('Running Command : ' + 'Get-AzureRmVmssVM List');
 
         $argList = New-AzureComputeArgumentList -MethodName VirtualMachineScaleSetVMsList;
         $argList[0].Value = $rgname;
         $argList[1].Value = $vmssName;
         $args = ($argList | select -ExpandProperty Value);
-        $vmListResult = Get-AzureRmVmssVMList -ResourceGroupName $rgname -VirtualMachineScaleSetName $vmssName -Select $null;
+        $vmListResult = Get-AzureRmVmssVM -ResourceGroupName $rgname -VMScaleSetName $vmssName; # -Select $null;
         $output = $vmListResult | Out-String;
         Write-Verbose ($output);
         Assert-True { $output.Contains("StorageProfile") };

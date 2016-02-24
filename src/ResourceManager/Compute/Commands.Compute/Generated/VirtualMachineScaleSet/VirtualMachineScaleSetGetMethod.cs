@@ -79,9 +79,23 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             string resourceGroupName = (string)ParseParameter(invokeMethodInputParameters[0]);
             string vmScaleSetName = (string)ParseParameter(invokeMethodInputParameters[1]);
 
-            var result = VirtualMachineScaleSetsClient.Get(resourceGroupName, vmScaleSetName);
-            WriteObject(result);
+            if (!string.IsNullOrEmpty(resourceGroupName) && !string.IsNullOrEmpty(vmScaleSetName))
+            {
+                var result = VirtualMachineScaleSetsClient.Get(resourceGroupName, vmScaleSetName);
+                WriteObject(result);
+            }
+            else if (!string.IsNullOrEmpty(resourceGroupName))
+            {
+                var result = VirtualMachineScaleSetsClient.List(resourceGroupName);
+                WriteObject(result);
+            }
+            else
+            {
+                var result = VirtualMachineScaleSetsClient.ListAll();
+                WriteObject(result);
+            }
         }
+
     }
 
     public partial class NewAzureComputeArgumentListCmdlet : ComputeAutomationBaseCmdlet
