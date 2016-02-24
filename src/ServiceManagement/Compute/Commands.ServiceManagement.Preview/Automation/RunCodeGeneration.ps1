@@ -338,7 +338,7 @@ $validate_all_method_names_code
             base.ProcessRecord();
             ExecuteClientAction(() =>
             {
-                if (ParameterSetName == `"$dynamic_param_set_name`" || ParameterSetName == `"${dynamic_param_set_name}ForFriendMethod`")
+                if (ParameterSetName.StartsWith(`"$dynamic_param_set_name`"))
                 {
                     argumentList = ConvertDynamicParameters(dynamicParameters);
                 }
