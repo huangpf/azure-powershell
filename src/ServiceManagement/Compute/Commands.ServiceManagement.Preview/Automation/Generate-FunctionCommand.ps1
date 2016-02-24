@@ -167,8 +167,8 @@ function Get-InvokeMethodCmdletCode
 
     # 2. Iterate through Param List
     $methodParamList = $MethodInfo.GetParameters();
-    $paramNameList = @();
-    $paramLocalNameList = @();
+    [System.Collections.ArrayList]$paramNameList = @();
+    [System.Collections.ArrayList]$paramLocalNameList = @();
     [System.Collections.ArrayList]$pruned_params = @();
     foreach ($methodParam in $methodParamList)
     {
@@ -195,7 +195,7 @@ function Get-InvokeMethodCmdletCode
         }
     }
 
-    $invoke_params_join_str = [string]::Join(', ', $paramLocalNameList);
+    $invoke_params_join_str = [string]::Join(', ', $paramLocalNameList.ToArray());
     
     # 2.1 Dynamic Parameter Assignment
     $dynamic_param_assignment_code_lines = @();
