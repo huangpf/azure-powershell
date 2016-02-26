@@ -256,7 +256,7 @@
   <Target Name="BuildGenerateRDFE">
     <PropertyGroup>
       <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
-      <PSCodeGenScriptPath>".\Automation\RunCodeGeneration.ps1"</PSCodeGenScriptPath>
+      <PSCodeGenScriptPath>".\Automation\Invoke-CodeGeneration.ps1"</PSCodeGenScriptPath>
       <PSCodeGenTargetFolder>$(OutputPath)</PSCodeGenTargetFolder>
       <ClientLibraryNamesSpace>"Microsoft.WindowsAzure.Management.Compute"</ClientLibraryNamesSpace>
       <BaseCmdletFullName>"Microsoft.WindowsAzure.Commands.Utilities.Common.ServiceManagementBaseCmdlet"</BaseCmdletFullName>
@@ -271,7 +271,7 @@
   <Target Name="BuildGenerateARM" DependsOnTargets="BuildGenerateRDFE">
     <PropertyGroup>
       <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
-      <PSCodeGenScriptPath>".\Automation\RunCodeGeneration.ps1"</PSCodeGenScriptPath>
+      <PSCodeGenScriptPath>".\Automation\Invoke-CodeGeneration.ps1"</PSCodeGenScriptPath>
       <PSCodeGenTargetFolder>$(CrpDllPath)</PSCodeGenTargetFolder>
       <BaseCmdletFullName>"Microsoft.Azure.Commands.Compute.ComputeClientBaseCmdlet"</BaseCmdletFullName>
       <BaseCmdletClientName>"ComputeClient.ComputeManagementClient"</BaseCmdletClientName>
