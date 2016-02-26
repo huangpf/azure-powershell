@@ -54,21 +54,36 @@ function Set-FileContent
         $Value
     )
     
-    $iteration = 0;
-    while ($iteration -lt 3)
+    $t = 0;
+    $maxIteration = 10;
+    while ($t -lt $maxIteration)
     {
+        $t++;
         try
         {
             $st = Set-Content -Path $Path -Value $Value -Force;
         }
         catch
         {
-            sleep -Milliseconds 10;
+            if (($_.Exception.Message -like "*Stream was not readable.") `
+            -or ($_.Exception.Message -like "The process cannot access the file*"))
+            {
+                # Write-Warning -Message ("Iteration=${t};Path=${Path};" + $_.Exception.Message);
+                sleep -Milliseconds 10;
+            }
+            else
+            {
+                Write-Error $_.Exception.Message;
+                return;
+            }
         }
-        finally
-        {
-            $iteration++;
-        }
+
+        break;
+    }
+
+    if ($_ -ne $null -and $_.Exception -ne $null)
+    {
+        Write-Error $_.Exception.Message;
     }
 }
 
