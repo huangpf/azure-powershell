@@ -255,7 +255,7 @@
   <Target Name="BuildGenerateRDFE">
     <PropertyGroup>
       <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
-      <ScriptPath>".\Automation\Invoke-CodeGeneration.ps1"</ScriptPath>
+      <ScriptPath>.\Automation\Invoke-CodeGeneration.ps1</ScriptPath>
       <DllFolder>$(OutputPath)</DllFolder>
       <TargetFolder>$(MSBuildProjectDirectory)</TargetFolder>
       <NamesSpace>Microsoft.WindowsAzure.Management.Compute</NamesSpace>
@@ -269,7 +269,7 @@
   <Target Name="BuildGenerateARM" DependsOnTargets="BuildGenerateRDFE">
     <PropertyGroup>
       <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
-      <ScriptPath>".\Automation\Invoke-CodeGeneration.ps1"</ScriptPath>
+      <ScriptPath>.\Automation\Invoke-CodeGeneration.ps1</ScriptPath>
       <DllFolder>$(OutputPath)\..\..\..\ResourceManager\AzureResourceManager\AzureRM.Compute</DllFolder>
       <TargetFolder>..\..\..\ResourceManager\Compute\Commands.Compute</TargetFolder>
       <BaseCmdlet>Microsoft.Azure.Commands.Compute.ComputeClientBaseCmdlet</BaseCmdlet>
