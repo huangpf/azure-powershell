@@ -107,3 +107,27 @@ function Get-SortedUsingsCode
 }
 
 $code_using_strs = Get-SortedUsingsCode;
+
+function Get-RomanNumeral
+{
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        $number
+    )
+
+    if ($number -ge 1000) { return "M"  + (Get-RomanNumeral ($number - 1000)); }
+    if ($number -ge  900) { return "CM" + (Get-RomanNumeral ($number -  900)); }
+    if ($number -ge  500) { return "D"  + (Get-RomanNumeral ($number -  500)); }
+    if ($number -ge  400) { return "CD" + (Get-RomanNumeral ($number -  400)); }
+    if ($number -ge  100) { return "C"  + (Get-RomanNumeral ($number -  100)); }
+    if ($number -ge   90) { return "XC" + (Get-RomanNumeral ($number -   90)); }
+    if ($number -ge   50) { return "L"  + (Get-RomanNumeral ($number -   50)); }
+    if ($number -ge   40) { return "XL" + (Get-RomanNumeral ($number -   40)); }
+    if ($number -ge   10) { return "X"  + (Get-RomanNumeral ($number -   10)); }
+    if ($number -ge    9) { return "IX" + (Get-RomanNumeral ($number -    9)); }
+    if ($number -ge    5) { return "V"  + (Get-RomanNumeral ($number -    5)); }
+    if ($number -ge    4) { return "IV" + (Get-RomanNumeral ($number -    4)); }
+    if ($number -ge    1) { return "I"  + (Get-RomanNumeral ($number -    1)); }
+    return "";
+}

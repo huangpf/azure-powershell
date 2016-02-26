@@ -77,8 +77,7 @@ $output = Get-ChildItem -Path $dllFolder | Out-String;
 # Write-Verbose "List items under the folder: $dllFolder"
 # Write-Verbose $output;
 
-$dllname = $clientNameSpace;
-$dllfile = $dllname + '.dll';
+$dllfile = $clientNameSpace + '.dll';
 $dllFileFullPath = $dllFolder + '\' + $dllfile;
 
 if (-not (Test-Path -Path $dllFileFullPath))
@@ -91,7 +90,7 @@ else
     
     # All original types
     $types = $assembly.GetTypes();
-    $filtered_types = Get-FilteredOperationTypes $types $dllname $operationNameFilter;
+    $filtered_types = Get-FilteredOperationTypes $types $clientNameSpace $operationNameFilter;
 
     # Write Base Cmdlet File
     $opNameList = ($filtered_types | select -ExpandProperty Name);
@@ -103,7 +102,7 @@ else
 
     $auto_base_cmdlet_name = $component_name + 'AutomationBaseCmdlet';
     $baseCmdletFileFullName = $outFolder + '\' + "$auto_base_cmdlet_name.cs";
-    $clientClassType = $types | where { $_.Namespace -eq $dllname -and $_.Name -eq ('I' + $component_name + 'ManagementClient') };
+    $clientClassType = $types | where { $_.Namespace -eq $clientNameSpace -and $_.Name -eq ('I' + $component_name + 'ManagementClient') };
     Write-BaseCmdletFile $baseCmdletFileFullName $opNameList $clientClassType;
 
     # PSArgument File
@@ -137,10 +136,11 @@ else
     foreach ($operation_type in $filtered_types)
     {
         $operation_type_count++;
+        $operation_type_count_roman_index = Get-RomanNumeral $operation_type_count;
         $operation_nomalized_name = Get-OperationShortName $operation_type.Name;
         Write-Verbose '';
         Write-Verbose $BAR_LINE;
-        Write-Verbose ("${operation_type_count}/${total_operation_type_count} " + $operation_nomalized_name);
+        Write-Verbose ("Chapter ${operation_type_count_roman_index}. " + $operation_nomalized_name + " (${operation_type_count}/${total_operation_type_count}) ");
         Write-Verbose $BAR_LINE;
     
         $opShortName = Get-OperationShortName $operation_type.Name;
@@ -290,7 +290,7 @@ else
             # Output Info for Method Signature
             Write-Verbose "";
             Write-Verbose $SEC_LINE;
-            $methodMessage = "[${operation_type_count}] ${method_count}/${total_method_count} " + $methodInfo.Name.Replace('Async', '');
+            $methodMessage = "${operation_type_count_roman_index}. ${method_count}/${total_method_count} " + $methodInfo.Name.Replace('Async', '');
             if (($friendMethodMessage -ne '') -or ($pageMethodMessage -ne ''))
             {
                 $methodMessage += ' {' + $friendMethodMessage;
@@ -341,25 +341,7 @@ else
                 $dynamic_param_method_code += $outputs[-4];
                 $invoke_cmdlet_method_code += $outputs[-3];
                 $parameter_cmdlet_method_code += $outputs[-2];
-                
-                
-                if ($opShortName -eq 'Deployment' -and $clientNameSpace -like '*.WindowsAzure.*')
-                {
-                    $output_code = $outputs[-1];
-                    
-                    <# TODO : Comment Out RDFE Deployment APIs
-                    if ($method_count -gt 100)
-                    {
-                        $output_code = "/*" + $NEW_LINE + $output_code.Replace("/*", "").Replace("*/", "") + $NEW_LINE + "*/" + $NEW_LINE;
-                    }
-                    #>
-                    
-                    $cliCommandCodeMainBody += $output_code;
-                }
-                else
-                {
-                    $cliCommandCodeMainBody += $outputs[-1];
-                }
+                $cliCommandCodeMainBody += $outputs[-1];
             }
 
             if ($methodInfo.ReturnType.FullName -ne 'System.Void')
