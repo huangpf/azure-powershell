@@ -35,15 +35,15 @@ param(
     
     # The namespace of the Compute client library
     [Parameter(Mandatory = $true)]
-    [string]$client_library_namespace = 'Microsoft.WindowsAzure.Management.Compute',
+    [string]$clientNameSpace = 'Microsoft.WindowsAzure.Management.Compute',
 
     # The base cmdlet from which all automation cmdlets derive
-    [Parameter(Mandatory = $true)]
+    [Parameter(Mandatory = $false)]
     [string]$baseCmdletFullName = 'Microsoft.WindowsAzure.Commands.Utilities.Common.ServiceManagementBaseCmdlet',
 
     # The property field to access the client wrapper class from the base cmdlet
-    [Parameter(Mandatory = $true)]
-    [string]$base_class_client_field = 'ComputeClient',
+    [Parameter(Mandatory = $false)]
+    [string]$baseClientFullName = 'ComputeClient',
     
     # Cmdlet Code Generation Flavor
     # 1. Invoke (default) that uses Invoke as the verb, and Operation + Method (e.g. VirtualMachine + Get)
@@ -134,7 +134,7 @@ function Write-BaseCmdletFile
         {
             get
             {
-                return ${base_class_client_field}.${opPropName};
+                return ${baseClientFullName}.${opPropName};
             }
         }
 "@;
@@ -464,7 +464,7 @@ function Write-InvokeParameterCmdletFile
             $invoke_param_set_name = $op_short_name + $method.Name.Replace('Async', '');
             $all_method_names += $invoke_param_set_name;
 
-            [System.Reflection.ParameterInfo]$parameter_type_info = (Get-MethodComplexParameter $method $client_library_namespace);
+            [System.Reflection.ParameterInfo]$parameter_type_info = (Get-MethodComplexParameter $method $clientNameSpace);
 
             if (($parameter_type_info -ne $null) -and (($parameter_type_info_list | where { $_.ParameterType.FullName -eq $parameter_type_info.FullName }).Count -eq 0))
             {
@@ -636,7 +636,7 @@ function Write-NewParameterObjectCmdletFile
             $invoke_param_set_name = $op_short_name + $method.Name.Replace('Async', '');
             $all_method_names += $invoke_param_set_name;
 
-            [System.Reflection.ParameterInfo]$parameter_type_info = (Get-MethodComplexParameter $method $client_library_namespace);
+            [System.Reflection.ParameterInfo]$parameter_type_info = (Get-MethodComplexParameter $method $clientNameSpace);
 
             if (($parameter_type_info -ne $null) -and (($parameter_type_info_list | where { $_.ParameterType.FullName -eq $parameter_type_info.FullName }).Count -eq 0))
             {
@@ -670,7 +670,7 @@ function Write-NewParameterObjectCmdletFile
                 }
 
                 # Run Through the Sub Parameter List
-                $subParamTypeList = Get-SubComplexParameterList $parameter_type_info $client_library_namespace;
+                $subParamTypeList = Get-SubComplexParameterList $parameter_type_info $clientNameSpace;
 
                 if ($subParamTypeList.Count -gt 0)
                 {
@@ -1075,7 +1075,7 @@ $output = Get-ChildItem -Path $dllFolder | Out-String;
 # Write-Verbose "List items under the folder: $dllFolder"
 # Write-Verbose $output;
 
-$dllname = $client_library_namespace;
+$dllname = $clientNameSpace;
 $dllfile = $dllname + '.dll';
 $dllFileFullPath = $dllFolder + '\' + $dllfile;
 
@@ -1326,7 +1326,7 @@ else
             
             $outputs = (. $PSScriptRoot\Generate-FunctionCommand.ps1 -OperationName $opShortName `
                                                                      -MethodInfo $methodInfo `
-                                                                     -ModelClassNameSpace $client_model_namespace `
+                                                                     -ModelClassNameSpace $clientModelNameSpace `
                                                                      -FileOutputFolder $opOutFolder `
                                                                      -FunctionCmdletFlavor $opCmdletFlavor `
                                                                      -FriendMethodInfo $friendMethodInfo `
@@ -1341,7 +1341,7 @@ else
                 $parameter_cmdlet_method_code += $outputs[-2];
                 
                 
-                if ($opShortName -eq 'Deployment' -and $client_library_namespace -like '*.WindowsAzure.*')
+                if ($opShortName -eq 'Deployment' -and $clientNameSpace -like '*.WindowsAzure.*')
                 {
                     $output_code = $outputs[-1];
                     

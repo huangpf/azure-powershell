@@ -202,7 +202,7 @@ function Get-NormalizedTypeName
     }
 
     $outputName = $inputName;
-    $client_model_namespace_prefix = $client_model_namespace + '.';
+    $clientModelNameSpacePrefix = $clientModelNameSpace + '.';
 
     if ($inputName -eq 'System.String')
     {
@@ -228,9 +228,9 @@ function Get-NormalizedTypeName
     {
         return 'char';
     }
-    elseif ($inputName.StartsWith($client_model_namespace_prefix))
+    elseif ($inputName.StartsWith($clientModelNameSpacePrefix))
     {
-        $outputName = $inputName.Substring($client_model_namespace_prefix.Length);
+        $outputName = $inputName.Substring($clientModelNameSpacePrefix.Length);
     }
 
     $outputName = $outputName.Replace('+', '.');
@@ -327,9 +327,9 @@ function Get-ConstructorCode
     }
     else
     {
-        if ($InputName.StartsWith($client_model_namespace + "."))
+        if ($InputName.StartsWith($clientModelNameSpace + "."))
         {
-            $InputName = $InputName.Replace($client_model_namespace + ".", '');
+            $InputName = $InputName.Replace($clientModelNameSpace + ".", '');
         }
         elseif ($InputName.StartsWith('System.Collections.Generic.'))
         {
