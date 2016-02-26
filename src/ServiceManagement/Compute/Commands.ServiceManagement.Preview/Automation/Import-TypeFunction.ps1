@@ -815,3 +815,23 @@ function Find-MatchedMethod
     
     return $null;
 }
+
+function CheckIf-PaginationMethod
+{
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [System.Reflection.MethodInfo]$MethodInfo
+    )
+    
+    if ($MethodInfo.Name -like "List*Next")
+    {
+        $methodParameters = $MethodInfo.GetParameters();
+        if ($methodParameters.Count -eq 2 -and $methodParameters[1].ParameterType.IsEquivalentTo([string]))
+        {
+            return $true;
+        }
+    }
+    
+    return $false;
+}

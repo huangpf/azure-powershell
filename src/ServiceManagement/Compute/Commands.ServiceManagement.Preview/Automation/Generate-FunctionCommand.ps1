@@ -967,8 +967,15 @@ function Generate-CliFunctionCommandImpl
         [string]$FileOutputFolder = $null
     )
 
+    # Skip Pagination Function
+    if (CheckIf-PaginationMethod $MethodInfo)
+    {
+        return;
+    }
+
     $methodParameters = $MethodInfo.GetParameters();
     $methodName = ($MethodInfo.Name.Replace('Async', ''));
+    
     $methodParamNameList = @();
     $methodParamTypeDict = @{};
     $allStringFieldCheck = @{};
@@ -987,6 +994,14 @@ function Generate-CliFunctionCommandImpl
             continue;
         }
         elseif ($paramType.FullName.EndsWith('CancellationToken'))
+        {
+            continue;
+        }
+        elseif ($paramItem.Name -eq 'odataQuery')
+        {
+            continue;
+        }
+        elseif ($paramType.IsEquivalentTo([string]) -and $paramItem.Name -eq 'select')
         {
             continue;
         }
@@ -1250,6 +1265,19 @@ function Generate-CliFunctionCommandImpl
     }
 
     $code += "_);" + $NEW_LINE;
+
+    if ($PageMethodInfo -ne $null)
+    {
+        $code += "    var nextPageLink = result.nextPageLink;" + $NEW_LINE;
+        $code += "    while (nextPageLink) {" + $NEW_LINE;
+        $code += "      var pageResult = ${componentNameInLowerCase}ManagementClient.${cliOperationName}.${cliMethodFuncName}Next(nextPageLink, _);" + $NEW_LINE;
+        $code += "      pageResult.forEach(function(item) {" + $NEW_LINE;
+        $code += "        result.push(item);" + $NEW_LINE;
+        $code += "      });" + $NEW_LINE;
+        $code += "      nextPageLink = pageResult.nextPageLink;" + $NEW_LINE;
+        $code += "    }" + $NEW_LINE;
+    }
+
     $code += "    cli.output.json(result);" + $NEW_LINE;
     $code += "  });" + $NEW_LINE;
 

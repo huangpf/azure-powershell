@@ -5827,6 +5827,14 @@ exports.init = function (cli) {
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSets.list(resourceGroupName, _);
+    var nextPageLink = result.nextPageLink;
+    while (nextPageLink) {
+      var pageResult = computeManagementClient.virtualMachineScaleSets.listNext(nextPageLink, _);
+      pageResult.forEach(function(item) {
+        result.push(item);
+      });
+      nextPageLink = pageResult.nextPageLink;
+    }
     cli.output.json(result);
   });
 /*
@@ -5843,44 +5851,14 @@ exports.init = function (cli) {
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSets.listAll(_);
-    cli.output.json(result);
-  });
-/*
-  VirtualMachineScaleSets ListAllNext
-  --next-page-link
-*/
-  var virtualMachineScaleSetsListAllNext = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale sets.  '));
-  virtualMachineScaleSetsListAllNext.command('list-all-next [next-page-link]')
-  .description($('Commands to manage your virtual machine scale sets by the list-all-next method.'))
-  .usage('[options] <next-page-link>')
-  .option('--next-page-link <next-page-link>', $('next-page-link'))
-  .option('--parameter-file <parameter-file>', $('the input parameter file'))
-  .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(nextPageLink, options, _) {
-    cli.output.verbose('nextPageLink = ' + nextPageLink);
-    var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.listAllNext(nextPageLink, _);
-    cli.output.json(result);
-  });
-/*
-  VirtualMachineScaleSets ListNext
-  --next-page-link
-*/
-  var virtualMachineScaleSetsListNext = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale sets.  '));
-  virtualMachineScaleSetsListNext.command('list-next [next-page-link]')
-  .description($('Commands to manage your virtual machine scale sets by the list-next method.'))
-  .usage('[options] <next-page-link>')
-  .option('--next-page-link <next-page-link>', $('next-page-link'))
-  .option('--parameter-file <parameter-file>', $('the input parameter file'))
-  .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(nextPageLink, options, _) {
-    cli.output.verbose('nextPageLink = ' + nextPageLink);
-    var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.listNext(nextPageLink, _);
+    var nextPageLink = result.nextPageLink;
+    while (nextPageLink) {
+      var pageResult = computeManagementClient.virtualMachineScaleSets.listAllNext(nextPageLink, _);
+      pageResult.forEach(function(item) {
+        result.push(item);
+      });
+      nextPageLink = pageResult.nextPageLink;
+    }
     cli.output.json(result);
   });
 /*
@@ -5903,25 +5881,14 @@ exports.init = function (cli) {
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSets.listSkus(resourceGroupName, vMScaleSetName, _);
-    cli.output.json(result);
-  });
-/*
-  VirtualMachineScaleSets ListSkusNext
-  --next-page-link
-*/
-  var virtualMachineScaleSetsListSkusNext = cli.category('vmss')
-  .description($('Commands to manage your virtual machine scale sets.  '));
-  virtualMachineScaleSetsListSkusNext.command('list-skus-next [next-page-link]')
-  .description($('Commands to manage your virtual machine scale sets by the list-skus-next method.'))
-  .usage('[options] <next-page-link>')
-  .option('--next-page-link <next-page-link>', $('next-page-link'))
-  .option('--parameter-file <parameter-file>', $('the input parameter file'))
-  .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(nextPageLink, options, _) {
-    cli.output.verbose('nextPageLink = ' + nextPageLink);
-    var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSets.listSkusNext(nextPageLink, _);
+    var nextPageLink = result.nextPageLink;
+    while (nextPageLink) {
+      var pageResult = computeManagementClient.virtualMachineScaleSets.listSkusNext(nextPageLink, _);
+      pageResult.forEach(function(item) {
+        result.push(item);
+      });
+      nextPageLink = pageResult.nextPageLink;
+    }
     cli.output.json(result);
   });
 /*
@@ -6188,47 +6155,30 @@ exports.init = function (cli) {
   VirtualMachineScaleSetVMs List
   --resource-group-name
   --virtual-machine-scale-set-name
-  --odata-query
-  --select
 */
   var virtualMachineScaleSetVMsList = cli.category('vmssvm')
   .description($('Commands to manage your virtual machine scale set vm.  '));
-  virtualMachineScaleSetVMsList.command('list [resource-group-name] [virtual-machine-scale-set-name] [odata-query] [select]')
+  virtualMachineScaleSetVMsList.command('list [resource-group-name] [virtual-machine-scale-set-name]')
   .description($('Commands to manage your virtual machine scale set vm by the list method.'))
-  .usage('[options] <resource-group-name> <virtual-machine-scale-set-name> <odata-query> <select>')
+  .usage('[options] <resource-group-name> <virtual-machine-scale-set-name>')
   .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
   .option('-n, --virtual-machine-scale-set-name <virtual-machine-scale-set-name>', $('virtual-machine-scale-set-name'))
-  .option('--odata-query <odata-query>', $('odata-query'))
-  .option('--select <select>', $('select'))
   .option('--parameter-file <parameter-file>', $('the input parameter file'))
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, virtualMachineScaleSetName, odataQuery, select, options, _) {
+  .execute(function(resourceGroupName, virtualMachineScaleSetName, options, _) {
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     cli.output.verbose('virtualMachineScaleSetName = ' + virtualMachineScaleSetName);
-    cli.output.verbose('odataQuery = ' + odataQuery);
-    cli.output.verbose('select = ' + select);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSetVMs.list(resourceGroupName, virtualMachineScaleSetName, odataQuery, select, _);
-    cli.output.json(result);
-  });
-/*
-  VirtualMachineScaleSetVMs ListNext
-  --next-page-link
-*/
-  var virtualMachineScaleSetVMsListNext = cli.category('vmssvm')
-  .description($('Commands to manage your virtual machine scale set vm.  '));
-  virtualMachineScaleSetVMsListNext.command('list-next [next-page-link]')
-  .description($('Commands to manage your virtual machine scale set vm by the list-next method.'))
-  .usage('[options] <next-page-link>')
-  .option('--next-page-link <next-page-link>', $('next-page-link'))
-  .option('--parameter-file <parameter-file>', $('the input parameter file'))
-  .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(nextPageLink, options, _) {
-    cli.output.verbose('nextPageLink = ' + nextPageLink);
-    var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachineScaleSetVMs.listNext(nextPageLink, _);
+    var result = computeManagementClient.virtualMachineScaleSetVMs.list(resourceGroupName, virtualMachineScaleSetName, _);
+    var nextPageLink = result.nextPageLink;
+    while (nextPageLink) {
+      var pageResult = computeManagementClient.virtualMachineScaleSetVMs.listNext(nextPageLink, _);
+      pageResult.forEach(function(item) {
+        result.push(item);
+      });
+      nextPageLink = pageResult.nextPageLink;
+    }
     cli.output.json(result);
   });
 /*
