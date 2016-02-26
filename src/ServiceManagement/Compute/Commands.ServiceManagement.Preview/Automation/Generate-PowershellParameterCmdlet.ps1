@@ -1099,7 +1099,7 @@ $cmdlet_remove_object_code
     $fileFullPath = $OutputFolder + $cmdlet_class_name + ".cs";
     $full_code = $code_common_header + "`r`n`r`n" + $code_usings + "`r`n" + $cmdlet_class_code + "`r`n" + $cmdlet_code_body;
 
-    Set-Content -Path $fileFullPath -Value $full_code -Force;
+    Set-FileContent -Path $fileFullPath -Value $full_code;
 }
 
 # Decide the name of cmdlet verb

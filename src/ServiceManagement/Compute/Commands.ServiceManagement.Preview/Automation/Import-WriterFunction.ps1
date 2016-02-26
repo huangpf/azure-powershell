@@ -40,7 +40,36 @@ function Write-CmdletCodeFile
     # Write Ending Bracket
     $code += "}";
 
-    $st = Set-Content -Path $FilePath -Value $code -Force;
+    $st = Set-FileContent -Path $FilePath -Value $code;
+}
+
+function Set-FileContent
+{
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]$Path,
+        
+        [Parameter(Mandatory = $true)]
+        $Value
+    )
+    
+    $iteration = 0;
+    while ($iteration -lt 3)
+    {
+        try
+        {
+            $st = Set-Content -Path $Path -Value $Value -Force;
+        }
+        catch
+        {
+            sleep -Milliseconds 10;
+        }
+        finally
+        {
+            $iteration++;
+        }
+    }
 }
 
 
@@ -70,7 +99,7 @@ namespace ${code_model_namespace}
 }
 "@;
 
-    $st = Set-Content -Path $file_full_path -Value $model_source_code_text -Force;
+    $st = Set-FileContent -Path $file_full_path -Value $model_source_code_text;
 }
 
 function Write-BaseCmdletFile
@@ -180,7 +209,7 @@ ${operation_get_code}
 }
 "@;
 
-    $st = Set-Content -Path $file_full_path -Value $cmdlet_source_code_text -Force;
+    $st = Set-FileContent -Path $file_full_path -Value $cmdlet_source_code_text;
 }
 
 # Write Invoke Compute Client Cmdlet
@@ -380,7 +409,7 @@ $dynamic_param_method_code_content
 }
 "@;
 
-    $st = Set-Content -Path $file_full_path -Value $cmdlet_source_code_text -Force;
+    $st = Set-FileContent -Path $file_full_path -Value $cmdlet_source_code_text;
 }
 
 # Write New Invoke Parameters Cmdlet
@@ -550,7 +579,7 @@ $parameter_cmdlet_method_code_content
 }
 "@;
 
-    $st = Set-Content -Path $file_full_path -Value $cmdlet_source_code_text -Force;
+    $st = Set-FileContent -Path $file_full_path -Value $cmdlet_source_code_text;
 }
 
 
@@ -826,7 +855,7 @@ $parameter_cmdlet_method_code_content
 }
 "@;
 
-    $st = Set-Content -Path $file_full_path -Value $cmdlet_source_code_text -Force;
+    $st = Set-FileContent -Path $file_full_path -Value $cmdlet_source_code_text;
 }
 
 # Process the list return type
@@ -974,7 +1003,7 @@ function Write-XmlFormatFile
     $st = $xmlContent.InsertBefore($node, $xmlContent.ChildNodes[0]);
 
     $formattedXmlContent = Format-XML $xmlContent.OuterXml;
-    $st = Set-Content -Force -Path $xmlFilePath -Value $formattedXmlContent;
+    $st = Set-FileContent -Path $xmlFilePath -Value $formattedXmlContent;
     # Write-Verbose($formattedXmlContent);
 }
 
@@ -1040,5 +1069,5 @@ $commandCodeLines
 };
 "@;
 
-    $st = Set-Content -Path $fileFullPath -Value $codeContent -Force;
+    $st = Set-FileContent -Path $fileFullPath -Value $codeContent;
 }

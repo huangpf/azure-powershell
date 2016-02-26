@@ -73,7 +73,7 @@ $outFolder += '/Generated';
 
 $output = Get-ChildItem -Path $dllFolder | Out-String;
 
-# Set-Content -Path ($outFolder + '/Output.txt');
+# Set-FileContent -Path ($outFolder + '/Output.txt');
 # Write-Verbose "List items under the folder: $dllFolder"
 # Write-Verbose $output;
 

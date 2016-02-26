@@ -12,18 +12,27 @@
 # limitations under the License.
 # ----------------------------------------------------------------------------------
 
-param(
-  [Parameter(Mandatory = $true)]
-  [System.Type]$typeInfo = $null
+[CmdletBinding(DefaultParameterSetName = "ByTypeInfo")]
+param
+(
+  [Parameter(Mandatory = $true, Position = 0, ParameterSetName = 'ByTypeInfo')]
+  [System.Type]$TypeInfo = $null,
+
+  [Parameter(Mandatory = $true, Position = 0, ParameterSetName = 'ByFullTypeNameAndDllPath')]
+  [string]$TypeFullName = $null,
+
+  [Parameter(Mandatory = $true, Position = 1, ParameterSetName = 'ByFullTypeNameAndDllPath')]
+  [string]$DllFullPath = $null
 )
 
 function Create-ParameterObjectImpl
 {
-    param(
-        [Parameter(Mandatory = $True)]
+    param
+    (
+        [Parameter(Mandatory = $true)]
         [System.Type]$typeInfo,
         
-        [Parameter(Mandatory = $True)]
+        [Parameter(Mandatory = $true)]
         [System.Collections.Hashtable]$typeList
     )
 
@@ -116,4 +125,11 @@ function Create-ParameterObjectImpl
     return $obj;
 }
 
-Write-Output (Create-ParameterObjectImpl $typeInfo @{});
+if (($TypeFullName -ne $null) -and ($TypeFullName.Trim() -ne ''))
+{
+    . "$PSScriptRoot\Import-AssemblyFunction.ps1";
+    $dll = Load-AssemblyFile $DllFullPath;
+    $TypeInfo = $dll.GetType($TypeFullName);
+}
+
+Write-Output (Create-ParameterObjectImpl $TypeInfo @{});
