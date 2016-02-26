@@ -99,6 +99,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "HostedServiceListAvailableExtensions",
             "HostedServiceListExtensions",
             "HostedServiceListExtensionVersions",
+            "HostedServiceListPublisherExtensions",
             "HostedServiceUpdate",
             "LoadBalancerCreate",
             "LoadBalancerDelete",
@@ -324,6 +325,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                     case "HostedServiceListExtensionVersions" :
                         ExecuteHostedServiceListExtensionVersionsMethod(argumentList);
                         break;
+                    case "HostedServiceListPublisherExtensions" :
+                        ExecuteHostedServiceListPublisherExtensionsMethod(argumentList);
+                        break;
                     case "HostedServiceUpdate" :
                         ExecuteHostedServiceUpdateMethod(argumentList);
                         break;
@@ -540,6 +544,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                     case "HostedServiceListAvailableExtensions" : return CreateHostedServiceListAvailableExtensionsDynamicParameters();
                     case "HostedServiceListExtensions" : return CreateHostedServiceListExtensionsDynamicParameters();
                     case "HostedServiceListExtensionVersions" : return CreateHostedServiceListExtensionVersionsDynamicParameters();
+                    case "HostedServiceListPublisherExtensions" : return CreateHostedServiceListPublisherExtensionsDynamicParameters();
                     case "HostedServiceUpdate" : return CreateHostedServiceUpdateDynamicParameters();
                     case "LoadBalancerCreate" : return CreateLoadBalancerCreateDynamicParameters();
                     case "LoadBalancerDelete" : return CreateLoadBalancerDeleteDynamicParameters();

@@ -84,6 +84,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "VirtualMachineDataDiskConfigurationList",
             "VirtualMachineDataVirtualHardDisk",
             "VirtualMachineDataVirtualHardDiskList",
+            "VirtualMachineDebugSettings",
             "VirtualMachineDiskCreateParameters",
             "VirtualMachineDiskUpdateParameters",
             "VirtualMachineDiskVirtualMachineDataDiskCreateParameters",
@@ -157,6 +158,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "Microsoft.WindowsAzure.Management.Compute.Models.DataDiskConfigurationCreateParameters",
             "Microsoft.WindowsAzure.Management.Compute.Models.DataDiskConfigurationUpdateParameters",
             "Microsoft.WindowsAzure.Management.Compute.Models.DataVirtualHardDisk",
+            "Microsoft.WindowsAzure.Management.Compute.Models.DebugSettings",
             "Microsoft.WindowsAzure.Management.Compute.Models.DeploymentChangeConfigurationParameters",
             "Microsoft.WindowsAzure.Management.Compute.Models.DeploymentCreateParameters",
             "Microsoft.WindowsAzure.Management.Compute.Models.DeploymentDeleteRoleInstanceParameters",
@@ -316,6 +318,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                         case "VirtualMachineDataDiskConfigurationList" : WriteObject(new List<DataDiskConfiguration>()); break;
                         case "VirtualMachineDataVirtualHardDisk" : WriteObject(new DataVirtualHardDisk()); break;
                         case "VirtualMachineDataVirtualHardDiskList" : WriteObject(new List<DataVirtualHardDisk>()); break;
+                        case "VirtualMachineDebugSettings" : WriteObject(new DebugSettings()); break;
                         case "VirtualMachineDiskCreateParameters" : WriteObject(new VirtualMachineDiskCreateParameters()); break;
                         case "VirtualMachineDiskUpdateParameters" : WriteObject(new VirtualMachineDiskUpdateParameters()); break;
                         case "VirtualMachineDiskVirtualMachineDataDiskCreateParameters" : WriteObject(new VirtualMachineDataDiskCreateParameters()); break;
@@ -391,6 +394,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                         case "Microsoft.WindowsAzure.Management.Compute.Models.DataDiskConfigurationCreateParameters" : WriteObject(new DataDiskConfigurationCreateParameters()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.DataDiskConfigurationUpdateParameters" : WriteObject(new DataDiskConfigurationUpdateParameters()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.DataVirtualHardDisk" : WriteObject(new DataVirtualHardDisk()); break;
+                        case "Microsoft.WindowsAzure.Management.Compute.Models.DebugSettings" : WriteObject(new DebugSettings()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.DeploymentChangeConfigurationParameters" : WriteObject(new DeploymentChangeConfigurationParameters()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.DeploymentCreateParameters" : WriteObject(new DeploymentCreateParameters()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.DeploymentDeleteRoleInstanceParameters" : WriteObject(new DeploymentDeleteRoleInstanceParameters()); break;

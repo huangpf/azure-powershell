@@ -1135,6 +1135,10 @@
                 <ScriptBlock> foreach ($item in $_.DataVirtualHardDisks) { [Newtonsoft.Json.JsonConvert]::SerializeObject($item,  [Newtonsoft.Json.Formatting]::Indented) } </ScriptBlock>
               </ListItem>
               <ListItem>
+                <Label>DebugSettings</Label>
+                <ScriptBlock>[Newtonsoft.Json.JsonConvert]::SerializeObject($_.DebugSettings,  [Newtonsoft.Json.Formatting]::Indented)</ScriptBlock>
+              </ListItem>
+              <ListItem>
                 <Label>DefaultWinRmCertificateThumbprint</Label>
                 <PropertyName>DefaultWinRmCertificateThumbprint</PropertyName>
               </ListItem>

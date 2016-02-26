@@ -83,6 +83,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "HostedServiceListAvailableExtensions",
             "HostedServiceListExtensions",
             "HostedServiceListExtensionVersions",
+            "HostedServiceListPublisherExtensions",
             "HostedServiceUpdate",
             "LoadBalancerCreate",
             "LoadBalancerDelete",
@@ -195,6 +196,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                         case "HostedServiceListAvailableExtensions" : WriteObject(CreateHostedServiceListAvailableExtensionsParameters(), true); break;
                         case "HostedServiceListExtensions" : WriteObject(CreateHostedServiceListExtensionsParameters(), true); break;
                         case "HostedServiceListExtensionVersions" : WriteObject(CreateHostedServiceListExtensionVersionsParameters(), true); break;
+                        case "HostedServiceListPublisherExtensions" : WriteObject(CreateHostedServiceListPublisherExtensionsParameters(), true); break;
                         case "HostedServiceUpdate" : WriteObject(CreateHostedServiceUpdateParameters(), true); break;
                         case "LoadBalancerCreate" : WriteObject(CreateLoadBalancerCreateParameters(), true); break;
                         case "LoadBalancerDelete" : WriteObject(CreateLoadBalancerDeleteParameters(), true); break;
