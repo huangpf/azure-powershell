@@ -22,7 +22,6 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\Package\Debug\ServiceManagement\Azure\Compute</OutputPath>
-    <CrpDllPath>..\..\..\Package\Debug\ResourceManager\AzureResourceManager\AzureRM.Compute</CrpDllPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -271,16 +270,16 @@
   <Target Name="BuildGenerateARM" DependsOnTargets="BuildGenerateRDFE">
     <PropertyGroup>
       <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
-      <PSCodeGenScriptPath>".\Automation\Invoke-CodeGeneration.ps1"</PSCodeGenScriptPath>
-      <PSCodeGenTargetFolder>$(CrpDllPath)</PSCodeGenTargetFolder>
-      <BaseCmdletFullName>"Microsoft.Azure.Commands.Compute.ComputeClientBaseCmdlet"</BaseCmdletFullName>
-      <BaseCmdletClientName>"ComputeClient.ComputeManagementClient"</BaseCmdletClientName>
-      <ARMClientLibraryNamesSpace>"Microsoft.Azure.Management.Compute"</ARMClientLibraryNamesSpace>
-      <ARMGeneratedPSCodeFolder>..\..\..\ResourceManager\Compute\Commands.Compute</ARMGeneratedPSCodeFolder>
-      <ARMCmdletFlavor>Verb</ARMCmdletFlavor>
-      <CliCmdletFlavor>Verb</CliCmdletFlavor>
-      <OperationNameFilter>"VirtualMachineScaleSets","VirtualMachineScaleSetVMs"</OperationNameFilter>
+      <ScriptPath>".\Automation\Invoke-CodeGeneration.ps1"</ScriptPath>
+      <DllFolder>$(OutputPath)\..\..\..\ResourceManager\AzureResourceManager\AzureRM.Compute</DllFolder>
+      <TargetFolder>..\..\..\ResourceManager\Compute\Commands.Compute</TargetFolder>
+      <BaseCmdletFullName>Microsoft.Azure.Commands.Compute.ComputeClientBaseCmdlet</BaseCmdletFullName>
+      <BaseCmdletClientName>ComputeClient.ComputeManagementClient</BaseCmdletClientName>
+      <NamesSpace>Microsoft.Azure.Management.Compute</NamesSpace>
+      <PSFlavor>Verb</PSFlavor>
+      <CliFlavor>Verb</CliFlavor>
+      <Operations>VirtualMachineScaleSets,VirtualMachineScaleSetVMs</Operations>
     </PropertyGroup>
-    <Exec Command="$(PowerShellExe) $(PSCodeGenScriptPath) $(PSCodeGenTargetFolder) $(ARMGeneratedPSCodeFolder) $(ARMClientLibraryNamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName) $(ARMCmdletFlavor) $(CliCmdletFlavor) $(OperationNameFilter)" />
+    <Exec Command="$(PowerShellExe) $(ScriptPath) $(DllFolder) $(TargetFolder) $(NamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName) $(PSFlavor) $(CliFlavor) $(Operations)" />
   </Target>
 </Project>
