@@ -255,17 +255,16 @@
   <Target Name="BuildGenerateRDFE">
     <PropertyGroup>
       <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
-      <PSCodeGenScriptPath>".\Automation\Invoke-CodeGeneration.ps1"</PSCodeGenScriptPath>
-      <PSCodeGenTargetFolder>$(OutputPath)</PSCodeGenTargetFolder>
-      <ClientLibraryNamesSpace>"Microsoft.WindowsAzure.Management.Compute"</ClientLibraryNamesSpace>
-      <BaseCmdletFullName>"Microsoft.WindowsAzure.Commands.Utilities.Common.ServiceManagementBaseCmdlet"</BaseCmdletFullName>
-      <BaseCmdletClientName>"ComputeClient"</BaseCmdletClientName>
-      <ASMCmdletFlavor>Invoke</ASMCmdletFlavor>
-      <CliCmdletFlavor>Verb</CliCmdletFlavor>
-      <OperationNameFilter>
-      </OperationNameFilter>
+      <ScriptPath>".\Automation\Invoke-CodeGeneration.ps1"</ScriptPath>
+      <DllFolder>$(OutputPath)</DllFolder>
+      <TargetFolder>$(MSBuildProjectDirectory)</TargetFolder>
+      <NamesSpace>Microsoft.WindowsAzure.Management.Compute</NamesSpace>
+      <BaseCmdlet>Microsoft.WindowsAzure.Commands.Utilities.Common.ServiceManagementBaseCmdlet</BaseCmdlet>
+      <BaseClient>ComputeClient</BaseClient>
+      <PSFlavor>Invoke</PSFlavor>
+      <CLIFlavor>Verb</CLIFlavor>
     </PropertyGroup>
-    <Exec Command="$(PowerShellExe) $(PSCodeGenScriptPath) $(PSCodeGenTargetFolder) $(MSBuildProjectDirectory) $(ClientLibraryNamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName) $(ASMCmdletFlavor) $(CliCmdletFlavor) $(OperationNameFilter)" />
+    <Exec Command="$(PowerShellExe) $(ScriptPath) $(DllFolder) $(TargetFolder) $(NamesSpace) $(BaseCmdlet) $(BaseClient) $(PSFlavor) $(CLIFlavor)" />
   </Target>
   <Target Name="BuildGenerateARM" DependsOnTargets="BuildGenerateRDFE">
     <PropertyGroup>
@@ -273,13 +272,13 @@
       <ScriptPath>".\Automation\Invoke-CodeGeneration.ps1"</ScriptPath>
       <DllFolder>$(OutputPath)\..\..\..\ResourceManager\AzureResourceManager\AzureRM.Compute</DllFolder>
       <TargetFolder>..\..\..\ResourceManager\Compute\Commands.Compute</TargetFolder>
-      <BaseCmdletFullName>Microsoft.Azure.Commands.Compute.ComputeClientBaseCmdlet</BaseCmdletFullName>
-      <BaseCmdletClientName>ComputeClient.ComputeManagementClient</BaseCmdletClientName>
+      <BaseCmdlet>Microsoft.Azure.Commands.Compute.ComputeClientBaseCmdlet</BaseCmdlet>
+      <BaseClient>ComputeClient.ComputeManagementClient</BaseClient>
       <NamesSpace>Microsoft.Azure.Management.Compute</NamesSpace>
       <PSFlavor>Verb</PSFlavor>
-      <CliFlavor>Verb</CliFlavor>
+      <CLIFlavor>Verb</CLIFlavor>
       <Operations>VirtualMachineScaleSets,VirtualMachineScaleSetVMs</Operations>
     </PropertyGroup>
-    <Exec Command="$(PowerShellExe) $(ScriptPath) $(DllFolder) $(TargetFolder) $(NamesSpace) $(BaseCmdletFullName) $(BaseCmdletClientName) $(PSFlavor) $(CliFlavor) $(Operations)" />
+    <Exec Command="$(PowerShellExe) $(ScriptPath) $(DllFolder) $(TargetFolder) $(NamesSpace) $(BaseCmdlet) $(BaseClient) $(PSFlavor) $(CLIFlavor) $(Operations)" />
   </Target>
 </Project>
