@@ -68,7 +68,10 @@ function Set-FileContent
             if (($_.Exception.Message -like "*Stream was not readable.") `
             -or ($_.Exception.Message -like "The process cannot access the file*"))
             {
-                # Write-Warning -Message ("Iteration=${t};Path=${Path};" + $_.Exception.Message);
+                $fileName = Split-Path $Path -Leaf;
+                [string]$message = $_.Exception.Message;
+                [string]$shortMsg = $message.SubString(0, [System.Math]::Min(30, $message.Length));
+                Write-Warning "#${t}:File=${fileName};Error=${shortMsg}...";
                 sleep -Milliseconds 10;
             }
             else
