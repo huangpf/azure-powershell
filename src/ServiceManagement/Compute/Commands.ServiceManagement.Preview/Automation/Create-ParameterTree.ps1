@@ -12,14 +12,24 @@
 # limitations under the License.
 # ----------------------------------------------------------------------------------
 
-param(
-    [Parameter(Mandatory = $true)]
-    [System.Type]$TypeInfo,
-    
-    [Parameter(Mandatory = $true)]
+[CmdletBinding(DefaultParameterSetName = "ByTypeInfo")]
+param
+(
+    [Parameter(Mandatory = $true, Position = 0, ParameterSetName = 'ByTypeInfo')]
+    [System.Type]$TypeInfo = $null,
+
+    [Parameter(Mandatory = $true, Position = 0, ParameterSetName = 'ByFullTypeNameAndDllPath')]
+    [string]$TypeFullName = $null,
+
+    [Parameter(Mandatory = $true, Position = 1, ParameterSetName = 'ByFullTypeNameAndDllPath')]
+    [string]$DllFullPath = $null,
+
+    [Parameter(Mandatory = $true, Position = 1, ParameterSetName = 'ByTypeInfo')]
+    [Parameter(Mandatory = $true, Position = 2, ParameterSetName = 'ByFullTypeNameAndDllPath')]
     [string]$NameSpace,
     
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, Position = 2, ParameterSetName = 'ByTypeInfo')]
+    [Parameter(Mandatory = $false, Position = 3, ParameterSetName = 'ByFullTypeNameAndDllPath')]
     [string]$ParameterName = $null
 )
 
@@ -172,6 +182,13 @@ function Create-ParameterTreeImpl
             return $treeNode;
         }
     }
+}
+
+if (($TypeFullName -ne $null) -and ($TypeFullName.Trim() -ne ''))
+{
+    . "$PSScriptRoot\Import-AssemblyFunction.ps1";
+    $dll = Load-AssemblyFile $DllFullPath;
+    $TypeInfo = $dll.GetType($TypeFullName);
 }
 
 Write-Output (Create-ParameterTreeImpl $ParameterName $TypeInfo @{});
