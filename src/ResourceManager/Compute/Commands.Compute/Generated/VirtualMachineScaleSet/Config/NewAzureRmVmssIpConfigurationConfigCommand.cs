@@ -56,6 +56,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             ValueFromPipelineByPropertyName = true)]
         public string [] LoadBalancerBackendAddressPoolsId { get; set; }
 
+        [Parameter(
+            Mandatory = false,
+            Position = 4,
+            ValueFromPipelineByPropertyName = true)]
+        public string [] LoadBalancerInboundNatPoolsId { get; set; }
+
         protected override void ProcessRecord()
         {
             var vIpConfigurations = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetIPConfiguration();
@@ -66,6 +72,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             // LoadBalancerBackendAddressPools
             vIpConfigurations.LoadBalancerBackendAddressPools = new List<Microsoft.Azure.Management.Compute.Models.SubResource>();
 
+            // LoadBalancerInboundNatPools
+            vIpConfigurations.LoadBalancerInboundNatPools = new List<Microsoft.Azure.Management.Compute.Models.SubResource>();
+
             vIpConfigurations.Name = this.Name;
             vIpConfigurations.Id = this.Id;
             vIpConfigurations.Subnet.Id = this.SubnetId;
@@ -75,6 +84,15 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 {
                     var vLoadBalancerBackendAddressPools = new Microsoft.Azure.Management.Compute.Models.SubResource();
                     vLoadBalancerBackendAddressPools.Id = element;
+                }
+            }
+
+            if (this.LoadBalancerInboundNatPoolsId != null)
+            {
+                foreach (var element in this.LoadBalancerInboundNatPoolsId)
+                {
+                    var vLoadBalancerInboundNatPools = new Microsoft.Azure.Management.Compute.Models.SubResource();
+                    vLoadBalancerInboundNatPools.Id = element;
                 }
             }
 

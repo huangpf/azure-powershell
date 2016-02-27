@@ -65,6 +65,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "VirtualMachineScaleSetListSkus",
             "VirtualMachineScaleSetListSkusNext",
             "VirtualMachineScaleSetPowerOff",
+            "VirtualMachineScaleSetReimage",
             "VirtualMachineScaleSetRestart",
             "VirtualMachineScaleSetStart",
             "VirtualMachineScaleSetUpdateInstances",
@@ -75,6 +76,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "VirtualMachineScaleSetVMList",
             "VirtualMachineScaleSetVMListNext",
             "VirtualMachineScaleSetVMPowerOff",
+            "VirtualMachineScaleSetVMReimage",
             "VirtualMachineScaleSetVMRestart",
             "VirtualMachineScaleSetVMStart"
         )]
@@ -147,6 +149,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     case "VirtualMachineScaleSetPowerOff" :
                         ExecuteVirtualMachineScaleSetPowerOffMethod(argumentList);
                         break;
+                    case "VirtualMachineScaleSetReimage" :
+                        ExecuteVirtualMachineScaleSetReimageMethod(argumentList);
+                        break;
                     case "VirtualMachineScaleSetRestart" :
                         ExecuteVirtualMachineScaleSetRestartMethod(argumentList);
                         break;
@@ -177,6 +182,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     case "VirtualMachineScaleSetVMPowerOff" :
                         ExecuteVirtualMachineScaleSetVMPowerOffMethod(argumentList);
                         break;
+                    case "VirtualMachineScaleSetVMReimage" :
+                        ExecuteVirtualMachineScaleSetVMReimageMethod(argumentList);
+                        break;
                     case "VirtualMachineScaleSetVMRestart" :
                         ExecuteVirtualMachineScaleSetVMRestartMethod(argumentList);
                         break;
@@ -206,6 +214,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     case "VirtualMachineScaleSetListSkus" : return CreateVirtualMachineScaleSetListSkusDynamicParameters();
                     case "VirtualMachineScaleSetListSkusNext" : return CreateVirtualMachineScaleSetListSkusNextDynamicParameters();
                     case "VirtualMachineScaleSetPowerOff" : return CreateVirtualMachineScaleSetPowerOffDynamicParameters();
+                    case "VirtualMachineScaleSetReimage" : return CreateVirtualMachineScaleSetReimageDynamicParameters();
                     case "VirtualMachineScaleSetRestart" : return CreateVirtualMachineScaleSetRestartDynamicParameters();
                     case "VirtualMachineScaleSetStart" : return CreateVirtualMachineScaleSetStartDynamicParameters();
                     case "VirtualMachineScaleSetUpdateInstances" : return CreateVirtualMachineScaleSetUpdateInstancesDynamicParameters();
@@ -216,6 +225,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     case "VirtualMachineScaleSetVMList" : return CreateVirtualMachineScaleSetVMListDynamicParameters();
                     case "VirtualMachineScaleSetVMListNext" : return CreateVirtualMachineScaleSetVMListNextDynamicParameters();
                     case "VirtualMachineScaleSetVMPowerOff" : return CreateVirtualMachineScaleSetVMPowerOffDynamicParameters();
+                    case "VirtualMachineScaleSetVMReimage" : return CreateVirtualMachineScaleSetVMReimageDynamicParameters();
                     case "VirtualMachineScaleSetVMRestart" : return CreateVirtualMachineScaleSetVMRestartDynamicParameters();
                     case "VirtualMachineScaleSetVMStart" : return CreateVirtualMachineScaleSetVMStartDynamicParameters();
                     default : break;

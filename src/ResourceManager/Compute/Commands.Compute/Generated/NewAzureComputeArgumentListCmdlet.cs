@@ -49,6 +49,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "VirtualMachineScaleSetsListSkus",
             "VirtualMachineScaleSetsListSkusNext",
             "VirtualMachineScaleSetsPowerOff",
+            "VirtualMachineScaleSetsReimage",
             "VirtualMachineScaleSetsRestart",
             "VirtualMachineScaleSetsStart",
             "VirtualMachineScaleSetsUpdateInstances",
@@ -59,6 +60,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "VirtualMachineScaleSetVMsList",
             "VirtualMachineScaleSetVMsListNext",
             "VirtualMachineScaleSetVMsPowerOff",
+            "VirtualMachineScaleSetVMsReimage",
             "VirtualMachineScaleSetVMsRestart",
             "VirtualMachineScaleSetVMsStart"
         )]
@@ -86,6 +88,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                         case "VirtualMachineScaleSetsListSkus" : WriteObject(CreateVirtualMachineScaleSetListSkusParameters(), true); break;
                         case "VirtualMachineScaleSetsListSkusNext" : WriteObject(CreateVirtualMachineScaleSetListSkusNextParameters(), true); break;
                         case "VirtualMachineScaleSetsPowerOff" : WriteObject(CreateVirtualMachineScaleSetPowerOffParameters(), true); break;
+                        case "VirtualMachineScaleSetsReimage" : WriteObject(CreateVirtualMachineScaleSetReimageParameters(), true); break;
                         case "VirtualMachineScaleSetsRestart" : WriteObject(CreateVirtualMachineScaleSetRestartParameters(), true); break;
                         case "VirtualMachineScaleSetsStart" : WriteObject(CreateVirtualMachineScaleSetStartParameters(), true); break;
                         case "VirtualMachineScaleSetsUpdateInstances" : WriteObject(CreateVirtualMachineScaleSetUpdateInstancesParameters(), true); break;
@@ -96,6 +99,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                         case "VirtualMachineScaleSetVMsList" : WriteObject(CreateVirtualMachineScaleSetVMListParameters(), true); break;
                         case "VirtualMachineScaleSetVMsListNext" : WriteObject(CreateVirtualMachineScaleSetVMListNextParameters(), true); break;
                         case "VirtualMachineScaleSetVMsPowerOff" : WriteObject(CreateVirtualMachineScaleSetVMPowerOffParameters(), true); break;
+                        case "VirtualMachineScaleSetVMsReimage" : WriteObject(CreateVirtualMachineScaleSetVMReimageParameters(), true); break;
                         case "VirtualMachineScaleSetVMsRestart" : WriteObject(CreateVirtualMachineScaleSetVMRestartParameters(), true); break;
                         case "VirtualMachineScaleSetVMsStart" : WriteObject(CreateVirtualMachineScaleSetVMStartParameters(), true); break;
                         default : WriteWarning("Cannot find the method by name = '" + MethodName + "'."); break;
