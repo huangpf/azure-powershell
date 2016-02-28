@@ -431,7 +431,7 @@ function Get-VerbTermNameAndSuffix
 
     if (-not $found)
     {
-        $verb = "Invoke";
+        $verb = "Set";
         $suffix = $MethodName;
     }
 
