@@ -190,7 +190,6 @@
     <Compile Include="ServiceManagementPreviewProfile.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Automation\Import-CommonVariables.ps1" />
     <None Include="Automation\Generate-FunctionCommand.ps1" />
     <None Include="Automation\Generate-PowershellParameterCmdlet.ps1" />

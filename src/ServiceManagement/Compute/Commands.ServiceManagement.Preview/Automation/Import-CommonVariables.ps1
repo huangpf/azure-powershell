@@ -115,8 +115,7 @@ Write-Verbose "Base Cmdlet Full Name = $baseCmdletFullName";
 Write-Verbose "Base Client Full Name = $baseClientFullName";
 Write-Verbose "Cmdlet Flavor         = $cmdletFlavor";
 Write-Verbose "Operation Name Filter = $operationNameFilter";
-Write-Verbose $BAR_LINE;
-Write-Verbose "${new_line_str}";
+Write-Verbose ($BAR_LINE + $NEW_LINE);
 
 $code_common_namespace = ($clientNameSpace.Replace('.Management.', '.Commands.')) + '.Automation';
 $code_model_namespace = ($clientNameSpace.Replace('.Management.', '.Commands.')) + '.Automation.Models';
