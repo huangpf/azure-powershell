@@ -85,7 +85,7 @@ $component_name = $clientNameSpace.Substring($clientNameSpace.LastIndexOf('.') +
 
 # The base cmdlet from which all automation cmdlets derive
 [string]$baseCmdletFullName = "Microsoft.Azure.Commands.${component_name}.${component_name}ClientBaseCmdlet";
-if ($clientNameSpace -like "Microsoft.WindowsAzure.Management.${component_name}")
+if ($clientNameSpace -eq "Microsoft.WindowsAzure.Management.${component_name}")
 {
     # Overwrite RDFE base cmdlet name
     $baseCmdletFullName = "Microsoft.WindowsAzure.Commands.Utilities.Common.ServiceManagementBaseCmdlet";
@@ -93,7 +93,7 @@ if ($clientNameSpace -like "Microsoft.WindowsAzure.Management.${component_name}"
 
 # The property field to access the client wrapper class from the base cmdlet
 [string]$baseClientFullName = "${component_name}Client.${component_name}ManagementClient";
-if ($clientNameSpace -like "Microsoft.WindowsAzure.Management.${component_name}")
+if ($clientNameSpace -eq "Microsoft.WindowsAzure.Management.${component_name}")
 {
     # Overwrite RDFE base cmdlet name
     $baseClientFullName = "${component_name}Client";
@@ -115,7 +115,8 @@ Write-Verbose "Base Cmdlet Full Name = $baseCmdletFullName";
 Write-Verbose "Base Client Full Name = $baseClientFullName";
 Write-Verbose "Cmdlet Flavor         = $cmdletFlavor";
 Write-Verbose "Operation Name Filter = $operationNameFilter";
-Write-Verbose ($BAR_LINE + $NEW_LINE);
+Write-Verbose $BAR_LINE;
+Write-Verbose $NEW_LINE;
 
 $code_common_namespace = ($clientNameSpace.Replace('.Management.', '.Commands.')) + '.Automation';
 $code_model_namespace = ($clientNameSpace.Replace('.Management.', '.Commands.')) + '.Automation.Models';
