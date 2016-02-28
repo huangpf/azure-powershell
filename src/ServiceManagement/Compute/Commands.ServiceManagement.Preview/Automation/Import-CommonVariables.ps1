@@ -106,7 +106,7 @@ $SKIP_VERB_NOUN_CMDLET_LIST = @('PowerOff', 'ListNext', 'ListAllNext', 'ListSkus
 
 Write-Verbose $BAR_LINE;
 Write-Verbose "Input Parameters:";
-Write-Verbose "DLL Folder            = $dllFolder";
+Write-Verbose "DLL File              = $dllFileFullPath";
 Write-Verbose "Out Folder            = $outFolder";
 Write-Verbose "Client NameSpace      = $clientNameSpace";
 Write-Verbose "Model NameSpace       = $clientModelNameSpace";
