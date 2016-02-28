@@ -261,29 +261,27 @@
     <PropertyGroup>
       <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
       <ScriptPath>.\Automation\Invoke-CodeGeneration.ps1</ScriptPath>
-      <DllFolder>$(OutputPath)</DllFolder>
+      <ClientDll>$(OutputPath)\Microsoft.WindowsAzure.Management.Compute.dll</ClientDll>
       <TargetFolder>$(MSBuildProjectDirectory)</TargetFolder>
-      <NamesSpace>Microsoft.WindowsAzure.Management.Compute</NamesSpace>
       <BaseCmdlet>Microsoft.WindowsAzure.Commands.Utilities.Common.ServiceManagementBaseCmdlet</BaseCmdlet>
       <BaseClient>ComputeClient</BaseClient>
       <PSFlavor>Invoke</PSFlavor>
       <CLIFlavor>Verb</CLIFlavor>
     </PropertyGroup>
-    <Exec Command="$(PowerShellExe) $(ScriptPath) $(DllFolder) $(TargetFolder) $(NamesSpace) $(BaseCmdlet) $(BaseClient) $(PSFlavor) $(CLIFlavor)" />
+    <Exec Command="$(PowerShellExe) $(ScriptPath) $(ClientDll) $(TargetFolder) $(BaseCmdlet) $(BaseClient) $(PSFlavor) $(CLIFlavor)" />
   </Target>
   <Target Name="BuildGenerateARM" DependsOnTargets="BuildGenerateRDFE">
     <PropertyGroup>
       <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
       <ScriptPath>.\Automation\Invoke-CodeGeneration.ps1</ScriptPath>
-      <DllFolder>$(OutputPath)</DllFolder>
+      <ClientDll>$(OutputPath)\Microsoft.Azure.Management.Compute.dll</ClientDll>
       <TargetFolder>..\..\..\ResourceManager\Compute\Commands.Compute</TargetFolder>
       <BaseCmdlet>Microsoft.Azure.Commands.Compute.ComputeClientBaseCmdlet</BaseCmdlet>
       <BaseClient>ComputeClient.ComputeManagementClient</BaseClient>
-      <NamesSpace>Microsoft.Azure.Management.Compute</NamesSpace>
       <PSFlavor>Verb</PSFlavor>
       <CLIFlavor>Verb</CLIFlavor>
       <Operations>VirtualMachineScaleSets,VirtualMachineScaleSetVMs</Operations>
     </PropertyGroup>
-    <Exec Command="$(PowerShellExe) $(ScriptPath) $(DllFolder) $(TargetFolder) $(NamesSpace) $(BaseCmdlet) $(BaseClient) $(PSFlavor) $(CLIFlavor) $(Operations)" />
+    <Exec Command="$(PowerShellExe) $(ScriptPath) $(ClientDll) $(TargetFolder) $(BaseCmdlet) $(BaseClient) $(PSFlavor) $(CLIFlavor) $(Operations)" />
   </Target>
 </Project>

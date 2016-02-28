@@ -24,18 +24,18 @@
 
 [CmdletBinding()]
 param(
-    # The folder that contains the source DLL, and all its dependency DLLs.
+    # The path to the client library DLL file, along with all its dependency DLLs,
+    # e.g. 'x:\y\z\Microsoft.Azure.Management.Compute.dll',
+    # Note that dependency DLL files must be place at the same folder, for reflection:
+    # e.g. 'x:\y\z\Newtonsoft.Json.dll', 
+    #      'x:\y\z\...' ...
     [Parameter(Mandatory = $true)]
-    [string]$dllFolder,
+    [string]$dllFileFullPath,
 
     # The target output folder, and the generated files would be organized in
     # the sub-folder called 'Generated'.
     [Parameter(Mandatory = $true)]
     [string]$outFolder,
-    
-    # The namespace of the Compute client library
-    [Parameter(Mandatory = $true)]
-    [string]$clientNameSpace = 'Microsoft.WindowsAzure.Management.Compute',
 
     # The base cmdlet from which all automation cmdlets derive
     [Parameter(Mandatory = $false)]
@@ -61,8 +61,13 @@ param(
     [string[]]$operationNameFilter = $null
 )
 
-. "$PSScriptRoot\Import-CommonVariables.ps1";
+# Loat Assembly and get the Azure namespace for the client,
+# e.g. Microsoft.Azure.Management.Compute
 . "$PSScriptRoot\Import-AssemblyFunction.ps1";
+$clientNameSpace = Get-AzureNameSpace $dllFileFullPath;
+
+# Import other functions and variables
+. "$PSScriptRoot\Import-CommonVariables.ps1";
 . "$PSScriptRoot\Import-StringFunction.ps1";
 . "$PSScriptRoot\Import-TypeFunction.ps1";
 . "$PSScriptRoot\Import-OperationFunction.ps1";
@@ -70,15 +75,6 @@ param(
 
 # Code Generation Main Run
 $outFolder += '/Generated';
-
-$output = Get-ChildItem -Path $dllFolder | Out-String;
-
-# Set-FileContent -Path ($outFolder + '/Output.txt');
-# Write-Verbose "List items under the folder: $dllFolder"
-# Write-Verbose $output;
-
-$dllfile = $clientNameSpace + '.dll';
-$dllFileFullPath = $dllFolder + '\' + $dllfile;
 
 if (-not (Test-Path -Path $dllFileFullPath))
 {
@@ -90,7 +86,6 @@ else
     
     # All original types
     $types = $assembly.GetTypes();
-    $clientNameSpace = Get-AzureNameSpace $dllFileFullPath;
     $filtered_types = Get-FilteredOperationTypes $types $clientNameSpace $operationNameFilter;
 
     # Write Base Cmdlet File
