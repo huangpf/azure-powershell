@@ -24,3 +24,28 @@ function Load-AssemblyFile
     $st = [System.Reflection.Assembly]::LoadWithPartialName("System.Collections.Generic");
     return $assembly;
 }
+
+function Get-AzureNameSpace
+{
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]$dllPath
+    )
+
+    [System.Reflection.Assembly]$assembly = Load-AssemblyFile $dllPath;
+
+    $clientNameSpace = $null;
+    foreach ($type in $assembly.GetTypes())
+    {
+        [System.Type]$type = $type;
+        if ($type.Namespace -like "Microsoft.*Azure.Management.*" -and `
+            $type.Namespace -notlike "Microsoft.*Azure.Management.*.Model*")
+        {
+            $clientNameSpace = $type.Namespace;
+            break;
+        }
+    }
+
+    return $clientNameSpace;
+}

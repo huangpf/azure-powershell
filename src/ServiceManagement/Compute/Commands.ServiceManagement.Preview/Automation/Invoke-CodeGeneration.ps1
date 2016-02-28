@@ -90,6 +90,7 @@ else
     
     # All original types
     $types = $assembly.GetTypes();
+    $clientNameSpace = Get-AzureNameSpace $dllFileFullPath;
     $filtered_types = Get-FilteredOperationTypes $types $clientNameSpace $operationNameFilter;
 
     # Write Base Cmdlet File
