@@ -73,10 +73,33 @@ $code_common_header =
 // code is regenerated.
 "@;
 
+. "$PSScriptRoot\Import-AssemblyFunction.ps1";
+
+# Load Assembly and get the Azure namespace for the client,
+# e.g. Microsoft.Azure.Management.Compute
+$clientNameSpace = Get-AzureNameSpace $dllFileFullPath;
 $clientModelNameSpace = $clientNameSpace + '.Models';
+
 $is_hyak_mode = $clientNameSpace -like "Microsoft.WindowsAzure.*.*";
 $component_name = $clientNameSpace.Substring($clientNameSpace.LastIndexOf('.') + 1);
 
+# The base cmdlet from which all automation cmdlets derive
+[string]$baseCmdletFullName = "Microsoft.Azure.Commands.${component_name}.${component_name}ClientBaseCmdlet";
+if ($clientNameSpace -like "Microsoft.WindowsAzure.Management.${component_name}")
+{
+    # Overwrite RDFE base cmdlet name
+    $baseCmdletFullName = "Microsoft.WindowsAzure.Commands.Utilities.Common.ServiceManagementBaseCmdlet";
+}
+
+# The property field to access the client wrapper class from the base cmdlet
+[string]$baseClientFullName = "${component_name}Client.${component_name}ManagementClient";
+if ($clientNameSpace -like "Microsoft.WindowsAzure.Management.${component_name}")
+{
+    # Overwrite RDFE base cmdlet name
+    $baseClientFullName = "${component_name}Client";
+}
+
+# Initialize other variables
 $all_return_type_names = @();
 
 $SKIP_VERB_NOUN_CMDLET_LIST = @('PowerOff', 'ListNext', 'ListAllNext', 'ListSkusNext', 'GetInstanceView', 'List', 'ListAll');

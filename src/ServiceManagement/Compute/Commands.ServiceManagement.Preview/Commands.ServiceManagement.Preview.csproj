@@ -263,12 +263,10 @@
       <ScriptPath>.\Automation\Invoke-CodeGeneration.ps1</ScriptPath>
       <ClientDll>$(OutputPath)\Microsoft.WindowsAzure.Management.Compute.dll</ClientDll>
       <TargetFolder>$(MSBuildProjectDirectory)</TargetFolder>
-      <BaseCmdlet>Microsoft.WindowsAzure.Commands.Utilities.Common.ServiceManagementBaseCmdlet</BaseCmdlet>
-      <BaseClient>ComputeClient</BaseClient>
       <PSFlavor>Invoke</PSFlavor>
       <CLIFlavor>Verb</CLIFlavor>
     </PropertyGroup>
-    <Exec Command="$(PowerShellExe) $(ScriptPath) $(ClientDll) $(TargetFolder) $(BaseCmdlet) $(BaseClient) $(PSFlavor) $(CLIFlavor)" />
+    <Exec Command="$(PowerShellExe) $(ScriptPath) $(ClientDll) $(TargetFolder) $(PSFlavor) $(CLIFlavor)" />
   </Target>
   <Target Name="BuildGenerateARM" DependsOnTargets="BuildGenerateRDFE">
     <PropertyGroup>
@@ -276,12 +274,10 @@
       <ScriptPath>.\Automation\Invoke-CodeGeneration.ps1</ScriptPath>
       <ClientDll>$(OutputPath)\Microsoft.Azure.Management.Compute.dll</ClientDll>
       <TargetFolder>..\..\..\ResourceManager\Compute\Commands.Compute</TargetFolder>
-      <BaseCmdlet>Microsoft.Azure.Commands.Compute.ComputeClientBaseCmdlet</BaseCmdlet>
-      <BaseClient>ComputeClient.ComputeManagementClient</BaseClient>
       <PSFlavor>Verb</PSFlavor>
       <CLIFlavor>Verb</CLIFlavor>
       <Operations>VirtualMachineScaleSets,VirtualMachineScaleSetVMs</Operations>
     </PropertyGroup>
-    <Exec Command="$(PowerShellExe) $(ScriptPath) $(ClientDll) $(TargetFolder) $(BaseCmdlet) $(BaseClient) $(PSFlavor) $(CLIFlavor) $(Operations)" />
+    <Exec Command="$(PowerShellExe) $(ScriptPath) $(ClientDll) $(TargetFolder) $(PSFlavor) $(CLIFlavor) $(Operations)" />
   </Target>
 </Project>

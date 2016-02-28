@@ -36,14 +36,6 @@ param(
     # the sub-folder called 'Generated'.
     [Parameter(Mandatory = $true)]
     [string]$outFolder,
-
-    # The base cmdlet from which all automation cmdlets derive
-    [Parameter(Mandatory = $false)]
-    [string]$baseCmdletFullName = 'Microsoft.WindowsAzure.Commands.Utilities.Common.ServiceManagementBaseCmdlet',
-
-    # The property field to access the client wrapper class from the base cmdlet
-    [Parameter(Mandatory = $false)]
-    [string]$baseClientFullName = 'ComputeClient',
     
     # Cmdlet Code Generation Flavor
     # 1. Invoke (default) that uses Invoke as the verb, and Operation + Method (e.g. VirtualMachine + Get)
@@ -61,12 +53,8 @@ param(
     [string[]]$operationNameFilter = $null
 )
 
-# Loat Assembly and get the Azure namespace for the client,
-# e.g. Microsoft.Azure.Management.Compute
+# Import functions and variables
 . "$PSScriptRoot\Import-AssemblyFunction.ps1";
-$clientNameSpace = Get-AzureNameSpace $dllFileFullPath;
-
-# Import other functions and variables
 . "$PSScriptRoot\Import-CommonVariables.ps1";
 . "$PSScriptRoot\Import-StringFunction.ps1";
 . "$PSScriptRoot\Import-TypeFunction.ps1";
