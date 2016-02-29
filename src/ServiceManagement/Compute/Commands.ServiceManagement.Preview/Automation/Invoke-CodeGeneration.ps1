@@ -22,7 +22,7 @@
 # the above example would be 'Start-AzureVirtualMachine', but to keep it
 # simple and consistent, we would like to use the generic verb.
 
-[CmdletBinding(DefaultParameterSetName = "ByParameters")]
+[CmdletBinding(DefaultParameterSetName = "ByConfiguration")]
 param(
     # The path to the client library DLL file, along with all its dependency DLLs,
     # e.g. 'x:\y\z\Microsoft.Azure.Management.Compute.dll',
@@ -63,13 +63,34 @@ if (-not [string]::IsNullOrEmpty($ConfigPath))
 {
     $lines = Get-Content -Path $ConfigPath;
     $configJsonObject = ConvertFrom-Json ([string]::Join('', $lines));
-    [string[]]$operationNameFilter = @();
-    foreach ($operationItem in $configJsonObject.operations)
+    if ($configJsonObject.operations -ne $null)
     {
-        $operationNameFilter += $operationItem.name;
+        # The filter of operation name for code generation
+        # e.g. "VirtualMachineScaleSet","VirtualMachineScaleSetVM"
+        $operationNameFilter = @();
+        foreach ($operationItem in $configJsonObject.operations)
+        {
+            $operationNameFilter += $operationItem.name;
+        }
+    }
+    
+    if ($configJsonObject.produces -ne $null)
+    {
+        $produces = $configJsonObject.produces;
+        foreach ($produceItem in $produces)
+        {
+            if ($produceItem.name -eq 'PowerShell' -and $produceItem.flavor -ne $null)
+            {
+                $cmdletFlavor = $produceItem.flavor;
+            }
+            
+            if ($produceItem.name -eq 'CLI' -and $produceItem.flavor -ne $null)
+            {
+                $cliCommandFlavor = $produceItem.flavor;
+            }
+        }
     }
 }
-
 
 # Import functions and variables
 . "$PSScriptRoot\Import-AssemblyFunction.ps1";

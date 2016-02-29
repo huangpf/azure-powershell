@@ -190,9 +190,6 @@
     <Compile Include="ServiceManagementPreviewProfile.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Automation\Compute.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Automation\Import-CommonVariables.ps1" />
     <None Include="Automation\Generate-FunctionCommand.ps1" />
     <None Include="Automation\Generate-PowershellParameterCmdlet.ps1" />
@@ -207,6 +204,12 @@
     <None Include="Automation\Invoke-CodeGeneration.ps1" />
     <None Include="Automation\ConvertTo-Json.ps1" />
     <None Include="AzurePreview.psd1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Compute.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\RDFE.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Microsoft.WindowsAzure.Commands.ServiceManagement.Preview.dll-Help.psd1">
@@ -265,10 +268,9 @@
       <ScriptPath>.\Automation\Invoke-CodeGeneration.ps1</ScriptPath>
       <ClientDll>$(OutputPath)\Microsoft.WindowsAzure.Management.Compute.dll</ClientDll>
       <TargetFolder>$(MSBuildProjectDirectory)</TargetFolder>
-      <PSFlavor>Invoke</PSFlavor>
-      <CLIFlavor>Verb</CLIFlavor>
+      <ConfigPath>$(MSBuildProjectDirectory)\Configuration\RDFE.json</ConfigPath>
     </PropertyGroup>
-    <Exec Command="$(PowerShellExe) $(ScriptPath) $(ClientDll) $(TargetFolder) $(PSFlavor) $(CLIFlavor)" />
+    <Exec Command="$(PowerShellExe) $(ScriptPath) $(ClientDll) $(TargetFolder) $(ConfigPath)" />
   </Target>
   <Target Name="BuildGenerateARM" DependsOnTargets="BuildGenerateRDFE">
     <PropertyGroup>
@@ -276,11 +278,8 @@
       <ScriptPath>.\Automation\Invoke-CodeGeneration.ps1</ScriptPath>
       <ClientDll>$(OutputPath)\Microsoft.Azure.Management.Compute.dll</ClientDll>
       <TargetFolder>..\..\..\ResourceManager\Compute\Commands.Compute</TargetFolder>
-      <PSFlavor>Verb</PSFlavor>
-      <CLIFlavor>Verb</CLIFlavor>
-      <Operations>VirtualMachineScaleSets,VirtualMachineScaleSetVMs</Operations>
-      <ConfigPath>$(MSBuildProjectDirectory)\Automation\Compute.json</ConfigPath>
+      <ConfigPath>$(MSBuildProjectDirectory)\Configuration\Compute.json</ConfigPath>
     </PropertyGroup>
-    <Exec Command="$(PowerShellExe) $(ScriptPath) $(ClientDll) $(TargetFolder) $(PSFlavor) $(CLIFlavor) $(Operations) $(ConfigPath)" />
+    <Exec Command="$(PowerShellExe) $(ScriptPath) $(ClientDll) $(TargetFolder) $(ConfigPath)" />
   </Target>
 </Project>
