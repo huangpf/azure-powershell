@@ -63,6 +63,10 @@ if (-not [string]::IsNullOrEmpty($ConfigPath))
 {
     $lines = Get-Content -Path $ConfigPath;
     $configJsonObject = ConvertFrom-Json ([string]::Join('', $lines));
+
+    $operationSettings = @{};
+    $SKIP_VERB_NOUN_CMDLET_LIST = @('PowerOff', 'ListNext', 'ListAllNext', 'ListSkusNext', 'GetInstanceView', 'List', 'ListAll');
+    #$SKIP_VERB_NOUN_CMDLET_LIST = @('CreateOrUpdate', 'Get', 'Start', 'Restart');
     if ($configJsonObject.operations -ne $null)
     {
         # The filter of operation name for code generation
@@ -71,6 +75,18 @@ if (-not [string]::IsNullOrEmpty($ConfigPath))
         foreach ($operationItem in $configJsonObject.operations)
         {
             $operationNameFilter += $operationItem.name;
+            $operationSettings.Add($operationItem.name, @());
+            if ($operationItem.methods -ne $null)
+            {
+                foreach ($methodItem in $operationItem.methods)
+                {
+                    # Configure the List of Skipped Methods
+                    if ($methodItem.cmdlet -ne $null -and $methodItem.cmdlet.skip -eq $true)
+                    {
+                        $operationSettings[$operationItem.name] += $methodItem.name;
+                    }
+                }
+            }
         }
     }
     
@@ -119,7 +135,7 @@ else
     $opNameList = ($filtered_types | select -ExpandProperty Name);
     if ($opNameList -eq $null)
     {
-        Write-Verbose "No qualifed operations found. Exit.";
+        Write-Error "No qualifed operations found. Exit.";
         return -1;
     }
 
@@ -195,6 +211,13 @@ else
             continue;
         }
 
+        $SKIP_VERB_NOUN_CMDLET_LIST = $operationSettings[$operation_nomalized_name];
+        $methodAnnotationSuffix = '';
+        if ($SKIP_VERB_NOUN_CMDLET_LIST -contains $methodInfo.Name)
+        {
+            $methodAnnotationSuffix = ' *';
+        }
+
         $qualified_methods = @();
         $total_method_count = 0;
         [System.Collections.Hashtable]$friendMethodDict = @{};
@@ -212,7 +235,7 @@ else
             }
             else
             {
-                Write-Verbose $methodInfo.Name;
+                Write-Verbose ($methodInfo.Name + $methodAnnotationSuffix);
             }
 
             $qualified_methods += $mtItem;
@@ -257,7 +280,7 @@ else
                 $pageMethodDict.Add($mtItem.Name, $foundMethod);
             }
         }
-        
+
         $method_count = 0;
         foreach ($mtItem in $qualified_methods)
         {
@@ -310,10 +333,17 @@ else
                 }
             }
 
+            $opCmdletFlavor = $cmdletFlavor;
+            if ($SKIP_VERB_NOUN_CMDLET_LIST -contains $methodInfo.Name)
+            {
+                #Overwrite and skip these method's 'Verb' cmdlet flavor
+                $opCmdletFlavor = 'None';
+            }
+
             # Output Info for Method Signature
             Write-Verbose "";
             Write-Verbose $SEC_LINE;
-            $methodMessage = "${operation_type_count_roman_index}. ${method_count}/${total_method_count} " + $methodInfo.Name.Replace('Async', '');
+            $methodMessage = "${operation_type_count_roman_index}. ${method_count}/${total_method_count} " + $methodInfo.Name.Replace('Async', '') + $methodAnnotationSuffix;
             if (($friendMethodMessage -ne '') -or ($pageMethodMessage -ne ''))
             {
                 $methodMessage += ' {' + $friendMethodMessage;
@@ -341,13 +371,6 @@ else
                 Write-Verbose ("-" + $paramInfo.Name + " : " + $paramInfo.ParameterType);
             }
             Write-Verbose $SEC_LINE;
-
-            $opCmdletFlavor = $cmdletFlavor;
-            if ($SKIP_VERB_NOUN_CMDLET_LIST -contains $methodInfo.Name)
-            {
-                #Overwrite and skip these method's 'Verb' cmdlet flavor
-                $opCmdletFlavor = 'None';
-            }
             
             $outputs = (. $PSScriptRoot\Generate-FunctionCommand.ps1 -OperationName $opShortName `
                                                                      -MethodInfo $methodInfo `

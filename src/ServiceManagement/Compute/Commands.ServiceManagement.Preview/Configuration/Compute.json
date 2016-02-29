@@ -7,11 +7,11 @@
   "produces": [
     {
       "name": "PowerShell",
-      "flavor": "verb"
+      "flavor": "Verb"
     },
     {
       "name": "CLI",
-      "flavor": "verb"
+      "flavor": "Verb"
     }
   ],
   "operations": [
@@ -39,7 +39,43 @@
         {
           "name": "PowerOff",
           "cmdlet": {
-            "skip": "true"
+            "skip": true
+          }
+        },
+        {
+          "name": "GetInstanceView",
+          "cmdlet": {
+            "skip": true
+          }
+        },
+        {
+          "name": "List",
+          "cmdlet": {
+            "skip": true
+          }
+        },
+        {
+          "name": "ListNext",
+          "cmdlet": {
+            "skip": true
+          }
+        },
+        {
+          "name": "ListAll",
+          "cmdlet": {
+            "skip": true
+          }
+        },
+        {
+          "name": "ListAllNext",
+          "cmdlet": {
+            "skip": true
+          }
+        },
+        {
+          "name": "ListSkusNext",
+          "cmdlet": {
+            "skip": true
           }
         }
       ]
@@ -48,27 +84,27 @@
       "name": "VirtualMachineScaleSetVMs",
       "methods": [
         {
-          "name": "Deallocate",
-          "cmdlet": {
-            "skip": "true"
-          }
-        },
-        {
           "name": "PowerOff",
           "cmdlet": {
-            "skip": "true"
+            "skip": true
           }
         },
         {
-          "name": "Start",
+          "name": "GetInstanceView",
           "cmdlet": {
-            "skip": "true"
+            "skip": true
           }
         },
         {
-          "name": "Restart",
+          "name": "List",
           "cmdlet": {
-            "skip": "true"
+            "skip": true
+          }
+        },
+        {
+          "name": "ListNext",
+          "cmdlet": {
+            "skip": true
           }
         }
       ]

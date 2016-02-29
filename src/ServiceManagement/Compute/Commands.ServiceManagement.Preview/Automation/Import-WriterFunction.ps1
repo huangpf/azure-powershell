@@ -54,14 +54,14 @@ function Set-FileContent
         $Value
     )
     
-    $t = 0;
+    $iteration = 0;
     $maxIteration = 10;
-    while ($t -lt $maxIteration)
+    while ($iteration -lt $maxIteration)
     {
-        $t++;
+        $iteration = $iteration + 1;
         try
         {
-            $st = Set-Content -Path $Path -Value $Value -Force;
+            $iteration = Set-Content -Path $Path -Value $Value -Force;
         }
         catch
         {
@@ -71,7 +71,7 @@ function Set-FileContent
                 $fileName = Split-Path $Path -Leaf;
                 [string]$message = $_.Exception.Message;
                 [string]$shortMsg = $message.SubString(0, [System.Math]::Min(30, $message.Length));
-                Write-Warning "#${t}:File=${fileName};Error=${shortMsg}...";
+                Write-Warning "#${iteration}:File=${fileName};Error=${shortMsg}...";
                 sleep -Milliseconds 10;
             }
             else
