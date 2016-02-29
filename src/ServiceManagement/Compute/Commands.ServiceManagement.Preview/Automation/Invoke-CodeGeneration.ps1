@@ -22,36 +22,54 @@
 # the above example would be 'Start-AzureVirtualMachine', but to keep it
 # simple and consistent, we would like to use the generic verb.
 
-[CmdletBinding()]
+[CmdletBinding(DefaultParameterSetName = "ByParameters")]
 param(
     # The path to the client library DLL file, along with all its dependency DLLs,
     # e.g. 'x:\y\z\Microsoft.Azure.Management.Compute.dll',
     # Note that dependency DLL files must be place at the same folder, for reflection:
     # e.g. 'x:\y\z\Newtonsoft.Json.dll', 
     #      'x:\y\z\...' ...
-    [Parameter(Mandatory = $true)]
+    [Parameter(Mandatory = $true, Position = 0)]
     [string]$dllFileFullPath,
 
     # The target output folder, and the generated files would be organized in
     # the sub-folder called 'Generated'.
-    [Parameter(Mandatory = $true)]
+    [Parameter(Mandatory = $true, Position = 1)]
     [string]$outFolder,
     
     # Cmdlet Code Generation Flavor
     # 1. Invoke (default) that uses Invoke as the verb, and Operation + Method (e.g. VirtualMachine + Get)
     # 2. Verb style that maps the method name to a certain common PS verb (e.g. CreateOrUpdate -> New)
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, ParameterSetName = "ByParameters", Position = 2)]
     [string]$cmdletFlavor = 'Invoke',
 
     # CLI Command Code Generation Flavor
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, ParameterSetName = "ByParameters", Position = 3)]
     [string[]]$cliCommandFlavor = 'Verb',
 
     # The filter of operation name for code generation
     # e.g. "VirtualMachineScaleSet","VirtualMachineScaleSetVM"
-    [Parameter(Mandatory = $false)]
-    [string[]]$operationNameFilter = $null
+    [Parameter(Mandatory = $false, ParameterSetName = "ByParameters", Position = 4)]
+    [string[]]$operationNameFilter = $null,
+
+    # Configuration JSON file path, instead of individual input parameters
+    [Parameter(Mandatory = $false, ParameterSetName = "ByParameters", Position = 5)]
+    [Parameter(Mandatory = $false, ParameterSetName = "ByConfiguration", Position = 2)]
+    $ConfigPath = $null
 )
+
+# Read Settings from Config Object
+if (-not [string]::IsNullOrEmpty($ConfigPath))
+{
+    $lines = Get-Content -Path $ConfigPath;
+    $configJsonObject = ConvertFrom-Json ([string]::Join('', $lines));
+    [string[]]$operationNameFilter = @();
+    foreach ($operationItem in $configJsonObject.operations)
+    {
+        $operationNameFilter += $operationItem.name;
+    }
+}
+
 
 # Import functions and variables
 . "$PSScriptRoot\Import-AssemblyFunction.ps1";

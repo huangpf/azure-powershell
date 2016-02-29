@@ -190,6 +190,9 @@
     <Compile Include="ServiceManagementPreviewProfile.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Automation\Compute.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Automation\Import-CommonVariables.ps1" />
     <None Include="Automation\Generate-FunctionCommand.ps1" />
     <None Include="Automation\Generate-PowershellParameterCmdlet.ps1" />
@@ -276,7 +279,8 @@
       <PSFlavor>Verb</PSFlavor>
       <CLIFlavor>Verb</CLIFlavor>
       <Operations>VirtualMachineScaleSets,VirtualMachineScaleSetVMs</Operations>
+      <ConfigPath>$(MSBuildProjectDirectory)\Automation\Compute.json</ConfigPath>
     </PropertyGroup>
-    <Exec Command="$(PowerShellExe) $(ScriptPath) $(ClientDll) $(TargetFolder) $(PSFlavor) $(CLIFlavor) $(Operations)" />
+    <Exec Command="$(PowerShellExe) $(ScriptPath) $(ClientDll) $(TargetFolder) $(PSFlavor) $(CLIFlavor) $(Operations) $(ConfigPath)" />
   </Target>
 </Project>

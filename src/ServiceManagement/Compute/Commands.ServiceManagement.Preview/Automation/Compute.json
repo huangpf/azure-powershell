@@ -1,0 +1,77 @@
+{
+  "info": {
+      "title": "Microsoft.Azure.Management.Compute",
+      "version": "11.3.0-prerelease",
+      "description": "Virtual Machine Scale Sets"
+  },
+  "produces": [
+    {
+      "name": "PowerShell",
+      "flavor": "verb"
+    },
+    {
+      "name": "CLI",
+      "flavor": "verb"
+    }
+  ],
+  "operations": [
+    {
+      "name": "VirtualMachineScaleSets",
+      "methods": [
+        {
+          "name": "Get",
+          "friends": [
+            "GetInstanceView",
+            "List",
+            "ListAll"
+          ]
+        },
+        {
+          "name": "Deallocate",
+          "cmdlet": {
+            "verb": "Stop",
+            "suffix": ""
+          },
+          "friends": [
+            "PowerOff"
+          ]
+        },
+        {
+          "name": "PowerOff",
+          "cmdlet": {
+            "skip": "true"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VirtualMachineScaleSetVMs",
+      "methods": [
+        {
+          "name": "Deallocate",
+          "cmdlet": {
+            "skip": "true"
+          }
+        },
+        {
+          "name": "PowerOff",
+          "cmdlet": {
+            "skip": "true"
+          }
+        },
+        {
+          "name": "Start",
+          "cmdlet": {
+            "skip": "true"
+          }
+        },
+        {
+          "name": "Restart",
+          "cmdlet": {
+            "skip": "true"
+          }
+        }
+      ]
+    }
+  ]
+}
