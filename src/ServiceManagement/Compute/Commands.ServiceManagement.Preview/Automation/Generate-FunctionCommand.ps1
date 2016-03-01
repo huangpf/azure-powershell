@@ -1276,9 +1276,24 @@ function Generate-CliFunctionCommandImpl
         $code += "      });" + $NEW_LINE;
         $code += "      nextPageLink = pageResult.nextPageLink;" + $NEW_LINE;
         $code += "    }" + $NEW_LINE;
+        $code += "" + $NEW_LINE;
+        $code += "    if (cli.output.format().json) {" + $NEW_LINE;
+        $code += "      cli.output.json(result);" + $NEW_LINE;
+        $code += "    }" + $NEW_LINE;
+        $code += "    else {" + $NEW_LINE;
+        $code += "      cli.output.table(result, function (row, item) {" + $NEW_LINE;
+        $code += "        var rgName = item.id ? utils.parseResourceReferenceUri(item.id).resourceGroupName : null;" + $NEW_LINE;
+        $code += "        row.cell(`$('ResourceGroupName'), rgName);" + $NEW_LINE;
+        $code += "        row.cell(`$('Name'), item.name);" + $NEW_LINE;
+        $code += "        row.cell(`$('ProvisioningState'), item.provisioningState);" + $NEW_LINE;
+        $code += "        row.cell(`$('Location'), item.location);" + $NEW_LINE;
+        $code += "      });" + $NEW_LINE;
+        $code += "    }" + $NEW_LINE;
     }
-
-    $code += "    cli.output.json(result);" + $NEW_LINE;
+    else
+    {
+        $code += "    cli.output.json(result);" + $NEW_LINE;
+    }
     $code += "  });" + $NEW_LINE;
 
     # 3.3 Parameters

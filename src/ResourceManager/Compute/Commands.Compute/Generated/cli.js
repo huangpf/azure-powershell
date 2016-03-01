@@ -6021,7 +6021,19 @@ exports.init = function (cli) {
       });
       nextPageLink = pageResult.nextPageLink;
     }
-    cli.output.json(result);
+
+    if (cli.output.format().json) {
+      cli.output.json(result);
+    }
+    else {
+      cli.output.table(result, function (row, item) {
+        var rgName = item.id ? utils.parseResourceReferenceUri(item.id).resourceGroupName : null;
+        row.cell($('ResourceGroupName'), rgName);
+        row.cell($('Name'), item.name);
+        row.cell($('ProvisioningState'), item.provisioningState);
+        row.cell($('Location'), item.location);
+      });
+    }
   });
 /*
   VirtualMachineScaleSets ListAll
@@ -6045,7 +6057,19 @@ exports.init = function (cli) {
       });
       nextPageLink = pageResult.nextPageLink;
     }
-    cli.output.json(result);
+
+    if (cli.output.format().json) {
+      cli.output.json(result);
+    }
+    else {
+      cli.output.table(result, function (row, item) {
+        var rgName = item.id ? utils.parseResourceReferenceUri(item.id).resourceGroupName : null;
+        row.cell($('ResourceGroupName'), rgName);
+        row.cell($('Name'), item.name);
+        row.cell($('ProvisioningState'), item.provisioningState);
+        row.cell($('Location'), item.location);
+      });
+    }
   });
 /*
   VirtualMachineScaleSets ListSkus
@@ -6075,7 +6099,19 @@ exports.init = function (cli) {
       });
       nextPageLink = pageResult.nextPageLink;
     }
-    cli.output.json(result);
+
+    if (cli.output.format().json) {
+      cli.output.json(result);
+    }
+    else {
+      cli.output.table(result, function (row, item) {
+        var rgName = item.id ? utils.parseResourceReferenceUri(item.id).resourceGroupName : null;
+        row.cell($('ResourceGroupName'), rgName);
+        row.cell($('Name'), item.name);
+        row.cell($('ProvisioningState'), item.provisioningState);
+        row.cell($('Location'), item.location);
+      });
+    }
   });
 /*
   VirtualMachineScaleSets PowerOff
@@ -6387,7 +6423,19 @@ exports.init = function (cli) {
       });
       nextPageLink = pageResult.nextPageLink;
     }
-    cli.output.json(result);
+
+    if (cli.output.format().json) {
+      cli.output.json(result);
+    }
+    else {
+      cli.output.table(result, function (row, item) {
+        var rgName = item.id ? utils.parseResourceReferenceUri(item.id).resourceGroupName : null;
+        row.cell($('ResourceGroupName'), rgName);
+        row.cell($('Name'), item.name);
+        row.cell($('ProvisioningState'), item.provisioningState);
+        row.cell($('Location'), item.location);
+      });
+    }
   });
 /*
   VirtualMachineScaleSetVMs PowerOff
