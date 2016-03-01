@@ -212,11 +212,6 @@ else
         }
 
         $SKIP_VERB_NOUN_CMDLET_LIST = $operationSettings[$operation_nomalized_name];
-        $methodAnnotationSuffix = '';
-        if ($SKIP_VERB_NOUN_CMDLET_LIST -contains $methodInfo.Name)
-        {
-            $methodAnnotationSuffix = ' *';
-        }
 
         $qualified_methods = @();
         $total_method_count = 0;
@@ -233,10 +228,14 @@ else
             {
                 continue;
             }
-            else
+            
+            $methodAnnotationSuffix = '';
+            if ($SKIP_VERB_NOUN_CMDLET_LIST -contains $methodInfo.Name)
             {
-                Write-Verbose ($methodInfo.Name + $methodAnnotationSuffix);
+                $methodAnnotationSuffix = ' *';
             }
+
+            Write-Verbose ($methodInfo.Name + $methodAnnotationSuffix);
 
             $qualified_methods += $mtItem;
             $total_method_count++;
@@ -286,6 +285,11 @@ else
         {
             [System.Reflection.MethodInfo]$methodInfo = $mtItem;
             $method_count++;
+            $methodAnnotationSuffix = '';
+            if ($SKIP_VERB_NOUN_CMDLET_LIST -contains $methodInfo.Name)
+            {
+                $methodAnnotationSuffix = ' *';
+            }
 
             # Get Friend Method (if any)
             $friendMethodInfo = $null;
