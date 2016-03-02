@@ -1296,6 +1296,10 @@ function Generate-CliFunctionCommandImpl
         $code += "      nextPageLink = pageResult.nextPageLink;" + $NEW_LINE;
         $code += "    }" + $NEW_LINE;
         $code += "" + $NEW_LINE;
+    }
+
+    if ($PageMethodInfo -ne $null -and $methodName -ne 'ListSkus')
+    {
         $code += "    if (cli.output.format().json) {" + $NEW_LINE;
         $code += "      cli.output.json(result);" + $NEW_LINE;
         $code += "    }" + $NEW_LINE;
@@ -1308,7 +1312,7 @@ function Generate-CliFunctionCommandImpl
         $code += "        row.cell(`$('Location'), item.location);" + $NEW_LINE;
         $code += "      });" + $NEW_LINE;
         $code += "    }" + $NEW_LINE;
-    }
+    } 
     else
     {
         $code += "    cli.output.json(result);" + $NEW_LINE;

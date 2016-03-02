@@ -6100,18 +6100,7 @@ exports.init = function (cli) {
       nextPageLink = pageResult.nextPageLink;
     }
 
-    if (cli.output.format().json) {
-      cli.output.json(result);
-    }
-    else {
-      cli.output.table(result, function (row, item) {
-        var rgName = item.id ? utils.parseResourceReferenceUri(item.id).resourceGroupName : null;
-        row.cell($('ResourceGroupName'), rgName);
-        row.cell($('Name'), item.name);
-        row.cell($('ProvisioningState'), item.provisioningState);
-        row.cell($('Location'), item.location);
-      });
-    }
+    cli.output.json(result);
   });
 /*
   VirtualMachineScaleSets PowerOff
