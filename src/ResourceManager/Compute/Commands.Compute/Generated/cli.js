@@ -290,8 +290,7 @@ exports.init = function (cli) {
   .option('--location <location>', $('Set the location value.'))
   .option('--tags <tags>', $('Set the tags value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -426,8 +425,7 @@ exports.init = function (cli) {
   .option('--location', $('Remove the location value.'))
   .option('--tags', $('Remove the tags value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -514,8 +512,7 @@ exports.init = function (cli) {
   .option('--location <location>', $('Add the location value.'))
   .option('--tags <tags>', $('Add the tags value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -647,8 +644,7 @@ exports.init = function (cli) {
   .option('--tier <tier>', $('Set the tier value.'))
   .option('--capacity <capacity>', $('Set the capacity value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -718,8 +714,7 @@ exports.init = function (cli) {
   .option('--tier', $('Remove the tier value.'))
   .option('--capacity', $('Remove the capacity value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -776,8 +771,7 @@ exports.init = function (cli) {
   .option('--tier <tier>', $('Add the tier value.'))
   .option('--capacity <capacity>', $('Add the capacity value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -848,8 +842,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--mode <mode>', $('Set the mode value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -896,8 +889,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--mode', $('Remove the mode value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -944,8 +936,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--mode <mode>', $('Add the mode value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -998,8 +989,7 @@ exports.init = function (cli) {
   .option('--network-profile <networkProfile>', $('Set the network-profile value.'))
   .option('--extension-profile <extensionProfile>', $('Set the extension-profile value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -1079,8 +1069,7 @@ exports.init = function (cli) {
   .option('--network-profile', $('Remove the network-profile value.'))
   .option('--extension-profile', $('Remove the extension-profile value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -1142,8 +1131,7 @@ exports.init = function (cli) {
   .option('--network-profile <networkProfile>', $('Add the network-profile value.'))
   .option('--extension-profile <extensionProfile>', $('Add the extension-profile value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -1229,8 +1217,7 @@ exports.init = function (cli) {
   .option('--linux-configuration <linuxConfiguration>', $('Set the linux-configuration value.'))
   .option('--secrets <secrets>', $('Set the secrets value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -1343,8 +1330,7 @@ exports.init = function (cli) {
   .option('--linux-configuration', $('Remove the linux-configuration value.'))
   .option('--secrets', $('Remove the secrets value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -1421,8 +1407,7 @@ exports.init = function (cli) {
   .option('--linux-configuration <linuxConfiguration>', $('Add the linux-configuration value.'))
   .option('--secrets <secrets>', $('Add the secrets value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -1536,8 +1521,7 @@ exports.init = function (cli) {
   .option('--additional-unattend-content <additionalUnattendContent>', $('Set the additional-unattend-content value.'))
   .option('--win-rm <winRM>', $('Set the win-rm value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -1630,8 +1614,7 @@ exports.init = function (cli) {
   .option('--additional-unattend-content', $('Remove the additional-unattend-content value.'))
   .option('--win-rm', $('Remove the win-rm value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -1698,8 +1681,7 @@ exports.init = function (cli) {
   .option('--additional-unattend-content <additionalUnattendContent>', $('Add the additional-unattend-content value.'))
   .option('--win-rm <winRM>', $('Add the win-rm value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -1796,8 +1778,7 @@ exports.init = function (cli) {
   .option('--setting-name <settingName>', $('Set the setting-name value.'))
   .option('--content <content>', $('Set the content value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -1881,8 +1862,7 @@ exports.init = function (cli) {
   .option('--setting-name', $('Remove the setting-name value.'))
   .option('--content', $('Remove the content value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -1944,8 +1924,7 @@ exports.init = function (cli) {
   .option('--setting-name <settingName>', $('Add the setting-name value.'))
   .option('--content <content>', $('Add the content value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2025,8 +2004,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--listeners <listeners>', $('Set the listeners value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2073,8 +2051,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--listeners', $('Remove the listeners value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -2121,8 +2098,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--listeners <listeners>', $('Add the listeners value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2175,8 +2151,7 @@ exports.init = function (cli) {
   .option('--protocol <protocol>', $('Set the protocol value.'))
   .option('--certificate-url <certificateUrl>', $('Set the certificate-url value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2238,8 +2213,7 @@ exports.init = function (cli) {
   .option('--protocol', $('Remove the protocol value.'))
   .option('--certificate-url', $('Remove the certificate-url value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -2291,8 +2265,7 @@ exports.init = function (cli) {
   .option('--protocol <protocol>', $('Add the protocol value.'))
   .option('--certificate-url <certificateUrl>', $('Add the certificate-url value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2353,8 +2326,7 @@ exports.init = function (cli) {
   .option('--disable-password-authentication <disablePasswordAuthentication>', $('Set the disable-password-authentication value.'))
   .option('--ssh <ssh>', $('Set the ssh value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2413,8 +2385,7 @@ exports.init = function (cli) {
   .option('--disable-password-authentication', $('Remove the disable-password-authentication value.'))
   .option('--ssh', $('Remove the ssh value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -2466,8 +2437,7 @@ exports.init = function (cli) {
   .option('--disable-password-authentication <disablePasswordAuthentication>', $('Add the disable-password-authentication value.'))
   .option('--ssh <ssh>', $('Add the ssh value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2528,8 +2498,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--public-keys <publicKeys>', $('Set the public-keys value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2576,8 +2545,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--public-keys', $('Remove the public-keys value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -2624,8 +2592,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--public-keys <publicKeys>', $('Add the public-keys value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2678,8 +2645,7 @@ exports.init = function (cli) {
   .option('--path <path>', $('Set the path value.'))
   .option('--key-data <keyData>', $('Set the key-data value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2741,8 +2707,7 @@ exports.init = function (cli) {
   .option('--path', $('Remove the path value.'))
   .option('--key-data', $('Remove the key-data value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -2794,8 +2759,7 @@ exports.init = function (cli) {
   .option('--path <path>', $('Add the path value.'))
   .option('--key-data <keyData>', $('Add the key-data value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2858,8 +2822,7 @@ exports.init = function (cli) {
   .option('--source-vault <sourceVault>', $('Set the source-vault value.'))
   .option('--vault-certificates <vaultCertificates>', $('Set the vault-certificates value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -2921,8 +2884,7 @@ exports.init = function (cli) {
   .option('--source-vault', $('Remove the source-vault value.'))
   .option('--vault-certificates', $('Remove the vault-certificates value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -2974,8 +2936,7 @@ exports.init = function (cli) {
   .option('--source-vault <sourceVault>', $('Add the source-vault value.'))
   .option('--vault-certificates <vaultCertificates>', $('Add the vault-certificates value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3036,8 +2997,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--id <id>', $('Set the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3085,8 +3045,7 @@ exports.init = function (cli) {
   .option('--secrets-index <secrets-index>', $('Indexer: secrets-index.'))
   .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -3133,8 +3092,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--id <id>', $('Add the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3188,8 +3146,7 @@ exports.init = function (cli) {
   .option('--certificate-url <certificateUrl>', $('Set the certificate-url value.'))
   .option('--certificate-store <certificateStore>', $('Set the certificate-store value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3252,8 +3209,7 @@ exports.init = function (cli) {
   .option('--certificate-url', $('Remove the certificate-url value.'))
   .option('--certificate-store', $('Remove the certificate-store value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -3305,8 +3261,7 @@ exports.init = function (cli) {
   .option('--certificate-url <certificateUrl>', $('Add the certificate-url value.'))
   .option('--certificate-store <certificateStore>', $('Add the certificate-store value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3367,8 +3322,7 @@ exports.init = function (cli) {
   .option('--image-reference <imageReference>', $('Set the image-reference value.'))
   .option('--os-disk <osDisk>', $('Set the os-disk value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3426,8 +3380,7 @@ exports.init = function (cli) {
   .option('--image-reference', $('Remove the image-reference value.'))
   .option('--os-disk', $('Remove the os-disk value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -3479,8 +3432,7 @@ exports.init = function (cli) {
   .option('--image-reference <imageReference>', $('Add the image-reference value.'))
   .option('--os-disk <osDisk>', $('Add the os-disk value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3543,8 +3495,7 @@ exports.init = function (cli) {
   .option('--sku <sku>', $('Set the sku value.'))
   .option('--version <version>', $('Set the version value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3624,8 +3575,7 @@ exports.init = function (cli) {
   .option('--sku', $('Remove the sku value.'))
   .option('--version', $('Remove the version value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -3687,8 +3637,7 @@ exports.init = function (cli) {
   .option('--sku <sku>', $('Add the sku value.'))
   .option('--version <version>', $('Add the version value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3773,8 +3722,7 @@ exports.init = function (cli) {
   .option('--image <image>', $('Set the image value.'))
   .option('--vhd-containers <vhdContainers>', $('Set the vhd-containers value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -3876,8 +3824,7 @@ exports.init = function (cli) {
   .option('--image', $('Remove the image value.'))
   .option('--vhd-containers', $('Remove the vhd-containers value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -3949,8 +3896,7 @@ exports.init = function (cli) {
   .option('--image <image>', $('Add the image value.'))
   .option('--vhd-containers <vhdContainers>', $('Add the vhd-containers value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4050,8 +3996,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--uri <uri>', $('Set the uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4098,8 +4043,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--uri', $('Remove the uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -4146,8 +4090,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--uri <uri>', $('Add the uri value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4198,8 +4141,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The input string value for the indexed item.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4239,8 +4181,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -4276,8 +4217,7 @@ exports.init = function (cli) {
   .option('--value <value>', $('The JSON value.'))
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4317,8 +4257,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--network-interface-configurations <networkInterfaceConfigurations>', $('Set the network-interface-configurations value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4365,8 +4304,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--network-interface-configurations', $('Remove the network-interface-configurations value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -4413,8 +4351,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--network-interface-configurations <networkInterfaceConfigurations>', $('Add the network-interface-configurations value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4469,8 +4406,7 @@ exports.init = function (cli) {
   .option('--ip-configurations <ipConfigurations>', $('Set the ip-configurations value.'))
   .option('--id <id>', $('Set the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4555,8 +4491,7 @@ exports.init = function (cli) {
   .option('--ip-configurations', $('Remove the ip-configurations value.'))
   .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -4618,8 +4553,7 @@ exports.init = function (cli) {
   .option('--ip-configurations <ipConfigurations>', $('Add the ip-configurations value.'))
   .option('--id <id>', $('Add the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4707,8 +4641,7 @@ exports.init = function (cli) {
   .option('--load-balancer-inbound-nat-pools <loadBalancerInboundNatPools>', $('Set the load-balancer-inbound-nat-pools value.'))
   .option('--id <id>', $('Set the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4804,8 +4737,7 @@ exports.init = function (cli) {
   .option('--load-balancer-inbound-nat-pools', $('Remove the load-balancer-inbound-nat-pools value.'))
   .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -4872,8 +4804,7 @@ exports.init = function (cli) {
   .option('--load-balancer-inbound-nat-pools <loadBalancerInboundNatPools>', $('Add the load-balancer-inbound-nat-pools value.'))
   .option('--id <id>', $('Add the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -4965,8 +4896,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--id <id>', $('Set the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5015,8 +4945,7 @@ exports.init = function (cli) {
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
   .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -5063,8 +4992,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--id <id>', $('Add the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5118,8 +5046,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--id <id>', $('Set the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5172,8 +5099,7 @@ exports.init = function (cli) {
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
   .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -5220,8 +5146,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--id <id>', $('Add the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5275,8 +5200,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--id <id>', $('Set the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5329,8 +5253,7 @@ exports.init = function (cli) {
   .option('--network-interface-configurations-index <network-interface-configurations-index>', $('Indexer: network-interface-configurations-index.'))
   .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -5377,8 +5300,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--id <id>', $('Add the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5428,8 +5350,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--extensions <extensions>', $('Set the extensions value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5476,8 +5397,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--extensions', $('Remove the extensions value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -5524,8 +5444,7 @@ exports.init = function (cli) {
   .option('--parse', $('Parse the input value string to a JSON object.'))
   .option('--extensions <extensions>', $('Add the extensions value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5585,8 +5504,7 @@ exports.init = function (cli) {
   .option('--provisioning-state <provisioningState>', $('Set the provisioning-state value.'))
   .option('--id <id>', $('Set the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
@@ -5726,8 +5644,7 @@ exports.init = function (cli) {
   .option('--provisioning-state', $('Remove the provisioning-state value.'))
   .option('--id', $('Remove the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     cli.output.verbose('=====================================');
     cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
     cli.output.verbose('=====================================');
@@ -5814,8 +5731,7 @@ exports.init = function (cli) {
   .option('--provisioning-state <provisioningState>', $('Add the provisioning-state value.'))
   .option('--id <id>', $('Add the id value.'))
   .execute(function(options, _) {
-    cli.output.verbose('', _); // disable warning: '_ is defined but never used.'
-    cli.output.verbose(JSON.stringify(options));
+    cli.output.verbose(JSON.stringify(options), _);
     if (options.parse && options.value) {
       options.value = JSON.parse(options.value);
     }
