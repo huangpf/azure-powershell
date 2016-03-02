@@ -1124,9 +1124,28 @@ function Generate-CliFunctionCommandImpl
         $optionParamString = ([string]::Join(", ", $requireParamNormalizedNames)) + ", ";
     }
 
+    if ($xmlDocItems -ne $null)
+    {
+        $xmlHelpText = "";
+        foreach ($helpItem in $xmlDocItems)
+        {
+            $helpSearchStr = "M:${ClientNameSpace}.${OperationName}OperationsExtensions.${methodName}(*)";
+            if ($helpItem.name -like $helpSearchStr)
+            {
+                $helpLines = $helpItem.summary.Split("`r").Split("`n");
+                foreach ($helpLine in $helpLines)
+                {
+                    $xmlHelpText += (' ' + $helpLine.Trim());
+                }
+                $xmlHelpText = $xmlHelpText.Trim();
+                break;
+            }
+        }
+    }
 
     $code += "  ${cliCategoryVarName}.command('${cliMethodOption}${requireParamsString}')" + $NEW_LINE;
-    $code += "  .description(`$('Commands to manage your $cliOperationDescription by the ${cliMethodOption} method.'))" + $NEW_LINE;
+    #$code += "  .description(`$('Commands to manage your $cliOperationDescription by the ${cliMethodOption} method.${xmlHelpText}'))" + $NEW_LINE;
+    $code += "  .description(`$('${xmlHelpText}'))" + $NEW_LINE;
     $code += "  .usage('[options]${usageParamsString}')" + $NEW_LINE;
     for ($index = 0; $index -lt $methodParamNameList.Count; $index++)
     {

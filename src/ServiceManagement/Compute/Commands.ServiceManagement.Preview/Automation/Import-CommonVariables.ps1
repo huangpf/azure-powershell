@@ -102,9 +102,18 @@ if ($clientNameSpace -eq "Microsoft.WindowsAzure.Management.${component_name}")
 # Initialize other variables
 $all_return_type_names = @();
 
+# XML Documentation
+if (Test-Path -Path $dllFileFullPath.Replace('.dll', '.xml'))
+{
+    $xmlFileFullPath = $dllFileFullPath.Replace('.dll', '.xml');
+    [xml]$xmlDoc = Get-Content $xmlFileFullPath;
+    $xmlDocItems = $xmlDoc.SelectNodes('doc/members/*');
+}
+
 Write-Verbose $BAR_LINE;
 Write-Verbose "Input Parameters:";
 Write-Verbose "DLL File              = $dllFileFullPath";
+Write-Verbose "XML File              = $xmlFileFullPath";
 Write-Verbose "Out Folder            = $outFolder";
 Write-Verbose "Config Path           = $ConfigPath";
 Write-Verbose "Client NameSpace      = $clientNameSpace";
