@@ -31,6 +31,9 @@ param
     [string]$FunctionCmdletFlavor = 'None',
 
     [Parameter(Mandatory = $false)]
+    [string]$CliOpCommandFlavor = 'Verb',
+
+    [Parameter(Mandatory = $false)]
     [System.Reflection.MethodInfo]$FriendMethodInfo = $null,
     
     [Parameter(Mandatory = $false)]
@@ -438,6 +441,12 @@ ${invoke_local_param_code_content}
         for ($i2 = 0; $i2 -lt $paramLocalNameList.Count - 1; $i2++)
         {
             $item2 = $paramLocalNameList[$i2];
+            
+            if ($item2 -eq 'vmName' -and $OperationName -eq 'VirtualMachines')
+            {
+                continue;
+            }
+            
             $paramLocalNameList2 += $item2;
         }
         $invoke_cmdlt_source_template =  "        protected void Execute${invoke_param_set_name}Method(object[] ${invoke_input_params_name})" + $NEW_LINE;
@@ -1422,4 +1431,9 @@ function Generate-CliFunctionCommandImpl
 Generate-PsFunctionCommandImpl $OperationName $MethodInfo $FileOutputFolder $FriendMethodInfo;
 
 # CLI Function Command Code
+$opItem = $cliOperationSettings[$OperationName];
+if ($opItem -contains $MethodInfo.Name)
+{
+    return $null;
+}
 Generate-CliFunctionCommandImpl $OperationName $MethodInfo $ModelClassNameSpace $FileOutputFolder;

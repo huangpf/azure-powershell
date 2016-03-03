@@ -326,6 +326,10 @@ $validate_all_method_names_code
         {
             $method_name = $method_name.Replace("ScaleSetVMs", "ScaleSetVM");
         }
+        elseif ($method_name.Contains("VirtualMachines"))
+        {
+            $method_name = $method_name.Replace("VirtualMachines", "VirtualMachine");
+        }
     
         $operation_code_template =
 @"
@@ -545,6 +549,10 @@ $validate_all_method_names_code
         elseif ($method_name.Contains("ScaleSetVMs"))
         {
             $singular_method_name = $method_name.Replace("ScaleSetVMs", "ScaleSetVM");
+        }
+        elseif ($method_name.Contains("VirtualMachines"))
+        {
+            $singular_method_name = $method_name.Replace("VirtualMachines", "VirtualMachine");
         }
         else
         {

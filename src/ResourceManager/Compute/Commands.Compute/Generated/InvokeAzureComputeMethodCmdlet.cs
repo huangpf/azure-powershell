@@ -78,7 +78,23 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "VirtualMachineScaleSetVMPowerOff",
             "VirtualMachineScaleSetVMReimage",
             "VirtualMachineScaleSetVMRestart",
-            "VirtualMachineScaleSetVMStart"
+            "VirtualMachineScaleSetVMStart",
+            "VirtualMachinesCapture",
+            "VirtualMachinesCreateOrUpdate",
+            "VirtualMachinesDeallocate",
+            "VirtualMachinesDelete",
+            "VirtualMachinesGeneralize",
+            "VirtualMachinesGet",
+            "VirtualMachinesList",
+            "VirtualMachinesListAll",
+            "VirtualMachinesListAllNext",
+            "VirtualMachinesListAvailableSizes",
+            "VirtualMachinesListAvailableSizesNext",
+            "VirtualMachinesListNext",
+            "VirtualMachinesPowerOff",
+            "VirtualMachinesRedeploy",
+            "VirtualMachinesRestart",
+            "VirtualMachinesStart"
         )]
         public virtual string MethodName { get; set; }
 
@@ -191,6 +207,54 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     case "VirtualMachineScaleSetVMStart" :
                         ExecuteVirtualMachineScaleSetVMStartMethod(argumentList);
                         break;
+                    case "VirtualMachineCapture" :
+                        ExecuteVirtualMachineCaptureMethod(argumentList);
+                        break;
+                    case "VirtualMachineCreateOrUpdate" :
+                        ExecuteVirtualMachineCreateOrUpdateMethod(argumentList);
+                        break;
+                    case "VirtualMachineDeallocate" :
+                        ExecuteVirtualMachineDeallocateMethod(argumentList);
+                        break;
+                    case "VirtualMachineDelete" :
+                        ExecuteVirtualMachineDeleteMethod(argumentList);
+                        break;
+                    case "VirtualMachineGeneralize" :
+                        ExecuteVirtualMachineGeneralizeMethod(argumentList);
+                        break;
+                    case "VirtualMachineGet" :
+                        ExecuteVirtualMachineGetMethod(argumentList);
+                        break;
+                    case "VirtualMachineList" :
+                        ExecuteVirtualMachineListMethod(argumentList);
+                        break;
+                    case "VirtualMachineListAll" :
+                        ExecuteVirtualMachineListAllMethod(argumentList);
+                        break;
+                    case "VirtualMachineListAllNext" :
+                        ExecuteVirtualMachineListAllNextMethod(argumentList);
+                        break;
+                    case "VirtualMachineListAvailableSizes" :
+                        ExecuteVirtualMachineListAvailableSizesMethod(argumentList);
+                        break;
+                    case "VirtualMachineListAvailableSizesNext" :
+                        ExecuteVirtualMachineListAvailableSizesNextMethod(argumentList);
+                        break;
+                    case "VirtualMachineListNext" :
+                        ExecuteVirtualMachineListNextMethod(argumentList);
+                        break;
+                    case "VirtualMachinePowerOff" :
+                        ExecuteVirtualMachinePowerOffMethod(argumentList);
+                        break;
+                    case "VirtualMachineRedeploy" :
+                        ExecuteVirtualMachineRedeployMethod(argumentList);
+                        break;
+                    case "VirtualMachineRestart" :
+                        ExecuteVirtualMachineRestartMethod(argumentList);
+                        break;
+                    case "VirtualMachineStart" :
+                        ExecuteVirtualMachineStartMethod(argumentList);
+                        break;
                     default : WriteWarning("Cannot find the method by name = '" + MethodName + "'."); break;
                 }
             });
@@ -228,6 +292,22 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     case "VirtualMachineScaleSetVMReimage" : return CreateVirtualMachineScaleSetVMReimageDynamicParameters();
                     case "VirtualMachineScaleSetVMRestart" : return CreateVirtualMachineScaleSetVMRestartDynamicParameters();
                     case "VirtualMachineScaleSetVMStart" : return CreateVirtualMachineScaleSetVMStartDynamicParameters();
+                    case "VirtualMachineCapture" : return CreateVirtualMachineCaptureDynamicParameters();
+                    case "VirtualMachineCreateOrUpdate" : return CreateVirtualMachineCreateOrUpdateDynamicParameters();
+                    case "VirtualMachineDeallocate" : return CreateVirtualMachineDeallocateDynamicParameters();
+                    case "VirtualMachineDelete" : return CreateVirtualMachineDeleteDynamicParameters();
+                    case "VirtualMachineGeneralize" : return CreateVirtualMachineGeneralizeDynamicParameters();
+                    case "VirtualMachineGet" : return CreateVirtualMachineGetDynamicParameters();
+                    case "VirtualMachineList" : return CreateVirtualMachineListDynamicParameters();
+                    case "VirtualMachineListAll" : return CreateVirtualMachineListAllDynamicParameters();
+                    case "VirtualMachineListAllNext" : return CreateVirtualMachineListAllNextDynamicParameters();
+                    case "VirtualMachineListAvailableSizes" : return CreateVirtualMachineListAvailableSizesDynamicParameters();
+                    case "VirtualMachineListAvailableSizesNext" : return CreateVirtualMachineListAvailableSizesNextDynamicParameters();
+                    case "VirtualMachineListNext" : return CreateVirtualMachineListNextDynamicParameters();
+                    case "VirtualMachinePowerOff" : return CreateVirtualMachinePowerOffDynamicParameters();
+                    case "VirtualMachineRedeploy" : return CreateVirtualMachineRedeployDynamicParameters();
+                    case "VirtualMachineRestart" : return CreateVirtualMachineRestartDynamicParameters();
+                    case "VirtualMachineStart" : return CreateVirtualMachineStartDynamicParameters();
                     default : break;
             }
 

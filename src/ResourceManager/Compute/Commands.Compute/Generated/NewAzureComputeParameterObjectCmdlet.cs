@@ -36,6 +36,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     {
         [Parameter(ParameterSetName = "CreateParameterObjectByFriendlyName", Mandatory = true, Position = 0)]
         [ValidateSet(
+            "VirtualMachinesAdditionalUnattendContent",
+            "VirtualMachinesAdditionalUnattendContentList",
+            "VirtualMachinesBootDiagnostics",
+            "VirtualMachinesBootDiagnosticsInstanceView",
             "VirtualMachineScaleSetsAdditionalUnattendContent",
             "VirtualMachineScaleSetsAdditionalUnattendContentList",
             "VirtualMachineScaleSetsImageReference",
@@ -62,21 +66,86 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "VirtualMachineScaleSetsWindowsConfiguration",
             "VirtualMachineScaleSetsWinRMConfiguration",
             "VirtualMachineScaleSetsWinRMListener",
-            "VirtualMachineScaleSetsWinRMListenerList"
+            "VirtualMachineScaleSetsWinRMListenerList",
+            "VirtualMachinesDataDisk",
+            "VirtualMachinesDataDiskList",
+            "VirtualMachinesDiagnosticsProfile",
+            "VirtualMachinesDiskEncryptionSettings",
+            "VirtualMachinesDiskInstanceView",
+            "VirtualMachinesDiskInstanceViewList",
+            "VirtualMachinesHardwareProfile",
+            "VirtualMachinesImageReference",
+            "VirtualMachinesInstanceViewStatus",
+            "VirtualMachinesInstanceViewStatusList",
+            "VirtualMachinesKeyVaultKeyReference",
+            "VirtualMachinesKeyVaultSecretReference",
+            "VirtualMachinesLinuxConfiguration",
+            "VirtualMachinesNetworkInterfaceReference",
+            "VirtualMachinesNetworkInterfaceReferenceList",
+            "VirtualMachinesNetworkProfile",
+            "VirtualMachinesOSDisk",
+            "VirtualMachinesOSProfile",
+            "VirtualMachinesPlan",
+            "VirtualMachinesSshConfiguration",
+            "VirtualMachinesSshPublicKey",
+            "VirtualMachinesSshPublicKeyList",
+            "VirtualMachinesStorageProfile",
+            "VirtualMachinesSubResource",
+            "VirtualMachinesVaultSecretGroup",
+            "VirtualMachinesVaultSecretGroupList",
+            "VirtualMachinesVirtualHardDisk",
+            "VirtualMachinesVirtualMachine",
+            "VirtualMachinesVirtualMachineAgentInstanceView",
+            "VirtualMachinesVirtualMachineCaptureParameters",
+            "VirtualMachinesVirtualMachineExtension",
+            "VirtualMachinesVirtualMachineExtensionHandlerInstanceView",
+            "VirtualMachinesVirtualMachineExtensionHandlerInstanceViewList",
+            "VirtualMachinesVirtualMachineExtensionInstanceView",
+            "VirtualMachinesVirtualMachineExtensionInstanceViewList",
+            "VirtualMachinesVirtualMachineExtensionList",
+            "VirtualMachinesVirtualMachineInstanceView",
+            "VirtualMachinesWindowsConfiguration",
+            "VirtualMachinesWinRMConfiguration",
+            "VirtualMachinesWinRMListener",
+            "VirtualMachinesWinRMListenerList"
         )]
         public string FriendlyName { get; set; }
 
         [Parameter(ParameterSetName = "CreateParameterObjectByFullName", Mandatory = true, Position = 0)]
         [ValidateSet(
             "Microsoft.Azure.Management.Compute.Models.AdditionalUnattendContent",
+            "Microsoft.Azure.Management.Compute.Models.BootDiagnostics",
+            "Microsoft.Azure.Management.Compute.Models.BootDiagnosticsInstanceView",
+            "Microsoft.Azure.Management.Compute.Models.DataDisk",
+            "Microsoft.Azure.Management.Compute.Models.DiagnosticsProfile",
+            "Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings",
+            "Microsoft.Azure.Management.Compute.Models.DiskInstanceView",
+            "Microsoft.Azure.Management.Compute.Models.HardwareProfile",
             "Microsoft.Azure.Management.Compute.Models.ImageReference",
+            "Microsoft.Azure.Management.Compute.Models.InstanceViewStatus",
+            "Microsoft.Azure.Management.Compute.Models.KeyVaultKeyReference",
+            "Microsoft.Azure.Management.Compute.Models.KeyVaultSecretReference",
             "Microsoft.Azure.Management.Compute.Models.LinuxConfiguration",
+            "Microsoft.Azure.Management.Compute.Models.NetworkInterfaceReference",
+            "Microsoft.Azure.Management.Compute.Models.NetworkProfile",
+            "Microsoft.Azure.Management.Compute.Models.OSDisk",
+            "Microsoft.Azure.Management.Compute.Models.OSProfile",
+            "Microsoft.Azure.Management.Compute.Models.Plan",
             "Microsoft.Azure.Management.Compute.Models.Sku",
             "Microsoft.Azure.Management.Compute.Models.SshConfiguration",
             "Microsoft.Azure.Management.Compute.Models.SshPublicKey",
+            "Microsoft.Azure.Management.Compute.Models.StorageProfile",
+            "Microsoft.Azure.Management.Compute.Models.SubResource",
             "Microsoft.Azure.Management.Compute.Models.UpgradePolicy",
             "Microsoft.Azure.Management.Compute.Models.VaultSecretGroup",
             "Microsoft.Azure.Management.Compute.Models.VirtualHardDisk",
+            "Microsoft.Azure.Management.Compute.Models.VirtualMachine",
+            "Microsoft.Azure.Management.Compute.Models.VirtualMachineAgentInstanceView",
+            "Microsoft.Azure.Management.Compute.Models.VirtualMachineCaptureParameters",
+            "Microsoft.Azure.Management.Compute.Models.VirtualMachineExtension",
+            "Microsoft.Azure.Management.Compute.Models.VirtualMachineExtensionHandlerInstanceView",
+            "Microsoft.Azure.Management.Compute.Models.VirtualMachineExtensionInstanceView",
+            "Microsoft.Azure.Management.Compute.Models.VirtualMachineInstanceView",
             "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSet",
             "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtension",
             "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtensionProfile",
@@ -90,8 +159,15 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "Microsoft.Azure.Management.Compute.Models.WinRMConfiguration",
             "Microsoft.Azure.Management.Compute.Models.WinRMListener",
             "System.Collections.Generic.List<AdditionalUnattendContent>",
+            "System.Collections.Generic.List<DataDisk>",
+            "System.Collections.Generic.List<DiskInstanceView>",
+            "System.Collections.Generic.List<InstanceViewStatus>",
+            "System.Collections.Generic.List<NetworkInterfaceReference>",
             "System.Collections.Generic.List<SshPublicKey>",
             "System.Collections.Generic.List<VaultSecretGroup>",
+            "System.Collections.Generic.List<VirtualMachineExtension>",
+            "System.Collections.Generic.List<VirtualMachineExtensionHandlerInstanceView>",
+            "System.Collections.Generic.List<VirtualMachineExtensionInstanceView>",
             "System.Collections.Generic.List<VirtualMachineScaleSetExtension>",
             "System.Collections.Generic.List<VirtualMachineScaleSetNetworkConfiguration>",
             "System.Collections.Generic.List<WinRMListener>"
@@ -107,6 +183,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 {
                     switch (FriendlyName)
                     {
+                        case "VirtualMachinesAdditionalUnattendContent" : WriteObject(new AdditionalUnattendContent()); break;
+                        case "VirtualMachinesAdditionalUnattendContentList" : WriteObject(new List<AdditionalUnattendContent>()); break;
+                        case "VirtualMachinesBootDiagnostics" : WriteObject(new BootDiagnostics()); break;
+                        case "VirtualMachinesBootDiagnosticsInstanceView" : WriteObject(new BootDiagnosticsInstanceView()); break;
                         case "VirtualMachineScaleSetsAdditionalUnattendContent" : WriteObject(new AdditionalUnattendContent()); break;
                         case "VirtualMachineScaleSetsAdditionalUnattendContentList" : WriteObject(new List<AdditionalUnattendContent>()); break;
                         case "VirtualMachineScaleSetsImageReference" : WriteObject(new ImageReference()); break;
@@ -134,6 +214,47 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                         case "VirtualMachineScaleSetsWinRMConfiguration" : WriteObject(new WinRMConfiguration()); break;
                         case "VirtualMachineScaleSetsWinRMListener" : WriteObject(new WinRMListener()); break;
                         case "VirtualMachineScaleSetsWinRMListenerList" : WriteObject(new List<WinRMListener>()); break;
+                        case "VirtualMachinesDataDisk" : WriteObject(new DataDisk()); break;
+                        case "VirtualMachinesDataDiskList" : WriteObject(new List<DataDisk>()); break;
+                        case "VirtualMachinesDiagnosticsProfile" : WriteObject(new DiagnosticsProfile()); break;
+                        case "VirtualMachinesDiskEncryptionSettings" : WriteObject(new DiskEncryptionSettings()); break;
+                        case "VirtualMachinesDiskInstanceView" : WriteObject(new DiskInstanceView()); break;
+                        case "VirtualMachinesDiskInstanceViewList" : WriteObject(new List<DiskInstanceView>()); break;
+                        case "VirtualMachinesHardwareProfile" : WriteObject(new HardwareProfile()); break;
+                        case "VirtualMachinesImageReference" : WriteObject(new ImageReference()); break;
+                        case "VirtualMachinesInstanceViewStatus" : WriteObject(new InstanceViewStatus()); break;
+                        case "VirtualMachinesInstanceViewStatusList" : WriteObject(new List<InstanceViewStatus>()); break;
+                        case "VirtualMachinesKeyVaultKeyReference" : WriteObject(new KeyVaultKeyReference()); break;
+                        case "VirtualMachinesKeyVaultSecretReference" : WriteObject(new KeyVaultSecretReference()); break;
+                        case "VirtualMachinesLinuxConfiguration" : WriteObject(new LinuxConfiguration()); break;
+                        case "VirtualMachinesNetworkInterfaceReference" : WriteObject(new NetworkInterfaceReference()); break;
+                        case "VirtualMachinesNetworkInterfaceReferenceList" : WriteObject(new List<NetworkInterfaceReference>()); break;
+                        case "VirtualMachinesNetworkProfile" : WriteObject(new NetworkProfile()); break;
+                        case "VirtualMachinesOSDisk" : WriteObject(new OSDisk()); break;
+                        case "VirtualMachinesOSProfile" : WriteObject(new OSProfile()); break;
+                        case "VirtualMachinesPlan" : WriteObject(new Plan()); break;
+                        case "VirtualMachinesSshConfiguration" : WriteObject(new SshConfiguration()); break;
+                        case "VirtualMachinesSshPublicKey" : WriteObject(new SshPublicKey()); break;
+                        case "VirtualMachinesSshPublicKeyList" : WriteObject(new List<SshPublicKey>()); break;
+                        case "VirtualMachinesStorageProfile" : WriteObject(new StorageProfile()); break;
+                        case "VirtualMachinesSubResource" : WriteObject(new SubResource()); break;
+                        case "VirtualMachinesVaultSecretGroup" : WriteObject(new VaultSecretGroup()); break;
+                        case "VirtualMachinesVaultSecretGroupList" : WriteObject(new List<VaultSecretGroup>()); break;
+                        case "VirtualMachinesVirtualHardDisk" : WriteObject(new VirtualHardDisk()); break;
+                        case "VirtualMachinesVirtualMachine" : WriteObject(new VirtualMachine()); break;
+                        case "VirtualMachinesVirtualMachineAgentInstanceView" : WriteObject(new VirtualMachineAgentInstanceView()); break;
+                        case "VirtualMachinesVirtualMachineCaptureParameters" : WriteObject(new VirtualMachineCaptureParameters()); break;
+                        case "VirtualMachinesVirtualMachineExtension" : WriteObject(new VirtualMachineExtension()); break;
+                        case "VirtualMachinesVirtualMachineExtensionHandlerInstanceView" : WriteObject(new VirtualMachineExtensionHandlerInstanceView()); break;
+                        case "VirtualMachinesVirtualMachineExtensionHandlerInstanceViewList" : WriteObject(new List<VirtualMachineExtensionHandlerInstanceView>()); break;
+                        case "VirtualMachinesVirtualMachineExtensionInstanceView" : WriteObject(new VirtualMachineExtensionInstanceView()); break;
+                        case "VirtualMachinesVirtualMachineExtensionInstanceViewList" : WriteObject(new List<VirtualMachineExtensionInstanceView>()); break;
+                        case "VirtualMachinesVirtualMachineExtensionList" : WriteObject(new List<VirtualMachineExtension>()); break;
+                        case "VirtualMachinesVirtualMachineInstanceView" : WriteObject(new VirtualMachineInstanceView()); break;
+                        case "VirtualMachinesWindowsConfiguration" : WriteObject(new WindowsConfiguration()); break;
+                        case "VirtualMachinesWinRMConfiguration" : WriteObject(new WinRMConfiguration()); break;
+                        case "VirtualMachinesWinRMListener" : WriteObject(new WinRMListener()); break;
+                        case "VirtualMachinesWinRMListenerList" : WriteObject(new List<WinRMListener>()); break;
                         default : WriteWarning("Cannot find the type by FriendlyName = '" + FriendlyName + "'."); break;
                     }
                 }
@@ -142,14 +263,38 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     switch (FullName)
                     {
                         case "Microsoft.Azure.Management.Compute.Models.AdditionalUnattendContent" : WriteObject(new AdditionalUnattendContent()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.BootDiagnostics" : WriteObject(new BootDiagnostics()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.BootDiagnosticsInstanceView" : WriteObject(new BootDiagnosticsInstanceView()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.DataDisk" : WriteObject(new DataDisk()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.DiagnosticsProfile" : WriteObject(new DiagnosticsProfile()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings" : WriteObject(new DiskEncryptionSettings()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.DiskInstanceView" : WriteObject(new DiskInstanceView()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.HardwareProfile" : WriteObject(new HardwareProfile()); break;
                         case "Microsoft.Azure.Management.Compute.Models.ImageReference" : WriteObject(new ImageReference()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.InstanceViewStatus" : WriteObject(new InstanceViewStatus()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.KeyVaultKeyReference" : WriteObject(new KeyVaultKeyReference()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.KeyVaultSecretReference" : WriteObject(new KeyVaultSecretReference()); break;
                         case "Microsoft.Azure.Management.Compute.Models.LinuxConfiguration" : WriteObject(new LinuxConfiguration()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.NetworkInterfaceReference" : WriteObject(new NetworkInterfaceReference()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.NetworkProfile" : WriteObject(new NetworkProfile()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.OSDisk" : WriteObject(new OSDisk()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.OSProfile" : WriteObject(new OSProfile()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.Plan" : WriteObject(new Plan()); break;
                         case "Microsoft.Azure.Management.Compute.Models.Sku" : WriteObject(new Sku()); break;
                         case "Microsoft.Azure.Management.Compute.Models.SshConfiguration" : WriteObject(new SshConfiguration()); break;
                         case "Microsoft.Azure.Management.Compute.Models.SshPublicKey" : WriteObject(new SshPublicKey()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.StorageProfile" : WriteObject(new StorageProfile()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.SubResource" : WriteObject(new SubResource()); break;
                         case "Microsoft.Azure.Management.Compute.Models.UpgradePolicy" : WriteObject(new UpgradePolicy()); break;
                         case "Microsoft.Azure.Management.Compute.Models.VaultSecretGroup" : WriteObject(new VaultSecretGroup()); break;
                         case "Microsoft.Azure.Management.Compute.Models.VirtualHardDisk" : WriteObject(new VirtualHardDisk()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.VirtualMachine" : WriteObject(new VirtualMachine()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.VirtualMachineAgentInstanceView" : WriteObject(new VirtualMachineAgentInstanceView()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.VirtualMachineCaptureParameters" : WriteObject(new VirtualMachineCaptureParameters()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.VirtualMachineExtension" : WriteObject(new VirtualMachineExtension()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.VirtualMachineExtensionHandlerInstanceView" : WriteObject(new VirtualMachineExtensionHandlerInstanceView()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.VirtualMachineExtensionInstanceView" : WriteObject(new VirtualMachineExtensionInstanceView()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.VirtualMachineInstanceView" : WriteObject(new VirtualMachineInstanceView()); break;
                         case "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSet" : WriteObject(new VirtualMachineScaleSet()); break;
                         case "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtension" : WriteObject(new VirtualMachineScaleSetExtension()); break;
                         case "Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetExtensionProfile" : WriteObject(new VirtualMachineScaleSetExtensionProfile()); break;
@@ -163,8 +308,15 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                         case "Microsoft.Azure.Management.Compute.Models.WinRMConfiguration" : WriteObject(new WinRMConfiguration()); break;
                         case "Microsoft.Azure.Management.Compute.Models.WinRMListener" : WriteObject(new WinRMListener()); break;
                         case "System.Collections.Generic.List<AdditionalUnattendContent>" : WriteObject(new List<AdditionalUnattendContent>()); break;
+                        case "System.Collections.Generic.List<DataDisk>" : WriteObject(new List<DataDisk>()); break;
+                        case "System.Collections.Generic.List<DiskInstanceView>" : WriteObject(new List<DiskInstanceView>()); break;
+                        case "System.Collections.Generic.List<InstanceViewStatus>" : WriteObject(new List<InstanceViewStatus>()); break;
+                        case "System.Collections.Generic.List<NetworkInterfaceReference>" : WriteObject(new List<NetworkInterfaceReference>()); break;
                         case "System.Collections.Generic.List<SshPublicKey>" : WriteObject(new List<SshPublicKey>()); break;
                         case "System.Collections.Generic.List<VaultSecretGroup>" : WriteObject(new List<VaultSecretGroup>()); break;
+                        case "System.Collections.Generic.List<VirtualMachineExtension>" : WriteObject(new List<VirtualMachineExtension>()); break;
+                        case "System.Collections.Generic.List<VirtualMachineExtensionHandlerInstanceView>" : WriteObject(new List<VirtualMachineExtensionHandlerInstanceView>()); break;
+                        case "System.Collections.Generic.List<VirtualMachineExtensionInstanceView>" : WriteObject(new List<VirtualMachineExtensionInstanceView>()); break;
                         case "System.Collections.Generic.List<VirtualMachineScaleSetExtension>" : WriteObject(new List<VirtualMachineScaleSetExtension>()); break;
                         case "System.Collections.Generic.List<VirtualMachineScaleSetNetworkConfiguration>" : WriteObject(new List<VirtualMachineScaleSetNetworkConfiguration>()); break;
                         case "System.Collections.Generic.List<WinRMListener>" : WriteObject(new List<WinRMListener>()); break;

@@ -114,6 +114,10 @@ function Get-CliCategoryName
     {
         $outName = 'vmssvm';
     }
+    elseif ($inName -eq 'VirtualMachines')
+    {
+        $outName = 'vm';
+    }
     else
     {
         $outName = Get-CliOptionName $inName;

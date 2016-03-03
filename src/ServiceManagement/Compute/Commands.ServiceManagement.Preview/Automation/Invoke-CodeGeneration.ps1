@@ -45,7 +45,7 @@ param(
 
     # CLI Command Code Generation Flavor
     [Parameter(Mandatory = $false, ParameterSetName = "ByParameters", Position = 3)]
-    [string[]]$cliCommandFlavor = 'Verb',
+    [string]$cliCommandFlavor = 'Verb',
 
     # The filter of operation name for code generation
     # e.g. "VirtualMachineScaleSet","VirtualMachineScaleSetVM"
@@ -65,8 +65,7 @@ if (-not [string]::IsNullOrEmpty($ConfigPath))
     $configJsonObject = ConvertFrom-Json ([string]::Join('', $lines));
 
     $operationSettings = @{};
-    $SKIP_VERB_NOUN_CMDLET_LIST = @('PowerOff', 'ListNext', 'ListAllNext', 'ListSkusNext', 'GetInstanceView', 'List', 'ListAll');
-    #$SKIP_VERB_NOUN_CMDLET_LIST = @('CreateOrUpdate', 'Get', 'Start', 'Restart');
+    $cliOperationSettings = @{};
     if ($configJsonObject.operations -ne $null)
     {
         # The filter of operation name for code generation
@@ -76,6 +75,7 @@ if (-not [string]::IsNullOrEmpty($ConfigPath))
         {
             $operationNameFilter += $operationItem.name;
             $operationSettings.Add($operationItem.name, @());
+            $cliOperationSettings.Add($operationItem.name, @());
             if ($operationItem.methods -ne $null)
             {
                 foreach ($methodItem in $operationItem.methods)
@@ -84,6 +84,11 @@ if (-not [string]::IsNullOrEmpty($ConfigPath))
                     if ($methodItem.cmdlet -ne $null -and $methodItem.cmdlet.skip -eq $true)
                     {
                         $operationSettings[$operationItem.name] += $methodItem.name;
+                    }
+                    
+                    if ($methodItem.command -ne $null -and $methodItem.command.skip -eq $true)
+                    {
+                        $cliOperationSettings[$operationItem.name] += $methodItem.name;
                     }
                 }
             }
@@ -191,6 +196,11 @@ else
         elseif ($opShortName.EndsWith("ScaleSetVMs"))
         {
             $opFolderName = $opShortName.Replace('ScaleSetVMs', 'ScaleSetVM');
+            $opOutFolder = $outFolder + '/' + $opFolderName;
+        }
+        elseif ($opShortName.EndsWith("VirtualMachines"))
+        {
+            $opFolderName = $opShortName.Replace('VirtualMachines', 'VirtualMachine');
             $opOutFolder = $outFolder + '/' + $opFolderName;
         }
         else

@@ -6526,6 +6526,28 @@ exports.init = function (cli) {
     var result = computeManagementClient.virtualMachineScaleSetVMs.start(resourceGroupName, vMScaleSetName, instanceId, _);
     cli.output.json(result);
   });
+/*
+  VirtualMachines Redeploy
+  --resource-group-name
+  --vm-name
+*/
+  var virtualMachinesRedeploy = cli.category('vm')
+  .description($('Commands to manage your virtual machines.  '));
+  virtualMachinesRedeploy.command('redeploy [resource-group-name] [vm-name]')
+  .description($('The operation to redeploy a virtual machine.'))
+  .usage('[options] <resource-group-name> <vm-name>')
+  .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
+  .option('-n, --vm-name <vm-name>', $('vm-name'))
+  .option('--parameter-file <parameter-file>', $('the input parameter file'))
+  .option('-s, --subscription <subscription>', $('the subscription identifier'))
+  .execute(function(resourceGroupName, vMName, options, _) {
+    cli.output.verbose('resourceGroupName = ' + resourceGroupName);
+    cli.output.verbose('vMName = ' + vMName);
+    var subscription = profile.current.getSubscription(options.subscription);
+    var computeManagementClient = utils.createComputeManagementClient(subscription);
+    var result = computeManagementClient.virtualMachines.redeploy(resourceGroupName, vMName, _);
+    cli.output.json(result);
+  });
 
 
 };
