@@ -190,26 +190,7 @@
     <Compile Include="ServiceManagementPreviewProfile.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Automation\Import-CommonVariables.ps1" />
-    <None Include="Automation\Generate-FunctionCommand.ps1" />
-    <None Include="Automation\Generate-PowershellParameterCmdlet.ps1" />
-    <None Include="Automation\Import-AssemblyFunction.ps1" />
-    <None Include="Automation\Import-WriterFunction.ps1" />
-    <None Include="Automation\Import-TypeFunction.ps1" />
-    <None Include="Automation\Import-StringFunction.ps1" />
-    <None Include="Automation\Generate-ParameterCommand.ps1" />
-    <None Include="Automation\Create-ParameterTree.ps1" />
-    <None Include="Automation\Create-ParameterObject.ps1" />
-    <None Include="Automation\Import-OperationFunction.ps1" />
-    <None Include="Automation\Invoke-CodeGeneration.ps1" />
-    <None Include="Automation\ConvertTo-Json.ps1" />
     <None Include="AzurePreview.psd1">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Configuration\Compute.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Configuration\RDFE.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Microsoft.WindowsAzure.Commands.ServiceManagement.Preview.dll-Help.psd1">
