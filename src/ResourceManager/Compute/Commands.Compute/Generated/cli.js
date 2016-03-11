@@ -29,8 +29,56 @@ var utils = require('../../../util/utils');
 var $ = utils.getLocaleString;
 
 function beautify(jsonText) {
-    var obj = JSON.parse(jsonText);
-    return JSON.stringify(obj, null, 2);
+  var obj = JSON.parse(jsonText);
+  return JSON.stringify(obj, null, 2);
+}
+
+function capitalize(str) {
+  if (str && str.length >= 1) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+  else {
+    return str;
+  }
+}
+
+function makeTuple(k, v, d) {
+  return { key : k, value : v, depth : d };
+}
+
+function displayImpl(o, key, depth, arr) {
+  if ((!!o) && (o.constructor === Object || o.constructor === Array)) {
+    arr.push(makeTuple(key, '', depth));
+    var len = 0;
+    Object.keys(o).forEach(function(k1) {
+      var v1 = o[k1];
+      var p1 = o.constructor === Array ? '#' : '';
+      var w = displayImpl(v1, p1 + k1, depth + 1, arr);
+      if (w > len) {
+        len = w;
+      }
+    });
+    return len;
+  }
+  else {
+    arr.push(makeTuple(key, o ? o.toString() : '', depth));
+    return depth * 2 + (key ? key.length : 0);
+  }
+}
+
+function display(cli, o) {
+  var arr = [];
+  var width = displayImpl(o, '', 0, arr);
+  for (var t in arr) {
+    var prebuf = Array(arr[t].depth * 2).join(' ');
+    var key = arr[t].key ? arr[t].key : '';
+    var postbuf = Array(width - (prebuf.length + key.length) + 1).join(' ');
+    var str = prebuf + capitalize(key) + postbuf;
+    if (arr[t].value) {
+      str += arr[t].value;
+    }
+    cli.output.data(str);
+  }
 }
 
 exports.init = function (cli) {
@@ -189,12 +237,12 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, name, parameters, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!name) {
-      name = cli.interaction.promptIfNotGiven($('name : '), name, _)
+      name = cli.interaction.promptIfNotGiven($('name : '), name, _);
     }
 
     cli.output.verbose('name = ' + name);
@@ -415,13 +463,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove virtual-machine-scale-set
+  //config delete virtual-machine-scale-set
   var catparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1 = catparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1 = parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1.category('virtual-machine-scale-set')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1 = parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1.category('virtual-machine-scale-set')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1.command('delete')
   .description($('Remove virtual-machine-scale-set in config string or files, e.g. \r\n{\r\n  "sku":{\r\n    "name":"",\r\n    "tier":"",\r\n    "capacity":null\r\n  },\r\n  "upgradePolicy":{\r\n    "mode":""\r\n  },\r\n  "virtualMachineProfile":{\r\n    "osProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminUsername":"",\r\n      "adminPassword":"",\r\n      "customData":"",\r\n      "windowsConfiguration":{\r\n        "provisionVMAgent":null,\r\n        "enableAutomaticUpdates":null,\r\n        "timeZone":"",\r\n        "additionalUnattendContent":[\r\n          {\r\n            "passName":"",\r\n            "componentName":"",\r\n            "settingName":"",\r\n            "content":""\r\n          }\r\n        ],\r\n        "winRM":{\r\n          "listeners":[\r\n            {\r\n              "protocol":"",\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "ssh":{\r\n          "publicKeys":[\r\n            {\r\n              "path":"",\r\n              "keyData":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "id":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateUrl":"",\r\n              "certificateStore":""\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "publisher":"",\r\n        "offer":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "osDisk":{\r\n        "name":"",\r\n        "caching":"",\r\n        "createOption":"",\r\n        "osType":"",\r\n        "image":{\r\n          "uri":""\r\n        },\r\n        "vhdContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "name":"",\r\n          "primary":null,\r\n          "ipConfigurations":[\r\n            {\r\n              "name":"",\r\n              "subnet":{\r\n                "id":""\r\n              },\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "id":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "id":""\r\n                }\r\n              ],\r\n              "id":""\r\n            }\r\n          ],\r\n          "id":""\r\n        }\r\n      ]\r\n    },\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "name":"",\r\n          "publisher":"",\r\n          "virtualMachineScaleSetExtensionType":"",\r\n          "typeHandlerVersion":"",\r\n          "autoUpgradeMinorVersion":null,\r\n          "settings":{\r\n          },\r\n          "protectedSettings":{\r\n          },\r\n          "provisioningState":"",\r\n          "id":""\r\n        }\r\n      ]\r\n    }\r\n  },\r\n  "provisioningState":"",\r\n  "id":null,\r\n  "name":null,\r\n  "type":null,\r\n  "location":"",\r\n  "tags":{\r\n  }\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -710,13 +758,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove sku
+  //config delete sku
   var catparametersCreateOrUpdateVirtualMachineScaleSetsSku1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsSku1 = catparametersCreateOrUpdateVirtualMachineScaleSetsSku1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsSku1 = parametersCreateOrUpdateVirtualMachineScaleSetsSku1.category('sku')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsSku1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsSku1 = parametersCreateOrUpdateVirtualMachineScaleSetsSku1.category('sku')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsSku1.command('delete')
   .description($('Remove sku in config string or files, e.g. \r\n         {\r\n           ...\r\n           "sku" : {\r\n             "name":"",\r\n             "tier":"",\r\n             "capacity":null\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -887,13 +935,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove upgrade-policy
+  //config delete upgrade-policy
   var catparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy1 = catparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy1 = parametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy1.category('upgrade-policy')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy1 = parametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy1.category('upgrade-policy')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsUpgradePolicy1.command('delete')
   .description($('Remove upgrade-policy in config string or files, e.g. \r\n         {\r\n           ...\r\n           "upgradePolicy" : {\r\n             "mode":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -983,13 +1031,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove virtual-machine-profile
+  //config delete virtual-machine-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1.category('virtual-machine-profile')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1.category('virtual-machine-profile')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1.command('delete')
   .description($('Remove virtual-machine-profile in config string or files, e.g. \r\n         {\r\n           ...\r\n           "virtualMachineProfile" : {\r\n             "osProfile":{\r\n               "computerNamePrefix":"",\r\n               "adminUsername":"",\r\n               "adminPassword":"",\r\n               "customData":"",\r\n               "windowsConfiguration":{\r\n                 "provisionVMAgent":null,\r\n                 "enableAutomaticUpdates":null,\r\n                 "timeZone":"",\r\n                 "additionalUnattendContent":[\r\n                   {\r\n                     "passName":"",\r\n                     "componentName":"",\r\n                     "settingName":"",\r\n                     "content":""\r\n                   }\r\n                 ],\r\n                 "winRM":{\r\n                   "listeners":[\r\n                     {\r\n                       "protocol":"",\r\n                       "certificateUrl":""\r\n                     }\r\n                   ]\r\n                 }\r\n               },\r\n               "linuxConfiguration":{\r\n                 "disablePasswordAuthentication":null,\r\n                 "ssh":{\r\n                   "publicKeys":[\r\n                     {\r\n                       "path":"",\r\n                       "keyData":""\r\n                     }\r\n                   ]\r\n                 }\r\n               },\r\n               "secrets":[\r\n                 {\r\n                   "sourceVault":{\r\n                     "id":""\r\n                   },\r\n                   "vaultCertificates":[\r\n                     {\r\n                       "certificateUrl":"",\r\n                       "certificateStore":""\r\n                     }\r\n                   ]\r\n                 }\r\n               ]\r\n             },\r\n             "storageProfile":{\r\n               "imageReference":{\r\n                 "publisher":"",\r\n                 "offer":"",\r\n                 "sku":"",\r\n                 "version":""\r\n               },\r\n               "osDisk":{\r\n                 "name":"",\r\n                 "caching":"",\r\n                 "createOption":"",\r\n                 "osType":"",\r\n                 "image":{\r\n                   "uri":""\r\n                 },\r\n                 "vhdContainers":[\r\n                   ""\r\n                 ]\r\n               }\r\n             },\r\n             "networkProfile":{\r\n               "networkInterfaceConfigurations":[\r\n                 {\r\n                   "name":"",\r\n                   "primary":null,\r\n                   "ipConfigurations":[\r\n                     {\r\n                       "name":"",\r\n                       "subnet":{\r\n                         "id":""\r\n                       },\r\n                       "loadBalancerBackendAddressPools":[\r\n                         {\r\n                           "id":""\r\n                         }\r\n                       ],\r\n                       "loadBalancerInboundNatPools":[\r\n                         {\r\n                           "id":""\r\n                         }\r\n                       ],\r\n                       "id":""\r\n                     }\r\n                   ],\r\n                   "id":""\r\n                 }\r\n               ]\r\n             },\r\n             "extensionProfile":{\r\n               "extensions":[\r\n                 {\r\n                   "name":"",\r\n                   "publisher":"",\r\n                   "virtualMachineScaleSetExtensionType":"",\r\n                   "typeHandlerVersion":"",\r\n                   "autoUpgradeMinorVersion":null,\r\n                   "settings":{\r\n                   },\r\n                   "protectedSettings":{\r\n                   },\r\n                   "provisioningState":"",\r\n                   "id":""\r\n                 }\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1241,13 +1289,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove os-profile
+  //config delete os-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsOsProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetsOsProfile1.category('os-profile')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetsOsProfile1.category('os-profile')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsOsProfile1.command('delete')
   .description($('Remove os-profile in config string or files, e.g. \r\n         {\r\n           ...\r\n           "osProfile" : {\r\n             "computerNamePrefix":"",\r\n             "adminUsername":"",\r\n             "adminPassword":"",\r\n             "customData":"",\r\n             "windowsConfiguration":{\r\n               "provisionVMAgent":null,\r\n               "enableAutomaticUpdates":null,\r\n               "timeZone":"",\r\n               "additionalUnattendContent":[\r\n                 {\r\n                   "passName":"",\r\n                   "componentName":"",\r\n                   "settingName":"",\r\n                   "content":""\r\n                 }\r\n               ],\r\n               "winRM":{\r\n                 "listeners":[\r\n                   {\r\n                     "protocol":"",\r\n                     "certificateUrl":""\r\n                   }\r\n                 ]\r\n               }\r\n             },\r\n             "linuxConfiguration":{\r\n               "disablePasswordAuthentication":null,\r\n               "ssh":{\r\n                 "publicKeys":[\r\n                   {\r\n                     "path":"",\r\n                     "keyData":""\r\n                   }\r\n                 ]\r\n               }\r\n             },\r\n             "secrets":[\r\n               {\r\n                 "sourceVault":{\r\n                   "id":""\r\n                 },\r\n                 "vaultCertificates":[\r\n                   {\r\n                     "certificateUrl":"",\r\n                     "certificateStore":""\r\n                   }\r\n                 ]\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1527,13 +1575,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove windows-configuration
+  //config delete windows-configuration
   var catparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration1 = catparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration1.category('windows-configuration')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration1.category('windows-configuration')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsWindowsConfiguration1.command('delete')
   .description($('Remove windows-configuration in config string or files, e.g. \r\n         {\r\n           ...\r\n           "windowsConfiguration" : {\r\n             "provisionVMAgent":null,\r\n             "enableAutomaticUpdates":null,\r\n             "timeZone":"",\r\n             "additionalUnattendContent":[\r\n               {\r\n                 "passName":"",\r\n                 "componentName":"",\r\n                 "settingName":"",\r\n                 "content":""\r\n               }\r\n             ],\r\n             "winRM":{\r\n               "listeners":[\r\n                 {\r\n                   "protocol":"",\r\n                   "certificateUrl":""\r\n                 }\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1775,13 +1823,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove additional-unattend-content
+  //config delete additional-unattend-content
   var catparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent1 = catparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent1 = parametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent1.category('additional-unattend-content')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent1 = parametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent1.category('additional-unattend-content')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsAdditionalUnattendContent1.command('delete')
   .description($('Remove additional-unattend-content in config string or files, e.g. \r\n         {\r\n           ...\r\n           "additionalUnattendContent" : {\r\n             "passName":"",\r\n             "componentName":"",\r\n             "settingName":"",\r\n             "content":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -1920,13 +1968,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove win-rm
+  //config delete win-rm
   var catparametersCreateOrUpdateVirtualMachineScaleSetsWinRM1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsWinRM1 = catparametersCreateOrUpdateVirtualMachineScaleSetsWinRM1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsWinRM1 = parametersCreateOrUpdateVirtualMachineScaleSetsWinRM1.category('win-rm')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsWinRM1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsWinRM1 = parametersCreateOrUpdateVirtualMachineScaleSetsWinRM1.category('win-rm')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsWinRM1.command('delete')
   .description($('Remove win-rm in config string or files, e.g. \r\n         {\r\n           ...\r\n           "winRM" : {\r\n             "listeners":[\r\n               {\r\n                 "protocol":"",\r\n                 "certificateUrl":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2080,13 +2128,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove listeners
+  //config delete listeners
   var catparametersCreateOrUpdateVirtualMachineScaleSetsListeners1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsListeners1 = catparametersCreateOrUpdateVirtualMachineScaleSetsListeners1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsListeners1 = parametersCreateOrUpdateVirtualMachineScaleSetsListeners1.category('listeners')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsListeners1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsListeners1 = parametersCreateOrUpdateVirtualMachineScaleSetsListeners1.category('listeners')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsListeners1.command('delete')
   .description($('Remove listeners in config string or files, e.g. \r\n         {\r\n           ...\r\n           "listeners" : {\r\n             "protocol":"",\r\n             "certificateUrl":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2253,13 +2301,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove linux-configuration
+  //config delete linux-configuration
   var catparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration1 = catparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration1.category('linux-configuration')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration1 = parametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration1.category('linux-configuration')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsLinuxConfiguration1.command('delete')
   .description($('Remove linux-configuration in config string or files, e.g. \r\n         {\r\n           ...\r\n           "linuxConfiguration" : {\r\n             "disablePasswordAuthentication":null,\r\n             "ssh":{\r\n               "publicKeys":[\r\n                 {\r\n                   "path":"",\r\n                   "keyData":""\r\n                 }\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2366,13 +2414,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove ssh
+  //config delete ssh
   var catparametersCreateOrUpdateVirtualMachineScaleSetsSsh1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsSsh1 = catparametersCreateOrUpdateVirtualMachineScaleSetsSsh1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsSsh1 = parametersCreateOrUpdateVirtualMachineScaleSetsSsh1.category('ssh')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsSsh1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsSsh1 = parametersCreateOrUpdateVirtualMachineScaleSetsSsh1.category('ssh')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsSsh1.command('delete')
   .description($('Remove ssh in config string or files, e.g. \r\n         {\r\n           ...\r\n           "ssh" : {\r\n             "publicKeys":[\r\n               {\r\n                 "path":"",\r\n                 "keyData":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2526,13 +2574,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove public-keys
+  //config delete public-keys
   var catparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys1 = catparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys1 = parametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys1.category('public-keys')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys1 = parametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys1.category('public-keys')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsPublicKeys1.command('delete')
   .description($('Remove public-keys in config string or files, e.g. \r\n         {\r\n           ...\r\n           "publicKeys" : {\r\n             "path":"",\r\n             "keyData":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2639,13 +2687,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove secrets
+  //config delete secrets
   var catparametersCreateOrUpdateVirtualMachineScaleSetsSecrets1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsSecrets1 = catparametersCreateOrUpdateVirtualMachineScaleSetsSecrets1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsSecrets1 = parametersCreateOrUpdateVirtualMachineScaleSetsSecrets1.category('secrets')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsSecrets1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsSecrets1 = parametersCreateOrUpdateVirtualMachineScaleSetsSecrets1.category('secrets')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsSecrets1.command('delete')
   .description($('Remove secrets in config string or files, e.g. \r\n         {\r\n           ...\r\n           "secrets" : {\r\n             "sourceVault":{\r\n               "id":""\r\n             },\r\n             "vaultCertificates":[\r\n               {\r\n                 "certificateUrl":"",\r\n                 "certificateStore":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2801,13 +2849,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove source-vault
+  //config delete source-vault
   var catparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsSourceVault1 = catparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault1 = parametersCreateOrUpdateVirtualMachineScaleSetsSourceVault1.category('source-vault')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault1 = parametersCreateOrUpdateVirtualMachineScaleSetsSourceVault1.category('source-vault')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsSourceVault1.command('delete')
   .description($('Remove source-vault in config string or files, e.g. \r\n         {\r\n           ...\r\n           "sourceVault" : {\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -2963,13 +3011,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove vault-certificates
+  //config delete vault-certificates
   var catparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates1 = catparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates1 = parametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates1.category('vault-certificates')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates1 = parametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates1.category('vault-certificates')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsVaultCertificates1.command('delete')
   .description($('Remove vault-certificates in config string or files, e.g. \r\n         {\r\n           ...\r\n           "vaultCertificates" : {\r\n             "certificateUrl":"",\r\n             "certificateStore":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3077,13 +3125,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove storage-profile
+  //config delete storage-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1.category('storage-profile')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1.category('storage-profile')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1.command('delete')
   .description($('Remove storage-profile in config string or files, e.g. \r\n         {\r\n           ...\r\n           "storageProfile" : {\r\n             "imageReference":{\r\n               "publisher":"",\r\n               "offer":"",\r\n               "sku":"",\r\n               "version":""\r\n             },\r\n             "osDisk":{\r\n               "name":"",\r\n               "caching":"",\r\n               "createOption":"",\r\n               "osType":"",\r\n               "image":{\r\n                 "uri":""\r\n               },\r\n               "vhdContainers":[\r\n                 ""\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3270,13 +3318,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove image-reference
+  //config delete image-reference
   var catparametersCreateOrUpdateVirtualMachineScaleSetsImageReference1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsImageReference1 = catparametersCreateOrUpdateVirtualMachineScaleSetsImageReference1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsImageReference1 = parametersCreateOrUpdateVirtualMachineScaleSetsImageReference1.category('image-reference')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsImageReference1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsImageReference1 = parametersCreateOrUpdateVirtualMachineScaleSetsImageReference1.category('image-reference')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsImageReference1.command('delete')
   .description($('Remove image-reference in config string or files, e.g. \r\n         {\r\n           ...\r\n           "imageReference" : {\r\n             "publisher":"",\r\n             "offer":"",\r\n             "sku":"",\r\n             "version":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3517,13 +3565,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove os-disk
+  //config delete os-disk
   var catparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1 = catparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1 = parametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1.category('os-disk')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1 = parametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1.category('os-disk')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1.command('delete')
   .description($('Remove os-disk in config string or files, e.g. \r\n         {\r\n           ...\r\n           "osDisk" : {\r\n             "name":"",\r\n             "caching":"",\r\n             "createOption":"",\r\n             "osType":"",\r\n             "image":{\r\n               "uri":""\r\n             },\r\n             "vhdContainers":[\r\n               ""\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3741,13 +3789,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove image
+  //config delete image
   var catparametersCreateOrUpdateVirtualMachineScaleSetsImage1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsImage1 = catparametersCreateOrUpdateVirtualMachineScaleSetsImage1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsImage1 = parametersCreateOrUpdateVirtualMachineScaleSetsImage1.category('image')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsImage1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsImage1 = parametersCreateOrUpdateVirtualMachineScaleSetsImage1.category('image')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsImage1.command('delete')
   .description($('Remove image in config string or files, e.g. \r\n         {\r\n           ...\r\n           "image" : {\r\n             "uri":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3879,13 +3927,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove vhd-containers
+  //config delete vhd-containers
   var catparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers1 = catparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers1 = parametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers1.category('vhd-containers')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers1 = parametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers1.category('vhd-containers')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsVhdContainers1.command('delete')
   .description($('Remove vhd-containers in config string or files, e.g. \r\n         {\r\n           ...\r\n           "vhdContainers" : ""\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -3954,13 +4002,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove network-profile
+  //config delete network-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile1.category('network-profile')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile1.category('network-profile')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsNetworkProfile1.command('delete')
   .description($('Remove network-profile in config string or files, e.g. \r\n         {\r\n           ...\r\n           "networkProfile" : {\r\n             "networkInterfaceConfigurations":[\r\n               {\r\n                 "name":"",\r\n                 "primary":null,\r\n                 "ipConfigurations":[\r\n                   {\r\n                     "name":"",\r\n                     "subnet":{\r\n                       "id":""\r\n                     },\r\n                     "loadBalancerBackendAddressPools":[\r\n                       {\r\n                         "id":""\r\n                       }\r\n                     ],\r\n                     "loadBalancerInboundNatPools":[\r\n                       {\r\n                         "id":""\r\n                       }\r\n                     ],\r\n                     "id":""\r\n                   }\r\n                 ],\r\n                 "id":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4137,13 +4185,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove network-interface-configurations
+  //config delete network-interface-configurations
   var catparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations1 = catparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations1 = parametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations1.category('network-interface-configurations')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations1 = parametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations1.category('network-interface-configurations')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsNetworkInterfaceConfigurations1.command('delete')
   .description($('Remove network-interface-configurations in config string or files, e.g. \r\n         {\r\n           ...\r\n           "networkInterfaceConfigurations" : {\r\n             "name":"",\r\n             "primary":null,\r\n             "ipConfigurations":[\r\n               {\r\n                 "name":"",\r\n                 "subnet":{\r\n                   "id":""\r\n                 },\r\n                 "loadBalancerBackendAddressPools":[\r\n                   {\r\n                     "id":""\r\n                   }\r\n                 ],\r\n                 "loadBalancerInboundNatPools":[\r\n                   {\r\n                     "id":""\r\n                   }\r\n                 ],\r\n                 "id":""\r\n               }\r\n             ],\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4381,13 +4429,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove ip-configurations
+  //config delete ip-configurations
   var catparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations1 = catparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations1 = parametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations1.category('ip-configurations')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations1 = parametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations1.category('ip-configurations')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsIpConfigurations1.command('delete')
   .description($('Remove ip-configurations in config string or files, e.g. \r\n         {\r\n           ...\r\n           "ipConfigurations" : {\r\n             "name":"",\r\n             "subnet":{\r\n               "id":""\r\n             },\r\n             "loadBalancerBackendAddressPools":[\r\n               {\r\n                 "id":""\r\n               }\r\n             ],\r\n             "loadBalancerInboundNatPools":[\r\n               {\r\n                 "id":""\r\n               }\r\n             ],\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4593,13 +4641,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove subnet
+  //config delete subnet
   var catparametersCreateOrUpdateVirtualMachineScaleSetsSubnet1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsSubnet1 = catparametersCreateOrUpdateVirtualMachineScaleSetsSubnet1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsSubnet1 = parametersCreateOrUpdateVirtualMachineScaleSetsSubnet1.category('subnet')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsSubnet1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsSubnet1 = parametersCreateOrUpdateVirtualMachineScaleSetsSubnet1.category('subnet')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsSubnet1.command('delete')
   .description($('Remove subnet in config string or files, e.g. \r\n         {\r\n           ...\r\n           "subnet" : {\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4746,13 +4794,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove load-balancer-backend-address-pools
+  //config delete load-balancer-backend-address-pools
   var catparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools1 = catparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools1 = parametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools1.category('load-balancer-backend-address-pools')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools1 = parametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools1.category('load-balancer-backend-address-pools')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerBackendAddressPools1.command('delete')
   .description($('Remove load-balancer-backend-address-pools in config string or files, e.g. \r\n         {\r\n           ...\r\n           "loadBalancerBackendAddressPools" : {\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4900,13 +4948,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove load-balancer-inbound-nat-pools
+  //config delete load-balancer-inbound-nat-pools
   var catparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerInboundNatPools1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerInboundNatPools1 = catparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerInboundNatPools1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerInboundNatPools1 = parametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerInboundNatPools1.category('load-balancer-inbound-nat-pools')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerInboundNatPools1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerInboundNatPools1 = parametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerInboundNatPools1.category('load-balancer-inbound-nat-pools')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsLoadBalancerInboundNatPools1.command('delete')
   .description($('Remove load-balancer-inbound-nat-pools in config string or files, e.g. \r\n         {\r\n           ...\r\n           "loadBalancerInboundNatPools" : {\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -4999,13 +5047,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove extension-profile
+  //config delete extension-profile
   var catparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile1 = catparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile1.category('extension-profile')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile1.category('extension-profile')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsExtensionProfile1.command('delete')
   .description($('Remove extension-profile in config string or files, e.g. \r\n         {\r\n           ...\r\n           "extensionProfile" : {\r\n             "extensions":[\r\n               {\r\n                 "name":"",\r\n                 "publisher":"",\r\n                 "virtualMachineScaleSetExtensionType":"",\r\n                 "typeHandlerVersion":"",\r\n                 "autoUpgradeMinorVersion":null,\r\n                 "settings":{\r\n                 },\r\n                 "protectedSettings":{\r\n                 },\r\n                 "provisioningState":"",\r\n                 "id":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5237,13 +5285,13 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
-  //config remove extensions
+  //config delete extensions
   var catparametersCreateOrUpdateVirtualMachineScaleSetsExtensions1 = cli.category('vmss');
   var parametersCreateOrUpdateVirtualMachineScaleSetsExtensions1 = catparametersCreateOrUpdateVirtualMachineScaleSetsExtensions1.category('config')
   .description($('Commands to manage configuration of virtual-machine-scale-sets in the parameter file.'));
-  var removeparametersCreateOrUpdateVirtualMachineScaleSetsExtensions1 = parametersCreateOrUpdateVirtualMachineScaleSetsExtensions1.category('extensions')
-  .description($('Commands to remove components of virtual-machine-scale-sets in config file.'));
-  removeparametersCreateOrUpdateVirtualMachineScaleSetsExtensions1.command('remove')
+  var deleteparametersCreateOrUpdateVirtualMachineScaleSetsExtensions1 = parametersCreateOrUpdateVirtualMachineScaleSetsExtensions1.category('extensions')
+  .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
+  deleteparametersCreateOrUpdateVirtualMachineScaleSetsExtensions1.command('delete')
   .description($('Remove extensions in config string or files, e.g. \r\n         {\r\n           ...\r\n           "extensions" : {\r\n             "name":"",\r\n             "publisher":"",\r\n             "virtualMachineScaleSetExtensionType":"",\r\n             "typeHandlerVersion":"",\r\n             "autoUpgradeMinorVersion":null,\r\n             "settings":{\r\n             },\r\n             "protectedSettings":{\r\n             },\r\n             "provisioningState":"",\r\n             "id":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
@@ -5482,12 +5530,12 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, instanceIds, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
@@ -5530,12 +5578,12 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
@@ -5564,12 +5612,12 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, instanceIds, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
@@ -5612,20 +5660,23 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSets.get(resourceGroupName, vMScaleSetName, _);
-    if (result) {
+    if (cli.output.format().json) {
       cli.output.json(result);
+    }
+    else {
+      display(cli, result);
     }
   });
 /*
@@ -5644,20 +5695,23 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSets.getInstanceView(resourceGroupName, vMScaleSetName, _);
-    if (result) {
+    if (cli.output.format().json) {
       cli.output.json(result);
+    }
+    else {
+      display(cli, result);
     }
   });
 /*
@@ -5674,7 +5728,7 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
@@ -5755,12 +5809,12 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
@@ -5798,12 +5852,12 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, instanceIds, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
@@ -5846,12 +5900,12 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
@@ -5880,12 +5934,12 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, instanceIds, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
@@ -5930,12 +5984,12 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, instanceIds, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
@@ -5980,12 +6034,12 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, instanceIds, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
@@ -6030,17 +6084,17 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, instanceId, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     if (!instanceId) {
-      instanceId = cli.interaction.promptIfNotGiven($('instance-id : '), instanceId, _)
+      instanceId = cli.interaction.promptIfNotGiven($('instance-id : '), instanceId, _);
     }
 
     cli.output.verbose('instanceId = ' + instanceId);
@@ -6069,17 +6123,17 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, instanceId, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     if (!instanceId) {
-      instanceId = cli.interaction.promptIfNotGiven($('instance-id : '), instanceId, _)
+      instanceId = cli.interaction.promptIfNotGiven($('instance-id : '), instanceId, _);
     }
 
     cli.output.verbose('instanceId = ' + instanceId);
@@ -6108,25 +6162,28 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, instanceId, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     if (!instanceId) {
-      instanceId = cli.interaction.promptIfNotGiven($('instance-id : '), instanceId, _)
+      instanceId = cli.interaction.promptIfNotGiven($('instance-id : '), instanceId, _);
     }
 
     cli.output.verbose('instanceId = ' + instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSetVMs.get(resourceGroupName, vMScaleSetName, instanceId, _);
-    if (result) {
+    if (cli.output.format().json) {
       cli.output.json(result);
+    }
+    else {
+      display(cli, result);
     }
   });
 /*
@@ -6147,25 +6204,28 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, instanceId, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     if (!instanceId) {
-      instanceId = cli.interaction.promptIfNotGiven($('instance-id : '), instanceId, _)
+      instanceId = cli.interaction.promptIfNotGiven($('instance-id : '), instanceId, _);
     }
 
     cli.output.verbose('instanceId = ' + instanceId);
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSetVMs.getInstanceView(resourceGroupName, vMScaleSetName, instanceId, _);
-    if (result) {
+    if (cli.output.format().json) {
       cli.output.json(result);
+    }
+    else {
+      display(cli, result);
     }
   });
 /*
@@ -6184,12 +6244,12 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, virtualMachineScaleSetName, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!virtualMachineScaleSetName) {
-      virtualMachineScaleSetName = cli.interaction.promptIfNotGiven($('virtual-machine-scale-set-name : '), virtualMachineScaleSetName, _)
+      virtualMachineScaleSetName = cli.interaction.promptIfNotGiven($('virtual-machine-scale-set-name : '), virtualMachineScaleSetName, _);
     }
 
     cli.output.verbose('virtualMachineScaleSetName = ' + virtualMachineScaleSetName);
@@ -6236,17 +6296,17 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, instanceId, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     if (!instanceId) {
-      instanceId = cli.interaction.promptIfNotGiven($('instance-id : '), instanceId, _)
+      instanceId = cli.interaction.promptIfNotGiven($('instance-id : '), instanceId, _);
     }
 
     cli.output.verbose('instanceId = ' + instanceId);
@@ -6275,17 +6335,17 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, instanceId, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     if (!instanceId) {
-      instanceId = cli.interaction.promptIfNotGiven($('instance-id : '), instanceId, _)
+      instanceId = cli.interaction.promptIfNotGiven($('instance-id : '), instanceId, _);
     }
 
     cli.output.verbose('instanceId = ' + instanceId);
@@ -6314,17 +6374,17 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, instanceId, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     if (!instanceId) {
-      instanceId = cli.interaction.promptIfNotGiven($('instance-id : '), instanceId, _)
+      instanceId = cli.interaction.promptIfNotGiven($('instance-id : '), instanceId, _);
     }
 
     cli.output.verbose('instanceId = ' + instanceId);
@@ -6353,17 +6413,17 @@ exports.init = function (cli) {
   .option('-s, --subscription <subscription>', $('the subscription identifier'))
   .execute(function(resourceGroupName, vMScaleSetName, instanceId, options, _) {
     if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _)
+      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
     }
 
     cli.output.verbose('resourceGroupName = ' + resourceGroupName);
     if (!vMScaleSetName) {
-      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _)
+      vMScaleSetName = cli.interaction.promptIfNotGiven($('vm-scale-set-name : '), vMScaleSetName, _);
     }
 
     cli.output.verbose('vMScaleSetName = ' + vMScaleSetName);
     if (!instanceId) {
-      instanceId = cli.interaction.promptIfNotGiven($('instance-id : '), instanceId, _)
+      instanceId = cli.interaction.promptIfNotGiven($('instance-id : '), instanceId, _);
     }
 
     cli.output.verbose('instanceId = ' + instanceId);
