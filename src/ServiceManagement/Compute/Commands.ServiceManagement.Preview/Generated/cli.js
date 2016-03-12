@@ -228,7 +228,7 @@ exports.init = function (cli) {
   .description($('Set deployment-change-configuration-parameters in change-configuration-by-name-parameters string or files, e.g. \r\n{\r\n  "configuration":"",\r\n  "extendedProperties":{\r\n  },\r\n  "extensionConfiguration":{\r\n    "allRoles":[\r\n      {\r\n        "id":"",\r\n        "state":""\r\n      }\r\n    ],\r\n    "namedRoles":[\r\n      {\r\n        "extensions":[\r\n          {\r\n            "id":"",\r\n            "state":""\r\n          }\r\n        ],\r\n        "roleName":""\r\n      }\r\n    ]\r\n  },\r\n  "mode":null,\r\n  "treatWarningsAsError":null\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--configuration <configuration>', $('Set the configuration value.'))
   .option('--extended-properties <extendedProperties>', $('Set the extended-properties value.'))
   .option('--extension-configuration <extensionConfiguration>', $('Set the extension-configuration value.'))
@@ -394,7 +394,7 @@ exports.init = function (cli) {
   .description($('Set extension-configuration in change-configuration-by-name-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "extensionConfiguration" : {\r\n             "allRoles":[\r\n               {\r\n                 "id":"",\r\n                 "state":""\r\n               }\r\n             ],\r\n             "namedRoles":[\r\n               {\r\n                 "extensions":[\r\n                   {\r\n                     "id":"",\r\n                     "state":""\r\n                   }\r\n                 ],\r\n                 "roleName":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--all-roles <allRoles>', $('Set the all-roles value.'))
   .option('--named-roles <namedRoles>', $('Set the named-roles value.'))
   .execute(function(options, _) {
@@ -510,7 +510,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--id <id>', $('Set the id value.'))
   .option('--state <state>', $('Set the state value.'))
   .execute(function(options, _) {
@@ -631,7 +631,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--extensions <extensions>', $('Set the extensions value.'))
   .option('--role-name <roleName>', $('Set the role-name value.'))
   .execute(function(options, _) {
@@ -753,7 +753,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--named-roles-index <named-roles-index>', $('Indexer: named-roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
     if (!options.parameterFile) {
@@ -969,7 +969,7 @@ exports.init = function (cli) {
   .description($('Set deployment-change-configuration-parameters in change-configuration-by-slot-parameters string or files, e.g. \r\n{\r\n  "configuration":"",\r\n  "extendedProperties":{\r\n  },\r\n  "extensionConfiguration":{\r\n    "allRoles":[\r\n      {\r\n        "id":"",\r\n        "state":""\r\n      }\r\n    ],\r\n    "namedRoles":[\r\n      {\r\n        "extensions":[\r\n          {\r\n            "id":"",\r\n            "state":""\r\n          }\r\n        ],\r\n        "roleName":""\r\n      }\r\n    ]\r\n  },\r\n  "mode":null,\r\n  "treatWarningsAsError":null\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--configuration <configuration>', $('Set the configuration value.'))
   .option('--extended-properties <extendedProperties>', $('Set the extended-properties value.'))
   .option('--extension-configuration <extensionConfiguration>', $('Set the extension-configuration value.'))
@@ -1135,7 +1135,7 @@ exports.init = function (cli) {
   .description($('Set extension-configuration in change-configuration-by-slot-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "extensionConfiguration" : {\r\n             "allRoles":[\r\n               {\r\n                 "id":"",\r\n                 "state":""\r\n               }\r\n             ],\r\n             "namedRoles":[\r\n               {\r\n                 "extensions":[\r\n                   {\r\n                     "id":"",\r\n                     "state":""\r\n                   }\r\n                 ],\r\n                 "roleName":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--all-roles <allRoles>', $('Set the all-roles value.'))
   .option('--named-roles <namedRoles>', $('Set the named-roles value.'))
   .execute(function(options, _) {
@@ -1251,7 +1251,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--id <id>', $('Set the id value.'))
   .option('--state <state>', $('Set the state value.'))
   .execute(function(options, _) {
@@ -1372,7 +1372,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--extensions <extensions>', $('Set the extensions value.'))
   .option('--role-name <roleName>', $('Set the role-name value.'))
   .execute(function(options, _) {
@@ -1494,7 +1494,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--named-roles-index <named-roles-index>', $('Indexer: named-roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
     if (!options.parameterFile) {
@@ -1713,7 +1713,7 @@ exports.init = function (cli) {
   .description($('Set deployment-create-parameters in create-parameters string or files, e.g. \r\n{\r\n  "configuration":"",\r\n  "extendedProperties":{\r\n  },\r\n  "extensionConfiguration":{\r\n    "allRoles":[\r\n      {\r\n        "id":"",\r\n        "state":""\r\n      }\r\n    ],\r\n    "namedRoles":[\r\n      {\r\n        "extensions":[\r\n          {\r\n            "id":"",\r\n            "state":""\r\n          }\r\n        ],\r\n        "roleName":""\r\n      }\r\n    ]\r\n  },\r\n  "label":"",\r\n  "name":"",\r\n  "packageUri":"",\r\n  "startDeployment":null,\r\n  "treatWarningsAsError":null\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--configuration <configuration>', $('Set the configuration value.'))
   .option('--extended-properties <extendedProperties>', $('Set the extended-properties value.'))
   .option('--extension-configuration <extensionConfiguration>', $('Set the extension-configuration value.'))
@@ -1931,7 +1931,7 @@ exports.init = function (cli) {
   .description($('Set extension-configuration in create-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "extensionConfiguration" : {\r\n             "allRoles":[\r\n               {\r\n                 "id":"",\r\n                 "state":""\r\n               }\r\n             ],\r\n             "namedRoles":[\r\n               {\r\n                 "extensions":[\r\n                   {\r\n                     "id":"",\r\n                     "state":""\r\n                   }\r\n                 ],\r\n                 "roleName":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--all-roles <allRoles>', $('Set the all-roles value.'))
   .option('--named-roles <namedRoles>', $('Set the named-roles value.'))
   .execute(function(options, _) {
@@ -2047,7 +2047,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--id <id>', $('Set the id value.'))
   .option('--state <state>', $('Set the state value.'))
   .execute(function(options, _) {
@@ -2168,7 +2168,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--extensions <extensions>', $('Set the extensions value.'))
   .option('--role-name <roleName>', $('Set the role-name value.'))
   .execute(function(options, _) {
@@ -2290,7 +2290,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--named-roles-index <named-roles-index>', $('Indexer: named-roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
     if (!options.parameterFile) {
@@ -2612,7 +2612,7 @@ exports.init = function (cli) {
   .description($('Set deployment-delete-role-instance-parameters in delete-role-instance-by-deployment-slot-parameters string or files, e.g. \r\n{\r\n  "name":[\r\n    ""\r\n  ]\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--name <name>', $('Set the name value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -2711,7 +2711,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
     if (!options.parameterFile) {
@@ -2970,7 +2970,7 @@ exports.init = function (cli) {
   .description($('Set deployment-get-package-parameters in get-package-by-name-parameters string or files, e.g. \r\n{\r\n  "containerUri":"",\r\n  "overwriteExisting":null\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--container-uri <containerUri>', $('Set the container-uri value.'))
   .option('--overwrite-existing <overwriteExisting>', $('Set the overwrite-existing value.'))
   .execute(function(options, _) {
@@ -3199,7 +3199,7 @@ exports.init = function (cli) {
   .description($('Set deployment-get-package-parameters in get-package-by-slot-parameters string or files, e.g. \r\n{\r\n  "containerUri":"",\r\n  "overwriteExisting":null\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--container-uri <containerUri>', $('Set the container-uri value.'))
   .option('--overwrite-existing <overwriteExisting>', $('Set the overwrite-existing value.'))
   .execute(function(options, _) {
@@ -3774,7 +3774,7 @@ exports.init = function (cli) {
   .description($('Set deployment-rollback-update-or-upgrade-parameters in rollback-update-or-upgrade-by-deployment-name-parameters string or files, e.g. \r\n{\r\n  "force":false,\r\n  "mode":0\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--force <force>', $('Set the force value.'))
   .option('--mode <mode>', $('Set the mode value.'))
   .execute(function(options, _) {
@@ -4038,7 +4038,7 @@ exports.init = function (cli) {
   .description($('Set deployment-rollback-update-or-upgrade-parameters in rollback-update-or-upgrade-by-deployment-slot-parameters string or files, e.g. \r\n{\r\n  "force":false,\r\n  "mode":0\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--force <force>', $('Set the force value.'))
   .option('--mode <mode>', $('Set the mode value.'))
   .execute(function(options, _) {
@@ -4348,7 +4348,7 @@ exports.init = function (cli) {
   .description($('Set deployment-update-status-parameters in update-status-by-deployment-name-parameters string or files, e.g. \r\n{\r\n  "status":0\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--status <status>', $('Set the status value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -4594,7 +4594,7 @@ exports.init = function (cli) {
   .description($('Set deployment-update-status-parameters in update-status-by-deployment-slot-parameters string or files, e.g. \r\n{\r\n  "status":0\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--status <status>', $('Set the status value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -4866,7 +4866,7 @@ exports.init = function (cli) {
   .description($('Set deployment-upgrade-parameters in upgrade-by-name-parameters string or files, e.g. \r\n{\r\n  "configuration":"",\r\n  "extendedProperties":{\r\n  },\r\n  "extensionConfiguration":{\r\n    "allRoles":[\r\n      {\r\n        "id":"",\r\n        "state":""\r\n      }\r\n    ],\r\n    "namedRoles":[\r\n      {\r\n        "extensions":[\r\n          {\r\n            "id":"",\r\n            "state":""\r\n          }\r\n        ],\r\n        "roleName":""\r\n      }\r\n    ]\r\n  },\r\n  "force":false,\r\n  "label":"",\r\n  "mode":0,\r\n  "packageUri":"",\r\n  "roleToUpgrade":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--configuration <configuration>', $('Set the configuration value.'))
   .option('--extended-properties <extendedProperties>', $('Set the extended-properties value.'))
   .option('--extension-configuration <extensionConfiguration>', $('Set the extension-configuration value.'))
@@ -5082,7 +5082,7 @@ exports.init = function (cli) {
   .description($('Set extension-configuration in upgrade-by-name-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "extensionConfiguration" : {\r\n             "allRoles":[\r\n               {\r\n                 "id":"",\r\n                 "state":""\r\n               }\r\n             ],\r\n             "namedRoles":[\r\n               {\r\n                 "extensions":[\r\n                   {\r\n                     "id":"",\r\n                     "state":""\r\n                   }\r\n                 ],\r\n                 "roleName":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--all-roles <allRoles>', $('Set the all-roles value.'))
   .option('--named-roles <namedRoles>', $('Set the named-roles value.'))
   .execute(function(options, _) {
@@ -5198,7 +5198,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--id <id>', $('Set the id value.'))
   .option('--state <state>', $('Set the state value.'))
   .execute(function(options, _) {
@@ -5319,7 +5319,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--extensions <extensions>', $('Set the extensions value.'))
   .option('--role-name <roleName>', $('Set the role-name value.'))
   .execute(function(options, _) {
@@ -5441,7 +5441,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--named-roles-index <named-roles-index>', $('Indexer: named-roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
     if (!options.parameterFile) {
@@ -5696,7 +5696,7 @@ exports.init = function (cli) {
   .description($('Set deployment-upgrade-parameters in upgrade-by-slot-parameters string or files, e.g. \r\n{\r\n  "configuration":"",\r\n  "extendedProperties":{\r\n  },\r\n  "extensionConfiguration":{\r\n    "allRoles":[\r\n      {\r\n        "id":"",\r\n        "state":""\r\n      }\r\n    ],\r\n    "namedRoles":[\r\n      {\r\n        "extensions":[\r\n          {\r\n            "id":"",\r\n            "state":""\r\n          }\r\n        ],\r\n        "roleName":""\r\n      }\r\n    ]\r\n  },\r\n  "force":false,\r\n  "label":"",\r\n  "mode":0,\r\n  "packageUri":"",\r\n  "roleToUpgrade":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--configuration <configuration>', $('Set the configuration value.'))
   .option('--extended-properties <extendedProperties>', $('Set the extended-properties value.'))
   .option('--extension-configuration <extensionConfiguration>', $('Set the extension-configuration value.'))
@@ -5912,7 +5912,7 @@ exports.init = function (cli) {
   .description($('Set extension-configuration in upgrade-by-slot-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "extensionConfiguration" : {\r\n             "allRoles":[\r\n               {\r\n                 "id":"",\r\n                 "state":""\r\n               }\r\n             ],\r\n             "namedRoles":[\r\n               {\r\n                 "extensions":[\r\n                   {\r\n                     "id":"",\r\n                     "state":""\r\n                   }\r\n                 ],\r\n                 "roleName":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--all-roles <allRoles>', $('Set the all-roles value.'))
   .option('--named-roles <namedRoles>', $('Set the named-roles value.'))
   .execute(function(options, _) {
@@ -6028,7 +6028,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--id <id>', $('Set the id value.'))
   .option('--state <state>', $('Set the state value.'))
   .execute(function(options, _) {
@@ -6149,7 +6149,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--extensions <extensions>', $('Set the extensions value.'))
   .option('--role-name <roleName>', $('Set the role-name value.'))
   .execute(function(options, _) {
@@ -6271,7 +6271,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--named-roles-index <named-roles-index>', $('Indexer: named-roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
     if (!options.parameterFile) {
@@ -6500,7 +6500,7 @@ exports.init = function (cli) {
   .description($('Set deployment-walk-upgrade-domain-parameters in walk-upgrade-domain-by-deployment-name-parameters string or files, e.g. \r\n{\r\n  "upgradeDomain":0\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--upgrade-domain <upgradeDomain>', $('Set the upgrade-domain value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -6710,7 +6710,7 @@ exports.init = function (cli) {
   .description($('Set deployment-walk-upgrade-domain-parameters in walk-upgrade-domain-by-deployment-slot-parameters string or files, e.g. \r\n{\r\n  "upgradeDomain":0\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--upgrade-domain <upgradeDomain>', $('Set the upgrade-domain value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -7120,7 +7120,7 @@ exports.init = function (cli) {
   .description($('Set extension-image-register-parameters in register-parameters string or files, e.g. \r\n{\r\n  "blockRoleUponFailure":null,\r\n  "certificate":{\r\n    "storeLocation":"",\r\n    "storeName":"",\r\n    "thumbprintAlgorithm":"",\r\n    "thumbprintRequired":null\r\n  },\r\n  "companyName":"",\r\n  "description":"",\r\n  "disallowMajorVersionUpgrade":null,\r\n  "eula":"",\r\n  "extensionEndpoints":{\r\n    "inputEndpoints":[\r\n      {\r\n        "localPort":"",\r\n        "name":"",\r\n        "port":0,\r\n        "protocol":""\r\n      }\r\n    ],\r\n    "instanceInputEndpoints":[\r\n      {\r\n        "fixedPortMax":0,\r\n        "fixedPortMin":0,\r\n        "localPort":"",\r\n        "name":"",\r\n        "protocol":""\r\n      }\r\n    ],\r\n    "internalEndpoints":[\r\n      {\r\n        "name":"",\r\n        "port":0,\r\n        "protocol":""\r\n      }\r\n    ]\r\n  },\r\n  "homepageUri":"",\r\n  "hostingResources":"",\r\n  "isInternalExtension":null,\r\n  "isJsonExtension":null,\r\n  "label":"",\r\n  "localResources":[\r\n    {\r\n      "name":"",\r\n      "sizeInMB":null\r\n    }\r\n  ],\r\n  "mediaLink":"",\r\n  "privacyUri":"",\r\n  "privateConfigurationSchema":"",\r\n  "providerNameSpace":"",\r\n  "publicConfigurationSchema":"",\r\n  "publishedDate":null,\r\n  "publisherName":"",\r\n  "regions":"",\r\n  "replicationCompleted":null,\r\n  "sampleConfig":"",\r\n  "supportedOS":"",\r\n  "type":"",\r\n  "version":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--block-role-upon-failure <blockRoleUponFailure>', $('Set the block-role-upon-failure value.'))
   .option('--certificate <certificate>', $('Set the certificate value.'))
   .option('--company-name <companyName>', $('Set the company-name value.'))
@@ -7647,7 +7647,7 @@ exports.init = function (cli) {
   .description($('Set certificate in register-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "certificate" : {\r\n             "storeLocation":"",\r\n             "storeName":"",\r\n             "thumbprintAlgorithm":"",\r\n             "thumbprintRequired":null\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--store-location <storeLocation>', $('Set the store-location value.'))
   .option('--store-name <storeName>', $('Set the store-name value.'))
   .option('--thumbprint-algorithm <thumbprintAlgorithm>', $('Set the thumbprint-algorithm value.'))
@@ -7796,7 +7796,7 @@ exports.init = function (cli) {
   .description($('Set extension-endpoints in register-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "extensionEndpoints" : {\r\n             "inputEndpoints":[\r\n               {\r\n                 "localPort":"",\r\n                 "name":"",\r\n                 "port":0,\r\n                 "protocol":""\r\n               }\r\n             ],\r\n             "instanceInputEndpoints":[\r\n               {\r\n                 "fixedPortMax":0,\r\n                 "fixedPortMin":0,\r\n                 "localPort":"",\r\n                 "name":"",\r\n                 "protocol":""\r\n               }\r\n             ],\r\n             "internalEndpoints":[\r\n               {\r\n                 "name":"",\r\n                 "port":0,\r\n                 "protocol":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--input-endpoints <inputEndpoints>', $('Set the input-endpoints value.'))
   .option('--instance-input-endpoints <instanceInputEndpoints>', $('Set the instance-input-endpoints value.'))
   .option('--internal-endpoints <internalEndpoints>', $('Set the internal-endpoints value.'))
@@ -7929,7 +7929,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--local-port <localPort>', $('Set the local-port value.'))
   .option('--name <name>', $('Set the name value.'))
   .option('--port <port>', $('Set the port value.'))
@@ -8084,7 +8084,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--fixed-port-max <fixedPortMax>', $('Set the fixed-port-max value.'))
   .option('--fixed-port-min <fixedPortMin>', $('Set the fixed-port-min value.'))
   .option('--local-port <localPort>', $('Set the local-port value.'))
@@ -8256,7 +8256,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--name <name>', $('Set the name value.'))
   .option('--port <port>', $('Set the port value.'))
   .option('--protocol <protocol>', $('Set the protocol value.'))
@@ -8394,7 +8394,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--name <name>', $('Set the name value.'))
   .option('--size-in-m-b <sizeInMB>', $('Set the size-in-m-b value.'))
   .execute(function(options, _) {
@@ -8711,7 +8711,7 @@ exports.init = function (cli) {
   .description($('Set extension-image-update-parameters in update-parameters string or files, e.g. \r\n{\r\n  "blockRoleUponFailure":null,\r\n  "certificate":{\r\n    "storeLocation":"",\r\n    "storeName":"",\r\n    "thumbprintAlgorithm":"",\r\n    "thumbprintRequired":null\r\n  },\r\n  "companyName":"",\r\n  "description":"",\r\n  "disallowMajorVersionUpgrade":null,\r\n  "eula":"",\r\n  "extensionEndpoints":{\r\n    "inputEndpoints":[\r\n      {\r\n        "localPort":"",\r\n        "name":"",\r\n        "port":0,\r\n        "protocol":""\r\n      }\r\n    ],\r\n    "instanceInputEndpoints":[\r\n      {\r\n        "fixedPortMax":0,\r\n        "fixedPortMin":0,\r\n        "localPort":"",\r\n        "name":"",\r\n        "protocol":""\r\n      }\r\n    ],\r\n    "internalEndpoints":[\r\n      {\r\n        "name":"",\r\n        "port":0,\r\n        "protocol":""\r\n      }\r\n    ]\r\n  },\r\n  "homepageUri":"",\r\n  "hostingResources":"",\r\n  "isInternalExtension":null,\r\n  "isJsonExtension":null,\r\n  "label":"",\r\n  "localResources":[\r\n    {\r\n      "name":"",\r\n      "sizeInMB":null\r\n    }\r\n  ],\r\n  "mediaLink":"",\r\n  "privacyUri":"",\r\n  "privateConfigurationSchema":"",\r\n  "providerNameSpace":"",\r\n  "publicConfigurationSchema":"",\r\n  "publishedDate":null,\r\n  "publisherName":"",\r\n  "regions":"",\r\n  "replicationCompleted":null,\r\n  "sampleConfig":"",\r\n  "supportedOS":"",\r\n  "type":"",\r\n  "version":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--block-role-upon-failure <blockRoleUponFailure>', $('Set the block-role-upon-failure value.'))
   .option('--certificate <certificate>', $('Set the certificate value.'))
   .option('--company-name <companyName>', $('Set the company-name value.'))
@@ -9238,7 +9238,7 @@ exports.init = function (cli) {
   .description($('Set certificate in update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "certificate" : {\r\n             "storeLocation":"",\r\n             "storeName":"",\r\n             "thumbprintAlgorithm":"",\r\n             "thumbprintRequired":null\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--store-location <storeLocation>', $('Set the store-location value.'))
   .option('--store-name <storeName>', $('Set the store-name value.'))
   .option('--thumbprint-algorithm <thumbprintAlgorithm>', $('Set the thumbprint-algorithm value.'))
@@ -9387,7 +9387,7 @@ exports.init = function (cli) {
   .description($('Set extension-endpoints in update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "extensionEndpoints" : {\r\n             "inputEndpoints":[\r\n               {\r\n                 "localPort":"",\r\n                 "name":"",\r\n                 "port":0,\r\n                 "protocol":""\r\n               }\r\n             ],\r\n             "instanceInputEndpoints":[\r\n               {\r\n                 "fixedPortMax":0,\r\n                 "fixedPortMin":0,\r\n                 "localPort":"",\r\n                 "name":"",\r\n                 "protocol":""\r\n               }\r\n             ],\r\n             "internalEndpoints":[\r\n               {\r\n                 "name":"",\r\n                 "port":0,\r\n                 "protocol":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--input-endpoints <inputEndpoints>', $('Set the input-endpoints value.'))
   .option('--instance-input-endpoints <instanceInputEndpoints>', $('Set the instance-input-endpoints value.'))
   .option('--internal-endpoints <internalEndpoints>', $('Set the internal-endpoints value.'))
@@ -9520,7 +9520,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--local-port <localPort>', $('Set the local-port value.'))
   .option('--name <name>', $('Set the name value.'))
   .option('--port <port>', $('Set the port value.'))
@@ -9675,7 +9675,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--fixed-port-max <fixedPortMax>', $('Set the fixed-port-max value.'))
   .option('--fixed-port-min <fixedPortMin>', $('Set the fixed-port-min value.'))
   .option('--local-port <localPort>', $('Set the local-port value.'))
@@ -9847,7 +9847,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--name <name>', $('Set the name value.'))
   .option('--port <port>', $('Set the port value.'))
   .option('--protocol <protocol>', $('Set the protocol value.'))
@@ -9985,7 +9985,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--name <name>', $('Set the name value.'))
   .option('--size-in-m-b <sizeInMB>', $('Set the size-in-m-b value.'))
   .execute(function(options, _) {
@@ -10306,7 +10306,7 @@ exports.init = function (cli) {
   .description($('Set hosted-service-create-parameters in create-parameters string or files, e.g. \r\n{\r\n  "affinityGroup":"",\r\n  "description":"",\r\n  "extendedProperties":{\r\n  },\r\n  "label":"",\r\n  "location":"",\r\n  "reverseDnsFqdn":"",\r\n  "serviceName":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--affinity-group <affinityGroup>', $('Set the affinity-group value.'))
   .option('--description <description>', $('Set the description value.'))
   .option('--extended-properties <extendedProperties>', $('Set the extended-properties value.'))
@@ -10893,7 +10893,7 @@ exports.init = function (cli) {
   .description($('Set hosted-service-update-parameters in update-parameters string or files, e.g. \r\n{\r\n  "description":"",\r\n  "extendedProperties":{\r\n  },\r\n  "label":"",\r\n  "reverseDnsFqdn":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--description <description>', $('Set the description value.'))
   .option('--extended-properties <extendedProperties>', $('Set the extended-properties value.'))
   .option('--label <label>', $('Set the label value.'))
@@ -11159,7 +11159,7 @@ exports.init = function (cli) {
   .description($('Set load-balancer-create-parameters in create-parameters string or files, e.g. \r\n{\r\n  "frontendIPConfiguration":{\r\n    "staticVirtualNetworkIPAddress":"",\r\n    "subnetName":"",\r\n    "type":""\r\n  },\r\n  "name":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--frontend-ip-configuration <frontendIPConfiguration>', $('Set the frontend-ip-configuration value.'))
   .option('--name <name>', $('Set the name value.'))
   .execute(function(options, _) {
@@ -11273,7 +11273,7 @@ exports.init = function (cli) {
   .description($('Set frontend-ip-configuration in create-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "frontendIPConfiguration" : {\r\n             "staticVirtualNetworkIPAddress":"",\r\n             "subnetName":"",\r\n             "type":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--static-virtual-network-ip-address <staticVirtualNetworkIPAddress>', $('Set the static-virtual-network-ip-address value.'))
   .option('--subnet-name <subnetName>', $('Set the subnet-name value.'))
   .option('--type <type>', $('Set the type value.'))
@@ -11568,7 +11568,7 @@ exports.init = function (cli) {
   .description($('Set load-balancer-update-parameters in update-parameters string or files, e.g. \r\n{\r\n  "frontendIPConfiguration":{\r\n    "staticVirtualNetworkIPAddress":"",\r\n    "subnetName":"",\r\n    "type":""\r\n  },\r\n  "name":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--frontend-ip-configuration <frontendIPConfiguration>', $('Set the frontend-ip-configuration value.'))
   .option('--name <name>', $('Set the name value.'))
   .execute(function(options, _) {
@@ -11682,7 +11682,7 @@ exports.init = function (cli) {
   .description($('Set frontend-ip-configuration in update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "frontendIPConfiguration" : {\r\n             "staticVirtualNetworkIPAddress":"",\r\n             "subnetName":"",\r\n             "type":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--static-virtual-network-ip-address <staticVirtualNetworkIPAddress>', $('Set the static-virtual-network-ip-address value.'))
   .option('--subnet-name <subnetName>', $('Set the subnet-name value.'))
   .option('--type <type>', $('Set the type value.'))
@@ -11957,7 +11957,7 @@ exports.init = function (cli) {
   .description($('Set service-certificate-create-parameters in create-parameters string or files, e.g. \r\n{\r\n  "certificateFormat":0,\r\n  "data":null,\r\n  "password":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--certificate-format <certificateFormat>', $('Set the certificate-format value.'))
   .option('--data <data>', $('Set the data value.'))
   .option('--password <password>', $('Set the password value.'))
@@ -12366,7 +12366,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-data-disk-create-parameters in create-data-disk-parameters string or files, e.g. \r\n{\r\n  "hostCaching":"",\r\n  "label":"",\r\n  "logicalDiskSizeInGB":0,\r\n  "logicalUnitNumber":null,\r\n  "mediaLinkUri":"",\r\n  "name":"",\r\n  "sourceMediaLinkUri":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--host-caching <hostCaching>', $('Set the host-caching value.'))
   .option('--label <label>', $('Set the label value.'))
   .option('--logical-disk-size-in-g-b <logicalDiskSizeInGB>', $('Set the logical-disk-size-in-g-b value.'))
@@ -12667,7 +12667,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-disk-create-parameters in create-disk-parameters string or files, e.g. \r\n{\r\n  "label":"",\r\n  "mediaLinkUri":"",\r\n  "name":"",\r\n  "operatingSystemType":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--label <label>', $('Set the label value.'))
   .option('--media-link-uri <mediaLinkUri>', $('Set the media-link-uri value.'))
   .option('--name <name>', $('Set the name value.'))
@@ -13141,7 +13141,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-data-disk-update-parameters in update-data-disk-parameters string or files, e.g. \r\n{\r\n  "hostCaching":"",\r\n  "label":"",\r\n  "logicalDiskSizeInGB":0,\r\n  "logicalUnitNumber":null,\r\n  "mediaLinkUri":"",\r\n  "name":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--host-caching <hostCaching>', $('Set the host-caching value.'))
   .option('--label <label>', $('Set the label value.'))
   .option('--logical-disk-size-in-g-b <logicalDiskSizeInGB>', $('Set the logical-disk-size-in-g-b value.'))
@@ -13434,7 +13434,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-disk-update-parameters in update-disk-parameters string or files, e.g. \r\n{\r\n  "hasOperatingSystem":null,\r\n  "label":"",\r\n  "mediaLinkUri":"",\r\n  "name":"",\r\n  "operatingSystemType":"",\r\n  "resizedSizeInGB":null\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--has-operating-system <hasOperatingSystem>', $('Set the has-operating-system value.'))
   .option('--label <label>', $('Set the label value.'))
   .option('--media-link-uri <mediaLinkUri>', $('Set the media-link-uri value.'))
@@ -13728,7 +13728,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-disk-update-parameters in update-disk-size-parameters string or files, e.g. \r\n{\r\n  "hasOperatingSystem":null,\r\n  "label":"",\r\n  "mediaLinkUri":"",\r\n  "name":"",\r\n  "operatingSystemType":"",\r\n  "resizedSizeInGB":null\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--has-operating-system <hasOperatingSystem>', $('Set the has-operating-system value.'))
   .option('--label <label>', $('Set the label value.'))
   .option('--media-link-uri <mediaLinkUri>', $('Set the media-link-uri value.'))
@@ -14213,7 +14213,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-capture-os-image-parameters in capture-os-image-parameters string or files, e.g. \r\n{\r\n  "postCaptureAction":0,\r\n  "provisioningConfiguration":{\r\n    "additionalUnattendContent":{\r\n      "unattendPasses":[\r\n        {\r\n          "passName":"",\r\n          "unattendComponents":[\r\n            {\r\n              "componentName":"",\r\n              "unattendComponentSettings":[\r\n                {\r\n                  "content":"",\r\n                  "settingName":""\r\n                }\r\n              ]\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    },\r\n    "adminPassword":"",\r\n    "adminUserName":"",\r\n    "computerName":"",\r\n    "configurationSetType":"",\r\n    "customData":"",\r\n    "disableSshPasswordAuthentication":null,\r\n    "domainJoin":{\r\n      "credentials":{\r\n        "domain":"",\r\n        "password":"",\r\n        "userName":""\r\n      },\r\n      "domainToJoin":"",\r\n      "ldapMachineObjectOU":"",\r\n      "provisioning":{\r\n        "accountData":""\r\n      }\r\n    },\r\n    "enableAutomaticUpdates":null,\r\n    "hostName":"",\r\n    "inputEndpoints":[\r\n      {\r\n        "enableDirectServerReturn":null,\r\n        "endpointAcl":{\r\n          "rules":[\r\n            {\r\n              "action":"",\r\n              "description":"",\r\n              "order":null,\r\n              "remoteSubnet":""\r\n            }\r\n          ]\r\n        },\r\n        "idleTimeoutInMinutes":null,\r\n        "loadBalancedEndpointSetName":"",\r\n        "loadBalancerDistribution":"",\r\n        "loadBalancerName":"",\r\n        "loadBalancerProbe":{\r\n          "intervalInSeconds":null,\r\n          "path":"",\r\n          "port":0,\r\n          "protocol":0,\r\n          "timeoutInSeconds":null\r\n        },\r\n        "localPort":null,\r\n        "name":"",\r\n        "port":null,\r\n        "protocol":"",\r\n        "virtualIPAddress":"",\r\n        "virtualIPName":""\r\n      }\r\n    ],\r\n    "iPForwarding":"",\r\n    "networkInterfaces":[\r\n      {\r\n        "iPConfigurations":[\r\n          {\r\n            "staticVirtualNetworkIPAddress":"",\r\n            "subnetName":""\r\n          }\r\n        ],\r\n        "iPForwarding":"",\r\n        "name":"",\r\n        "networkSecurityGroup":""\r\n      }\r\n    ],\r\n    "networkSecurityGroup":"",\r\n    "publicIPs":[\r\n      {\r\n        "domainNameLabel":"",\r\n        "idleTimeoutInMinutes":null,\r\n        "name":""\r\n      }\r\n    ],\r\n    "resetPasswordOnFirstLogon":null,\r\n    "sshSettings":{\r\n      "keyPairs":[\r\n        {\r\n          "fingerprint":"",\r\n          "path":""\r\n        }\r\n      ],\r\n      "publicKeys":[\r\n        {\r\n          "fingerprint":"",\r\n          "path":""\r\n        }\r\n      ]\r\n    },\r\n    "staticVirtualNetworkIPAddress":"",\r\n    "storedCertificateSettings":[\r\n      {\r\n        "storeName":"",\r\n        "thumbprint":""\r\n      }\r\n    ],\r\n    "subnetNames":[\r\n      ""\r\n    ],\r\n    "timeZone":"",\r\n    "userName":"",\r\n    "userPassword":"",\r\n    "windowsRemoteManagement":{\r\n      "listeners":[\r\n        {\r\n          "certificateThumbprint":"",\r\n          "listenerType":0\r\n        }\r\n      ]\r\n    }\r\n  },\r\n  "targetImageLabel":"",\r\n  "targetImageName":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--post-capture-action <postCaptureAction>', $('Set the post-capture-action value.'))
   .option('--provisioning-configuration <provisioningConfiguration>', $('Set the provisioning-configuration value.'))
   .option('--target-image-label <targetImageLabel>', $('Set the target-image-label value.'))
@@ -14397,7 +14397,7 @@ exports.init = function (cli) {
   .description($('Set provisioning-configuration in capture-os-image-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "provisioningConfiguration" : {\r\n             "additionalUnattendContent":{\r\n               "unattendPasses":[\r\n                 {\r\n                   "passName":"",\r\n                   "unattendComponents":[\r\n                     {\r\n                       "componentName":"",\r\n                       "unattendComponentSettings":[\r\n                         {\r\n                           "content":"",\r\n                           "settingName":""\r\n                         }\r\n                       ]\r\n                     }\r\n                   ]\r\n                 }\r\n               ]\r\n             },\r\n             "adminPassword":"",\r\n             "adminUserName":"",\r\n             "computerName":"",\r\n             "configurationSetType":"",\r\n             "customData":"",\r\n             "disableSshPasswordAuthentication":null,\r\n             "domainJoin":{\r\n               "credentials":{\r\n                 "domain":"",\r\n                 "password":"",\r\n                 "userName":""\r\n               },\r\n               "domainToJoin":"",\r\n               "ldapMachineObjectOU":"",\r\n               "provisioning":{\r\n                 "accountData":""\r\n               }\r\n             },\r\n             "enableAutomaticUpdates":null,\r\n             "hostName":"",\r\n             "inputEndpoints":[\r\n               {\r\n                 "enableDirectServerReturn":null,\r\n                 "endpointAcl":{\r\n                   "rules":[\r\n                     {\r\n                       "action":"",\r\n                       "description":"",\r\n                       "order":null,\r\n                       "remoteSubnet":""\r\n                     }\r\n                   ]\r\n                 },\r\n                 "idleTimeoutInMinutes":null,\r\n                 "loadBalancedEndpointSetName":"",\r\n                 "loadBalancerDistribution":"",\r\n                 "loadBalancerName":"",\r\n                 "loadBalancerProbe":{\r\n                   "intervalInSeconds":null,\r\n                   "path":"",\r\n                   "port":0,\r\n                   "protocol":0,\r\n                   "timeoutInSeconds":null\r\n                 },\r\n                 "localPort":null,\r\n                 "name":"",\r\n                 "port":null,\r\n                 "protocol":"",\r\n                 "virtualIPAddress":"",\r\n                 "virtualIPName":""\r\n               }\r\n             ],\r\n             "iPForwarding":"",\r\n             "networkInterfaces":[\r\n               {\r\n                 "iPConfigurations":[\r\n                   {\r\n                     "staticVirtualNetworkIPAddress":"",\r\n                     "subnetName":""\r\n                   }\r\n                 ],\r\n                 "iPForwarding":"",\r\n                 "name":"",\r\n                 "networkSecurityGroup":""\r\n               }\r\n             ],\r\n             "networkSecurityGroup":"",\r\n             "publicIPs":[\r\n               {\r\n                 "domainNameLabel":"",\r\n                 "idleTimeoutInMinutes":null,\r\n                 "name":""\r\n               }\r\n             ],\r\n             "resetPasswordOnFirstLogon":null,\r\n             "sshSettings":{\r\n               "keyPairs":[\r\n                 {\r\n                   "fingerprint":"",\r\n                   "path":""\r\n                 }\r\n               ],\r\n               "publicKeys":[\r\n                 {\r\n                   "fingerprint":"",\r\n                   "path":""\r\n                 }\r\n               ]\r\n             },\r\n             "staticVirtualNetworkIPAddress":"",\r\n             "storedCertificateSettings":[\r\n               {\r\n                 "storeName":"",\r\n                 "thumbprint":""\r\n               }\r\n             ],\r\n             "subnetNames":[\r\n               ""\r\n             ],\r\n             "timeZone":"",\r\n             "userName":"",\r\n             "userPassword":"",\r\n             "windowsRemoteManagement":{\r\n               "listeners":[\r\n                 {\r\n                   "certificateThumbprint":"",\r\n                   "listenerType":0\r\n                 }\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--additional-unattend-content <additionalUnattendContent>', $('Set the additional-unattend-content value.'))
   .option('--admin-password <adminPassword>', $('Set the admin-password value.'))
   .option('--admin-user-name <adminUserName>', $('Set the admin-user-name value.'))
@@ -14888,7 +14888,7 @@ exports.init = function (cli) {
   .description($('Set additional-unattend-content in capture-os-image-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "additionalUnattendContent" : {\r\n             "unattendPasses":[\r\n               {\r\n                 "passName":"",\r\n                 "unattendComponents":[\r\n                   {\r\n                     "componentName":"",\r\n                     "unattendComponentSettings":[\r\n                       {\r\n                         "content":"",\r\n                         "settingName":""\r\n                       }\r\n                     ]\r\n                   }\r\n                 ]\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--unattend-passes <unattendPasses>', $('Set the unattend-passes value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -14987,7 +14987,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--pass-name <passName>', $('Set the pass-name value.'))
   .option('--unattend-components <unattendComponents>', $('Set the unattend-components value.'))
   .execute(function(options, _) {
@@ -15109,7 +15109,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--unattend-passes-index <unattend-passes-index>', $('Indexer: unattend-passes-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--component-name <componentName>', $('Set the component-name value.'))
   .option('--unattend-component-settings <unattendComponentSettings>', $('Set the unattend-component-settings value.'))
   .execute(function(options, _) {
@@ -15233,7 +15233,7 @@ exports.init = function (cli) {
   .option('--unattend-components-index <unattend-components-index>', $('Indexer: unattend-components-index.'))
   .option('--unattend-passes-index <unattend-passes-index>', $('Indexer: unattend-passes-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--content <content>', $('Set the content value.'))
   .option('--setting-name <settingName>', $('Set the setting-name value.'))
   .execute(function(options, _) {
@@ -15354,7 +15354,7 @@ exports.init = function (cli) {
   .description($('Set domain-join in capture-os-image-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "domainJoin" : {\r\n             "credentials":{\r\n               "domain":"",\r\n               "password":"",\r\n               "userName":""\r\n             },\r\n             "domainToJoin":"",\r\n             "ldapMachineObjectOU":"",\r\n             "provisioning":{\r\n               "accountData":""\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--credentials <credentials>', $('Set the credentials value.'))
   .option('--domain-to-join <domainToJoin>', $('Set the domain-to-join value.'))
   .option('--ldap-machine-object-o-u <ldapMachineObjectOU>', $('Set the ldap-machine-object-o-u value.'))
@@ -15502,7 +15502,7 @@ exports.init = function (cli) {
   .description($('Set credentials in capture-os-image-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "credentials" : {\r\n             "domain":"",\r\n             "password":"",\r\n             "userName":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--domain <domain>', $('Set the domain value.'))
   .option('--password <password>', $('Set the password value.'))
   .option('--user-name <userName>', $('Set the user-name value.'))
@@ -15633,7 +15633,7 @@ exports.init = function (cli) {
   .description($('Set provisioning in capture-os-image-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "provisioning" : {\r\n             "accountData":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--account-data <accountData>', $('Set the account-data value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -15732,7 +15732,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--enable-direct-server-return <enableDirectServerReturn>', $('Set the enable-direct-server-return value.'))
   .option('--endpoint-acl <endpointAcl>', $('Set the endpoint-acl value.'))
   .option('--idle-timeout-in-minutes <idleTimeoutInMinutes>', $('Set the idle-timeout-in-minutes value.'))
@@ -16040,7 +16040,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--rules <rules>', $('Set the rules value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -16141,7 +16141,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--action <action>', $('Set the action value.'))
   .option('--description <description>', $('Set the description value.'))
   .option('--order <order>', $('Set the order value.'))
@@ -16296,7 +16296,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--interval-in-seconds <intervalInSeconds>', $('Set the interval-in-seconds value.'))
   .option('--path <path>', $('Set the path value.'))
   .option('--port <port>', $('Set the port value.'))
@@ -16502,7 +16502,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--ip-configurations <ipConfigurations>', $('Set the ip-configurations value.'))
   .option('--ip-forwarding <ipForwarding>', $('Set the ip-forwarding value.'))
   .option('--name <name>', $('Set the name value.'))
@@ -16658,7 +16658,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--network-interfaces-index <network-interfaces-index>', $('Indexer: network-interfaces-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--static-virtual-network-ip-address <staticVirtualNetworkIPAddress>', $('Set the static-virtual-network-ip-address value.'))
   .option('--subnet-name <subnetName>', $('Set the subnet-name value.'))
   .execute(function(options, _) {
@@ -16780,7 +16780,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--domain-name-label <domainNameLabel>', $('Set the domain-name-label value.'))
   .option('--idle-timeout-in-minutes <idleTimeoutInMinutes>', $('Set the idle-timeout-in-minutes value.'))
   .option('--name <name>', $('Set the name value.'))
@@ -16916,7 +16916,7 @@ exports.init = function (cli) {
   .description($('Set ssh-settings in capture-os-image-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "sshSettings" : {\r\n             "keyPairs":[\r\n               {\r\n                 "fingerprint":"",\r\n                 "path":""\r\n               }\r\n             ],\r\n             "publicKeys":[\r\n               {\r\n                 "fingerprint":"",\r\n                 "path":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--key-pairs <keyPairs>', $('Set the key-pairs value.'))
   .option('--public-keys <publicKeys>', $('Set the public-keys value.'))
   .execute(function(options, _) {
@@ -17032,7 +17032,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--fingerprint <fingerprint>', $('Set the fingerprint value.'))
   .option('--path <path>', $('Set the path value.'))
   .execute(function(options, _) {
@@ -17153,7 +17153,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--fingerprint <fingerprint>', $('Set the fingerprint value.'))
   .option('--path <path>', $('Set the path value.'))
   .execute(function(options, _) {
@@ -17274,7 +17274,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--store-name <storeName>', $('Set the store-name value.'))
   .option('--thumbprint <thumbprint>', $('Set the thumbprint value.'))
   .execute(function(options, _) {
@@ -17395,7 +17395,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
     if (!options.parameterFile) {
@@ -17474,7 +17474,7 @@ exports.init = function (cli) {
   .description($('Set windows-remote-management in capture-os-image-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "windowsRemoteManagement" : {\r\n             "listeners":[\r\n               {\r\n                 "certificateThumbprint":"",\r\n                 "listenerType":0\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--listeners <listeners>', $('Set the listeners value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -17573,7 +17573,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--certificate-thumbprint <certificateThumbprint>', $('Set the certificate-thumbprint value.'))
   .option('--listener-type <listenerType>', $('Set the listener-type value.'))
   .execute(function(options, _) {
@@ -17855,7 +17855,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-capture-vm-image-parameters in capture-vm-image-parameters string or files, e.g. \r\n{\r\n  "operationType":"",\r\n  "oSState":"",\r\n  "vMImageLabel":"",\r\n  "vMImageName":"",\r\n  "requestId":"",\r\n  "statusCode":0\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--operation-type <operationType>', $('Set the operation-type value.'))
   .option('--os-state <oSState>', $('Set the os-state value.'))
   .option('--vm-image-label <vMImageLabel>', $('Set the vm-image-label value.'))
@@ -18343,7 +18343,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-create-parameters in create-parameters string or files, e.g. \r\n{\r\n  "availabilitySetName":"",\r\n  "configurationSets":[\r\n    {\r\n      "additionalUnattendContent":{\r\n        "unattendPasses":[\r\n          {\r\n            "passName":"",\r\n            "unattendComponents":[\r\n              {\r\n                "componentName":"",\r\n                "unattendComponentSettings":[\r\n                  {\r\n                    "content":"",\r\n                    "settingName":""\r\n                  }\r\n                ]\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      },\r\n      "adminPassword":"",\r\n      "adminUserName":"",\r\n      "computerName":"",\r\n      "configurationSetType":"",\r\n      "customData":"",\r\n      "disableSshPasswordAuthentication":null,\r\n      "domainJoin":{\r\n        "credentials":{\r\n          "domain":"",\r\n          "password":"",\r\n          "userName":""\r\n        },\r\n        "domainToJoin":"",\r\n        "ldapMachineObjectOU":"",\r\n        "provisioning":{\r\n          "accountData":""\r\n        }\r\n      },\r\n      "enableAutomaticUpdates":null,\r\n      "hostName":"",\r\n      "inputEndpoints":[\r\n        {\r\n          "enableDirectServerReturn":null,\r\n          "endpointAcl":{\r\n            "rules":[\r\n              {\r\n                "action":"",\r\n                "description":"",\r\n                "order":null,\r\n                "remoteSubnet":""\r\n              }\r\n            ]\r\n          },\r\n          "idleTimeoutInMinutes":null,\r\n          "loadBalancedEndpointSetName":"",\r\n          "loadBalancerDistribution":"",\r\n          "loadBalancerName":"",\r\n          "loadBalancerProbe":{\r\n            "intervalInSeconds":null,\r\n            "path":"",\r\n            "port":0,\r\n            "protocol":0,\r\n            "timeoutInSeconds":null\r\n          },\r\n          "localPort":null,\r\n          "name":"",\r\n          "port":null,\r\n          "protocol":"",\r\n          "virtualIPAddress":"",\r\n          "virtualIPName":""\r\n        }\r\n      ],\r\n      "iPForwarding":"",\r\n      "networkInterfaces":[\r\n        {\r\n          "iPConfigurations":[\r\n            {\r\n              "staticVirtualNetworkIPAddress":"",\r\n              "subnetName":""\r\n            }\r\n          ],\r\n          "iPForwarding":"",\r\n          "name":"",\r\n          "networkSecurityGroup":""\r\n        }\r\n      ],\r\n      "networkSecurityGroup":"",\r\n      "publicIPs":[\r\n        {\r\n          "domainNameLabel":"",\r\n          "idleTimeoutInMinutes":null,\r\n          "name":""\r\n        }\r\n      ],\r\n      "resetPasswordOnFirstLogon":null,\r\n      "sshSettings":{\r\n        "keyPairs":[\r\n          {\r\n            "fingerprint":"",\r\n            "path":""\r\n          }\r\n        ],\r\n        "publicKeys":[\r\n          {\r\n            "fingerprint":"",\r\n            "path":""\r\n          }\r\n        ]\r\n      },\r\n      "staticVirtualNetworkIPAddress":"",\r\n      "storedCertificateSettings":[\r\n        {\r\n          "storeName":"",\r\n          "thumbprint":""\r\n        }\r\n      ],\r\n      "subnetNames":[\r\n        ""\r\n      ],\r\n      "timeZone":"",\r\n      "userName":"",\r\n      "userPassword":"",\r\n      "windowsRemoteManagement":{\r\n        "listeners":[\r\n          {\r\n            "certificateThumbprint":"",\r\n            "listenerType":0\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  ],\r\n  "dataVirtualHardDisks":[\r\n    {\r\n      "hostCaching":"",\r\n      "iOType":"",\r\n      "label":"",\r\n      "logicalDiskSizeInGB":null,\r\n      "logicalUnitNumber":null,\r\n      "mediaLink":"",\r\n      "name":"",\r\n      "sourceMediaLink":""\r\n    }\r\n  ],\r\n  "debugSettings":{\r\n    "bootDiagnosticsEnabled":false,\r\n    "consoleScreenshotBlobUri":"",\r\n    "serialOutputBlobUri":""\r\n  },\r\n  "mediaLocation":"",\r\n  "oSVirtualHardDisk":{\r\n    "hostCaching":"",\r\n    "iOType":"",\r\n    "label":"",\r\n    "mediaLink":"",\r\n    "name":"",\r\n    "operatingSystem":"",\r\n    "remoteSourceImageLink":"",\r\n    "resizedSizeInGB":null,\r\n    "sourceImageName":""\r\n  },\r\n  "provisionGuestAgent":null,\r\n  "resourceExtensionReferences":[\r\n    {\r\n      "forceUpdate":null,\r\n      "name":"",\r\n      "publisher":"",\r\n      "referenceName":"",\r\n      "resourceExtensionParameterValues":[\r\n        {\r\n          "key":"",\r\n          "type":"",\r\n          "value":""\r\n        }\r\n      ],\r\n      "state":"",\r\n      "version":""\r\n    }\r\n  ],\r\n  "roleName":"",\r\n  "roleSize":"",\r\n  "vMImageInput":{\r\n    "dataDiskConfigurations":[\r\n      {\r\n        "diskName":"",\r\n        "resizedSizeInGB":null\r\n      }\r\n    ],\r\n    "oSDiskConfiguration":{\r\n      "resizedSizeInGB":null\r\n    }\r\n  },\r\n  "vMImageName":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--availability-set-name <availabilitySetName>', $('Set the availability-set-name value.'))
   .option('--configuration-sets <configurationSets>', $('Set the configuration-sets value.'))
   .option('--data-virtual-hard-disks <dataVirtualHardDisks>', $('Set the data-virtual-hard-disks value.'))
@@ -18630,7 +18630,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--additional-unattend-content <additionalUnattendContent>', $('Set the additional-unattend-content value.'))
   .option('--admin-password <adminPassword>', $('Set the admin-password value.'))
   .option('--admin-user-name <adminUserName>', $('Set the admin-user-name value.'))
@@ -19127,7 +19127,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--unattend-passes <unattendPasses>', $('Set the unattend-passes value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -19228,7 +19228,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--pass-name <passName>', $('Set the pass-name value.'))
   .option('--unattend-components <unattendComponents>', $('Set the unattend-components value.'))
   .execute(function(options, _) {
@@ -19352,7 +19352,7 @@ exports.init = function (cli) {
   .option('--unattend-passes-index <unattend-passes-index>', $('Indexer: unattend-passes-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--component-name <componentName>', $('Set the component-name value.'))
   .option('--unattend-component-settings <unattendComponentSettings>', $('Set the unattend-component-settings value.'))
   .execute(function(options, _) {
@@ -19478,7 +19478,7 @@ exports.init = function (cli) {
   .option('--unattend-passes-index <unattend-passes-index>', $('Indexer: unattend-passes-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--content <content>', $('Set the content value.'))
   .option('--setting-name <settingName>', $('Set the setting-name value.'))
   .execute(function(options, _) {
@@ -19601,7 +19601,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--credentials <credentials>', $('Set the credentials value.'))
   .option('--domain-to-join <domainToJoin>', $('Set the domain-to-join value.'))
   .option('--ldap-machine-object-o-u <ldapMachineObjectOU>', $('Set the ldap-machine-object-o-u value.'))
@@ -19751,7 +19751,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--domain <domain>', $('Set the domain value.'))
   .option('--password <password>', $('Set the password value.'))
   .option('--user-name <userName>', $('Set the user-name value.'))
@@ -19884,7 +19884,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--account-data <accountData>', $('Set the account-data value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -19985,7 +19985,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--enable-direct-server-return <enableDirectServerReturn>', $('Set the enable-direct-server-return value.'))
   .option('--endpoint-acl <endpointAcl>', $('Set the endpoint-acl value.'))
   .option('--idle-timeout-in-minutes <idleTimeoutInMinutes>', $('Set the idle-timeout-in-minutes value.'))
@@ -20295,7 +20295,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--rules <rules>', $('Set the rules value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -20398,7 +20398,7 @@ exports.init = function (cli) {
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--action <action>', $('Set the action value.'))
   .option('--description <description>', $('Set the description value.'))
   .option('--order <order>', $('Set the order value.'))
@@ -20555,7 +20555,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--interval-in-seconds <intervalInSeconds>', $('Set the interval-in-seconds value.'))
   .option('--path <path>', $('Set the path value.'))
   .option('--port <port>', $('Set the port value.'))
@@ -20764,7 +20764,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--ip-configurations <ipConfigurations>', $('Set the ip-configurations value.'))
   .option('--ip-forwarding <ipForwarding>', $('Set the ip-forwarding value.'))
   .option('--name <name>', $('Set the name value.'))
@@ -20922,7 +20922,7 @@ exports.init = function (cli) {
   .option('--network-interfaces-index <network-interfaces-index>', $('Indexer: network-interfaces-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--static-virtual-network-ip-address <staticVirtualNetworkIPAddress>', $('Set the static-virtual-network-ip-address value.'))
   .option('--subnet-name <subnetName>', $('Set the subnet-name value.'))
   .execute(function(options, _) {
@@ -21046,7 +21046,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--domain-name-label <domainNameLabel>', $('Set the domain-name-label value.'))
   .option('--idle-timeout-in-minutes <idleTimeoutInMinutes>', $('Set the idle-timeout-in-minutes value.'))
   .option('--name <name>', $('Set the name value.'))
@@ -21184,7 +21184,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--key-pairs <keyPairs>', $('Set the key-pairs value.'))
   .option('--public-keys <publicKeys>', $('Set the public-keys value.'))
   .execute(function(options, _) {
@@ -21302,7 +21302,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--fingerprint <fingerprint>', $('Set the fingerprint value.'))
   .option('--path <path>', $('Set the path value.'))
   .execute(function(options, _) {
@@ -21425,7 +21425,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--fingerprint <fingerprint>', $('Set the fingerprint value.'))
   .option('--path <path>', $('Set the path value.'))
   .execute(function(options, _) {
@@ -21548,7 +21548,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--store-name <storeName>', $('Set the store-name value.'))
   .option('--thumbprint <thumbprint>', $('Set the thumbprint value.'))
   .execute(function(options, _) {
@@ -21671,7 +21671,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
     if (!options.parameterFile) {
@@ -21752,7 +21752,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--listeners <listeners>', $('Set the listeners value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -21853,7 +21853,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--certificate-thumbprint <certificateThumbprint>', $('Set the certificate-thumbprint value.'))
   .option('--listener-type <listenerType>', $('Set the listener-type value.'))
   .execute(function(options, _) {
@@ -22014,7 +22014,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--host-caching <hostCaching>', $('Set the host-caching value.'))
   .option('--i-o-type <iOType>', $('Set the i-o-type value.'))
   .option('--label <label>', $('Set the label value.'))
@@ -22235,7 +22235,7 @@ exports.init = function (cli) {
   .description($('Set debug-settings in create-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "debugSettings" : {\r\n             "bootDiagnosticsEnabled":false,\r\n             "consoleScreenshotBlobUri":"",\r\n             "serialOutputBlobUri":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--boot-diagnostics-enabled <bootDiagnosticsEnabled>', $('Set the boot-diagnostics-enabled value.'))
   .option('--console-screenshot-blob-uri <consoleScreenshotBlobUri>', $('Set the console-screenshot-blob-uri value.'))
   .option('--serial-output-blob-uri <serialOutputBlobUri>', $('Set the serial-output-blob-uri value.'))
@@ -22366,7 +22366,7 @@ exports.init = function (cli) {
   .description($('Set os-virtual-hard-disk in create-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "oSVirtualHardDisk" : {\r\n             "hostCaching":"",\r\n             "iOType":"",\r\n             "label":"",\r\n             "mediaLink":"",\r\n             "name":"",\r\n             "operatingSystem":"",\r\n             "remoteSourceImageLink":"",\r\n             "resizedSizeInGB":null,\r\n             "sourceImageName":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--host-caching <hostCaching>', $('Set the host-caching value.'))
   .option('--i-o-type <iOType>', $('Set the i-o-type value.'))
   .option('--label <label>', $('Set the label value.'))
@@ -22601,7 +22601,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--force-update <forceUpdate>', $('Set the force-update value.'))
   .option('--name <name>', $('Set the name value.'))
   .option('--publisher <publisher>', $('Set the publisher value.'))
@@ -22809,7 +22809,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--resource-extension-references-index <resource-extension-references-index>', $('Indexer: resource-extension-references-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--key <key>', $('Set the key value.'))
   .option('--type <type>', $('Set the type value.'))
   .option('--value <value>', $('Set the value value.'))
@@ -22946,7 +22946,7 @@ exports.init = function (cli) {
   .description($('Set vm-image-input in create-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "vMImageInput" : {\r\n             "dataDiskConfigurations":[\r\n               {\r\n                 "diskName":"",\r\n                 "resizedSizeInGB":null\r\n               }\r\n             ],\r\n             "oSDiskConfiguration":{\r\n               "resizedSizeInGB":null\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--data-disk-configurations <dataDiskConfigurations>', $('Set the data-disk-configurations value.'))
   .option('--os-disk-configuration <oSDiskConfiguration>', $('Set the os-disk-configuration value.'))
   .execute(function(options, _) {
@@ -23062,7 +23062,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--disk-name <diskName>', $('Set the disk-name value.'))
   .option('--resized-size-in-g-b <resizedSizeInGB>', $('Set the resized-size-in-g-b value.'))
   .execute(function(options, _) {
@@ -23181,7 +23181,7 @@ exports.init = function (cli) {
   .description($('Set os-disk-configuration in create-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "oSDiskConfiguration" : {\r\n             "resizedSizeInGB":null\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--resized-size-in-g-b <resizedSizeInGB>', $('Set the resized-size-in-g-b value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -23608,7 +23608,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-create-deployment-parameters in create-deployment-parameters string or files, e.g. \r\n{\r\n  "deploymentSlot":0,\r\n  "dnsSettings":{\r\n    "dnsServers":[\r\n      {\r\n        "address":"",\r\n        "name":""\r\n      }\r\n    ]\r\n  },\r\n  "label":"",\r\n  "loadBalancers":[\r\n    {\r\n      "frontendIPConfiguration":{\r\n        "staticVirtualNetworkIPAddress":"",\r\n        "subnetName":"",\r\n        "type":""\r\n      },\r\n      "name":""\r\n    }\r\n  ],\r\n  "name":"",\r\n  "reservedIPName":"",\r\n  "roles":[\r\n    {\r\n      "availabilitySetName":"",\r\n      "configurationSets":[\r\n        {\r\n          "additionalUnattendContent":{\r\n            "unattendPasses":[\r\n              {\r\n                "passName":"",\r\n                "unattendComponents":[\r\n                  {\r\n                    "componentName":"",\r\n                    "unattendComponentSettings":[\r\n                      {\r\n                        "content":"",\r\n                        "settingName":""\r\n                      }\r\n                    ]\r\n                  }\r\n                ]\r\n              }\r\n            ]\r\n          },\r\n          "adminPassword":"",\r\n          "adminUserName":"",\r\n          "computerName":"",\r\n          "configurationSetType":"",\r\n          "customData":"",\r\n          "disableSshPasswordAuthentication":null,\r\n          "domainJoin":{\r\n            "credentials":{\r\n              "domain":"",\r\n              "password":"",\r\n              "userName":""\r\n            },\r\n            "domainToJoin":"",\r\n            "ldapMachineObjectOU":"",\r\n            "provisioning":{\r\n              "accountData":""\r\n            }\r\n          },\r\n          "enableAutomaticUpdates":null,\r\n          "hostName":"",\r\n          "inputEndpoints":[\r\n            {\r\n              "enableDirectServerReturn":null,\r\n              "endpointAcl":{\r\n                "rules":[\r\n                  {\r\n                    "action":"",\r\n                    "description":"",\r\n                    "order":null,\r\n                    "remoteSubnet":""\r\n                  }\r\n                ]\r\n              },\r\n              "idleTimeoutInMinutes":null,\r\n              "loadBalancedEndpointSetName":"",\r\n              "loadBalancerDistribution":"",\r\n              "loadBalancerName":"",\r\n              "loadBalancerProbe":{\r\n                "intervalInSeconds":null,\r\n                "path":"",\r\n                "port":0,\r\n                "protocol":0,\r\n                "timeoutInSeconds":null\r\n              },\r\n              "localPort":null,\r\n              "name":"",\r\n              "port":null,\r\n              "protocol":"",\r\n              "virtualIPAddress":"",\r\n              "virtualIPName":""\r\n            }\r\n          ],\r\n          "iPForwarding":"",\r\n          "networkInterfaces":[\r\n            {\r\n              "iPConfigurations":[\r\n                {\r\n                  "staticVirtualNetworkIPAddress":"",\r\n                  "subnetName":""\r\n                }\r\n              ],\r\n              "iPForwarding":"",\r\n              "name":"",\r\n              "networkSecurityGroup":""\r\n            }\r\n          ],\r\n          "networkSecurityGroup":"",\r\n          "publicIPs":[\r\n            {\r\n              "domainNameLabel":"",\r\n              "idleTimeoutInMinutes":null,\r\n              "name":""\r\n            }\r\n          ],\r\n          "resetPasswordOnFirstLogon":null,\r\n          "sshSettings":{\r\n            "keyPairs":[\r\n              {\r\n                "fingerprint":"",\r\n                "path":""\r\n              }\r\n            ],\r\n            "publicKeys":[\r\n              {\r\n                "fingerprint":"",\r\n                "path":""\r\n              }\r\n            ]\r\n          },\r\n          "staticVirtualNetworkIPAddress":"",\r\n          "storedCertificateSettings":[\r\n            {\r\n              "storeName":"",\r\n              "thumbprint":""\r\n            }\r\n          ],\r\n          "subnetNames":[\r\n            ""\r\n          ],\r\n          "timeZone":"",\r\n          "userName":"",\r\n          "userPassword":"",\r\n          "windowsRemoteManagement":{\r\n            "listeners":[\r\n              {\r\n                "certificateThumbprint":"",\r\n                "listenerType":0\r\n              }\r\n            ]\r\n          }\r\n        }\r\n      ],\r\n      "dataVirtualHardDisks":[\r\n        {\r\n          "hostCaching":"",\r\n          "iOType":"",\r\n          "label":"",\r\n          "logicalDiskSizeInGB":null,\r\n          "logicalUnitNumber":null,\r\n          "mediaLink":"",\r\n          "name":"",\r\n          "sourceMediaLink":""\r\n        }\r\n      ],\r\n      "debugSettings":{\r\n        "bootDiagnosticsEnabled":false,\r\n        "consoleScreenshotBlobUri":"",\r\n        "serialOutputBlobUri":""\r\n      },\r\n      "defaultWinRmCertificateThumbprint":"",\r\n      "label":"",\r\n      "mediaLocation":"",\r\n      "oSVersion":"",\r\n      "oSVirtualHardDisk":{\r\n        "hostCaching":"",\r\n        "iOType":"",\r\n        "label":"",\r\n        "mediaLink":"",\r\n        "name":"",\r\n        "operatingSystem":"",\r\n        "remoteSourceImageLink":"",\r\n        "resizedSizeInGB":null,\r\n        "sourceImageName":""\r\n      },\r\n      "provisionGuestAgent":null,\r\n      "resourceExtensionReferences":[\r\n        {\r\n          "forceUpdate":null,\r\n          "name":"",\r\n          "publisher":"",\r\n          "referenceName":"",\r\n          "resourceExtensionParameterValues":[\r\n            {\r\n              "key":"",\r\n              "type":"",\r\n              "value":""\r\n            }\r\n          ],\r\n          "state":"",\r\n          "version":""\r\n        }\r\n      ],\r\n      "roleName":"",\r\n      "roleSize":"",\r\n      "roleType":"",\r\n      "vMImageInput":{\r\n        "dataDiskConfigurations":[\r\n          {\r\n            "diskName":"",\r\n            "resizedSizeInGB":null\r\n          }\r\n        ],\r\n        "oSDiskConfiguration":{\r\n          "resizedSizeInGB":null\r\n        }\r\n      },\r\n      "vMImageName":""\r\n    }\r\n  ],\r\n  "virtualNetworkName":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--deployment-slot <deploymentSlot>', $('Set the deployment-slot value.'))
   .option('--dns-settings <dnsSettings>', $('Set the dns-settings value.'))
   .option('--label <label>', $('Set the label value.'))
@@ -23860,7 +23860,7 @@ exports.init = function (cli) {
   .description($('Set dns-settings in create-deployment-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "dnsSettings" : {\r\n             "dnsServers":[\r\n               {\r\n                 "address":"",\r\n                 "name":""\r\n               }\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--dns-servers <dnsServers>', $('Set the dns-servers value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -23959,7 +23959,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--address <address>', $('Set the address value.'))
   .option('--name <name>', $('Set the name value.'))
   .execute(function(options, _) {
@@ -24080,7 +24080,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--frontend-ip-configuration <frontendIPConfiguration>', $('Set the frontend-ip-configuration value.'))
   .option('--name <name>', $('Set the name value.'))
   .execute(function(options, _) {
@@ -24200,7 +24200,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--load-balancers-index <load-balancers-index>', $('Indexer: load-balancers-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--static-virtual-network-ip-address <staticVirtualNetworkIPAddress>', $('Set the static-virtual-network-ip-address value.'))
   .option('--subnet-name <subnetName>', $('Set the subnet-name value.'))
   .option('--type <type>', $('Set the type value.'))
@@ -24334,7 +24334,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--availability-set-name <availabilitySetName>', $('Set the availability-set-name value.'))
   .option('--configuration-sets <configurationSets>', $('Set the configuration-sets value.'))
   .option('--data-virtual-hard-disks <dataVirtualHardDisks>', $('Set the data-virtual-hard-disks value.'))
@@ -24695,7 +24695,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--additional-unattend-content <additionalUnattendContent>', $('Set the additional-unattend-content value.'))
   .option('--admin-password <adminPassword>', $('Set the admin-password value.'))
   .option('--admin-user-name <adminUserName>', $('Set the admin-user-name value.'))
@@ -25194,7 +25194,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--unattend-passes <unattendPasses>', $('Set the unattend-passes value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -25297,7 +25297,7 @@ exports.init = function (cli) {
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--pass-name <passName>', $('Set the pass-name value.'))
   .option('--unattend-components <unattendComponents>', $('Set the unattend-components value.'))
   .execute(function(options, _) {
@@ -25423,7 +25423,7 @@ exports.init = function (cli) {
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--component-name <componentName>', $('Set the component-name value.'))
   .option('--unattend-component-settings <unattendComponentSettings>', $('Set the unattend-component-settings value.'))
   .execute(function(options, _) {
@@ -25551,7 +25551,7 @@ exports.init = function (cli) {
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--content <content>', $('Set the content value.'))
   .option('--setting-name <settingName>', $('Set the setting-name value.'))
   .execute(function(options, _) {
@@ -25676,7 +25676,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--credentials <credentials>', $('Set the credentials value.'))
   .option('--domain-to-join <domainToJoin>', $('Set the domain-to-join value.'))
   .option('--ldap-machine-object-o-u <ldapMachineObjectOU>', $('Set the ldap-machine-object-o-u value.'))
@@ -25828,7 +25828,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--domain <domain>', $('Set the domain value.'))
   .option('--password <password>', $('Set the password value.'))
   .option('--user-name <userName>', $('Set the user-name value.'))
@@ -25963,7 +25963,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--account-data <accountData>', $('Set the account-data value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -26066,7 +26066,7 @@ exports.init = function (cli) {
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--enable-direct-server-return <enableDirectServerReturn>', $('Set the enable-direct-server-return value.'))
   .option('--endpoint-acl <endpointAcl>', $('Set the endpoint-acl value.'))
   .option('--idle-timeout-in-minutes <idleTimeoutInMinutes>', $('Set the idle-timeout-in-minutes value.'))
@@ -26378,7 +26378,7 @@ exports.init = function (cli) {
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--rules <rules>', $('Set the rules value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -26483,7 +26483,7 @@ exports.init = function (cli) {
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--action <action>', $('Set the action value.'))
   .option('--description <description>', $('Set the description value.'))
   .option('--order <order>', $('Set the order value.'))
@@ -26642,7 +26642,7 @@ exports.init = function (cli) {
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--interval-in-seconds <intervalInSeconds>', $('Set the interval-in-seconds value.'))
   .option('--path <path>', $('Set the path value.'))
   .option('--port <port>', $('Set the port value.'))
@@ -26854,7 +26854,7 @@ exports.init = function (cli) {
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--ip-configurations <ipConfigurations>', $('Set the ip-configurations value.'))
   .option('--ip-forwarding <ipForwarding>', $('Set the ip-forwarding value.'))
   .option('--name <name>', $('Set the name value.'))
@@ -27014,7 +27014,7 @@ exports.init = function (cli) {
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--static-virtual-network-ip-address <staticVirtualNetworkIPAddress>', $('Set the static-virtual-network-ip-address value.'))
   .option('--subnet-name <subnetName>', $('Set the subnet-name value.'))
   .execute(function(options, _) {
@@ -27140,7 +27140,7 @@ exports.init = function (cli) {
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--domain-name-label <domainNameLabel>', $('Set the domain-name-label value.'))
   .option('--idle-timeout-in-minutes <idleTimeoutInMinutes>', $('Set the idle-timeout-in-minutes value.'))
   .option('--name <name>', $('Set the name value.'))
@@ -27280,7 +27280,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--key-pairs <keyPairs>', $('Set the key-pairs value.'))
   .option('--public-keys <publicKeys>', $('Set the public-keys value.'))
   .execute(function(options, _) {
@@ -27400,7 +27400,7 @@ exports.init = function (cli) {
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--fingerprint <fingerprint>', $('Set the fingerprint value.'))
   .option('--path <path>', $('Set the path value.'))
   .execute(function(options, _) {
@@ -27525,7 +27525,7 @@ exports.init = function (cli) {
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--fingerprint <fingerprint>', $('Set the fingerprint value.'))
   .option('--path <path>', $('Set the path value.'))
   .execute(function(options, _) {
@@ -27650,7 +27650,7 @@ exports.init = function (cli) {
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--store-name <storeName>', $('Set the store-name value.'))
   .option('--thumbprint <thumbprint>', $('Set the thumbprint value.'))
   .execute(function(options, _) {
@@ -27775,7 +27775,7 @@ exports.init = function (cli) {
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
     if (!options.parameterFile) {
@@ -27858,7 +27858,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--listeners <listeners>', $('Set the listeners value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -27961,7 +27961,7 @@ exports.init = function (cli) {
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--certificate-thumbprint <certificateThumbprint>', $('Set the certificate-thumbprint value.'))
   .option('--listener-type <listenerType>', $('Set the listener-type value.'))
   .execute(function(options, _) {
@@ -28125,7 +28125,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--host-caching <hostCaching>', $('Set the host-caching value.'))
   .option('--i-o-type <iOType>', $('Set the i-o-type value.'))
   .option('--label <label>', $('Set the label value.'))
@@ -28348,7 +28348,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--boot-diagnostics-enabled <bootDiagnosticsEnabled>', $('Set the boot-diagnostics-enabled value.'))
   .option('--console-screenshot-blob-uri <consoleScreenshotBlobUri>', $('Set the console-screenshot-blob-uri value.'))
   .option('--serial-output-blob-uri <serialOutputBlobUri>', $('Set the serial-output-blob-uri value.'))
@@ -28481,7 +28481,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--host-caching <hostCaching>', $('Set the host-caching value.'))
   .option('--i-o-type <iOType>', $('Set the i-o-type value.'))
   .option('--label <label>', $('Set the label value.'))
@@ -28718,7 +28718,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--force-update <forceUpdate>', $('Set the force-update value.'))
   .option('--name <name>', $('Set the name value.'))
   .option('--publisher <publisher>', $('Set the publisher value.'))
@@ -28928,7 +28928,7 @@ exports.init = function (cli) {
   .option('--resource-extension-references-index <resource-extension-references-index>', $('Indexer: resource-extension-references-index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--key <key>', $('Set the key value.'))
   .option('--type <type>', $('Set the type value.'))
   .option('--value <value>', $('Set the value value.'))
@@ -29067,7 +29067,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--data-disk-configurations <dataDiskConfigurations>', $('Set the data-disk-configurations value.'))
   .option('--os-disk-configuration <oSDiskConfiguration>', $('Set the os-disk-configuration value.'))
   .execute(function(options, _) {
@@ -29185,7 +29185,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--disk-name <diskName>', $('Set the disk-name value.'))
   .option('--resized-size-in-g-b <resizedSizeInGB>', $('Set the resized-size-in-g-b value.'))
   .execute(function(options, _) {
@@ -29306,7 +29306,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--resized-size-in-g-b <resizedSizeInGB>', $('Set the resized-size-in-g-b value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -29694,7 +29694,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-shutdown-parameters in shutdown-parameters string or files, e.g. \r\n{\r\n  "postShutdownAction":0\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--post-shutdown-action <postShutdownAction>', $('Set the post-shutdown-action value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -29943,7 +29943,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-shutdown-roles-parameters in shutdown-roles-parameters string or files, e.g. \r\n{\r\n  "postShutdownAction":null,\r\n  "roles":[\r\n    ""\r\n  ]\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--post-shutdown-action <postShutdownAction>', $('Set the post-shutdown-action value.'))
   .option('--roles <roles>', $('Set the roles value.'))
   .execute(function(options, _) {
@@ -30059,7 +30059,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
     if (!options.parameterFile) {
@@ -30297,7 +30297,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-start-roles-parameters in start-roles-parameters string or files, e.g. \r\n{\r\n  "roles":[\r\n    ""\r\n  ]\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--roles <roles>', $('Set the roles value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -30396,7 +30396,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
     if (!options.parameterFile) {
@@ -30776,7 +30776,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-update-parameters in update-parameters string or files, e.g. \r\n{\r\n  "availabilitySetName":"",\r\n  "configurationSets":[\r\n    {\r\n      "additionalUnattendContent":{\r\n        "unattendPasses":[\r\n          {\r\n            "passName":"",\r\n            "unattendComponents":[\r\n              {\r\n                "componentName":"",\r\n                "unattendComponentSettings":[\r\n                  {\r\n                    "content":"",\r\n                    "settingName":""\r\n                  }\r\n                ]\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      },\r\n      "adminPassword":"",\r\n      "adminUserName":"",\r\n      "computerName":"",\r\n      "configurationSetType":"",\r\n      "customData":"",\r\n      "disableSshPasswordAuthentication":null,\r\n      "domainJoin":{\r\n        "credentials":{\r\n          "domain":"",\r\n          "password":"",\r\n          "userName":""\r\n        },\r\n        "domainToJoin":"",\r\n        "ldapMachineObjectOU":"",\r\n        "provisioning":{\r\n          "accountData":""\r\n        }\r\n      },\r\n      "enableAutomaticUpdates":null,\r\n      "hostName":"",\r\n      "inputEndpoints":[\r\n        {\r\n          "enableDirectServerReturn":null,\r\n          "endpointAcl":{\r\n            "rules":[\r\n              {\r\n                "action":"",\r\n                "description":"",\r\n                "order":null,\r\n                "remoteSubnet":""\r\n              }\r\n            ]\r\n          },\r\n          "idleTimeoutInMinutes":null,\r\n          "loadBalancedEndpointSetName":"",\r\n          "loadBalancerDistribution":"",\r\n          "loadBalancerName":"",\r\n          "loadBalancerProbe":{\r\n            "intervalInSeconds":null,\r\n            "path":"",\r\n            "port":0,\r\n            "protocol":0,\r\n            "timeoutInSeconds":null\r\n          },\r\n          "localPort":null,\r\n          "name":"",\r\n          "port":null,\r\n          "protocol":"",\r\n          "virtualIPAddress":"",\r\n          "virtualIPName":""\r\n        }\r\n      ],\r\n      "iPForwarding":"",\r\n      "networkInterfaces":[\r\n        {\r\n          "iPConfigurations":[\r\n            {\r\n              "staticVirtualNetworkIPAddress":"",\r\n              "subnetName":""\r\n            }\r\n          ],\r\n          "iPForwarding":"",\r\n          "name":"",\r\n          "networkSecurityGroup":""\r\n        }\r\n      ],\r\n      "networkSecurityGroup":"",\r\n      "publicIPs":[\r\n        {\r\n          "domainNameLabel":"",\r\n          "idleTimeoutInMinutes":null,\r\n          "name":""\r\n        }\r\n      ],\r\n      "resetPasswordOnFirstLogon":null,\r\n      "sshSettings":{\r\n        "keyPairs":[\r\n          {\r\n            "fingerprint":"",\r\n            "path":""\r\n          }\r\n        ],\r\n        "publicKeys":[\r\n          {\r\n            "fingerprint":"",\r\n            "path":""\r\n          }\r\n        ]\r\n      },\r\n      "staticVirtualNetworkIPAddress":"",\r\n      "storedCertificateSettings":[\r\n        {\r\n          "storeName":"",\r\n          "thumbprint":""\r\n        }\r\n      ],\r\n      "subnetNames":[\r\n        ""\r\n      ],\r\n      "timeZone":"",\r\n      "userName":"",\r\n      "userPassword":"",\r\n      "windowsRemoteManagement":{\r\n        "listeners":[\r\n          {\r\n            "certificateThumbprint":"",\r\n            "listenerType":0\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  ],\r\n  "dataVirtualHardDisks":[\r\n    {\r\n      "hostCaching":"",\r\n      "iOType":"",\r\n      "label":"",\r\n      "logicalDiskSizeInGB":null,\r\n      "logicalUnitNumber":null,\r\n      "mediaLink":"",\r\n      "name":"",\r\n      "sourceMediaLink":""\r\n    }\r\n  ],\r\n  "debugSettings":{\r\n    "bootDiagnosticsEnabled":false,\r\n    "consoleScreenshotBlobUri":"",\r\n    "serialOutputBlobUri":""\r\n  },\r\n  "label":"",\r\n  "oSVirtualHardDisk":{\r\n    "hostCaching":"",\r\n    "iOType":"",\r\n    "label":"",\r\n    "mediaLink":"",\r\n    "name":"",\r\n    "operatingSystem":"",\r\n    "remoteSourceImageLink":"",\r\n    "resizedSizeInGB":null,\r\n    "sourceImageName":""\r\n  },\r\n  "provisionGuestAgent":null,\r\n  "resourceExtensionReferences":[\r\n    {\r\n      "forceUpdate":null,\r\n      "name":"",\r\n      "publisher":"",\r\n      "referenceName":"",\r\n      "resourceExtensionParameterValues":[\r\n        {\r\n          "key":"",\r\n          "type":"",\r\n          "value":""\r\n        }\r\n      ],\r\n      "state":"",\r\n      "version":""\r\n    }\r\n  ],\r\n  "roleName":"",\r\n  "roleSize":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--availability-set-name <availabilitySetName>', $('Set the availability-set-name value.'))
   .option('--configuration-sets <configurationSets>', $('Set the configuration-sets value.'))
   .option('--data-virtual-hard-disks <dataVirtualHardDisks>', $('Set the data-virtual-hard-disks value.'))
@@ -31029,7 +31029,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--additional-unattend-content <additionalUnattendContent>', $('Set the additional-unattend-content value.'))
   .option('--admin-password <adminPassword>', $('Set the admin-password value.'))
   .option('--admin-user-name <adminUserName>', $('Set the admin-user-name value.'))
@@ -31526,7 +31526,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--unattend-passes <unattendPasses>', $('Set the unattend-passes value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -31627,7 +31627,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--pass-name <passName>', $('Set the pass-name value.'))
   .option('--unattend-components <unattendComponents>', $('Set the unattend-components value.'))
   .execute(function(options, _) {
@@ -31751,7 +31751,7 @@ exports.init = function (cli) {
   .option('--unattend-passes-index <unattend-passes-index>', $('Indexer: unattend-passes-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--component-name <componentName>', $('Set the component-name value.'))
   .option('--unattend-component-settings <unattendComponentSettings>', $('Set the unattend-component-settings value.'))
   .execute(function(options, _) {
@@ -31877,7 +31877,7 @@ exports.init = function (cli) {
   .option('--unattend-passes-index <unattend-passes-index>', $('Indexer: unattend-passes-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--content <content>', $('Set the content value.'))
   .option('--setting-name <settingName>', $('Set the setting-name value.'))
   .execute(function(options, _) {
@@ -32000,7 +32000,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--credentials <credentials>', $('Set the credentials value.'))
   .option('--domain-to-join <domainToJoin>', $('Set the domain-to-join value.'))
   .option('--ldap-machine-object-o-u <ldapMachineObjectOU>', $('Set the ldap-machine-object-o-u value.'))
@@ -32150,7 +32150,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--domain <domain>', $('Set the domain value.'))
   .option('--password <password>', $('Set the password value.'))
   .option('--user-name <userName>', $('Set the user-name value.'))
@@ -32283,7 +32283,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--account-data <accountData>', $('Set the account-data value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -32384,7 +32384,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--enable-direct-server-return <enableDirectServerReturn>', $('Set the enable-direct-server-return value.'))
   .option('--endpoint-acl <endpointAcl>', $('Set the endpoint-acl value.'))
   .option('--idle-timeout-in-minutes <idleTimeoutInMinutes>', $('Set the idle-timeout-in-minutes value.'))
@@ -32694,7 +32694,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--rules <rules>', $('Set the rules value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -32797,7 +32797,7 @@ exports.init = function (cli) {
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--action <action>', $('Set the action value.'))
   .option('--description <description>', $('Set the description value.'))
   .option('--order <order>', $('Set the order value.'))
@@ -32954,7 +32954,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--interval-in-seconds <intervalInSeconds>', $('Set the interval-in-seconds value.'))
   .option('--path <path>', $('Set the path value.'))
   .option('--port <port>', $('Set the port value.'))
@@ -33163,7 +33163,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--ip-configurations <ipConfigurations>', $('Set the ip-configurations value.'))
   .option('--ip-forwarding <ipForwarding>', $('Set the ip-forwarding value.'))
   .option('--name <name>', $('Set the name value.'))
@@ -33321,7 +33321,7 @@ exports.init = function (cli) {
   .option('--network-interfaces-index <network-interfaces-index>', $('Indexer: network-interfaces-index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--static-virtual-network-ip-address <staticVirtualNetworkIPAddress>', $('Set the static-virtual-network-ip-address value.'))
   .option('--subnet-name <subnetName>', $('Set the subnet-name value.'))
   .execute(function(options, _) {
@@ -33445,7 +33445,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--domain-name-label <domainNameLabel>', $('Set the domain-name-label value.'))
   .option('--idle-timeout-in-minutes <idleTimeoutInMinutes>', $('Set the idle-timeout-in-minutes value.'))
   .option('--name <name>', $('Set the name value.'))
@@ -33583,7 +33583,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--key-pairs <keyPairs>', $('Set the key-pairs value.'))
   .option('--public-keys <publicKeys>', $('Set the public-keys value.'))
   .execute(function(options, _) {
@@ -33701,7 +33701,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--fingerprint <fingerprint>', $('Set the fingerprint value.'))
   .option('--path <path>', $('Set the path value.'))
   .execute(function(options, _) {
@@ -33824,7 +33824,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--fingerprint <fingerprint>', $('Set the fingerprint value.'))
   .option('--path <path>', $('Set the path value.'))
   .execute(function(options, _) {
@@ -33947,7 +33947,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--store-name <storeName>', $('Set the store-name value.'))
   .option('--thumbprint <thumbprint>', $('Set the thumbprint value.'))
   .execute(function(options, _) {
@@ -34070,7 +34070,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
     if (!options.parameterFile) {
@@ -34151,7 +34151,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--listeners <listeners>', $('Set the listeners value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -34252,7 +34252,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--certificate-thumbprint <certificateThumbprint>', $('Set the certificate-thumbprint value.'))
   .option('--listener-type <listenerType>', $('Set the listener-type value.'))
   .execute(function(options, _) {
@@ -34413,7 +34413,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--host-caching <hostCaching>', $('Set the host-caching value.'))
   .option('--i-o-type <iOType>', $('Set the i-o-type value.'))
   .option('--label <label>', $('Set the label value.'))
@@ -34634,7 +34634,7 @@ exports.init = function (cli) {
   .description($('Set debug-settings in update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "debugSettings" : {\r\n             "bootDiagnosticsEnabled":false,\r\n             "consoleScreenshotBlobUri":"",\r\n             "serialOutputBlobUri":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--boot-diagnostics-enabled <bootDiagnosticsEnabled>', $('Set the boot-diagnostics-enabled value.'))
   .option('--console-screenshot-blob-uri <consoleScreenshotBlobUri>', $('Set the console-screenshot-blob-uri value.'))
   .option('--serial-output-blob-uri <serialOutputBlobUri>', $('Set the serial-output-blob-uri value.'))
@@ -34765,7 +34765,7 @@ exports.init = function (cli) {
   .description($('Set os-virtual-hard-disk in update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "oSVirtualHardDisk" : {\r\n             "hostCaching":"",\r\n             "iOType":"",\r\n             "label":"",\r\n             "mediaLink":"",\r\n             "name":"",\r\n             "operatingSystem":"",\r\n             "remoteSourceImageLink":"",\r\n             "resizedSizeInGB":null,\r\n             "sourceImageName":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--host-caching <hostCaching>', $('Set the host-caching value.'))
   .option('--i-o-type <iOType>', $('Set the i-o-type value.'))
   .option('--label <label>', $('Set the label value.'))
@@ -35000,7 +35000,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--force-update <forceUpdate>', $('Set the force-update value.'))
   .option('--name <name>', $('Set the name value.'))
   .option('--publisher <publisher>', $('Set the publisher value.'))
@@ -35208,7 +35208,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--resource-extension-references-index <resource-extension-references-index>', $('Indexer: resource-extension-references-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--key <key>', $('Set the key value.'))
   .option('--type <type>', $('Set the type value.'))
   .option('--value <value>', $('Set the value value.'))
@@ -35487,7 +35487,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-update-load-balanced-set-parameters in update-load-balanced-endpoint-set-parameters string or files, e.g. \r\n{\r\n  "loadBalancedEndpoints":[\r\n    {\r\n      "enableDirectServerReturn":null,\r\n      "idleTimeoutInMinutes":null,\r\n      "loadBalancedEndpointSetName":"",\r\n      "loadBalancerDistribution":"",\r\n      "loadBalancerName":"",\r\n      "loadBalancerProbe":{\r\n        "intervalInSeconds":null,\r\n        "path":"",\r\n        "port":0,\r\n        "protocol":0,\r\n        "timeoutInSeconds":null\r\n      },\r\n      "localPort":null,\r\n      "name":"",\r\n      "port":null,\r\n      "protocol":"",\r\n      "rules":[\r\n        {\r\n          "action":"",\r\n          "description":"",\r\n          "order":null,\r\n          "remoteSubnet":""\r\n        }\r\n      ],\r\n      "virtualIPAddress":"",\r\n      "virtualIPName":""\r\n    }\r\n  ]\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--load-balanced-endpoints <loadBalancedEndpoints>', $('Set the load-balanced-endpoints value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
@@ -35586,7 +35586,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--enable-direct-server-return <enableDirectServerReturn>', $('Set the enable-direct-server-return value.'))
   .option('--idle-timeout-in-minutes <idleTimeoutInMinutes>', $('Set the idle-timeout-in-minutes value.'))
   .option('--load-balanced-endpoint-set-name <loadBalancedEndpointSetName>', $('Set the load-balanced-endpoint-set-name value.'))
@@ -35894,7 +35894,7 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--load-balanced-endpoints-index <load-balanced-endpoints-index>', $('Indexer: load-balanced-endpoints-index.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--interval-in-seconds <intervalInSeconds>', $('Set the interval-in-seconds value.'))
   .option('--path <path>', $('Set the path value.'))
   .option('--port <port>', $('Set the port value.'))
@@ -36101,7 +36101,7 @@ exports.init = function (cli) {
   .option('--index <index>', $('Indexer: index.'))
   .option('--load-balanced-endpoints-index <load-balanced-endpoints-index>', $('Indexer: load-balanced-endpoints-index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--action <action>', $('Set the action value.'))
   .option('--description <description>', $('Set the description value.'))
   .option('--order <order>', $('Set the order value.'))
@@ -36368,7 +36368,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-os-image-create-parameters in create-parameters string or files, e.g. \r\n{\r\n  "description":"",\r\n  "eula":"",\r\n  "iconUri":"",\r\n  "imageFamily":"",\r\n  "isPremium":false,\r\n  "label":"",\r\n  "language":"",\r\n  "mediaLinkUri":"",\r\n  "name":"",\r\n  "operatingSystemType":"",\r\n  "privacyUri":"",\r\n  "publishedDate":null,\r\n  "recommendedVMSize":"",\r\n  "showInGui":false,\r\n  "smallIconUri":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--description <description>', $('Set the description value.'))
   .option('--eula <eula>', $('Set the eula value.'))
   .option('--icon-uri <iconUri>', $('Set the icon-uri value.'))
@@ -36931,7 +36931,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-os-image-replicate-parameters in replicate-parameters string or files, e.g. \r\n{\r\n  "computeImageAttributes":{\r\n    "offer":"",\r\n    "sku":"",\r\n    "version":""\r\n  },\r\n  "marketplaceImageAttributes":{\r\n    "plan":{\r\n      "name":"",\r\n      "product":"",\r\n      "publisher":""\r\n    },\r\n    "publisherId":""\r\n  },\r\n  "targetLocations":[\r\n    ""\r\n  ]\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--compute-image-attributes <computeImageAttributes>', $('Set the compute-image-attributes value.'))
   .option('--marketplace-image-attributes <marketplaceImageAttributes>', $('Set the marketplace-image-attributes value.'))
   .option('--target-locations <targetLocations>', $('Set the target-locations value.'))
@@ -37062,7 +37062,7 @@ exports.init = function (cli) {
   .description($('Set compute-image-attributes in replicate-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "computeImageAttributes" : {\r\n             "offer":"",\r\n             "sku":"",\r\n             "version":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--offer <offer>', $('Set the offer value.'))
   .option('--sku <sku>', $('Set the sku value.'))
   .option('--version <version>', $('Set the version value.'))
@@ -37193,7 +37193,7 @@ exports.init = function (cli) {
   .description($('Set marketplace-image-attributes in replicate-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "marketplaceImageAttributes" : {\r\n             "plan":{\r\n               "name":"",\r\n               "product":"",\r\n               "publisher":""\r\n             },\r\n             "publisherId":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--plan <plan>', $('Set the plan value.'))
   .option('--publisher-id <publisherId>', $('Set the publisher-id value.'))
   .execute(function(options, _) {
@@ -37307,7 +37307,7 @@ exports.init = function (cli) {
   .description($('Set plan in replicate-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "plan" : {\r\n             "name":"",\r\n             "product":"",\r\n             "publisher":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--name <name>', $('Set the name value.'))
   .option('--product <product>', $('Set the product value.'))
   .option('--publisher <publisher>', $('Set the publisher value.'))
@@ -37440,7 +37440,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
     if (!options.parameterFile) {
@@ -37693,7 +37693,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-os-image-update-parameters in update-parameters string or files, e.g. \r\n{\r\n  "description":"",\r\n  "eula":"",\r\n  "iconUri":"",\r\n  "imageFamily":"",\r\n  "isPremium":null,\r\n  "label":"",\r\n  "language":"",\r\n  "privacyUri":"",\r\n  "publishedDate":null,\r\n  "recommendedVMSize":"",\r\n  "showInGui":null,\r\n  "smallIconUri":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--description <description>', $('Set the description value.'))
   .option('--eula <eula>', $('Set the eula value.'))
   .option('--icon-uri <iconUri>', $('Set the icon-uri value.'))
@@ -38102,7 +38102,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-vm-image-create-parameters in create-parameters string or files, e.g. \r\n{\r\n  "dataDiskConfigurations":[\r\n    {\r\n      "hostCaching":"",\r\n      "logicalUnitNumber":null,\r\n      "mediaLink":""\r\n    }\r\n  ],\r\n  "description":"",\r\n  "eula":"",\r\n  "iconUri":"",\r\n  "imageFamily":"",\r\n  "label":"",\r\n  "language":"",\r\n  "name":"",\r\n  "oSDiskConfiguration":{\r\n    "hostCaching":"",\r\n    "mediaLink":"",\r\n    "oS":"",\r\n    "oSState":""\r\n  },\r\n  "privacyUri":"",\r\n  "publishedDate":null,\r\n  "recommendedVMSize":"",\r\n  "showInGui":null,\r\n  "smallIconUri":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--data-disk-configurations <dataDiskConfigurations>', $('Set the data-disk-configurations value.'))
   .option('--description <description>', $('Set the description value.'))
   .option('--eula <eula>', $('Set the eula value.'))
@@ -38423,7 +38423,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--host-caching <hostCaching>', $('Set the host-caching value.'))
   .option('--logical-unit-number <logicalUnitNumber>', $('Set the logical-unit-number value.'))
   .option('--media-link <mediaLink>', $('Set the media-link value.'))
@@ -38559,7 +38559,7 @@ exports.init = function (cli) {
   .description($('Set os-disk-configuration in create-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "oSDiskConfiguration" : {\r\n             "hostCaching":"",\r\n             "mediaLink":"",\r\n             "oS":"",\r\n             "oSState":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--host-caching <hostCaching>', $('Set the host-caching value.'))
   .option('--media-link <mediaLink>', $('Set the media-link value.'))
   .option('--os <oS>', $('Set the os value.'))
@@ -38907,7 +38907,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-vm-image-replicate-parameters in replicate-parameters string or files, e.g. \r\n{\r\n  "computeImageAttributes":{\r\n    "offer":"",\r\n    "sku":"",\r\n    "version":""\r\n  },\r\n  "marketplaceImageAttributes":{\r\n    "plan":{\r\n      "name":"",\r\n      "product":"",\r\n      "publisher":""\r\n    },\r\n    "publisherId":""\r\n  },\r\n  "targetLocations":[\r\n    ""\r\n  ]\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--compute-image-attributes <computeImageAttributes>', $('Set the compute-image-attributes value.'))
   .option('--marketplace-image-attributes <marketplaceImageAttributes>', $('Set the marketplace-image-attributes value.'))
   .option('--target-locations <targetLocations>', $('Set the target-locations value.'))
@@ -39038,7 +39038,7 @@ exports.init = function (cli) {
   .description($('Set compute-image-attributes in replicate-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "computeImageAttributes" : {\r\n             "offer":"",\r\n             "sku":"",\r\n             "version":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--offer <offer>', $('Set the offer value.'))
   .option('--sku <sku>', $('Set the sku value.'))
   .option('--version <version>', $('Set the version value.'))
@@ -39169,7 +39169,7 @@ exports.init = function (cli) {
   .description($('Set marketplace-image-attributes in replicate-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "marketplaceImageAttributes" : {\r\n             "plan":{\r\n               "name":"",\r\n               "product":"",\r\n               "publisher":""\r\n             },\r\n             "publisherId":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--plan <plan>', $('Set the plan value.'))
   .option('--publisher-id <publisherId>', $('Set the publisher-id value.'))
   .execute(function(options, _) {
@@ -39283,7 +39283,7 @@ exports.init = function (cli) {
   .description($('Set plan in replicate-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "plan" : {\r\n             "name":"",\r\n             "product":"",\r\n             "publisher":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--name <name>', $('Set the name value.'))
   .option('--product <product>', $('Set the product value.'))
   .option('--publisher <publisher>', $('Set the publisher value.'))
@@ -39416,7 +39416,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
     if (!options.parameterFile) {
@@ -39678,7 +39678,7 @@ exports.init = function (cli) {
   .description($('Set virtual-machine-vm-image-update-parameters in update-parameters string or files, e.g. \r\n{\r\n  "dataDiskConfigurations":[\r\n    {\r\n      "hostCaching":"",\r\n      "logicalUnitNumber":null,\r\n      "name":""\r\n    }\r\n  ],\r\n  "description":"",\r\n  "eula":"",\r\n  "iconUri":"",\r\n  "imageFamily":"",\r\n  "label":"",\r\n  "language":"",\r\n  "oSDiskConfiguration":{\r\n    "hostCaching":""\r\n  },\r\n  "privacyUri":"",\r\n  "publishedDate":null,\r\n  "recommendedVMSize":"",\r\n  "showInGui":null,\r\n  "smallIconUri":""\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--data-disk-configurations <dataDiskConfigurations>', $('Set the data-disk-configurations value.'))
   .option('--description <description>', $('Set the description value.'))
   .option('--eula <eula>', $('Set the eula value.'))
@@ -39982,7 +39982,7 @@ exports.init = function (cli) {
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--index <index>', $('Indexer: index.'))
   .option('--value <value>', $('The input string value for the indexed item.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--host-caching <hostCaching>', $('Set the host-caching value.'))
   .option('--logical-unit-number <logicalUnitNumber>', $('Set the logical-unit-number value.'))
   .option('--name <name>', $('Set the name value.'))
@@ -40118,7 +40118,7 @@ exports.init = function (cli) {
   .description($('Set os-disk-configuration in update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "oSDiskConfiguration" : {\r\n             "hostCaching":""\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--parse', $('Parse the input value string to a JSON object.'))
+  .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
   .option('--host-caching <hostCaching>', $('Set the host-caching value.'))
   .execute(function(options, _) {
     cli.output.verbose(JSON.stringify(options), _);
