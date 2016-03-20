@@ -55,7 +55,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Mandatory = false,
             Position = 3,
             ValueFromPipelineByPropertyName = true)]
-        public string VirtualMachineScaleSetExtensionType { get; set; }
+        public string Type { get; set; }
 
         [Parameter(
             Mandatory = false,
@@ -113,7 +113,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 (e =>
                     (this.Name == null || e.Name == this.Name)
                     && (this.Publisher == null || e.Publisher == this.Publisher)
-                    && (this.VirtualMachineScaleSetExtensionType == null || e.VirtualMachineScaleSetExtensionType == this.VirtualMachineScaleSetExtensionType)
+                    && (this.Type == null || e.Type == this.Type)
                     && (this.TypeHandlerVersion == null || e.TypeHandlerVersion == this.TypeHandlerVersion)
                     && (this.AutoUpgradeMinorVersion == null || e.AutoUpgradeMinorVersion == this.AutoUpgradeMinorVersion)
                     && (this.Setting == null || e.Settings == this.Setting)

@@ -88,13 +88,5 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 return ComputeClient.ComputeManagementClient.VirtualMachineScaleSetVMs;
             }
         }
-
-        public IVirtualMachinesOperations VirtualMachinesClient
-        {
-            get
-            {
-                return ComputeClient.ComputeManagementClient.VirtualMachines;
-            }
-        }
     }
 }

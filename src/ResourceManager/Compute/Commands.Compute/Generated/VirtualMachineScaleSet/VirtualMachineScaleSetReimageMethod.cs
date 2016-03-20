@@ -96,10 +96,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Set", "AzureRmVmssReimage", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class SetAzureRmVMSSReimage : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Set", "AzureRmVmss", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class SetAzureRmVmss : InvokeAzureComputeMethodCmdlet
     {
-        public SetAzureRmVMSSReimage()
+        public SetAzureRmVmss()
         {
         }
 

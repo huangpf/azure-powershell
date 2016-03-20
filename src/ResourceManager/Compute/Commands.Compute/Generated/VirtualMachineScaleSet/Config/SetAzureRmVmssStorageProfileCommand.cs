@@ -73,19 +73,19 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Mandatory = false,
             Position = 6,
             ValueFromPipelineByPropertyName = true)]
-        public string Caching { get; set; }
+        public CachingTypes? OsDiskCaching { get; set; }
 
         [Parameter(
             Mandatory = false,
             Position = 7,
             ValueFromPipelineByPropertyName = true)]
-        public string CreateOption { get; set; }
+        public DiskCreateOptionTypes OsDiskCreateOption { get; set; }
 
         [Parameter(
             Mandatory = false,
             Position = 8,
             ValueFromPipelineByPropertyName = true)]
-        public string OsType { get; set; }
+        public OperatingSystemTypes? OsDiskOsType { get; set; }
 
         [Parameter(
             Mandatory = false,
@@ -103,6 +103,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         {
             if (this.ImageReferencePublisher != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -123,6 +124,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
             if (this.ImageReferenceOffer != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -143,6 +145,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
             if (this.ImageReferenceSku != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -163,6 +166,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
             if (this.ImageReferenceVersion != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -183,6 +187,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
             if (this.Name != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -201,8 +206,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OsDisk.Name = this.Name;
             }
 
-            if (this.Caching != null)
+            if (this.OsDiskCaching != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -218,31 +224,29 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 {
                     this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OsDisk = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSDisk();
                 }
-                this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OsDisk.Caching = this.Caching;
+                this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OsDisk.Caching = this.OsDiskCaching;
             }
 
-            if (this.CreateOption != null)
+            // VirtualMachineProfile
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
             {
-                // VirtualMachineProfile
-                if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
-                {
-                    this.VirtualMachineScaleSet.VirtualMachineProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile();
-                }
-                // StorageProfile
-                if (this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile == null)
-                {
-                    this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetStorageProfile();
-                }
-                // OsDisk
-                if (this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OsDisk == null)
-                {
-                    this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OsDisk = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSDisk();
-                }
-                this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OsDisk.CreateOption = this.CreateOption;
+                this.VirtualMachineScaleSet.VirtualMachineProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile();
             }
-
-            if (this.OsType != null)
+            // StorageProfile
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile == null)
             {
+                this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetStorageProfile();
+            }
+            // OsDisk
+            if (this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OsDisk == null)
+            {
+                this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OsDisk = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSDisk();
+            }
+            this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OsDisk.CreateOption = this.OsDiskCreateOption;
+
+            if (this.OsDiskOsType != null)
+            {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -258,11 +262,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 {
                     this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OsDisk = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSDisk();
                 }
-                this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OsDisk.OsType = this.OsType;
+                this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OsDisk.OsType = this.OsDiskOsType;
             }
 
             if (this.Image != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -288,6 +293,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
             if (this.VhdContainer != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {

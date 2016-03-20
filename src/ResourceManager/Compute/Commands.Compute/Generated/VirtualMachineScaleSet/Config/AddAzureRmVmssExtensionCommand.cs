@@ -55,7 +55,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Mandatory = false,
             Position = 3,
             ValueFromPipelineByPropertyName = true)]
-        public string VirtualMachineScaleSetExtensionType { get; set; }
+        public string Type { get; set; }
 
         [Parameter(
             Mandatory = false,
@@ -111,7 +111,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
             vExtensions.Name = this.Name;
             vExtensions.Publisher = this.Publisher;
-            vExtensions.VirtualMachineScaleSetExtensionType = this.VirtualMachineScaleSetExtensionType;
+            vExtensions.Type = this.Type;
             vExtensions.TypeHandlerVersion = this.TypeHandlerVersion;
             vExtensions.AutoUpgradeMinorVersion = this.AutoUpgradeMinorVersion;
             vExtensions.Settings = this.Setting;

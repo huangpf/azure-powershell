@@ -97,8 +97,16 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 instanceIds = inputArray2.ToList();
             }
 
-            VirtualMachineScaleSetsClient.DeleteInstances(resourceGroupName, vmScaleSetName, instanceIds);
+            if (!string.IsNullOrEmpty(resourceGroupName) && !string.IsNullOrEmpty(vmScaleSetName) && instanceIds != null)
+            {
+                VirtualMachineScaleSetsClient.DeleteInstances(resourceGroupName, vmScaleSetName, instanceIds);
+            }
+            else
+            {
+                VirtualMachineScaleSetsClient.Delete(resourceGroupName, vmScaleSetName);
+            }
         }
+
     }
 
     public partial class NewAzureComputeArgumentListCmdlet : ComputeAutomationBaseCmdlet
@@ -115,10 +123,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Remove", "AzureRmVmssInstances", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class RemoveAzureRmVMSSInstances : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Remove", "AzureRmVmss", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class RemoveAzureRmVmss : InvokeAzureComputeMethodCmdlet
     {
-        public RemoveAzureRmVMSSInstances()
+        public RemoveAzureRmVmss()
         {
         }
 

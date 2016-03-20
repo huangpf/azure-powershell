@@ -43,19 +43,19 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Mandatory = false,
             Position = 1,
             ValueFromPipelineByPropertyName = true)]
-        public string PassName { get; set; }
+        public PassNames? PassName { get; set; }
 
         [Parameter(
             Mandatory = false,
             Position = 2,
             ValueFromPipelineByPropertyName = true)]
-        public string ComponentName { get; set; }
+        public ComponentNames? ComponentName { get; set; }
 
         [Parameter(
             Mandatory = false,
             Position = 3,
             ValueFromPipelineByPropertyName = true)]
-        public string SettingName { get; set; }
+        public SettingNames? SettingName { get; set; }
 
         [Parameter(
             Mandatory = false,

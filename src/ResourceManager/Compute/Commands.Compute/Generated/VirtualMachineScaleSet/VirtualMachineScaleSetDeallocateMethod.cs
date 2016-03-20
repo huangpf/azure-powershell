@@ -116,9 +116,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     }
 
     [Cmdlet("Stop", "AzureRmVmss", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class StopAzureRmVMSS : InvokeAzureComputeMethodCmdlet
+    public partial class StopAzureRmVmss : InvokeAzureComputeMethodCmdlet
     {
-        public StopAzureRmVMSS()
+        public StopAzureRmVmss()
         {
         }
 

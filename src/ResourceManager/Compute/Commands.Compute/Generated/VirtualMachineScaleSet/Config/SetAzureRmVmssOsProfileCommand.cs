@@ -67,13 +67,13 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Mandatory = false,
             Position = 5,
             ValueFromPipelineByPropertyName = true)]
-        public bool? ProvisionVMAgent { get; set; }
+        public bool? WindowsConfigurationProvisionVMAgent { get; set; }
 
         [Parameter(
             Mandatory = false,
             Position = 6,
             ValueFromPipelineByPropertyName = true)]
-        public bool? EnableAutomaticUpdate { get; set; }
+        public bool? WindowsConfigurationEnableAutomaticUpdate { get; set; }
 
         [Parameter(
             Mandatory = false,
@@ -97,7 +97,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Mandatory = false,
             Position = 10,
             ValueFromPipelineByPropertyName = true)]
-        public bool? DisablePasswordAuthentication { get; set; }
+        public bool? LinuxConfigurationDisablePasswordAuthentication { get; set; }
 
         [Parameter(
             Mandatory = false,
@@ -115,6 +115,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         {
             if (this.ComputerNamePrefix != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -130,6 +131,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
             if (this.AdminUsername != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -145,6 +147,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
             if (this.AdminPassword != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -160,6 +163,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
             if (this.CustomData != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -173,8 +177,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.CustomData = this.CustomData;
             }
 
-            if (this.ProvisionVMAgent != null)
+            if (this.WindowsConfigurationProvisionVMAgent != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -190,11 +195,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 {
                     this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration = new Microsoft.Azure.Management.Compute.Models.WindowsConfiguration();
                 }
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.ProvisionVMAgent = this.ProvisionVMAgent;
+                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.ProvisionVMAgent = this.WindowsConfigurationProvisionVMAgent;
             }
 
-            if (this.EnableAutomaticUpdate != null)
+            if (this.WindowsConfigurationEnableAutomaticUpdate != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -210,11 +216,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 {
                     this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration = new Microsoft.Azure.Management.Compute.Models.WindowsConfiguration();
                 }
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.EnableAutomaticUpdates = this.EnableAutomaticUpdate;
+                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.EnableAutomaticUpdates = this.WindowsConfigurationEnableAutomaticUpdate;
             }
 
             if (this.TimeZone != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -235,6 +242,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
             if (this.AdditionalUnattendContent != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -255,6 +263,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
             if (this.Listener != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -278,8 +287,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.WindowsConfiguration.WinRM.Listeners = this.Listener;
             }
 
-            if (this.DisablePasswordAuthentication != null)
+            if (this.LinuxConfigurationDisablePasswordAuthentication != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -295,11 +305,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 {
                     this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration = new Microsoft.Azure.Management.Compute.Models.LinuxConfiguration();
                 }
-                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.DisablePasswordAuthentication = this.DisablePasswordAuthentication;
+                this.VirtualMachineScaleSet.VirtualMachineProfile.OsProfile.LinuxConfiguration.DisablePasswordAuthentication = this.LinuxConfigurationDisablePasswordAuthentication;
             }
 
             if (this.PublicKey != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {
@@ -325,6 +336,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
             if (this.Secret != null)
             {
+
                 // VirtualMachineProfile
                 if (this.VirtualMachineScaleSet.VirtualMachineProfile == null)
                 {

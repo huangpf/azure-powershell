@@ -3812,6 +3812,7 @@ exports.init = function (cli) {
       if (options.parse && options.mode) {
         options.mode = JSON.parse(options.mode);
       }
+      options.mode = JSON.parse(options.mode);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.mode}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -3867,42 +3868,6 @@ exports.init = function (cli) {
     else {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //rollback-update-or-upgrade-by-deployment-name-parameters delete mode
-  var catparametersRollbackUpdateOrUpgradeByDeploymentNameDeploymentMode1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
-  var parametersRollbackUpdateOrUpgradeByDeploymentNameDeploymentMode1 = catparametersRollbackUpdateOrUpgradeByDeploymentNameDeploymentMode1.category('rollback-update-or-upgrade-by-deployment-name-parameters')
-  .description($('Commands to manage configuration of deployment in the parameter file.'));
-  var deleteparametersRollbackUpdateOrUpgradeByDeploymentNameDeploymentMode1 = parametersRollbackUpdateOrUpgradeByDeploymentNameDeploymentMode1.category('mode')
-  .description($('Commands to delete components of deployment in rollback-update-or-upgrade-by-deployment-name-parameters file.'));
-  deleteparametersRollbackUpdateOrUpgradeByDeploymentNameDeploymentMode1.command('delete')
-  .description($('Remove mode in rollback-update-or-upgrade-by-deployment-name-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "mode" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/mode';
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -4076,6 +4041,7 @@ exports.init = function (cli) {
       if (options.parse && options.mode) {
         options.mode = JSON.parse(options.mode);
       }
+      options.mode = JSON.parse(options.mode);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.mode}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -4131,42 +4097,6 @@ exports.init = function (cli) {
     else {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //rollback-update-or-upgrade-by-deployment-slot-parameters delete mode
-  var catparametersRollbackUpdateOrUpgradeByDeploymentSlotDeploymentMode1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
-  var parametersRollbackUpdateOrUpgradeByDeploymentSlotDeploymentMode1 = catparametersRollbackUpdateOrUpgradeByDeploymentSlotDeploymentMode1.category('rollback-update-or-upgrade-by-deployment-slot-parameters')
-  .description($('Commands to manage configuration of deployment in the parameter file.'));
-  var deleteparametersRollbackUpdateOrUpgradeByDeploymentSlotDeploymentMode1 = parametersRollbackUpdateOrUpgradeByDeploymentSlotDeploymentMode1.category('mode')
-  .description($('Commands to delete components of deployment in rollback-update-or-upgrade-by-deployment-slot-parameters file.'));
-  deleteparametersRollbackUpdateOrUpgradeByDeploymentSlotDeploymentMode1.command('delete')
-  .description($('Remove mode in rollback-update-or-upgrade-by-deployment-slot-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "mode" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/mode';
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -4374,6 +4304,7 @@ exports.init = function (cli) {
       if (options.parse && options.status) {
         options.status = JSON.parse(options.status);
       }
+      options.status = JSON.parse(options.status);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.status}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -4424,42 +4355,6 @@ exports.init = function (cli) {
     else {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //update-status-by-deployment-name-parameters delete status
-  var catparametersUpdateStatusByDeploymentNameDeploymentStatus1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
-  var parametersUpdateStatusByDeploymentNameDeploymentStatus1 = catparametersUpdateStatusByDeploymentNameDeploymentStatus1.category('update-status-by-deployment-name-parameters')
-  .description($('Commands to manage configuration of deployment in the parameter file.'));
-  var deleteparametersUpdateStatusByDeploymentNameDeploymentStatus1 = parametersUpdateStatusByDeploymentNameDeploymentStatus1.category('status')
-  .description($('Commands to delete components of deployment in update-status-by-deployment-name-parameters file.'));
-  deleteparametersUpdateStatusByDeploymentNameDeploymentStatus1.command('delete')
-  .description($('Remove status in update-status-by-deployment-name-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "status" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/status';
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -4620,6 +4515,7 @@ exports.init = function (cli) {
       if (options.parse && options.status) {
         options.status = JSON.parse(options.status);
       }
+      options.status = JSON.parse(options.status);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.status}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -4670,42 +4566,6 @@ exports.init = function (cli) {
     else {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //update-status-by-deployment-slot-parameters delete status
-  var catparametersUpdateStatusByDeploymentSlotDeploymentStatus1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
-  var parametersUpdateStatusByDeploymentSlotDeploymentStatus1 = catparametersUpdateStatusByDeploymentSlotDeploymentStatus1.category('update-status-by-deployment-slot-parameters')
-  .description($('Commands to manage configuration of deployment in the parameter file.'));
-  var deleteparametersUpdateStatusByDeploymentSlotDeploymentStatus1 = parametersUpdateStatusByDeploymentSlotDeploymentStatus1.category('status')
-  .description($('Commands to delete components of deployment in update-status-by-deployment-slot-parameters file.'));
-  deleteparametersUpdateStatusByDeploymentSlotDeploymentStatus1.command('delete')
-  .description($('Remove status in update-status-by-deployment-slot-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "status" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/status';
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -4954,6 +4814,7 @@ exports.init = function (cli) {
       if (options.parse && options.mode) {
         options.mode = JSON.parse(options.mode);
       }
+      options.mode = JSON.parse(options.mode);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.mode}]);
     }
     paramPath = options.path + '/' + 'packageUri';
@@ -5511,42 +5372,6 @@ exports.init = function (cli) {
     cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
     cli.output.verbose('=====================================');
   });
-  //upgrade-by-name-parameters delete mode
-  var catparametersUpgradeByNameDeploymentMode1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
-  var parametersUpgradeByNameDeploymentMode1 = catparametersUpgradeByNameDeploymentMode1.category('upgrade-by-name-parameters')
-  .description($('Commands to manage configuration of deployment in the parameter file.'));
-  var deleteparametersUpgradeByNameDeploymentMode1 = parametersUpgradeByNameDeploymentMode1.category('mode')
-  .description($('Commands to delete components of deployment in upgrade-by-name-parameters file.'));
-  deleteparametersUpgradeByNameDeploymentMode1.command('delete')
-  .description($('Remove mode in upgrade-by-name-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "mode" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/mode';
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
 
 /*
   Deployment UpgradeBySlot
@@ -5784,6 +5609,7 @@ exports.init = function (cli) {
       if (options.parse && options.mode) {
         options.mode = JSON.parse(options.mode);
       }
+      options.mode = JSON.parse(options.mode);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.mode}]);
     }
     paramPath = options.path + '/' + 'packageUri';
@@ -6330,42 +6156,6 @@ exports.init = function (cli) {
     options.operation = 'remove';
     options.path = '/extensionConfiguration/namedRoles/' + options.namedRolesIndex + '/extensions' + (options.index ? ('/' + options.index) : '');
     jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //upgrade-by-slot-parameters delete mode
-  var catparametersUpgradeBySlotDeploymentMode1 = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment');
-  var parametersUpgradeBySlotDeploymentMode1 = catparametersUpgradeBySlotDeploymentMode1.category('upgrade-by-slot-parameters')
-  .description($('Commands to manage configuration of deployment in the parameter file.'));
-  var deleteparametersUpgradeBySlotDeploymentMode1 = parametersUpgradeBySlotDeploymentMode1.category('mode')
-  .description($('Commands to delete components of deployment in upgrade-by-slot-parameters file.'));
-  deleteparametersUpgradeBySlotDeploymentMode1.command('delete')
-  .description($('Remove mode in upgrade-by-slot-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "mode" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/mode';
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -11985,6 +11775,7 @@ exports.init = function (cli) {
       if (options.parse && options.certificateFormat) {
         options.certificateFormat = JSON.parse(options.certificateFormat);
       }
+      options.certificateFormat = JSON.parse(options.certificateFormat);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.certificateFormat}]);
     }
     paramPath = options.path + '/' + 'data';
@@ -12067,42 +11858,6 @@ exports.init = function (cli) {
     else {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-parameters delete certificate-format
-  var catparametersCreateServiceCertificateCertificateFormat1 = cli.category('invoke').description('Commands to invoke service management operations.').category('service-certificate');
-  var parametersCreateServiceCertificateCertificateFormat1 = catparametersCreateServiceCertificateCertificateFormat1.category('create-parameters')
-  .description($('Commands to manage configuration of service-certificate in the parameter file.'));
-  var deleteparametersCreateServiceCertificateCertificateFormat1 = parametersCreateServiceCertificateCertificateFormat1.category('certificate-format')
-  .description($('Commands to delete components of service-certificate in create-parameters file.'));
-  deleteparametersCreateServiceCertificateCertificateFormat1.command('delete')
-  .description($('Remove certificate-format in create-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "certificateFormat" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/certificateFormat';
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -14242,6 +13997,7 @@ exports.init = function (cli) {
       if (options.parse && options.postCaptureAction) {
         options.postCaptureAction = JSON.parse(options.postCaptureAction);
       }
+      options.postCaptureAction = JSON.parse(options.postCaptureAction);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.postCaptureAction}]);
     }
     paramPath = options.path + '/' + 'provisioningConfiguration';
@@ -14340,42 +14096,6 @@ exports.init = function (cli) {
     else {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //capture-os-image-parameters delete post-capture-action
-  var catparametersCaptureOSImageVirtualMachinePostCaptureAction1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
-  var parametersCaptureOSImageVirtualMachinePostCaptureAction1 = catparametersCaptureOSImageVirtualMachinePostCaptureAction1.category('capture-os-image-parameters')
-  .description($('Commands to manage configuration of virtual-machine in the parameter file.'));
-  var deleteparametersCaptureOSImageVirtualMachinePostCaptureAction1 = parametersCaptureOSImageVirtualMachinePostCaptureAction1.category('post-capture-action')
-  .description($('Commands to delete components of virtual-machine in capture-os-image-parameters file.'));
-  deleteparametersCaptureOSImageVirtualMachinePostCaptureAction1.command('delete')
-  .description($('Remove post-capture-action in capture-os-image-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "postCaptureAction" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/postCaptureAction';
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -16359,6 +16079,7 @@ exports.init = function (cli) {
       if (options.parse && options.protocol) {
         options.protocol = JSON.parse(options.protocol);
       }
+      options.protocol = JSON.parse(options.protocol);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protocol}]);
     }
     paramPath = options.path + '/' + 'timeoutInSeconds';
@@ -16441,44 +16162,6 @@ exports.init = function (cli) {
     else {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //capture-os-image-parameters delete protocol
-  var catparametersCaptureOSImageVirtualMachineProtocol1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
-  var parametersCaptureOSImageVirtualMachineProtocol1 = catparametersCaptureOSImageVirtualMachineProtocol1.category('capture-os-image-parameters')
-  .description($('Commands to manage configuration of virtual-machine in the parameter file.'));
-  var deleteparametersCaptureOSImageVirtualMachineProtocol1 = parametersCaptureOSImageVirtualMachineProtocol1.category('protocol')
-  .description($('Commands to delete components of virtual-machine in capture-os-image-parameters file.'));
-  deleteparametersCaptureOSImageVirtualMachineProtocol1.command('delete')
-  .description($('Remove protocol in capture-os-image-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "protocol" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/provisioningConfiguration/inputEndpoints/' + options.inputEndpointsIndex + '/loadBalancerProbe/protocol';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -17615,6 +17298,7 @@ exports.init = function (cli) {
       if (options.parse && options.listenerType) {
         options.listenerType = JSON.parse(options.listenerType);
       }
+      options.listenerType = JSON.parse(options.listenerType);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.listenerType}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -17671,44 +17355,6 @@ exports.init = function (cli) {
     else {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //capture-os-image-parameters delete listener-type
-  var catparametersCaptureOSImageVirtualMachineListenerType1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
-  var parametersCaptureOSImageVirtualMachineListenerType1 = catparametersCaptureOSImageVirtualMachineListenerType1.category('capture-os-image-parameters')
-  .description($('Commands to manage configuration of virtual-machine in the parameter file.'));
-  var deleteparametersCaptureOSImageVirtualMachineListenerType1 = parametersCaptureOSImageVirtualMachineListenerType1.category('listener-type')
-  .description($('Commands to delete components of virtual-machine in capture-os-image-parameters file.'));
-  deleteparametersCaptureOSImageVirtualMachineListenerType1.command('delete')
-  .description($('Remove listener-type in capture-os-image-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "listenerType" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--listeners-index <listeners-index>', $('Indexer: listeners-index.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/provisioningConfiguration/windowsRemoteManagement/listeners/' + options.listenersIndex + '/listenerType';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -17941,6 +17587,7 @@ exports.init = function (cli) {
       if (options.parse && options.statusCode) {
         options.statusCode = JSON.parse(options.statusCode);
       }
+      options.statusCode = JSON.parse(options.statusCode);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.statusCode}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -20618,6 +20265,7 @@ exports.init = function (cli) {
       if (options.parse && options.protocol) {
         options.protocol = JSON.parse(options.protocol);
       }
+      options.protocol = JSON.parse(options.protocol);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protocol}]);
     }
     paramPath = options.path + '/' + 'timeoutInSeconds';
@@ -20701,45 +20349,6 @@ exports.init = function (cli) {
     else {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-parameters delete protocol
-  var catparametersCreateVirtualMachineProtocol1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
-  var parametersCreateVirtualMachineProtocol1 = catparametersCreateVirtualMachineProtocol1.category('create-parameters')
-  .description($('Commands to manage configuration of virtual-machine in the parameter file.'));
-  var deleteparametersCreateVirtualMachineProtocol1 = parametersCreateVirtualMachineProtocol1.category('protocol')
-  .description($('Commands to delete components of virtual-machine in create-parameters file.'));
-  deleteparametersCreateVirtualMachineProtocol1.command('delete')
-  .description($('Remove protocol in create-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "protocol" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
-  .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/loadBalancerProbe/protocol';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -21895,6 +21504,7 @@ exports.init = function (cli) {
       if (options.parse && options.listenerType) {
         options.listenerType = JSON.parse(options.listenerType);
       }
+      options.listenerType = JSON.parse(options.listenerType);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.listenerType}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -21952,45 +21562,6 @@ exports.init = function (cli) {
     else {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-parameters delete listener-type
-  var catparametersCreateVirtualMachineListenerType1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
-  var parametersCreateVirtualMachineListenerType1 = catparametersCreateVirtualMachineListenerType1.category('create-parameters')
-  .description($('Commands to manage configuration of virtual-machine in the parameter file.'));
-  var deleteparametersCreateVirtualMachineListenerType1 = parametersCreateVirtualMachineListenerType1.category('listener-type')
-  .description($('Commands to delete components of virtual-machine in create-parameters file.'));
-  deleteparametersCreateVirtualMachineListenerType1.command('delete')
-  .description($('Remove listener-type in create-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "listenerType" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--listeners-index <listeners-index>', $('Indexer: listeners-index.'))
-  .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/configurationSets/' + options.configurationSetsIndex + '/windowsRemoteManagement/listeners/' + options.listenersIndex + '/listenerType';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -23641,6 +23212,7 @@ exports.init = function (cli) {
       if (options.parse && options.deploymentSlot) {
         options.deploymentSlot = JSON.parse(options.deploymentSlot);
       }
+      options.deploymentSlot = JSON.parse(options.deploymentSlot);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.deploymentSlot}]);
     }
     paramPath = options.path + '/' + 'dnsSettings';
@@ -23803,42 +23375,6 @@ exports.init = function (cli) {
     else {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-deployment-parameters delete deployment-slot
-  var catparametersCreateDeploymentVirtualMachineDeploymentSlot1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
-  var parametersCreateDeploymentVirtualMachineDeploymentSlot1 = catparametersCreateDeploymentVirtualMachineDeploymentSlot1.category('create-deployment-parameters')
-  .description($('Commands to manage configuration of virtual-machine in the parameter file.'));
-  var deleteparametersCreateDeploymentVirtualMachineDeploymentSlot1 = parametersCreateDeploymentVirtualMachineDeploymentSlot1.category('deployment-slot')
-  .description($('Commands to delete components of virtual-machine in create-deployment-parameters file.'));
-  deleteparametersCreateDeploymentVirtualMachineDeploymentSlot1.command('delete')
-  .description($('Remove deployment-slot in create-deployment-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "deploymentSlot" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/deploymentSlot';
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -26705,6 +26241,7 @@ exports.init = function (cli) {
       if (options.parse && options.protocol) {
         options.protocol = JSON.parse(options.protocol);
       }
+      options.protocol = JSON.parse(options.protocol);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protocol}]);
     }
     paramPath = options.path + '/' + 'timeoutInSeconds';
@@ -26789,46 +26326,6 @@ exports.init = function (cli) {
     else {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-deployment-parameters delete protocol
-  var catparametersCreateDeploymentVirtualMachineProtocol1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
-  var parametersCreateDeploymentVirtualMachineProtocol1 = catparametersCreateDeploymentVirtualMachineProtocol1.category('create-deployment-parameters')
-  .description($('Commands to manage configuration of virtual-machine in the parameter file.'));
-  var deleteparametersCreateDeploymentVirtualMachineProtocol1 = parametersCreateDeploymentVirtualMachineProtocol1.category('protocol')
-  .description($('Commands to delete components of virtual-machine in create-deployment-parameters file.'));
-  deleteparametersCreateDeploymentVirtualMachineProtocol1.command('delete')
-  .description($('Remove protocol in create-deployment-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "protocol" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
-  .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/loadBalancerProbe/protocol';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -28003,6 +27500,7 @@ exports.init = function (cli) {
       if (options.parse && options.listenerType) {
         options.listenerType = JSON.parse(options.listenerType);
       }
+      options.listenerType = JSON.parse(options.listenerType);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.listenerType}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -28061,46 +27559,6 @@ exports.init = function (cli) {
     else {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //create-deployment-parameters delete listener-type
-  var catparametersCreateDeploymentVirtualMachineListenerType1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
-  var parametersCreateDeploymentVirtualMachineListenerType1 = catparametersCreateDeploymentVirtualMachineListenerType1.category('create-deployment-parameters')
-  .description($('Commands to manage configuration of virtual-machine in the parameter file.'));
-  var deleteparametersCreateDeploymentVirtualMachineListenerType1 = parametersCreateDeploymentVirtualMachineListenerType1.category('listener-type')
-  .description($('Commands to delete components of virtual-machine in create-deployment-parameters file.'));
-  deleteparametersCreateDeploymentVirtualMachineListenerType1.command('delete')
-  .description($('Remove listener-type in create-deployment-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "listenerType" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--listeners-index <listeners-index>', $('Indexer: listeners-index.'))
-  .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .option('--roles-index <roles-index>', $('Indexer: roles-index.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/roles/' + options.rolesIndex + '/configurationSets/' + options.configurationSetsIndex + '/windowsRemoteManagement/listeners/' + options.listenersIndex + '/listenerType';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -29720,6 +29178,7 @@ exports.init = function (cli) {
       if (options.parse && options.postShutdownAction) {
         options.postShutdownAction = JSON.parse(options.postShutdownAction);
       }
+      options.postShutdownAction = JSON.parse(options.postShutdownAction);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.postShutdownAction}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -29770,42 +29229,6 @@ exports.init = function (cli) {
     else {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //shutdown-parameters delete post-shutdown-action
-  var catparametersShutdownVirtualMachinePostShutdownAction1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
-  var parametersShutdownVirtualMachinePostShutdownAction1 = catparametersShutdownVirtualMachinePostShutdownAction1.category('shutdown-parameters')
-  .description($('Commands to manage configuration of virtual-machine in the parameter file.'));
-  var deleteparametersShutdownVirtualMachinePostShutdownAction1 = parametersShutdownVirtualMachinePostShutdownAction1.category('post-shutdown-action')
-  .description($('Commands to delete components of virtual-machine in shutdown-parameters file.'));
-  deleteparametersShutdownVirtualMachinePostShutdownAction1.command('delete')
-  .description($('Remove post-shutdown-action in shutdown-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "postShutdownAction" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/postShutdownAction';
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -33017,6 +32440,7 @@ exports.init = function (cli) {
       if (options.parse && options.protocol) {
         options.protocol = JSON.parse(options.protocol);
       }
+      options.protocol = JSON.parse(options.protocol);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protocol}]);
     }
     paramPath = options.path + '/' + 'timeoutInSeconds';
@@ -33100,45 +32524,6 @@ exports.init = function (cli) {
     else {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //update-parameters delete protocol
-  var catparametersUpdateVirtualMachineProtocol1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
-  var parametersUpdateVirtualMachineProtocol1 = catparametersUpdateVirtualMachineProtocol1.category('update-parameters')
-  .description($('Commands to manage configuration of virtual-machine in the parameter file.'));
-  var deleteparametersUpdateVirtualMachineProtocol1 = parametersUpdateVirtualMachineProtocol1.category('protocol')
-  .description($('Commands to delete components of virtual-machine in update-parameters file.'));
-  deleteparametersUpdateVirtualMachineProtocol1.command('delete')
-  .description($('Remove protocol in update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "protocol" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--input-endpoints-index <input-endpoints-index>', $('Indexer: input-endpoints-index.'))
-  .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/configurationSets/' + options.configurationSetsIndex + '/inputEndpoints/' + options.inputEndpointsIndex + '/loadBalancerProbe/protocol';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -34294,6 +33679,7 @@ exports.init = function (cli) {
       if (options.parse && options.listenerType) {
         options.listenerType = JSON.parse(options.listenerType);
       }
+      options.listenerType = JSON.parse(options.listenerType);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.listenerType}]);
     }
     var updatedContent = JSON.stringify(parametersObj);
@@ -34351,45 +33737,6 @@ exports.init = function (cli) {
     else {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //update-parameters delete listener-type
-  var catparametersUpdateVirtualMachineListenerType1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
-  var parametersUpdateVirtualMachineListenerType1 = catparametersUpdateVirtualMachineListenerType1.category('update-parameters')
-  .description($('Commands to manage configuration of virtual-machine in the parameter file.'));
-  var deleteparametersUpdateVirtualMachineListenerType1 = parametersUpdateVirtualMachineListenerType1.category('listener-type')
-  .description($('Commands to delete components of virtual-machine in update-parameters file.'));
-  deleteparametersUpdateVirtualMachineListenerType1.command('delete')
-  .description($('Remove listener-type in update-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "listenerType" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--listeners-index <listeners-index>', $('Indexer: listeners-index.'))
-  .option('--configuration-sets-index <configuration-sets-index>', $('Indexer: configuration-sets-index.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/configurationSets/' + options.configurationSetsIndex + '/windowsRemoteManagement/listeners/' + options.listenersIndex + '/listenerType';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
@@ -35957,6 +35304,7 @@ exports.init = function (cli) {
       if (options.parse && options.protocol) {
         options.protocol = JSON.parse(options.protocol);
       }
+      options.protocol = JSON.parse(options.protocol);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: paramPath, value: options.protocol}]);
     }
     paramPath = options.path + '/' + 'timeoutInSeconds';
@@ -36039,44 +35387,6 @@ exports.init = function (cli) {
     else {
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     }
-    
-    var updatedContent = JSON.stringify(parametersObj);
-    cli.output.verbose('=====================================');
-    cli.output.verbose('JSON object (updated):');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    cli.output.verbose('=====================================');
-    fs.writeFileSync(options.parameterFile, beautify(updatedContent));
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Parameter file updated at: ' + options.parameterFile);
-    cli.output.verbose('=====================================');
-  });
-  //update-load-balanced-endpoint-set-parameters delete protocol
-  var catparametersUpdateLoadBalancedEndpointSetVirtualMachineProtocol1 = cli.category('invoke').description('Commands to invoke service management operations.').category('virtual-machine');
-  var parametersUpdateLoadBalancedEndpointSetVirtualMachineProtocol1 = catparametersUpdateLoadBalancedEndpointSetVirtualMachineProtocol1.category('update-load-balanced-endpoint-set-parameters')
-  .description($('Commands to manage configuration of virtual-machine in the parameter file.'));
-  var deleteparametersUpdateLoadBalancedEndpointSetVirtualMachineProtocol1 = parametersUpdateLoadBalancedEndpointSetVirtualMachineProtocol1.category('protocol')
-  .description($('Commands to delete components of virtual-machine in update-load-balanced-endpoint-set-parameters file.'));
-  deleteparametersUpdateLoadBalancedEndpointSetVirtualMachineProtocol1.command('delete')
-  .description($('Remove protocol in update-load-balanced-endpoint-set-parameters string or files, e.g. \r\n         {\r\n           ...\r\n           "protocol" : 0\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
-  .usage('[options]')
-  .option('--parameter-file <parameter-file>', $('The parameter file path.'))
-  .option('--load-balanced-endpoints-index <load-balanced-endpoints-index>', $('Indexer: load-balanced-endpoints-index.'))
-  .execute(function(options, _) {
-    cli.output.verbose(JSON.stringify(options), _);
-    if (!options.parameterFile) {
-      options.parameterFile = cli.interaction.promptIfNotGiven($('parameter-file : '), options.parameterFile, _);
-    }
-
-    cli.output.verbose('=====================================');
-    cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
-    cli.output.verbose('=====================================');
-    var fileContent = fs.readFileSync(options.parameterFile, 'utf8');
-    var parametersObj = JSON.parse(fileContent);
-    cli.output.verbose('JSON object:');
-    cli.output.verbose(JSON.stringify(parametersObj));
-    options.operation = 'remove';
-    options.path = '/loadBalancedEndpoints/' + options.loadBalancedEndpointsIndex + '/loadBalancerProbe/protocol';
-    jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path}]);
     
     var updatedContent = JSON.stringify(parametersObj);
     cli.output.verbose('=====================================');
