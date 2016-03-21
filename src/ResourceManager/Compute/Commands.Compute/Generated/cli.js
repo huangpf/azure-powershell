@@ -366,7 +366,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '';
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     var paramPath = options.path + '/' + 'sku';
@@ -614,7 +614,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/sku';
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     var paramPath = options.path + '/' + 'name';
@@ -748,7 +748,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/upgradePolicy';
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     var paramPath = options.path + '/' + 'mode';
@@ -852,7 +852,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile';
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     var paramPath = options.path + '/' + 'osProfile';
@@ -1007,7 +1007,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile';
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     var paramPath = options.path + '/' + 'computerNamePrefix';
@@ -1208,7 +1208,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/windowsConfiguration';
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     var paramPath = options.path + '/' + 'provisionVMAgent';
@@ -1380,7 +1380,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/windowsConfiguration/additionalUnattendContent' + (options.index ? ('/' + options.index) : '');
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     if (options.value) {
@@ -1534,7 +1534,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/windowsConfiguration/winRM';
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     var paramPath = options.path + '/' + 'listeners';
@@ -1638,7 +1638,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/windowsConfiguration/winRM/listeners' + (options.index ? ('/' + options.index) : '');
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     if (options.value) {
@@ -1761,7 +1761,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/linuxConfiguration';
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     var paramPath = options.path + '/' + 'disablePasswordAuthentication';
@@ -1879,7 +1879,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/linuxConfiguration/ssh';
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     var paramPath = options.path + '/' + 'publicKeys';
@@ -1983,7 +1983,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/linuxConfiguration/ssh/publicKeys' + (options.index ? ('/' + options.index) : '');
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     if (options.value) {
@@ -2108,7 +2108,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/secrets' + (options.index ? ('/' + options.index) : '');
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     if (options.value) {
@@ -2231,7 +2231,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/secrets/' + options.secretsIndex + '/sourceVault';
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     var paramPath = options.path + '/' + 'id';
@@ -2337,7 +2337,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '');
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     if (options.value) {
@@ -2461,7 +2461,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/storageProfile';
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     var paramPath = options.path + '/' + 'imageReference';
@@ -2581,7 +2581,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/storageProfile/imageReference';
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     var paramPath = options.path + '/' + 'publisher';
@@ -2735,7 +2735,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/storageProfile/osDisk';
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     var paramPath = options.path + '/' + 'name';
@@ -2916,7 +2916,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/storageProfile/osDisk/image';
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     var paramPath = options.path + '/' + 'uri';
@@ -3018,7 +3018,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/storageProfile/osDisk/vhdContainers' + (options.index ? ('/' + options.index) : '');
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     if (options.value) {
@@ -3102,7 +3102,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/networkProfile';
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     var paramPath = options.path + '/' + 'networkInterfaceConfigurations';
@@ -3208,7 +3208,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '');
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     if (options.value) {
@@ -3370,7 +3370,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations' + (options.index ? ('/' + options.index) : '');
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     if (options.value) {
@@ -3543,7 +3543,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations/' + options.ipConfigurationsIndex + '/subnet';
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     var paramPath = options.path + '/' + 'id';
@@ -3650,7 +3650,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '');
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     if (options.value) {
@@ -3762,7 +3762,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerInboundNatPools' + (options.index ? ('/' + options.index) : '');
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     if (options.value) {
@@ -3870,7 +3870,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/extensionProfile';
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     var paramPath = options.path + '/' + 'extensions';
@@ -3981,7 +3981,7 @@ exports.init = function (cli) {
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '');
     var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (!(typeof error === 'undefined')) {
+    if (typeof error !== 'undefined') {
       jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
     }
     if (options.value) {
