@@ -270,69 +270,7 @@
     <Compile Include="Extension\SqlServer\RemoveAzureVMSqlServerExtensionCommand.cs" />
     <Compile Include="Extension\SqlServer\SetAzureVMSqlServerExtensionCommand.cs" />
     <Compile Include="Extension\SqlServer\VirtualMachineSqlServerExtensionContext.cs" />
-    <Compile Include="Generated\ComputeAutomationBaseCmdlet.cs" />
-    <Compile Include="Generated\InvokeAzureComputeMethodCmdlet.cs" />
-    <Compile Include="Generated\Models\PSArgument.cs" />
-    <Compile Include="Generated\NewAzureComputeArgumentListCmdlet.cs" />
-    <Compile Include="Generated\NewAzureComputeParameterObjectCmdlet.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSetVM\VirtualMachineScaleSetVMDeallocateMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSetVM\VirtualMachineScaleSetVMDeleteMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSetVM\VirtualMachineScaleSetVMGetInstanceViewMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSetVM\VirtualMachineScaleSetVMGetMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSetVM\VirtualMachineScaleSetVMListMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSetVM\VirtualMachineScaleSetVMListNextMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSetVM\VirtualMachineScaleSetVMPowerOffMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSetVM\VirtualMachineScaleSetVMReimageMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSetVM\VirtualMachineScaleSetVMRestartMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSetVM\VirtualMachineScaleSetVMStartMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\Config\AddAzureRmVmssAdditionalUnattendContentCommand.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\Config\AddAzureRmVmssExtensionCommand.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\Config\AddAzureRmVmssNetworkInterfaceConfigurationCommand.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\Config\AddAzureRmVmssSecretCommand.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\Config\AddAzureRmVmssSshPublicKeyCommand.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\Config\AddAzureRmVmssWinRMListenerCommand.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\Config\NewAzureRmVmssConfigCommand.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\Config\NewAzureRmVmssIpConfigurationConfigCommand.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\Config\NewAzureRmVmssVaultCertificateConfigCommand.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\Config\RemoveAzureRmVmssAdditionalUnattendContentCommand.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\Config\RemoveAzureRmVmssExtensionCommand.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\Config\RemoveAzureRmVmssNetworkInterfaceConfigurationCommand.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\Config\RemoveAzureRmVmssSecretCommand.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\Config\RemoveAzureRmVmssSshPublicKeyCommand.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\Config\RemoveAzureRmVmssWinRMListenerCommand.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\Config\SetAzureRmVmssOsProfileCommand.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\Config\SetAzureRmVmssStorageProfileCommand.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetCreateOrUpdateMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetDeallocateMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetDeleteInstancesMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetDeleteMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetGetInstanceViewMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetGetMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetListAllMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetListAllNextMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetListMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetListNextMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetListSkusMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetListSkusNextMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetPowerOffMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetReimageMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetRestartMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetStartMethod.cs" />
-    <Compile Include="Generated\VirtualMachineScaleSet\VirtualMachineScaleSetUpdateInstancesMethod.cs" />
-    <Compile Include="Generated\VirtualMachine\VirtualMachineCaptureMethod.cs" />
-    <Compile Include="Generated\VirtualMachine\VirtualMachineCreateOrUpdateMethod.cs" />
-    <Compile Include="Generated\VirtualMachine\VirtualMachineDeallocateMethod.cs" />
-    <Compile Include="Generated\VirtualMachine\VirtualMachineDeleteMethod.cs" />
-    <Compile Include="Generated\VirtualMachine\VirtualMachineGeneralizeMethod.cs" />
-    <Compile Include="Generated\VirtualMachine\VirtualMachineGetMethod.cs" />
-    <Compile Include="Generated\VirtualMachine\VirtualMachineListAllMethod.cs" />
-    <Compile Include="Generated\VirtualMachine\VirtualMachineListAllNextMethod.cs" />
-    <Compile Include="Generated\VirtualMachine\VirtualMachineListAvailableSizesMethod.cs" />
-    <Compile Include="Generated\VirtualMachine\VirtualMachineListMethod.cs" />
-    <Compile Include="Generated\VirtualMachine\VirtualMachinePowerOffMethod.cs" />
-    <Compile Include="Generated\VirtualMachine\VirtualMachineRedeployMethod.cs" />
-    <Compile Include="Generated\VirtualMachine\VirtualMachineRestartMethod.cs" />
-    <Compile Include="Generated\VirtualMachine\VirtualMachineStartMethod.cs" />
+    <Compile Include="Generated\**\*.cs" />
     <Compile Include="Images\GetAzureVMImageCommand.cs" />
     <Compile Include="Common\HashTableExtensions.cs" />
     <Compile Include="Models\AzureDiskEncryptionStatusContext.cs" />
@@ -438,10 +376,6 @@
     <ProjectReference Include="..\..\Network\Commands.Network\Commands.Network.csproj">
       <Project>{98cfd96b-a6bc-4f15-ae2c-603fc2b58981}</Project>
       <Name>Commands.Network</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Profile\Commands.Profile\Commands.Profile.csproj">
-      <Project>{142d7b0b-388a-4ceb-a228-7f6d423c5c2e}</Project>
-      <Name>Commands.Profile</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Resources\Commands.Resources\Commands.Resources.csproj">
       <Project>{e1f5201d-6067-430e-b303-4e367652991b}</Project>

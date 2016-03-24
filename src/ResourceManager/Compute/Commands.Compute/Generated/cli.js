@@ -62,7 +62,7 @@ function displayImpl(o, key, depth, arr) {
   }
   else {
     arr.push(makeTuple(key, o ? o.toString() : '', depth));
-    return depth * 2 + (key ? key.toString().length : 0);
+    return depth * 2 + (key ? key.length : 0);
   }
 }
 
@@ -72,8 +72,7 @@ function display(cli, o) {
   for (var t in arr) {
     var prebuf = new Array(arr[t].depth * 2).join(' ');
     var key = arr[t].key ? arr[t].key : '';
-    var postLen = width - (prebuf.length + key.length);
-    var postbuf = new Array(postLen > 0 ? postLen : 0).join(' ');
+    var postbuf = new Array(width - (prebuf.length + key.length)).join(' ');
     var str = prebuf + capitalize(key) + postbuf;
     if (arr[t].value) {
       str += ' : ' + arr[t].value;
@@ -161,7 +160,7 @@ exports.init = function (cli) {
       "osDisk":{
         "name":"",
         "caching":null,
-        "createOption":"",
+        "createOption":0,
         "osType":null,
         "image":{
           "uri":""
@@ -273,12 +272,12 @@ exports.init = function (cli) {
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .execute(function(options, _) {
-    cli.output.verbose('{\"sku\":{\"name\":\"\",\"tier\":\"\",\"capacity\":null},\"upgradePolicy\":{\"mode\":null},\"virtualMachineProfile\":{\"osProfile\":{\"computerNamePrefix\":\"\",\"adminUsername\":\"\",\"adminPassword\":\"\",\"customData\":\"\",\"windowsConfiguration\":{\"provisionVMAgent\":null,\"enableAutomaticUpdates\":null,\"timeZone\":\"\",\"additionalUnattendContent\":[{\"passName\":null,\"componentName\":null,\"settingName\":null,\"content\":\"\"}],\"winRM\":{\"listeners\":[{\"protocol\":null,\"certificateUrl\":\"\"}]}},\"linuxConfiguration\":{\"disablePasswordAuthentication\":null,\"ssh\":{\"publicKeys\":[{\"path\":\"\",\"keyData\":\"\"}]}},\"secrets\":[{\"sourceVault\":{\"id\":\"\"},\"vaultCertificates\":[{\"certificateUrl\":\"\",\"certificateStore\":\"\"}]}]},\"storageProfile\":{\"imageReference\":{\"publisher\":\"\",\"offer\":\"\",\"sku\":\"\",\"version\":\"\"},\"osDisk\":{\"name\":\"\",\"caching\":null,\"createOption\":\"\",\"osType\":null,\"image\":{\"uri\":\"\"},\"vhdContainers\":[\"\"]}},\"networkProfile\":{\"networkInterfaceConfigurations\":[{\"name\":\"\",\"primary\":null,\"ipConfigurations\":[{\"name\":\"\",\"subnet\":{\"id\":\"\"},\"loadBalancerBackendAddressPools\":[{\"id\":\"\"}],\"loadBalancerInboundNatPools\":[{\"id\":\"\"}],\"id\":\"\"}],\"id\":\"\"}]},\"extensionProfile\":{\"extensions\":[{\"name\":\"\",\"publisher\":\"\",\"type\":\"\",\"typeHandlerVersion\":\"\",\"autoUpgradeMinorVersion\":null,\"settings\":{},\"protectedSettings\":{},\"provisioningState\":\"\",\"id\":\"\"}]}},\"provisioningState\":\"\",\"overProvision\":null,\"id\":null,\"name\":null,\"type\":null,\"location\":\"\",\"tags\":{}}', _);
+    cli.output.verbose('{\"sku\":{\"name\":\"\",\"tier\":\"\",\"capacity\":null},\"upgradePolicy\":{\"mode\":null},\"virtualMachineProfile\":{\"osProfile\":{\"computerNamePrefix\":\"\",\"adminUsername\":\"\",\"adminPassword\":\"\",\"customData\":\"\",\"windowsConfiguration\":{\"provisionVMAgent\":null,\"enableAutomaticUpdates\":null,\"timeZone\":\"\",\"additionalUnattendContent\":[{\"passName\":null,\"componentName\":null,\"settingName\":null,\"content\":\"\"}],\"winRM\":{\"listeners\":[{\"protocol\":null,\"certificateUrl\":\"\"}]}},\"linuxConfiguration\":{\"disablePasswordAuthentication\":null,\"ssh\":{\"publicKeys\":[{\"path\":\"\",\"keyData\":\"\"}]}},\"secrets\":[{\"sourceVault\":{\"id\":\"\"},\"vaultCertificates\":[{\"certificateUrl\":\"\",\"certificateStore\":\"\"}]}]},\"storageProfile\":{\"imageReference\":{\"publisher\":\"\",\"offer\":\"\",\"sku\":\"\",\"version\":\"\"},\"osDisk\":{\"name\":\"\",\"caching\":null,\"createOption\":0,\"osType\":null,\"image\":{\"uri\":\"\"},\"vhdContainers\":[\"\"]}},\"networkProfile\":{\"networkInterfaceConfigurations\":[{\"name\":\"\",\"primary\":null,\"ipConfigurations\":[{\"name\":\"\",\"subnet\":{\"id\":\"\"},\"loadBalancerBackendAddressPools\":[{\"id\":\"\"}],\"loadBalancerInboundNatPools\":[{\"id\":\"\"}],\"id\":\"\"}],\"id\":\"\"}]},\"extensionProfile\":{\"extensions\":[{\"name\":\"\",\"publisher\":\"\",\"type\":\"\",\"typeHandlerVersion\":\"\",\"autoUpgradeMinorVersion\":null,\"settings\":{},\"protectedSettings\":{},\"provisioningState\":\"\",\"id\":\"\"}]}},\"provisioningState\":\"\",\"overProvision\":null,\"id\":null,\"name\":null,\"type\":null,\"location\":\"\",\"tags\":{}}', _);
     var filePath = 'virtualMachineScaleSetsCreateOrUpdate_createOrUpdate.json';
     if (options.parameterFile) {
       filePath = options.parameterFile;
     }
-    fs.writeFileSync(filePath, beautify('{\r\n\"sku\":{\r\n\"name\":\"\",\r\n\"tier\":\"\",\r\n\"capacity\":null\r\n},\r\n\"upgradePolicy\":{\r\n\"mode\":null\r\n},\r\n\"virtualMachineProfile\":{\r\n\"osProfile\":{\r\n\"computerNamePrefix\":\"\",\r\n\"adminUsername\":\"\",\r\n\"adminPassword\":\"\",\r\n\"customData\":\"\",\r\n\"windowsConfiguration\":{\r\n\"provisionVMAgent\":null,\r\n\"enableAutomaticUpdates\":null,\r\n\"timeZone\":\"\",\r\n\"additionalUnattendContent\":[\r\n{\r\n\"passName\":null,\r\n\"componentName\":null,\r\n\"settingName\":null,\r\n\"content\":\"\"\r\n}\r\n],\r\n\"winRM\":{\r\n\"listeners\":[\r\n{\r\n\"protocol\":null,\r\n\"certificateUrl\":\"\"\r\n}\r\n]\r\n}\r\n},\r\n\"linuxConfiguration\":{\r\n\"disablePasswordAuthentication\":null,\r\n\"ssh\":{\r\n\"publicKeys\":[\r\n{\r\n\"path\":\"\",\r\n\"keyData\":\"\"\r\n}\r\n]\r\n}\r\n},\r\n\"secrets\":[\r\n{\r\n\"sourceVault\":{\r\n\"id\":\"\"\r\n},\r\n\"vaultCertificates\":[\r\n{\r\n\"certificateUrl\":\"\",\r\n\"certificateStore\":\"\"\r\n}\r\n]\r\n}\r\n]\r\n},\r\n\"storageProfile\":{\r\n\"imageReference\":{\r\n\"publisher\":\"\",\r\n\"offer\":\"\",\r\n\"sku\":\"\",\r\n\"version\":\"\"\r\n},\r\n\"osDisk\":{\r\n\"name\":\"\",\r\n\"caching\":null,\r\n\"createOption\":\"\",\r\n\"osType\":null,\r\n\"image\":{\r\n\"uri\":\"\"\r\n},\r\n\"vhdContainers\":[\r\n\"\"\r\n]\r\n}\r\n},\r\n\"networkProfile\":{\r\n\"networkInterfaceConfigurations\":[\r\n{\r\n\"name\":\"\",\r\n\"primary\":null,\r\n\"ipConfigurations\":[\r\n{\r\n\"name\":\"\",\r\n\"subnet\":{\r\n\"id\":\"\"\r\n},\r\n\"loadBalancerBackendAddressPools\":[\r\n{\r\n\"id\":\"\"\r\n}\r\n],\r\n\"loadBalancerInboundNatPools\":[\r\n{\r\n\"id\":\"\"\r\n}\r\n],\r\n\"id\":\"\"\r\n}\r\n],\r\n\"id\":\"\"\r\n}\r\n]\r\n},\r\n\"extensionProfile\":{\r\n\"extensions\":[\r\n{\r\n\"name\":\"\",\r\n\"publisher\":\"\",\r\n\"type\":\"\",\r\n\"typeHandlerVersion\":\"\",\r\n\"autoUpgradeMinorVersion\":null,\r\n\"settings\":{\r\n},\r\n\"protectedSettings\":{\r\n},\r\n\"provisioningState\":\"\",\r\n\"id\":\"\"\r\n}\r\n]\r\n}\r\n},\r\n\"provisioningState\":\"\",\r\n\"overProvision\":null,\r\n\"id\":null,\r\n\"name\":null,\r\n\"type\":null,\r\n\"location\":\"\",\r\n\"tags\":{\r\n}\r\n}'));
+    fs.writeFileSync(filePath, beautify('{\r\n\"sku\":{\r\n\"name\":\"\",\r\n\"tier\":\"\",\r\n\"capacity\":null\r\n},\r\n\"upgradePolicy\":{\r\n\"mode\":null\r\n},\r\n\"virtualMachineProfile\":{\r\n\"osProfile\":{\r\n\"computerNamePrefix\":\"\",\r\n\"adminUsername\":\"\",\r\n\"adminPassword\":\"\",\r\n\"customData\":\"\",\r\n\"windowsConfiguration\":{\r\n\"provisionVMAgent\":null,\r\n\"enableAutomaticUpdates\":null,\r\n\"timeZone\":\"\",\r\n\"additionalUnattendContent\":[\r\n{\r\n\"passName\":null,\r\n\"componentName\":null,\r\n\"settingName\":null,\r\n\"content\":\"\"\r\n}\r\n],\r\n\"winRM\":{\r\n\"listeners\":[\r\n{\r\n\"protocol\":null,\r\n\"certificateUrl\":\"\"\r\n}\r\n]\r\n}\r\n},\r\n\"linuxConfiguration\":{\r\n\"disablePasswordAuthentication\":null,\r\n\"ssh\":{\r\n\"publicKeys\":[\r\n{\r\n\"path\":\"\",\r\n\"keyData\":\"\"\r\n}\r\n]\r\n}\r\n},\r\n\"secrets\":[\r\n{\r\n\"sourceVault\":{\r\n\"id\":\"\"\r\n},\r\n\"vaultCertificates\":[\r\n{\r\n\"certificateUrl\":\"\",\r\n\"certificateStore\":\"\"\r\n}\r\n]\r\n}\r\n]\r\n},\r\n\"storageProfile\":{\r\n\"imageReference\":{\r\n\"publisher\":\"\",\r\n\"offer\":\"\",\r\n\"sku\":\"\",\r\n\"version\":\"\"\r\n},\r\n\"osDisk\":{\r\n\"name\":\"\",\r\n\"caching\":null,\r\n\"createOption\":0,\r\n\"osType\":null,\r\n\"image\":{\r\n\"uri\":\"\"\r\n},\r\n\"vhdContainers\":[\r\n\"\"\r\n]\r\n}\r\n},\r\n\"networkProfile\":{\r\n\"networkInterfaceConfigurations\":[\r\n{\r\n\"name\":\"\",\r\n\"primary\":null,\r\n\"ipConfigurations\":[\r\n{\r\n\"name\":\"\",\r\n\"subnet\":{\r\n\"id\":\"\"\r\n},\r\n\"loadBalancerBackendAddressPools\":[\r\n{\r\n\"id\":\"\"\r\n}\r\n],\r\n\"loadBalancerInboundNatPools\":[\r\n{\r\n\"id\":\"\"\r\n}\r\n],\r\n\"id\":\"\"\r\n}\r\n],\r\n\"id\":\"\"\r\n}\r\n]\r\n},\r\n\"extensionProfile\":{\r\n\"extensions\":[\r\n{\r\n\"name\":\"\",\r\n\"publisher\":\"\",\r\n\"type\":\"\",\r\n\"typeHandlerVersion\":\"\",\r\n\"autoUpgradeMinorVersion\":null,\r\n\"settings\":{\r\n},\r\n\"protectedSettings\":{\r\n},\r\n\"provisioningState\":\"\",\r\n\"id\":\"\"\r\n}\r\n]\r\n}\r\n},\r\n\"provisioningState\":\"\",\r\n\"overProvision\":null,\r\n\"id\":null,\r\n\"name\":null,\r\n\"type\":null,\r\n\"location\":\"\",\r\n\"tags\":{\r\n}\r\n}'));
     cli.output.verbose('=====================================');
     cli.output.verbose('Parameter file output to: ' + filePath);
     cli.output.verbose('=====================================');
@@ -336,7 +335,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet0 = parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet0.category('virtual-machine-scale-set')
   .description($('Commands to set components of virtual-machine-scale-sets in config file.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet0.command('set')
-  .description($('Set virtual-machine-scale-set in config string or files, e.g. \r\n{\r\n  "sku":{\r\n    "name":"",\r\n    "tier":"",\r\n    "capacity":null\r\n  },\r\n  "upgradePolicy":{\r\n    "mode":null\r\n  },\r\n  "virtualMachineProfile":{\r\n    "osProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminUsername":"",\r\n      "adminPassword":"",\r\n      "customData":"",\r\n      "windowsConfiguration":{\r\n        "provisionVMAgent":null,\r\n        "enableAutomaticUpdates":null,\r\n        "timeZone":"",\r\n        "additionalUnattendContent":[\r\n          {\r\n            "passName":null,\r\n            "componentName":null,\r\n            "settingName":null,\r\n            "content":""\r\n          }\r\n        ],\r\n        "winRM":{\r\n          "listeners":[\r\n            {\r\n              "protocol":null,\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "ssh":{\r\n          "publicKeys":[\r\n            {\r\n              "path":"",\r\n              "keyData":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "id":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateUrl":"",\r\n              "certificateStore":""\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "publisher":"",\r\n        "offer":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "osDisk":{\r\n        "name":"",\r\n        "caching":null,\r\n        "createOption":"",\r\n        "osType":null,\r\n        "image":{\r\n          "uri":""\r\n        },\r\n        "vhdContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "name":"",\r\n          "primary":null,\r\n          "ipConfigurations":[\r\n            {\r\n              "name":"",\r\n              "subnet":{\r\n                "id":""\r\n              },\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "id":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "id":""\r\n                }\r\n              ],\r\n              "id":""\r\n            }\r\n          ],\r\n          "id":""\r\n        }\r\n      ]\r\n    },\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "name":"",\r\n          "publisher":"",\r\n          "type":"",\r\n          "typeHandlerVersion":"",\r\n          "autoUpgradeMinorVersion":null,\r\n          "settings":{\r\n          },\r\n          "protectedSettings":{\r\n          },\r\n          "provisioningState":"",\r\n          "id":""\r\n        }\r\n      ]\r\n    }\r\n  },\r\n  "provisioningState":"",\r\n  "overProvision":null,\r\n  "id":null,\r\n  "name":null,\r\n  "type":null,\r\n  "location":"",\r\n  "tags":{\r\n  }\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .description($('Set virtual-machine-scale-set in config string or files, e.g. \r\n{\r\n  "sku":{\r\n    "name":"",\r\n    "tier":"",\r\n    "capacity":null\r\n  },\r\n  "upgradePolicy":{\r\n    "mode":null\r\n  },\r\n  "virtualMachineProfile":{\r\n    "osProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminUsername":"",\r\n      "adminPassword":"",\r\n      "customData":"",\r\n      "windowsConfiguration":{\r\n        "provisionVMAgent":null,\r\n        "enableAutomaticUpdates":null,\r\n        "timeZone":"",\r\n        "additionalUnattendContent":[\r\n          {\r\n            "passName":null,\r\n            "componentName":null,\r\n            "settingName":null,\r\n            "content":""\r\n          }\r\n        ],\r\n        "winRM":{\r\n          "listeners":[\r\n            {\r\n              "protocol":null,\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "ssh":{\r\n          "publicKeys":[\r\n            {\r\n              "path":"",\r\n              "keyData":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "id":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateUrl":"",\r\n              "certificateStore":""\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "publisher":"",\r\n        "offer":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "osDisk":{\r\n        "name":"",\r\n        "caching":null,\r\n        "createOption":0,\r\n        "osType":null,\r\n        "image":{\r\n          "uri":""\r\n        },\r\n        "vhdContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "name":"",\r\n          "primary":null,\r\n          "ipConfigurations":[\r\n            {\r\n              "name":"",\r\n              "subnet":{\r\n                "id":""\r\n              },\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "id":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "id":""\r\n                }\r\n              ],\r\n              "id":""\r\n            }\r\n          ],\r\n          "id":""\r\n        }\r\n      ]\r\n    },\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "name":"",\r\n          "publisher":"",\r\n          "type":"",\r\n          "typeHandlerVersion":"",\r\n          "autoUpgradeMinorVersion":null,\r\n          "settings":{\r\n          },\r\n          "protectedSettings":{\r\n          },\r\n          "provisioningState":"",\r\n          "id":""\r\n        }\r\n      ]\r\n    }\r\n  },\r\n  "provisioningState":"",\r\n  "overProvision":null,\r\n  "id":null,\r\n  "name":null,\r\n  "type":null,\r\n  "location":"",\r\n  "tags":{\r\n  }\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
@@ -365,10 +364,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '';
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     var paramPath = options.path + '/' + 'sku';
     if (options.sku) {
       cli.output.verbose('================================================');
@@ -498,7 +493,7 @@ exports.init = function (cli) {
   var deleteparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1 = parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1.category('virtual-machine-scale-set')
   .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
   deleteparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineScaleSet1.command('delete')
-  .description($('Remove virtual-machine-scale-set in config string or files, e.g. \r\n{\r\n  "sku":{\r\n    "name":"",\r\n    "tier":"",\r\n    "capacity":null\r\n  },\r\n  "upgradePolicy":{\r\n    "mode":null\r\n  },\r\n  "virtualMachineProfile":{\r\n    "osProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminUsername":"",\r\n      "adminPassword":"",\r\n      "customData":"",\r\n      "windowsConfiguration":{\r\n        "provisionVMAgent":null,\r\n        "enableAutomaticUpdates":null,\r\n        "timeZone":"",\r\n        "additionalUnattendContent":[\r\n          {\r\n            "passName":null,\r\n            "componentName":null,\r\n            "settingName":null,\r\n            "content":""\r\n          }\r\n        ],\r\n        "winRM":{\r\n          "listeners":[\r\n            {\r\n              "protocol":null,\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "ssh":{\r\n          "publicKeys":[\r\n            {\r\n              "path":"",\r\n              "keyData":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "id":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateUrl":"",\r\n              "certificateStore":""\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "publisher":"",\r\n        "offer":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "osDisk":{\r\n        "name":"",\r\n        "caching":null,\r\n        "createOption":"",\r\n        "osType":null,\r\n        "image":{\r\n          "uri":""\r\n        },\r\n        "vhdContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "name":"",\r\n          "primary":null,\r\n          "ipConfigurations":[\r\n            {\r\n              "name":"",\r\n              "subnet":{\r\n                "id":""\r\n              },\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "id":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "id":""\r\n                }\r\n              ],\r\n              "id":""\r\n            }\r\n          ],\r\n          "id":""\r\n        }\r\n      ]\r\n    },\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "name":"",\r\n          "publisher":"",\r\n          "type":"",\r\n          "typeHandlerVersion":"",\r\n          "autoUpgradeMinorVersion":null,\r\n          "settings":{\r\n          },\r\n          "protectedSettings":{\r\n          },\r\n          "provisioningState":"",\r\n          "id":""\r\n        }\r\n      ]\r\n    }\r\n  },\r\n  "provisioningState":"",\r\n  "overProvision":null,\r\n  "id":null,\r\n  "name":null,\r\n  "type":null,\r\n  "location":"",\r\n  "tags":{\r\n  }\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .description($('Remove virtual-machine-scale-set in config string or files, e.g. \r\n{\r\n  "sku":{\r\n    "name":"",\r\n    "tier":"",\r\n    "capacity":null\r\n  },\r\n  "upgradePolicy":{\r\n    "mode":null\r\n  },\r\n  "virtualMachineProfile":{\r\n    "osProfile":{\r\n      "computerNamePrefix":"",\r\n      "adminUsername":"",\r\n      "adminPassword":"",\r\n      "customData":"",\r\n      "windowsConfiguration":{\r\n        "provisionVMAgent":null,\r\n        "enableAutomaticUpdates":null,\r\n        "timeZone":"",\r\n        "additionalUnattendContent":[\r\n          {\r\n            "passName":null,\r\n            "componentName":null,\r\n            "settingName":null,\r\n            "content":""\r\n          }\r\n        ],\r\n        "winRM":{\r\n          "listeners":[\r\n            {\r\n              "protocol":null,\r\n              "certificateUrl":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "linuxConfiguration":{\r\n        "disablePasswordAuthentication":null,\r\n        "ssh":{\r\n          "publicKeys":[\r\n            {\r\n              "path":"",\r\n              "keyData":""\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      "secrets":[\r\n        {\r\n          "sourceVault":{\r\n            "id":""\r\n          },\r\n          "vaultCertificates":[\r\n            {\r\n              "certificateUrl":"",\r\n              "certificateStore":""\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    },\r\n    "storageProfile":{\r\n      "imageReference":{\r\n        "publisher":"",\r\n        "offer":"",\r\n        "sku":"",\r\n        "version":""\r\n      },\r\n      "osDisk":{\r\n        "name":"",\r\n        "caching":null,\r\n        "createOption":0,\r\n        "osType":null,\r\n        "image":{\r\n          "uri":""\r\n        },\r\n        "vhdContainers":[\r\n          ""\r\n        ]\r\n      }\r\n    },\r\n    "networkProfile":{\r\n      "networkInterfaceConfigurations":[\r\n        {\r\n          "name":"",\r\n          "primary":null,\r\n          "ipConfigurations":[\r\n            {\r\n              "name":"",\r\n              "subnet":{\r\n                "id":""\r\n              },\r\n              "loadBalancerBackendAddressPools":[\r\n                {\r\n                  "id":""\r\n                }\r\n              ],\r\n              "loadBalancerInboundNatPools":[\r\n                {\r\n                  "id":""\r\n                }\r\n              ],\r\n              "id":""\r\n            }\r\n          ],\r\n          "id":""\r\n        }\r\n      ]\r\n    },\r\n    "extensionProfile":{\r\n      "extensions":[\r\n        {\r\n          "name":"",\r\n          "publisher":"",\r\n          "type":"",\r\n          "typeHandlerVersion":"",\r\n          "autoUpgradeMinorVersion":null,\r\n          "settings":{\r\n          },\r\n          "protectedSettings":{\r\n          },\r\n          "provisioningState":"",\r\n          "id":""\r\n        }\r\n      ]\r\n    }\r\n  },\r\n  "provisioningState":"",\r\n  "overProvision":null,\r\n  "id":null,\r\n  "name":null,\r\n  "type":null,\r\n  "location":"",\r\n  "tags":{\r\n  }\r\n}\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--sku', $('Remove the sku value.'))
@@ -613,10 +608,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/sku';
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     var paramPath = options.path + '/' + 'name';
     if (options.name) {
       cli.output.verbose('================================================');
@@ -747,10 +738,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/upgradePolicy';
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     var paramPath = options.path + '/' + 'mode';
     if (options.mode) {
       cli.output.verbose('================================================');
@@ -828,7 +815,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile0.category('virtual-machine-profile')
   .description($('Commands to set components of virtual-machine-scale-sets in config file.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile0.command('set')
-  .description($('Set virtual-machine-profile in config string or files, e.g. \r\n         {\r\n           ...\r\n           "virtualMachineProfile" : {\r\n             "osProfile":{\r\n               "computerNamePrefix":"",\r\n               "adminUsername":"",\r\n               "adminPassword":"",\r\n               "customData":"",\r\n               "windowsConfiguration":{\r\n                 "provisionVMAgent":null,\r\n                 "enableAutomaticUpdates":null,\r\n                 "timeZone":"",\r\n                 "additionalUnattendContent":[\r\n                   {\r\n                     "passName":null,\r\n                     "componentName":null,\r\n                     "settingName":null,\r\n                     "content":""\r\n                   }\r\n                 ],\r\n                 "winRM":{\r\n                   "listeners":[\r\n                     {\r\n                       "protocol":null,\r\n                       "certificateUrl":""\r\n                     }\r\n                   ]\r\n                 }\r\n               },\r\n               "linuxConfiguration":{\r\n                 "disablePasswordAuthentication":null,\r\n                 "ssh":{\r\n                   "publicKeys":[\r\n                     {\r\n                       "path":"",\r\n                       "keyData":""\r\n                     }\r\n                   ]\r\n                 }\r\n               },\r\n               "secrets":[\r\n                 {\r\n                   "sourceVault":{\r\n                     "id":""\r\n                   },\r\n                   "vaultCertificates":[\r\n                     {\r\n                       "certificateUrl":"",\r\n                       "certificateStore":""\r\n                     }\r\n                   ]\r\n                 }\r\n               ]\r\n             },\r\n             "storageProfile":{\r\n               "imageReference":{\r\n                 "publisher":"",\r\n                 "offer":"",\r\n                 "sku":"",\r\n                 "version":""\r\n               },\r\n               "osDisk":{\r\n                 "name":"",\r\n                 "caching":null,\r\n                 "createOption":"",\r\n                 "osType":null,\r\n                 "image":{\r\n                   "uri":""\r\n                 },\r\n                 "vhdContainers":[\r\n                   ""\r\n                 ]\r\n               }\r\n             },\r\n             "networkProfile":{\r\n               "networkInterfaceConfigurations":[\r\n                 {\r\n                   "name":"",\r\n                   "primary":null,\r\n                   "ipConfigurations":[\r\n                     {\r\n                       "name":"",\r\n                       "subnet":{\r\n                         "id":""\r\n                       },\r\n                       "loadBalancerBackendAddressPools":[\r\n                         {\r\n                           "id":""\r\n                         }\r\n                       ],\r\n                       "loadBalancerInboundNatPools":[\r\n                         {\r\n                           "id":""\r\n                         }\r\n                       ],\r\n                       "id":""\r\n                     }\r\n                   ],\r\n                   "id":""\r\n                 }\r\n               ]\r\n             },\r\n             "extensionProfile":{\r\n               "extensions":[\r\n                 {\r\n                   "name":"",\r\n                   "publisher":"",\r\n                   "type":"",\r\n                   "typeHandlerVersion":"",\r\n                   "autoUpgradeMinorVersion":null,\r\n                   "settings":{\r\n                   },\r\n                   "protectedSettings":{\r\n                   },\r\n                   "provisioningState":"",\r\n                   "id":""\r\n                 }\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .description($('Set virtual-machine-profile in config string or files, e.g. \r\n         {\r\n           ...\r\n           "virtualMachineProfile" : {\r\n             "osProfile":{\r\n               "computerNamePrefix":"",\r\n               "adminUsername":"",\r\n               "adminPassword":"",\r\n               "customData":"",\r\n               "windowsConfiguration":{\r\n                 "provisionVMAgent":null,\r\n                 "enableAutomaticUpdates":null,\r\n                 "timeZone":"",\r\n                 "additionalUnattendContent":[\r\n                   {\r\n                     "passName":null,\r\n                     "componentName":null,\r\n                     "settingName":null,\r\n                     "content":""\r\n                   }\r\n                 ],\r\n                 "winRM":{\r\n                   "listeners":[\r\n                     {\r\n                       "protocol":null,\r\n                       "certificateUrl":""\r\n                     }\r\n                   ]\r\n                 }\r\n               },\r\n               "linuxConfiguration":{\r\n                 "disablePasswordAuthentication":null,\r\n                 "ssh":{\r\n                   "publicKeys":[\r\n                     {\r\n                       "path":"",\r\n                       "keyData":""\r\n                     }\r\n                   ]\r\n                 }\r\n               },\r\n               "secrets":[\r\n                 {\r\n                   "sourceVault":{\r\n                     "id":""\r\n                   },\r\n                   "vaultCertificates":[\r\n                     {\r\n                       "certificateUrl":"",\r\n                       "certificateStore":""\r\n                     }\r\n                   ]\r\n                 }\r\n               ]\r\n             },\r\n             "storageProfile":{\r\n               "imageReference":{\r\n                 "publisher":"",\r\n                 "offer":"",\r\n                 "sku":"",\r\n                 "version":""\r\n               },\r\n               "osDisk":{\r\n                 "name":"",\r\n                 "caching":null,\r\n                 "createOption":0,\r\n                 "osType":null,\r\n                 "image":{\r\n                   "uri":""\r\n                 },\r\n                 "vhdContainers":[\r\n                   ""\r\n                 ]\r\n               }\r\n             },\r\n             "networkProfile":{\r\n               "networkInterfaceConfigurations":[\r\n                 {\r\n                   "name":"",\r\n                   "primary":null,\r\n                   "ipConfigurations":[\r\n                     {\r\n                       "name":"",\r\n                       "subnet":{\r\n                         "id":""\r\n                       },\r\n                       "loadBalancerBackendAddressPools":[\r\n                         {\r\n                           "id":""\r\n                         }\r\n                       ],\r\n                       "loadBalancerInboundNatPools":[\r\n                         {\r\n                           "id":""\r\n                         }\r\n                       ],\r\n                       "id":""\r\n                     }\r\n                   ],\r\n                   "id":""\r\n                 }\r\n               ]\r\n             },\r\n             "extensionProfile":{\r\n               "extensions":[\r\n                 {\r\n                   "name":"",\r\n                   "publisher":"",\r\n                   "type":"",\r\n                   "typeHandlerVersion":"",\r\n                   "autoUpgradeMinorVersion":null,\r\n                   "settings":{\r\n                   },\r\n                   "protectedSettings":{\r\n                   },\r\n                   "provisioningState":"",\r\n                   "id":""\r\n                 }\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
@@ -851,10 +838,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile';
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     var paramPath = options.path + '/' + 'osProfile';
     if (options.osProfile) {
       cli.output.verbose('================================================');
@@ -917,7 +900,7 @@ exports.init = function (cli) {
   var deleteparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1.category('virtual-machine-profile')
   .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
   deleteparametersCreateOrUpdateVirtualMachineScaleSetsVirtualMachineProfile1.command('delete')
-  .description($('Remove virtual-machine-profile in config string or files, e.g. \r\n         {\r\n           ...\r\n           "virtualMachineProfile" : {\r\n             "osProfile":{\r\n               "computerNamePrefix":"",\r\n               "adminUsername":"",\r\n               "adminPassword":"",\r\n               "customData":"",\r\n               "windowsConfiguration":{\r\n                 "provisionVMAgent":null,\r\n                 "enableAutomaticUpdates":null,\r\n                 "timeZone":"",\r\n                 "additionalUnattendContent":[\r\n                   {\r\n                     "passName":null,\r\n                     "componentName":null,\r\n                     "settingName":null,\r\n                     "content":""\r\n                   }\r\n                 ],\r\n                 "winRM":{\r\n                   "listeners":[\r\n                     {\r\n                       "protocol":null,\r\n                       "certificateUrl":""\r\n                     }\r\n                   ]\r\n                 }\r\n               },\r\n               "linuxConfiguration":{\r\n                 "disablePasswordAuthentication":null,\r\n                 "ssh":{\r\n                   "publicKeys":[\r\n                     {\r\n                       "path":"",\r\n                       "keyData":""\r\n                     }\r\n                   ]\r\n                 }\r\n               },\r\n               "secrets":[\r\n                 {\r\n                   "sourceVault":{\r\n                     "id":""\r\n                   },\r\n                   "vaultCertificates":[\r\n                     {\r\n                       "certificateUrl":"",\r\n                       "certificateStore":""\r\n                     }\r\n                   ]\r\n                 }\r\n               ]\r\n             },\r\n             "storageProfile":{\r\n               "imageReference":{\r\n                 "publisher":"",\r\n                 "offer":"",\r\n                 "sku":"",\r\n                 "version":""\r\n               },\r\n               "osDisk":{\r\n                 "name":"",\r\n                 "caching":null,\r\n                 "createOption":"",\r\n                 "osType":null,\r\n                 "image":{\r\n                   "uri":""\r\n                 },\r\n                 "vhdContainers":[\r\n                   ""\r\n                 ]\r\n               }\r\n             },\r\n             "networkProfile":{\r\n               "networkInterfaceConfigurations":[\r\n                 {\r\n                   "name":"",\r\n                   "primary":null,\r\n                   "ipConfigurations":[\r\n                     {\r\n                       "name":"",\r\n                       "subnet":{\r\n                         "id":""\r\n                       },\r\n                       "loadBalancerBackendAddressPools":[\r\n                         {\r\n                           "id":""\r\n                         }\r\n                       ],\r\n                       "loadBalancerInboundNatPools":[\r\n                         {\r\n                           "id":""\r\n                         }\r\n                       ],\r\n                       "id":""\r\n                     }\r\n                   ],\r\n                   "id":""\r\n                 }\r\n               ]\r\n             },\r\n             "extensionProfile":{\r\n               "extensions":[\r\n                 {\r\n                   "name":"",\r\n                   "publisher":"",\r\n                   "type":"",\r\n                   "typeHandlerVersion":"",\r\n                   "autoUpgradeMinorVersion":null,\r\n                   "settings":{\r\n                   },\r\n                   "protectedSettings":{\r\n                   },\r\n                   "provisioningState":"",\r\n                   "id":""\r\n                 }\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .description($('Remove virtual-machine-profile in config string or files, e.g. \r\n         {\r\n           ...\r\n           "virtualMachineProfile" : {\r\n             "osProfile":{\r\n               "computerNamePrefix":"",\r\n               "adminUsername":"",\r\n               "adminPassword":"",\r\n               "customData":"",\r\n               "windowsConfiguration":{\r\n                 "provisionVMAgent":null,\r\n                 "enableAutomaticUpdates":null,\r\n                 "timeZone":"",\r\n                 "additionalUnattendContent":[\r\n                   {\r\n                     "passName":null,\r\n                     "componentName":null,\r\n                     "settingName":null,\r\n                     "content":""\r\n                   }\r\n                 ],\r\n                 "winRM":{\r\n                   "listeners":[\r\n                     {\r\n                       "protocol":null,\r\n                       "certificateUrl":""\r\n                     }\r\n                   ]\r\n                 }\r\n               },\r\n               "linuxConfiguration":{\r\n                 "disablePasswordAuthentication":null,\r\n                 "ssh":{\r\n                   "publicKeys":[\r\n                     {\r\n                       "path":"",\r\n                       "keyData":""\r\n                     }\r\n                   ]\r\n                 }\r\n               },\r\n               "secrets":[\r\n                 {\r\n                   "sourceVault":{\r\n                     "id":""\r\n                   },\r\n                   "vaultCertificates":[\r\n                     {\r\n                       "certificateUrl":"",\r\n                       "certificateStore":""\r\n                     }\r\n                   ]\r\n                 }\r\n               ]\r\n             },\r\n             "storageProfile":{\r\n               "imageReference":{\r\n                 "publisher":"",\r\n                 "offer":"",\r\n                 "sku":"",\r\n                 "version":""\r\n               },\r\n               "osDisk":{\r\n                 "name":"",\r\n                 "caching":null,\r\n                 "createOption":0,\r\n                 "osType":null,\r\n                 "image":{\r\n                   "uri":""\r\n                 },\r\n                 "vhdContainers":[\r\n                   ""\r\n                 ]\r\n               }\r\n             },\r\n             "networkProfile":{\r\n               "networkInterfaceConfigurations":[\r\n                 {\r\n                   "name":"",\r\n                   "primary":null,\r\n                   "ipConfigurations":[\r\n                     {\r\n                       "name":"",\r\n                       "subnet":{\r\n                         "id":""\r\n                       },\r\n                       "loadBalancerBackendAddressPools":[\r\n                         {\r\n                           "id":""\r\n                         }\r\n                       ],\r\n                       "loadBalancerInboundNatPools":[\r\n                         {\r\n                           "id":""\r\n                         }\r\n                       ],\r\n                       "id":""\r\n                     }\r\n                   ],\r\n                   "id":""\r\n                 }\r\n               ]\r\n             },\r\n             "extensionProfile":{\r\n               "extensions":[\r\n                 {\r\n                   "name":"",\r\n                   "publisher":"",\r\n                   "type":"",\r\n                   "typeHandlerVersion":"",\r\n                   "autoUpgradeMinorVersion":null,\r\n                   "settings":{\r\n                   },\r\n                   "protectedSettings":{\r\n                   },\r\n                   "provisioningState":"",\r\n                   "id":""\r\n                 }\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--os-profile', $('Remove the os-profile value.'))
@@ -1006,10 +989,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile';
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     var paramPath = options.path + '/' + 'computerNamePrefix';
     if (options.computerNamePrefix) {
       cli.output.verbose('================================================');
@@ -1207,10 +1186,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/windowsConfiguration';
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     var paramPath = options.path + '/' + 'provisionVMAgent';
     if (options.provisionVMAgent) {
       cli.output.verbose('================================================');
@@ -1379,10 +1354,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/windowsConfiguration/additionalUnattendContent' + (options.index ? ('/' + options.index) : '');
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     if (options.value) {
       cli.output.verbose(options.value);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
@@ -1533,10 +1504,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/windowsConfiguration/winRM';
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     var paramPath = options.path + '/' + 'listeners';
     if (options.listeners) {
       cli.output.verbose('================================================');
@@ -1637,10 +1604,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/windowsConfiguration/winRM/listeners' + (options.index ? ('/' + options.index) : '');
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     if (options.value) {
       cli.output.verbose(options.value);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
@@ -1760,10 +1723,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/linuxConfiguration';
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     var paramPath = options.path + '/' + 'disablePasswordAuthentication';
     if (options.disablePasswordAuthentication) {
       cli.output.verbose('================================================');
@@ -1878,10 +1837,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/linuxConfiguration/ssh';
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     var paramPath = options.path + '/' + 'publicKeys';
     if (options.publicKeys) {
       cli.output.verbose('================================================');
@@ -1982,10 +1937,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/linuxConfiguration/ssh/publicKeys' + (options.index ? ('/' + options.index) : '');
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     if (options.value) {
       cli.output.verbose(options.value);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
@@ -2107,10 +2058,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/secrets' + (options.index ? ('/' + options.index) : '');
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     if (options.value) {
       cli.output.verbose(options.value);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
@@ -2230,10 +2177,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/secrets/' + options.secretsIndex + '/sourceVault';
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     var paramPath = options.path + '/' + 'id';
     if (options.id) {
       cli.output.verbose('================================================');
@@ -2336,10 +2279,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/osProfile/secrets/' + options.secretsIndex + '/vaultCertificates' + (options.index ? ('/' + options.index) : '');
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     if (options.value) {
       cli.output.verbose(options.value);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
@@ -2439,7 +2378,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile0 = parametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile0.category('storage-profile')
   .description($('Commands to set components of virtual-machine-scale-sets in config file.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile0.command('set')
-  .description($('Set storage-profile in config string or files, e.g. \r\n         {\r\n           ...\r\n           "storageProfile" : {\r\n             "imageReference":{\r\n               "publisher":"",\r\n               "offer":"",\r\n               "sku":"",\r\n               "version":""\r\n             },\r\n             "osDisk":{\r\n               "name":"",\r\n               "caching":null,\r\n               "createOption":"",\r\n               "osType":null,\r\n               "image":{\r\n                 "uri":""\r\n               },\r\n               "vhdContainers":[\r\n                 ""\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .description($('Set storage-profile in config string or files, e.g. \r\n         {\r\n           ...\r\n           "storageProfile" : {\r\n             "imageReference":{\r\n               "publisher":"",\r\n               "offer":"",\r\n               "sku":"",\r\n               "version":""\r\n             },\r\n             "osDisk":{\r\n               "name":"",\r\n               "caching":null,\r\n               "createOption":0,\r\n               "osType":null,\r\n               "image":{\r\n                 "uri":""\r\n               },\r\n               "vhdContainers":[\r\n                 ""\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
@@ -2460,10 +2399,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/storageProfile';
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     var paramPath = options.path + '/' + 'imageReference';
     if (options.imageReference) {
       cli.output.verbose('================================================');
@@ -2504,7 +2439,7 @@ exports.init = function (cli) {
   var deleteparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1 = parametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1.category('storage-profile')
   .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
   deleteparametersCreateOrUpdateVirtualMachineScaleSetsStorageProfile1.command('delete')
-  .description($('Remove storage-profile in config string or files, e.g. \r\n         {\r\n           ...\r\n           "storageProfile" : {\r\n             "imageReference":{\r\n               "publisher":"",\r\n               "offer":"",\r\n               "sku":"",\r\n               "version":""\r\n             },\r\n             "osDisk":{\r\n               "name":"",\r\n               "caching":null,\r\n               "createOption":"",\r\n               "osType":null,\r\n               "image":{\r\n                 "uri":""\r\n               },\r\n               "vhdContainers":[\r\n                 ""\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .description($('Remove storage-profile in config string or files, e.g. \r\n         {\r\n           ...\r\n           "storageProfile" : {\r\n             "imageReference":{\r\n               "publisher":"",\r\n               "offer":"",\r\n               "sku":"",\r\n               "version":""\r\n             },\r\n             "osDisk":{\r\n               "name":"",\r\n               "caching":null,\r\n               "createOption":0,\r\n               "osType":null,\r\n               "image":{\r\n                 "uri":""\r\n               },\r\n               "vhdContainers":[\r\n                 ""\r\n               ]\r\n             }\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--image-reference', $('Remove the image-reference value.'))
@@ -2580,10 +2515,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/storageProfile/imageReference';
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     var paramPath = options.path + '/' + 'publisher';
     if (options.publisher) {
       cli.output.verbose('================================================');
@@ -2709,7 +2640,7 @@ exports.init = function (cli) {
   var setparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk0 = parametersCreateOrUpdateVirtualMachineScaleSetsOsDisk0.category('os-disk')
   .description($('Commands to set components of virtual-machine-scale-sets in config file.'));
   setparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk0.command('set')
-  .description($('Set os-disk in config string or files, e.g. \r\n         {\r\n           ...\r\n           "osDisk" : {\r\n             "name":"",\r\n             "caching":null,\r\n             "createOption":"",\r\n             "osType":null,\r\n             "image":{\r\n               "uri":""\r\n             },\r\n             "vhdContainers":[\r\n               ""\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .description($('Set os-disk in config string or files, e.g. \r\n         {\r\n           ...\r\n           "osDisk" : {\r\n             "name":"",\r\n             "caching":null,\r\n             "createOption":0,\r\n             "osType":null,\r\n             "image":{\r\n               "uri":""\r\n             },\r\n             "vhdContainers":[\r\n               ""\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--parse', $('Parse the input string, i.e. str, for parameters to a JSON object, e.g. JSON.parse(str).'))
@@ -2734,10 +2665,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/storageProfile/osDisk';
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     var paramPath = options.path + '/' + 'name';
     if (options.name) {
       cli.output.verbose('================================================');
@@ -2822,7 +2749,7 @@ exports.init = function (cli) {
   var deleteparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1 = parametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1.category('os-disk')
   .description($('Commands to delete components of virtual-machine-scale-sets in config file.'));
   deleteparametersCreateOrUpdateVirtualMachineScaleSetsOsDisk1.command('delete')
-  .description($('Remove os-disk in config string or files, e.g. \r\n         {\r\n           ...\r\n           "osDisk" : {\r\n             "name":"",\r\n             "caching":null,\r\n             "createOption":"",\r\n             "osType":null,\r\n             "image":{\r\n               "uri":""\r\n             },\r\n             "vhdContainers":[\r\n               ""\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
+  .description($('Remove os-disk in config string or files, e.g. \r\n         {\r\n           ...\r\n           "osDisk" : {\r\n             "name":"",\r\n             "caching":null,\r\n             "createOption":0,\r\n             "osType":null,\r\n             "image":{\r\n               "uri":""\r\n             },\r\n             "vhdContainers":[\r\n               ""\r\n             ]\r\n           }\r\n           ...\r\n         }\r\n\r\n         There are two sets of commands:\r\n           1) function commands that are used to manage Azure resources in the cloud, and \r\n           2) parameter commands that generate & edit input files for the other set of commands.\r\n         For example, \'vmss get/list/stop\' are the function commands that call get, list and stop operations of \r\n         virtual machine scale set, whereas \'vmss config * generate/set/remove/add\' commands \r\n         are used to configure the input parameter file. The \'vmss create-or-update\' command takes a parameter \r\n         file as for the VM scale set configuration, and creates it online.'))
   .usage('[options]')
   .option('--parameter-file <parameter-file>', $('The parameter file path.'))
   .option('--name', $('Remove the name value.'))
@@ -2915,10 +2842,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/storageProfile/osDisk/image';
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     var paramPath = options.path + '/' + 'uri';
     if (options.uri) {
       cli.output.verbose('================================================');
@@ -3017,10 +2940,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/storageProfile/osDisk/vhdContainers' + (options.index ? ('/' + options.index) : '');
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     if (options.value) {
       cli.output.verbose(options.value);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
@@ -3101,10 +3020,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/networkProfile';
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     var paramPath = options.path + '/' + 'networkInterfaceConfigurations';
     if (options.networkInterfaceConfigurations) {
       cli.output.verbose('================================================');
@@ -3207,10 +3122,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations' + (options.index ? ('/' + options.index) : '');
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     if (options.value) {
       cli.output.verbose(options.value);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
@@ -3369,10 +3280,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations' + (options.index ? ('/' + options.index) : '');
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     if (options.value) {
       cli.output.verbose(options.value);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
@@ -3542,10 +3449,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations/' + options.ipConfigurationsIndex + '/subnet';
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     var paramPath = options.path + '/' + 'id';
     if (options.id) {
       cli.output.verbose('================================================');
@@ -3649,10 +3552,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerBackendAddressPools' + (options.index ? ('/' + options.index) : '');
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     if (options.value) {
       cli.output.verbose(options.value);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
@@ -3761,10 +3660,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/networkProfile/networkInterfaceConfigurations/' + options.networkInterfaceConfigurationsIndex + '/ipConfigurations/' + options.ipConfigurationsIndex + '/loadBalancerInboundNatPools' + (options.index ? ('/' + options.index) : '');
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     if (options.value) {
       cli.output.verbose(options.value);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
@@ -3869,10 +3764,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/extensionProfile';
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     var paramPath = options.path + '/' + 'extensions';
     if (options.extensions) {
       cli.output.verbose('================================================');
@@ -3980,10 +3871,6 @@ exports.init = function (cli) {
     cli.output.verbose(JSON.stringify(parametersObj));
     options.operation = 'replace';
     options.path = '/virtualMachineProfile/extensionProfile/extensions' + (options.index ? ('/' + options.index) : '');
-    var error = jsonpatch.validate([{op: 'remove', path: options.path}], parametersObj);
-    if (typeof error !== 'undefined') {
-      jsonpatch.apply(parametersObj, [{op: 'add', path: options.path, value: {}}]);
-    }
     if (options.value) {
       cli.output.verbose(options.value);
       jsonpatch.apply(parametersObj, [{op: options.operation, path: options.path, value: options.value}]);
@@ -5107,38 +4994,6 @@ exports.init = function (cli) {
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeManagementClient(subscription);
     var result = computeManagementClient.virtualMachineScaleSetVMs.start(resourceGroupName, vMScaleSetName, instanceId, _);
-    if (result) {
-      cli.output.json(result);
-    }
-  });
-/*
-  VirtualMachines Redeploy
-  --resource-group-name
-  --vm-name
-*/
-  var virtualMachinesRedeploy = cli.category('vm')
-  .description($('Commands to manage your virtual machines.  '));
-  virtualMachinesRedeploy.command('redeploy [resource-group-name] [vm-name]')
-  .description($('The operation to redeploy a virtual machine.'))
-  .usage('[options] <resource-group-name> <vm-name>')
-  .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
-  .option('-n, --vm-name <vm-name>', $('vm-name'))
-  .option('--parameter-file <parameter-file>', $('the input parameter file'))
-  .option('-s, --subscription <subscription>', $('the subscription identifier'))
-  .execute(function(resourceGroupName, vMName, options, _) {
-    if (!resourceGroupName) {
-      resourceGroupName = cli.interaction.promptIfNotGiven($('resource-group-name : '), resourceGroupName, _);
-    }
-
-    cli.output.verbose('resourceGroupName = ' + resourceGroupName);
-    if (!vMName) {
-      vMName = cli.interaction.promptIfNotGiven($('vm-name : '), vMName, _);
-    }
-
-    cli.output.verbose('vMName = ' + vMName);
-    var subscription = profile.current.getSubscription(options.subscription);
-    var computeManagementClient = utils.createComputeManagementClient(subscription);
-    var result = computeManagementClient.virtualMachines.redeploy(resourceGroupName, vMName, _);
     if (result) {
       cli.output.json(result);
     }

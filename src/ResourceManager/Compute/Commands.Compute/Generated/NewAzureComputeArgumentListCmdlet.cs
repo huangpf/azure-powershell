@@ -62,21 +62,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "VirtualMachineScaleSetVMsPowerOff",
             "VirtualMachineScaleSetVMsReimage",
             "VirtualMachineScaleSetVMsRestart",
-            "VirtualMachineScaleSetVMsStart",
-            "VirtualMachinesCapture",
-            "VirtualMachinesCreateOrUpdate",
-            "VirtualMachinesDeallocate",
-            "VirtualMachinesDelete",
-            "VirtualMachinesGeneralize",
-            "VirtualMachinesGet",
-            "VirtualMachinesList",
-            "VirtualMachinesListAll",
-            "VirtualMachinesListAllNext",
-            "VirtualMachinesListAvailableSizes",
-            "VirtualMachinesPowerOff",
-            "VirtualMachinesRedeploy",
-            "VirtualMachinesRestart",
-            "VirtualMachinesStart"
+            "VirtualMachineScaleSetVMsStart"
         )]
         public virtual string MethodName { get; set; }
 
@@ -116,20 +102,6 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                         case "VirtualMachineScaleSetVMsReimage" : WriteObject(CreateVirtualMachineScaleSetVMReimageParameters(), true); break;
                         case "VirtualMachineScaleSetVMsRestart" : WriteObject(CreateVirtualMachineScaleSetVMRestartParameters(), true); break;
                         case "VirtualMachineScaleSetVMsStart" : WriteObject(CreateVirtualMachineScaleSetVMStartParameters(), true); break;
-                        case "VirtualMachinesCapture" : WriteObject(CreateVirtualMachineCaptureParameters(), true); break;
-                        case "VirtualMachinesCreateOrUpdate" : WriteObject(CreateVirtualMachineCreateOrUpdateParameters(), true); break;
-                        case "VirtualMachinesDeallocate" : WriteObject(CreateVirtualMachineDeallocateParameters(), true); break;
-                        case "VirtualMachinesDelete" : WriteObject(CreateVirtualMachineDeleteParameters(), true); break;
-                        case "VirtualMachinesGeneralize" : WriteObject(CreateVirtualMachineGeneralizeParameters(), true); break;
-                        case "VirtualMachinesGet" : WriteObject(CreateVirtualMachineGetParameters(), true); break;
-                        case "VirtualMachinesList" : WriteObject(CreateVirtualMachineListParameters(), true); break;
-                        case "VirtualMachinesListAll" : WriteObject(CreateVirtualMachineListAllParameters(), true); break;
-                        case "VirtualMachinesListAllNext" : WriteObject(CreateVirtualMachineListAllNextParameters(), true); break;
-                        case "VirtualMachinesListAvailableSizes" : WriteObject(CreateVirtualMachineListAvailableSizesParameters(), true); break;
-                        case "VirtualMachinesPowerOff" : WriteObject(CreateVirtualMachinePowerOffParameters(), true); break;
-                        case "VirtualMachinesRedeploy" : WriteObject(CreateVirtualMachineRedeployParameters(), true); break;
-                        case "VirtualMachinesRestart" : WriteObject(CreateVirtualMachineRestartParameters(), true); break;
-                        case "VirtualMachinesStart" : WriteObject(CreateVirtualMachineStartParameters(), true); break;
                         default : WriteWarning("Cannot find the method by name = '" + MethodName + "'."); break;
                     }
                 }

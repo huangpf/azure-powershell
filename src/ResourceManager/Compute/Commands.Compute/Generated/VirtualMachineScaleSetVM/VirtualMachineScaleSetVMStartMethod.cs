@@ -42,7 +42,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = false
+                Mandatory = true
             });
             pResourceGroupName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
@@ -54,7 +54,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = false
+                Mandatory = true
             });
             pVMScaleSetName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("VMScaleSetName", pVMScaleSetName);
@@ -66,7 +66,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 3,
-                Mandatory = false
+                Mandatory = true
             });
             pInstanceId.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("InstanceId", pInstanceId);
@@ -107,76 +107,6 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             return ConvertFromObjectsToArguments(
                  new string[] { "ResourceGroupName", "VMScaleSetName", "InstanceId" },
                  new object[] { resourceGroupName, vmScaleSetName, instanceId });
-        }
-    }
-
-    [Cmdlet("Start", "AzureRmVmssVM", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class StartAzureRmVmssVM : InvokeAzureComputeMethodCmdlet
-    {
-        public StartAzureRmVmssVM()
-        {
-        }
-
-        public override string MethodName { get; set; }
-
-        protected override void ProcessRecord()
-        {
-            this.MethodName = "VirtualMachineScaleSetVMStart";
-            base.ProcessRecord();
-        }
-
-        public override object GetDynamicParameters()
-        {
-            dynamicParameters = new RuntimeDefinedParameterDictionary();
-            var pResourceGroupName = new RuntimeDefinedParameter();
-            pResourceGroupName.Name = "ResourceGroupName";
-            pResourceGroupName.ParameterType = typeof(string);
-            pResourceGroupName.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByDynamicParameters",
-                Position = 1,
-                Mandatory = false
-            });
-            pResourceGroupName.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
-
-            var pVMScaleSetName = new RuntimeDefinedParameter();
-            pVMScaleSetName.Name = "VMScaleSetName";
-            pVMScaleSetName.ParameterType = typeof(string);
-            pVMScaleSetName.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByDynamicParameters",
-                Position = 2,
-                Mandatory = false
-            });
-            pVMScaleSetName.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("VMScaleSetName", pVMScaleSetName);
-
-            var pInstanceId = new RuntimeDefinedParameter();
-            pInstanceId.Name = "InstanceId";
-            pInstanceId.ParameterType = typeof(string);
-            pInstanceId.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByDynamicParameters",
-                Position = 3,
-                Mandatory = false
-            });
-            pInstanceId.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("InstanceId", pInstanceId);
-
-            var pArgumentList = new RuntimeDefinedParameter();
-            pArgumentList.Name = "ArgumentList";
-            pArgumentList.ParameterType = typeof(object[]);
-            pArgumentList.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByStaticParameters",
-                Position = 4,
-                Mandatory = true
-            });
-            pArgumentList.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("ArgumentList", pArgumentList);
-
-            return dynamicParameters;
         }
     }
 }
