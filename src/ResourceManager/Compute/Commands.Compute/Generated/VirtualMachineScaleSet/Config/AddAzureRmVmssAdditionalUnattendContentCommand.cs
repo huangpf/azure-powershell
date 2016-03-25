@@ -33,7 +33,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     public class AddAzureRmVmssAdditionalUnattendContentCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
     {
         [Parameter(
-            Mandatory = true,
+            Mandatory = false,
             Position = 0,
             ValueFromPipeline = true,
             ValueFromPipelineByPropertyName = true)]

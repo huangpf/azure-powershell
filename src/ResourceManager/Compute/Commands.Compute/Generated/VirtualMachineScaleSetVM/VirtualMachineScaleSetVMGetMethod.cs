@@ -42,7 +42,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = true
+                Mandatory = false
             });
             pResourceGroupName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
@@ -54,7 +54,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = true
+                Mandatory = false
             });
             pVMScaleSetName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("VMScaleSetName", pVMScaleSetName);
@@ -66,7 +66,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 3,
-                Mandatory = true
+                Mandatory = false
             });
             pInstanceId.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("InstanceId", pInstanceId);
@@ -198,6 +198,24 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             });
             pInstanceId.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("InstanceId", pInstanceId);
+
+            var pArgumentList = new RuntimeDefinedParameter();
+            pArgumentList.Name = "ArgumentList";
+            pArgumentList.ParameterType = typeof(object[]);
+            pArgumentList.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByStaticParameters",
+                Position = 4,
+                Mandatory = true
+            });
+            pArgumentList.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByStaticParametersForFriendMethod",
+                Position = 4,
+                Mandatory = true
+            });
+            pArgumentList.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("ArgumentList", pArgumentList);
 
             var pInstanceView = new RuntimeDefinedParameter();
             pInstanceView.Name = "InstanceView";

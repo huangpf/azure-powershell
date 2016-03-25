@@ -33,17 +33,35 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     public class RemoveAzureRmVmssNetworkInterfaceConfigurationCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
     {
         [Parameter(
-            Mandatory = true,
+            Mandatory = false,
             Position = 0,
             ValueFromPipeline = true,
             ValueFromPipelineByPropertyName = true)]
         public VirtualMachineScaleSet VirtualMachineScaleSet { get; set; }
 
         [Parameter(
-            Mandatory = true,
+            Mandatory = false,
             Position = 1,
             ValueFromPipelineByPropertyName = true)]
         public string Name { get; set; }
+
+        [Parameter(
+            Mandatory = false,
+            Position = 2,
+            ValueFromPipelineByPropertyName = true)]
+        public bool? Primary { get; set; }
+
+        [Parameter(
+            Mandatory = false,
+            Position = 3,
+            ValueFromPipelineByPropertyName = true)]
+        public string Id { get; set; }
+
+        [Parameter(
+            Mandatory = false,
+            Position = 4,
+            ValueFromPipelineByPropertyName = true)]
+        public VirtualMachineScaleSetIPConfiguration [] IpConfiguration { get; set; }
 
         protected override void ProcessRecord()
         {
@@ -69,7 +87,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             }
             var vNetworkInterfaceConfigurations = this.VirtualMachineScaleSet.VirtualMachineProfile.NetworkProfile.NetworkInterfaceConfigurations.First
                 (e =>
-                    (e.Name == this.Name)
+                    (this.Name == null || e.Name == this.Name)
+                    && (this.Primary == null || e.Primary == this.Primary)
+                    && (this.Id == null || e.Id == this.Id)
+                    && (this.IpConfiguration == null || e.IpConfigurations == this.IpConfiguration)
                 );
 
             if (vNetworkInterfaceConfigurations != null)
