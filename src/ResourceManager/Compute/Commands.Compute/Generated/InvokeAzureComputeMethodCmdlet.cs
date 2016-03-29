@@ -52,6 +52,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         [Parameter(Mandatory = true, ParameterSetName = "InvokeByDynamicParameters", Position = 0)]
         [Parameter(Mandatory = true, ParameterSetName = "InvokeByStaticParameters", Position = 0)]
         [ValidateSet(
+            "AvailabilitySetCreateOrUpdate",
+            "AvailabilitySetDelete",
+            "AvailabilitySetGet",
+            "AvailabilitySetList",
+            "AvailabilitySetListAvailableSizes",
             "VirtualMachineScaleSetCreateOrUpdate",
             "VirtualMachineScaleSetDeallocate",
             "VirtualMachineScaleSetDelete",
@@ -79,20 +84,20 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "VirtualMachineScaleSetVMReimage",
             "VirtualMachineScaleSetVMRestart",
             "VirtualMachineScaleSetVMStart",
-            "VirtualMachinesCapture",
-            "VirtualMachinesCreateOrUpdate",
-            "VirtualMachinesDeallocate",
-            "VirtualMachinesDelete",
-            "VirtualMachinesGeneralize",
-            "VirtualMachinesGet",
-            "VirtualMachinesList",
-            "VirtualMachinesListAll",
-            "VirtualMachinesListAllNext",
-            "VirtualMachinesListAvailableSizes",
-            "VirtualMachinesPowerOff",
-            "VirtualMachinesRedeploy",
-            "VirtualMachinesRestart",
-            "VirtualMachinesStart"
+            "VirtualMachineCapture",
+            "VirtualMachineCreateOrUpdate",
+            "VirtualMachineDeallocate",
+            "VirtualMachineDelete",
+            "VirtualMachineGeneralize",
+            "VirtualMachineGet",
+            "VirtualMachineList",
+            "VirtualMachineListAll",
+            "VirtualMachineListAllNext",
+            "VirtualMachineListAvailableSizes",
+            "VirtualMachinePowerOff",
+            "VirtualMachineRedeploy",
+            "VirtualMachineRestart",
+            "VirtualMachineStart"
         )]
         public virtual string MethodName { get; set; }
 
@@ -124,6 +129,21 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
                 switch (MethodName)
                 {
+                    case "AvailabilitySetCreateOrUpdate" :
+                        ExecuteAvailabilitySetCreateOrUpdateMethod(argumentList);
+                        break;
+                    case "AvailabilitySetDelete" :
+                        ExecuteAvailabilitySetDeleteMethod(argumentList);
+                        break;
+                    case "AvailabilitySetGet" :
+                        ExecuteAvailabilitySetGetMethod(argumentList);
+                        break;
+                    case "AvailabilitySetList" :
+                        ExecuteAvailabilitySetListMethod(argumentList);
+                        break;
+                    case "AvailabilitySetListAvailableSizes" :
+                        ExecuteAvailabilitySetListAvailableSizesMethod(argumentList);
+                        break;
                     case "VirtualMachineScaleSetCreateOrUpdate" :
                         ExecuteVirtualMachineScaleSetCreateOrUpdateMethod(argumentList);
                         break;
@@ -257,6 +277,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         {
             switch (MethodName)
             {
+                    case "AvailabilitySetCreateOrUpdate" : return CreateAvailabilitySetCreateOrUpdateDynamicParameters();
+                    case "AvailabilitySetDelete" : return CreateAvailabilitySetDeleteDynamicParameters();
+                    case "AvailabilitySetGet" : return CreateAvailabilitySetGetDynamicParameters();
+                    case "AvailabilitySetList" : return CreateAvailabilitySetListDynamicParameters();
+                    case "AvailabilitySetListAvailableSizes" : return CreateAvailabilitySetListAvailableSizesDynamicParameters();
                     case "VirtualMachineScaleSetCreateOrUpdate" : return CreateVirtualMachineScaleSetCreateOrUpdateDynamicParameters();
                     case "VirtualMachineScaleSetDeallocate" : return CreateVirtualMachineScaleSetDeallocateDynamicParameters();
                     case "VirtualMachineScaleSetDelete" : return CreateVirtualMachineScaleSetDeleteDynamicParameters();

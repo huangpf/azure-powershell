@@ -36,6 +36,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     {
         [Parameter(ParameterSetName = "CreateParameterObjectByFriendlyName", Mandatory = true, Position = 0)]
         [ValidateSet(
+            "AvailabilitySetsAvailabilitySet",
+            "AvailabilitySetsInstanceViewStatus",
+            "AvailabilitySetsInstanceViewStatusList",
+            "AvailabilitySetsSubResource",
+            "AvailabilitySetsSubResourceList",
             "VirtualMachinesAdditionalUnattendContent",
             "VirtualMachinesAdditionalUnattendContentList",
             "VirtualMachinesBootDiagnostics",
@@ -114,6 +119,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         [Parameter(ParameterSetName = "CreateParameterObjectByFullName", Mandatory = true, Position = 0)]
         [ValidateSet(
             "Microsoft.Azure.Management.Compute.Models.AdditionalUnattendContent",
+            "Microsoft.Azure.Management.Compute.Models.AvailabilitySet",
             "Microsoft.Azure.Management.Compute.Models.BootDiagnostics",
             "Microsoft.Azure.Management.Compute.Models.BootDiagnosticsInstanceView",
             "Microsoft.Azure.Management.Compute.Models.DataDisk",
@@ -164,6 +170,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "System.Collections.Generic.List<InstanceViewStatus>",
             "System.Collections.Generic.List<NetworkInterfaceReference>",
             "System.Collections.Generic.List<SshPublicKey>",
+            "System.Collections.Generic.List<SubResource>",
             "System.Collections.Generic.List<VaultSecretGroup>",
             "System.Collections.Generic.List<VirtualMachineExtension>",
             "System.Collections.Generic.List<VirtualMachineExtensionHandlerInstanceView>",
@@ -183,6 +190,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 {
                     switch (FriendlyName)
                     {
+                        case "AvailabilitySetsAvailabilitySet" : WriteObject(new AvailabilitySet()); break;
+                        case "AvailabilitySetsInstanceViewStatus" : WriteObject(new InstanceViewStatus()); break;
+                        case "AvailabilitySetsInstanceViewStatusList" : WriteObject(new List<InstanceViewStatus>()); break;
+                        case "AvailabilitySetsSubResource" : WriteObject(new SubResource()); break;
+                        case "AvailabilitySetsSubResourceList" : WriteObject(new List<SubResource>()); break;
                         case "VirtualMachinesAdditionalUnattendContent" : WriteObject(new AdditionalUnattendContent()); break;
                         case "VirtualMachinesAdditionalUnattendContentList" : WriteObject(new List<AdditionalUnattendContent>()); break;
                         case "VirtualMachinesBootDiagnostics" : WriteObject(new BootDiagnostics()); break;
@@ -263,6 +275,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     switch (FullName)
                     {
                         case "Microsoft.Azure.Management.Compute.Models.AdditionalUnattendContent" : WriteObject(new AdditionalUnattendContent()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.AvailabilitySet" : WriteObject(new AvailabilitySet()); break;
                         case "Microsoft.Azure.Management.Compute.Models.BootDiagnostics" : WriteObject(new BootDiagnostics()); break;
                         case "Microsoft.Azure.Management.Compute.Models.BootDiagnosticsInstanceView" : WriteObject(new BootDiagnosticsInstanceView()); break;
                         case "Microsoft.Azure.Management.Compute.Models.DataDisk" : WriteObject(new DataDisk()); break;
@@ -313,6 +326,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                         case "System.Collections.Generic.List<InstanceViewStatus>" : WriteObject(new List<InstanceViewStatus>()); break;
                         case "System.Collections.Generic.List<NetworkInterfaceReference>" : WriteObject(new List<NetworkInterfaceReference>()); break;
                         case "System.Collections.Generic.List<SshPublicKey>" : WriteObject(new List<SshPublicKey>()); break;
+                        case "System.Collections.Generic.List<SubResource>" : WriteObject(new List<SubResource>()); break;
                         case "System.Collections.Generic.List<VaultSecretGroup>" : WriteObject(new List<VaultSecretGroup>()); break;
                         case "System.Collections.Generic.List<VirtualMachineExtension>" : WriteObject(new List<VirtualMachineExtension>()); break;
                         case "System.Collections.Generic.List<VirtualMachineExtensionHandlerInstanceView>" : WriteObject(new List<VirtualMachineExtensionHandlerInstanceView>()); break;

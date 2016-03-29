@@ -73,6 +73,14 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             return objects;
         }
 
+        public IAvailabilitySetsOperations AvailabilitySetsClient
+        {
+            get
+            {
+                return ComputeClient.ComputeManagementClient.AvailabilitySets;
+            }
+        }
+
         public IVirtualMachineScaleSetsOperations VirtualMachineScaleSetsClient
         {
             get
