@@ -18,6 +18,594 @@
 // Changes to this file may cause incorrect behavior and will be lost if the
 // code is regenerated.
 
+/*
+
+Generated Command List:
+
+azure availset list-available-sizes 
+--resource-group-name $p0
+--availability-set-name $p1
+--parameter-file $f
+--subscription $s
+ 
+ azure vmss config virtual-machine-scale-set set
+--parameter-file $f
+--parse
+--sku $sku
+--upgrade-policy $upgradePolicy
+--virtual-machine-profile $virtualMachineProfile
+--provisioning-state $provisioningState
+--over-provision $overProvision
+--id $id
+--name $name
+--type $type
+--location $location
+--tags $tags
+
+ azure vmss config virtual-machine-scale-set delete
+--parameter-file $f
+--sku
+--upgrade-policy
+--virtual-machine-profile
+--provisioning-state
+--over-provision
+--id
+--name
+--type
+--location
+--tags
+
+ azure vmss config sku set
+--parameter-file $f
+--parse
+--name $name
+--tier $tier
+--capacity $capacity
+
+ azure vmss config sku delete
+--parameter-file $f
+--name
+--tier
+--capacity
+
+ azure vmss config upgrade-policy set
+--parameter-file $f
+--parse
+--mode $mode
+
+ azure vmss config upgrade-policy delete
+--parameter-file $f
+--mode
+
+ azure vmss config virtual-machine-profile set
+--parameter-file $f
+--parse
+--os-profile $osProfile
+--storage-profile $storageProfile
+--network-profile $networkProfile
+--extension-profile $extensionProfile
+
+ azure vmss config virtual-machine-profile delete
+--parameter-file $f
+--os-profile
+--storage-profile
+--network-profile
+--extension-profile
+
+ azure vmss config os-profile set
+--parameter-file $f
+--parse
+--computer-name-prefix $computerNamePrefix
+--admin-username $adminUsername
+--admin-password $adminPassword
+--custom-data $customData
+--windows-configuration $windowsConfiguration
+--linux-configuration $linuxConfiguration
+--secrets $secrets
+
+ azure vmss config os-profile delete
+--parameter-file $f
+--computer-name-prefix
+--admin-username
+--admin-password
+--custom-data
+--windows-configuration
+--linux-configuration
+--secrets
+
+ azure vmss config windows-configuration set
+--parameter-file $f
+--parse
+--provision-vm-agent $provisionVMAgent
+--enable-automatic-updates $enableAutomaticUpdates
+--time-zone $timeZone
+--additional-unattend-content $additionalUnattendContent
+--win-rm $winRM
+
+ azure vmss config windows-configuration delete
+--parameter-file $f
+--provision-vm-agent
+--enable-automatic-updates
+--time-zone
+--additional-unattend-content
+--win-rm
+
+ azure vmss config additional-unattend-content set
+--parameter-file $f
+--index $i
+--value $v
+--parse
+--pass-name $passName
+--component-name $componentName
+--setting-name $settingName
+--content $content
+
+ azure vmss config additional-unattend-content delete
+--parameter-file $f
+--index $pindex
+--pass-name
+--component-name
+--setting-name
+--content
+
+ azure vmss config win-rm set
+--parameter-file $f
+--parse
+--listeners $listeners
+
+ azure vmss config win-rm delete
+--parameter-file $f
+--listeners
+
+ azure vmss config listeners set
+--parameter-file $f
+--index $i
+--value $v
+--parse
+--protocol $protocol
+--certificate-url $certificateUrl
+
+ azure vmss config listeners delete
+--parameter-file $f
+--index $pindex
+--protocol
+--certificate-url
+
+ azure vmss config linux-configuration set
+--parameter-file $f
+--parse
+--disable-password-authentication $disablePasswordAuthentication
+--ssh $ssh
+
+ azure vmss config linux-configuration delete
+--parameter-file $f
+--disable-password-authentication
+--ssh
+
+ azure vmss config ssh set
+--parameter-file $f
+--parse
+--public-keys $publicKeys
+
+ azure vmss config ssh delete
+--parameter-file $f
+--public-keys
+
+ azure vmss config public-keys set
+--parameter-file $f
+--index $i
+--value $v
+--parse
+--path $path
+--key-data $keyData
+
+ azure vmss config public-keys delete
+--parameter-file $f
+--index $pindex
+--path
+--key-data
+
+ azure vmss config secrets set
+--parameter-file $f
+--index $i
+--value $v
+--parse
+--source-vault $sourceVault
+--vault-certificates $vaultCertificates
+
+ azure vmss config secrets delete
+--parameter-file $f
+--index $pindex
+--source-vault
+--vault-certificates
+
+ azure vmss config source-vault set
+--parameter-file $f
+--secrets-index $i
+--parse
+--id $id
+
+ azure vmss config source-vault delete
+--parameter-file $f
+--secrets-index $psecrets-index
+--id
+
+ azure vmss config vault-certificates set
+--parameter-file $f
+--index $i
+--secrets-index $i
+--value $v
+--parse
+--certificate-url $certificateUrl
+--certificate-store $certificateStore
+
+ azure vmss config vault-certificates delete
+--parameter-file $f
+--index $pindex
+--secrets-index $psecrets-index
+--certificate-url
+--certificate-store
+
+ azure vmss config storage-profile set
+--parameter-file $f
+--parse
+--image-reference $imageReference
+--os-disk $osDisk
+
+ azure vmss config storage-profile delete
+--parameter-file $f
+--image-reference
+--os-disk
+
+ azure vmss config image-reference set
+--parameter-file $f
+--parse
+--publisher $publisher
+--offer $offer
+--sku $sku
+--version $version
+
+ azure vmss config image-reference delete
+--parameter-file $f
+--publisher
+--offer
+--sku
+--version
+
+ azure vmss config os-disk set
+--parameter-file $f
+--parse
+--name $name
+--caching $caching
+--create-option $createOption
+--os-type $osType
+--image $image
+--vhd-containers $vhdContainers
+
+ azure vmss config os-disk delete
+--parameter-file $f
+--name
+--caching
+--create-option
+--os-type
+--image
+--vhd-containers
+
+ azure vmss config image set
+--parameter-file $f
+--parse
+--uri $uri
+
+ azure vmss config image delete
+--parameter-file $f
+--uri
+
+ azure vmss config vhd-containers set
+--parameter-file $f
+--index $i
+--value $v
+--parse
+
+ azure vmss config vhd-containers delete
+--parameter-file $f
+--index $pindex
+
+ azure vmss config network-profile set
+--parameter-file $f
+--parse
+--network-interface-configurations $networkInterfaceConfigurations
+
+ azure vmss config network-profile delete
+--parameter-file $f
+--network-interface-configurations
+
+ azure vmss config network-interface-configurations set
+--parameter-file $f
+--index $i
+--value $v
+--parse
+--name $name
+--primary $primary
+--ip-configurations $ipConfigurations
+--id $id
+
+ azure vmss config network-interface-configurations delete
+--parameter-file $f
+--index $pindex
+--name
+--primary
+--ip-configurations
+--id
+
+ azure vmss config ip-configurations set
+--parameter-file $f
+--index $i
+--network-interface-configurations-index $i
+--value $v
+--parse
+--name $name
+--subnet $subnet
+--load-balancer-backend-address-pools $loadBalancerBackendAddressPools
+--load-balancer-inbound-nat-pools $loadBalancerInboundNatPools
+--id $id
+
+ azure vmss config ip-configurations delete
+--parameter-file $f
+--index $pindex
+--network-interface-configurations-index $pnetwork-interface-configurations-index
+--name
+--subnet
+--load-balancer-backend-address-pools
+--load-balancer-inbound-nat-pools
+--id
+
+ azure vmss config subnet set
+--parameter-file $f
+--ip-configurations-index $i
+--network-interface-configurations-index $i
+--parse
+--id $id
+
+ azure vmss config subnet delete
+--parameter-file $f
+--ip-configurations-index $pip-configurations-index
+--network-interface-configurations-index $pnetwork-interface-configurations-index
+--id
+
+ azure vmss config load-balancer-backend-address-pools set
+--parameter-file $f
+--index $i
+--ip-configurations-index $i
+--network-interface-configurations-index $i
+--value $v
+--parse
+--id $id
+
+ azure vmss config load-balancer-backend-address-pools delete
+--parameter-file $f
+--index $pindex
+--ip-configurations-index $pip-configurations-index
+--network-interface-configurations-index $pnetwork-interface-configurations-index
+--id
+
+ azure vmss config load-balancer-inbound-nat-pools set
+--parameter-file $f
+--index $i
+--ip-configurations-index $i
+--network-interface-configurations-index $i
+--value $v
+--parse
+--id $id
+
+ azure vmss config load-balancer-inbound-nat-pools delete
+--parameter-file $f
+--index $pindex
+--ip-configurations-index $pip-configurations-index
+--network-interface-configurations-index $pnetwork-interface-configurations-index
+--id
+
+ azure vmss config extension-profile set
+--parameter-file $f
+--parse
+--extensions $extensions
+
+ azure vmss config extension-profile delete
+--parameter-file $f
+--extensions
+
+ azure vmss config extensions set
+--parameter-file $f
+--index $i
+--value $v
+--parse
+--name $name
+--publisher $publisher
+--type $type
+--type-handler-version $typeHandlerVersion
+--auto-upgrade-minor-version $autoUpgradeMinorVersion
+--settings $settings
+--protected-settings $protectedSettings
+--provisioning-state $provisioningState
+--id $id
+
+ azure vmss config extensions delete
+--parameter-file $f
+--index $pindex
+--name
+--publisher
+--type
+--type-handler-version
+--auto-upgrade-minor-version
+--settings
+--protected-settings
+--provisioning-state
+--id
+
+ azure vmss create-or-update 
+--resource-group-name $p0
+--name $p1
+--parameters $p2
+--parameter-file $f
+--subscription $s
+ 
+ azure create-or-update config generate 
+--parameter-file $f
+ 
+ azure create-or-update config patch 
+--parameter-file $f
+ 
+ azure vmss deallocate 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--instance-ids $p2
+--parameter-file $f
+--subscription $s
+ 
+ azure vmss delete 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--parameter-file $f
+--subscription $s
+ 
+ azure vmss delete-instances 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--instance-ids $p2
+--parameter-file $f
+--subscription $s
+ 
+ azure vmss get 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--parameter-file $f
+--subscription $s
+ 
+ azure vmss get-instance-view 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--parameter-file $f
+--subscription $s
+ 
+ azure vmss list 
+--resource-group-name $p0
+--parameter-file $f
+--subscription $s
+ 
+ azure vmss list-all 
+--parameter-file $f
+--subscription $s
+ 
+ azure vmss list-skus 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--parameter-file $f
+--subscription $s
+ 
+ azure vmss power-off 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--instance-ids $p2
+--parameter-file $f
+--subscription $s
+ 
+ azure vmss reimage 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--parameter-file $f
+--subscription $s
+ 
+ azure vmss restart 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--instance-ids $p2
+--parameter-file $f
+--subscription $s
+ 
+ azure vmss start 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--instance-ids $p2
+--parameter-file $f
+--subscription $s
+ 
+ azure vmss update-instances 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--instance-ids $p2
+--parameter-file $f
+--subscription $s
+ 
+ azure vmssvm deallocate 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--instance-id $p2
+--parameter-file $f
+--subscription $s
+ 
+ azure vmssvm delete 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--instance-id $p2
+--parameter-file $f
+--subscription $s
+ 
+ azure vmssvm get 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--instance-id $p2
+--parameter-file $f
+--subscription $s
+ 
+ azure vmssvm get-instance-view 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--instance-id $p2
+--parameter-file $f
+--subscription $s
+ 
+ azure vmssvm list 
+--resource-group-name $p0
+--virtual-machine-scale-set-name $p1
+--parameter-file $f
+--subscription $s
+ 
+ azure vmssvm power-off 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--instance-id $p2
+--parameter-file $f
+--subscription $s
+ 
+ azure vmssvm reimage 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--instance-id $p2
+--parameter-file $f
+--subscription $s
+ 
+ azure vmssvm restart 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--instance-id $p2
+--parameter-file $f
+--subscription $s
+ 
+ azure vmssvm start 
+--resource-group-name $p0
+--vm-scale-set-name $p1
+--instance-id $p2
+--parameter-file $f
+--subscription $s
+ 
+ azure vm redeploy 
+--resource-group-name $p0
+--vm-name $p1
+--parameter-file $f
+--subscription $s
+ 
+
+*/
+
 'use strict';
 
 var fs = require('fs');
