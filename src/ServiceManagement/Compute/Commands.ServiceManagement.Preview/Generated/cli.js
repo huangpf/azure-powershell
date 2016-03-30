@@ -31,7 +31,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --mode $mode
 --treat-warnings-as-error $treatWarningsAsError
 
- azure deployment change-configuration-by-name-parameters deployment-change-configuration-parameters delete
+azure deployment change-configuration-by-name-parameters deployment-change-configuration-parameters delete
 --parameter-file $f
 --configuration
 --extended-properties
@@ -39,18 +39,18 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --mode
 --treat-warnings-as-error
 
- azure deployment change-configuration-by-name-parameters extension-configuration set
+azure deployment change-configuration-by-name-parameters extension-configuration set
 --parameter-file $f
 --parse
 --all-roles $allRoles
 --named-roles $namedRoles
 
- azure deployment change-configuration-by-name-parameters extension-configuration delete
+azure deployment change-configuration-by-name-parameters extension-configuration delete
 --parameter-file $f
 --all-roles
 --named-roles
 
- azure deployment change-configuration-by-name-parameters all-roles set
+azure deployment change-configuration-by-name-parameters all-roles set
 --parameter-file $f
 --index $i
 --value $v
@@ -58,13 +58,13 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --id $id
 --state $state
 
- azure deployment change-configuration-by-name-parameters all-roles delete
+azure deployment change-configuration-by-name-parameters all-roles delete
 --parameter-file $f
 --index $pindex
 --id
 --state
 
- azure deployment change-configuration-by-name-parameters named-roles set
+azure deployment change-configuration-by-name-parameters named-roles set
 --parameter-file $f
 --index $i
 --value $v
@@ -72,41 +72,40 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --extensions $extensions
 --role-name $roleName
 
- azure deployment change-configuration-by-name-parameters named-roles delete
+azure deployment change-configuration-by-name-parameters named-roles delete
 --parameter-file $f
 --index $pindex
 --extensions
 --role-name
 
- azure deployment change-configuration-by-name-parameters extensions set
+azure deployment change-configuration-by-name-parameters extensions set
 --parameter-file $f
 --index $i
 --named-roles-index $i
 --value $v
 --parse
 
- azure deployment change-configuration-by-name-parameters extensions delete
+azure deployment change-configuration-by-name-parameters extensions delete
 --parameter-file $f
 --index $pindex
 --named-roles-index $pnamed-roles-index
 
- azure deployment change-configuration-by-name 
+azure deployment change-configuration-by-name 
 --service-name $p0
 --deployment-name $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure change-configuration-by-name change-configuration-by-name-parameters generate 
---parameter-file $f
- 
- azure change-configuration-by-name change-configuration-by-name-parameters patch 
---parameter-file $f
- 
- azure deployment change-configuration-by-slot-parameters deployment-slot delete
+
+azure deployment change-configuration-by-name-parameters generate 
 --parameter-file $f
 
- azure deployment change-configuration-by-slot-parameters deployment-change-configuration-parameters set
+azure deployment change-configuration-by-name-parameters patch 
+--parameter-file $f
+
+azure deployment change-configuration-by-slot-parameters deployment-slot delete
+--parameter-file $f
+
+azure deployment change-configuration-by-slot-parameters deployment-change-configuration-parameters set
 --parameter-file $f
 --parse
 --configuration $configuration
@@ -115,7 +114,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --mode $mode
 --treat-warnings-as-error $treatWarningsAsError
 
- azure deployment change-configuration-by-slot-parameters deployment-change-configuration-parameters delete
+azure deployment change-configuration-by-slot-parameters deployment-change-configuration-parameters delete
 --parameter-file $f
 --configuration
 --extended-properties
@@ -123,18 +122,18 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --mode
 --treat-warnings-as-error
 
- azure deployment change-configuration-by-slot-parameters extension-configuration set
+azure deployment change-configuration-by-slot-parameters extension-configuration set
 --parameter-file $f
 --parse
 --all-roles $allRoles
 --named-roles $namedRoles
 
- azure deployment change-configuration-by-slot-parameters extension-configuration delete
+azure deployment change-configuration-by-slot-parameters extension-configuration delete
 --parameter-file $f
 --all-roles
 --named-roles
 
- azure deployment change-configuration-by-slot-parameters all-roles set
+azure deployment change-configuration-by-slot-parameters all-roles set
 --parameter-file $f
 --index $i
 --value $v
@@ -142,13 +141,13 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --id $id
 --state $state
 
- azure deployment change-configuration-by-slot-parameters all-roles delete
+azure deployment change-configuration-by-slot-parameters all-roles delete
 --parameter-file $f
 --index $pindex
 --id
 --state
 
- azure deployment change-configuration-by-slot-parameters named-roles set
+azure deployment change-configuration-by-slot-parameters named-roles set
 --parameter-file $f
 --index $i
 --value $v
@@ -156,41 +155,40 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --extensions $extensions
 --role-name $roleName
 
- azure deployment change-configuration-by-slot-parameters named-roles delete
+azure deployment change-configuration-by-slot-parameters named-roles delete
 --parameter-file $f
 --index $pindex
 --extensions
 --role-name
 
- azure deployment change-configuration-by-slot-parameters extensions set
+azure deployment change-configuration-by-slot-parameters extensions set
 --parameter-file $f
 --index $i
 --named-roles-index $i
 --value $v
 --parse
 
- azure deployment change-configuration-by-slot-parameters extensions delete
+azure deployment change-configuration-by-slot-parameters extensions delete
 --parameter-file $f
 --index $pindex
 --named-roles-index $pnamed-roles-index
 
- azure deployment change-configuration-by-slot 
+azure deployment change-configuration-by-slot 
 --service-name $p0
 --deployment-slot $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure change-configuration-by-slot change-configuration-by-slot-parameters generate 
---parameter-file $f
- 
- azure change-configuration-by-slot change-configuration-by-slot-parameters patch 
---parameter-file $f
- 
- azure deployment create-parameters deployment-slot delete
+
+azure deployment change-configuration-by-slot-parameters generate 
 --parameter-file $f
 
- azure deployment create-parameters deployment-create-parameters set
+azure deployment change-configuration-by-slot-parameters patch 
+--parameter-file $f
+
+azure deployment create-parameters deployment-slot delete
+--parameter-file $f
+
+azure deployment create-parameters deployment-create-parameters set
 --parameter-file $f
 --parse
 --configuration $configuration
@@ -202,7 +200,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --start-deployment $startDeployment
 --treat-warnings-as-error $treatWarningsAsError
 
- azure deployment create-parameters deployment-create-parameters delete
+azure deployment create-parameters deployment-create-parameters delete
 --parameter-file $f
 --configuration
 --extended-properties
@@ -213,18 +211,18 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --start-deployment
 --treat-warnings-as-error
 
- azure deployment create-parameters extension-configuration set
+azure deployment create-parameters extension-configuration set
 --parameter-file $f
 --parse
 --all-roles $allRoles
 --named-roles $namedRoles
 
- azure deployment create-parameters extension-configuration delete
+azure deployment create-parameters extension-configuration delete
 --parameter-file $f
 --all-roles
 --named-roles
 
- azure deployment create-parameters all-roles set
+azure deployment create-parameters all-roles set
 --parameter-file $f
 --index $i
 --value $v
@@ -232,13 +230,13 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --id $id
 --state $state
 
- azure deployment create-parameters all-roles delete
+azure deployment create-parameters all-roles delete
 --parameter-file $f
 --index $pindex
 --id
 --state
 
- azure deployment create-parameters named-roles set
+azure deployment create-parameters named-roles set
 --parameter-file $f
 --index $i
 --value $v
@@ -246,362 +244,340 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --extensions $extensions
 --role-name $roleName
 
- azure deployment create-parameters named-roles delete
+azure deployment create-parameters named-roles delete
 --parameter-file $f
 --index $pindex
 --extensions
 --role-name
 
- azure deployment create-parameters extensions set
+azure deployment create-parameters extensions set
 --parameter-file $f
 --index $i
 --named-roles-index $i
 --value $v
 --parse
 
- azure deployment create-parameters extensions delete
+azure deployment create-parameters extensions delete
 --parameter-file $f
 --index $pindex
 --named-roles-index $pnamed-roles-index
 
- azure deployment create 
+azure deployment create 
 --service-name $p0
 --deployment-slot $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure create create-parameters generate 
+
+azure deployment create-parameters generate 
 --parameter-file $f
- 
- azure create create-parameters patch 
+
+azure deployment create-parameters patch 
 --parameter-file $f
- 
- azure deployment delete-by-name 
+
+azure deployment delete-by-name 
 --service-name $p0
 --deployment-name $p1
 --parameter-file $f
---subscription $s
- 
- azure deployment delete-by-slot-parameters deployment-slot delete
+
+azure deployment delete-by-slot-parameters deployment-slot delete
 --parameter-file $f
 
- azure deployment delete-by-slot 
+azure deployment delete-by-slot 
 --service-name $p0
 --deployment-slot $p1
 --parameter-file $f
---subscription $s
- 
- azure deployment delete-role-instance-by-deployment-name-parameters deployment-delete-role-instance-parameters set
+
+azure deployment delete-role-instance-by-deployment-name-parameters deployment-delete-role-instance-parameters set
 --parameter-file $f
 --parse
 --name $name
 
- azure deployment delete-role-instance-by-deployment-name-parameters deployment-delete-role-instance-parameters delete
+azure deployment delete-role-instance-by-deployment-name-parameters deployment-delete-role-instance-parameters delete
 --parameter-file $f
 --name
 
- azure deployment delete-role-instance-by-deployment-name-parameters name set
+azure deployment delete-role-instance-by-deployment-name-parameters name set
 --parameter-file $f
 --index $i
 --value $v
 --parse
 
- azure deployment delete-role-instance-by-deployment-name-parameters name delete
+azure deployment delete-role-instance-by-deployment-name-parameters name delete
 --parameter-file $f
 --index $pindex
 
- azure deployment delete-role-instance-by-deployment-name 
+azure deployment delete-role-instance-by-deployment-name 
 --service-name $p0
 --deployment-name $p1
 --role-instance-name $p2
 --parameter-file $f
---subscription $s
- 
- azure deployment delete-role-instance-by-deployment-slot-parameters deployment-delete-role-instance-parameters set
+
+azure deployment delete-role-instance-by-deployment-slot-parameters deployment-delete-role-instance-parameters set
 --parameter-file $f
 --parse
 --name $name
 
- azure deployment delete-role-instance-by-deployment-slot-parameters deployment-delete-role-instance-parameters delete
+azure deployment delete-role-instance-by-deployment-slot-parameters deployment-delete-role-instance-parameters delete
 --parameter-file $f
 --name
 
- azure deployment delete-role-instance-by-deployment-slot-parameters name set
+azure deployment delete-role-instance-by-deployment-slot-parameters name set
 --parameter-file $f
 --index $i
 --value $v
 --parse
 
- azure deployment delete-role-instance-by-deployment-slot-parameters name delete
+azure deployment delete-role-instance-by-deployment-slot-parameters name delete
 --parameter-file $f
 --index $pindex
 
- azure deployment delete-role-instance-by-deployment-slot 
+azure deployment delete-role-instance-by-deployment-slot 
 --service-name $p0
 --deployment-slot $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure delete-role-instance-by-deployment-slot delete-role-instance-by-deployment-slot-parameters generate 
+
+azure deployment delete-role-instance-by-deployment-slot-parameters generate 
 --parameter-file $f
- 
- azure delete-role-instance-by-deployment-slot delete-role-instance-by-deployment-slot-parameters patch 
+
+azure deployment delete-role-instance-by-deployment-slot-parameters patch 
 --parameter-file $f
- 
- azure deployment get-by-name 
+
+azure deployment get-by-name 
 --service-name $p0
 --deployment-name $p1
 --parameter-file $f
---subscription $s
- 
- azure deployment get-by-slot-parameters deployment-slot delete
+
+azure deployment get-by-slot-parameters deployment-slot delete
 --parameter-file $f
 
- azure deployment get-by-slot 
+azure deployment get-by-slot 
 --service-name $p0
 --deployment-slot $p1
 --parameter-file $f
---subscription $s
- 
- azure deployment get-package-by-name-parameters deployment-get-package-parameters set
+
+azure deployment get-package-by-name-parameters deployment-get-package-parameters set
 --parameter-file $f
 --parse
 --container-uri $containerUri
 --overwrite-existing $overwriteExisting
 
- azure deployment get-package-by-name-parameters deployment-get-package-parameters delete
+azure deployment get-package-by-name-parameters deployment-get-package-parameters delete
 --parameter-file $f
 --container-uri
 --overwrite-existing
 
- azure deployment get-package-by-name 
+azure deployment get-package-by-name 
 --service-name $p0
 --deployment-name $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure get-package-by-name get-package-by-name-parameters generate 
---parameter-file $f
- 
- azure get-package-by-name get-package-by-name-parameters patch 
---parameter-file $f
- 
- azure deployment get-package-by-slot-parameters deployment-slot delete
+
+azure deployment get-package-by-name-parameters generate 
 --parameter-file $f
 
- azure deployment get-package-by-slot-parameters deployment-get-package-parameters set
+azure deployment get-package-by-name-parameters patch 
+--parameter-file $f
+
+azure deployment get-package-by-slot-parameters deployment-slot delete
+--parameter-file $f
+
+azure deployment get-package-by-slot-parameters deployment-get-package-parameters set
 --parameter-file $f
 --parse
 --container-uri $containerUri
 --overwrite-existing $overwriteExisting
 
- azure deployment get-package-by-slot-parameters deployment-get-package-parameters delete
+azure deployment get-package-by-slot-parameters deployment-get-package-parameters delete
 --parameter-file $f
 --container-uri
 --overwrite-existing
 
- azure deployment get-package-by-slot 
+azure deployment get-package-by-slot 
 --service-name $p0
 --deployment-slot $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure get-package-by-slot get-package-by-slot-parameters generate 
+
+azure deployment get-package-by-slot-parameters generate 
 --parameter-file $f
- 
- azure get-package-by-slot get-package-by-slot-parameters patch 
+
+azure deployment get-package-by-slot-parameters patch 
 --parameter-file $f
- 
- azure deployment list-events 
+
+azure deployment list-events 
 --service-name $p0
 --deployment-name $p1
 --start-time $p2
 --end-time $p3
 --parameter-file $f
---subscription $s
- 
- azure deployment list-events-by-slot-parameters deployment-slot delete
+
+azure deployment list-events-by-slot-parameters deployment-slot delete
 --parameter-file $f
 
- azure deployment list-events-by-slot 
+azure deployment list-events-by-slot 
 --service-name $p0
 --deployment-slot $p1
 --start-time $p2
 --end-time $p3
 --parameter-file $f
---subscription $s
- 
- azure deployment reboot-role-instance-by-deployment-name 
+
+azure deployment reboot-role-instance-by-deployment-name 
 --service-name $p0
 --deployment-name $p1
 --role-instance-name $p2
 --parameter-file $f
---subscription $s
- 
- azure deployment reboot-role-instance-by-deployment-slot-parameters deployment-slot delete
+
+azure deployment reboot-role-instance-by-deployment-slot-parameters deployment-slot delete
 --parameter-file $f
 
- azure deployment reboot-role-instance-by-deployment-slot 
+azure deployment reboot-role-instance-by-deployment-slot 
 --service-name $p0
 --deployment-slot $p1
 --role-instance-name $p2
 --parameter-file $f
---subscription $s
- 
- azure deployment rebuild-role-instance-by-deployment-name 
+
+azure deployment rebuild-role-instance-by-deployment-name 
 --service-name $p0
 --deployment-name $p1
 --role-instance-name $p2
 --resources $p3
 --parameter-file $f
---subscription $s
- 
- azure deployment rebuild-role-instance-by-deployment-slot 
+
+azure deployment rebuild-role-instance-by-deployment-slot 
 --service-name $p0
 --deployment-slot $p1
 --role-instance-name $p2
 --resources $p3
 --parameter-file $f
---subscription $s
- 
- azure deployment reimage-role-instance-by-deployment-name 
+
+azure deployment reimage-role-instance-by-deployment-name 
 --service-name $p0
 --deployment-name $p1
 --role-instance-name $p2
 --parameter-file $f
---subscription $s
- 
- azure deployment reimage-role-instance-by-deployment-slot-parameters deployment-slot delete
+
+azure deployment reimage-role-instance-by-deployment-slot-parameters deployment-slot delete
 --parameter-file $f
 
- azure deployment reimage-role-instance-by-deployment-slot 
+azure deployment reimage-role-instance-by-deployment-slot 
 --service-name $p0
 --deployment-slot $p1
 --role-instance-name $p2
 --parameter-file $f
---subscription $s
- 
- azure deployment rollback-update-or-upgrade-by-deployment-name-parameters deployment-rollback-update-or-upgrade-parameters set
+
+azure deployment rollback-update-or-upgrade-by-deployment-name-parameters deployment-rollback-update-or-upgrade-parameters set
 --parameter-file $f
 --parse
 --force $force
 --mode $mode
 
- azure deployment rollback-update-or-upgrade-by-deployment-name-parameters deployment-rollback-update-or-upgrade-parameters delete
+azure deployment rollback-update-or-upgrade-by-deployment-name-parameters deployment-rollback-update-or-upgrade-parameters delete
 --parameter-file $f
 --force
 --mode
 
- azure deployment rollback-update-or-upgrade-by-deployment-name 
+azure deployment rollback-update-or-upgrade-by-deployment-name 
 --service-name $p0
 --deployment-name $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure rollback-update-or-upgrade-by-deployment-name rollback-update-or-upgrade-by-deployment-name-parameters generate 
---parameter-file $f
- 
- azure rollback-update-or-upgrade-by-deployment-name rollback-update-or-upgrade-by-deployment-name-parameters patch 
---parameter-file $f
- 
- azure deployment rollback-update-or-upgrade-by-deployment-slot-parameters deployment-slot delete
+
+azure deployment rollback-update-or-upgrade-by-deployment-name-parameters generate 
 --parameter-file $f
 
- azure deployment rollback-update-or-upgrade-by-deployment-slot-parameters deployment-rollback-update-or-upgrade-parameters set
+azure deployment rollback-update-or-upgrade-by-deployment-name-parameters patch 
+--parameter-file $f
+
+azure deployment rollback-update-or-upgrade-by-deployment-slot-parameters deployment-slot delete
+--parameter-file $f
+
+azure deployment rollback-update-or-upgrade-by-deployment-slot-parameters deployment-rollback-update-or-upgrade-parameters set
 --parameter-file $f
 --parse
 --force $force
 --mode $mode
 
- azure deployment rollback-update-or-upgrade-by-deployment-slot-parameters deployment-rollback-update-or-upgrade-parameters delete
+azure deployment rollback-update-or-upgrade-by-deployment-slot-parameters deployment-rollback-update-or-upgrade-parameters delete
 --parameter-file $f
 --force
 --mode
 
- azure deployment rollback-update-or-upgrade-by-deployment-slot 
+azure deployment rollback-update-or-upgrade-by-deployment-slot 
 --service-name $p0
 --deployment-slot $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure rollback-update-or-upgrade-by-deployment-slot rollback-update-or-upgrade-by-deployment-slot-parameters generate 
+
+azure deployment rollback-update-or-upgrade-by-deployment-slot-parameters generate 
 --parameter-file $f
- 
- azure rollback-update-or-upgrade-by-deployment-slot rollback-update-or-upgrade-by-deployment-slot-parameters patch 
+
+azure deployment rollback-update-or-upgrade-by-deployment-slot-parameters patch 
 --parameter-file $f
- 
- azure deployment swap-parameters deployment-swap-parameters set
+
+azure deployment swap-parameters deployment-swap-parameters set
 --parameter-file $f
 --parse
 --production-deployment $productionDeployment
 --source-deployment $sourceDeployment
 
- azure deployment swap-parameters deployment-swap-parameters delete
+azure deployment swap-parameters deployment-swap-parameters delete
 --parameter-file $f
 --production-deployment
 --source-deployment
 
- azure deployment swap 
+azure deployment swap 
 --service-name $p0
 --production-deployment $p10
 --source-deployment $p11
 --parameter-file $f
---subscription $s
- 
- azure deployment update-status-by-deployment-name-parameters deployment-update-status-parameters set
+
+azure deployment update-status-by-deployment-name-parameters deployment-update-status-parameters set
 --parameter-file $f
 --parse
 --status $status
 
- azure deployment update-status-by-deployment-name-parameters deployment-update-status-parameters delete
+azure deployment update-status-by-deployment-name-parameters deployment-update-status-parameters delete
 --parameter-file $f
 --status
 
- azure deployment update-status-by-deployment-name 
+azure deployment update-status-by-deployment-name 
 --service-name $p0
 --deployment-name $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure update-status-by-deployment-name update-status-by-deployment-name-parameters generate 
---parameter-file $f
- 
- azure update-status-by-deployment-name update-status-by-deployment-name-parameters patch 
---parameter-file $f
- 
- azure deployment update-status-by-deployment-slot-parameters deployment-slot delete
+
+azure deployment update-status-by-deployment-name-parameters generate 
 --parameter-file $f
 
- azure deployment update-status-by-deployment-slot-parameters deployment-update-status-parameters set
+azure deployment update-status-by-deployment-name-parameters patch 
+--parameter-file $f
+
+azure deployment update-status-by-deployment-slot-parameters deployment-slot delete
+--parameter-file $f
+
+azure deployment update-status-by-deployment-slot-parameters deployment-update-status-parameters set
 --parameter-file $f
 --parse
 --status $status
 
- azure deployment update-status-by-deployment-slot-parameters deployment-update-status-parameters delete
+azure deployment update-status-by-deployment-slot-parameters deployment-update-status-parameters delete
 --parameter-file $f
 --status
 
- azure deployment update-status-by-deployment-slot 
+azure deployment update-status-by-deployment-slot 
 --service-name $p0
 --deployment-slot $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure update-status-by-deployment-slot update-status-by-deployment-slot-parameters generate 
+
+azure deployment update-status-by-deployment-slot-parameters generate 
 --parameter-file $f
- 
- azure update-status-by-deployment-slot update-status-by-deployment-slot-parameters patch 
+
+azure deployment update-status-by-deployment-slot-parameters patch 
 --parameter-file $f
- 
- azure deployment upgrade-by-name-parameters deployment-upgrade-parameters set
+
+azure deployment upgrade-by-name-parameters deployment-upgrade-parameters set
 --parameter-file $f
 --parse
 --configuration $configuration
@@ -613,7 +589,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --package-uri $packageUri
 --role-to-upgrade $roleToUpgrade
 
- azure deployment upgrade-by-name-parameters deployment-upgrade-parameters delete
+azure deployment upgrade-by-name-parameters deployment-upgrade-parameters delete
 --parameter-file $f
 --configuration
 --extended-properties
@@ -624,18 +600,18 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --package-uri
 --role-to-upgrade
 
- azure deployment upgrade-by-name-parameters extension-configuration set
+azure deployment upgrade-by-name-parameters extension-configuration set
 --parameter-file $f
 --parse
 --all-roles $allRoles
 --named-roles $namedRoles
 
- azure deployment upgrade-by-name-parameters extension-configuration delete
+azure deployment upgrade-by-name-parameters extension-configuration delete
 --parameter-file $f
 --all-roles
 --named-roles
 
- azure deployment upgrade-by-name-parameters all-roles set
+azure deployment upgrade-by-name-parameters all-roles set
 --parameter-file $f
 --index $i
 --value $v
@@ -643,13 +619,13 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --id $id
 --state $state
 
- azure deployment upgrade-by-name-parameters all-roles delete
+azure deployment upgrade-by-name-parameters all-roles delete
 --parameter-file $f
 --index $pindex
 --id
 --state
 
- azure deployment upgrade-by-name-parameters named-roles set
+azure deployment upgrade-by-name-parameters named-roles set
 --parameter-file $f
 --index $i
 --value $v
@@ -657,41 +633,40 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --extensions $extensions
 --role-name $roleName
 
- azure deployment upgrade-by-name-parameters named-roles delete
+azure deployment upgrade-by-name-parameters named-roles delete
 --parameter-file $f
 --index $pindex
 --extensions
 --role-name
 
- azure deployment upgrade-by-name-parameters extensions set
+azure deployment upgrade-by-name-parameters extensions set
 --parameter-file $f
 --index $i
 --named-roles-index $i
 --value $v
 --parse
 
- azure deployment upgrade-by-name-parameters extensions delete
+azure deployment upgrade-by-name-parameters extensions delete
 --parameter-file $f
 --index $pindex
 --named-roles-index $pnamed-roles-index
 
- azure deployment upgrade-by-name 
+azure deployment upgrade-by-name 
 --service-name $p0
 --deployment-name $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure upgrade-by-name upgrade-by-name-parameters generate 
---parameter-file $f
- 
- azure upgrade-by-name upgrade-by-name-parameters patch 
---parameter-file $f
- 
- azure deployment upgrade-by-slot-parameters deployment-slot delete
+
+azure deployment upgrade-by-name-parameters generate 
 --parameter-file $f
 
- azure deployment upgrade-by-slot-parameters deployment-upgrade-parameters set
+azure deployment upgrade-by-name-parameters patch 
+--parameter-file $f
+
+azure deployment upgrade-by-slot-parameters deployment-slot delete
+--parameter-file $f
+
+azure deployment upgrade-by-slot-parameters deployment-upgrade-parameters set
 --parameter-file $f
 --parse
 --configuration $configuration
@@ -703,7 +678,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --package-uri $packageUri
 --role-to-upgrade $roleToUpgrade
 
- azure deployment upgrade-by-slot-parameters deployment-upgrade-parameters delete
+azure deployment upgrade-by-slot-parameters deployment-upgrade-parameters delete
 --parameter-file $f
 --configuration
 --extended-properties
@@ -714,18 +689,18 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --package-uri
 --role-to-upgrade
 
- azure deployment upgrade-by-slot-parameters extension-configuration set
+azure deployment upgrade-by-slot-parameters extension-configuration set
 --parameter-file $f
 --parse
 --all-roles $allRoles
 --named-roles $namedRoles
 
- azure deployment upgrade-by-slot-parameters extension-configuration delete
+azure deployment upgrade-by-slot-parameters extension-configuration delete
 --parameter-file $f
 --all-roles
 --named-roles
 
- azure deployment upgrade-by-slot-parameters all-roles set
+azure deployment upgrade-by-slot-parameters all-roles set
 --parameter-file $f
 --index $i
 --value $v
@@ -733,13 +708,13 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --id $id
 --state $state
 
- azure deployment upgrade-by-slot-parameters all-roles delete
+azure deployment upgrade-by-slot-parameters all-roles delete
 --parameter-file $f
 --index $pindex
 --id
 --state
 
- azure deployment upgrade-by-slot-parameters named-roles set
+azure deployment upgrade-by-slot-parameters named-roles set
 --parameter-file $f
 --index $i
 --value $v
@@ -747,131 +722,125 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --extensions $extensions
 --role-name $roleName
 
- azure deployment upgrade-by-slot-parameters named-roles delete
+azure deployment upgrade-by-slot-parameters named-roles delete
 --parameter-file $f
 --index $pindex
 --extensions
 --role-name
 
- azure deployment upgrade-by-slot-parameters extensions set
+azure deployment upgrade-by-slot-parameters extensions set
 --parameter-file $f
 --index $i
 --named-roles-index $i
 --value $v
 --parse
 
- azure deployment upgrade-by-slot-parameters extensions delete
+azure deployment upgrade-by-slot-parameters extensions delete
 --parameter-file $f
 --index $pindex
 --named-roles-index $pnamed-roles-index
 
- azure deployment upgrade-by-slot 
+azure deployment upgrade-by-slot 
 --service-name $p0
 --deployment-slot $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure upgrade-by-slot upgrade-by-slot-parameters generate 
+
+azure deployment upgrade-by-slot-parameters generate 
 --parameter-file $f
- 
- azure upgrade-by-slot upgrade-by-slot-parameters patch 
+
+azure deployment upgrade-by-slot-parameters patch 
 --parameter-file $f
- 
- azure deployment walk-upgrade-domain-by-deployment-name-parameters deployment-walk-upgrade-domain-parameters set
+
+azure deployment walk-upgrade-domain-by-deployment-name-parameters deployment-walk-upgrade-domain-parameters set
 --parameter-file $f
 --parse
 --upgrade-domain $upgradeDomain
 
- azure deployment walk-upgrade-domain-by-deployment-name-parameters deployment-walk-upgrade-domain-parameters delete
+azure deployment walk-upgrade-domain-by-deployment-name-parameters deployment-walk-upgrade-domain-parameters delete
 --parameter-file $f
 --upgrade-domain
 
- azure deployment walk-upgrade-domain-by-deployment-name 
+azure deployment walk-upgrade-domain-by-deployment-name 
 --service-name $p0
 --deployment-name $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure walk-upgrade-domain-by-deployment-name walk-upgrade-domain-by-deployment-name-parameters generate 
---parameter-file $f
- 
- azure walk-upgrade-domain-by-deployment-name walk-upgrade-domain-by-deployment-name-parameters patch 
---parameter-file $f
- 
- azure deployment walk-upgrade-domain-by-deployment-slot-parameters deployment-slot delete
+
+azure deployment walk-upgrade-domain-by-deployment-name-parameters generate 
 --parameter-file $f
 
- azure deployment walk-upgrade-domain-by-deployment-slot-parameters deployment-walk-upgrade-domain-parameters set
+azure deployment walk-upgrade-domain-by-deployment-name-parameters patch 
+--parameter-file $f
+
+azure deployment walk-upgrade-domain-by-deployment-slot-parameters deployment-slot delete
+--parameter-file $f
+
+azure deployment walk-upgrade-domain-by-deployment-slot-parameters deployment-walk-upgrade-domain-parameters set
 --parameter-file $f
 --parse
 --upgrade-domain $upgradeDomain
 
- azure deployment walk-upgrade-domain-by-deployment-slot-parameters deployment-walk-upgrade-domain-parameters delete
+azure deployment walk-upgrade-domain-by-deployment-slot-parameters deployment-walk-upgrade-domain-parameters delete
 --parameter-file $f
 --upgrade-domain
 
- azure deployment walk-upgrade-domain-by-deployment-slot 
+azure deployment walk-upgrade-domain-by-deployment-slot 
 --service-name $p0
 --deployment-slot $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure walk-upgrade-domain-by-deployment-slot walk-upgrade-domain-by-deployment-slot-parameters generate 
+
+azure deployment walk-upgrade-domain-by-deployment-slot-parameters generate 
 --parameter-file $f
- 
- azure walk-upgrade-domain-by-deployment-slot walk-upgrade-domain-by-deployment-slot-parameters patch 
+
+azure deployment walk-upgrade-domain-by-deployment-slot-parameters patch 
 --parameter-file $f
- 
- azure dns-server add-dns-server-parameters dns-add-parameters set
+
+azure dns-server add-dns-server-parameters dns-add-parameters set
 --parameter-file $f
 --parse
 --address $address
 --name $name
 
- azure dns-server add-dns-server-parameters dns-add-parameters delete
+azure dns-server add-dns-server-parameters dns-add-parameters delete
 --parameter-file $f
 --address
 --name
 
- azure dns-server add-dns-server 
+azure dns-server add-dns-server 
 --service-name $p0
 --deployment-name $p1
 --address $p20
 --name $p21
 --parameter-file $f
---subscription $s
- 
- azure dns-server delete-dns-server 
+
+azure dns-server delete-dns-server 
 --service-name $p0
 --deployment-name $p1
 --dns-server-name $p2
 --parameter-file $f
---subscription $s
- 
- azure dns-server update-dns-server-parameters dns-update-parameters set
+
+azure dns-server update-dns-server-parameters dns-update-parameters set
 --parameter-file $f
 --parse
 --address $address
 --name $name
 
- azure dns-server update-dns-server-parameters dns-update-parameters delete
+azure dns-server update-dns-server-parameters dns-update-parameters delete
 --parameter-file $f
 --address
 --name
 
- azure dns-server update-dns-server 
+azure dns-server update-dns-server 
 --service-name $p0
 --deployment-name $p1
 --dns-server-name $p2
 --address $p30
 --name $p31
 --parameter-file $f
---subscription $s
- 
- azure extension-image register-parameters extension-image-register-parameters set
+
+azure extension-image register-parameters extension-image-register-parameters set
 --parameter-file $f
 --parse
 --block-role-upon-failure $blockRoleUponFailure
@@ -901,7 +870,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --type $type
 --version $version
 
- azure extension-image register-parameters extension-image-register-parameters delete
+azure extension-image register-parameters extension-image-register-parameters delete
 --parameter-file $f
 --block-role-upon-failure
 --certificate
@@ -930,7 +899,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --type
 --version
 
- azure extension-image register-parameters certificate set
+azure extension-image register-parameters certificate set
 --parameter-file $f
 --parse
 --store-location $storeLocation
@@ -938,27 +907,27 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --thumbprint-algorithm $thumbprintAlgorithm
 --thumbprint-required $thumbprintRequired
 
- azure extension-image register-parameters certificate delete
+azure extension-image register-parameters certificate delete
 --parameter-file $f
 --store-location
 --store-name
 --thumbprint-algorithm
 --thumbprint-required
 
- azure extension-image register-parameters extension-endpoints set
+azure extension-image register-parameters extension-endpoints set
 --parameter-file $f
 --parse
 --input-endpoints $inputEndpoints
 --instance-input-endpoints $instanceInputEndpoints
 --internal-endpoints $internalEndpoints
 
- azure extension-image register-parameters extension-endpoints delete
+azure extension-image register-parameters extension-endpoints delete
 --parameter-file $f
 --input-endpoints
 --instance-input-endpoints
 --internal-endpoints
 
- azure extension-image register-parameters input-endpoints set
+azure extension-image register-parameters input-endpoints set
 --parameter-file $f
 --index $i
 --value $v
@@ -968,7 +937,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --port $port
 --protocol $protocol
 
- azure extension-image register-parameters input-endpoints delete
+azure extension-image register-parameters input-endpoints delete
 --parameter-file $f
 --index $pindex
 --local-port
@@ -976,7 +945,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --port
 --protocol
 
- azure extension-image register-parameters instance-input-endpoints set
+azure extension-image register-parameters instance-input-endpoints set
 --parameter-file $f
 --index $i
 --value $v
@@ -987,7 +956,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name $name
 --protocol $protocol
 
- azure extension-image register-parameters instance-input-endpoints delete
+azure extension-image register-parameters instance-input-endpoints delete
 --parameter-file $f
 --index $pindex
 --fixed-port-max
@@ -996,7 +965,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name
 --protocol
 
- azure extension-image register-parameters internal-endpoints set
+azure extension-image register-parameters internal-endpoints set
 --parameter-file $f
 --index $i
 --value $v
@@ -1005,14 +974,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --port $port
 --protocol $protocol
 
- azure extension-image register-parameters internal-endpoints delete
+azure extension-image register-parameters internal-endpoints delete
 --parameter-file $f
 --index $pindex
 --name
 --port
 --protocol
 
- azure extension-image register-parameters local-resources set
+azure extension-image register-parameters local-resources set
 --parameter-file $f
 --index $i
 --value $v
@@ -1020,31 +989,29 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name $name
 --size-in-m-b $sizeInMB
 
- azure extension-image register-parameters local-resources delete
+azure extension-image register-parameters local-resources delete
 --parameter-file $f
 --index $pindex
 --name
 --size-in-m-b
 
- azure extension-image register 
+azure extension-image register 
 --parameters $p0
 --parameter-file $f
---subscription $s
- 
- azure register register-parameters generate 
+
+azure extension-image register-parameters generate 
 --parameter-file $f
- 
- azure register register-parameters patch 
+
+azure extension-image register-parameters patch 
 --parameter-file $f
- 
- azure extension-image unregister 
+
+azure extension-image unregister 
 --provider-namespace $p0
 --type $p1
 --version $p2
 --parameter-file $f
---subscription $s
- 
- azure extension-image update-parameters extension-image-update-parameters set
+
+azure extension-image update-parameters extension-image-update-parameters set
 --parameter-file $f
 --parse
 --block-role-upon-failure $blockRoleUponFailure
@@ -1074,7 +1041,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --type $type
 --version $version
 
- azure extension-image update-parameters extension-image-update-parameters delete
+azure extension-image update-parameters extension-image-update-parameters delete
 --parameter-file $f
 --block-role-upon-failure
 --certificate
@@ -1103,7 +1070,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --type
 --version
 
- azure extension-image update-parameters certificate set
+azure extension-image update-parameters certificate set
 --parameter-file $f
 --parse
 --store-location $storeLocation
@@ -1111,27 +1078,27 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --thumbprint-algorithm $thumbprintAlgorithm
 --thumbprint-required $thumbprintRequired
 
- azure extension-image update-parameters certificate delete
+azure extension-image update-parameters certificate delete
 --parameter-file $f
 --store-location
 --store-name
 --thumbprint-algorithm
 --thumbprint-required
 
- azure extension-image update-parameters extension-endpoints set
+azure extension-image update-parameters extension-endpoints set
 --parameter-file $f
 --parse
 --input-endpoints $inputEndpoints
 --instance-input-endpoints $instanceInputEndpoints
 --internal-endpoints $internalEndpoints
 
- azure extension-image update-parameters extension-endpoints delete
+azure extension-image update-parameters extension-endpoints delete
 --parameter-file $f
 --input-endpoints
 --instance-input-endpoints
 --internal-endpoints
 
- azure extension-image update-parameters input-endpoints set
+azure extension-image update-parameters input-endpoints set
 --parameter-file $f
 --index $i
 --value $v
@@ -1141,7 +1108,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --port $port
 --protocol $protocol
 
- azure extension-image update-parameters input-endpoints delete
+azure extension-image update-parameters input-endpoints delete
 --parameter-file $f
 --index $pindex
 --local-port
@@ -1149,7 +1116,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --port
 --protocol
 
- azure extension-image update-parameters instance-input-endpoints set
+azure extension-image update-parameters instance-input-endpoints set
 --parameter-file $f
 --index $i
 --value $v
@@ -1160,7 +1127,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name $name
 --protocol $protocol
 
- azure extension-image update-parameters instance-input-endpoints delete
+azure extension-image update-parameters instance-input-endpoints delete
 --parameter-file $f
 --index $pindex
 --fixed-port-max
@@ -1169,7 +1136,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name
 --protocol
 
- azure extension-image update-parameters internal-endpoints set
+azure extension-image update-parameters internal-endpoints set
 --parameter-file $f
 --index $i
 --value $v
@@ -1178,14 +1145,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --port $port
 --protocol $protocol
 
- azure extension-image update-parameters internal-endpoints delete
+azure extension-image update-parameters internal-endpoints delete
 --parameter-file $f
 --index $pindex
 --name
 --port
 --protocol
 
- azure extension-image update-parameters local-resources set
+azure extension-image update-parameters local-resources set
 --parameter-file $f
 --index $i
 --value $v
@@ -1193,24 +1160,23 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name $name
 --size-in-m-b $sizeInMB
 
- azure extension-image update-parameters local-resources delete
+azure extension-image update-parameters local-resources delete
 --parameter-file $f
 --index $pindex
 --name
 --size-in-m-b
 
- azure extension-image update 
+azure extension-image update 
 --parameters $p0
 --parameter-file $f
---subscription $s
- 
- azure update update-parameters generate 
+
+azure extension-image update-parameters generate 
 --parameter-file $f
- 
- azure update update-parameters patch 
+
+azure extension-image update-parameters patch 
 --parameter-file $f
- 
- azure hosted-service add-extension-parameters hosted-service-add-extension-parameters set
+
+azure hosted-service add-extension-parameters hosted-service-add-extension-parameters set
 --parameter-file $f
 --parse
 --id $id
@@ -1222,7 +1188,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --type $type
 --version $version
 
- azure hosted-service add-extension-parameters hosted-service-add-extension-parameters delete
+azure hosted-service add-extension-parameters hosted-service-add-extension-parameters delete
 --parameter-file $f
 --id
 --private-configuration
@@ -1233,7 +1199,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --type
 --version
 
- azure hosted-service add-extension 
+azure hosted-service add-extension 
 --service-name $p0
 --id $p10
 --private-configuration $p11
@@ -1244,14 +1210,12 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --type $p16
 --version $p17
 --parameter-file $f
---subscription $s
- 
- azure hosted-service check-name-availability 
+
+azure hosted-service check-name-availability 
 --service-name $p0
 --parameter-file $f
---subscription $s
- 
- azure hosted-service create-parameters hosted-service-create-parameters set
+
+azure hosted-service create-parameters hosted-service-create-parameters set
 --parameter-file $f
 --parse
 --affinity-group $affinityGroup
@@ -1262,7 +1226,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --reverse-dns-fqdn $reverseDnsFqdn
 --service-name $serviceName
 
- azure hosted-service create-parameters hosted-service-create-parameters delete
+azure hosted-service create-parameters hosted-service-create-parameters delete
 --parameter-file $f
 --affinity-group
 --description
@@ -1272,73 +1236,61 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --reverse-dns-fqdn
 --service-name
 
- azure hosted-service create 
+azure hosted-service create 
 --parameters $p0
 --parameter-file $f
---subscription $s
- 
- azure create create-parameters generate 
+
+azure hosted-service create-parameters generate 
 --parameter-file $f
- 
- azure create create-parameters patch 
+
+azure hosted-service create-parameters patch 
 --parameter-file $f
- 
- azure hosted-service delete 
+
+azure hosted-service delete 
 --service-name $p0
 --parameter-file $f
---subscription $s
- 
- azure hosted-service delete-all 
+
+azure hosted-service delete-all 
 --service-name $p0
 --parameter-file $f
---subscription $s
- 
- azure hosted-service delete-extension 
+
+azure hosted-service delete-extension 
 --service-name $p0
 --extension-id $p1
 --parameter-file $f
---subscription $s
- 
- azure hosted-service get 
+
+azure hosted-service get 
 --service-name $p0
 --parameter-file $f
---subscription $s
- 
- azure hosted-service get-detailed 
+
+azure hosted-service get-detailed 
 --service-name $p0
 --parameter-file $f
---subscription $s
- 
- azure hosted-service get-extension 
+
+azure hosted-service get-extension 
 --service-name $p0
 --extension-id $p1
 --parameter-file $f
---subscription $s
- 
- azure hosted-service list 
+
+azure hosted-service list 
 --parameter-file $f
---subscription $s
- 
- azure hosted-service list-available-extensions 
+
+azure hosted-service list-available-extensions 
 --parameter-file $f
---subscription $s
- 
- azure hosted-service list-extensions 
+
+azure hosted-service list-extensions 
 --service-name $p0
 --parameter-file $f
---subscription $s
- 
- azure hosted-service list-extension-versions 
+
+azure hosted-service list-extension-versions 
 --provider-namespace $p0
 --extension-type $p1
 --parameter-file $f
---subscription $s
- 
- azure hosted-service list-publisher-extensions 
+
+azure hosted-service list-publisher-extensions 
 --parameter-file $f
---subscription $s
- 
- azure hosted-service update-parameters hosted-service-update-parameters set
+
+azure hosted-service update-parameters hosted-service-update-parameters set
 --parameter-file $f
 --parse
 --description $description
@@ -1346,186 +1298,176 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --label $label
 --reverse-dns-fqdn $reverseDnsFqdn
 
- azure hosted-service update-parameters hosted-service-update-parameters delete
+azure hosted-service update-parameters hosted-service-update-parameters delete
 --parameter-file $f
 --description
 --extended-properties
 --label
 --reverse-dns-fqdn
 
- azure hosted-service update 
+azure hosted-service update 
 --service-name $p0
 --parameters $p1
 --parameter-file $f
---subscription $s
- 
- azure update update-parameters generate 
+
+azure hosted-service update-parameters generate 
 --parameter-file $f
- 
- azure update update-parameters patch 
+
+azure hosted-service update-parameters patch 
 --parameter-file $f
- 
- azure load-balancer create-parameters load-balancer-create-parameters set
+
+azure load-balancer create-parameters load-balancer-create-parameters set
 --parameter-file $f
 --parse
 --frontend-ip-configuration $frontendIPConfiguration
 --name $name
 
- azure load-balancer create-parameters load-balancer-create-parameters delete
+azure load-balancer create-parameters load-balancer-create-parameters delete
 --parameter-file $f
 --frontend-ip-configuration
 --name
 
- azure load-balancer create-parameters frontend-ip-configuration set
+azure load-balancer create-parameters frontend-ip-configuration set
 --parameter-file $f
 --parse
 --static-virtual-network-ip-address $staticVirtualNetworkIPAddress
 --subnet-name $subnetName
 --type $type
 
- azure load-balancer create-parameters frontend-ip-configuration delete
+azure load-balancer create-parameters frontend-ip-configuration delete
 --parameter-file $f
 --static-virtual-network-ip-address
 --subnet-name
 --type
 
- azure load-balancer create 
+azure load-balancer create 
 --service-name $p0
 --deployment-name $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure create create-parameters generate 
+
+azure load-balancer create-parameters generate 
 --parameter-file $f
- 
- azure create create-parameters patch 
+
+azure load-balancer create-parameters patch 
 --parameter-file $f
- 
- azure load-balancer delete 
+
+azure load-balancer delete 
 --service-name $p0
 --deployment-name $p1
 --load-balancer-name $p2
 --parameter-file $f
---subscription $s
- 
- azure load-balancer update-parameters load-balancer-update-parameters set
+
+azure load-balancer update-parameters load-balancer-update-parameters set
 --parameter-file $f
 --parse
 --frontend-ip-configuration $frontendIPConfiguration
 --name $name
 
- azure load-balancer update-parameters load-balancer-update-parameters delete
+azure load-balancer update-parameters load-balancer-update-parameters delete
 --parameter-file $f
 --frontend-ip-configuration
 --name
 
- azure load-balancer update-parameters frontend-ip-configuration set
+azure load-balancer update-parameters frontend-ip-configuration set
 --parameter-file $f
 --parse
 --static-virtual-network-ip-address $staticVirtualNetworkIPAddress
 --subnet-name $subnetName
 --type $type
 
- azure load-balancer update-parameters frontend-ip-configuration delete
+azure load-balancer update-parameters frontend-ip-configuration delete
 --parameter-file $f
 --static-virtual-network-ip-address
 --subnet-name
 --type
 
- azure load-balancer update 
+azure load-balancer update 
 --service-name $p0
 --deployment-name $p1
 --load-balancer-name $p2
 --parameters $p3
 --parameter-file $f
---subscription $s
- 
- azure update update-parameters generate 
+
+azure load-balancer update-parameters generate 
 --parameter-file $f
- 
- azure update update-parameters patch 
+
+azure load-balancer update-parameters patch 
 --parameter-file $f
- 
- azure operating-system list 
+
+azure operating-system list 
 --parameter-file $f
---subscription $s
- 
- azure operating-system list-families 
+
+azure operating-system list-families 
 --parameter-file $f
---subscription $s
- 
- azure service-certificate create-parameters service-certificate-create-parameters set
+
+azure service-certificate create-parameters service-certificate-create-parameters set
 --parameter-file $f
 --parse
 --certificate-format $certificateFormat
 --data $data
 --password $password
 
- azure service-certificate create-parameters service-certificate-create-parameters delete
+azure service-certificate create-parameters service-certificate-create-parameters delete
 --parameter-file $f
 --certificate-format
 --data
 --password
 
- azure service-certificate create 
+azure service-certificate create 
 --service-name $p0
 --parameters $p1
 --parameter-file $f
---subscription $s
- 
- azure create create-parameters generate 
+
+azure service-certificate create-parameters generate 
 --parameter-file $f
- 
- azure create create-parameters patch 
+
+azure service-certificate create-parameters patch 
 --parameter-file $f
- 
- azure service-certificate delete-parameters service-certificate-delete-parameters set
+
+azure service-certificate delete-parameters service-certificate-delete-parameters set
 --parameter-file $f
 --parse
 --service-name $serviceName
 --thumbprint $thumbprint
 --thumbprint-algorithm $thumbprintAlgorithm
 
- azure service-certificate delete-parameters service-certificate-delete-parameters delete
+azure service-certificate delete-parameters service-certificate-delete-parameters delete
 --parameter-file $f
 --service-name
 --thumbprint
 --thumbprint-algorithm
 
- azure service-certificate delete 
+azure service-certificate delete 
 --service-name $p00
 --thumbprint $p01
 --thumbprint-algorithm $p02
 --parameter-file $f
---subscription $s
- 
- azure service-certificate get-parameters service-certificate-get-parameters set
+
+azure service-certificate get-parameters service-certificate-get-parameters set
 --parameter-file $f
 --parse
 --service-name $serviceName
 --thumbprint $thumbprint
 --thumbprint-algorithm $thumbprintAlgorithm
 
- azure service-certificate get-parameters service-certificate-get-parameters delete
+azure service-certificate get-parameters service-certificate-get-parameters delete
 --parameter-file $f
 --service-name
 --thumbprint
 --thumbprint-algorithm
 
- azure service-certificate get 
+azure service-certificate get 
 --service-name $p00
 --thumbprint $p01
 --thumbprint-algorithm $p02
 --parameter-file $f
---subscription $s
- 
- azure service-certificate list 
+
+azure service-certificate list 
 --service-name $p0
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-disk create-data-disk-parameters virtual-machine-data-disk-create-parameters set
+
+azure virtual-machine-disk create-data-disk-parameters virtual-machine-data-disk-create-parameters set
 --parameter-file $f
 --parse
 --host-caching $hostCaching
@@ -1536,7 +1478,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name $name
 --source-media-link-uri $sourceMediaLinkUri
 
- azure virtual-machine-disk create-data-disk-parameters virtual-machine-data-disk-create-parameters delete
+azure virtual-machine-disk create-data-disk-parameters virtual-machine-data-disk-create-parameters delete
 --parameter-file $f
 --host-caching
 --label
@@ -1546,21 +1488,20 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name
 --source-media-link-uri
 
- azure virtual-machine-disk create-data-disk 
+azure virtual-machine-disk create-data-disk 
 --service-name $p0
 --deployment-name $p1
 --role-name $p2
 --parameters $p3
 --parameter-file $f
---subscription $s
- 
- azure create-data-disk create-data-disk-parameters generate 
+
+azure virtual-machine-disk create-data-disk-parameters generate 
 --parameter-file $f
- 
- azure create-data-disk create-data-disk-parameters patch 
+
+azure virtual-machine-disk create-data-disk-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine-disk create-disk-parameters virtual-machine-disk-create-parameters set
+
+azure virtual-machine-disk create-disk-parameters virtual-machine-disk-create-parameters set
 --parameter-file $f
 --parse
 --label $label
@@ -1568,53 +1509,47 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name $name
 --operating-system-type $operatingSystemType
 
- azure virtual-machine-disk create-disk-parameters virtual-machine-disk-create-parameters delete
+azure virtual-machine-disk create-disk-parameters virtual-machine-disk-create-parameters delete
 --parameter-file $f
 --label
 --media-link-uri
 --name
 --operating-system-type
 
- azure virtual-machine-disk create-disk 
+azure virtual-machine-disk create-disk 
 --parameters $p0
 --parameter-file $f
---subscription $s
- 
- azure create-disk create-disk-parameters generate 
+
+azure virtual-machine-disk create-disk-parameters generate 
 --parameter-file $f
- 
- azure create-disk create-disk-parameters patch 
+
+azure virtual-machine-disk create-disk-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine-disk delete-data-disk 
+
+azure virtual-machine-disk delete-data-disk 
 --service-name $p0
 --deployment-name $p1
 --role-name $p2
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-disk delete-disk 
+
+azure virtual-machine-disk delete-disk 
 --name $p0
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-disk get-data-disk 
+
+azure virtual-machine-disk get-data-disk 
 --service-name $p0
 --deployment-name $p1
 --role-name $p2
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-disk get-disk 
+
+azure virtual-machine-disk get-disk 
 --name $p0
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-disk list-disks 
+
+azure virtual-machine-disk list-disks 
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-disk update-data-disk-parameters virtual-machine-data-disk-update-parameters set
+
+azure virtual-machine-disk update-data-disk-parameters virtual-machine-data-disk-update-parameters set
 --parameter-file $f
 --parse
 --host-caching $hostCaching
@@ -1624,7 +1559,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --media-link-uri $mediaLinkUri
 --name $name
 
- azure virtual-machine-disk update-data-disk-parameters virtual-machine-data-disk-update-parameters delete
+azure virtual-machine-disk update-data-disk-parameters virtual-machine-data-disk-update-parameters delete
 --parameter-file $f
 --host-caching
 --label
@@ -1633,21 +1568,20 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --media-link-uri
 --name
 
- azure virtual-machine-disk update-data-disk 
+azure virtual-machine-disk update-data-disk 
 --service-name $p0
 --deployment-name $p1
 --role-name $p2
 --parameters $p4
 --parameter-file $f
---subscription $s
- 
- azure update-data-disk update-data-disk-parameters generate 
+
+azure virtual-machine-disk update-data-disk-parameters generate 
 --parameter-file $f
- 
- azure update-data-disk update-data-disk-parameters patch 
+
+azure virtual-machine-disk update-data-disk-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine-disk update-disk-parameters virtual-machine-disk-update-parameters set
+
+azure virtual-machine-disk update-disk-parameters virtual-machine-disk-update-parameters set
 --parameter-file $f
 --parse
 --has-operating-system $hasOperatingSystem
@@ -1657,7 +1591,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --operating-system-type $operatingSystemType
 --resized-size-in-g-b $resizedSizeInGB
 
- azure virtual-machine-disk update-disk-parameters virtual-machine-disk-update-parameters delete
+azure virtual-machine-disk update-disk-parameters virtual-machine-disk-update-parameters delete
 --parameter-file $f
 --has-operating-system
 --label
@@ -1666,19 +1600,18 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --operating-system-type
 --resized-size-in-g-b
 
- azure virtual-machine-disk update-disk 
+azure virtual-machine-disk update-disk 
 --name $p0
 --parameters $p1
 --parameter-file $f
---subscription $s
- 
- azure update-disk update-disk-parameters generate 
+
+azure virtual-machine-disk update-disk-parameters generate 
 --parameter-file $f
- 
- azure update-disk update-disk-parameters patch 
+
+azure virtual-machine-disk update-disk-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine-disk update-disk-size-parameters virtual-machine-disk-update-parameters set
+
+azure virtual-machine-disk update-disk-size-parameters virtual-machine-disk-update-parameters set
 --parameter-file $f
 --parse
 --has-operating-system $hasOperatingSystem
@@ -1688,7 +1621,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --operating-system-type $operatingSystemType
 --resized-size-in-g-b $resizedSizeInGB
 
- azure virtual-machine-disk update-disk-size-parameters virtual-machine-disk-update-parameters delete
+azure virtual-machine-disk update-disk-size-parameters virtual-machine-disk-update-parameters delete
 --parameter-file $f
 --has-operating-system
 --label
@@ -1697,29 +1630,26 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --operating-system-type
 --resized-size-in-g-b
 
- azure virtual-machine-disk update-disk-size 
+azure virtual-machine-disk update-disk-size 
 --name $p0
 --parameters $p1
 --parameter-file $f
---subscription $s
- 
- azure update-disk-size update-disk-size-parameters generate 
+
+azure virtual-machine-disk update-disk-size-parameters generate 
 --parameter-file $f
- 
- azure update-disk-size update-disk-size-parameters patch 
+
+azure virtual-machine-disk update-disk-size-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine-extension list 
+
+azure virtual-machine-extension list 
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-extension list-versions 
+
+azure virtual-machine-extension list-versions 
 --publisher-name $p0
 --extension-name $p1
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine capture-os-image-parameters virtual-machine-capture-os-image-parameters set
+
+azure virtual-machine capture-os-image-parameters virtual-machine-capture-os-image-parameters set
 --parameter-file $f
 --parse
 --post-capture-action $postCaptureAction
@@ -1727,14 +1657,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --target-image-label $targetImageLabel
 --target-image-name $targetImageName
 
- azure virtual-machine capture-os-image-parameters virtual-machine-capture-os-image-parameters delete
+azure virtual-machine capture-os-image-parameters virtual-machine-capture-os-image-parameters delete
 --parameter-file $f
 --post-capture-action
 --provisioning-configuration
 --target-image-label
 --target-image-name
 
- azure virtual-machine capture-os-image-parameters provisioning-configuration set
+azure virtual-machine capture-os-image-parameters provisioning-configuration set
 --parameter-file $f
 --parse
 --additional-unattend-content $additionalUnattendContent
@@ -1762,7 +1692,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --user-password $userPassword
 --windows-remote-management $windowsRemoteManagement
 
- azure virtual-machine capture-os-image-parameters provisioning-configuration delete
+azure virtual-machine capture-os-image-parameters provisioning-configuration delete
 --parameter-file $f
 --additional-unattend-content
 --admin-password
@@ -1789,16 +1719,16 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --user-password
 --windows-remote-management
 
- azure virtual-machine capture-os-image-parameters additional-unattend-content set
+azure virtual-machine capture-os-image-parameters additional-unattend-content set
 --parameter-file $f
 --parse
 --unattend-passes $unattendPasses
 
- azure virtual-machine capture-os-image-parameters additional-unattend-content delete
+azure virtual-machine capture-os-image-parameters additional-unattend-content delete
 --parameter-file $f
 --unattend-passes
 
- azure virtual-machine capture-os-image-parameters unattend-passes set
+azure virtual-machine capture-os-image-parameters unattend-passes set
 --parameter-file $f
 --index $i
 --value $v
@@ -1806,13 +1736,13 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --pass-name $passName
 --unattend-components $unattendComponents
 
- azure virtual-machine capture-os-image-parameters unattend-passes delete
+azure virtual-machine capture-os-image-parameters unattend-passes delete
 --parameter-file $f
 --index $pindex
 --pass-name
 --unattend-components
 
- azure virtual-machine capture-os-image-parameters unattend-components set
+azure virtual-machine capture-os-image-parameters unattend-components set
 --parameter-file $f
 --index $i
 --unattend-passes-index $i
@@ -1821,14 +1751,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --component-name $componentName
 --unattend-component-settings $unattendComponentSettings
 
- azure virtual-machine capture-os-image-parameters unattend-components delete
+azure virtual-machine capture-os-image-parameters unattend-components delete
 --parameter-file $f
 --index $pindex
 --unattend-passes-index $punattend-passes-index
 --component-name
 --unattend-component-settings
 
- azure virtual-machine capture-os-image-parameters unattend-component-settings set
+azure virtual-machine capture-os-image-parameters unattend-component-settings set
 --parameter-file $f
 --index $i
 --unattend-components-index $i
@@ -1838,7 +1768,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --content $content
 --setting-name $settingName
 
- azure virtual-machine capture-os-image-parameters unattend-component-settings delete
+azure virtual-machine capture-os-image-parameters unattend-component-settings delete
 --parameter-file $f
 --index $pindex
 --unattend-components-index $punattend-components-index
@@ -1846,7 +1776,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --content
 --setting-name
 
- azure virtual-machine capture-os-image-parameters domain-join set
+azure virtual-machine capture-os-image-parameters domain-join set
 --parameter-file $f
 --parse
 --credentials $credentials
@@ -1854,36 +1784,36 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --ldap-machine-object-o-u $ldapMachineObjectOU
 --provisioning $provisioning
 
- azure virtual-machine capture-os-image-parameters domain-join delete
+azure virtual-machine capture-os-image-parameters domain-join delete
 --parameter-file $f
 --credentials
 --domain-to-join
 --ldap-machine-object-o-u
 --provisioning
 
- azure virtual-machine capture-os-image-parameters credentials set
+azure virtual-machine capture-os-image-parameters credentials set
 --parameter-file $f
 --parse
 --domain $domain
 --password $password
 --user-name $userName
 
- azure virtual-machine capture-os-image-parameters credentials delete
+azure virtual-machine capture-os-image-parameters credentials delete
 --parameter-file $f
 --domain
 --password
 --user-name
 
- azure virtual-machine capture-os-image-parameters provisioning set
+azure virtual-machine capture-os-image-parameters provisioning set
 --parameter-file $f
 --parse
 --account-data $accountData
 
- azure virtual-machine capture-os-image-parameters provisioning delete
+azure virtual-machine capture-os-image-parameters provisioning delete
 --parameter-file $f
 --account-data
 
- azure virtual-machine capture-os-image-parameters input-endpoints set
+azure virtual-machine capture-os-image-parameters input-endpoints set
 --parameter-file $f
 --index $i
 --value $v
@@ -1902,7 +1832,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --virtual-ip-address $virtualIPAddress
 --virtual-ip-name $virtualIPName
 
- azure virtual-machine capture-os-image-parameters input-endpoints delete
+azure virtual-machine capture-os-image-parameters input-endpoints delete
 --parameter-file $f
 --index $pindex
 --enable-direct-server-return
@@ -1919,18 +1849,18 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --virtual-ip-address
 --virtual-ip-name
 
- azure virtual-machine capture-os-image-parameters endpoint-acl set
+azure virtual-machine capture-os-image-parameters endpoint-acl set
 --parameter-file $f
 --input-endpoints-index $i
 --parse
 --rules $rules
 
- azure virtual-machine capture-os-image-parameters endpoint-acl delete
+azure virtual-machine capture-os-image-parameters endpoint-acl delete
 --parameter-file $f
 --input-endpoints-index $pinput-endpoints-index
 --rules
 
- azure virtual-machine capture-os-image-parameters rules set
+azure virtual-machine capture-os-image-parameters rules set
 --parameter-file $f
 --index $i
 --input-endpoints-index $i
@@ -1941,7 +1871,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --order $order
 --remote-subnet $remoteSubnet
 
- azure virtual-machine capture-os-image-parameters rules delete
+azure virtual-machine capture-os-image-parameters rules delete
 --parameter-file $f
 --index $pindex
 --input-endpoints-index $pinput-endpoints-index
@@ -1950,7 +1880,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --order
 --remote-subnet
 
- azure virtual-machine capture-os-image-parameters load-balancer-probe set
+azure virtual-machine capture-os-image-parameters load-balancer-probe set
 --parameter-file $f
 --input-endpoints-index $i
 --parse
@@ -1960,7 +1890,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --protocol $protocol
 --timeout-in-seconds $timeoutInSeconds
 
- azure virtual-machine capture-os-image-parameters load-balancer-probe delete
+azure virtual-machine capture-os-image-parameters load-balancer-probe delete
 --parameter-file $f
 --input-endpoints-index $pinput-endpoints-index
 --interval-in-seconds
@@ -1969,7 +1899,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --protocol
 --timeout-in-seconds
 
- azure virtual-machine capture-os-image-parameters network-interfaces set
+azure virtual-machine capture-os-image-parameters network-interfaces set
 --parameter-file $f
 --index $i
 --value $v
@@ -1979,7 +1909,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name $name
 --network-security-group $networkSecurityGroup
 
- azure virtual-machine capture-os-image-parameters network-interfaces delete
+azure virtual-machine capture-os-image-parameters network-interfaces delete
 --parameter-file $f
 --index $pindex
 --ip-configurations
@@ -1987,7 +1917,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name
 --network-security-group
 
- azure virtual-machine capture-os-image-parameters ip-configurations set
+azure virtual-machine capture-os-image-parameters ip-configurations set
 --parameter-file $f
 --index $i
 --network-interfaces-index $i
@@ -1996,14 +1926,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --static-virtual-network-ip-address $staticVirtualNetworkIPAddress
 --subnet-name $subnetName
 
- azure virtual-machine capture-os-image-parameters ip-configurations delete
+azure virtual-machine capture-os-image-parameters ip-configurations delete
 --parameter-file $f
 --index $pindex
 --network-interfaces-index $pnetwork-interfaces-index
 --static-virtual-network-ip-address
 --subnet-name
 
- azure virtual-machine capture-os-image-parameters public-ip set
+azure virtual-machine capture-os-image-parameters public-ip set
 --parameter-file $f
 --index $i
 --value $v
@@ -2012,25 +1942,25 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --idle-timeout-in-minutes $idleTimeoutInMinutes
 --name $name
 
- azure virtual-machine capture-os-image-parameters public-ip delete
+azure virtual-machine capture-os-image-parameters public-ip delete
 --parameter-file $f
 --index $pindex
 --domain-name-label
 --idle-timeout-in-minutes
 --name
 
- azure virtual-machine capture-os-image-parameters ssh-settings set
+azure virtual-machine capture-os-image-parameters ssh-settings set
 --parameter-file $f
 --parse
 --key-pairs $keyPairs
 --public-keys $publicKeys
 
- azure virtual-machine capture-os-image-parameters ssh-settings delete
+azure virtual-machine capture-os-image-parameters ssh-settings delete
 --parameter-file $f
 --key-pairs
 --public-keys
 
- azure virtual-machine capture-os-image-parameters key-pairs set
+azure virtual-machine capture-os-image-parameters key-pairs set
 --parameter-file $f
 --index $i
 --value $v
@@ -2038,13 +1968,13 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --fingerprint $fingerprint
 --path $path
 
- azure virtual-machine capture-os-image-parameters key-pairs delete
+azure virtual-machine capture-os-image-parameters key-pairs delete
 --parameter-file $f
 --index $pindex
 --fingerprint
 --path
 
- azure virtual-machine capture-os-image-parameters public-keys set
+azure virtual-machine capture-os-image-parameters public-keys set
 --parameter-file $f
 --index $i
 --value $v
@@ -2052,13 +1982,13 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --fingerprint $fingerprint
 --path $path
 
- azure virtual-machine capture-os-image-parameters public-keys delete
+azure virtual-machine capture-os-image-parameters public-keys delete
 --parameter-file $f
 --index $pindex
 --fingerprint
 --path
 
- azure virtual-machine capture-os-image-parameters stored-certificate-settings set
+azure virtual-machine capture-os-image-parameters stored-certificate-settings set
 --parameter-file $f
 --index $i
 --value $v
@@ -2066,32 +1996,32 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --store-name $storeName
 --thumbprint $thumbprint
 
- azure virtual-machine capture-os-image-parameters stored-certificate-settings delete
+azure virtual-machine capture-os-image-parameters stored-certificate-settings delete
 --parameter-file $f
 --index $pindex
 --store-name
 --thumbprint
 
- azure virtual-machine capture-os-image-parameters subnet-names set
+azure virtual-machine capture-os-image-parameters subnet-names set
 --parameter-file $f
 --index $i
 --value $v
 --parse
 
- azure virtual-machine capture-os-image-parameters subnet-names delete
+azure virtual-machine capture-os-image-parameters subnet-names delete
 --parameter-file $f
 --index $pindex
 
- azure virtual-machine capture-os-image-parameters windows-remote-management set
+azure virtual-machine capture-os-image-parameters windows-remote-management set
 --parameter-file $f
 --parse
 --listeners $listeners
 
- azure virtual-machine capture-os-image-parameters windows-remote-management delete
+azure virtual-machine capture-os-image-parameters windows-remote-management delete
 --parameter-file $f
 --listeners
 
- azure virtual-machine capture-os-image-parameters listeners set
+azure virtual-machine capture-os-image-parameters listeners set
 --parameter-file $f
 --index $i
 --value $v
@@ -2099,27 +2029,26 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --certificate-thumbprint $certificateThumbprint
 --listener-type $listenerType
 
- azure virtual-machine capture-os-image-parameters listeners delete
+azure virtual-machine capture-os-image-parameters listeners delete
 --parameter-file $f
 --index $pindex
 --certificate-thumbprint
 --listener-type
 
- azure virtual-machine capture-os-image 
+azure virtual-machine capture-os-image 
 --service-name $p0
 --deployment-name $p1
 --virtual-machine-name $p2
 --parameters $p3
 --parameter-file $f
---subscription $s
- 
- azure capture-os-image capture-os-image-parameters generate 
+
+azure virtual-machine capture-os-image-parameters generate 
 --parameter-file $f
- 
- azure capture-os-image capture-os-image-parameters patch 
+
+azure virtual-machine capture-os-image-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine capture-vm-image-parameters virtual-machine-capture-vm-image-parameters set
+
+azure virtual-machine capture-vm-image-parameters virtual-machine-capture-vm-image-parameters set
 --parameter-file $f
 --parse
 --operation-type $operationType
@@ -2129,7 +2058,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --request-id $requestId
 --status-code $statusCode
 
- azure virtual-machine capture-vm-image-parameters virtual-machine-capture-vm-image-parameters delete
+azure virtual-machine capture-vm-image-parameters virtual-machine-capture-vm-image-parameters delete
 --parameter-file $f
 --operation-type
 --os-state
@@ -2138,21 +2067,20 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --request-id
 --status-code
 
- azure virtual-machine capture-vm-image 
+azure virtual-machine capture-vm-image 
 --service-name $p0
 --deployment-name $p1
 --virtual-machine-name $p2
 --parameters $p3
 --parameter-file $f
---subscription $s
- 
- azure capture-vm-image capture-vm-image-parameters generate 
+
+azure virtual-machine capture-vm-image-parameters generate 
 --parameter-file $f
- 
- azure capture-vm-image capture-vm-image-parameters patch 
+
+azure virtual-machine capture-vm-image-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine create-parameters virtual-machine-create-parameters set
+
+azure virtual-machine create-parameters virtual-machine-create-parameters set
 --parameter-file $f
 --parse
 --availability-set-name $availabilitySetName
@@ -2168,7 +2096,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --vm-image-input $vMImageInput
 --vm-image-name $vMImageName
 
- azure virtual-machine create-parameters virtual-machine-create-parameters delete
+azure virtual-machine create-parameters virtual-machine-create-parameters delete
 --parameter-file $f
 --availability-set-name
 --configuration-sets
@@ -2183,7 +2111,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --vm-image-input
 --vm-image-name
 
- azure virtual-machine create-parameters configuration-sets set
+azure virtual-machine create-parameters configuration-sets set
 --parameter-file $f
 --index $i
 --value $v
@@ -2213,7 +2141,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --user-password $userPassword
 --windows-remote-management $windowsRemoteManagement
 
- azure virtual-machine create-parameters configuration-sets delete
+azure virtual-machine create-parameters configuration-sets delete
 --parameter-file $f
 --index $pindex
 --additional-unattend-content
@@ -2241,18 +2169,18 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --user-password
 --windows-remote-management
 
- azure virtual-machine create-parameters additional-unattend-content set
+azure virtual-machine create-parameters additional-unattend-content set
 --parameter-file $f
 --configuration-sets-index $i
 --parse
 --unattend-passes $unattendPasses
 
- azure virtual-machine create-parameters additional-unattend-content delete
+azure virtual-machine create-parameters additional-unattend-content delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --unattend-passes
 
- azure virtual-machine create-parameters unattend-passes set
+azure virtual-machine create-parameters unattend-passes set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -2261,14 +2189,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --pass-name $passName
 --unattend-components $unattendComponents
 
- azure virtual-machine create-parameters unattend-passes delete
+azure virtual-machine create-parameters unattend-passes delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
 --pass-name
 --unattend-components
 
- azure virtual-machine create-parameters unattend-components set
+azure virtual-machine create-parameters unattend-components set
 --parameter-file $f
 --index $i
 --unattend-passes-index $i
@@ -2278,7 +2206,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --component-name $componentName
 --unattend-component-settings $unattendComponentSettings
 
- azure virtual-machine create-parameters unattend-components delete
+azure virtual-machine create-parameters unattend-components delete
 --parameter-file $f
 --index $pindex
 --unattend-passes-index $punattend-passes-index
@@ -2286,7 +2214,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --component-name
 --unattend-component-settings
 
- azure virtual-machine create-parameters unattend-component-settings set
+azure virtual-machine create-parameters unattend-component-settings set
 --parameter-file $f
 --index $i
 --unattend-components-index $i
@@ -2297,7 +2225,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --content $content
 --setting-name $settingName
 
- azure virtual-machine create-parameters unattend-component-settings delete
+azure virtual-machine create-parameters unattend-component-settings delete
 --parameter-file $f
 --index $pindex
 --unattend-components-index $punattend-components-index
@@ -2306,7 +2234,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --content
 --setting-name
 
- azure virtual-machine create-parameters domain-join set
+azure virtual-machine create-parameters domain-join set
 --parameter-file $f
 --configuration-sets-index $i
 --parse
@@ -2315,7 +2243,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --ldap-machine-object-o-u $ldapMachineObjectOU
 --provisioning $provisioning
 
- azure virtual-machine create-parameters domain-join delete
+azure virtual-machine create-parameters domain-join delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --credentials
@@ -2323,7 +2251,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --ldap-machine-object-o-u
 --provisioning
 
- azure virtual-machine create-parameters credentials set
+azure virtual-machine create-parameters credentials set
 --parameter-file $f
 --configuration-sets-index $i
 --parse
@@ -2331,25 +2259,25 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --password $password
 --user-name $userName
 
- azure virtual-machine create-parameters credentials delete
+azure virtual-machine create-parameters credentials delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --domain
 --password
 --user-name
 
- azure virtual-machine create-parameters provisioning set
+azure virtual-machine create-parameters provisioning set
 --parameter-file $f
 --configuration-sets-index $i
 --parse
 --account-data $accountData
 
- azure virtual-machine create-parameters provisioning delete
+azure virtual-machine create-parameters provisioning delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --account-data
 
- azure virtual-machine create-parameters input-endpoints set
+azure virtual-machine create-parameters input-endpoints set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -2369,7 +2297,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --virtual-ip-address $virtualIPAddress
 --virtual-ip-name $virtualIPName
 
- azure virtual-machine create-parameters input-endpoints delete
+azure virtual-machine create-parameters input-endpoints delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
@@ -2387,20 +2315,20 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --virtual-ip-address
 --virtual-ip-name
 
- azure virtual-machine create-parameters endpoint-acl set
+azure virtual-machine create-parameters endpoint-acl set
 --parameter-file $f
 --input-endpoints-index $i
 --configuration-sets-index $i
 --parse
 --rules $rules
 
- azure virtual-machine create-parameters endpoint-acl delete
+azure virtual-machine create-parameters endpoint-acl delete
 --parameter-file $f
 --input-endpoints-index $pinput-endpoints-index
 --configuration-sets-index $pconfiguration-sets-index
 --rules
 
- azure virtual-machine create-parameters rules set
+azure virtual-machine create-parameters rules set
 --parameter-file $f
 --index $i
 --input-endpoints-index $i
@@ -2412,7 +2340,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --order $order
 --remote-subnet $remoteSubnet
 
- azure virtual-machine create-parameters rules delete
+azure virtual-machine create-parameters rules delete
 --parameter-file $f
 --index $pindex
 --input-endpoints-index $pinput-endpoints-index
@@ -2422,7 +2350,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --order
 --remote-subnet
 
- azure virtual-machine create-parameters load-balancer-probe set
+azure virtual-machine create-parameters load-balancer-probe set
 --parameter-file $f
 --input-endpoints-index $i
 --configuration-sets-index $i
@@ -2433,7 +2361,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --protocol $protocol
 --timeout-in-seconds $timeoutInSeconds
 
- azure virtual-machine create-parameters load-balancer-probe delete
+azure virtual-machine create-parameters load-balancer-probe delete
 --parameter-file $f
 --input-endpoints-index $pinput-endpoints-index
 --configuration-sets-index $pconfiguration-sets-index
@@ -2443,7 +2371,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --protocol
 --timeout-in-seconds
 
- azure virtual-machine create-parameters network-interfaces set
+azure virtual-machine create-parameters network-interfaces set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -2454,7 +2382,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name $name
 --network-security-group $networkSecurityGroup
 
- azure virtual-machine create-parameters network-interfaces delete
+azure virtual-machine create-parameters network-interfaces delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
@@ -2463,7 +2391,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name
 --network-security-group
 
- azure virtual-machine create-parameters ip-configurations set
+azure virtual-machine create-parameters ip-configurations set
 --parameter-file $f
 --index $i
 --network-interfaces-index $i
@@ -2473,7 +2401,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --static-virtual-network-ip-address $staticVirtualNetworkIPAddress
 --subnet-name $subnetName
 
- azure virtual-machine create-parameters ip-configurations delete
+azure virtual-machine create-parameters ip-configurations delete
 --parameter-file $f
 --index $pindex
 --network-interfaces-index $pnetwork-interfaces-index
@@ -2481,7 +2409,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --static-virtual-network-ip-address
 --subnet-name
 
- azure virtual-machine create-parameters public-ip set
+azure virtual-machine create-parameters public-ip set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -2491,7 +2419,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --idle-timeout-in-minutes $idleTimeoutInMinutes
 --name $name
 
- azure virtual-machine create-parameters public-ip delete
+azure virtual-machine create-parameters public-ip delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
@@ -2499,20 +2427,20 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --idle-timeout-in-minutes
 --name
 
- azure virtual-machine create-parameters ssh-settings set
+azure virtual-machine create-parameters ssh-settings set
 --parameter-file $f
 --configuration-sets-index $i
 --parse
 --key-pairs $keyPairs
 --public-keys $publicKeys
 
- azure virtual-machine create-parameters ssh-settings delete
+azure virtual-machine create-parameters ssh-settings delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --key-pairs
 --public-keys
 
- azure virtual-machine create-parameters key-pairs set
+azure virtual-machine create-parameters key-pairs set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -2521,14 +2449,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --fingerprint $fingerprint
 --path $path
 
- azure virtual-machine create-parameters key-pairs delete
+azure virtual-machine create-parameters key-pairs delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
 --fingerprint
 --path
 
- azure virtual-machine create-parameters public-keys set
+azure virtual-machine create-parameters public-keys set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -2537,14 +2465,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --fingerprint $fingerprint
 --path $path
 
- azure virtual-machine create-parameters public-keys delete
+azure virtual-machine create-parameters public-keys delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
 --fingerprint
 --path
 
- azure virtual-machine create-parameters stored-certificate-settings set
+azure virtual-machine create-parameters stored-certificate-settings set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -2553,37 +2481,37 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --store-name $storeName
 --thumbprint $thumbprint
 
- azure virtual-machine create-parameters stored-certificate-settings delete
+azure virtual-machine create-parameters stored-certificate-settings delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
 --store-name
 --thumbprint
 
- azure virtual-machine create-parameters subnet-names set
+azure virtual-machine create-parameters subnet-names set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
 --value $v
 --parse
 
- azure virtual-machine create-parameters subnet-names delete
+azure virtual-machine create-parameters subnet-names delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
 
- azure virtual-machine create-parameters windows-remote-management set
+azure virtual-machine create-parameters windows-remote-management set
 --parameter-file $f
 --configuration-sets-index $i
 --parse
 --listeners $listeners
 
- azure virtual-machine create-parameters windows-remote-management delete
+azure virtual-machine create-parameters windows-remote-management delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --listeners
 
- azure virtual-machine create-parameters listeners set
+azure virtual-machine create-parameters listeners set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -2592,14 +2520,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --certificate-thumbprint $certificateThumbprint
 --listener-type $listenerType
 
- azure virtual-machine create-parameters listeners delete
+azure virtual-machine create-parameters listeners delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
 --certificate-thumbprint
 --listener-type
 
- azure virtual-machine create-parameters data-virtual-hard-disks set
+azure virtual-machine create-parameters data-virtual-hard-disks set
 --parameter-file $f
 --index $i
 --value $v
@@ -2613,7 +2541,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name $name
 --source-media-link $sourceMediaLink
 
- azure virtual-machine create-parameters data-virtual-hard-disks delete
+azure virtual-machine create-parameters data-virtual-hard-disks delete
 --parameter-file $f
 --index $pindex
 --host-caching
@@ -2625,20 +2553,20 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name
 --source-media-link
 
- azure virtual-machine create-parameters debug-settings set
+azure virtual-machine create-parameters debug-settings set
 --parameter-file $f
 --parse
 --boot-diagnostics-enabled $bootDiagnosticsEnabled
 --console-screenshot-blob-uri $consoleScreenshotBlobUri
 --serial-output-blob-uri $serialOutputBlobUri
 
- azure virtual-machine create-parameters debug-settings delete
+azure virtual-machine create-parameters debug-settings delete
 --parameter-file $f
 --boot-diagnostics-enabled
 --console-screenshot-blob-uri
 --serial-output-blob-uri
 
- azure virtual-machine create-parameters os-virtual-hard-disk set
+azure virtual-machine create-parameters os-virtual-hard-disk set
 --parameter-file $f
 --parse
 --host-caching $hostCaching
@@ -2651,7 +2579,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --resized-size-in-g-b $resizedSizeInGB
 --source-image-name $sourceImageName
 
- azure virtual-machine create-parameters os-virtual-hard-disk delete
+azure virtual-machine create-parameters os-virtual-hard-disk delete
 --parameter-file $f
 --host-caching
 --i-o-type
@@ -2663,7 +2591,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --resized-size-in-g-b
 --source-image-name
 
- azure virtual-machine create-parameters resource-extension-references set
+azure virtual-machine create-parameters resource-extension-references set
 --parameter-file $f
 --index $i
 --value $v
@@ -2676,7 +2604,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --state $state
 --version $version
 
- azure virtual-machine create-parameters resource-extension-references delete
+azure virtual-machine create-parameters resource-extension-references delete
 --parameter-file $f
 --index $pindex
 --force-update
@@ -2687,7 +2615,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --state
 --version
 
- azure virtual-machine create-parameters resource-extension-parameter-values set
+azure virtual-machine create-parameters resource-extension-parameter-values set
 --parameter-file $f
 --index $i
 --resource-extension-references-index $i
@@ -2697,7 +2625,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --type $type
 --value $value
 
- azure virtual-machine create-parameters resource-extension-parameter-values delete
+azure virtual-machine create-parameters resource-extension-parameter-values delete
 --parameter-file $f
 --index $pindex
 --resource-extension-references-index $presource-extension-references-index
@@ -2705,18 +2633,18 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --type
 --value
 
- azure virtual-machine create-parameters vm-image-input set
+azure virtual-machine create-parameters vm-image-input set
 --parameter-file $f
 --parse
 --data-disk-configurations $dataDiskConfigurations
 --os-disk-configuration $oSDiskConfiguration
 
- azure virtual-machine create-parameters vm-image-input delete
+azure virtual-machine create-parameters vm-image-input delete
 --parameter-file $f
 --data-disk-configurations
 --os-disk-configuration
 
- azure virtual-machine create-parameters data-disk-configurations set
+azure virtual-machine create-parameters data-disk-configurations set
 --parameter-file $f
 --index $i
 --value $v
@@ -2724,35 +2652,34 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --disk-name $diskName
 --resized-size-in-g-b $resizedSizeInGB
 
- azure virtual-machine create-parameters data-disk-configurations delete
+azure virtual-machine create-parameters data-disk-configurations delete
 --parameter-file $f
 --index $pindex
 --disk-name
 --resized-size-in-g-b
 
- azure virtual-machine create-parameters os-disk-configuration set
+azure virtual-machine create-parameters os-disk-configuration set
 --parameter-file $f
 --parse
 --resized-size-in-g-b $resizedSizeInGB
 
- azure virtual-machine create-parameters os-disk-configuration delete
+azure virtual-machine create-parameters os-disk-configuration delete
 --parameter-file $f
 --resized-size-in-g-b
 
- azure virtual-machine create 
+azure virtual-machine create 
 --service-name $p0
 --deployment-name $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure create create-parameters generate 
+
+azure virtual-machine create-parameters generate 
 --parameter-file $f
- 
- azure create create-parameters patch 
+
+azure virtual-machine create-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine create-deployment-parameters virtual-machine-create-deployment-parameters set
+
+azure virtual-machine create-deployment-parameters virtual-machine-create-deployment-parameters set
 --parameter-file $f
 --parse
 --deployment-slot $deploymentSlot
@@ -2764,7 +2691,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --roles $roles
 --virtual-network-name $virtualNetworkName
 
- azure virtual-machine create-deployment-parameters virtual-machine-create-deployment-parameters delete
+azure virtual-machine create-deployment-parameters virtual-machine-create-deployment-parameters delete
 --parameter-file $f
 --deployment-slot
 --dns-settings
@@ -2775,16 +2702,16 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --roles
 --virtual-network-name
 
- azure virtual-machine create-deployment-parameters dns-settings set
+azure virtual-machine create-deployment-parameters dns-settings set
 --parameter-file $f
 --parse
 --dns-servers $dnsServers
 
- azure virtual-machine create-deployment-parameters dns-settings delete
+azure virtual-machine create-deployment-parameters dns-settings delete
 --parameter-file $f
 --dns-servers
 
- azure virtual-machine create-deployment-parameters dns-servers set
+azure virtual-machine create-deployment-parameters dns-servers set
 --parameter-file $f
 --index $i
 --value $v
@@ -2792,13 +2719,13 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --address $address
 --name $name
 
- azure virtual-machine create-deployment-parameters dns-servers delete
+azure virtual-machine create-deployment-parameters dns-servers delete
 --parameter-file $f
 --index $pindex
 --address
 --name
 
- azure virtual-machine create-deployment-parameters load-balancers set
+azure virtual-machine create-deployment-parameters load-balancers set
 --parameter-file $f
 --index $i
 --value $v
@@ -2806,13 +2733,13 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --frontend-ip-configuration $frontendIPConfiguration
 --name $name
 
- azure virtual-machine create-deployment-parameters load-balancers delete
+azure virtual-machine create-deployment-parameters load-balancers delete
 --parameter-file $f
 --index $pindex
 --frontend-ip-configuration
 --name
 
- azure virtual-machine create-deployment-parameters frontend-ip-configuration set
+azure virtual-machine create-deployment-parameters frontend-ip-configuration set
 --parameter-file $f
 --load-balancers-index $i
 --parse
@@ -2820,14 +2747,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --subnet-name $subnetName
 --type $type
 
- azure virtual-machine create-deployment-parameters frontend-ip-configuration delete
+azure virtual-machine create-deployment-parameters frontend-ip-configuration delete
 --parameter-file $f
 --load-balancers-index $pload-balancers-index
 --static-virtual-network-ip-address
 --subnet-name
 --type
 
- azure virtual-machine create-deployment-parameters roles set
+azure virtual-machine create-deployment-parameters roles set
 --parameter-file $f
 --index $i
 --value $v
@@ -2849,7 +2776,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --vm-image-input $vMImageInput
 --vm-image-name $vMImageName
 
- azure virtual-machine create-deployment-parameters roles delete
+azure virtual-machine create-deployment-parameters roles delete
 --parameter-file $f
 --index $pindex
 --availability-set-name
@@ -2869,7 +2796,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --vm-image-input
 --vm-image-name
 
- azure virtual-machine create-deployment-parameters configuration-sets set
+azure virtual-machine create-deployment-parameters configuration-sets set
 --parameter-file $f
 --index $i
 --roles-index $i
@@ -2900,7 +2827,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --user-password $userPassword
 --windows-remote-management $windowsRemoteManagement
 
- azure virtual-machine create-deployment-parameters configuration-sets delete
+azure virtual-machine create-deployment-parameters configuration-sets delete
 --parameter-file $f
 --index $pindex
 --roles-index $proles-index
@@ -2929,20 +2856,20 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --user-password
 --windows-remote-management
 
- azure virtual-machine create-deployment-parameters additional-unattend-content set
+azure virtual-machine create-deployment-parameters additional-unattend-content set
 --parameter-file $f
 --configuration-sets-index $i
 --roles-index $i
 --parse
 --unattend-passes $unattendPasses
 
- azure virtual-machine create-deployment-parameters additional-unattend-content delete
+azure virtual-machine create-deployment-parameters additional-unattend-content delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --roles-index $proles-index
 --unattend-passes
 
- azure virtual-machine create-deployment-parameters unattend-passes set
+azure virtual-machine create-deployment-parameters unattend-passes set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -2952,7 +2879,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --pass-name $passName
 --unattend-components $unattendComponents
 
- azure virtual-machine create-deployment-parameters unattend-passes delete
+azure virtual-machine create-deployment-parameters unattend-passes delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
@@ -2960,7 +2887,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --pass-name
 --unattend-components
 
- azure virtual-machine create-deployment-parameters unattend-components set
+azure virtual-machine create-deployment-parameters unattend-components set
 --parameter-file $f
 --index $i
 --unattend-passes-index $i
@@ -2971,7 +2898,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --component-name $componentName
 --unattend-component-settings $unattendComponentSettings
 
- azure virtual-machine create-deployment-parameters unattend-components delete
+azure virtual-machine create-deployment-parameters unattend-components delete
 --parameter-file $f
 --index $pindex
 --unattend-passes-index $punattend-passes-index
@@ -2980,7 +2907,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --component-name
 --unattend-component-settings
 
- azure virtual-machine create-deployment-parameters unattend-component-settings set
+azure virtual-machine create-deployment-parameters unattend-component-settings set
 --parameter-file $f
 --index $i
 --unattend-components-index $i
@@ -2992,7 +2919,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --content $content
 --setting-name $settingName
 
- azure virtual-machine create-deployment-parameters unattend-component-settings delete
+azure virtual-machine create-deployment-parameters unattend-component-settings delete
 --parameter-file $f
 --index $pindex
 --unattend-components-index $punattend-components-index
@@ -3002,7 +2929,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --content
 --setting-name
 
- azure virtual-machine create-deployment-parameters domain-join set
+azure virtual-machine create-deployment-parameters domain-join set
 --parameter-file $f
 --configuration-sets-index $i
 --roles-index $i
@@ -3012,7 +2939,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --ldap-machine-object-o-u $ldapMachineObjectOU
 --provisioning $provisioning
 
- azure virtual-machine create-deployment-parameters domain-join delete
+azure virtual-machine create-deployment-parameters domain-join delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --roles-index $proles-index
@@ -3021,7 +2948,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --ldap-machine-object-o-u
 --provisioning
 
- azure virtual-machine create-deployment-parameters credentials set
+azure virtual-machine create-deployment-parameters credentials set
 --parameter-file $f
 --configuration-sets-index $i
 --roles-index $i
@@ -3030,7 +2957,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --password $password
 --user-name $userName
 
- azure virtual-machine create-deployment-parameters credentials delete
+azure virtual-machine create-deployment-parameters credentials delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --roles-index $proles-index
@@ -3038,20 +2965,20 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --password
 --user-name
 
- azure virtual-machine create-deployment-parameters provisioning set
+azure virtual-machine create-deployment-parameters provisioning set
 --parameter-file $f
 --configuration-sets-index $i
 --roles-index $i
 --parse
 --account-data $accountData
 
- azure virtual-machine create-deployment-parameters provisioning delete
+azure virtual-machine create-deployment-parameters provisioning delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --roles-index $proles-index
 --account-data
 
- azure virtual-machine create-deployment-parameters input-endpoints set
+azure virtual-machine create-deployment-parameters input-endpoints set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -3072,7 +2999,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --virtual-ip-address $virtualIPAddress
 --virtual-ip-name $virtualIPName
 
- azure virtual-machine create-deployment-parameters input-endpoints delete
+azure virtual-machine create-deployment-parameters input-endpoints delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
@@ -3091,7 +3018,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --virtual-ip-address
 --virtual-ip-name
 
- azure virtual-machine create-deployment-parameters endpoint-acl set
+azure virtual-machine create-deployment-parameters endpoint-acl set
 --parameter-file $f
 --input-endpoints-index $i
 --configuration-sets-index $i
@@ -3099,14 +3026,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --parse
 --rules $rules
 
- azure virtual-machine create-deployment-parameters endpoint-acl delete
+azure virtual-machine create-deployment-parameters endpoint-acl delete
 --parameter-file $f
 --input-endpoints-index $pinput-endpoints-index
 --configuration-sets-index $pconfiguration-sets-index
 --roles-index $proles-index
 --rules
 
- azure virtual-machine create-deployment-parameters rules set
+azure virtual-machine create-deployment-parameters rules set
 --parameter-file $f
 --index $i
 --input-endpoints-index $i
@@ -3119,7 +3046,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --order $order
 --remote-subnet $remoteSubnet
 
- azure virtual-machine create-deployment-parameters rules delete
+azure virtual-machine create-deployment-parameters rules delete
 --parameter-file $f
 --index $pindex
 --input-endpoints-index $pinput-endpoints-index
@@ -3130,7 +3057,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --order
 --remote-subnet
 
- azure virtual-machine create-deployment-parameters load-balancer-probe set
+azure virtual-machine create-deployment-parameters load-balancer-probe set
 --parameter-file $f
 --input-endpoints-index $i
 --configuration-sets-index $i
@@ -3142,7 +3069,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --protocol $protocol
 --timeout-in-seconds $timeoutInSeconds
 
- azure virtual-machine create-deployment-parameters load-balancer-probe delete
+azure virtual-machine create-deployment-parameters load-balancer-probe delete
 --parameter-file $f
 --input-endpoints-index $pinput-endpoints-index
 --configuration-sets-index $pconfiguration-sets-index
@@ -3153,7 +3080,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --protocol
 --timeout-in-seconds
 
- azure virtual-machine create-deployment-parameters network-interfaces set
+azure virtual-machine create-deployment-parameters network-interfaces set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -3165,7 +3092,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name $name
 --network-security-group $networkSecurityGroup
 
- azure virtual-machine create-deployment-parameters network-interfaces delete
+azure virtual-machine create-deployment-parameters network-interfaces delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
@@ -3175,7 +3102,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name
 --network-security-group
 
- azure virtual-machine create-deployment-parameters ip-configurations set
+azure virtual-machine create-deployment-parameters ip-configurations set
 --parameter-file $f
 --index $i
 --network-interfaces-index $i
@@ -3186,7 +3113,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --static-virtual-network-ip-address $staticVirtualNetworkIPAddress
 --subnet-name $subnetName
 
- azure virtual-machine create-deployment-parameters ip-configurations delete
+azure virtual-machine create-deployment-parameters ip-configurations delete
 --parameter-file $f
 --index $pindex
 --network-interfaces-index $pnetwork-interfaces-index
@@ -3195,7 +3122,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --static-virtual-network-ip-address
 --subnet-name
 
- azure virtual-machine create-deployment-parameters public-ip set
+azure virtual-machine create-deployment-parameters public-ip set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -3206,7 +3133,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --idle-timeout-in-minutes $idleTimeoutInMinutes
 --name $name
 
- azure virtual-machine create-deployment-parameters public-ip delete
+azure virtual-machine create-deployment-parameters public-ip delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
@@ -3215,7 +3142,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --idle-timeout-in-minutes
 --name
 
- azure virtual-machine create-deployment-parameters ssh-settings set
+azure virtual-machine create-deployment-parameters ssh-settings set
 --parameter-file $f
 --configuration-sets-index $i
 --roles-index $i
@@ -3223,14 +3150,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --key-pairs $keyPairs
 --public-keys $publicKeys
 
- azure virtual-machine create-deployment-parameters ssh-settings delete
+azure virtual-machine create-deployment-parameters ssh-settings delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --roles-index $proles-index
 --key-pairs
 --public-keys
 
- azure virtual-machine create-deployment-parameters key-pairs set
+azure virtual-machine create-deployment-parameters key-pairs set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -3240,7 +3167,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --fingerprint $fingerprint
 --path $path
 
- azure virtual-machine create-deployment-parameters key-pairs delete
+azure virtual-machine create-deployment-parameters key-pairs delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
@@ -3248,7 +3175,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --fingerprint
 --path
 
- azure virtual-machine create-deployment-parameters public-keys set
+azure virtual-machine create-deployment-parameters public-keys set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -3258,7 +3185,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --fingerprint $fingerprint
 --path $path
 
- azure virtual-machine create-deployment-parameters public-keys delete
+azure virtual-machine create-deployment-parameters public-keys delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
@@ -3266,7 +3193,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --fingerprint
 --path
 
- azure virtual-machine create-deployment-parameters stored-certificate-settings set
+azure virtual-machine create-deployment-parameters stored-certificate-settings set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -3276,7 +3203,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --store-name $storeName
 --thumbprint $thumbprint
 
- azure virtual-machine create-deployment-parameters stored-certificate-settings delete
+azure virtual-machine create-deployment-parameters stored-certificate-settings delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
@@ -3284,7 +3211,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --store-name
 --thumbprint
 
- azure virtual-machine create-deployment-parameters subnet-names set
+azure virtual-machine create-deployment-parameters subnet-names set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -3292,26 +3219,26 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --value $v
 --parse
 
- azure virtual-machine create-deployment-parameters subnet-names delete
+azure virtual-machine create-deployment-parameters subnet-names delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
 --roles-index $proles-index
 
- azure virtual-machine create-deployment-parameters windows-remote-management set
+azure virtual-machine create-deployment-parameters windows-remote-management set
 --parameter-file $f
 --configuration-sets-index $i
 --roles-index $i
 --parse
 --listeners $listeners
 
- azure virtual-machine create-deployment-parameters windows-remote-management delete
+azure virtual-machine create-deployment-parameters windows-remote-management delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --roles-index $proles-index
 --listeners
 
- azure virtual-machine create-deployment-parameters listeners set
+azure virtual-machine create-deployment-parameters listeners set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -3321,7 +3248,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --certificate-thumbprint $certificateThumbprint
 --listener-type $listenerType
 
- azure virtual-machine create-deployment-parameters listeners delete
+azure virtual-machine create-deployment-parameters listeners delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
@@ -3329,7 +3256,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --certificate-thumbprint
 --listener-type
 
- azure virtual-machine create-deployment-parameters data-virtual-hard-disks set
+azure virtual-machine create-deployment-parameters data-virtual-hard-disks set
 --parameter-file $f
 --index $i
 --roles-index $i
@@ -3344,7 +3271,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name $name
 --source-media-link $sourceMediaLink
 
- azure virtual-machine create-deployment-parameters data-virtual-hard-disks delete
+azure virtual-machine create-deployment-parameters data-virtual-hard-disks delete
 --parameter-file $f
 --index $pindex
 --roles-index $proles-index
@@ -3357,7 +3284,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name
 --source-media-link
 
- azure virtual-machine create-deployment-parameters debug-settings set
+azure virtual-machine create-deployment-parameters debug-settings set
 --parameter-file $f
 --roles-index $i
 --parse
@@ -3365,14 +3292,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --console-screenshot-blob-uri $consoleScreenshotBlobUri
 --serial-output-blob-uri $serialOutputBlobUri
 
- azure virtual-machine create-deployment-parameters debug-settings delete
+azure virtual-machine create-deployment-parameters debug-settings delete
 --parameter-file $f
 --roles-index $proles-index
 --boot-diagnostics-enabled
 --console-screenshot-blob-uri
 --serial-output-blob-uri
 
- azure virtual-machine create-deployment-parameters os-virtual-hard-disk set
+azure virtual-machine create-deployment-parameters os-virtual-hard-disk set
 --parameter-file $f
 --roles-index $i
 --parse
@@ -3386,7 +3313,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --resized-size-in-g-b $resizedSizeInGB
 --source-image-name $sourceImageName
 
- azure virtual-machine create-deployment-parameters os-virtual-hard-disk delete
+azure virtual-machine create-deployment-parameters os-virtual-hard-disk delete
 --parameter-file $f
 --roles-index $proles-index
 --host-caching
@@ -3399,7 +3326,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --resized-size-in-g-b
 --source-image-name
 
- azure virtual-machine create-deployment-parameters resource-extension-references set
+azure virtual-machine create-deployment-parameters resource-extension-references set
 --parameter-file $f
 --index $i
 --roles-index $i
@@ -3413,7 +3340,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --state $state
 --version $version
 
- azure virtual-machine create-deployment-parameters resource-extension-references delete
+azure virtual-machine create-deployment-parameters resource-extension-references delete
 --parameter-file $f
 --index $pindex
 --roles-index $proles-index
@@ -3425,7 +3352,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --state
 --version
 
- azure virtual-machine create-deployment-parameters resource-extension-parameter-values set
+azure virtual-machine create-deployment-parameters resource-extension-parameter-values set
 --parameter-file $f
 --index $i
 --resource-extension-references-index $i
@@ -3436,7 +3363,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --type $type
 --value $value
 
- azure virtual-machine create-deployment-parameters resource-extension-parameter-values delete
+azure virtual-machine create-deployment-parameters resource-extension-parameter-values delete
 --parameter-file $f
 --index $pindex
 --resource-extension-references-index $presource-extension-references-index
@@ -3445,20 +3372,20 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --type
 --value
 
- azure virtual-machine create-deployment-parameters vm-image-input set
+azure virtual-machine create-deployment-parameters vm-image-input set
 --parameter-file $f
 --roles-index $i
 --parse
 --data-disk-configurations $dataDiskConfigurations
 --os-disk-configuration $oSDiskConfiguration
 
- azure virtual-machine create-deployment-parameters vm-image-input delete
+azure virtual-machine create-deployment-parameters vm-image-input delete
 --parameter-file $f
 --roles-index $proles-index
 --data-disk-configurations
 --os-disk-configuration
 
- azure virtual-machine create-deployment-parameters data-disk-configurations set
+azure virtual-machine create-deployment-parameters data-disk-configurations set
 --parameter-file $f
 --index $i
 --roles-index $i
@@ -3467,161 +3394,152 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --disk-name $diskName
 --resized-size-in-g-b $resizedSizeInGB
 
- azure virtual-machine create-deployment-parameters data-disk-configurations delete
+azure virtual-machine create-deployment-parameters data-disk-configurations delete
 --parameter-file $f
 --index $pindex
 --roles-index $proles-index
 --disk-name
 --resized-size-in-g-b
 
- azure virtual-machine create-deployment-parameters os-disk-configuration set
+azure virtual-machine create-deployment-parameters os-disk-configuration set
 --parameter-file $f
 --roles-index $i
 --parse
 --resized-size-in-g-b $resizedSizeInGB
 
- azure virtual-machine create-deployment-parameters os-disk-configuration delete
+azure virtual-machine create-deployment-parameters os-disk-configuration delete
 --parameter-file $f
 --roles-index $proles-index
 --resized-size-in-g-b
 
- azure virtual-machine create-deployment 
+azure virtual-machine create-deployment 
 --service-name $p0
 --parameters $p1
 --parameter-file $f
---subscription $s
- 
- azure create-deployment create-deployment-parameters generate 
+
+azure virtual-machine create-deployment-parameters generate 
 --parameter-file $f
- 
- azure create-deployment create-deployment-parameters patch 
+
+azure virtual-machine create-deployment-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine delete 
+
+azure virtual-machine delete 
 --service-name $p0
 --deployment-name $p1
 --virtual-machine-name $p2
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine get 
+
+azure virtual-machine get 
 --service-name $p0
 --deployment-name $p1
 --virtual-machine-name $p2
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine get-remote-desktop-file 
+
+azure virtual-machine get-remote-desktop-file 
 --service-name $p0
 --deployment-name $p1
 --virtual-machine-name $p2
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine restart 
+
+azure virtual-machine restart 
 --service-name $p0
 --deployment-name $p1
 --virtual-machine-name $p2
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine shutdown-parameters virtual-machine-shutdown-parameters set
+
+azure virtual-machine shutdown-parameters virtual-machine-shutdown-parameters set
 --parameter-file $f
 --parse
 --post-shutdown-action $postShutdownAction
 
- azure virtual-machine shutdown-parameters virtual-machine-shutdown-parameters delete
+azure virtual-machine shutdown-parameters virtual-machine-shutdown-parameters delete
 --parameter-file $f
 --post-shutdown-action
 
- azure virtual-machine shutdown 
+azure virtual-machine shutdown 
 --service-name $p0
 --deployment-name $p1
 --virtual-machine-name $p2
 --parameters $p3
 --parameter-file $f
---subscription $s
- 
- azure shutdown shutdown-parameters generate 
+
+azure virtual-machine shutdown-parameters generate 
 --parameter-file $f
- 
- azure shutdown shutdown-parameters patch 
+
+azure virtual-machine shutdown-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine shutdown-roles-parameters virtual-machine-shutdown-roles-parameters set
+
+azure virtual-machine shutdown-roles-parameters virtual-machine-shutdown-roles-parameters set
 --parameter-file $f
 --parse
 --post-shutdown-action $postShutdownAction
 --roles $roles
 
- azure virtual-machine shutdown-roles-parameters virtual-machine-shutdown-roles-parameters delete
+azure virtual-machine shutdown-roles-parameters virtual-machine-shutdown-roles-parameters delete
 --parameter-file $f
 --post-shutdown-action
 --roles
 
- azure virtual-machine shutdown-roles-parameters roles set
+azure virtual-machine shutdown-roles-parameters roles set
 --parameter-file $f
 --index $i
 --value $v
 --parse
 
- azure virtual-machine shutdown-roles-parameters roles delete
+azure virtual-machine shutdown-roles-parameters roles delete
 --parameter-file $f
 --index $pindex
 
- azure virtual-machine shutdown-roles 
+azure virtual-machine shutdown-roles 
 --service-name $p0
 --deployment-name $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure shutdown-roles shutdown-roles-parameters generate 
+
+azure virtual-machine shutdown-roles-parameters generate 
 --parameter-file $f
- 
- azure shutdown-roles shutdown-roles-parameters patch 
+
+azure virtual-machine shutdown-roles-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine start 
+
+azure virtual-machine start 
 --service-name $p0
 --deployment-name $p1
 --virtual-machine-name $p2
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine start-roles-parameters virtual-machine-start-roles-parameters set
+
+azure virtual-machine start-roles-parameters virtual-machine-start-roles-parameters set
 --parameter-file $f
 --parse
 --roles $roles
 
- azure virtual-machine start-roles-parameters virtual-machine-start-roles-parameters delete
+azure virtual-machine start-roles-parameters virtual-machine-start-roles-parameters delete
 --parameter-file $f
 --roles
 
- azure virtual-machine start-roles-parameters roles set
+azure virtual-machine start-roles-parameters roles set
 --parameter-file $f
 --index $i
 --value $v
 --parse
 
- azure virtual-machine start-roles-parameters roles delete
+azure virtual-machine start-roles-parameters roles delete
 --parameter-file $f
 --index $pindex
 
- azure virtual-machine start-roles 
+azure virtual-machine start-roles 
 --service-name $p0
 --deployment-name $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure start-roles start-roles-parameters generate 
+
+azure virtual-machine start-roles-parameters generate 
 --parameter-file $f
- 
- azure start-roles start-roles-parameters patch 
+
+azure virtual-machine start-roles-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine update-parameters virtual-machine-update-parameters set
+
+azure virtual-machine update-parameters virtual-machine-update-parameters set
 --parameter-file $f
 --parse
 --availability-set-name $availabilitySetName
@@ -3635,7 +3553,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --role-name $roleName
 --role-size $roleSize
 
- azure virtual-machine update-parameters virtual-machine-update-parameters delete
+azure virtual-machine update-parameters virtual-machine-update-parameters delete
 --parameter-file $f
 --availability-set-name
 --configuration-sets
@@ -3648,7 +3566,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --role-name
 --role-size
 
- azure virtual-machine update-parameters configuration-sets set
+azure virtual-machine update-parameters configuration-sets set
 --parameter-file $f
 --index $i
 --value $v
@@ -3678,7 +3596,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --user-password $userPassword
 --windows-remote-management $windowsRemoteManagement
 
- azure virtual-machine update-parameters configuration-sets delete
+azure virtual-machine update-parameters configuration-sets delete
 --parameter-file $f
 --index $pindex
 --additional-unattend-content
@@ -3706,18 +3624,18 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --user-password
 --windows-remote-management
 
- azure virtual-machine update-parameters additional-unattend-content set
+azure virtual-machine update-parameters additional-unattend-content set
 --parameter-file $f
 --configuration-sets-index $i
 --parse
 --unattend-passes $unattendPasses
 
- azure virtual-machine update-parameters additional-unattend-content delete
+azure virtual-machine update-parameters additional-unattend-content delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --unattend-passes
 
- azure virtual-machine update-parameters unattend-passes set
+azure virtual-machine update-parameters unattend-passes set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -3726,14 +3644,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --pass-name $passName
 --unattend-components $unattendComponents
 
- azure virtual-machine update-parameters unattend-passes delete
+azure virtual-machine update-parameters unattend-passes delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
 --pass-name
 --unattend-components
 
- azure virtual-machine update-parameters unattend-components set
+azure virtual-machine update-parameters unattend-components set
 --parameter-file $f
 --index $i
 --unattend-passes-index $i
@@ -3743,7 +3661,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --component-name $componentName
 --unattend-component-settings $unattendComponentSettings
 
- azure virtual-machine update-parameters unattend-components delete
+azure virtual-machine update-parameters unattend-components delete
 --parameter-file $f
 --index $pindex
 --unattend-passes-index $punattend-passes-index
@@ -3751,7 +3669,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --component-name
 --unattend-component-settings
 
- azure virtual-machine update-parameters unattend-component-settings set
+azure virtual-machine update-parameters unattend-component-settings set
 --parameter-file $f
 --index $i
 --unattend-components-index $i
@@ -3762,7 +3680,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --content $content
 --setting-name $settingName
 
- azure virtual-machine update-parameters unattend-component-settings delete
+azure virtual-machine update-parameters unattend-component-settings delete
 --parameter-file $f
 --index $pindex
 --unattend-components-index $punattend-components-index
@@ -3771,7 +3689,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --content
 --setting-name
 
- azure virtual-machine update-parameters domain-join set
+azure virtual-machine update-parameters domain-join set
 --parameter-file $f
 --configuration-sets-index $i
 --parse
@@ -3780,7 +3698,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --ldap-machine-object-o-u $ldapMachineObjectOU
 --provisioning $provisioning
 
- azure virtual-machine update-parameters domain-join delete
+azure virtual-machine update-parameters domain-join delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --credentials
@@ -3788,7 +3706,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --ldap-machine-object-o-u
 --provisioning
 
- azure virtual-machine update-parameters credentials set
+azure virtual-machine update-parameters credentials set
 --parameter-file $f
 --configuration-sets-index $i
 --parse
@@ -3796,25 +3714,25 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --password $password
 --user-name $userName
 
- azure virtual-machine update-parameters credentials delete
+azure virtual-machine update-parameters credentials delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --domain
 --password
 --user-name
 
- azure virtual-machine update-parameters provisioning set
+azure virtual-machine update-parameters provisioning set
 --parameter-file $f
 --configuration-sets-index $i
 --parse
 --account-data $accountData
 
- azure virtual-machine update-parameters provisioning delete
+azure virtual-machine update-parameters provisioning delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --account-data
 
- azure virtual-machine update-parameters input-endpoints set
+azure virtual-machine update-parameters input-endpoints set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -3834,7 +3752,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --virtual-ip-address $virtualIPAddress
 --virtual-ip-name $virtualIPName
 
- azure virtual-machine update-parameters input-endpoints delete
+azure virtual-machine update-parameters input-endpoints delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
@@ -3852,20 +3770,20 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --virtual-ip-address
 --virtual-ip-name
 
- azure virtual-machine update-parameters endpoint-acl set
+azure virtual-machine update-parameters endpoint-acl set
 --parameter-file $f
 --input-endpoints-index $i
 --configuration-sets-index $i
 --parse
 --rules $rules
 
- azure virtual-machine update-parameters endpoint-acl delete
+azure virtual-machine update-parameters endpoint-acl delete
 --parameter-file $f
 --input-endpoints-index $pinput-endpoints-index
 --configuration-sets-index $pconfiguration-sets-index
 --rules
 
- azure virtual-machine update-parameters rules set
+azure virtual-machine update-parameters rules set
 --parameter-file $f
 --index $i
 --input-endpoints-index $i
@@ -3877,7 +3795,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --order $order
 --remote-subnet $remoteSubnet
 
- azure virtual-machine update-parameters rules delete
+azure virtual-machine update-parameters rules delete
 --parameter-file $f
 --index $pindex
 --input-endpoints-index $pinput-endpoints-index
@@ -3887,7 +3805,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --order
 --remote-subnet
 
- azure virtual-machine update-parameters load-balancer-probe set
+azure virtual-machine update-parameters load-balancer-probe set
 --parameter-file $f
 --input-endpoints-index $i
 --configuration-sets-index $i
@@ -3898,7 +3816,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --protocol $protocol
 --timeout-in-seconds $timeoutInSeconds
 
- azure virtual-machine update-parameters load-balancer-probe delete
+azure virtual-machine update-parameters load-balancer-probe delete
 --parameter-file $f
 --input-endpoints-index $pinput-endpoints-index
 --configuration-sets-index $pconfiguration-sets-index
@@ -3908,7 +3826,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --protocol
 --timeout-in-seconds
 
- azure virtual-machine update-parameters network-interfaces set
+azure virtual-machine update-parameters network-interfaces set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -3919,7 +3837,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name $name
 --network-security-group $networkSecurityGroup
 
- azure virtual-machine update-parameters network-interfaces delete
+azure virtual-machine update-parameters network-interfaces delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
@@ -3928,7 +3846,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name
 --network-security-group
 
- azure virtual-machine update-parameters ip-configurations set
+azure virtual-machine update-parameters ip-configurations set
 --parameter-file $f
 --index $i
 --network-interfaces-index $i
@@ -3938,7 +3856,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --static-virtual-network-ip-address $staticVirtualNetworkIPAddress
 --subnet-name $subnetName
 
- azure virtual-machine update-parameters ip-configurations delete
+azure virtual-machine update-parameters ip-configurations delete
 --parameter-file $f
 --index $pindex
 --network-interfaces-index $pnetwork-interfaces-index
@@ -3946,7 +3864,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --static-virtual-network-ip-address
 --subnet-name
 
- azure virtual-machine update-parameters public-ip set
+azure virtual-machine update-parameters public-ip set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -3956,7 +3874,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --idle-timeout-in-minutes $idleTimeoutInMinutes
 --name $name
 
- azure virtual-machine update-parameters public-ip delete
+azure virtual-machine update-parameters public-ip delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
@@ -3964,20 +3882,20 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --idle-timeout-in-minutes
 --name
 
- azure virtual-machine update-parameters ssh-settings set
+azure virtual-machine update-parameters ssh-settings set
 --parameter-file $f
 --configuration-sets-index $i
 --parse
 --key-pairs $keyPairs
 --public-keys $publicKeys
 
- azure virtual-machine update-parameters ssh-settings delete
+azure virtual-machine update-parameters ssh-settings delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --key-pairs
 --public-keys
 
- azure virtual-machine update-parameters key-pairs set
+azure virtual-machine update-parameters key-pairs set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -3986,14 +3904,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --fingerprint $fingerprint
 --path $path
 
- azure virtual-machine update-parameters key-pairs delete
+azure virtual-machine update-parameters key-pairs delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
 --fingerprint
 --path
 
- azure virtual-machine update-parameters public-keys set
+azure virtual-machine update-parameters public-keys set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -4002,14 +3920,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --fingerprint $fingerprint
 --path $path
 
- azure virtual-machine update-parameters public-keys delete
+azure virtual-machine update-parameters public-keys delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
 --fingerprint
 --path
 
- azure virtual-machine update-parameters stored-certificate-settings set
+azure virtual-machine update-parameters stored-certificate-settings set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -4018,37 +3936,37 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --store-name $storeName
 --thumbprint $thumbprint
 
- azure virtual-machine update-parameters stored-certificate-settings delete
+azure virtual-machine update-parameters stored-certificate-settings delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
 --store-name
 --thumbprint
 
- azure virtual-machine update-parameters subnet-names set
+azure virtual-machine update-parameters subnet-names set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
 --value $v
 --parse
 
- azure virtual-machine update-parameters subnet-names delete
+azure virtual-machine update-parameters subnet-names delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
 
- azure virtual-machine update-parameters windows-remote-management set
+azure virtual-machine update-parameters windows-remote-management set
 --parameter-file $f
 --configuration-sets-index $i
 --parse
 --listeners $listeners
 
- azure virtual-machine update-parameters windows-remote-management delete
+azure virtual-machine update-parameters windows-remote-management delete
 --parameter-file $f
 --configuration-sets-index $pconfiguration-sets-index
 --listeners
 
- azure virtual-machine update-parameters listeners set
+azure virtual-machine update-parameters listeners set
 --parameter-file $f
 --index $i
 --configuration-sets-index $i
@@ -4057,14 +3975,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --certificate-thumbprint $certificateThumbprint
 --listener-type $listenerType
 
- azure virtual-machine update-parameters listeners delete
+azure virtual-machine update-parameters listeners delete
 --parameter-file $f
 --index $pindex
 --configuration-sets-index $pconfiguration-sets-index
 --certificate-thumbprint
 --listener-type
 
- azure virtual-machine update-parameters data-virtual-hard-disks set
+azure virtual-machine update-parameters data-virtual-hard-disks set
 --parameter-file $f
 --index $i
 --value $v
@@ -4078,7 +3996,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name $name
 --source-media-link $sourceMediaLink
 
- azure virtual-machine update-parameters data-virtual-hard-disks delete
+azure virtual-machine update-parameters data-virtual-hard-disks delete
 --parameter-file $f
 --index $pindex
 --host-caching
@@ -4090,20 +4008,20 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --name
 --source-media-link
 
- azure virtual-machine update-parameters debug-settings set
+azure virtual-machine update-parameters debug-settings set
 --parameter-file $f
 --parse
 --boot-diagnostics-enabled $bootDiagnosticsEnabled
 --console-screenshot-blob-uri $consoleScreenshotBlobUri
 --serial-output-blob-uri $serialOutputBlobUri
 
- azure virtual-machine update-parameters debug-settings delete
+azure virtual-machine update-parameters debug-settings delete
 --parameter-file $f
 --boot-diagnostics-enabled
 --console-screenshot-blob-uri
 --serial-output-blob-uri
 
- azure virtual-machine update-parameters os-virtual-hard-disk set
+azure virtual-machine update-parameters os-virtual-hard-disk set
 --parameter-file $f
 --parse
 --host-caching $hostCaching
@@ -4116,7 +4034,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --resized-size-in-g-b $resizedSizeInGB
 --source-image-name $sourceImageName
 
- azure virtual-machine update-parameters os-virtual-hard-disk delete
+azure virtual-machine update-parameters os-virtual-hard-disk delete
 --parameter-file $f
 --host-caching
 --i-o-type
@@ -4128,7 +4046,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --resized-size-in-g-b
 --source-image-name
 
- azure virtual-machine update-parameters resource-extension-references set
+azure virtual-machine update-parameters resource-extension-references set
 --parameter-file $f
 --index $i
 --value $v
@@ -4141,7 +4059,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --state $state
 --version $version
 
- azure virtual-machine update-parameters resource-extension-references delete
+azure virtual-machine update-parameters resource-extension-references delete
 --parameter-file $f
 --index $pindex
 --force-update
@@ -4152,7 +4070,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --state
 --version
 
- azure virtual-machine update-parameters resource-extension-parameter-values set
+azure virtual-machine update-parameters resource-extension-parameter-values set
 --parameter-file $f
 --index $i
 --resource-extension-references-index $i
@@ -4162,7 +4080,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --type $type
 --value $value
 
- azure virtual-machine update-parameters resource-extension-parameter-values delete
+azure virtual-machine update-parameters resource-extension-parameter-values delete
 --parameter-file $f
 --index $pindex
 --resource-extension-references-index $presource-extension-references-index
@@ -4170,30 +4088,29 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --type
 --value
 
- azure virtual-machine update 
+azure virtual-machine update 
 --service-name $p0
 --deployment-name $p1
 --virtual-machine-name $p2
 --parameters $p3
 --parameter-file $f
---subscription $s
- 
- azure update update-parameters generate 
+
+azure virtual-machine update-parameters generate 
 --parameter-file $f
- 
- azure update update-parameters patch 
+
+azure virtual-machine update-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine update-load-balanced-endpoint-set-parameters virtual-machine-update-load-balanced-set-parameters set
+
+azure virtual-machine update-load-balanced-endpoint-set-parameters virtual-machine-update-load-balanced-set-parameters set
 --parameter-file $f
 --parse
 --load-balanced-endpoints $loadBalancedEndpoints
 
- azure virtual-machine update-load-balanced-endpoint-set-parameters virtual-machine-update-load-balanced-set-parameters delete
+azure virtual-machine update-load-balanced-endpoint-set-parameters virtual-machine-update-load-balanced-set-parameters delete
 --parameter-file $f
 --load-balanced-endpoints
 
- azure virtual-machine update-load-balanced-endpoint-set-parameters load-balanced-endpoints set
+azure virtual-machine update-load-balanced-endpoint-set-parameters load-balanced-endpoints set
 --parameter-file $f
 --index $i
 --value $v
@@ -4212,7 +4129,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --virtual-ip-address $virtualIPAddress
 --virtual-ip-name $virtualIPName
 
- azure virtual-machine update-load-balanced-endpoint-set-parameters load-balanced-endpoints delete
+azure virtual-machine update-load-balanced-endpoint-set-parameters load-balanced-endpoints delete
 --parameter-file $f
 --index $pindex
 --enable-direct-server-return
@@ -4229,7 +4146,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --virtual-ip-address
 --virtual-ip-name
 
- azure virtual-machine update-load-balanced-endpoint-set-parameters load-balancer-probe set
+azure virtual-machine update-load-balanced-endpoint-set-parameters load-balancer-probe set
 --parameter-file $f
 --load-balanced-endpoints-index $i
 --parse
@@ -4239,7 +4156,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --protocol $protocol
 --timeout-in-seconds $timeoutInSeconds
 
- azure virtual-machine update-load-balanced-endpoint-set-parameters load-balancer-probe delete
+azure virtual-machine update-load-balanced-endpoint-set-parameters load-balancer-probe delete
 --parameter-file $f
 --load-balanced-endpoints-index $pload-balanced-endpoints-index
 --interval-in-seconds
@@ -4248,7 +4165,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --protocol
 --timeout-in-seconds
 
- azure virtual-machine update-load-balanced-endpoint-set-parameters rules set
+azure virtual-machine update-load-balanced-endpoint-set-parameters rules set
 --parameter-file $f
 --index $i
 --load-balanced-endpoints-index $i
@@ -4259,7 +4176,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --order $order
 --remote-subnet $remoteSubnet
 
- azure virtual-machine update-load-balanced-endpoint-set-parameters rules delete
+azure virtual-machine update-load-balanced-endpoint-set-parameters rules delete
 --parameter-file $f
 --index $pindex
 --load-balanced-endpoints-index $pload-balanced-endpoints-index
@@ -4268,20 +4185,19 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --order
 --remote-subnet
 
- azure virtual-machine update-load-balanced-endpoint-set 
+azure virtual-machine update-load-balanced-endpoint-set 
 --service-name $p0
 --deployment-name $p1
 --parameters $p2
 --parameter-file $f
---subscription $s
- 
- azure update-load-balanced-endpoint-set update-load-balanced-endpoint-set-parameters generate 
+
+azure virtual-machine update-load-balanced-endpoint-set-parameters generate 
 --parameter-file $f
- 
- azure update-load-balanced-endpoint-set update-load-balanced-endpoint-set-parameters patch 
+
+azure virtual-machine update-load-balanced-endpoint-set-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine-os-image create-parameters virtual-machine-os-image-create-parameters set
+
+azure virtual-machine-os-image create-parameters virtual-machine-os-image-create-parameters set
 --parameter-file $f
 --parse
 --description $description
@@ -4300,7 +4216,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --show-in-gui $showInGui
 --small-icon-uri $smallIconUri
 
- azure virtual-machine-os-image create-parameters virtual-machine-os-image-create-parameters delete
+azure virtual-machine-os-image create-parameters virtual-machine-os-image-create-parameters delete
 --parameter-file $f
 --description
 --eula
@@ -4318,120 +4234,112 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --show-in-gui
 --small-icon-uri
 
- azure virtual-machine-os-image create 
+azure virtual-machine-os-image create 
 --parameters $p0
 --parameter-file $f
---subscription $s
- 
- azure create create-parameters generate 
+
+azure virtual-machine-os-image create-parameters generate 
 --parameter-file $f
- 
- azure create create-parameters patch 
+
+azure virtual-machine-os-image create-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine-os-image delete 
+
+azure virtual-machine-os-image delete 
 --image-name $p0
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-os-image get 
+
+azure virtual-machine-os-image get 
 --image-name $p0
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-os-image get-details 
+
+azure virtual-machine-os-image get-details 
 --image-name $p0
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-os-image list 
+
+azure virtual-machine-os-image list 
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-os-image replicate-parameters virtual-machine-os-image-replicate-parameters set
+
+azure virtual-machine-os-image replicate-parameters virtual-machine-os-image-replicate-parameters set
 --parameter-file $f
 --parse
 --compute-image-attributes $computeImageAttributes
 --marketplace-image-attributes $marketplaceImageAttributes
 --target-locations $targetLocations
 
- azure virtual-machine-os-image replicate-parameters virtual-machine-os-image-replicate-parameters delete
+azure virtual-machine-os-image replicate-parameters virtual-machine-os-image-replicate-parameters delete
 --parameter-file $f
 --compute-image-attributes
 --marketplace-image-attributes
 --target-locations
 
- azure virtual-machine-os-image replicate-parameters compute-image-attributes set
+azure virtual-machine-os-image replicate-parameters compute-image-attributes set
 --parameter-file $f
 --parse
 --offer $offer
 --sku $sku
 --version $version
 
- azure virtual-machine-os-image replicate-parameters compute-image-attributes delete
+azure virtual-machine-os-image replicate-parameters compute-image-attributes delete
 --parameter-file $f
 --offer
 --sku
 --version
 
- azure virtual-machine-os-image replicate-parameters marketplace-image-attributes set
+azure virtual-machine-os-image replicate-parameters marketplace-image-attributes set
 --parameter-file $f
 --parse
 --plan $plan
 --publisher-id $publisherId
 
- azure virtual-machine-os-image replicate-parameters marketplace-image-attributes delete
+azure virtual-machine-os-image replicate-parameters marketplace-image-attributes delete
 --parameter-file $f
 --plan
 --publisher-id
 
- azure virtual-machine-os-image replicate-parameters plan set
+azure virtual-machine-os-image replicate-parameters plan set
 --parameter-file $f
 --parse
 --name $name
 --product $product
 --publisher $publisher
 
- azure virtual-machine-os-image replicate-parameters plan delete
+azure virtual-machine-os-image replicate-parameters plan delete
 --parameter-file $f
 --name
 --product
 --publisher
 
- azure virtual-machine-os-image replicate-parameters target-locations set
+azure virtual-machine-os-image replicate-parameters target-locations set
 --parameter-file $f
 --index $i
 --value $v
 --parse
 
- azure virtual-machine-os-image replicate-parameters target-locations delete
+azure virtual-machine-os-image replicate-parameters target-locations delete
 --parameter-file $f
 --index $pindex
 
- azure virtual-machine-os-image replicate 
+azure virtual-machine-os-image replicate 
 --image-name $p0
 --parameters $p1
 --parameter-file $f
---subscription $s
- 
- azure replicate replicate-parameters generate 
+
+azure virtual-machine-os-image replicate-parameters generate 
 --parameter-file $f
- 
- azure replicate replicate-parameters patch 
+
+azure virtual-machine-os-image replicate-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine-os-image share 
+
+azure virtual-machine-os-image share 
 --image-name $p0
 --permission $p1
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-os-image unreplicate 
+
+azure virtual-machine-os-image unreplicate 
 --image-name $p0
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-os-image update-parameters virtual-machine-os-image-update-parameters set
+
+azure virtual-machine-os-image update-parameters virtual-machine-os-image-update-parameters set
 --parameter-file $f
 --parse
 --description $description
@@ -4447,7 +4355,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --show-in-gui $showInGui
 --small-icon-uri $smallIconUri
 
- azure virtual-machine-os-image update-parameters virtual-machine-os-image-update-parameters delete
+azure virtual-machine-os-image update-parameters virtual-machine-os-image-update-parameters delete
 --parameter-file $f
 --description
 --eula
@@ -4462,19 +4370,18 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --show-in-gui
 --small-icon-uri
 
- azure virtual-machine-os-image update 
+azure virtual-machine-os-image update 
 --image-name $p0
 --parameters $p1
 --parameter-file $f
---subscription $s
- 
- azure update update-parameters generate 
+
+azure virtual-machine-os-image update-parameters generate 
 --parameter-file $f
- 
- azure update update-parameters patch 
+
+azure virtual-machine-os-image update-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine-vm-image create-parameters virtual-machine-vm-image-create-parameters set
+
+azure virtual-machine-vm-image create-parameters virtual-machine-vm-image-create-parameters set
 --parameter-file $f
 --parse
 --data-disk-configurations $dataDiskConfigurations
@@ -4492,7 +4399,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --show-in-gui $showInGui
 --small-icon-uri $smallIconUri
 
- azure virtual-machine-vm-image create-parameters virtual-machine-vm-image-create-parameters delete
+azure virtual-machine-vm-image create-parameters virtual-machine-vm-image-create-parameters delete
 --parameter-file $f
 --data-disk-configurations
 --description
@@ -4509,7 +4416,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --show-in-gui
 --small-icon-uri
 
- azure virtual-machine-vm-image create-parameters data-disk-configurations set
+azure virtual-machine-vm-image create-parameters data-disk-configurations set
 --parameter-file $f
 --index $i
 --value $v
@@ -4518,14 +4425,14 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --logical-unit-number $logicalUnitNumber
 --media-link $mediaLink
 
- azure virtual-machine-vm-image create-parameters data-disk-configurations delete
+azure virtual-machine-vm-image create-parameters data-disk-configurations delete
 --parameter-file $f
 --index $pindex
 --host-caching
 --logical-unit-number
 --media-link
 
- azure virtual-machine-vm-image create-parameters os-disk-configuration set
+azure virtual-machine-vm-image create-parameters os-disk-configuration set
 --parameter-file $f
 --parse
 --host-caching $hostCaching
@@ -4533,122 +4440,115 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --os $oS
 --os-state $oSState
 
- azure virtual-machine-vm-image create-parameters os-disk-configuration delete
+azure virtual-machine-vm-image create-parameters os-disk-configuration delete
 --parameter-file $f
 --host-caching
 --media-link
 --os
 --os-state
 
- azure virtual-machine-vm-image create 
+azure virtual-machine-vm-image create 
 --parameters $p0
 --parameter-file $f
---subscription $s
- 
- azure create create-parameters generate 
+
+azure virtual-machine-vm-image create-parameters generate 
 --parameter-file $f
- 
- azure create create-parameters patch 
+
+azure virtual-machine-vm-image create-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine-vm-image delete 
+
+azure virtual-machine-vm-image delete 
 --vm-image-name $p0
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-vm-image get-details 
+
+azure virtual-machine-vm-image get-details 
 --vm-image-name $p0
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-vm-image list 
+
+azure virtual-machine-vm-image list 
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-vm-image replicate-parameters virtual-machine-vm-image-replicate-parameters set
+
+azure virtual-machine-vm-image replicate-parameters virtual-machine-vm-image-replicate-parameters set
 --parameter-file $f
 --parse
 --compute-image-attributes $computeImageAttributes
 --marketplace-image-attributes $marketplaceImageAttributes
 --target-locations $targetLocations
 
- azure virtual-machine-vm-image replicate-parameters virtual-machine-vm-image-replicate-parameters delete
+azure virtual-machine-vm-image replicate-parameters virtual-machine-vm-image-replicate-parameters delete
 --parameter-file $f
 --compute-image-attributes
 --marketplace-image-attributes
 --target-locations
 
- azure virtual-machine-vm-image replicate-parameters compute-image-attributes set
+azure virtual-machine-vm-image replicate-parameters compute-image-attributes set
 --parameter-file $f
 --parse
 --offer $offer
 --sku $sku
 --version $version
 
- azure virtual-machine-vm-image replicate-parameters compute-image-attributes delete
+azure virtual-machine-vm-image replicate-parameters compute-image-attributes delete
 --parameter-file $f
 --offer
 --sku
 --version
 
- azure virtual-machine-vm-image replicate-parameters marketplace-image-attributes set
+azure virtual-machine-vm-image replicate-parameters marketplace-image-attributes set
 --parameter-file $f
 --parse
 --plan $plan
 --publisher-id $publisherId
 
- azure virtual-machine-vm-image replicate-parameters marketplace-image-attributes delete
+azure virtual-machine-vm-image replicate-parameters marketplace-image-attributes delete
 --parameter-file $f
 --plan
 --publisher-id
 
- azure virtual-machine-vm-image replicate-parameters plan set
+azure virtual-machine-vm-image replicate-parameters plan set
 --parameter-file $f
 --parse
 --name $name
 --product $product
 --publisher $publisher
 
- azure virtual-machine-vm-image replicate-parameters plan delete
+azure virtual-machine-vm-image replicate-parameters plan delete
 --parameter-file $f
 --name
 --product
 --publisher
 
- azure virtual-machine-vm-image replicate-parameters target-locations set
+azure virtual-machine-vm-image replicate-parameters target-locations set
 --parameter-file $f
 --index $i
 --value $v
 --parse
 
- azure virtual-machine-vm-image replicate-parameters target-locations delete
+azure virtual-machine-vm-image replicate-parameters target-locations delete
 --parameter-file $f
 --index $pindex
 
- azure virtual-machine-vm-image replicate 
+azure virtual-machine-vm-image replicate 
 --vm-image-name $p0
 --parameters $p1
 --parameter-file $f
---subscription $s
- 
- azure replicate replicate-parameters generate 
+
+azure virtual-machine-vm-image replicate-parameters generate 
 --parameter-file $f
- 
- azure replicate replicate-parameters patch 
+
+azure virtual-machine-vm-image replicate-parameters patch 
 --parameter-file $f
- 
- azure virtual-machine-vm-image share 
+
+azure virtual-machine-vm-image share 
 --vm-image-name $p0
 --permission $p1
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-vm-image unreplicate 
+
+azure virtual-machine-vm-image unreplicate 
 --vm-image-name $p0
 --parameter-file $f
---subscription $s
- 
- azure virtual-machine-vm-image update-parameters virtual-machine-vm-image-update-parameters set
+
+azure virtual-machine-vm-image update-parameters virtual-machine-vm-image-update-parameters set
 --parameter-file $f
 --parse
 --data-disk-configurations $dataDiskConfigurations
@@ -4665,7 +4565,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --show-in-gui $showInGui
 --small-icon-uri $smallIconUri
 
- azure virtual-machine-vm-image update-parameters virtual-machine-vm-image-update-parameters delete
+azure virtual-machine-vm-image update-parameters virtual-machine-vm-image-update-parameters delete
 --parameter-file $f
 --data-disk-configurations
 --description
@@ -4681,7 +4581,7 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --show-in-gui
 --small-icon-uri
 
- azure virtual-machine-vm-image update-parameters data-disk-configurations set
+azure virtual-machine-vm-image update-parameters data-disk-configurations set
 --parameter-file $f
 --index $i
 --value $v
@@ -4690,34 +4590,33 @@ azure deployment change-configuration-by-name-parameters deployment-change-confi
 --logical-unit-number $logicalUnitNumber
 --name $name
 
- azure virtual-machine-vm-image update-parameters data-disk-configurations delete
+azure virtual-machine-vm-image update-parameters data-disk-configurations delete
 --parameter-file $f
 --index $pindex
 --host-caching
 --logical-unit-number
 --name
 
- azure virtual-machine-vm-image update-parameters os-disk-configuration set
+azure virtual-machine-vm-image update-parameters os-disk-configuration set
 --parameter-file $f
 --parse
 --host-caching $hostCaching
 
- azure virtual-machine-vm-image update-parameters os-disk-configuration delete
+azure virtual-machine-vm-image update-parameters os-disk-configuration delete
 --parameter-file $f
 --host-caching
 
- azure virtual-machine-vm-image update 
+azure virtual-machine-vm-image update 
 --image-name $p0
 --parameters $p1
 --parameter-file $f
---subscription $s
- 
- azure update update-parameters generate 
+
+azure virtual-machine-vm-image update-parameters generate 
 --parameter-file $f
- 
- azure update update-parameters patch 
+
+azure virtual-machine-vm-image update-parameters patch 
 --parameter-file $f
- 
+
 
 */
 
