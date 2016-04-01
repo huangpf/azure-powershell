@@ -41,6 +41,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "AvailabilitySetGet",
             "AvailabilitySetList",
             "AvailabilitySetListAvailableSizes",
+            "ContainerServiceCreateOrUpdate",
+            "ContainerServiceDelete",
+            "ContainerServiceGet",
+            "ContainerServiceListByResourceGroup",
             "VirtualMachineScaleSetCreateOrUpdate",
             "VirtualMachineScaleSetDeallocate",
             "VirtualMachineScaleSetDelete",
@@ -99,6 +103,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                         case "AvailabilitySetGet" : WriteObject(CreateAvailabilitySetGetParameters(), true); break;
                         case "AvailabilitySetList" : WriteObject(CreateAvailabilitySetListParameters(), true); break;
                         case "AvailabilitySetListAvailableSizes" : WriteObject(CreateAvailabilitySetListAvailableSizesParameters(), true); break;
+                        case "ContainerServiceCreateOrUpdate" : WriteObject(CreateContainerServiceCreateOrUpdateParameters(), true); break;
+                        case "ContainerServiceDelete" : WriteObject(CreateContainerServiceDeleteParameters(), true); break;
+                        case "ContainerServiceGet" : WriteObject(CreateContainerServiceGetParameters(), true); break;
+                        case "ContainerServiceListByResourceGroup" : WriteObject(CreateContainerServiceListByResourceGroupParameters(), true); break;
                         case "VirtualMachineScaleSetCreateOrUpdate" : WriteObject(CreateVirtualMachineScaleSetCreateOrUpdateParameters(), true); break;
                         case "VirtualMachineScaleSetDeallocate" : WriteObject(CreateVirtualMachineScaleSetDeallocateParameters(), true); break;
                         case "VirtualMachineScaleSetDelete" : WriteObject(CreateVirtualMachineScaleSetDeleteParameters(), true); break;

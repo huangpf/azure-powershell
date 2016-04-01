@@ -57,6 +57,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "AvailabilitySetGet",
             "AvailabilitySetList",
             "AvailabilitySetListAvailableSizes",
+            "ContainerServiceCreateOrUpdate",
+            "ContainerServiceDelete",
+            "ContainerServiceGet",
+            "ContainerServiceListByResourceGroup",
             "VirtualMachineScaleSetCreateOrUpdate",
             "VirtualMachineScaleSetDeallocate",
             "VirtualMachineScaleSetDelete",
@@ -143,6 +147,18 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                         break;
                     case "AvailabilitySetListAvailableSizes" :
                         ExecuteAvailabilitySetListAvailableSizesMethod(argumentList);
+                        break;
+                    case "ContainerServiceCreateOrUpdate" :
+                        ExecuteContainerServiceCreateOrUpdateMethod(argumentList);
+                        break;
+                    case "ContainerServiceDelete" :
+                        ExecuteContainerServiceDeleteMethod(argumentList);
+                        break;
+                    case "ContainerServiceGet" :
+                        ExecuteContainerServiceGetMethod(argumentList);
+                        break;
+                    case "ContainerServiceListByResourceGroup" :
+                        ExecuteContainerServiceListByResourceGroupMethod(argumentList);
                         break;
                     case "VirtualMachineScaleSetCreateOrUpdate" :
                         ExecuteVirtualMachineScaleSetCreateOrUpdateMethod(argumentList);
@@ -282,6 +298,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     case "AvailabilitySetGet" : return CreateAvailabilitySetGetDynamicParameters();
                     case "AvailabilitySetList" : return CreateAvailabilitySetListDynamicParameters();
                     case "AvailabilitySetListAvailableSizes" : return CreateAvailabilitySetListAvailableSizesDynamicParameters();
+                    case "ContainerServiceCreateOrUpdate" : return CreateContainerServiceCreateOrUpdateDynamicParameters();
+                    case "ContainerServiceDelete" : return CreateContainerServiceDeleteDynamicParameters();
+                    case "ContainerServiceGet" : return CreateContainerServiceGetDynamicParameters();
+                    case "ContainerServiceListByResourceGroup" : return CreateContainerServiceListByResourceGroupDynamicParameters();
                     case "VirtualMachineScaleSetCreateOrUpdate" : return CreateVirtualMachineScaleSetCreateOrUpdateDynamicParameters();
                     case "VirtualMachineScaleSetDeallocate" : return CreateVirtualMachineScaleSetDeallocateDynamicParameters();
                     case "VirtualMachineScaleSetDelete" : return CreateVirtualMachineScaleSetDeleteDynamicParameters();

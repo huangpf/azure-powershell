@@ -41,6 +41,18 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "AvailabilitySetsInstanceViewStatusList",
             "AvailabilitySetsSubResource",
             "AvailabilitySetsSubResourceList",
+            "ContainerServiceAgentPoolProfile",
+            "ContainerServiceAgentPoolProfileList",
+            "ContainerServiceContainerService",
+            "ContainerServiceDiagnosticsProfile",
+            "ContainerServiceLinuxProfile",
+            "ContainerServiceMasterProfile",
+            "ContainerServiceOrchestratorProfile",
+            "ContainerServiceSshConfiguration",
+            "ContainerServiceSshPublicKey",
+            "ContainerServiceSshPublicKeyList",
+            "ContainerServiceVMDiagnostics",
+            "ContainerServiceWindowsProfile",
             "VirtualMachinesAdditionalUnattendContent",
             "VirtualMachinesAdditionalUnattendContentList",
             "VirtualMachinesBootDiagnostics",
@@ -122,6 +134,16 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "Microsoft.Azure.Management.Compute.Models.AvailabilitySet",
             "Microsoft.Azure.Management.Compute.Models.BootDiagnostics",
             "Microsoft.Azure.Management.Compute.Models.BootDiagnosticsInstanceView",
+            "Microsoft.Azure.Management.Compute.Models.ContainerService",
+            "Microsoft.Azure.Management.Compute.Models.ContainerServiceAgentPoolProfile",
+            "Microsoft.Azure.Management.Compute.Models.ContainerServiceDiagnosticsProfile",
+            "Microsoft.Azure.Management.Compute.Models.ContainerServiceLinuxProfile",
+            "Microsoft.Azure.Management.Compute.Models.ContainerServiceMasterProfile",
+            "Microsoft.Azure.Management.Compute.Models.ContainerServiceOrchestratorProfile",
+            "Microsoft.Azure.Management.Compute.Models.ContainerServiceSshConfiguration",
+            "Microsoft.Azure.Management.Compute.Models.ContainerServiceSshPublicKey",
+            "Microsoft.Azure.Management.Compute.Models.ContainerServiceVMDiagnostics",
+            "Microsoft.Azure.Management.Compute.Models.ContainerServiceWindowsProfile",
             "Microsoft.Azure.Management.Compute.Models.DataDisk",
             "Microsoft.Azure.Management.Compute.Models.DiagnosticsProfile",
             "Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings",
@@ -165,6 +187,8 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "Microsoft.Azure.Management.Compute.Models.WinRMConfiguration",
             "Microsoft.Azure.Management.Compute.Models.WinRMListener",
             "System.Collections.Generic.List<AdditionalUnattendContent>",
+            "System.Collections.Generic.List<ContainerServiceAgentPoolProfile>",
+            "System.Collections.Generic.List<ContainerServiceSshPublicKey>",
             "System.Collections.Generic.List<DataDisk>",
             "System.Collections.Generic.List<DiskInstanceView>",
             "System.Collections.Generic.List<InstanceViewStatus>",
@@ -195,6 +219,18 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                         case "AvailabilitySetsInstanceViewStatusList" : WriteObject(new List<InstanceViewStatus>()); break;
                         case "AvailabilitySetsSubResource" : WriteObject(new SubResource()); break;
                         case "AvailabilitySetsSubResourceList" : WriteObject(new List<SubResource>()); break;
+                        case "ContainerServiceAgentPoolProfile" : WriteObject(new ContainerServiceAgentPoolProfile()); break;
+                        case "ContainerServiceAgentPoolProfileList" : WriteObject(new List<ContainerServiceAgentPoolProfile>()); break;
+                        case "ContainerServiceContainerService" : WriteObject(new ContainerService()); break;
+                        case "ContainerServiceDiagnosticsProfile" : WriteObject(new ContainerServiceDiagnosticsProfile()); break;
+                        case "ContainerServiceLinuxProfile" : WriteObject(new ContainerServiceLinuxProfile()); break;
+                        case "ContainerServiceMasterProfile" : WriteObject(new ContainerServiceMasterProfile()); break;
+                        case "ContainerServiceOrchestratorProfile" : WriteObject(new ContainerServiceOrchestratorProfile()); break;
+                        case "ContainerServiceSshConfiguration" : WriteObject(new ContainerServiceSshConfiguration()); break;
+                        case "ContainerServiceSshPublicKey" : WriteObject(new ContainerServiceSshPublicKey()); break;
+                        case "ContainerServiceSshPublicKeyList" : WriteObject(new List<ContainerServiceSshPublicKey>()); break;
+                        case "ContainerServiceVMDiagnostics" : WriteObject(new ContainerServiceVMDiagnostics()); break;
+                        case "ContainerServiceWindowsProfile" : WriteObject(new ContainerServiceWindowsProfile()); break;
                         case "VirtualMachinesAdditionalUnattendContent" : WriteObject(new AdditionalUnattendContent()); break;
                         case "VirtualMachinesAdditionalUnattendContentList" : WriteObject(new List<AdditionalUnattendContent>()); break;
                         case "VirtualMachinesBootDiagnostics" : WriteObject(new BootDiagnostics()); break;
@@ -278,6 +314,16 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                         case "Microsoft.Azure.Management.Compute.Models.AvailabilitySet" : WriteObject(new AvailabilitySet()); break;
                         case "Microsoft.Azure.Management.Compute.Models.BootDiagnostics" : WriteObject(new BootDiagnostics()); break;
                         case "Microsoft.Azure.Management.Compute.Models.BootDiagnosticsInstanceView" : WriteObject(new BootDiagnosticsInstanceView()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.ContainerService" : WriteObject(new ContainerService()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.ContainerServiceAgentPoolProfile" : WriteObject(new ContainerServiceAgentPoolProfile()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.ContainerServiceDiagnosticsProfile" : WriteObject(new ContainerServiceDiagnosticsProfile()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.ContainerServiceLinuxProfile" : WriteObject(new ContainerServiceLinuxProfile()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.ContainerServiceMasterProfile" : WriteObject(new ContainerServiceMasterProfile()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.ContainerServiceOrchestratorProfile" : WriteObject(new ContainerServiceOrchestratorProfile()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.ContainerServiceSshConfiguration" : WriteObject(new ContainerServiceSshConfiguration()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.ContainerServiceSshPublicKey" : WriteObject(new ContainerServiceSshPublicKey()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.ContainerServiceVMDiagnostics" : WriteObject(new ContainerServiceVMDiagnostics()); break;
+                        case "Microsoft.Azure.Management.Compute.Models.ContainerServiceWindowsProfile" : WriteObject(new ContainerServiceWindowsProfile()); break;
                         case "Microsoft.Azure.Management.Compute.Models.DataDisk" : WriteObject(new DataDisk()); break;
                         case "Microsoft.Azure.Management.Compute.Models.DiagnosticsProfile" : WriteObject(new DiagnosticsProfile()); break;
                         case "Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings" : WriteObject(new DiskEncryptionSettings()); break;
@@ -321,6 +367,8 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                         case "Microsoft.Azure.Management.Compute.Models.WinRMConfiguration" : WriteObject(new WinRMConfiguration()); break;
                         case "Microsoft.Azure.Management.Compute.Models.WinRMListener" : WriteObject(new WinRMListener()); break;
                         case "System.Collections.Generic.List<AdditionalUnattendContent>" : WriteObject(new List<AdditionalUnattendContent>()); break;
+                        case "System.Collections.Generic.List<ContainerServiceAgentPoolProfile>" : WriteObject(new List<ContainerServiceAgentPoolProfile>()); break;
+                        case "System.Collections.Generic.List<ContainerServiceSshPublicKey>" : WriteObject(new List<ContainerServiceSshPublicKey>()); break;
                         case "System.Collections.Generic.List<DataDisk>" : WriteObject(new List<DataDisk>()); break;
                         case "System.Collections.Generic.List<DiskInstanceView>" : WriteObject(new List<DiskInstanceView>()); break;
                         case "System.Collections.Generic.List<InstanceViewStatus>" : WriteObject(new List<InstanceViewStatus>()); break;
