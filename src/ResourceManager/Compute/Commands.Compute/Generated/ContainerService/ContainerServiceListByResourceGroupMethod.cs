@@ -66,7 +66,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         {
             string resourceGroupName = (string)ParseParameter(invokeMethodInputParameters[0]);
 
-            var result = ContainerServiceClient.ListByResourceGroup(resourceGroupName);
+            var result = ContainerServiceClient.List(resourceGroupName);
             WriteObject(result);
         }
     }
