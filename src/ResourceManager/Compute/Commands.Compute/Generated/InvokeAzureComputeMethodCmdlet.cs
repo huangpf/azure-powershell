@@ -60,7 +60,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "ContainerServiceCreateOrUpdate",
             "ContainerServiceDelete",
             "ContainerServiceGet",
-            "ContainerServiceListByResourceGroup",
+            "ContainerServiceList",
             "VirtualMachineScaleSetCreateOrUpdate",
             "VirtualMachineScaleSetDeallocate",
             "VirtualMachineScaleSetDelete",
@@ -157,8 +157,8 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     case "ContainerServiceGet" :
                         ExecuteContainerServiceGetMethod(argumentList);
                         break;
-                    case "ContainerServiceListByResourceGroup" :
-                        ExecuteContainerServiceListByResourceGroupMethod(argumentList);
+                    case "ContainerServiceList" :
+                        ExecuteContainerServiceListMethod(argumentList);
                         break;
                     case "VirtualMachineScaleSetCreateOrUpdate" :
                         ExecuteVirtualMachineScaleSetCreateOrUpdateMethod(argumentList);
@@ -301,7 +301,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     case "ContainerServiceCreateOrUpdate" : return CreateContainerServiceCreateOrUpdateDynamicParameters();
                     case "ContainerServiceDelete" : return CreateContainerServiceDeleteDynamicParameters();
                     case "ContainerServiceGet" : return CreateContainerServiceGetDynamicParameters();
-                    case "ContainerServiceListByResourceGroup" : return CreateContainerServiceListByResourceGroupDynamicParameters();
+                    case "ContainerServiceList" : return CreateContainerServiceListDynamicParameters();
                     case "VirtualMachineScaleSetCreateOrUpdate" : return CreateVirtualMachineScaleSetCreateOrUpdateDynamicParameters();
                     case "VirtualMachineScaleSetDeallocate" : return CreateVirtualMachineScaleSetDeallocateDynamicParameters();
                     case "VirtualMachineScaleSetDelete" : return CreateVirtualMachineScaleSetDeleteDynamicParameters();

@@ -32,7 +32,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 {
     public partial class InvokeAzureComputeMethodCmdlet : ComputeAutomationBaseCmdlet
     {
-        protected object CreateContainerServiceListByResourceGroupDynamicParameters()
+        protected object CreateContainerServiceListDynamicParameters()
         {
             dynamicParameters = new RuntimeDefinedParameterDictionary();
             var pResourceGroupName = new RuntimeDefinedParameter();
@@ -62,7 +62,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             return dynamicParameters;
         }
 
-        protected void ExecuteContainerServiceListByResourceGroupMethod(object[] invokeMethodInputParameters)
+        protected void ExecuteContainerServiceListMethod(object[] invokeMethodInputParameters)
         {
             string resourceGroupName = (string)ParseParameter(invokeMethodInputParameters[0]);
 
@@ -73,7 +73,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
     public partial class NewAzureComputeArgumentListCmdlet : ComputeAutomationBaseCmdlet
     {
-        protected PSArgument[] CreateContainerServiceListByResourceGroupParameters()
+        protected PSArgument[] CreateContainerServiceListParameters()
         {
             string resourceGroupName = string.Empty;
 
@@ -83,10 +83,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet("Get", "AzureRmcontainerByResourceGroupList", DefaultParameterSetName = "InvokeByDynamicParameters")]
-    public partial class GetAzureRmcontainerByResourceGroupList : InvokeAzureComputeMethodCmdlet
+    [Cmdlet("Get", "AzureRmcontainerList", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class GetAzureRmcontainerList : InvokeAzureComputeMethodCmdlet
     {
-        public GetAzureRmcontainerByResourceGroupList()
+        public GetAzureRmcontainerList()
         {
         }
 
@@ -94,7 +94,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
 
         protected override void ProcessRecord()
         {
-            this.MethodName = "ContainerServiceListByResourceGroup";
+            this.MethodName = "ContainerServiceList";
             base.ProcessRecord();
         }
 

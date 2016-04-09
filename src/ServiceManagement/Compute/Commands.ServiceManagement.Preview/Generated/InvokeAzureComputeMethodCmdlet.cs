@@ -52,8 +52,10 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         [Parameter(Mandatory = true, ParameterSetName = "InvokeByDynamicParameters", Position = 0)]
         [Parameter(Mandatory = true, ParameterSetName = "InvokeByStaticParameters", Position = 0)]
         [ValidateSet(
+            "DeploymentAbortMigration",
             "DeploymentChangeConfigurationByName",
             "DeploymentChangeConfigurationBySlot",
+            "DeploymentCommitMigration",
             "DeploymentCreate",
             "DeploymentDeleteByName",
             "DeploymentDeleteBySlot",
@@ -65,6 +67,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "DeploymentGetPackageBySlot",
             "DeploymentListEvents",
             "DeploymentListEventsBySlot",
+            "DeploymentPrepareMigration",
             "DeploymentRebootRoleInstanceByDeploymentName",
             "DeploymentRebootRoleInstanceByDeploymentSlot",
             "DeploymentRebuildRoleInstanceByDeploymentName",
@@ -184,11 +187,17 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
 
                 switch (MethodName)
                 {
+                    case "DeploymentAbortMigration" :
+                        ExecuteDeploymentAbortMigrationMethod(argumentList);
+                        break;
                     case "DeploymentChangeConfigurationByName" :
                         ExecuteDeploymentChangeConfigurationByNameMethod(argumentList);
                         break;
                     case "DeploymentChangeConfigurationBySlot" :
                         ExecuteDeploymentChangeConfigurationBySlotMethod(argumentList);
+                        break;
+                    case "DeploymentCommitMigration" :
+                        ExecuteDeploymentCommitMigrationMethod(argumentList);
                         break;
                     case "DeploymentCreate" :
                         ExecuteDeploymentCreateMethod(argumentList);
@@ -222,6 +231,9 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                         break;
                     case "DeploymentListEventsBySlot" :
                         ExecuteDeploymentListEventsBySlotMethod(argumentList);
+                        break;
+                    case "DeploymentPrepareMigration" :
+                        ExecuteDeploymentPrepareMigrationMethod(argumentList);
                         break;
                     case "DeploymentRebootRoleInstanceByDeploymentName" :
                         ExecuteDeploymentRebootRoleInstanceByDeploymentNameMethod(argumentList);
@@ -497,8 +509,10 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
         {
             switch (MethodName)
             {
+                    case "DeploymentAbortMigration" : return CreateDeploymentAbortMigrationDynamicParameters();
                     case "DeploymentChangeConfigurationByName" : return CreateDeploymentChangeConfigurationByNameDynamicParameters();
                     case "DeploymentChangeConfigurationBySlot" : return CreateDeploymentChangeConfigurationBySlotDynamicParameters();
+                    case "DeploymentCommitMigration" : return CreateDeploymentCommitMigrationDynamicParameters();
                     case "DeploymentCreate" : return CreateDeploymentCreateDynamicParameters();
                     case "DeploymentDeleteByName" : return CreateDeploymentDeleteByNameDynamicParameters();
                     case "DeploymentDeleteBySlot" : return CreateDeploymentDeleteBySlotDynamicParameters();
@@ -510,6 +524,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                     case "DeploymentGetPackageBySlot" : return CreateDeploymentGetPackageBySlotDynamicParameters();
                     case "DeploymentListEvents" : return CreateDeploymentListEventsDynamicParameters();
                     case "DeploymentListEventsBySlot" : return CreateDeploymentListEventsBySlotDynamicParameters();
+                    case "DeploymentPrepareMigration" : return CreateDeploymentPrepareMigrationDynamicParameters();
                     case "DeploymentRebootRoleInstanceByDeploymentName" : return CreateDeploymentRebootRoleInstanceByDeploymentNameDynamicParameters();
                     case "DeploymentRebootRoleInstanceByDeploymentSlot" : return CreateDeploymentRebootRoleInstanceByDeploymentSlotDynamicParameters();
                     case "DeploymentRebuildRoleInstanceByDeploymentName" : return CreateDeploymentRebuildRoleInstanceByDeploymentNameDynamicParameters();

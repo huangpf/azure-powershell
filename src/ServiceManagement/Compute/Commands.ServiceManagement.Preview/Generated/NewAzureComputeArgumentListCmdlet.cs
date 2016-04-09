@@ -36,8 +36,10 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
     {
         [Parameter(ParameterSetName = "CreateParameterListByMethodName", Mandatory = true, Position = 0)]
         [ValidateSet(
+            "DeploymentAbortMigration",
             "DeploymentChangeConfigurationByName",
             "DeploymentChangeConfigurationBySlot",
+            "DeploymentCommitMigration",
             "DeploymentCreate",
             "DeploymentDeleteByName",
             "DeploymentDeleteBySlot",
@@ -49,6 +51,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "DeploymentGetPackageBySlot",
             "DeploymentListEvents",
             "DeploymentListEventsBySlot",
+            "DeploymentPrepareMigration",
             "DeploymentRebootRoleInstanceByDeploymentName",
             "DeploymentRebootRoleInstanceByDeploymentSlot",
             "DeploymentRebuildRoleInstanceByDeploymentName",
@@ -149,8 +152,10 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                 {
                     switch (MethodName)
                     {
+                        case "DeploymentAbortMigration" : WriteObject(CreateDeploymentAbortMigrationParameters(), true); break;
                         case "DeploymentChangeConfigurationByName" : WriteObject(CreateDeploymentChangeConfigurationByNameParameters(), true); break;
                         case "DeploymentChangeConfigurationBySlot" : WriteObject(CreateDeploymentChangeConfigurationBySlotParameters(), true); break;
+                        case "DeploymentCommitMigration" : WriteObject(CreateDeploymentCommitMigrationParameters(), true); break;
                         case "DeploymentCreate" : WriteObject(CreateDeploymentCreateParameters(), true); break;
                         case "DeploymentDeleteByName" : WriteObject(CreateDeploymentDeleteByNameParameters(), true); break;
                         case "DeploymentDeleteBySlot" : WriteObject(CreateDeploymentDeleteBySlotParameters(), true); break;
@@ -162,6 +167,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                         case "DeploymentGetPackageBySlot" : WriteObject(CreateDeploymentGetPackageBySlotParameters(), true); break;
                         case "DeploymentListEvents" : WriteObject(CreateDeploymentListEventsParameters(), true); break;
                         case "DeploymentListEventsBySlot" : WriteObject(CreateDeploymentListEventsBySlotParameters(), true); break;
+                        case "DeploymentPrepareMigration" : WriteObject(CreateDeploymentPrepareMigrationParameters(), true); break;
                         case "DeploymentRebootRoleInstanceByDeploymentName" : WriteObject(CreateDeploymentRebootRoleInstanceByDeploymentNameParameters(), true); break;
                         case "DeploymentRebootRoleInstanceByDeploymentSlot" : WriteObject(CreateDeploymentRebootRoleInstanceByDeploymentSlotParameters(), true); break;
                         case "DeploymentRebuildRoleInstanceByDeploymentName" : WriteObject(CreateDeploymentRebuildRoleInstanceByDeploymentNameParameters(), true); break;

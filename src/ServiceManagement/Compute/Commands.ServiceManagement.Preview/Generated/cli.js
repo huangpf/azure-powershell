@@ -22,6 +22,11 @@
 
 Generated Command List:
 
+azure deployment abort-migration 
+--service-name $p0
+--deployment-name $p1
+--parameter-file $f
+
 azure deployment change-configuration-by-name-parameters deployment-change-configuration-parameters set
 --parameter-file $f
 --parse
@@ -183,6 +188,11 @@ azure deployment change-configuration-by-slot-parameters generate
 --parameter-file $f
 
 azure deployment change-configuration-by-slot-parameters patch 
+--parameter-file $f
+
+azure deployment commit-migration 
+--service-name $p0
+--deployment-name $p1
 --parameter-file $f
 
 azure deployment create-parameters deployment-slot delete
@@ -420,6 +430,30 @@ azure deployment list-events-by-slot
 --deployment-slot $p1
 --start-time $p2
 --end-time $p3
+--parameter-file $f
+
+azure deployment prepare-migration-parameters prepare-deployment-migration-parameters set
+--parameter-file $f
+--parse
+--destination-virtual-network $destinationVirtualNetwork
+--resource-group-name $resourceGroupName
+--sub-net-name $subNetName
+--virtual-network-name $virtualNetworkName
+
+azure deployment prepare-migration-parameters prepare-deployment-migration-parameters delete
+--parameter-file $f
+--destination-virtual-network
+--resource-group-name
+--sub-net-name
+--virtual-network-name
+
+azure deployment prepare-migration 
+--service-name $p0
+--deployment-name $p1
+--destination-virtual-network $p20
+--resource-group-name $p21
+--sub-net-name $p22
+--virtual-network-name $p23
 --parameter-file $f
 
 azure deployment reboot-role-instance-by-deployment-name 
@@ -4687,6 +4721,38 @@ function display(cli, o) {
 exports.init = function (cli) {
 
 /*
+  Deployment AbortMigration
+  --service-name
+  --deployment-name
+*/
+  var deploymentAbortMigration = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment')
+  .description($('Commands to manage your deployment.  '));
+  deploymentAbortMigration.command('abort-migration [service-name] [deployment-name]')
+  .description($('The Abort Deployment Operation validates and aborts your deployment for IaaS Classic to ARM migration.'))
+  .usage('[options] <service-name> <deployment-name>')
+  .option('--service-name <service-name>', $('service-name'))
+  .option('--deployment-name <deployment-name>', $('deployment-name'))
+  .option('--parameter-file <parameter-file>', $('the input parameter file'))
+  .option('-s, --subscription <subscription>', $('the subscription identifier'))
+  .execute(function(serviceName, deploymentName, options, _) {
+    if (!serviceName) {
+      serviceName = cli.interaction.promptIfNotGiven($('service-name : '), serviceName, _);
+    }
+
+    cli.output.verbose('serviceName = ' + serviceName);
+    if (!deploymentName) {
+      deploymentName = cli.interaction.promptIfNotGiven($('deployment-name : '), deploymentName, _);
+    }
+
+    cli.output.verbose('deploymentName = ' + deploymentName);
+    var subscription = profile.current.getSubscription(options.subscription);
+    var computeManagementClient = utils.createComputeClient(subscription);
+    var result = computeManagementClient.deployment.abortMigration(serviceName, deploymentName, _);
+    if (result) {
+      cli.output.json(result);
+    }
+  });
+/*
   Deployment ChangeConfigurationByName
   --service-name
   --deployment-name
@@ -6208,6 +6274,38 @@ exports.init = function (cli) {
     cli.output.verbose('=====================================');
   });
 
+/*
+  Deployment CommitMigration
+  --service-name
+  --deployment-name
+*/
+  var deploymentCommitMigration = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment')
+  .description($('Commands to manage your deployment.  '));
+  deploymentCommitMigration.command('commit-migration [service-name] [deployment-name]')
+  .description($('The Commit Deployment Operation validates and commits your deployment for IaaS Classic to ARM migration.'))
+  .usage('[options] <service-name> <deployment-name>')
+  .option('--service-name <service-name>', $('service-name'))
+  .option('--deployment-name <deployment-name>', $('deployment-name'))
+  .option('--parameter-file <parameter-file>', $('the input parameter file'))
+  .option('-s, --subscription <subscription>', $('the subscription identifier'))
+  .execute(function(serviceName, deploymentName, options, _) {
+    if (!serviceName) {
+      serviceName = cli.interaction.promptIfNotGiven($('service-name : '), serviceName, _);
+    }
+
+    cli.output.verbose('serviceName = ' + serviceName);
+    if (!deploymentName) {
+      deploymentName = cli.interaction.promptIfNotGiven($('deployment-name : '), deploymentName, _);
+    }
+
+    cli.output.verbose('deploymentName = ' + deploymentName);
+    var subscription = profile.current.getSubscription(options.subscription);
+    var computeManagementClient = utils.createComputeClient(subscription);
+    var result = computeManagementClient.deployment.commitMigration(serviceName, deploymentName, _);
+    if (result) {
+      cli.output.json(result);
+    }
+  });
 /*
   Deployment Create
   --service-name
@@ -8074,6 +8172,68 @@ exports.init = function (cli) {
     var subscription = profile.current.getSubscription(options.subscription);
     var computeManagementClient = utils.createComputeClient(subscription);
     var result = computeManagementClient.deployment.listEventsBySlot(serviceName, deploymentSlot, startTime, endTime, _);
+    if (result) {
+      cli.output.json(result);
+    }
+  });
+/*
+  Deployment PrepareMigration
+  --service-name
+  --deployment-name
+  --parameters
+=============================================
+{
+  "destinationVirtualNetwork":"",
+  "resourceGroupName":"",
+  "subNetName":"",
+  "virtualNetworkName":""
+}
+*/
+  var deploymentPrepareMigration = cli.category('invoke').description('Commands to invoke service management operations.').category('deployment')
+  .description($('Commands to manage your deployment.  '));
+  deploymentPrepareMigration.command('prepare-migration [service-name] [deployment-name] [destination-virtual-network] [resource-group-name] [sub-net-name] [virtual-network-name]')
+  .description($('The Prepare Deployment Operation validates and prepares your deployment for IaaS Classic to ARM migration.'))
+  .usage('[options] <service-name> <deployment-name> <destination-virtual-network> <resource-group-name> <sub-net-name> <virtual-network-name>')
+  .option('--service-name <service-name>', $('service-name'))
+  .option('--deployment-name <deployment-name>', $('deployment-name'))
+  .option('--destination-virtual-network <destination-virtual-network>', $('destination-virtual-network'))
+  .option('-g, --resource-group-name <resource-group-name>', $('resource-group-name'))
+  .option('--sub-net-name <sub-net-name>', $('sub-net-name'))
+  .option('--virtual-network-name <virtual-network-name>', $('virtual-network-name'))
+  .option('--parameter-file <parameter-file>', $('the input parameter file'))
+  .option('-s, --subscription <subscription>', $('the subscription identifier'))
+  .execute(function(serviceName, deploymentName, destinationVirtualNetwork, resourceGroupName, subNetName, virtualNetworkName, options, _) {
+    if (!serviceName) {
+      serviceName = cli.interaction.promptIfNotGiven($('service-name : '), serviceName, _);
+    }
+
+    cli.output.verbose('serviceName = ' + serviceName);
+    if (!deploymentName) {
+      deploymentName = cli.interaction.promptIfNotGiven($('deployment-name : '), deploymentName, _);
+    }
+
+    cli.output.verbose('deploymentName = ' + deploymentName);
+    var parametersObj = null;
+    if (options.parameterFile) {
+      cli.output.verbose('Reading file content from: \"' + options.parameterFile + '\"');
+      var parametersFileContent = fs.readFileSync(options.parameterFile, 'utf8');
+      parametersObj = JSON.parse(parametersFileContent);
+    }
+    else {
+      parametersObj = {};
+      cli.output.verbose('destinationVirtualNetwork = ' + destinationVirtualNetwork);
+      parametersObj.destinationVirtualNetwork = destinationVirtualNetwork;
+      cli.output.verbose('resourceGroupName = ' + resourceGroupName);
+      parametersObj.resourceGroupName = resourceGroupName;
+      cli.output.verbose('subNetName = ' + subNetName);
+      parametersObj.subNetName = subNetName;
+      cli.output.verbose('virtualNetworkName = ' + virtualNetworkName);
+      parametersObj.virtualNetworkName = virtualNetworkName;
+    }
+    cli.output.verbose('parametersObj = ' + JSON.stringify(parametersObj));
+    var subscription = profile.current.getSubscription(options.subscription);
+    var computeManagementClient = utils.createComputeClient(subscription);
+    var result = computeManagementClient.deployment.prepareMigration(serviceName, deploymentName, parametersObj, _);
     if (result) {
       cli.output.json(result);
     }

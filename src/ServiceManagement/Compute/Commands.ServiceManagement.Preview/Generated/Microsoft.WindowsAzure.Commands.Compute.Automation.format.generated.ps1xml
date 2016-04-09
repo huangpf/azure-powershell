@@ -1143,6 +1143,10 @@
                 <PropertyName>DefaultWinRmCertificateThumbprint</PropertyName>
               </ListItem>
               <ListItem>
+                <Label>MigrationState</Label>
+                <PropertyName>MigrationState</PropertyName>
+              </ListItem>
+              <ListItem>
                 <Label>OsVersion</Label>
                 <PropertyName>OsVersion</PropertyName>
               </ListItem>

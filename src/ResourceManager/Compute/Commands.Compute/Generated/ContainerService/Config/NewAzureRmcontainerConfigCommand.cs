@@ -113,10 +113,10 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             var vLinuxProfile = new Microsoft.Azure.Management.Compute.Models.ContainerServiceLinuxProfile();
 
             // Ssh
-            vLinuxProfile.Ssh = new Microsoft.Azure.Management.Compute.Models.ContainerServiceSshConfiguration();
+            vLinuxProfile.Ssh = new ();
 
             // PublicKeys
-            vLinuxProfile.Ssh.PublicKeys = new List<Microsoft.Azure.Management.Compute.Models.ContainerServiceSshPublicKey>();
+            vLinuxProfile.Ssh.PublicKeys = new Array:Microsoft.Azure.Management.Compute.Models.ContainerServiceSshPublicKey();
 
             // DiagnosticsProfile
             var vDiagnosticsProfile = new Microsoft.Azure.Management.Compute.Models.ContainerServiceDiagnosticsProfile();
@@ -129,7 +129,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             vWindowsProfile.AdminUsername = this.WindowsProfileAdminUsername;
             vWindowsProfile.AdminPassword = this.WindowsProfileAdminPassword;
             vLinuxProfile.AdminUsername = this.AdminUsername;
-            vLinuxProfile.Ssh.PublicKeys = null;
+            vLinuxProfile.Ssh.PublicKeys.KeyData = this.Ssh;
             vDiagnosticsProfile.VmDiagnostics.Enabled = this.VmDiagnosticsEnabled;
 
             var vContainerService = new ContainerService

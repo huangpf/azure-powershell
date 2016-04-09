@@ -44,7 +44,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             "ContainerServiceCreateOrUpdate",
             "ContainerServiceDelete",
             "ContainerServiceGet",
-            "ContainerServiceListByResourceGroup",
+            "ContainerServiceList",
             "VirtualMachineScaleSetCreateOrUpdate",
             "VirtualMachineScaleSetDeallocate",
             "VirtualMachineScaleSetDelete",
@@ -106,7 +106,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                         case "ContainerServiceCreateOrUpdate" : WriteObject(CreateContainerServiceCreateOrUpdateParameters(), true); break;
                         case "ContainerServiceDelete" : WriteObject(CreateContainerServiceDeleteParameters(), true); break;
                         case "ContainerServiceGet" : WriteObject(CreateContainerServiceGetParameters(), true); break;
-                        case "ContainerServiceListByResourceGroup" : WriteObject(CreateContainerServiceListByResourceGroupParameters(), true); break;
+                        case "ContainerServiceList" : WriteObject(CreateContainerServiceListParameters(), true); break;
                         case "VirtualMachineScaleSetCreateOrUpdate" : WriteObject(CreateVirtualMachineScaleSetCreateOrUpdateParameters(), true); break;
                         case "VirtualMachineScaleSetDeallocate" : WriteObject(CreateVirtualMachineScaleSetDeallocateParameters(), true); break;
                         case "VirtualMachineScaleSetDelete" : WriteObject(CreateVirtualMachineScaleSetDeleteParameters(), true); break;

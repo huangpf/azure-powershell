@@ -45,6 +45,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "DeploymentGetPackageParameters",
             "DeploymentNamedRole",
             "DeploymentNamedRoleList",
+            "DeploymentPrepareDeploymentMigrationParameters",
             "DeploymentRollbackUpdateOrUpgradeParameters",
             "DeploymentSwapParameters",
             "DeploymentUpdateStatusParameters",
@@ -201,6 +202,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             "Microsoft.WindowsAzure.Management.Compute.Models.OSDiskConfigurationUpdateParameters",
             "Microsoft.WindowsAzure.Management.Compute.Models.OSVirtualHardDisk",
             "Microsoft.WindowsAzure.Management.Compute.Models.Plan",
+            "Microsoft.WindowsAzure.Management.Compute.Models.PrepareDeploymentMigrationParameters",
             "Microsoft.WindowsAzure.Management.Compute.Models.ResourceExtensionReference",
             "Microsoft.WindowsAzure.Management.Compute.Models.Role",
             "Microsoft.WindowsAzure.Management.Compute.Models.ServiceCertificateCreateParameters",
@@ -279,6 +281,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                         case "DeploymentGetPackageParameters" : WriteObject(new DeploymentGetPackageParameters()); break;
                         case "DeploymentNamedRole" : WriteObject(new ExtensionConfiguration.NamedRole()); break;
                         case "DeploymentNamedRoleList" : WriteObject(new List<ExtensionConfiguration.NamedRole>()); break;
+                        case "DeploymentPrepareDeploymentMigrationParameters" : WriteObject(new PrepareDeploymentMigrationParameters()); break;
                         case "DeploymentRollbackUpdateOrUpgradeParameters" : WriteObject(new DeploymentRollbackUpdateOrUpgradeParameters()); break;
                         case "DeploymentSwapParameters" : WriteObject(new DeploymentSwapParameters()); break;
                         case "DeploymentUpdateStatusParameters" : WriteObject(new DeploymentUpdateStatusParameters()); break;
@@ -437,6 +440,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
                         case "Microsoft.WindowsAzure.Management.Compute.Models.OSDiskConfigurationUpdateParameters" : WriteObject(new OSDiskConfigurationUpdateParameters()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.OSVirtualHardDisk" : WriteObject(new OSVirtualHardDisk()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.Plan" : WriteObject(new Plan()); break;
+                        case "Microsoft.WindowsAzure.Management.Compute.Models.PrepareDeploymentMigrationParameters" : WriteObject(new PrepareDeploymentMigrationParameters()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.ResourceExtensionReference" : WriteObject(new ResourceExtensionReference()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.Role" : WriteObject(new Role()); break;
                         case "Microsoft.WindowsAzure.Management.Compute.Models.ServiceCertificateCreateParameters" : WriteObject(new ServiceCertificateCreateParameters()); break;

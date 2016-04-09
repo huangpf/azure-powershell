@@ -84,6 +84,11 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 var result = ContainerServiceClient.Get(resourceGroupName, containerServiceName);
                 WriteObject(result);
             }
+            else if (!string.IsNullOrEmpty(resourceGroupName))
+            {
+                var result = ContainerServiceClient.List(resourceGroupName);
+                WriteObject(result);
+            }
         }
 
     }
