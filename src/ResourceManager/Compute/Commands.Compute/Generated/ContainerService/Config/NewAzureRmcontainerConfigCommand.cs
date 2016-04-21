@@ -101,36 +101,110 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         protected override void ProcessRecord()
         {
             // OrchestratorProfile
-            var vOrchestratorProfile = new Microsoft.Azure.Management.Compute.Models.ContainerServiceOrchestratorProfile();
+            Microsoft.Azure.Management.Compute.Models.ContainerServiceOrchestratorProfile vOrchestratorProfile = null;
 
             // MasterProfile
-            var vMasterProfile = new Microsoft.Azure.Management.Compute.Models.ContainerServiceMasterProfile();
+            Microsoft.Azure.Management.Compute.Models.ContainerServiceMasterProfile vMasterProfile = null;
 
             // WindowsProfile
-            var vWindowsProfile = new Microsoft.Azure.Management.Compute.Models.ContainerServiceWindowsProfile();
+            Microsoft.Azure.Management.Compute.Models.ContainerServiceWindowsProfile vWindowsProfile = null;
 
             // LinuxProfile
-            var vLinuxProfile = new Microsoft.Azure.Management.Compute.Models.ContainerServiceLinuxProfile();
-
-            // Ssh
-            vLinuxProfile.Ssh = null;
-
-            // PublicKeys
-            vLinuxProfile.Ssh.PublicKeys = null;
+            Microsoft.Azure.Management.Compute.Models.ContainerServiceLinuxProfile vLinuxProfile = null;
 
             // DiagnosticsProfile
-            var vDiagnosticsProfile = new Microsoft.Azure.Management.Compute.Models.ContainerServiceDiagnosticsProfile();
+            Microsoft.Azure.Management.Compute.Models.ContainerServiceDiagnosticsProfile vDiagnosticsProfile = null;
 
-            // VmDiagnostics
-            vDiagnosticsProfile.VmDiagnostics = new Microsoft.Azure.Management.Compute.Models.ContainerServiceVMDiagnostics();
-            vOrchestratorProfile.OrchestratorType = this.OrchestratorProfileOrchestratorType;
-            vMasterProfile.Count = this.MasterProfileCount;
-            vMasterProfile.DnsPrefix = this.MasterProfileDnsPrefix;
-            vWindowsProfile.AdminUsername = this.WindowsProfileAdminUsername;
-            vWindowsProfile.AdminPassword = this.WindowsProfileAdminPassword;
-            vLinuxProfile.AdminUsername = this.AdminUsername;
-            vLinuxProfile.Ssh.PublicKeys = null;
-            vDiagnosticsProfile.VmDiagnostics.Enabled = this.VmDiagnosticsEnabled;
+            if (this.OrchestratorProfileOrchestratorType != null)
+            {
+                if (vOrchestratorProfile == null)
+                {
+                    vOrchestratorProfile = new Microsoft.Azure.Management.Compute.Models.ContainerServiceOrchestratorProfile();
+                }
+                vOrchestratorProfile.OrchestratorType = this.OrchestratorProfileOrchestratorType;
+            }
+
+            if (this.MasterProfileCount != null)
+            {
+                if (vMasterProfile == null)
+                {
+                    vMasterProfile = new Microsoft.Azure.Management.Compute.Models.ContainerServiceMasterProfile();
+                }
+                vMasterProfile.Count = this.MasterProfileCount;
+            }
+
+            if (this.MasterProfileDnsPrefix != null)
+            {
+                if (vMasterProfile == null)
+                {
+                    vMasterProfile = new Microsoft.Azure.Management.Compute.Models.ContainerServiceMasterProfile();
+                }
+                vMasterProfile.DnsPrefix = this.MasterProfileDnsPrefix;
+            }
+
+            if (this.WindowsProfileAdminUsername != null)
+            {
+                if (vWindowsProfile == null)
+                {
+                    vWindowsProfile = new Microsoft.Azure.Management.Compute.Models.ContainerServiceWindowsProfile();
+                }
+                vWindowsProfile.AdminUsername = this.WindowsProfileAdminUsername;
+            }
+
+            if (this.WindowsProfileAdminPassword != null)
+            {
+                if (vWindowsProfile == null)
+                {
+                    vWindowsProfile = new Microsoft.Azure.Management.Compute.Models.ContainerServiceWindowsProfile();
+                }
+                vWindowsProfile.AdminPassword = this.WindowsProfileAdminPassword;
+            }
+
+            if (this.AdminUsername != null)
+            {
+                if (vLinuxProfile == null)
+                {
+                    vLinuxProfile = new Microsoft.Azure.Management.Compute.Models.ContainerServiceLinuxProfile();
+                }
+                vLinuxProfile.AdminUsername = this.AdminUsername;
+            }
+
+
+            if (this.Ssh != null)
+            {
+                if (vLinuxProfile == null)
+                {
+                    vLinuxProfile = new Microsoft.Azure.Management.Compute.Models.ContainerServiceLinuxProfile();
+                }
+                if (vLinuxProfile.Ssh == null)
+                {
+                    vLinuxProfile.Ssh = new Microsoft.Azure.Management.Compute.Models.ContainerServiceSshConfiguration();
+                }
+                if (vLinuxProfile.Ssh.PublicKeys == null)
+                {
+                    vLinuxProfile.Ssh.PublicKeys = new List<Microsoft.Azure.Management.Compute.Models.ContainerServiceSshPublicKey>();
+                }
+                foreach (var element in this.Ssh)
+                {
+                    var vPublicKeys = new Microsoft.Azure.Management.Compute.Models.ContainerServiceSshPublicKey();
+                    vPublicKeys.KeyData = element;
+                    vLinuxProfile.Ssh.PublicKeys.Add(vPublicKeys);
+                }
+            }
+
+            if (this.VmDiagnosticsEnabled != null)
+            {
+                if (vDiagnosticsProfile == null)
+                {
+                    vDiagnosticsProfile = new Microsoft.Azure.Management.Compute.Models.ContainerServiceDiagnosticsProfile();
+                }
+                if (vDiagnosticsProfile.VmDiagnostics == null)
+                {
+                    vDiagnosticsProfile.VmDiagnostics = new Microsoft.Azure.Management.Compute.Models.ContainerServiceVMDiagnostics();
+                }
+                vDiagnosticsProfile.VmDiagnostics.Enabled = this.VmDiagnosticsEnabled;
+            }
+
 
             var vContainerService = new ContainerService
             {

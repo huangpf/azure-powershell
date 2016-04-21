@@ -42,7 +42,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = false
+                Mandatory = true
             });
             pResourceGroupName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
@@ -54,22 +54,22 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = false
+                Mandatory = true
             });
             pName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("Name", pName);
 
             var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "VirtualMachineScaleSetCreateOrUpdateParameter";
+            pParameters.Name = "VirtualMachineScaleSet";
             pParameters.ParameterType = typeof(VirtualMachineScaleSet);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 3,
-                Mandatory = false
+                Mandatory = true
             });
             pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("VirtualMachineScaleSetCreateOrUpdateParameter", pParameters);
+            dynamicParameters.Add("VirtualMachineScaleSet", pParameters);
 
             var pArgumentList = new RuntimeDefinedParameter();
             pArgumentList.Name = "ArgumentList";
@@ -136,7 +136,8 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = false
+                Mandatory = true,
+                ValueFromPipeline = false
             });
             pResourceGroupName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
@@ -148,34 +149,85 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = false
+                Mandatory = true,
+                ValueFromPipeline = false
             });
             pName.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("Name", pName);
 
             var pParameters = new RuntimeDefinedParameter();
-            pParameters.Name = "VirtualMachineScaleSetCreateOrUpdateParameter";
+            pParameters.Name = "VirtualMachineScaleSet";
             pParameters.ParameterType = typeof(VirtualMachineScaleSet);
             pParameters.Attributes.Add(new ParameterAttribute
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 3,
-                Mandatory = false
+                Mandatory = true,
+                ValueFromPipeline = true
             });
             pParameters.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("VirtualMachineScaleSetCreateOrUpdateParameter", pParameters);
+            dynamicParameters.Add("VirtualMachineScaleSet", pParameters);
 
-            var pArgumentList = new RuntimeDefinedParameter();
-            pArgumentList.Name = "ArgumentList";
-            pArgumentList.ParameterType = typeof(object[]);
-            pArgumentList.Attributes.Add(new ParameterAttribute
+            return dynamicParameters;
+        }
+    }
+
+    [Cmdlet("Update", "AzureRmVmss", DefaultParameterSetName = "InvokeByDynamicParameters")]
+    public partial class UpdateAzureRmVmss : InvokeAzureComputeMethodCmdlet
+    {
+        public UpdateAzureRmVmss()
+        {
+        }
+
+        public override string MethodName { get; set; }
+
+        protected override void ProcessRecord()
+        {
+            this.MethodName = "VirtualMachineScaleSetCreateOrUpdate";
+            base.ProcessRecord();
+        }
+
+        public override object GetDynamicParameters()
+        {
+            dynamicParameters = new RuntimeDefinedParameterDictionary();
+            var pResourceGroupName = new RuntimeDefinedParameter();
+            pResourceGroupName.Name = "ResourceGroupName";
+            pResourceGroupName.ParameterType = typeof(string);
+            pResourceGroupName.Attributes.Add(new ParameterAttribute
             {
-                ParameterSetName = "InvokeByStaticParameters",
-                Position = 4,
-                Mandatory = true
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 1,
+                Mandatory = true,
+                ValueFromPipeline = false
             });
-            pArgumentList.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("ArgumentList", pArgumentList);
+            pResourceGroupName.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("ResourceGroupName", pResourceGroupName);
+
+            var pName = new RuntimeDefinedParameter();
+            pName.Name = "Name";
+            pName.ParameterType = typeof(string);
+            pName.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 2,
+                Mandatory = true,
+                ValueFromPipeline = false
+            });
+            pName.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("Name", pName);
+
+            var pParameters = new RuntimeDefinedParameter();
+            pParameters.Name = "VirtualMachineScaleSet";
+            pParameters.ParameterType = typeof(VirtualMachineScaleSet);
+            pParameters.Attributes.Add(new ParameterAttribute
+            {
+                ParameterSetName = "InvokeByDynamicParameters",
+                Position = 3,
+                Mandatory = true,
+                ValueFromPipeline = true
+            });
+            pParameters.Attributes.Add(new AllowNullAttribute());
+            dynamicParameters.Add("VirtualMachineScaleSet", pParameters);
 
             return dynamicParameters;
         }

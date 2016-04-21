@@ -42,7 +42,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 1,
-                Mandatory = false
+                Mandatory = true
             });
             pProviderNamespace.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("ProviderNamespace", pProviderNamespace);
@@ -54,7 +54,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 2,
-                Mandatory = false
+                Mandatory = true
             });
             pType.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("Type", pType);
@@ -66,7 +66,7 @@ namespace Microsoft.WindowsAzure.Commands.Compute.Automation
             {
                 ParameterSetName = "InvokeByDynamicParameters",
                 Position = 3,
-                Mandatory = false
+                Mandatory = true
             });
             pVersion.Attributes.Add(new AllowNullAttribute());
             dynamicParameters.Add("Version", pVersion);

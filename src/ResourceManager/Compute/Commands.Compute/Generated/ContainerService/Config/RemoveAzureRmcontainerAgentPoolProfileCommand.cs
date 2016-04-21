@@ -33,35 +33,17 @@ namespace Microsoft.Azure.Commands.Compute.Automation
     public class RemoveAzureRmcontainerAgentPoolProfileCommand : Microsoft.Azure.Commands.ResourceManager.Common.AzureRMCmdlet
     {
         [Parameter(
-            Mandatory = false,
+            Mandatory = true,
             Position = 0,
             ValueFromPipeline = true,
             ValueFromPipelineByPropertyName = true)]
         public ContainerService ContainerService { get; set; }
 
         [Parameter(
-            Mandatory = false,
+            Mandatory = true,
             Position = 1,
             ValueFromPipelineByPropertyName = true)]
         public string Name { get; set; }
-
-        [Parameter(
-            Mandatory = false,
-            Position = 2,
-            ValueFromPipelineByPropertyName = true)]
-        public int? Count { get; set; }
-
-        [Parameter(
-            Mandatory = false,
-            Position = 3,
-            ValueFromPipelineByPropertyName = true)]
-        public string VmSize { get; set; }
-
-        [Parameter(
-            Mandatory = false,
-            Position = 4,
-            ValueFromPipelineByPropertyName = true)]
-        public string DnsPrefix { get; set; }
 
         protected override void ProcessRecord()
         {
@@ -73,10 +55,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             }
             var vAgentPoolProfiles = this.ContainerService.AgentPoolProfiles.First
                 (e =>
-                    (this.Name == null || e.Name == this.Name)
-                    && (this.Count == null || e.Count == this.Count)
-                    && (this.VmSize == null || e.VmSize == this.VmSize)
-                    && (this.DnsPrefix == null || e.DnsPrefix == this.DnsPrefix)
+                    (e.Name == this.Name)
                 );
 
             if (vAgentPoolProfiles != null)
