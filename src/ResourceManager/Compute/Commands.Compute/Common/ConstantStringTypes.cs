@@ -92,6 +92,7 @@ namespace Microsoft.Azure.Commands.Compute.Common
         public const string NetworkInterface = "AzureRmVMNetworkInterface";
 
         public const string VirtualMachine = "AzureRmVM";
+        public const string VirtualHardDiskVirtualMachine = "AzureRmVhdVM";
         public const string VirtualMachineExtension = "AzureRmVMExtension";
         public const string VirtualMachineADDomainExtension = "AzureRmVMADDomainExtension";
         public const string VirtualMachineCustomScriptExtension = "AzureRmVMCustomScriptExtension";
