@@ -729,7 +729,11 @@ function Get-Image([string] $imageName) {
     return $vmImage
 }
 
-Export-ModuleMember -Function New-AzVm
+function New-AzVhdVm {
+    Write-Host "Hello, World!";
+}
+
+Export-ModuleMember -Function New-AzVm,New-AzVhdVm
 
 $locations = $null
 
